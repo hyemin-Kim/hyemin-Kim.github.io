@@ -5,9 +5,9 @@
   <subtitle>Data Analysis</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://hyemin-kim.github.io/"/>
   <updated>2020-05-04T13:09:58.342Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://hyemin-kim.github.io/</id>
   
   <author>
     <name>Hyemin Kim</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Markdown 常用语法</title>
-    <link href="http://yoursite.com/posts/14404/"/>
-    <id>http://yoursite.com/posts/14404/</id>
+    <link href="https://hyemin-kim.github.io/posts/14404/"/>
+    <id>https://hyemin-kim.github.io/posts/14404/</id>
     <published>2020-05-03T16:40:07.372Z</published>
     <updated>2020-05-04T13:09:58.342Z</updated>
     
@@ -35,19 +35,19 @@
     </summary>
     
     
-      <category term="Study_markdown" scheme="http://yoursite.com/categories/Study-markdown/"/>
+      <category term="Study_markdown" scheme="https://hyemin-kim.github.io/categories/Study-markdown/"/>
     
     
-      <category term="markdown" scheme="http://yoursite.com/tags/markdown/"/>
+      <category term="markdown" scheme="https://hyemin-kim.github.io/tags/markdown/"/>
     
-      <category term="study blog" scheme="http://yoursite.com/tags/study-blog/"/>
+      <category term="study blog" scheme="https://hyemin-kim.github.io/tags/study-blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/posts/16107/"/>
-    <id>http://yoursite.com/posts/16107/</id>
+    <link href="https://hyemin-kim.github.io/posts/16107/"/>
+    <id>https://hyemin-kim.github.io/posts/16107/</id>
     <published>2020-05-03T15:44:51.807Z</published>
     <updated>2020-05-04T13:09:58.343Z</updated>
     
