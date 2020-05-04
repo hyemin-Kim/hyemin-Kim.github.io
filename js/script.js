@@ -1,768 +1,1106 @@
-/* 文字跳动 */
-jQuery.easing['jswing'] = jQuery.easing['swing']
-jQuery.extend(jQuery.easing, {
-	def: 'easeOutQuad',
+var $$ = mdui.JQ;
 
-	easeOutCubic: function(x, t, b, c, d) {
-		return c * ((t = t / d - 1) * t * t + 1) + b
-	},
-	easeOutBounce: function(x, t, b, c, d) {
-		if ((t /= d) < 1 / 2.75) {
-			return c * (7.5625 * t * t) + b
-		} else if (t < 2 / 2.75) {
-			return c * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75) + b
-		} else if (t < 2.5 / 2.75) {
-			return c * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375) + b
-		}
-		return c * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375) + b
-	}
-})
-;(function($) {
-	$.fn.bumpyText = function(options) {
-		const defaults = {
-			bounceHeight: '1.3em',
-			bounceUpDuration: 500,
-			bounceDownDuration: 700
-		}
-		options = $.extend(defaults, options)
-		return this.each(function() {
-			const obj = $(this)
-			if (obj.text() !== obj.html()) {
-				return
-			}
-			const text = obj.text()
-			let newMarkup = ''
-			for (let i = 0; i <= text.length; i++) {
-				const character = text.slice(i, i + 1)
-				newMarkup += $.trim(character)
-					? `<span class="bumpy-char">${character}</span>`
-					: character
-			}
-			obj.html(newMarkup)
-			obj.find('span.bumpy-char').each(function() {
-				$(this).mouseover(function() {
-					$(this).animate(
-						{
-							bottom: options.bounceHeight
-						},
-						{
-							queue: false,
-							duration: options.bounceUpDuration,
-							easing: 'easeOutCubic',
-							complete: function() {
-								$(this).animate(
-									{
-										bottom: 0
-									},
-									{
-										queue: false,
-										duration: options.bounceDownDuration,
-										easing: 'easeOutBounce'
-									}
-								)
-							}
-						}
-					)
-				})
-			})
-		})
-	}
-}(jQuery))
+/* Gotop */
+$$(function () {
+  $$(window).on('scroll', function (e) {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop !== 0) {
+      $$('#gotop').removeClass('mdui-fab-hide');
+    } else {
+      $$('#gotop').addClass('mdui-fab-hide');
+    }
+  });
+  $$('#gotop').on('click', function (e) {
+    (function animateScroll() {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop !== 0) {
+        window.requestAnimationFrame(animateScroll);
+        window.scrollTo(0, scrollTop - (scrollTop / 5));
+      }
+    })();
+  });
+});
 
-/* 文字音效 */
-function elasticText() {
-	const args = arguments
-	const EventUtil = {
-		e: '',
-		gEve: function(event) {
-			this.e = event ? event : window.event
-			return this
-		},
-		getEvent: function(event) {
-			return event ? event : window.event
-		},
-		ce: function(e, callback) {
-			if (e) {
-				return callback(e)
-			}
-			return callback(this.e)
-		},
-		addHandler: function(ele, type, handler) {
-			if (ele.addEventListener) {
-				ele.addEventListener(type, handler, false)
-			} else if (ele.attachEvent) {
-				ele.attachEvent(`on${type}`, handler)
-			} else {
-				ele[`on${type}`] = handler
-			}
-		},
-		removeHandler: function(ele, type, handler) {
-			if (ele.removeEventListener) {
-				ele.removeEventListener(type, handler, false)
-			} else if (ele.detachEvent) {
-				ele.detachEvent(`on${type}`, handler)
-			} else {
-				ele[`on${type}`] = null
-			}
-		}
-	}
+/* Dark Mode */
+$$.fn.extend({
+  longPress: function (fn) {
+    var $this = this;
+    for (var i = 0; i < $this.length; i++) {
+      (function (target) {
+        var timeout;
+        var start = function (event) {
+          timeout = setTimeout(function () {
+            fn(event);
+          }, 500);
+        };
+        var end = function (event) {
+          clearTimeout(timeout);
+        };
+        target.addEventListener('mousedown', start, false);
+        target.addEventListener('mouseup', end, false);
+        target.addEventListener('touchstart', start, false);
+        target.addEventListener('touchend', end, false);
+      })($this[i]);
+    }
+  }
+});
+$$(function () {
+  $$('#header').longPress(function (e) {
+    if ($$('body').hasClass('mdui-theme-layout-dark')) {
+      $$('body').removeClass('mdui-theme-layout-dark');
+      localStorage.removeItem('mdui-theme-layout-dark');
+    } else {
+      $$('body').addClass('mdui-theme-layout-dark');
+      localStorage.setItem('mdui-theme-layout-dark', true);
+    }
+  });
+  var tab = new mdui.Tab('#donate .mdui-tab');
+  $$('#donate').on('opened.mdui.dialog', function (e) {
+    tab.handleUpdate();
+  });
+});
 
-	function mouserEvent(event) {
-		const e = EventUtil.getEvent(event)
-		const left = this.offsetLeft
-		const top = this.offsetTop
-		const x = e.clientX ? e.clientX : e.pageX
-		const y = e.clientY ? e.clientY : e.pageY
-		return {
-			x: x - left,
-			y: y - top
-		}
-	}
+/* Search */
+var searchFunc = function (path, search_id, content_id) {
+  $$.ajax({
+    url: path,
+    dataType: 'xml',
+    success: function (xmlResponse) {
+      var datas = $$(xmlResponse).find('entry').map(function () {
+        return {
+          title: $$(this).find('title').text(),
+          content: $$(this).find('content').text(),
+          url: $$(this).find('url').text()
+        };
+      }).get();
+      var $input = $$(search_id)[0];
+      var $resultContent = $$(content_id)[0];
+      $input.addEventListener('input', function () {
+        var str = '<ul class="search-result-list">';
+        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+        $resultContent.innerHTML = '';
+        if (this.value.trim().length <= 0) {
+          return;
+        }
+        datas.forEach(function (data) {
+          var isMatch = true;
+          if (!data.title || data.title.trim() === '') {
+            data.title = 'Untitled';
+          }
+          var orig_data_title = data.title.trim();
+          var data_title = orig_data_title.toLowerCase();
+          var orig_data_content = data.content.trim().replace(/<[^>]+>/g, '');
+          var data_content = orig_data_content.toLowerCase();
+          var data_url = data.url;
+          var index_title = -1;
+          var index_content = -1;
+          var first_occur = -1;
+          if (data_content !== '') {
+            keywords.forEach(function (keyword, i) {
+              index_title = data_title.indexOf(keyword);
+              index_content = data_content.indexOf(keyword);
+              if (index_title < 0 && index_content < 0) {
+                isMatch = false;
+              } else {
+                if (index_content < 0) {
+                  index_content = 0;
+                }
+                if (i == 0) {
+                  first_occur = index_content;
+                }
+              }
+            });
+          } else {
+            isMatch = false;
+          }
+          if (isMatch) {
+            str += '<li><a href="' + data_url + '" class="search-result-title" target="_blank">' + orig_data_title + '</a>';
+            var content = orig_data_content;
+            if (first_occur >= 0) {
+              var start = first_occur - 20;
+              var end = first_occur + 80;
+              if (start < 0) {
+                start = 0;
+              }
+              if (start == 0) {
+                end = 100;
+              }
+              if (end > content.length) {
+                end = content.length;
+              }
+              var match_content = content.substr(start, end);
+              keywords.forEach(function (keyword) {
+                var regS = new RegExp(keyword, 'gi');
+                match_content = match_content.replace(regS, '<em class="search-result-keyword">$&</em>');
+              });
+              str += '<p class="search-result-content">' + match_content + '...</p>';
+            }
+            str += '</li>';
+          }
+        });
+        str += '</ul>';
+        $resultContent.innerHTML = str;
+      });
+    }
+  });
+};
+$$(function () {
+  var ele = $$('#search .search-form-input')[0];
+  $$('#search').on('opened.mdui.dialog', function (e) {
+    ele.focus();
+  });
+  $$(document).on('click', function (e) {
+    if ($$(e.target).closest('#search').length <= 0) {
+      $$('.search-form-input').val('');
+      $$('.search-result').html('');
+    }
+  });
+  var resource = $$('.search-result').attr('data-resource');
+  if (resource) searchFunc(resource, '.search-form-input', '.search-result');
+});
 
-	function triangleCalc(w, h, m, n, arr, fs, ac) {
-		let z = 0
-		let posarr = []
-		if (ac instanceof Array && ac.length > 0) {
-			posarr = ac.concat([])
-		}
-		if (n.y < m.y) {
-			z = 1
-		} else {
-			z = -1
-		}
-		arr.map(function(item, index, array) {
-			const l = array.length - 1
-			const hw = l * fs
-			const lw = index * fs + fs / 2
-			const rw = (l - index) * fs + fs / 2
-			let ip
-			if (lw < n.x && n.x > fs / 2) {
-				ip = z * ((lw / n.x) * (n.y - m.y) * z).toFixed(2)
-			}
-			if (lw > n.x && n.x < hw + fs / 2) {
-				ip = z * ((rw / (fs * l - n.x + fs / 2)) * (n.y - m.y) * z).toFixed(2)
-			}
-			if (ip !== 0 && ip) {
-				posarr[index] = ip
-			}
-			item.style = `display:inline-block;transform:translateY(${ip}px)`
-		})
-		return posarr
-	}
-	const ef = {
-		easeOut: function(t, b, c, d, a, p) {
-			let s
-			if (t === 0) {
-				return b
-			}
-			if ((t /= d) === 1) {
-				return b + c
-			}
-			if (typeof p === 'undefined') {
-				p = d * 0.3
-			}
-			if (!a || a < Math.abs(c)) {
-				a = c
-				s = p / 4
-			} else {
-				s = (p / (2 * Math.PI)) * Math.asin(c / a)
-			}
-			return (
-				-a *
-					Math.pow(2, -10 * t) *
-					Math.sin(((t * d - s) * (2 * Math.PI)) / p) +
-				b
-			)
-		},
-		jump: function(t, b, c, d) {
-			c = Math.abs(c)
-			let z
-			if (t & 1) {
-				z = 1
-			} else {
-				z = -1
-			}
-			return z * (c - t * (1 / d) * c)
-		}
-	}
+/* Pace */
+/*! pace 1.0.0 */
+(function () {
+  var AjaxMonitor, Bar, DocumentMonitor, ElementMonitor, ElementTracker, EventLagMonitor, Evented, Events, NoTargetError, Pace, RequestIntercept, SOURCE_KEYS, Scaler, SocketRequestTracker, XHRRequestTracker, animation, avgAmplitude, bar, cancelAnimation, cancelAnimationFrame, defaultOptions, extend, extendNative, getFromDOM, getIntercept, handlePushState, ignoreStack, init, now, options, requestAnimationFrame, result, runAnimation, scalers, shouldIgnoreURL, shouldTrack, source, sources, uniScaler, _WebSocket, _XDomainRequest, _XMLHttpRequest, _i, _intercept, _len, _pushState, _ref, _ref1, _replaceState,
+    __slice = [].slice,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function (child, parent) {
+      for (var key in parent) {
+        if (__hasProp.call(parent, key)) child[key] = parent[key];
+      }
 
-	function rolBack(arr) {
-		arr.forEach(function(item) {
-			item.style = ''
-		})
-	}
+      function ctor() {
+        this.constructor = child;
+      }
+      ctor.prototype = parent.prototype;
+      child.prototype = new ctor();
+      child.__super__ = parent.prototype;
+      return child;
+    },
+    __indexOf = [].indexOf || function (item) {
+      for (var i = 0, l = this.length; i < l; i++) {
+        if (i in this && this[i] === item) return i;
+      }
+      return -1;
+    };
 
-	function back(ac, arr, mythis, fs, effact, du) {
-		if (ac.length === 0) {
-			return
-		}
-		cancelAnimationFrame(mythis.Ani)
-		let t = 0
+  defaultOptions = {
+    catchupTime: 100,
+    initialRate: .03,
+    minTime: 250,
+    ghostTime: 100,
+    maxProgressPerFrame: 20,
+    easeFactor: 1.25,
+    startOnPageLoad: true,
+    restartOnPushState: true,
+    restartOnRequestAfter: 500,
+    target: 'body',
+    elements: {
+      checkInterval: 100,
+      selectors: ['body']
+    },
+    eventLag: {
+      minSamples: 10,
+      sampleCount: 3,
+      lagThreshold: 3
+    },
+    ajax: {
+      trackMethods: ['GET'],
+      trackWebSockets: true,
+      ignoreURLs: []
+    }
+  };
 
-		function def() {
-			if (t === du) {
-				cancelAnimationFrame(mythis.Ani)
-				rolBack(arr)
-				return false
-			}
-			arr.forEach(function(item, index) {
-				const np = ef[effact](t, 0, ac[index], du)
-				item.style = `display:inline-block;transform:translateY(${np}px)`
-			})
-			t++
-			mythis.Ani = requestAnimationFrame(def)
-		}
-		def()
-	}
+  now = function () {
+    var _ref;
+    return (_ref = typeof performance !== "undefined" && performance !== null ? typeof performance.now === "function" ? performance.now() : void 0 : void 0) != null ? _ref : +(new Date);
+  };
 
-	function mFn(obj) {
-		const mythis = this,
-			id = obj.id,
-			colr = obj.color || '#000',
-			ct = obj.content,
-			du = obj.duration || 50,
-			effact = obj.effact
-		let fs = obj.fontSize || 14
-		const tf = document.getElementById(id)
-		if (typeof fs !== 'string') {
-			fs = fs.toString()
-		}
-		fs = fs.match(/^\d{2}/)[0]
-		const textBox = document.createElement('div')
-		textBox.setAttribute('class', 'eBox')
+  requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-		const frg = document.createDocumentFragment()
-		const arr = ct.split('')
-		const textarr = []
-		arr.forEach(function(item) {
-			const dom = document.createElement('span')
-			dom.innerText = item
-			textarr.push(dom)
-			frg.appendChild(dom)
-		})
-		textBox.appendChild(frg)
-		tf.innerHTML = ''
-		textBox.style = `width:${fs *
-			arr.length}px;font-size:${fs}px;color:${colr};position:relative`
-		tf.appendChild(textBox)
+  cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
-		let m, n, ac, w, h
-		Array.prototype.forEach.call(textBox.children, function(item) {
-			item.onselectstart = function() {
-				return false
-			}
-		})
-		let mark = false,
-			gb = false
+  if (requestAnimationFrame == null) {
+    requestAnimationFrame = function (fn) {
+      return setTimeout(fn, 50);
+    };
+    cancelAnimationFrame = function (id) {
+      return clearTimeout(id);
+    };
+  }
 
-		function enter(event) {
-			cancelAnimationFrame(mythis.Ani)
-			w = this.offsetWidth
-			h = this.offsetHeight
-			m = mouserEvent.call(this, event)
-			mark = true
-		}
+  runAnimation = function (fn) {
+    var last, tick;
+    last = now();
+    tick = function () {
+      var diff;
+      diff = now() - last;
+      if (diff >= 33) {
+        last = now();
+        return fn(diff, function () {
+          return requestAnimationFrame(tick);
+        });
+      } else {
+        return setTimeout(tick, 33 - diff);
+      }
+    };
+    return tick();
+  };
 
-		function move(event) {
-			n = mouserEvent.call(textBox, event)
-			if (!mark) {
-				return
-			}
-			if (Math.abs(m.y - n.y) > h) {
-				EventUtil.removeHandler(textBox, 'mousemove', move)
-				back(ac, textarr, mythis, fs, effact, du)
-				gb = true
-				return false
-			}
-			ac = triangleCalc(w, h, m, n, textarr, fs, ac)
-		}
+  result = function () {
+    var args, key, obj;
+    obj = arguments[0], key = arguments[1], args = 3 <= arguments.length ? __slice.call(arguments, 2) : [];
+    if (typeof obj[key] === 'function') {
+      return obj[key].apply(obj, args);
+    } else {
+      return obj[key];
+    }
+  };
 
-		function leave() {
-			EventUtil.removeHandler(textBox, 'mouseleave', leave)
-			EventUtil.removeHandler(textBox, 'mouseenter', enter)
-			setTimeout(function() {
-				EventUtil.addHandler(textBox, 'mouseenter', enter)
-				EventUtil.addHandler(textBox, 'mouseleave', leave)
-				EventUtil.addHandler(textBox, 'mousemove', move)
-			}, 100)
-			if (Math.abs(m.y - n.y) < 0.5 * h && m.y !== n.y) {
-				rolBack(textarr)
-				return false
-			}
-			if (!gb) {
-				back(ac, textarr, mythis, fs, effact, du)
-				EventUtil.removeHandler(textBox, 'mousemove', move)
-				return false
-			}
-			gb = false
-			mark = false
-		}
-		EventUtil.addHandler(textBox, 'mouseenter', enter)
-		EventUtil.addHandler(textBox, 'mouseleave', leave)
-		EventUtil.addHandler(textBox, 'mousemove', move)
-	}
-	Array.prototype.forEach.call(args, function(item) {
-		new mFn(item)
-	})
-}
+  extend = function () {
+    var key, out, source, sources, val, _i, _len;
+    out = arguments[0], sources = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    for (_i = 0, _len = sources.length; _i < _len; _i++) {
+      source = sources[_i];
+      if (source) {
+        for (key in source) {
+          if (!__hasProp.call(source, key)) continue;
+          val = source[key];
+          if ((out[key] != null) && typeof out[key] === 'object' && (val != null) && typeof val === 'object') {
+            extend(out[key], val);
+          } else {
+            out[key] = val;
+          }
+        }
+      }
+    }
+    return out;
+  };
 
-/* hover特效 */
-(function() {
-	function b(t, u, s) {
-		this.t = t
-		this.u = u
-		this.c = s.color
-		this.m1()
-	}
-	b.prototype = {
-		m1: function() {
-			const t = this
-			t.d = false
-			if (
-				t.t.css('position') !== 'fixed' &&
-				t.t.css('position') !== 'absolute'
-			) {
-				t.t.css('position', 'relative')
-			}
-			t.w = t.t.width()
-			t.h = t.t.height()
-			t.t.children().each(function() {
-				if (
-					$(this).css('position') !== 'fixed' &&
-					$(this).css('position') !== 'absolute'
-				) {
-					$(this).css({
-						position: 'relative',
-						'z-index': '2'
-					})
-				} else if (parseInt($(this).css('z-index')) < 2) {
-					$(this).css({
-						'z-index': '2'
-					})
-				}
-			})
-			if (t.t.css('background-color') !== 'rgba(0, 0, 0, 0)') {
-				t.bc = t.t.css('background-color')
-			} else {
-				t.bc = '#ffffff'
-			}
-			t.t.append(
-				`<canvas width="${t.w}" height="${
-					t.h
-				}" style="position:absolute; top:0; left:0; z-index:1;"></canvas>`
-			)
-			t.ctx = t.t.children('canvas')[0].getContext('2d')
-			if (t.c === false) {
-				t.t.mouseenter(function() {
-					t.c = `hsl(${Math.random() * 360},60%,80%)`
-					t.ctx.fillStyle = t.c
-				})
-			} else {
-				t.ctx.fillStyle = t.c
-			}
-			t.t.mousemove(function(e) {
-				t.x =
-					e.pageX - t.t.offset().left - parseInt(t.t.css('border-left-width'))
-				t.y = e.pageY - t.t.offset().top - parseInt(t.t.css('border-top-width'))
-			})
-			t.a = []
-			t.t.mouseenter(function(e) {
-				t.f = true
-				t.x =
-					e.pageX - t.t.offset().left - parseInt(t.t.css('border-left-width'))
-				t.y = e.pageY - t.t.offset().top - parseInt(t.t.css('border-top-width'))
-				t.n1()
-			})
-			t.t.mouseleave(function() {
-				t.f = false
-			})
-			t.ctx.clearRect(0, 0, t.w, t.h)
-		},
-		n1: function() {
-			const t = this
-			if (t.u <= 0) {
-				console.warn('hover.js错误')
-				return false
-			}
-			if (t.u === 1) {
-				if (t.a.length === 0) {
-					t.x1(t)
-				}
-			} else if (t.u === 2) {
-				if (t.a.length === 0) {
-					for (let i = 0; i < t.w / 2; i++) {
-						t.a[i] = {
-							y: t.h
-						}
-					}
-				}
-				if (!t.d) {
-					t.d = true
-					t.x2(t)
-				}
-			} else if (t.u === 3) {
-				if (t.a.length === 0) {
-					t.x3(t)
-				}
-			} else if (t.u === 4) {
-				if (t.a.length === 0) {
-					t.x4(t)
-				}
-			}
-		},
-		x1: function(t) {
-			if (t.f) {
-				t.a.push({
-					x: t.x,
-					y: t.y,
-					r: 2,
-					o: 1,
-					c: t.c
-				})
-			}
-			t.ctx.clearRect(0, 0, t.w, t.h)
-			for (let i = 0; i < t.a.length; i++) {
-				t.ctx.beginPath()
-				t.ctx.arc(t.a[i].x, t.a[i].y, t.a[i].r, 0, Math.PI * 2)
-				t.ctx.closePath()
-				t.ctx.globalAlpha = t.a[i].o
-				t.ctx.fillStyle = t.a[i].c
-				t.ctx.fill()
-				t.a[i].o -= 0.02
-				t.a[i].r += 1
-				if (t.a[i].o <= 0) {
-					t.a.splice(i, 1)
-					i--
-				}
-			}
-			t.ctx.globalAlpha = 1
-			if (t.f || t.a.length > 0) {
-				requestAnimationFrame(function() {
-					t.x1(t)
-				})
-			} else {
-				t.ctx.clearRect(0, 0, t.w, t.h)
-			}
-		},
-		x2: function(t) {
-			t.ctx.clearRect(0, 0, t.w, t.h)
-			t.q = false
-			t.ctx.fillStyle = t.c
-			for (let i = 0; i < t.a.length; i++) {
-				if (t.h !== t.y) {
-					t.a[i].h = t.h - t.y
-					for (
-						let j = 0;
-						j < Math.ceil(Math.abs(t.x - (i * 2 + 1)) / 2) - 1;
-						j++
-					) {
-						t.a[i].h *= 5 / 6
-					}
-					t.a[i].h = t.h - t.a[i].h
-				} else {
-					t.a[i].h = t.h
-				}
-				if (t.f) {
-					if (t.a[i].h - t.a[i].y < 0) {
-						t.a[i].y += Math.floor((t.a[i].h - t.a[i].y) / 14)
-					} else {
-						t.a[i].y += Math.ceil((t.a[i].h - t.a[i].y) / 14)
-					}
-				} else {
-					t.a[i].y += Math.ceil((t.h - t.a[i].y) / 14)
-				}
-				t.ctx.fillRect(i * 2, t.a[i].y, 2, t.h * 2)
-				if (t.a[i].y < t.h) {
-					t.q = true
-				}
-			}
-			t.ctx.globalAlpha = 1
-			if (t.f || t.q) {
-				requestAnimationFrame(function() {
-					t.x2(t)
-				})
-			} else {
-				t.ctx.clearRect(0, 0, t.w, t.h)
-				t.d = false
-			}
-		},
-		x3: function(t) {
-			if (t.f) {
-				t.tan = Math.random() * 2 + 1
-				t.a.push({
-					x: t.w * Math.random(),
-					y: -t.tan,
-					r: t.tan,
-					c: t.c
-				})
-			}
-			t.ctx.globalAlpha = 0.3
-			t.ctx.fillStyle = t.bc
-			t.ctx.fillRect(0, 0, t.w, t.h)
-			for (let i = 0; i < t.a.length; i++) {
-				t.ctx.beginPath()
-				t.ctx.arc(t.a[i].x, t.a[i].y, t.a[i].r, 0, Math.PI * 2)
-				t.ctx.closePath()
-				t.ctx.fillStyle = t.a[i].c
-				t.ctx.fill()
-				t.a[i].x += ((t.x - t.w / 2) / (t.w / 2)) * (t.a[i].r - 0.7)
-				if (t.a[i].x < -t.a[i].r) {
-					t.a[i].x = t.w + t.a[i].r
-				} else if (t.a[i].x > t.w + t.a[i].r) {
-					t.a[i].x = -t.a[i].r
-				}
-				t.a[i].y += t.a[i].r - 0.7
-				if (t.a[i].y >= t.h + t.a[i].r) {
-					t.a.splice(i, 1)
-					i--
-				}
-			}
-			t.ctx.globalAlpha = 1
-			if (t.f || t.a.length > 0) {
-				requestAnimationFrame(function() {
-					t.x3(t)
-				})
-			} else {
-				t.ctx.clearRect(0, 0, t.w, t.h)
-			}
-		},
-		x4: function(t) {
-			if (t.f) {
-				t.tan = Math.random() * 2 + 1
-				t.a.push({
-					x: t.w * Math.random(),
-					y: t.tan + t.h,
-					r: t.tan,
-					c: t.c
-				})
-			}
-			t.ctx.globalAlpha = 0.3
-			t.ctx.fillStyle = t.bc
-			t.ctx.fillRect(0, 0, t.w, t.h)
-			for (let i = 0; i < t.a.length; i++) {
-				t.ctx.beginPath()
-				t.ctx.arc(t.a[i].x, t.a[i].y, t.a[i].r, 0, Math.PI * 2)
-				t.ctx.closePath()
-				t.ctx.fillStyle = t.a[i].c
-				t.ctx.fill()
-				t.a[i].x += (Math.random() - 0.5) * 2
-				t.a[i].y -= 1
-				if (t.a[i].y <= -t.a[i].r) {
-					t.a.splice(i, 1)
-					i--
-				}
-			}
-			t.ctx.globalAlpha = 1
-			if (t.f || t.a.length > 0) {
-				requestAnimationFrame(function() {
-					t.x4(t)
-				})
-			} else {
-				t.ctx.clearRect(0, 0, t.w, t.h)
-			}
-		}
-	}
-	let y = {
-		color: false
-	}
-	$.fn.hover = function(u, g) {
-		y = {
-			color: false
-		}
-		$.extend(y, g)
-		$(this).each(function() {
-			new b($(this), u, y)
-		})
-	}
-}(jQuery))
-;(function() {
-	let lastTime = 0
-	const vendors = ['webkit', 'moz']
-	for (let xx = 0; xx < vendors.length && !window.requestAnimationFrame; ++xx) {
-		window.requestAnimationFrame = window[`${vendors[xx]}RequestAnimationFrame`]
-		window.cancelAnimationFrame =
-			window[`${vendors[xx]}CancelAnimationFrame`] ||
-			window[`${vendors[xx]}CancelRequestAnimationFrame`]
-	}
+  avgAmplitude = function (arr) {
+    var count, sum, v, _i, _len;
+    sum = count = 0;
+    for (_i = 0, _len = arr.length; _i < _len; _i++) {
+      v = arr[_i];
+      sum += Math.abs(v);
+      count++;
+    }
+    return sum / count;
+  };
 
-	if (!window.requestAnimationFrame) {
-		window.requestAnimationFrame = function(callback) {
-			const currTime = new Date().getTime()
-			const timeToCall = Math.max(0, 16.7 - (currTime - lastTime))
-			const id = window.setTimeout(function() {
-				callback(currTime + timeToCall)
-			}, timeToCall)
-			lastTime = currTime + timeToCall
-			return id
-		}
-	}
-	if (!window.cancelAnimationFrame) {
-		window.cancelAnimationFrame = function(id) {
-			clearTimeout(id)
-		}
-	}
-}())
+  getFromDOM = function (key, json) {
+    var data, e, el;
+    if (key == null) {
+      key = 'options';
+    }
+    if (json == null) {
+      json = true;
+    }
+    el = document.querySelector("[data-pace-" + key + "]");
+    if (!el) {
+      return;
+    }
+    data = el.getAttribute("data-pace-" + key);
+    if (!json) {
+      return data;
+    }
+    try {
+      return JSON.parse(data);
+    } catch (_error) {
+      e = _error;
+      return typeof console !== "undefined" && console !== null ? console.error("Error parsing inline pace options", e) : void 0;
+    }
+  };
 
-/* 网站运行时间 */
-function setTime(a) {
-	const mydate = new Date(),
-		now = Date.parse(mydate.toLocaleDateString()),
-		start = Date.parse(a),
-		day = (now - start) / 1000 / 86400,
-		myHours = mydate.getHours(),
-		myMinutes =
-			parseInt(mydate.getMinutes()) < 10
-				? `0${mydate.getMinutes()}`
-				: mydate.getMinutes(),
-		mySeconds =
-			parseInt(mydate.getSeconds()) < 10
-				? `0${mydate.getSeconds()}`
-				: mydate.getSeconds()
-	if (!isNaN(day)) {
-		RunTime.innerHTML = `网站已运行：${day}天 ${myHours}小时 ${myMinutes}分 ${mySeconds}秒 `
-	}
-	return false
-}
+  Evented = (function () {
+    function Evented() {}
 
-/* 一言的调用 */
-let countFail = 0
+    Evented.prototype.on = function (event, handler, ctx, once) {
+      var _base;
+      if (once == null) {
+        once = false;
+      }
+      if (this.bindings == null) {
+        this.bindings = {};
+      }
+      if ((_base = this.bindings)[event] == null) {
+        _base[event] = [];
+      }
+      return this.bindings[event].push({
+        handler: handler,
+        ctx: ctx,
+        once: once
+      });
+    };
 
-function getHitokoto() {
-	$.ajax({
-		type: 'GET',
-		url: 'https://sslapi.hitokoto.cn/',
-		dataType: 'json',
-		timeout: 2500,
-		success: function(data) {
-			if (data.hitokoto.length > 12) {
-				countFail++
-				if (countFail > 5) {
-					elasticText({
-						id: 'yiyanmotto',
-						duration: 100,
-						effact: 'easeOut',
-						content: '为了正义！'
-					})
-				} else {
-					getHitokoto()
-				}
-			} else {
-				/* 签名 */
-				elasticText({
-					id: 'yiyanmotto',
-					duration: 100,
-					effact: 'easeOut',
-					content: data.hitokoto
-				})
-			}
-		},
-		error: function() {
-			elasticText({
-				id: 'yiyanmotto',
-				duration: 100,
-				effact: 'easeOut',
-				content: '生活不止眼前的苟且'
-			})
-		}
-	})
-}
+    Evented.prototype.once = function (event, handler, ctx) {
+      return this.on(event, handler, ctx, true);
+    };
 
-/* 粘贴提示 */
-const G = function(a, b, c) {
-	function d(aa, bb) {
-		return [
-			'',
-			'',
-			`作者：${bb}`,
-			`链接：${aa}`,
-			'著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。'
-		]
-	}
+    Evented.prototype.off = function (event, handler) {
+      var i, _ref, _results;
+      if (((_ref = this.bindings) != null ? _ref[event] : void 0) == null) {
+        return;
+      }
+      if (handler == null) {
+        return delete this.bindings[event];
+      } else {
+        i = 0;
+        _results = [];
+        while (i < this.bindings[event].length) {
+          if (this.bindings[event][i].handler === handler) {
+            _results.push(this.bindings[event].splice(i, 1));
+          } else {
+            _results.push(i++);
+          }
+        }
+        return _results;
+      }
+    };
 
-	function f(bc, cc, m) {
-		return `<div>${d(bc, cc).join('<br />')}${m}</div>`
-	}
+    Evented.prototype.trigger = function () {
+      var args, ctx, event, handler, i, once, _ref, _ref1, _results;
+      event = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      if ((_ref = this.bindings) != null ? _ref[event] : void 0) {
+        i = 0;
+        _results = [];
+        while (i < this.bindings[event].length) {
+          _ref1 = this.bindings[event][i], handler = _ref1.handler, ctx = _ref1.ctx, once = _ref1.once;
+          handler.apply(ctx != null ? ctx : this, args);
+          if (once) {
+            _results.push(this.bindings[event].splice(i, 1));
+          } else {
+            _results.push(i++);
+          }
+        }
+        return _results;
+      }
+    };
 
-	function g(av) {
-		if (!window.getSelection) {
-			return
-		}
-		const m = window.getSelection().toString()
-		if (typeof av.originalEvent.clipboardData === 'object') {
-			if (m.length > 42) {
-				av.originalEvent.clipboardData.setData('text/html', f(b, c))
-				av.originalEvent.clipboardData.setData(
-					'text/plain',
-					m + d(b, c).join('\n')
-				)
-				av.preventDefault()
-			}
-			return
-		}
-		const n = $(f(b, c, m))
-			.css({
-				position: 'fixed',
-				left: '-9999px'
-			})
-			.appendTo('body')
-		window.getSelection().selectAllChildren(n[0])
-	}
-	a.on('copy', g)
-}
+    return Evented;
 
-/* 文章块的淡出 */
-function postshow() {
-	$('.article-card').each(function(i) {
-		const articleHeight = $('.article-card')
-			.eq(i)
-			.offset().top
-		if ($(window).height() + $(window).scrollTop() >= articleHeight) {
-			$('.article-card')
-				.eq(i)
-				.addClass('animation-show')
-		}
-		$(window).scroll(function() {
-			const windowHeight = $(window).height()
-			const scrolltop = $(window).scrollTop()
-			if (scrolltop + windowHeight >= articleHeight && scrolltop) {
-				$('.article-card')
-					.eq(i)
-					.addClass('animation-show')
-			}
-		})
-	})
-}
+  })();
 
-/* 3D标题 */
-const header = document.getElementById('myheader'),
-	steps = 7
+  Pace = window.Pace || {};
 
-function threedee(e) {
-	const x = Math.round(
-			(steps / (window.innerWidth / 2)) * (window.innerWidth / 2 - e.clientX)
-		),
-		y = Math.round(
-			(steps / (window.innerHeight / 2)) * (window.innerHeight / 2 - e.clientY)
-		)
+  window.Pace = Pace;
 
-	let shadow = '',
-		color = 190,
-		i,
-		tx,
-		ty
-	for (i = 0; i < steps; i++) {
-		tx = Math.round((x / steps) * i)
-		ty = Math.round((y / steps) * i)
-		if (tx || ty) {
-			color -= 3 * i
-			shadow += `${tx}px ${ty}px 0 rgb(${color}, ${color}, ${color}), `
-		}
-	}
-	shadow += `${x}px ${y}px 1px rgba(0,0,0,.2), ${x * 2}px ${y *
-		2}px 6px rgba(0,0,0,.3)`
-	header.style.textShadow = shadow
-	header.style.webkitTransform = `translateZ(0) rotateX(${y *
-		1.5}deg) rotateY(${-x * 1.5}deg)`
-	header.style.MozTransform = `translateZ(0) rotateX(${y *
-		1.5}deg) rotateY(${-x * 1.5}deg)`
-}
+  extend(Pace, Evented.prototype);
+
+  options = Pace.options = extend({}, defaultOptions, window.paceOptions, getFromDOM());
+
+  _ref = ['ajax', 'document', 'eventLag', 'elements'];
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    source = _ref[_i];
+    if (options[source] === true) {
+      options[source] = defaultOptions[source];
+    }
+  }
+
+  NoTargetError = (function (_super) {
+    __extends(NoTargetError, _super);
+
+    function NoTargetError() {
+      _ref1 = NoTargetError.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    return NoTargetError;
+
+  })(Error);
+
+  Bar = (function () {
+    function Bar() {
+      this.progress = 0;
+    }
+
+    Bar.prototype.getElement = function () {
+      var targetElement;
+      if (this.el == null) {
+        targetElement = document.querySelector(options.target);
+        if (!targetElement) {
+          throw new NoTargetError;
+        }
+        this.el = document.createElement('div');
+        this.el.className = "pace pace-active";
+        document.body.className = document.body.className.replace(/pace-done/g, '');
+        document.body.className += ' pace-running';
+        this.el.innerHTML = '<div class="pace-progress">\n  <div class="pace-progress-inner"></div>\n</div>\n<div class="pace-activity"></div>';
+        if (targetElement.firstChild != null) {
+          targetElement.insertBefore(this.el, targetElement.firstChild);
+        } else {
+          targetElement.appendChild(this.el);
+        }
+      }
+      return this.el;
+    };
+
+    Bar.prototype.finish = function () {
+      var el;
+      el = this.getElement();
+      el.className = el.className.replace('pace-active', '');
+      el.className += ' pace-inactive';
+      document.body.className = document.body.className.replace('pace-running', '');
+      return document.body.className += ' pace-done';
+    };
+
+    Bar.prototype.update = function (prog) {
+      this.progress = prog;
+      return this.render();
+    };
+
+    Bar.prototype.destroy = function () {
+      try {
+        this.getElement().parentNode.removeChild(this.getElement());
+      } catch (_error) {
+        NoTargetError = _error;
+      }
+      return this.el = void 0;
+    };
+
+    Bar.prototype.render = function () {
+      var el, key, progressStr, transform, _j, _len1, _ref2;
+      if (document.querySelector(options.target) == null) {
+        return false;
+      }
+      el = this.getElement();
+      transform = "translate3d(" + this.progress + "%, 0, 0)";
+      _ref2 = ['webkitTransform', 'msTransform', 'transform'];
+      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+        key = _ref2[_j];
+        el.children[0].style[key] = transform;
+      }
+      if (!this.lastRenderedProgress || this.lastRenderedProgress | 0 !== this.progress | 0) {
+        el.children[0].setAttribute('data-progress-text', "" + (this.progress | 0) + "%");
+        if (this.progress >= 100) {
+          progressStr = '99';
+        } else {
+          progressStr = this.progress < 10 ? "0" : "";
+          progressStr += this.progress | 0;
+        }
+        el.children[0].setAttribute('data-progress', "" + progressStr);
+      }
+      return this.lastRenderedProgress = this.progress;
+    };
+
+    Bar.prototype.done = function () {
+      return this.progress >= 100;
+    };
+
+    return Bar;
+
+  })();
+
+  Events = (function () {
+    function Events() {
+      this.bindings = {};
+    }
+
+    Events.prototype.trigger = function (name, val) {
+      var binding, _j, _len1, _ref2, _results;
+      if (this.bindings[name] != null) {
+        _ref2 = this.bindings[name];
+        _results = [];
+        for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+          binding = _ref2[_j];
+          _results.push(binding.call(this, val));
+        }
+        return _results;
+      }
+    };
+
+    Events.prototype.on = function (name, fn) {
+      var _base;
+      if ((_base = this.bindings)[name] == null) {
+        _base[name] = [];
+      }
+      return this.bindings[name].push(fn);
+    };
+
+    return Events;
+
+  })();
+
+  _XMLHttpRequest = window.XMLHttpRequest;
+
+  _XDomainRequest = window.XDomainRequest;
+
+  _WebSocket = window.WebSocket;
+
+  extendNative = function (to, from) {
+    var e, key, val, _results;
+    _results = [];
+    for (key in from.prototype) {
+      try {
+        val = from.prototype[key];
+        if ((to[key] == null) && typeof val !== 'function') {
+          _results.push(to[key] = val);
+        } else {
+          _results.push(void 0);
+        }
+      } catch (_error) {
+        e = _error;
+      }
+    }
+    return _results;
+  };
+
+  ignoreStack = [];
+
+  Pace.ignore = function () {
+    var args, fn, ret;
+    fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    ignoreStack.unshift('ignore');
+    ret = fn.apply(null, args);
+    ignoreStack.shift();
+    return ret;
+  };
+
+  Pace.track = function () {
+    var args, fn, ret;
+    fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    ignoreStack.unshift('track');
+    ret = fn.apply(null, args);
+    ignoreStack.shift();
+    return ret;
+  };
+
+  shouldTrack = function (method) {
+    var _ref2;
+    if (method == null) {
+      method = 'GET';
+    }
+    if (ignoreStack[0] === 'track') {
+      return 'force';
+    }
+    if (!ignoreStack.length && options.ajax) {
+      if (method === 'socket' && options.ajax.trackWebSockets) {
+        return true;
+      } else if (_ref2 = method.toUpperCase(), __indexOf.call(options.ajax.trackMethods, _ref2) >= 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  RequestIntercept = (function (_super) {
+    __extends(RequestIntercept, _super);
+
+    function RequestIntercept() {
+      var monitorXHR,
+        _this = this;
+      RequestIntercept.__super__.constructor.apply(this, arguments);
+      monitorXHR = function (req) {
+        var _open;
+        _open = req.open;
+        return req.open = function (type, url, async) {
+          if (shouldTrack(type)) {
+            _this.trigger('request', {
+              type: type,
+              url: url,
+              request: req
+            });
+          }
+          return _open.apply(req, arguments);
+        };
+      };
+      window.XMLHttpRequest = function (flags) {
+        var req;
+        req = new _XMLHttpRequest(flags);
+        monitorXHR(req);
+        return req;
+      };
+      try {
+        extendNative(window.XMLHttpRequest, _XMLHttpRequest);
+      } catch (_error) {}
+      if (_XDomainRequest != null) {
+        window.XDomainRequest = function () {
+          var req;
+          req = new _XDomainRequest;
+          monitorXHR(req);
+          return req;
+        };
+        try {
+          extendNative(window.XDomainRequest, _XDomainRequest);
+        } catch (_error) {}
+      }
+      if ((_WebSocket != null) && options.ajax.trackWebSockets) {
+        window.WebSocket = function (url, protocols) {
+          var req;
+          if (protocols != null) {
+            req = new _WebSocket(url, protocols);
+          } else {
+            req = new _WebSocket(url);
+          }
+          if (shouldTrack('socket')) {
+            _this.trigger('request', {
+              type: 'socket',
+              url: url,
+              protocols: protocols,
+              request: req
+            });
+          }
+          return req;
+        };
+        try {
+          extendNative(window.WebSocket, _WebSocket);
+        } catch (_error) {}
+      }
+    }
+
+    return RequestIntercept;
+
+  })(Events);
+
+  _intercept = null;
+
+  getIntercept = function () {
+    if (_intercept == null) {
+      _intercept = new RequestIntercept;
+    }
+    return _intercept;
+  };
+
+  shouldIgnoreURL = function (url) {
+    var pattern, _j, _len1, _ref2;
+    _ref2 = options.ajax.ignoreURLs;
+    for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+      pattern = _ref2[_j];
+      if (typeof pattern === 'string') {
+        if (url.indexOf(pattern) !== -1) {
+          return true;
+        }
+      } else {
+        if (pattern.test(url)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  getIntercept().on('request', function (_arg) {
+    var after, args, request, type, url;
+    type = _arg.type, request = _arg.request, url = _arg.url;
+    if (shouldIgnoreURL(url)) {
+      return;
+    }
+    if (!Pace.running && (options.restartOnRequestAfter !== false || shouldTrack(type) === 'force')) {
+      args = arguments;
+      after = options.restartOnRequestAfter || 0;
+      if (typeof after === 'boolean') {
+        after = 0;
+      }
+      return setTimeout(function () {
+        var stillActive, _j, _len1, _ref2, _ref3, _results;
+        if (type === 'socket') {
+          stillActive = request.readyState < 2;
+        } else {
+          stillActive = (0 < (_ref2 = request.readyState) && _ref2 < 4);
+        }
+        if (stillActive) {
+          Pace.restart();
+          _ref3 = Pace.sources;
+          _results = [];
+          for (_j = 0, _len1 = _ref3.length; _j < _len1; _j++) {
+            source = _ref3[_j];
+            if (source instanceof AjaxMonitor) {
+              source.watch.apply(source, args);
+              break;
+            } else {
+              _results.push(void 0);
+            }
+          }
+          return _results;
+        }
+      }, after);
+    }
+  });
+
+  AjaxMonitor = (function () {
+    function AjaxMonitor() {
+      var _this = this;
+      this.elements = [];
+      getIntercept().on('request', function () {
+        return _this.watch.apply(_this, arguments);
+      });
+    }
+
+    AjaxMonitor.prototype.watch = function (_arg) {
+      var request, tracker, type, url;
+      type = _arg.type, request = _arg.request, url = _arg.url;
+      if (shouldIgnoreURL(url)) {
+        return;
+      }
+      if (type === 'socket') {
+        tracker = new SocketRequestTracker(request);
+      } else {
+        tracker = new XHRRequestTracker(request);
+      }
+      return this.elements.push(tracker);
+    };
+
+    return AjaxMonitor;
+
+  })();
+
+  XHRRequestTracker = (function () {
+    function XHRRequestTracker(request) {
+      var event, size, _j, _len1, _onreadystatechange, _ref2,
+        _this = this;
+      this.progress = 0;
+      if (window.ProgressEvent != null) {
+        size = null;
+        request.addEventListener('progress', function (evt) {
+          if (evt.lengthComputable) {
+            return _this.progress = 100 * evt.loaded / evt.total;
+          } else {
+            return _this.progress = _this.progress + (100 - _this.progress) / 2;
+          }
+        }, false);
+        _ref2 = ['load', 'abort', 'timeout', 'error'];
+        for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+          event = _ref2[_j];
+          request.addEventListener(event, function () {
+            return _this.progress = 100;
+          }, false);
+        }
+      } else {
+        _onreadystatechange = request.onreadystatechange;
+        request.onreadystatechange = function () {
+          var _ref3;
+          if ((_ref3 = request.readyState) === 0 || _ref3 === 4) {
+            _this.progress = 100;
+          } else if (request.readyState === 3) {
+            _this.progress = 50;
+          }
+          return typeof _onreadystatechange === "function" ? _onreadystatechange.apply(null, arguments) : void 0;
+        };
+      }
+    }
+
+    return XHRRequestTracker;
+
+  })();
+
+  SocketRequestTracker = (function () {
+    function SocketRequestTracker(request) {
+      var event, _j, _len1, _ref2,
+        _this = this;
+      this.progress = 0;
+      _ref2 = ['error', 'open'];
+      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+        event = _ref2[_j];
+        request.addEventListener(event, function () {
+          return _this.progress = 100;
+        }, false);
+      }
+    }
+
+    return SocketRequestTracker;
+
+  })();
+
+  ElementMonitor = (function () {
+    function ElementMonitor(options) {
+      var selector, _j, _len1, _ref2;
+      if (options == null) {
+        options = {};
+      }
+      this.elements = [];
+      if (options.selectors == null) {
+        options.selectors = [];
+      }
+      _ref2 = options.selectors;
+      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+        selector = _ref2[_j];
+        this.elements.push(new ElementTracker(selector));
+      }
+    }
+
+    return ElementMonitor;
+
+  })();
+
+  ElementTracker = (function () {
+    function ElementTracker(selector) {
+      this.selector = selector;
+      this.progress = 0;
+      this.check();
+    }
+
+    ElementTracker.prototype.check = function () {
+      var _this = this;
+      if (document.querySelector(this.selector)) {
+        return this.done();
+      } else {
+        return setTimeout((function () {
+          return _this.check();
+        }), options.elements.checkInterval);
+      }
+    };
+
+    ElementTracker.prototype.done = function () {
+      return this.progress = 100;
+    };
+
+    return ElementTracker;
+
+  })();
+
+  DocumentMonitor = (function () {
+    DocumentMonitor.prototype.states = {
+      loading: 0,
+      interactive: 50,
+      complete: 100
+    };
+
+    function DocumentMonitor() {
+      var _onreadystatechange, _ref2,
+        _this = this;
+      this.progress = (_ref2 = this.states[document.readyState]) != null ? _ref2 : 100;
+      _onreadystatechange = document.onreadystatechange;
+      document.onreadystatechange = function () {
+        if (_this.states[document.readyState] != null) {
+          _this.progress = _this.states[document.readyState];
+        }
+        return typeof _onreadystatechange === "function" ? _onreadystatechange.apply(null, arguments) : void 0;
+      };
+    }
+
+    return DocumentMonitor;
+
+  })();
+
+  EventLagMonitor = (function () {
+    function EventLagMonitor() {
+      var avg, interval, last, points, samples,
+        _this = this;
+      this.progress = 0;
+      avg = 0;
+      samples = [];
+      points = 0;
+      last = now();
+      interval = setInterval(function () {
+        var diff;
+        diff = now() - last - 50;
+        last = now();
+        samples.push(diff);
+        if (samples.length > options.eventLag.sampleCount) {
+          samples.shift();
+        }
+        avg = avgAmplitude(samples);
+        if (++points >= options.eventLag.minSamples && avg < options.eventLag.lagThreshold) {
+          _this.progress = 100;
+          return clearInterval(interval);
+        } else {
+          return _this.progress = 100 * (3 / (avg + 3));
+        }
+      }, 50);
+    }
+
+    return EventLagMonitor;
+
+  })();
+
+  Scaler = (function () {
+    function Scaler(source) {
+      this.source = source;
+      this.last = this.sinceLastUpdate = 0;
+      this.rate = options.initialRate;
+      this.catchup = 0;
+      this.progress = this.lastProgress = 0;
+      if (this.source != null) {
+        this.progress = result(this.source, 'progress');
+      }
+    }
+
+    Scaler.prototype.tick = function (frameTime, val) {
+      var scaling;
+      if (val == null) {
+        val = result(this.source, 'progress');
+      }
+      if (val >= 100) {
+        this.done = true;
+      }
+      if (val === this.last) {
+        this.sinceLastUpdate += frameTime;
+      } else {
+        if (this.sinceLastUpdate) {
+          this.rate = (val - this.last) / this.sinceLastUpdate;
+        }
+        this.catchup = (val - this.progress) / options.catchupTime;
+        this.sinceLastUpdate = 0;
+        this.last = val;
+      }
+      if (val > this.progress) {
+        this.progress += this.catchup * frameTime;
+      }
+      scaling = 1 - Math.pow(this.progress / 100, options.easeFactor);
+      this.progress += scaling * this.rate * frameTime;
+      this.progress = Math.min(this.lastProgress + options.maxProgressPerFrame, this.progress);
+      this.progress = Math.max(0, this.progress);
+      this.progress = Math.min(100, this.progress);
+      this.lastProgress = this.progress;
+      return this.progress;
+    };
+
+    return Scaler;
+
+  })();
+
+  sources = null;
+
+  scalers = null;
+
+  bar = null;
+
+  uniScaler = null;
+
+  animation = null;
+
+  cancelAnimation = null;
+
+  Pace.running = false;
+
+  handlePushState = function () {
+    if (options.restartOnPushState) {
+      return Pace.restart();
+    }
+  };
+
+  if (window.history.pushState != null) {
+    _pushState = window.history.pushState;
+    window.history.pushState = function () {
+      handlePushState();
+      return _pushState.apply(window.history, arguments);
+    };
+  }
+
+  if (window.history.replaceState != null) {
+    _replaceState = window.history.replaceState;
+    window.history.replaceState = function () {
+      handlePushState();
+      return _replaceState.apply(window.history, arguments);
+    };
+  }
+
+  SOURCE_KEYS = {
+    ajax: AjaxMonitor,
+    elements: ElementMonitor,
+    document: DocumentMonitor,
+    eventLag: EventLagMonitor
+  };
+
+  (init = function () {
+    var type, _j, _k, _len1, _len2, _ref2, _ref3, _ref4;
+    Pace.sources = sources = [];
+    _ref2 = ['ajax', 'elements', 'document', 'eventLag'];
+    for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+      type = _ref2[_j];
+      if (options[type] !== false) {
+        sources.push(new SOURCE_KEYS[type](options[type]));
+      }
+    }
+    _ref4 = (_ref3 = options.extraSources) != null ? _ref3 : [];
+    for (_k = 0, _len2 = _ref4.length; _k < _len2; _k++) {
+      source = _ref4[_k];
+      sources.push(new source(options));
+    }
+    Pace.bar = bar = new Bar;
+    scalers = [];
+    return uniScaler = new Scaler;
+  })();
+
+  Pace.stop = function () {
+    Pace.trigger('stop');
+    Pace.running = false;
+    bar.destroy();
+    cancelAnimation = true;
+    if (animation != null) {
+      if (typeof cancelAnimationFrame === "function") {
+        cancelAnimationFrame(animation);
+      }
+      animation = null;
+    }
+    return init();
+  };
+
+  Pace.restart = function () {
+    Pace.trigger('restart');
+    Pace.stop();
+    return Pace.start();
+  };
+
+  Pace.go = function () {
+    var start;
+    Pace.running = true;
+    bar.render();
+    start = now();
+    cancelAnimation = false;
+    return animation = runAnimation(function (frameTime, enqueueNextFrame) {
+      var avg, count, done, element, elements, i, j, remaining, scaler, scalerList, sum, _j, _k, _len1, _len2, _ref2;
+      remaining = 100 - bar.progress;
+      count = sum = 0;
+      done = true;
+      for (i = _j = 0, _len1 = sources.length; _j < _len1; i = ++_j) {
+        source = sources[i];
+        scalerList = scalers[i] != null ? scalers[i] : scalers[i] = [];
+        elements = (_ref2 = source.elements) != null ? _ref2 : [source];
+        for (j = _k = 0, _len2 = elements.length; _k < _len2; j = ++_k) {
+          element = elements[j];
+          scaler = scalerList[j] != null ? scalerList[j] : scalerList[j] = new Scaler(element);
+          done &= scaler.done;
+          if (scaler.done) {
+            continue;
+          }
+          count++;
+          sum += scaler.tick(frameTime);
+        }
+      }
+      avg = sum / count;
+      bar.update(uniScaler.tick(frameTime, avg));
+      if (bar.done() || done || cancelAnimation) {
+        bar.update(100);
+        Pace.trigger('done');
+        return setTimeout(function () {
+          bar.finish();
+          Pace.running = false;
+          return Pace.trigger('hide');
+        }, Math.max(options.ghostTime, Math.max(options.minTime - (now() - start), 0)));
+      } else {
+        return enqueueNextFrame();
+      }
+    });
+  };
+
+  Pace.start = function (_options) {
+    extend(options, _options);
+    Pace.running = true;
+    try {
+      bar.render();
+    } catch (_error) {
+      NoTargetError = _error;
+    }
+    if (!document.querySelector('.pace')) {
+      return setTimeout(Pace.start, 50);
+    } else {
+      Pace.trigger('start');
+      return Pace.go();
+    }
+  };
+
+  if (typeof define === 'function' && define.amd) {
+    define(function () {
+      return Pace;
+    });
+  } else if (typeof exports === 'object') {
+    module.exports = Pace;
+  } else {
+    if (options.startOnPageLoad) {
+      Pace.start();
+    }
+  }
+
+}).call(this);
