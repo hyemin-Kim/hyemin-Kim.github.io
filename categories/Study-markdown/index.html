@@ -6,7 +6,7 @@
     
     
     
-    <title>归档 | Hyemin&#39;s journey of growth in Data Analysis</title>
+    <title>分类: Study_markdown | Hyemin&#39;s journey of growth in Data Analysis</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
@@ -41,7 +41,7 @@
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hyemin&#39;s journey of growth in Data Analysis">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/Study-markdown/index.html">
 <meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Hyemin Kim">
@@ -86,14 +86,14 @@
                   </a>
               </li>
             
-              <li class="waves-block waves-effect active">
+              <li class="waves-block waves-effect">
                   <a href="/archives"  >
                     <i class="icon icon-lg icon-archives"></i>
                     <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
                   </a>
               </li>
             
-              <li class="waves-block waves-effect">
+              <li class="waves-block waves-effect active">
                   <a href="/categories"  >
                     <i class="icon icon-lg icon-th-list"></i>
                     <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
@@ -145,7 +145,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">归档</div>
+        <div class="flex-col header-title ellipsis">分类: Study_markdown</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -162,7 +162,7 @@
         </a>
     </div>
 </header>
-<header class="content-header archives-header">
+<header class="content-header categories-header">
     
     
     <div class="container fade-scale">
@@ -172,7 +172,19 @@
             </h1>
             <h5 class="subtitle">
                 
-                    <h1 class="archivestitle">路漫漫其修远兮</h1>
+                    <h1 id="pagetitle" class="archivestitle"></h1>
+                    <script>
+                        if(location.href.indexOf('about')!=-1){
+                            pagetitle.textContent = '一个坏掉的番茄';
+                        }else if(location.href.indexOf('tags')!=-1||location.href.indexOf('categories')!=-1){
+                            var a=location.href.substring(location.href.length-5,location.href.length-1);
+                            if(a==='tags'){
+                                pagetitle.textContent = '不积小流无以成江海';
+                            }else if(a==='ries'){
+                                pagetitle.textContent = '不积跬步无以至千里';
+                            }
+                        }
+                    </script>
                 
             </h5>
         </div>
@@ -182,23 +194,22 @@
 
 <div class="container body-wrap fade">
     
-
-    
+        
+        
+        <h5 class="tag-tip">
+            <i class="icon icon-tag"></i>
+            关于
+            <span style="color:rgb(100, 100, 100)">Study_markdown</span>
+            共&nbsp;1&nbsp;篇文章</h5>
+        <div class="waterfall">
             
-            <h3 class="archive-separator">
-                <i class="icon icon-lg icon-folder-o"></i>&nbsp;&nbsp;
-                2020
-            </h3>
-            <div class="waterfall">
-    
-
-        <article class="archive-article" onclick="location.href='/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/'">
+                <article class="archive-article" onclick="location.href='/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/'">
     <div class="archive-article-date">
       
       <time class="my-post-time">
         <i class="icon icon-lg icon-file-text-o"></i>
         &nbsp;
-          05-04
+          2020-05-04
       </time>
     </div>
     <div class="archive-article-inner">
@@ -219,40 +230,12 @@
 
     </div>
   </article>
-
+            
+        </div>
     
 
-        <article class="archive-article" onclick="location.href='/2020/05/04/hello-world/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          05-04
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/2020/05/04/hello-world/">Hello World</a>
-    </h3>
-  
-
-
-
-      <br/>
-      
-    </div>
-  </article>
-
-    
-    </div>
-
-    
 </div>
+
 
         <footer class="footer">
     <div class="footer-content">
