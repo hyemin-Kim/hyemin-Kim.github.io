@@ -24,9 +24,10 @@
 <meta property="article:author" content="Hyemin Kim">
 <meta name="twitter:card" content="summary">
 
-  <meta name="keywords" content="">
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
@@ -36,6 +37,8 @@
   <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
 
   
     <link rel="canonical" href="http://yoursite.com/tags/index.html">
@@ -52,9 +55,6 @@
 <link rel="stylesheet" href="/css/mdui.css">
 <link rel="stylesheet" href="/css/style.css">
 
-  
-<link rel="stylesheet" href="/custom.css">
-
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
 </head>
 <body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
@@ -70,8 +70,10 @@
 </header>
 <div class="mdui-dialog" id="search">
   
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="请输入关键字"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-    <div class="search-result"></div>
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
   
 </div>
   <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
@@ -138,9 +140,9 @@
 
   <div class="mdui-list" mdui-collapse="{accordion: true}">
     
-      <a href="/tagcloud" class="mdui-list-item mdui-ripple">标签云</a>
+      <a href="/tags" class="mdui-list-item mdui-ripple">Tags</a>
     
-      <a href="/gallery" class="mdui-list-item mdui-ripple">画廊</a>
+      <a href="/gallery" class="mdui-list-item mdui-ripple">Gallery</a>
     
     <div class="mdui-collapse-item">
       <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
@@ -149,8 +151,8 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
         
-          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">No Links</a>
         
       </div>
     </div>
@@ -163,7 +165,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-16.png" style="max-height: 240px;">
+      <img src="/images/random/material-14.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title"></div>
@@ -175,11 +177,11 @@
           <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
           <ul class="mdui-menu" id="qrcode">
             
-              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li>
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="https://chart.googleapis.com/chart?cht=qr&chs=246x246&chl=http://yoursite.com/tags/index.html&chld=M|2">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB3klEQVR42u3aS3KDMBAFQO5/6eQAKcgbjRQHqbWibHCpWYw1n+tri3VhYGBgYGBgYPwbxhWvu6eef+fu/gl7wMDAOIzxS2j7saHn6/63z3vAwMA4mfEcLp/vn7XFZA8YGBgYCSP/pErFwMDA6DOSUJunrBgYGBgrktg8yCbsj+XiGBgYL2TkRfl113/a38DAwHgVozzi0Ci9VYPswpkRDAyMVzE6hfskKe0fJW9fBAYGxjGMfqjNC2pjZTgMDAyMpBy/okmQpKnlEy4GBsYxjE6QTZ7KhzAwMDAwqilr9fO83DahhYmBgbE1Y2zMNA+mSUO0+rIwMDBOY+Sp7KzEtRNkMTAwzmTkpa6FhbPiGBkGBsZpjLFktZr6VtPawf8NDAyMTRmzRiKSV1NNZcu5OAYGxtaM/qhEfkwcS24xMDAwkgPZrMNf3v4sDFtgYGAcwxi7npXiTujEYmBgbMqors5AWDUoFwIuBgbG1ozBUlccQKsFu0IQx8DAOIyRD0OMJbr9xkO53IaBgbEpIy+fdQYmxoI7BgYGxhgjCZ3Vtmie9GJgYGCsYORNzagwh4GBcSSjmsR2NpE3R8sBFwMDY1PG2ABEFVxtAyzsb2BgYLyK8d6FgYGBgYGBgfHR9Q269jDdhaK/zgAAAABJRU5ErkJggg==">
               
             </li>
           </ul>
@@ -203,7 +205,7 @@
               <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/tags/index.html&title=" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=&pics=http://yoursite.com/images/favicon.png&url=http://yoursite.com/tags/index.html" target="_blank" class="mdui-ripple">Share to QQ</a>
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=&summary=&pics=http://yoursite.com/images/favicon.png&url=http://yoursite.com/tags/index.html" target="_blank" class="mdui-ripple">Share to QQ</a>
             </li>
             <li class="mdui-menu-item">
               <a href="https://telegram.me/share/url?url=http://yoursite.com/tags/index.html&text=" target="_blank" class="mdui-ripple">Share to Telegram</a>
@@ -234,7 +236,7 @@
       </script>
       <blockquote class="mdui-m-t-5">
         
-        <strong>PermaLink: </strong><br><a href="http://yoursite.com/tags/index.html">http://yoursite.com/tags/index.html</a>
+        <strong>PermaLink: </strong><a href="http://yoursite.com/tags/index.html">http://yoursite.com/tags/index.html</a>
       </blockquote>
       
     </div>
@@ -270,7 +272,7 @@
     
   </div>
   <div class="mdui-p-y-1 mdui-text-center">
-    Copyright &copy; 2020 Hyemin Kim<br>
+    Copyright &copy; 2019 - 2020 Hyemin Kim<br>
     Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
     
   </div>
@@ -280,9 +282,6 @@
   
 <script src="/js/mdui.js"></script>
 <script src="/js/script.js"></script>
-
-  
-<script src="/custom.js"></script>
 
 </body>
 </html>
