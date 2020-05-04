@@ -1,6 +1,6 @@
 /*!
- * mdui v0.4.3 (https://mdui.org)
- * Copyright 2016-2019 zdhxiong
+ * mdui v0.4.2 (https://mdui.org)
+ * Copyright 2016-2018 zdhxiong
  * Licensed under MIT
  */
 /* jshint ignore:start */
@@ -74,7 +74,7 @@
       return this;
     };
 
-    function $(selector) {
+    function $$1(selector) {
       var arr = [];
 
       if (!selector) {
@@ -132,7 +132,7 @@
         }
       } else if (typeof selector === 'function') {
         // function
-        return $(document).ready(selector);
+        return $$1(document).ready(selector);
       } else if (selector.nodeType || selector === window || selector === document) {
         // Node
         arr.push(selector);
@@ -146,7 +146,7 @@
       return new JQ(arr);
     }
 
-    $.fn = JQ.prototype;
+    $$1.fn = JQ.prototype;
 
     function extend() {
       var this$1 = this;
@@ -180,8 +180,8 @@
       return target;
     }
 
-    $.fn.extend = extend;
-    $.extend = extend;
+    $$1.fn.extend = extend;
+    $$1.extend = extend;
 
     /**
      * 判断一个节点名
@@ -327,7 +327,7 @@
       return elementDisplay[nodeName];
     }
 
-    $.extend({
+    $$1.extend({
       each: each,
       merge: merge,
       unique: unique,
@@ -391,7 +391,7 @@
       },
     });
 
-    $.fn.extend({
+    $$1.fn.extend({
       /**
        * 遍历对象
        * @param callback {Function}
@@ -443,7 +443,7 @@
           return this.map(function (index, ele) { return (selector.call(ele, index, ele) ? ele : undefined); });
         }
 
-        var $selector = $(selector);
+        var $selector = $$1(selector);
 
         return this.map(function (index, ele) { return ($selector.index(ele) > -1 ? ele : undefined); });
       },
@@ -486,7 +486,7 @@
         return this.map(function () {
           var parent = this.offsetParent;
 
-          while (parent && $(parent).css('position') === 'static') {
+          while (parent && $$1(parent).css('position') === 'static') {
             parent = parent.offsetParent;
           }
 
@@ -659,7 +659,7 @@
 
         if (isString(elem)) {
           // 返回当前 JQ 对象的第一个元素在指定选择器对应的元素中的位置
-          return $(elem)
+          return $$1(elem)
             .eq(0)
             .parent()
             .children()
@@ -756,7 +756,7 @@
               return;
             }
 
-            if (!selector || (selector && $(childNode).is(selector))) {
+            if (!selector || (selector && $$1(childNode).is(selector))) {
               children.push(childNode);
             }
           });
@@ -771,12 +771,14 @@
        * @return {JQ}
        */
       has: function has(selector) {
-        var $targets = isString(selector) ? this.find(selector) : $(selector);
+        var $targets = isString(selector) ? this.find(selector) : $$1(selector);
         var length = $targets.length;
 
         return this.filter(function () {
+          var this$1 = this;
+
           for (var i = 0; i < length; i += 1) {
-            if ($.contains(this, $targets[i])) {
+            if ($$1.contains(this$1, $targets[i])) {
               return true;
             }
           }
@@ -827,7 +829,7 @@
        * @returns {JQ}
        */
       add: function add(selector) {
-        return new JQ(unique(merge(this.get(), $(selector))));
+        return new JQ(unique(merge(this.get(), $$1(selector))));
       },
 
       /**
@@ -872,8 +874,8 @@
           return result;
         }
 
-        $([].slice.call(elem.elements)).each(function () {
-          var $elem = $(this);
+        $$1([].slice.call(elem.elements)).each(function () {
+          var $elem = $$1(this);
           var type = $elem.attr('type');
           if (
             this.nodeName.toLowerCase() !== 'fieldset'
@@ -934,7 +936,7 @@
         2: null,
       };
 
-      $.fn[name] = function (value) {
+      $$1.fn[name] = function (value) {
         if (value === undefined) {
           // 获取值
           return this[0] ? this[0][props[nameIndex]] : defaults[nameIndex];
@@ -989,7 +991,7 @@
         return window.getComputedStyle(elem, null).getPropertyValue(key);
       }
 
-      $.fn[name] = function (key, value) {
+      $$1.fn[name] = function (key, value) {
         var argLength = arguments.length;
 
         if (argLength === 1 && isString(key)) {
@@ -1026,7 +1028,7 @@
      * @return {JQ}
      */
     each(['add', 'remove', 'toggle'], function (nameIndex, name) {
-      $.fn[(name + "Class")] = function (className) {
+      $$1.fn[(name + "Class")] = function (className) {
         if (!className) {
           return this;
         }
@@ -1053,7 +1055,7 @@
       Width: 'width',
       Height: 'height',
     }, function (prop, name) {
-      $.fn[name] = function (val) {
+      $$1.fn[name] = function (val) {
         if (val === undefined) {
           // 获取
           var elem = this[0];
@@ -1066,7 +1068,7 @@
             return elem.documentElement[("scroll" + prop)];
           }
 
-          var $elem = $(elem);
+          var $elem = $$1(elem);
 
           // IE10、IE11 在 box-sizing:border-box 时，不会包含 padding 和 border，这里进行修复
           var IEFixValue = 0;
@@ -1080,7 +1082,7 @@
             }
           }
 
-          return parseFloat($(elem).css(name)) + IEFixValue;
+          return parseFloat($$1(elem).css(name)) + IEFixValue;
         }
 
         // 设置
@@ -1105,9 +1107,9 @@
       Width: 'width',
       Height: 'height',
     }, function (prop, name) {
-      $.fn[("inner" + prop)] = function () {
+      $$1.fn[("inner" + prop)] = function () {
         var value = this[name]();
-        var $elem = $(this[0]);
+        var $elem = $$1(this[0]);
 
         if ($elem.css('box-sizing') !== 'border-box') {
           value += parseFloat($elem.css(("padding-" + (name === 'width' ? 'left' : 'top'))));
@@ -1127,19 +1129,19 @@
         while (elem) {
           if (nameIndex === 2) {
             // prevUntil
-            if (!selector || (selector && $(elem).is(selector))) {
+            if (!selector || (selector && $$1(elem).is(selector))) {
               break;
             }
 
             ret.push(elem);
           } else if (nameIndex === 0) {
             // prev
-            if (!selector || (selector && $(elem).is(selector))) {
+            if (!selector || (selector && $$1(elem).is(selector))) {
               ret.push(elem);
             }
 
             break;
-          } else if (!selector || (selector && $(elem).is(selector))) {
+          } else if (!selector || (selector && $$1(elem).is(selector))) {
             // prevAll
             ret.push(elem);
           }
@@ -1167,9 +1169,9 @@
      * @return {JQ}
      */
     each(['', 'All', 'Until'], function (nameIndex, name) {
-      $.fn[("prev" + name)] = function (selector) {
+      $$1.fn[("prev" + name)] = function (selector) {
         // prevAll、prevUntil 需要把元素的顺序倒序处理，以便和 jQuery 的结果一致
-        var $nodes = nameIndex === 0 ? this : $(this.get().reverse());
+        var $nodes = nameIndex === 0 ? this : $$1(this.get().reverse());
 
         return dir($nodes, selector, nameIndex, 'previousElementSibling');
       };
@@ -1191,7 +1193,7 @@
      * @return {JQ}
      */
     each(['', 'All', 'Until'], function (nameIndex, name) {
-      $.fn[("next" + name)] = function (selector) {
+      $$1.fn[("next" + name)] = function (selector) {
         return dir(this, selector, nameIndex, 'nextElementSibling');
       };
     });
@@ -1212,9 +1214,9 @@
      * @return {JQ}
      */
     each(['', 's', 'sUntil'], function (nameIndex, name) {
-      $.fn[("parent" + name)] = function (selector) {
+      $$1.fn[("parent" + name)] = function (selector) {
         // parents、parentsUntil 需要把元素的顺序反向处理，以便和 jQuery 的结果一致
-        var $nodes = nameIndex === 0 ? this : $(this.get().reverse());
+        var $nodes = nameIndex === 0 ? this : $$1(this.get().reverse());
 
         return dir($nodes, selector, nameIndex, 'parentNode');
       };
@@ -1231,16 +1233,16 @@
      * @return {JQ}
      */
     each(['append', 'prepend'], function (nameIndex, name) {
-      $.fn[name] = function (newChild) {
+      $$1.fn[name] = function (newChild) {
         var newChilds;
         var copyByClone = this.length > 1;
 
-        if (isString(newChild) && (newChild[0] !== '<' || newChild[newChild.length - 1] !== '>')) {
+        if (isString(newChild)) {
           var tempDiv = document.createElement('div');
           tempDiv.innerHTML = newChild;
           newChilds = [].slice.call(tempDiv.childNodes);
         } else {
-          newChilds = $(newChild).get();
+          newChilds = $$1(newChild).get();
         }
 
         if (nameIndex === 1) {
@@ -1278,8 +1280,8 @@
      * @return {JQ}
      */
     each(['insertBefore', 'insertAfter'], function (nameIndex, name) {
-      $.fn[name] = function (selector) {
-        var $elem = $(selector);
+      $$1.fn[name] = function (selector) {
+        var $elem = $$1(selector);
 
         return this.each(function (i, _this) {
           $elem.each(function (j, elem) {
@@ -1324,15 +1326,15 @@
       after: 'insertAfter',
       replaceAll: 'replaceWith',
     }, function (name, original) {
-      $.fn[name] = function (selector) {
-        $(selector)[original](this);
+      $$1.fn[name] = function (selector) {
+        $$1(selector)[original](this);
         return this;
       };
     });
 
     var dataNS = 'mduiElementDataStorage';
 
-    $.extend({
+    $$1.extend({
       /**
        * 在指定元素上存储数据，或从指定元素上读取数据
        * @param elem 必须， DOM 元素
@@ -1408,7 +1410,7 @@
       },
     });
 
-    $.fn.extend({
+    $$1.fn.extend({
       /**
        * 在元素上读取或设置数据
        * @param key 必须
@@ -1420,13 +1422,13 @@
           if (isObjectLike(key)) {
             // 同时设置多个值
             return this.each(function (i, elem) {
-              $.data(elem, key);
+              $$1.data(elem, key);
             });
           }
 
           if (this[0]) {
             // 获取值
-            return $.data(this[0], key);
+            return $$1.data(this[0], key);
           }
 
           return undefined;
@@ -1434,7 +1436,7 @@
 
         // 设置值
         return this.each(function (i, elem) {
-          $.data(elem, key, value);
+          $$1.data(elem, key, value);
         });
       },
 
@@ -1445,16 +1447,16 @@
        */
       removeData: function removeData(key) {
         return this.each(function (i, elem) {
-          $.removeData(elem, key);
+          $$1.removeData(elem, key);
         });
       },
     });
 
-    !function(){try{return new e("test")}catch(e){}var e=function(e,t){t=t||{bubbles:!1,cancelable:!1};var n=document.createEvent("MouseEvent");return n.initMouseEvent(e,t.bubbles,t.cancelable,window,0,0,0,0,0,!1,!1,!1,!1,0,null),n};e.prototype=Event.prototype,window.MouseEvent=e;}();
+    !function(){!function(){try{return new e("test"),!1}catch(e){}var e=function(e,n){n=n||{bubbles:!1,cancelable:!1};var t=document.createEvent("MouseEvent");return t.initMouseEvent(e,n.bubbles,n.cancelable,window,0,0,0,0,0,!1,!1,!1,!1,0,null),t};e.prototype=Event.prototype,window.MouseEvent=e;}();}();
 
-    !function(){function t(t,e){e=e||{bubbles:!1,cancelable:!1,detail:void 0};var n=document.createEvent("CustomEvent");return n.initCustomEvent(t,e.bubbles,e.cancelable,e.detail),n}"function"!=typeof window.CustomEvent&&(t.prototype=window.Event.prototype,window.CustomEvent=t);}();
+    !function(){!function(){if("function"==typeof window.CustomEvent){ return!1; }function t(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var e=document.createEvent("CustomEvent");return e.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),e}t.prototype=window.Event.prototype,window.CustomEvent=t;}();}();
 
-    // 存储事件
+  // 存储事件
     var handlers = {
       // i: { // 元素ID
       //   j: { // 事件ID
@@ -1467,7 +1469,7 @@
       // }
     };
 
-    // 元素ID
+  // 元素ID
     var mduiElementId = 1;
 
     function fnFalse() {
@@ -1548,12 +1550,12 @@
 
           if (selector) {
             // 事件代理
-            $(element)
+            $$1(element)
               .find(selector)
               .get()
               .reverse()
               .forEach(function (elem) {
-                if (elem === e.target || $.contains(elem, e.target)) {
+                if (elem === e.target || $$1.contains(elem, e.target)) {
                   callFn(e, elem);
                 }
               });
@@ -1585,7 +1587,7 @@
       });
     }
 
-    $.fn.extend({
+    $$1.fn.extend({
       /**
        * DOM 加载完毕后调用的函数
        * @param callback
@@ -1593,10 +1595,10 @@
        */
       ready: function ready(callback) {
         if (/complete|loaded|interactive/.test(document.readyState) && document.body) {
-          callback($);
+          callback($$1);
         } else {
           document.addEventListener('DOMContentLoaded', function () {
-            callback($);
+            callback($$1);
           }, false);
         }
 
@@ -1782,7 +1784,7 @@
     var globalOptions = {};
     var jsonpID = 0;
 
-    // 全局事件名
+  // 全局事件名
     var ajaxEvent = {
       ajaxStart: 'start.mdui.ajax',
       ajaxSuccess: 'success.mdui.ajax',
@@ -1809,14 +1811,14 @@
       return ((url + "&" + query)).replace(/[&?]{1,2}/, '?');
     }
 
-    $.extend({
+    $$1.extend({
 
       /**
        * 为 ajax 请求设置全局配置参数
        * @param options
        */
       ajaxSetup: function ajaxSetup(options) {
-        $.extend(globalOptions, options || {});
+        $$1.extend(globalOptions, options || {});
       },
 
       /**
@@ -1895,7 +1897,7 @@
         });
 
         // 参数合并
-        options = $.extend({}, defaults, options);
+        options = $$1.extend({}, defaults, options);
 
         /**
          * 触发全局事件
@@ -1904,7 +1906,7 @@
          */
         function triggerEvent(event, xhr) {
           if (options.global) {
-            $(document).trigger(event, xhr);
+            $$1(document).trigger(event, xhr);
           }
         }
 
@@ -1954,7 +1956,7 @@
           && options.data
           && [ArrayBuffer, Blob, Document, FormData].indexOf(options.data.constructor) < 0
         ) {
-          sendData = isString(options.data) ? options.data : $.param(options.data);
+          sendData = isString(options.data) ? options.data : $$1.param(options.data);
         } else {
           sendData = options.data;
         }
@@ -2015,16 +2017,16 @@
             triggerEvent(ajaxEvent.ajaxSuccess, eventParams);
             triggerCallback('success', data, 'success', null);
 
-            $(script).remove();
+            $$1(script).remove();
             script = null;
             delete window[callbackName];
           };
 
-          $('head').append(script);
+          $$1('head').append(script);
 
           if (options.timeout > 0) {
             abortTimeout = setTimeout(function () {
-              $(script).remove();
+              $$1(script).remove();
               script = null;
 
               triggerEvent(ajaxEvent.ajaxError, eventParams);
@@ -2206,30 +2208,30 @@
       },
     });
 
-    // 监听全局事件
-    //
-    // 通过 $(document).on('success.mdui.ajax', function (event, params) {}) 调用时，包含两个参数
-    // event: 事件对象
-    // params: {
-    //   xhr: XMLHttpRequest 对象
-    //   options: ajax 请求的配置参数
-    //   data: ajax 请求返回的数据
-    // }
+  // 监听全局事件
+  //
+  // 通过 $(document).on('success.mdui.ajax', function (event, params) {}) 调用时，包含两个参数
+  // event: 事件对象
+  // params: {
+  //   xhr: XMLHttpRequest 对象
+  //   options: ajax 请求的配置参数
+  //   data: ajax 请求返回的数据
+  // }
 
-    // 全局 Ajax 事件快捷方法
-    // $(document).ajaxStart(function (event, xhr, options) {})
-    // $(document).ajaxSuccess(function (event, xhr, options, data) {})
-    // $(document).ajaxError(function (event, xhr, options) {})
-    // $(document).ajaxComplete(function (event, xhr, options) {})
+  // 全局 Ajax 事件快捷方法
+  // $(document).ajaxStart(function (event, xhr, options) {})
+  // $(document).ajaxSuccess(function (event, xhr, options, data) {})
+  // $(document).ajaxError(function (event, xhr, options) {})
+  // $(document).ajaxComplete(function (event, xhr, options) {})
     each(ajaxEvent, function (name, eventName) {
-      $.fn[name] = function (fn) {
+      $$1.fn[name] = function (fn) {
         return this.on(eventName, function (e, params) {
           fn(e, params.xhr, params.options, params.data);
         });
       };
     });
 
-    return $;
+    return $$1;
 
   }());
 
@@ -3332,17 +3334,6 @@
     };
 
     /**
-     * 更新表头 checkbox 的状态
-     */
-    Table.prototype._updateThCheckboxStatus = function () {
-      var _this = this;
-      var checkbox = _this.$thCheckbox[0];
-
-      checkbox.checked = _this.selectedRow === _this.$tdRows.length;
-      checkbox.indeterminate = _this.selectedRow && _this.selectedRow !== _this.$tdRows.length;
-    };
-
-    /**
      * 更新表格行的 checkbox
      */
     Table.prototype._updateTdCheckbox = function () {
@@ -3369,7 +3360,8 @@
           _this.selectedRow++;
         }
 
-        _this._updateThCheckboxStatus();
+        // 所有行都选中后，选中表头；否则，不选中表头
+        _this.$thCheckbox[0].checked = _this.selectedRow === _this.$tdRows.length;
 
         // 绑定事件
         $checkbox.on('change', function () {
@@ -3381,7 +3373,8 @@
             _this.selectedRow--;
           }
 
-          _this._updateThCheckboxStatus();
+          // 所有行都选中后，选中表头；否则，不选中表头
+          _this.$thCheckbox[0].checked = _this.selectedRow === _this.$tdRows.length;
         });
 
         _this.$tdCheckboxs = _this.$tdCheckboxs.add($checkbox);
@@ -3416,6 +3409,7 @@
           _this.$tdRows.each(function (i, row) {
             $(row)[isCheckedAll ? 'addClass' : 'removeClass']('mdui-table-row-selected');
           });
+
         });
     };
 
@@ -4423,13 +4417,17 @@
       $selectNative.after(_this.$select);
 
       // 根据 select 的 size 属性设置高度，默认为 6
-      _this.size = parseInt(_this.$selectNative.attr('size'));
+      _this.size = _this.$selectNative.attr('size');
 
-      if (!_this.size || _this.size < 0) {
+      if (!_this.size) {
         _this.size = _this.$items.length;
         if (_this.size > 8) {
           _this.size = 8;
         }
+      }
+
+      if (_this.size < 2) {
+        _this.size = 2;
       }
 
       // 点击选项时关闭下拉菜单
@@ -6038,22 +6036,6 @@
           '') +
       '</div>';
 
-    var onCancelClick = onCancel;
-    if (typeof onCancel === 'function') {
-      onCancelClick = function (inst) {
-        var value = inst.$dialog.find('.mdui-textfield-input').val();
-        onCancel(value, inst);
-      }
-    }
-
-    var onConfirmClick = onConfirm;
-    if (typeof onConfirm === 'function') {
-      onConfirmClick = function (inst) {
-        var value = inst.$dialog.find('.mdui-textfield-input').val();
-        onConfirm(value, inst);
-      }
-    }
-
     return mdui.dialog({
       title: title,
       content: content,
@@ -6062,13 +6044,19 @@
           text: options.cancelText,
           bold: false,
           close: true,
-          onClick: onCancelClick,
+          onClick: function (inst) {
+            var value = inst.$dialog.find('.mdui-textfield-input').val();
+            onCancel(value, inst);
+          },
         },
         {
           text: options.confirmText,
           bold: false,
           close: true,
-          onClick: onConfirmClick,
+          onClick: function (inst) {
+            var value = inst.$dialog.find('.mdui-textfield-input').val();
+            onConfirm(value, inst);
+          },
         },
       ],
       cssClass: 'mdui-dialog-prompt',
@@ -6805,10 +6793,8 @@
     /**
      * 页面加载完后自动填充 HTML 结构
      */
-    $(function () {
-      mdui.mutation('.mdui-spinner', function () {
-        fillHTML(this);
-      });
+    mdui.mutation('.mdui-spinner', function () {
+      fillHTML(this);
     });
 
     /**
@@ -6821,6 +6807,7 @@
     };
 
   })();
+
 
 
   /**
