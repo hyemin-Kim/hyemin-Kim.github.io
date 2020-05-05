@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Markdown的常用语法</title>
+    <title>Markdown 常用语法</title>
     <url>/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p>​     一级标题： “#” + 空格 + “一级标题”<br>​     二级标题： “##” + 空格 + “二级标题”<br>​     三级标题： “###” + 空格 + “三级标题”<br>​     ……<br>​     以此类推 【最多到6级】</p>
+    <content><![CDATA[<font face="Microsoft YaHei">
+
+<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p>​     一级标题： “#” + 空格 + “一级标题”<br>​     二级标题： “##” + 空格 + “二级标题”<br>​     三级标题： “###” + 空格 + “三级标题”<br>​     ……<br>​     以此类推 【最多到6级】</p>
 <h4 id="2-换行"><a href="#2-换行" class="headerlink" title="2. 换行"></a>2. 换行</h4><p>​    “内容” 末尾 + 2个空格 </p>
 <blockquote>
 <p>Hello<br>  World</p>
@@ -135,7 +137,7 @@
 <blockquote>
 <p>[toc]</p>
 </blockquote>
-<script>
+</font><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
