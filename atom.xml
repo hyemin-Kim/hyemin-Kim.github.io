@@ -5,9 +5,9 @@
   <subtitle>김혜민 / 金慧敏</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://hyemin-kim.github.io/"/>
   <updated>2020-05-05T05:09:11.455Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://hyemin-kim.github.io/</id>
   
   <author>
     <name>Hyemin Kim</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Markdown 常用语法</title>
-    <link href="http://yoursite.com/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/"/>
-    <id>http://yoursite.com/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</id>
+    <link href="https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/"/>
+    <id>https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</id>
     <published>2020-05-03T16:40:07.372Z</published>
     <updated>2020-05-05T05:09:11.455Z</updated>
     
@@ -35,19 +35,19 @@
     </summary>
     
     
-      <category term="【Study】Markdown" scheme="http://yoursite.com/categories/%E3%80%90Study%E3%80%91Markdown/"/>
+      <category term="【Study】Markdown" scheme="https://hyemin-kim.github.io/categories/%E3%80%90Study%E3%80%91Markdown/"/>
     
     
-      <category term="markdown" scheme="http://yoursite.com/tags/markdown/"/>
+      <category term="markdown" scheme="https://hyemin-kim.github.io/tags/markdown/"/>
     
-      <category term="study blog" scheme="http://yoursite.com/tags/study-blog/"/>
+      <category term="study blog" scheme="https://hyemin-kim.github.io/tags/study-blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2020/05/04/hello-world/"/>
-    <id>http://yoursite.com/2020/05/04/hello-world/</id>
+    <link href="https://hyemin-kim.github.io/2020/05/04/hello-world/"/>
+    <id>https://hyemin-kim.github.io/2020/05/04/hello-world/</id>
     <published>2020-05-03T15:44:51.807Z</published>
     <updated>2020-05-04T17:27:47.415Z</updated>
     
@@ -63,7 +63,7 @@
     </summary>
     
     
-      <category term="【PROJECTS】" scheme="http://yoursite.com/categories/%E3%80%90PROJECTS%E3%80%91/"/>
+      <category term="【PROJECTS】" scheme="https://hyemin-kim.github.io/categories/%E3%80%90PROJECTS%E3%80%91/"/>
     
     
   </entry>
