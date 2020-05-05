@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-05-05T05:09:11.455Z</updated>
+  <updated>2020-05-05T09:32:44.247Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>korean</title>
+    <link href="https://hyemin-kim.github.io/2020/05/05/korean/"/>
+    <id>https://hyemin-kim.github.io/2020/05/05/korean/</id>
+    <published>2020-05-05T09:32:08.000Z</published>
+    <updated>2020-05-05T09:32:44.247Z</updated>
+    
+    <content type="html"><![CDATA[<p>안녕하세요. 김혜민입니다.</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;안녕하세요. 김혜민입니다.&lt;/p&gt;
+&lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Markdown 常用语法</title>
