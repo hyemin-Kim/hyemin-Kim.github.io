@@ -291,7 +291,14 @@
 </ul>
 </li>
 </ol>
-<p>3. </p>
+<ol start="3">
+<li><p>当还没有利用 <em>方法1</em> 插入过图片时（即<code>'hexo根目录'/source/images/</code>中还没有与md.文档同名的文件夹时），可以自己创建同名文件夹保存图片。</p>
+<ul>
+<li>在<code>'hexo根目录'/source/images/</code>中创建一个与md.文档同名的文件夹【注意：文档名中的空格要换成短横线 ‘ - ‘ （精确的文档名可以去<code>'hexo根目录'/source/_posts/</code>（保存所有博文的文件夹）中去确认）】</li>
+<li>然后同方法2的步骤：在相应位置使用markdown命令：<code>![图片显示名称](/images/'md文档名'/'图片名称')</code>导入图片</li>
+</ul>
+</li>
+</ol>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -323,6 +330,8 @@
     <url>/2020/05/06/pic-test2/</url>
     <content><![CDATA[<p>插入图片:</p>
 <p><img src="images/pic-test2/1.png" alt="tupian"></p>
+<p>插入图片2：</p>
+<p><img src="/images/pic-test2/toux.jpg" alt="toux"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
