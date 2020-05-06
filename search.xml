@@ -241,6 +241,8 @@
 
 <p>插入原图_jpg</p>
 <p><img src="/.io//toux.jpg" alt="yuan"></p>
+<p>再试一次</p>
+<p><img src="/.io//toux.jpg" alt="tu"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
