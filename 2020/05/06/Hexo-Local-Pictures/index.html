@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/image-20200506223313787.png">
 <meta property="og:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/1.png">
 <meta property="article:published_time" content="2020-05-06T12:20:48.000Z">
-<meta property="article:modified_time" content="2020-05-06T13:57:06.197Z">
+<meta property="article:modified_time" content="2020-05-06T15:19:36.018Z">
 <meta property="article:author" content="Hyemin Kim">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">5</span></a>
         
       </div>
     </div>
@@ -177,7 +177,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-6.png" style="max-height: 240px;">
+      <img src="/images/random/material-13.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">在Hexo博文中添加本地图片的方法（基于Typora编辑器）</div>
@@ -228,9 +228,9 @@
     </header>
     <div class="mdui-card-content mdui-typo">
       <p>当我们想在markdown文档中添加 <em>网络图片</em> 时，可以使用命令 <code>!['图片显示名称']('图片网络地址')</code>进行实现，然而这条命令却不适用于添加<em>本地图片</em> 。本文将介绍在使用Typora编辑器时在markdown文档中添加本地图片的方法。<a id="more"></a></p>
-<h4 id="设置过程"><a href="#设置过程" class="headerlink" title="设置过程"></a>设置过程</h4><p>设置过程一共分为三个步骤：</p>
+<h4 id="【编写博客前】—-进行配置"><a href="#【编写博客前】—-进行配置" class="headerlink" title="【编写博客前】— 进行配置"></a>【编写博客前】— 进行配置</h4><p>配置过程一共分为三个步骤：</p>
 <ol>
-<li><p>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来存档添加到博文中的图片：</p>
+<li><p>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来保存添加到博文中的本地图片：</p>
 <ul>
 <li>在本地Hexo根目录下的 <code>source</code>文件夹中创建一个名为<code>images</code>的文件夹  </li>
 </ul>
@@ -245,7 +245,11 @@
 </ol>
 <img src="/images/Hexo-Local-Pictures/image-20200506223313787.png" alt="image-20200506223313787" style="zoom:50%;">
 
-<p>   【此时<code>source/images</code>文件夹下会建立一个与所编辑的markdown文档同名的文件夹，md文档中所添加的图片都将存档与此（即拥有了如下路径：<code>'hexo根目录'/source/images/md文档名/图片名称）</code>)】  </p>
+
+
+
+
+<p>​     【此时<code>source/images</code>文件夹下会建立一个与所编辑的markdown文档同名的文件夹，md文档中所添加的 <em>本地图片</em> 都将存档与此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。（网络图片不会被保存到这里，我也不知道为什么。。】  </p>
 <ol start="3">
 <li><p>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中：</p>
 <ul>
@@ -257,6 +261,30 @@
 
 
 
+<h4 id="【编写博客时】—-图片导入方法"><a href="#【编写博客时】—-图片导入方法" class="headerlink" title="【编写博客时】— 图片导入方法"></a>【编写博客时】— 图片导入方法</h4><p>在编写博客时导入本地图片有三种方法：</p>
+<ol>
+<li><p>将原本存放于其他本地文件夹中的图片直接拖拽到md.文档中的相应位置中去。</p>
+<ul>
+<li><p>此时图片会自动备份到<code>'hexo根目录'/source/images/'md文档名'</code>文件夹中</p>
+</li>
+<li><p>md.文档中图片地址的代码会显示成 <em>自动生成的相对路径</em>，即<code>/images/'md文档名'/'图片名称'</code> </p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>当利用 <em>方法1</em> 插入了至少一张图片时（即<code>'hexo根目录'/source/images/</code>中已经生成与md.文档同名的文件夹时），在md.文档中想要添加图片的位置利用相对路径调取图片。</p>
+<ul>
+<li><p>即在相应位置使用markdown命令：<code>![图片显示名称](/images/'md文档名'/'图片名称')</code> </p>
+</li>
+<li><p>这里的<code>图片显示名称</code>不必与文件夹中保存的<code>图片名称</code>保持一致</p>
+</li>
+<li><p>注意：<code>'图片名称'</code>中要记得包含图片格式！（例如：tupian.jpg 或 picture.png 等）  </p>
+</li>
+</ul>
+</li>
+</ol>
+<p>3. </p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -300,6 +328,11 @@
 
 
   <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="/2020/05/06/pic-test2/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prev
+      </a>
     
     <div class="spacer"></div>
     
