@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-05-06T07:33:01.467Z</updated>
+  <updated>2020-05-06T07:07:09.919Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -15,35 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test pics</title>
-    <link href="https://hyemin-kim.github.io/2020/05/06/test-pics/"/>
-    <id>https://hyemin-kim.github.io/2020/05/06/test-pics/</id>
-    <published>2020-05-06T07:17:21.000Z</published>
-    <updated>2020-05-06T07:33:01.467Z</updated>
-    
-    <content type="html"><![CDATA[<p>插入一张图片</p><p><img src="/.io//banner.png" alt="tupian"></p><p>再插入一张</p><img src="/.io//toux.jpg" alt="toux" style="zoom:50%;"><p>插入原图_jpg</p><p><img src="/.io//toux.jpg" alt="yuan"></p><p>再试一次</p><p><img src="/.io//toux.jpg" alt="tu"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;插入一张图片&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/.io//banner.png&quot; alt=&quot;tupian&quot;&gt;&lt;/p&gt;
-&lt;p&gt;再插入一张&lt;/p&gt;
-&lt;img src=&quot;/.io//toux.jpg&quot; alt=&quot;toux&quot; style=&quot;zoom:50%;&quot;&gt;
-
-
-
-&lt;p&gt;插入
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>test</title>
