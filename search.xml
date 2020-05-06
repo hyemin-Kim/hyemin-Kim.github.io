@@ -208,7 +208,7 @@
     <content><![CDATA[<p>插入一张图片</p>
 <p><img src="E:%5CHexo%5CBlog%5Csource_posts%5Ctest%5Cbanner.png" alt="banner"></p>
 <p>再试一次</p>
-<p><img src="/test/favicon.png" alt="favicon"></p>
+<p><img src="/favicon-1588748201373.png" alt="favicon"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

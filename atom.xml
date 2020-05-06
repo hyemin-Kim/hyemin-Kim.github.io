@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-05-06T06:54:33.547Z</updated>
+  <updated>2020-05-06T06:56:44.729Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://hyemin-kim.github.io/2020/05/06/test/"/>
     <id>https://hyemin-kim.github.io/2020/05/06/test/</id>
     <published>2020-05-06T06:39:29.000Z</published>
-    <updated>2020-05-06T06:54:33.547Z</updated>
+    <updated>2020-05-06T06:56:44.729Z</updated>
     
-    <content type="html"><![CDATA[<p>插入一张图片</p><p><img src="E:%5CHexo%5CBlog%5Csource_posts%5Ctest%5Cbanner.png" alt="banner"></p><p>再试一次</p><p><img src="/test/favicon.png" alt="favicon"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<p>插入一张图片</p><p><img src="E:%5CHexo%5CBlog%5Csource_posts%5Ctest%5Cbanner.png" alt="banner"></p><p>再试一次</p><p><img src="/favicon-1588748201373.png" alt="favicon"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     <summary type="html">
     
@@ -32,7 +32,7 @@
         &lt;p&gt;插入一张图片&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;E:%5CHexo%5CBlog%5Csource_posts%5Ctest%5Cbanner.png&quot; alt=&quot;banner&quot;&gt;&lt;/p&gt;
 &lt;p&gt;再试一次&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/test/favicon.png
+&lt;p&gt;&lt;img src=&quot;/favicon-15887482
       
     
     </summary>
