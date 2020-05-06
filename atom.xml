@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-05-06T15:29:09.131Z</updated>
+  <updated>2020-05-06T16:47:55.639Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>pic_test2</title>
-    <link href="https://hyemin-kim.github.io/2020/05/06/pic-test2/"/>
-    <id>https://hyemin-kim.github.io/2020/05/06/pic-test2/</id>
-    <published>2020-05-06T14:52:30.000Z</published>
-    <updated>2020-05-06T15:29:09.131Z</updated>
-    
-    <content type="html"><![CDATA[<p>插入图片:</p><p><img src="images/pic-test2/1.png" alt="tupian"></p><p>插入图片2：</p><p><img src="/images/pic-test2/toux.jpg" alt="toux"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;插入图片:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;images/pic-test2/1.png&quot; alt=&quot;tupian&quot;&gt;&lt;/p&gt;
-&lt;p&gt;插入图片2：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/pic-test2/toux.jpg&quot; alt=&quot;toux&quot;&gt;&lt;/p&gt;
-&lt;
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器）</title>
@@ -63,9 +37,9 @@
       <category term="【Study】Hexo Usage" scheme="https://hyemin-kim.github.io/categories/%E3%80%90Study%E3%80%91Hexo-Usage/"/>
     
     
-      <category term="markdown" scheme="https://hyemin-kim.github.io/tags/markdown/"/>
-    
       <category term="Hexo" scheme="https://hyemin-kim.github.io/tags/Hexo/"/>
+    
+      <category term="markdown" scheme="https://hyemin-kim.github.io/tags/markdown/"/>
     
       <category term="Typora" scheme="https://hyemin-kim.github.io/tags/Typora/"/>
     
