@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-05-06T05:27:08.603Z</updated>
+  <updated>2020-05-06T08:04:22.175Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pic test</title>
+    <link href="https://hyemin-kim.github.io/2020/05/06/pic-test/"/>
+    <id>https://hyemin-kim.github.io/2020/05/06/pic-test/</id>
+    <published>2020-05-06T08:01:49.000Z</published>
+    <updated>2020-05-06T08:04:22.175Z</updated>
+    
+    <content type="html"><![CDATA[<p>插入图片：</p><p><img src="/images/pic-test/touxiang.png" alt="touxiang"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;插入图片：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/pic-test/touxiang.png&quot; alt=&quot;touxiang&quot;&gt;&lt;/p&gt;
+&lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+   
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Markdown 常用语法</title>

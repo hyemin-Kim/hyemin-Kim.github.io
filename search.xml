@@ -202,4 +202,29 @@
         <category>【PROJECTS】</category>
       </categories>
   </entry>
+  <entry>
+    <title>pic test</title>
+    <url>/2020/05/06/pic-test/</url>
+    <content><![CDATA[<p>插入图片：</p>
+<p><img src="/images/pic-test/touxiang.png" alt="touxiang"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+  </entry>
 </search>
