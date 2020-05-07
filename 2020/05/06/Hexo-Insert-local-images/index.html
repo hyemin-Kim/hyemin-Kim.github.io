@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/image-20200506223313787.png">
 <meta property="og:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/1.png">
 <meta property="article:published_time" content="2020-05-06T12:20:48.531Z">
-<meta property="article:modified_time" content="2020-05-07T12:48:12.821Z">
+<meta property="article:modified_time" content="2020-05-07T12:52:16.416Z">
 <meta property="article:author" content="Hyemin Kim">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="markdown">
@@ -179,7 +179,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-9.png" style="max-height: 240px;">
+      <img src="/images/random/material-10.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">在Hexo博文中添加本地图片的方法（基于Typora编辑器）</div>
@@ -258,13 +258,11 @@
 <li>打开Typora的<code>文件 &gt; 偏好设置 &gt; 图像</code>，进行如下设置：</li>
 </ul>
 <center><img src="/images/Hexo-Local-Pictures/image-20200506223313787.png" alt="image-20200506223313787" style="zoom:50%;"></center>
-</li>
-</ol>
 <ul>
 <li>此时<code>source/images</code>文件夹下会建立一个与所编辑的markdown文档同名的文件夹，md文档中所添加的 <em>本地图片</em> 都将存档与此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。（网络图片不会被保存到这里，我也不知道为什么。。)<br>
 <br></li>
 </ul>
-<ol start="3">
+</li>
 <li>
 <p>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中：</p>
 <ul>
@@ -296,10 +294,7 @@
 <p>即先把图片复制到<code>'hexo根目录'/source/images/'md文档名'</code>文件夹中，再在.md文档中想要添加该图片的位置上使用markdown命令：<code>![图片显示名称](/images/'md文档名'/'图片名称')</code></p>
 </li>
 <li>
-<p>这里的<code>图片显示名称</code>不必与文件夹中保存的<code>图片名称</code>保持一致</p>
-</li>
-<li>
-<p>注意：<code>'图片名称'</code>中要记得包含图片格式！（例如：tupian.jpg 或 picture.png 等）<br>
+<p>注：这里的<code>图片显示名称</code>不必与文件夹中保存的<code>图片名称</code>保持一致，<code>'图片名称'</code>中要记得包含图片格式（例如：tupian.jpg 或 picture.png 等）<br>
 <br></p>
 </li>
 </ul>
