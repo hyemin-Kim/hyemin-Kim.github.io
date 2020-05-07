@@ -16,18 +16,6 @@
 .shadow.floatable:hover {
   box-shadow: 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
 }
-@font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://cdn.jsdelivr.net/gh/xaoxuu/cdn-fonts/UbuntuMono/UbuntuMono-Regular.ttf");
-  font-weight: 'normal';
-  font-style: 'normal';
-}
-@font-face {
-  font-family: 'Varela Round';
-  src: url("https://cdn.jsdelivr.net/gh/xaoxuu/cdn-fonts/VarelaRound/VarelaRound-Regular.ttf");
-  font-weight: 'normal';
-  font-style: 'normal';
-}
 * {
   box-sizing: border-box;
   outline: none;
@@ -38,29 +26,14 @@ html {
   color: #555;
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, "Lucida Console", sans-serif;
   font-size: 16px;
-}
-html >::-webkit-scrollbar {
-  height: 4px;
-  width: 4px;
-}
-html >::-webkit-scrollbar-track-piece {
-  background: transparent;
-}
-html >::-webkit-scrollbar-thumb {
-  background: #2196f3;
-  cursor: pointer;
-  border-radius: 2px;
-}
-html >::-webkit-scrollbar-thumb:hover {
-  background: #ff5722;
 }
 body {
   background-color: #f4f4f4;
   text-rendering: optimizelegibility;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  line-height: 1.65;
+  line-height: 1.7;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -618,6 +591,7 @@ article .checkbox input {
   border-radius: 2px;
   flex-shrink: 0;
   margin-right: 8px;
+  pointer-events: none;
 }
 article .checkbox input[type=checkbox]:before,
 article .checkbox input[type=checkbox]:after {
@@ -1071,7 +1045,7 @@ div.note {
   position: relative;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  padding: 0.6rem 16px 0.5rem 16px;
+  padding: 0.5rem 16px 0.5rem 16px;
   padding-left: calc(16px + 16px);
   border-radius: 4px;
   background: #f6f6f6;
@@ -1110,9 +1084,6 @@ div.note::before {
 }
 div.note::before {
   color: #767676;
-  content: '\f054';
-}
-div.note::before {
   content: '\f054';
 }
 div.note.quote {
@@ -1258,11 +1229,11 @@ p.p.subtitle:first-child {
 }
 span.p.logo,
 p.p.logo {
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, "Lucida Console", sans-serif;
 }
 span.p.code,
 p.p.code {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, Monaco, monospace, courier, sans-serif;
 }
 span.p.left,
 p.p.left {
@@ -1480,92 +1451,6 @@ pre {
 .hljs::-webkit-scrollbar-thumb:hover {
   background: #767676;
 }
-.hljs:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: rgba(85,85,85,0.65);
-  font-size: 0.75rem;
-  padding: 4px 8px;
-}
-.hljs.md:before,
-.hljs.markdown:before {
-  content: "md";
-}
-.hljs.yaml:before {
-  content: "YAML";
-}
-.hljs.json:before {
-  content: "JSON";
-}
-.hljs.html:before {
-  content: "HTML";
-}
-.hljs.js:before,
-.hljs.javascript:before {
-  content: "JS";
-}
-.hljs.css:before {
-  content: "CSS";
-}
-.hljs.less:before {
-  content: "Less";
-}
-.hljs.stylus:before {
-  content: "Stylus";
-}
-.hljs.bash:before {
-  content: "bash";
-}
-.hljs.shell:before {
-  content: "shell";
-}
-.hljs.sh:before {
-  content: "sh";
-}
-.hljs.ini:before {
-  content: "ini";
-}
-.hljs.c:before {
-  content: "C";
-}
-.hljs.cpp:before {
-  content: "C++";
-}
-.hljs.objc:before,
-.hljs.objectivec:before {
-  content: "Objective-C";
-}
-.hljs.swift:before {
-  content: "Swift";
-}
-.hljs.java:before {
-  content: "Java";
-}
-.hljs.python:before {
-  content: "Python";
-}
-.hljs.php:before {
-  content: "PHP";
-}
-.hljs.rust:before {
-  content: "Rust";
-}
-.hljs.sql:before {
-  content: "SQL";
-}
-.hljs.ruby:before {
-  content: "Ruby";
-}
-.hljs.makefile:before {
-  content: "Makefile";
-}
-.hljs.go:before {
-  content: "Go";
-}
-.hljs.typescript:before {
-  content: "TypeScript";
-}
 .highlight {
   position: relative;
   width: 100%;
@@ -1573,7 +1458,7 @@ pre {
   display: block;
   background: #f6f6f6;
   font-size: 0.8125rem;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, Monaco, monospace, courier, sans-serif;
   border-radius: 4px;
   border: 1px solid #e7e7e7;
   line-height: 1.5;
@@ -1646,84 +1531,6 @@ pre {
   color: rgba(85,85,85,0.65);
   font-size: 0.75rem;
   padding: 4px 8px;
-}
-.highlight.md .code:before,
-.highlight.markdown .code:before {
-  content: "md";
-}
-.highlight.yaml .code:before {
-  content: "YAML";
-}
-.highlight.json .code:before {
-  content: "JSON";
-}
-.highlight.html .code:before {
-  content: "HTML";
-}
-.highlight.js .code:before,
-.highlight.javascript .code:before {
-  content: "JS";
-}
-.highlight.css .code:before {
-  content: "CSS";
-}
-.highlight.less .code:before {
-  content: "Less";
-}
-.highlight.stylus .code:before {
-  content: "Stylus";
-}
-.highlight.bash .code:before {
-  content: "bash";
-}
-.highlight.shell .code:before {
-  content: "shell";
-}
-.highlight.sh .code:before {
-  content: "sh";
-}
-.highlight.ini .code:before {
-  content: "ini";
-}
-.highlight.c .code:before {
-  content: "C";
-}
-.highlight.cpp .code:before {
-  content: "C++";
-}
-.highlight.objc .code:before,
-.highlight.objectivec .code:before {
-  content: "Objective-C";
-}
-.highlight.swift .code:before {
-  content: "Swift";
-}
-.highlight.java .code:before {
-  content: "Java";
-}
-.highlight.python .code:before {
-  content: "Python";
-}
-.highlight.php .code:before {
-  content: "PHP";
-}
-.highlight.rust .code:before {
-  content: "Rust";
-}
-.highlight.sql .code:before {
-  content: "SQL";
-}
-.highlight.ruby .code:before {
-  content: "Ruby";
-}
-.highlight.makefile .code:before {
-  content: "Makefile";
-}
-.highlight.go .code:before {
-  content: "Go";
-}
-.highlight.typescript .code:before {
-  content: "TypeScript";
 }
 .highlight pre .line,
 .highlight pre .params {
@@ -1884,7 +1691,7 @@ pre {
   z-index: 999;
   text-align: center;
   padding: 30px 36px 29px 36px;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
   font-weight: bold;
   font-size: 1.125rem;
@@ -1908,53 +1715,10 @@ pre {
 @media screen and (max-width: 500px) {
   .l_header .list-v .aplayer,
   .l_header .list-v .aplayer-pic {
-    border-radius: 4px;
+    border-radius: 6px;
     width: 64px;
     height: 64px;
   }
-}
-.highlight {
-  position: relative;
-}
-.btn-copy {
-  z-index: 1;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-appearance: none;
-  font-family: Menlo, Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
-  font-size: calc(0.8125rem - 1px);
-  font-weight: bold;
-  padding: 4px 8px;
-  color: rgba(85,85,85,0.65);
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0;
-  transition: all 0.28s ease;
-  -moz-transition: all 0.28s ease;
-  -webkit-transition: all 0.28s ease;
-  -o-transition: all 0.28s ease;
-}
-.btn-copy >i {
-  margin-right: 4px;
-}
-.btn-copy:hover {
-  color: #ff5722;
-  background: #ffeee8;
-}
-.highlight:hover .btn-copy {
-  opacity: 1;
-}
-.article pre:hover .btn-copy {
-  opacity: 1;
 }
 div.gallery {
   margin: 0.5rem 0;
@@ -2089,7 +1853,7 @@ div.gallery.stretch>p img {
   display: inline;
 }
 .l_main #comments #valine_container .vwrap {
-  border-radius: 8px;
+  border-radius: 12px;
   border-style: dashed;
   border: 1px dashed rgba(85,85,85,0.3);
   transition: all 0.28s ease;
@@ -2187,7 +1951,7 @@ div.gallery.stretch>p img {
 .l_main #comments #valine_container button {
   border: none;
   padding: 4px 2rem;
-  border-radius: 4px;
+  border-radius: 2px;
   background: #f1f1f1;
   color: #555;
   line-height: 2;
@@ -2264,7 +2028,7 @@ div.gallery.stretch>p img {
 }
 .l_main #comments #valine_container .vcards .vcontent code {
   color: #555;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, Monaco, monospace, courier, sans-serif;
 }
 .l_main #comments #valine_container .vcards .vcontent pre {
   background: #f6f6f6;
@@ -2521,7 +2285,7 @@ div.gallery.stretch>p img {
 .article h3 {
   text-align: left;
   color: #2196f3;
-  margin-top: 24px;
+  margin-top: 32px;
 }
 .article h4 {
   text-align: left;
@@ -2588,7 +2352,7 @@ div.gallery.stretch>p img {
   line-height: inherit;
 }
 .article p.has-jax {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, Monaco, monospace, courier, sans-serif;
   background: rgba(255,255,255,0);
   padding: 16px 8px;
   border-radius: 4px;
@@ -2661,7 +2425,7 @@ div.gallery.stretch>p img {
 .article blockquote {
   position: relative;
   width: 100%;
-  padding: 0.6rem 16px 0.5rem 16px;
+  padding: 0.5rem 16px 0.5rem 16px;
   transition: all 0.28s ease;
   -moz-transition: all 0.28s ease;
   -webkit-transition: all 0.28s ease;
@@ -2708,7 +2472,7 @@ div.gallery.stretch>p img {
   overflow: auto;
   background: #f6f6f6;
   font-size: 0.8125rem;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, Monaco, monospace, courier, sans-serif;
   border: 1px solid #e7e7e7;
   padding: 16px;
   border-radius: 4px;
@@ -2726,7 +2490,7 @@ div.gallery.stretch>p img {
   color: rgba(85,85,85,0.9);
 }
 .article code {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, Monaco, monospace, courier, sans-serif;
 }
 .article code:not([class]) {
   padding: 3px 4px 1px 4px;
@@ -2893,7 +2657,7 @@ div.gallery.stretch>p img {
   margin-top: -32px;
 }
 .article .article-entry> h3:before {
-  margin-top: -56px;
+  margin-top: -48px;
 }
 .article .article-entry> h4:before {
   margin-top: -64px;
@@ -3025,7 +2789,7 @@ article .readmore >a {
   max-width: 100%;
 }
 .cover-wrapper .cover .cover-body .title {
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, "Lucida Console", sans-serif;
   font-size: 3rem;
   line-height: 1.2;
 }
@@ -3210,7 +2974,7 @@ footer .copyright p {
   display: flex;
   flex-wrap: wrap;
   margin: -8px;
-  border-radius: 8px;
+  border-radius: 12px;
   align-items: flex-start;
   line-height: 1.3;
 }
@@ -3459,7 +3223,7 @@ footer .copyright p {
   position: relative;
   margin: 16px auto;
   padding: 24px;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 @media screen and (max-width: 425px) {
   .l_main .post {
@@ -3738,7 +3502,7 @@ div.hoverbox >div.target {
   display: none;
   position: absolute;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
   padding: 8px;
   left: 50%;
@@ -3773,9 +3537,6 @@ div.hoverbox:hover >div.target {
 }
 .white-box {
   background: #fff;
-}
-.reveal {
-  visibility: hidden;
 }
 #loading-bar-wrapper {
   position: fixed;
@@ -3868,7 +3629,7 @@ div.hoverbox:hover >div.target {
   line-height: 64px;
   padding: 0 24px;
   font-size: 1.25rem;
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, "Lucida Console", sans-serif;
 }
 .l_header .wrapper .nav-main .title img {
   height: 64px;
@@ -3879,7 +3640,7 @@ div.hoverbox:hover >div.target {
 }
 .l_header .nav-sub .title {
   font-size: 1rem;
-  font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, "Lucida Console", sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -4084,8 +3845,8 @@ ul.list-v {
   position: absolute;
   background: #fff;
   box-shadow: 0 0 1px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1);
-  margin-top: -6px;
-  border-radius: 4px;
+  margin-top: -8px;
+  border-radius: 6px;
   padding: 8px 0;
 }
 ul.list-v >hr {
@@ -4259,21 +4020,18 @@ ul.list-v >li>a.active {
 .menu-phone li ul.list-v ul {
   right: calc(100% - 0.5 * 16px);
 }
-.l_header .wrapper {
-  max-width: 1080px;
-  margin: auto;
-}
-@media screen and (min-width: 2048px) {
-  .l_header .wrapper {
-    max-width: 55vw;
-  }
+.l_header .wrapper .m_search {
+  margin-left: auto;
+  margin-right: 16px;
 }
 .l_header .wrapper .menu {
-  flex: 1 1 auto;
-  margin: 0 16px 0 0;
+  order: 1;
 }
-.l_header .wrapper .menu .list-v ul {
-  left: calc(100% - 0.5 * 16px);
+.l_header .wrapper .menu li ul.list-v {
+  right: 0;
+}
+.l_header .wrapper .menu li ul.list-v ul {
+  right: calc(100% - 0.5 * 16px);
 }
 .menu-phone {
   display: none;
@@ -4306,8 +4064,8 @@ ul.list-v >li>a.active {
   .l_header {
     max-width: 65vw;
     left: calc((100% - 65vw) * 0.5);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -4365,7 +4123,7 @@ ul.list-v >li>a.active {
 .l_main .prev-next section {
   color: rgba(85,85,85,0.65);
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 .l_main .prev-next section:hover {
   color: #ff5722;
@@ -4786,7 +4544,7 @@ ul.list-v >li>a.active {
   z-index: 0;
   background: #fff;
   margin-top: 16px;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 100%;
   display: none;
 }
@@ -4817,8 +4575,8 @@ ul.list-v >li>a.active {
   }
 }
 .widget header {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   font-weight: bold;
   padding: calc(16px - 2px);
   padding-bottom: 0;
@@ -4912,8 +4670,8 @@ ul.list-v >li>a.active {
   align-self: center;
   overflow: hidden;
   position: relative;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   line-height: 0;
 }
 @media screen and (max-width: 768px) {
@@ -5170,20 +4928,20 @@ ul.list-v >li>a.active {
   max-width: 500px;
   border-radius: 4px;
   color: #555;
-  font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, "Lucida Console", sans-serif;
 }
 .aplayer .aplayer-list {
   text-align: left;
 }
 @media screen and (max-width: 500px) {
   .aplayer {
-    border-radius: 8px;
+    border-radius: 12px;
   }
 }
 .l_side .toc-wrapper {
   z-index: 1;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 12px;
   position: sticky;
   top: 80px;
   transition: all 0.28s ease;
@@ -5228,7 +4986,7 @@ ul.list-v >li>a.active {
     max-width: calc(100% - 2 * 16px);
     top: 32px;
     right: 16px;
-    border-radius: 4px;
+    border-radius: 6px;
     box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1);
     border: 1px solid #e7e7e7;
     visibility: hidden;
