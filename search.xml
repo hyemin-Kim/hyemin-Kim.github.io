@@ -1,52 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/05/04/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>【PROJECTS】</category>
-      </categories>
-  </entry>
-  <entry>
     <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器）</title>
     <url>/2020/05/06/Hexo-Local-Pictures/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
 <p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，在markdown文档中添加本地图片的方法。快来看看吧~</p>
 <a id="more"></a>
-<h3 id="编写博客前-—-进行配置"><strong>编写博客前 — 进行配置</strong></h3>
+<h3 id="编写博客前-—-进行配置"><a class="header-anchor" href="#编写博客前-—-进行配置">¶</a><strong>编写博客前 — 进行配置</strong></h3>
 <p>配置过程一共分为三个步骤：</p>
 <ol>
 <li>
@@ -71,7 +31,7 @@
 </li>
 </ol>
 <center><img src="/images/Hexo-Local-Pictures/1.png" alt="1" style="zoom:50%;"></center>
-<h3 id="编写博客时-—-图片导入方法"><strong>编写博客时 — 图片导入方法</strong></h3>
+<h3 id="编写博客时-—-图片导入方法"><a class="header-anchor" href="#编写博客时-—-图片导入方法">¶</a><strong>编写博客时 — 图片导入方法</strong></h3>
 <p>在编写博客时导入本地图片有两种方法：</p>
 <ol>
 <li>
@@ -101,7 +61,7 @@
 </li>
 </ol>
 <p>【注意】当还没有利用 <em>方法1</em> 插入过图片时（即<code>'hexo根目录'/source/images/</code>中还没有与md.文档同名的文件夹时），<strong>不可以自己创建同名文件夹</strong>保存图片。亲测不好使！！（.md文档中可以显示，但是hexo博文中无法显示）</p>
-<h3 id="编写博客后—-备份图片结果"><strong>编写博客后— 备份图片结果</strong></h3>
+<h3 id="编写博客后—-备份图片结果"><a class="header-anchor" href="#编写博客后—-备份图片结果">¶</a><strong>编写博客后— 备份图片结果</strong></h3>
 <p>在利用上述方法完成了含有本地图片的markdown博文后，我们的资源文件夹<code>'hexo根目录'/source/images/</code>内最终会显示成什么样子呢？</p>
 <ul>
 <li>每一篇配置了图片根目录的博文（即【编写博客前】的第3步），都会在<code>'hexo根目录'/source/images/</code>文件夹中有一个与文档名称同名的文件夹<code>'hexo根目录'/source/images/'md文档名'</code></li>
@@ -144,14 +104,22 @@
       </tags>
   </entry>
   <entry>
-    <title>pic test 1</title>
-    <url>/2020/05/06/pic-test/</url>
-    <content><![CDATA[<p>插入图片：</p>
-<p><img src="/images/pic-test/touxiang.png" alt="touxiang"></p>
-<p>插入图片2：</p>
-<p><img src="/images/pic-test/1.png" alt="tupian2"></p>
-<p>插入网络图片</p>
-<p><img src="http://blogfiles.naver.net/20150312_152/goblincape_1426150361053uBOos_JPEG/NaverBlog_20150126_191858_06.jpg" alt="caomei"></p>
+    <title>Hello World</title>
+    <url>/2020/05/04/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a class="header-anchor" href="#Quick-Start">¶</a>Quick Start</h2>
+<h3 id="Create-a-new-post"><a class="header-anchor" href="#Create-a-new-post">¶</a>Create a new post</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a class="header-anchor" href="#Run-server">¶</a>Run server</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a class="header-anchor" href="#Generate-static-files">¶</a>Generate static files</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a class="header-anchor" href="#Deploy-to-remote-sites">¶</a>Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -171,24 +139,27 @@
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>【PROJECTS】</category>
+      </categories>
   </entry>
   <entry>
-    <title>Markdown的常用语法</title>
+    <title>Markdown 常用语法</title>
     <url>/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
-<h4 id="1-标题">1. 标题</h4>
+<h4 id="1-标题"><a class="header-anchor" href="#1-标题">¶</a>1. 标题</h4>
 <p>​     一级标题： “#” + 空格 + “一级标题”<br>
 ​     二级标题： “##” + 空格 + “二级标题”<br>
 ​     三级标题： “###” + 空格 + “三级标题”<br>
 ​     ……<br>
 ​     以此类推 【最多到6级】</p>
-<h4 id="2-换行">2. 换行</h4>
+<h4 id="2-换行"><a class="header-anchor" href="#2-换行">¶</a>2. 换行</h4>
 <p>​    “内容” 末尾 + 2个空格</p>
 <blockquote>
 <p>Hello<br>
 World</p>
 </blockquote>
-<h4 id="3-加粗">3. 加粗</h4>
+<h4 id="3-加粗"><a class="header-anchor" href="#3-加粗">¶</a>3. 加粗</h4>
 <p>​     方法一：“内容”前后加 2 个 * 号（无空格）</p>
 <blockquote>
 <p>** “内容” **   ——&gt;   <strong>“内容”</strong></p>
@@ -197,7 +168,7 @@ World</p>
 <blockquote>
 <p>__ “内容” __  ——&gt; <strong>“内容”</strong></p>
 </blockquote>
-<h4 id="4-斜体">4. 斜体</h4>
+<h4 id="4-斜体"><a class="header-anchor" href="#4-斜体">¶</a>4. 斜体</h4>
 <p>​     方法一：“内容”前后加1个 * 号 （无空格）</p>
 <blockquote>
 <p><em>“内容”</em></p>
@@ -206,22 +177,22 @@ World</p>
 <blockquote>
 <p>_ “内容” _ ——&gt;  <em>“内容”</em></p>
 </blockquote>
-<h4 id="5-斜体加粗">5. 斜体加粗</h4>
+<h4 id="5-斜体加粗"><a class="header-anchor" href="#5-斜体加粗">¶</a>5. 斜体加粗</h4>
 <p>​    “内容”前后加 3 个 * 号 （无空格）</p>
 <blockquote>
 <p><em><strong>“内容”</strong></em></p>
 </blockquote>
-<h4 id="6-删除线">6. 删除线</h4>
+<h4 id="6-删除线"><a class="header-anchor" href="#6-删除线">¶</a>6. 删除线</h4>
 <p>​    “内容”前后加 2 个波浪线（~）</p>
 <blockquote>
 <p>~~ “内容” ~~  ——&gt;  <s>“内容”</s></p>
 </blockquote>
-<h4 id="7-高亮">7. 高亮</h4>
+<h4 id="7-高亮"><a class="header-anchor" href="#7-高亮">¶</a>7. 高亮</h4>
 <p>​    “内容”前后加 2 个 = 号</p>
 <blockquote>
 <p>== “内容” ==  ——&gt;  ==“内容”==</p>
 </blockquote>
-<h4 id="8-上标-下标">8. 上标 &amp; 下标</h4>
+<h4 id="8-上标-下标"><a class="header-anchor" href="#8-上标-下标">¶</a>8. <sup>上标</sup> &amp; <sub>下标</sub></h4>
 <ul>
 <li>
 <p>上标：“内容”前后加 1 个 ^ 号</p>
@@ -231,10 +202,10 @@ World</p>
 </li>
 </ul>
 <blockquote>
-<p>我是 ^ 上标 ^  ——&gt;  我是^上标^</p>
-<p>我是 ~ 下标 ~  ——&gt; 我是~下标~</p>
+<p>我是 ^ 上标 ^  ——&gt;  我是<sup>上标</sup></p>
+<p>我是 ~ 下标 ~  ——&gt; 我是<sub>下标</sub></p>
 </blockquote>
-<h4 id="9-引用">9. 引用</h4>
+<h4 id="9-引用"><a class="header-anchor" href="#9-引用">¶</a>9. 引用</h4>
 <p>​    “内容”前加 &gt; 号</p>
 <blockquote>
 <p>“内容”</p>
@@ -250,20 +221,20 @@ World</p>
 </blockquote>
 </blockquote>
 </blockquote>
-<h4 id="10-插入链接">10. 插入链接</h4>
+<h4 id="10-插入链接"><a class="header-anchor" href="#10-插入链接">¶</a>10. 插入链接</h4>
 <p>​     中括号内输入“显示的文字”，紧接着小括号内输入“网址链接”<br>
 ​    【注意：网站地址需要 http 开头，最好直接复制】</p>
 <blockquote>
 <p><a href="http://www.baidu.com/" target="_blank" rel="noopener">点我进入百度</a></p>
 </blockquote>
-<h4 id="11-插入图片">11. 插入图片</h4>
+<h4 id="11-插入图片"><a class="header-anchor" href="#11-插入图片">¶</a>11. 插入图片</h4>
 <p>​     感叹号 + 中括号内输入“显示的文字”，紧接着小括号内输入“图片链接”<br>
 ​    【注意：图片链接非网页的网址栏链接，而是右键“复制图片地址”得到的链接】</p>
 <blockquote>
 <p><img src="http://t9.baidu.com/it/u=1307125826,3433407105&amp;fm=79&amp;app=86&amp;f=JPEG?w=5760&amp;h=3240" alt="图片"></p>
 </blockquote>
-<h4 id="12-列表">12.列表</h4>
-<h5 id="（1）-有序列表">（1） 有序列表</h5>
+<h4 id="12-列表"><a class="header-anchor" href="#12-列表">¶</a>12.列表</h4>
+<h5 id="（1）-有序列表"><a class="header-anchor" href="#（1）-有序列表">¶</a>（1） 有序列表</h5>
 <p>​      （序号1+点+空格）+内容+回车<br>
 ​      （序号2+点+空格）+内容+回车<br>
 ​      （序号3+点+空格）+内容+回车</p>
@@ -282,7 +253,7 @@ World</p>
 <li>第四点</li>
 </ol>
 </blockquote>
-<h5 id="（2）无序列表">（2）无序列表</h5>
+<h5 id="（2）无序列表"><a class="header-anchor" href="#（2）无序列表">¶</a>（2）无序列表</h5>
 <p>​       使用“ + ”加空格+内容<br>
 ​       或者“ - ”加空格+内容<br>
 ​       或者“ * ”加空格+内容<br>
@@ -303,7 +274,7 @@ World</p>
 </li>
 </ul>
 </blockquote>
-<h5 id="（3）任务列表">（3）任务列表</h5>
+<h5 id="（3）任务列表"><a class="header-anchor" href="#（3）任务列表">¶</a>（3）任务列表</h5>
 <p>​       短横线 + 1 个空格 + 中括号（括号中间带 1 个空格） + 1 个空格 + “内容”</p>
 <blockquote>
 <ul>
@@ -311,7 +282,7 @@ World</p>
 <li>[ ] 学习SQL</li>
 </ul>
 </blockquote>
-<h4 id="13-添加表格">13. 添加表格</h4>
+<h4 id="13-添加表格"><a class="header-anchor" href="#13-添加表格">¶</a>13. 添加表格</h4>
 <p>​      竖线作为列分界线，换行竖线中间输入短横线作为行分界线</p>
 <table>
 <thead>
@@ -334,11 +305,11 @@ World</p>
 </tr>
 </tbody>
 </table>
-<h4 id="14-代码">14. 代码</h4>
+<h4 id="14-代码"><a class="header-anchor" href="#14-代码">¶</a>14. 代码</h4>
 <p>​      三个 ` 号，再输入所使用的编程语言</p>
  <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">"Python"</span>)  <span class="comment"># python</span></span><br></pre></td></tr></tbody></table></figure>
  <figure class="highlight r"><table><tbody><tr><td class="code"><pre><span class="line">install.packages(<span class="string">"ggplot2"</span>)  <span class="comment"># R语言</span></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="15-插入目录-Only-for-Typora">15.插入目录 [Only for Typora]</h4>
+<h4 id="15-插入目录-Only-for-Typora"><a class="header-anchor" href="#15-插入目录-Only-for-Typora">¶</a>15.插入目录 [Only for Typora]</h4>
 <p>​     中括号内输入toc</p>
 <p>[toc]</p>
 </font><script>
@@ -366,5 +337,34 @@ World</p>
       <tags>
         <tag>markdown</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>pic test 1</title>
+    <url>/2020/05/06/pic-test/</url>
+    <content><![CDATA[<p>插入图片：</p>
+<p><img src="/images/pic-test/touxiang.png" alt="touxiang"></p>
+<p>插入图片2：</p>
+<p><img src="/images/pic-test/1.png" alt="tupian2"></p>
+<p>插入网络图片</p>
+<p><img src="http://blogfiles.naver.net/20150312_152/goblincape_1426150361053uBOos_JPEG/NaverBlog_20150126_191858_06.jpg" alt="caomei"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
   </entry>
 </search>
