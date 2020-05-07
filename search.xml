@@ -274,8 +274,7 @@ World</p>
   <entry>
     <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器）</title>
     <url>/2020/05/06/Hexo-Insert-local-images/</url>
-    <content><![CDATA[<font face="Microsoft YaHei">
-<p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，在markdown文档中添加本地图片的方法。快来看看吧~</p>
+    <content><![CDATA[<p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，在markdown文档中添加本地图片的方法。快来看看吧</p>
 <a id="more"></a>
 <br>
 <p></p><ul class="markdownIt-TOC">
@@ -305,7 +304,7 @@ World</p>
 </ul>
 <center><img src="/images/Hexo-Local-Pictures/image-20200506223313787.png" alt="image-20200506223313787" style="zoom:50%;"></center>
 <ul>
-<li>这会使<code>source/images</code>文件夹下新增一个与所编辑的markdown文档同名的文件夹，文档中所添加的 <em>本地图片</em> 都将存档于此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。<br>
+<li>此设置会使<code>source/images</code>文件夹下新增一个与所编辑的markdown文档同名的文件夹，文档中所添加的 <em>本地图片</em> 都将存档于此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。<br>
 <br></li>
 </ul>
 </li>
@@ -364,7 +363,7 @@ World</p>
  <hr>  
  <br>  
  <br>  
-</font><script>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
