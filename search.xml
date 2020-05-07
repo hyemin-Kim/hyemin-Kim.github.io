@@ -12,9 +12,6 @@
 ​     以此类推 【最多到6级】</p>
 <br>
 <br>
-<br>
-<br>
-<br>
 <h4 id="2-换行"><a class="markdownIt-Anchor" href="#2-换行"></a> 2. 换行</h4>
 <p>​    “内容” 末尾 + 2个空格</p>
 <blockquote>
@@ -277,6 +274,7 @@ World</p>
     <content><![CDATA[<font face="Microsoft YaHei">
 <p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，在markdown文档中添加本地图片的方法。快来看看吧</p>
 <a id="more"></a>
+<br>
 <p></p><ul class="markdownIt-TOC">
 <li>
 <ul>
@@ -287,7 +285,6 @@ World</p>
 </li>
 </ul>
 <p></p>
-<br>
 <h3 id="编写博客前-进行配置"><a class="markdownIt-Anchor" href="#编写博客前-进行配置"></a> <strong>【编写博客前】— 进行配置</strong></h3>
 <br>
 <ol>
