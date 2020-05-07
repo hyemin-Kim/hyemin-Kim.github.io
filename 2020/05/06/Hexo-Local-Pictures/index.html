@@ -1,235 +1,420 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
-
-  
-  <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器） | Hyemin&#39;s journey of growth in Data Analysis</title>
-
-  <link rel="shortcut icon" href="/images/favicon.png">
-  
-  <meta name="description" content="当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 &#96;&#96;&#96;![&#39;图片显示名称&#39;](&#39;图片网络地址&#39;)&#96;&#96;&#96;进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！">
-<meta property="og:type" content="article">
-<meta property="og:title" content="在Hexo博文中添加本地图片的方法（基于Typora编辑器）">
-<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/index.html">
-<meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
-<meta property="og:description" content="当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 &#96;&#96;&#96;![&#39;图片显示名称&#39;](&#39;图片网络地址&#39;)&#96;&#96;&#96;进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/image-20200506223313787.png">
-<meta property="og:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/1.png">
-<meta property="article:published_time" content="2020-05-06T12:20:48.000Z">
-<meta property="article:modified_time" content="2020-05-06T16:47:55.639Z">
-<meta property="article:author" content="Hyemin Kim">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="markdown">
-<meta property="article:tag" content="Typora">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hyemin-kim.github.io/images/Hexo-Local-Pictures/image-20200506223313787.png">
-
-  <meta name="keywords" content=",Hexo,markdown,Typora">
-  <meta name="format-detection" content="telephone=no,email=no">
-  <meta name="theme-color" content="#9C27B0">
-
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
-  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/">
-  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <!-- 页面元数据 -->
   
-    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/">
+    <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器） - Hyemin&#39;s journey of growth in Data Analysis</title>
   
-
+    <meta name="keywords" content="markdown,Hexo,Typora">
   
   
-
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create','hyemin2060','auto');ga('send','pageview');
-</script>
-  
+    <meta name="description" content="
+当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 ```!['图片显示名称']('图片网络地址')```进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！
+">
   
 
+  <!-- feed -->
   
-<link rel="stylesheet" href="/css/mdui.css">
+    <link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
 <link rel="stylesheet" href="/css/style.css">
 
   
-<link rel="stylesheet" href="/custom.css">
 
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
-<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-pink">
-  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
-  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
-  <div class="mdui-toolbar mdui-color-theme">
-    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
-    <a href="/" class="mdui-typo-headline">Hyemin&#39;s journey of growth in Data Analysis</a>
-    <div class="mdui-toolbar-spacer"></div>
-    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
-    
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+          
+            VOLANTIS <b><sup style='color:#3AA757'>2.6.5</sup></b>
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
   </div>
 </header>
-<div class="mdui-dialog" id="search">
-  
-    <div class="search-form">
-      <input type="search" class="search-form-input" placeholder="Enter the key words">
-    </div>
-    <div class="search-result" data-resource="/search.xml"></div>
-  
-</div>
-  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
-  <div class="mdui-grid-tile">
-    <img src="/images/banner.png" style="height: 160px;">
-    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
-    <div class="mdui-grid-tile-actions">
-      <div class="mdui-grid-tile-text">
-        <div class="mdui-grid-tile-title">Hyemin Kim</div>
-        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>김혜민 / 金慧敏</div>
-      </div>
+
+<script>setLoadingBarProgress(40);</script>
+
+
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
       
-        <div class="mdui-grid-tile-buttons">
-          <a href="mailto:hyemin2060@naver.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'hyemin2060@naver.com'}"><i class="mdui-icon material-icons">email</i></a>
-        </div>
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
       
-    </div>
-  </div>
 
-  <div class="mdui-list" mdui-collapse="{accordion: true}">
-    <a href="/" class="mdui-list-item mdui-ripple">
-      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
-      <div class="mdui-list-item-content">Home</div>
-    </a>
-    <div class="mdui-collapse-item">
-      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
-        <div class="mdui-list-item-content">Archive</div>
-        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-      </div>
-      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-        
-        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">4</span></a>
-        
-      </div>
-    </div>
-    <div class="mdui-collapse-item">
-      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
-        <div class="mdui-list-item-content">Category</div>
-        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-      </div>
-      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-        
-        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a>
-        
-      </div>
-    </div>
-    <div class="mdui-collapse-item">
-      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
-        <div class="mdui-list-item-content">Tag</div>
-        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-      </div>
-      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-        
-        <a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typora/" rel="tag">Typora<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/markdown/" rel="tag">markdown<span class="mdui-ripple sidebar_archives-count">2</span></a>
-        
-      </div>
-    </div>
-    <a href="/about" class="mdui-list-item mdui-ripple">
-      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
-      <div class="mdui-list-item-content">About</div>
-    </a>
-  </div>
 
-  <div class="mdui-divider"></div>
-
-  <div class="mdui-list" mdui-collapse="{accordion: true}">
+  <section class='meta'>
     
-    <div class="mdui-collapse-item">
-      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-        <div class="mdui-list-item-content">Links</div>
-        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
-      </div>
-      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+      
+      
+      <div class="meta" id="header-meta">
         
-          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
-        
-          <a href="https://hexo.io/zh-cn/docs/" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Usage</a>
-        
-        
-      </div>
-    </div>
-  </div>
-</aside>
-  <main id="main" class="mdui-m-t-5 fadeIn animated">
-  
-<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+          
+  <h1 class="title">
+    <a href="/2020/05/06/Hexo-Local-Pictures/">
+      在Hexo博文中添加本地图片的方法（基于Typora编辑器）
+    </a>
+  </h1>
 
-  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
-  <article class="mdui-card mdui-m-b-5">
-    <header class="mdui-card-media">
-      <img src="/images/random/material-11.png" style="max-height: 240px;">
-      <div class="mdui-card-media-covered">
-        <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">在Hexo博文中添加本地图片的方法（基于Typora编辑器）</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-06 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Mr. X</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E3%80%90Study%E3%80%91Hexo-Usage/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>【Study】Hexo Usage</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 6, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
         </div>
-      </div>
-      <div class="mdui-card-menu">
         
-          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
-          <ul class="mdui-menu" id="qrcode">
-            
-              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
-            
-            <li class="mdui-menu-item" disabled>
-              
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACW0lEQVR42u3bQXLCMAwFUO5/6fYATNMvyXYC87JiOtD4eRGLL/H6+errhYeHh4eHh4eH9zDeK76qn3p///tn/3rPaG14eHh4R3j/PGovb5ws6Br51xqaa8PDw8M7yMuXlWCSJU7uhYeHh/eJvGSJkw3Cw8PD+ybedSmchwvVQwIPDw/vabxkode3SeLaPHS4IWvBw8PDi3l5k+n866P9PTw8PLyAVx5pikvbPMjIj4Hy0BUeHh7eBl7+IM5L7UlxPFkPHh4e3kledUR1Ei70xlULzTY8PDy8zbx5BJBj8kbapPjGw8PD282bxAGTAKI6fLDsGwMeHh7emNc7JBY0+ItLLxT0eHh4eMd5vYd+3uiq/iUZLMDDw8M7yas2uhLY5AcDvZEvPDw8vJO86pXEB9VRg7VFPB4eHt5uXh4T5MVur+Be1irDw8PDO8KrFtPVUa3kjtWhq3IYgYeHh7eIV40ersvo5FCZbOKCbwx4eHh4i3jVB31eIs/vUqXi4eHh7eZNGvY96qoxglGMi4eHhzfm9W7Za5jlwUc1IMbDw8M7ycuL7B1hRLI1+X/Gw8PDu5c3KXN7m1Kl4uHh4d3Lm4Sq+VB+PuaVD2Ph4eHhneTtLnOv39OLKkZDV3h4eHhjXvVxn29BMqpVbbw1S2o8PDy8DbzJYdBbSnUr8+3Gw8PDO8nrxQo5Zm0YgYeHh/dZvEKoOvgZQO8gwcPDw3syrxolFAanBoNceHh4eCd5eeQ6CRTywPeGGBcPDw9vQwOsWjpPjoE84MDDw8M7yfu+Cw8PDw8PDw8P7wHXL6KZAl0CpEp8AAAAAElFTkSuQmCC">
-              
-            </li>
-          </ul>
-        
-        
-          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
-          <ul class="mdui-menu" id="share_menu">
-            <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=在Hexo博文中添加本地图片的方法（基于Typora编辑器）&url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=在Hexo博文中添加本地图片的方法（基于Typora编辑器）&url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/" target="_blank" class="mdui-ripple">Share to Facebook</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/" target="_blank" class="mdui-ripple">Share to Google+</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&title=在Hexo博文中添加本地图片的方法（基于Typora编辑器）" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=在Hexo博文中添加本地图片的方法（基于Typora编辑器）&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/" target="_blank" class="mdui-ripple">Share to QQ</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&text=在Hexo博文中添加本地图片的方法（基于Typora编辑器）" target="_blank" class="mdui-ripple">Share to Telegram</a>
-            </li>
-          </ul>
+          <hr>
         
       </div>
-    </header>
-    <div class="mdui-card-content mdui-typo">
-      <font face="Microsoft YaHei">
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <font face="Microsoft YaHei">
 当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 ```!['图片显示名称']('图片网络地址')```进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！
 </font><a id="more"></a>
 
@@ -317,75 +502,662 @@
             document.body.appendChild(img);
           });
       </script>
-      <blockquote class="mdui-m-t-5">
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
         
-        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/">https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/</a>
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/>https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/</a></p>
+          
+        
       </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-07T01:47:55+09:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：May 7, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/markdown/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>markdown</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Hexo/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Hexo</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Typora/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Typora</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&title=在Hexo博文中添加本地图片的方法（基于Typora编辑器） - Hyemin's journey of growth in Data Analysis&summary=
+当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 ```!['图片显示名称']('图片网络地址')```进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&title=在Hexo博文中添加本地图片的方法（基于Typora编辑器） - Hyemin's journey of growth in Data Analysis&summary=
+当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 ```!['图片显示名称']('图片网络地址')```进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://hyemin-kim.github.io/2020/05/06/Hexo-Local-Pictures/&title=在Hexo博文中添加本地图片的方法（基于Typora编辑器） - Hyemin's journey of growth in Data Analysis&summary=
+当我们想在markdown文档中添加 *网络图片* 时，可以使用命令 ```!['图片显示名称']('图片网络地址')```进行实现，然而这条命令却不适用于添加*本地图片* 。本文将介绍在使用Typora编辑器来编辑Hexo博文时，往markdown文档中添加本地图片的方法~  快来看看把！
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
       
     </div>
-    <footer class="mdui-card-actions">
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2020/05/06/pic-test/'>
+                <p class='title'>pic test<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>插入图片：
+
+插入图片2：
+
+插入网络图片
+
+
+        document.querySelectorAll('.github-emoji')
+          .forEach(el ...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
       
-        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage</a>
       
       
-        <a class="mdui-ripple article_tags-link" href="/tags/Hexo/" rel="tag">Hexo</a><a class="mdui-ripple article_tags-link" href="/tags/Typora/" rel="tag">Typora</a><a class="mdui-ripple article_tags-link" href="/tags/markdown/" rel="tag">markdown</a>
       
-    </footer>
-    
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
   </article>
+
+
   
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
-  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
-
-
-  <nav id="paginator">
-    
-    <div class="spacer"></div>
-    
-      <a rel="next" class="extend next" href="/2020/05/06/pic-test/">
-        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
-      </a>
-    
-  </nav>
 
 
 
-</main>
-  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
-  <div class="mdui-p-y-0 mdui-text-center">
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '在Hexo博文中添加本地图片的方法（基于Typora编辑器）',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
     
     
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#【编写博客前】—-进行配置"><span class="toc-text">【编写博客前】— 进行配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#【编写博客时】—-图片导入方法"><span class="toc-text">【编写博客时】— 图片导入方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#【编写博客后】—-备份图片结果"><span class="toc-text">【编写博客后】— 备份图片结果</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
     
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
     
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
     
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
     
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
     
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
     
-    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
   </div>
-  <div class="mdui-p-y-1 mdui-text-center">
-    Copyright &copy; 2020 - 2020 Hyemin Kim<br>
-    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
-    <br>
-      <span id="busuanzi_container_site_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_site_pv"></span></span> &nbsp;&nbsp;
-      <span id="busuanzi_container_site_uv" style="display: none;"><i class="iconfont">&#xe601;</i> <span id="busuanzi_value_site_uv"></span></span>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
     
-  </div>
-</footer>
-  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-<script src="/js/mdui.js"></script>
-<script src="/js/script.js"></script>
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
 
   
-<script src="/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
 
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover') {
+          $('.cover').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    let LAZY_LOAD_IMAGE = "";
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      if (LAZY_LOAD_IMAGE) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 标准 markdown 描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>
