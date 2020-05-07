@@ -1,6 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器）</title>
+    <url>/2020/05/06/Hexo-Insert-local-images/</url>
+    <content><![CDATA[<font face="Microsoft YaHei">
+<p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，在markdown文档中添加本地图片的方法。快来看看吧~</p>
+<a id="more"></a>
+<br>
+<p></p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D-%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE"><strong>【编写博客前】 — 进行配置</strong></a><br>
+*
+<ul>
+<li>[<strong>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来保存添加到博文中的本地图片</strong>](#建立-资源文件夹asset-floder用来保存添加到博文中的本地图片)</li>
+<li><a href="#%E5%9C%A8typora%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E7%9A%84%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><strong>在Typora中设置图片的相对路径</strong></a></li>
+<li><a href="#%E6%92%B0%E5%86%99markdown%E6%96%87%E6%A1%A3%E6%97%B6%E9%85%8D%E7%BD%AE-%E5%9B%BE%E7%89%87%E6%A0%B9%E7%9B%AE%E5%BD%95-%E4%BD%BF%E5%85%B6%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E5%88%B0hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8E%BB"><strong>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中去</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6-%E5%9B%BE%E7%89%87%E5%AF%BC%E5%85%A5%E6%96%B9%E6%B3%95"><strong>【编写博客时】 — 图片导入方法</strong></a><br>
+*
+<ul>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E6%8B%96%E6%8B%BD"><strong>直接拖拽</strong></a></li>
+<li><a href="#%E5%88%A9%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E8%B0%83%E5%8F%96"><strong>利用相对路径调取</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%90%8E-%E5%A4%87%E4%BB%BD%E5%9B%BE%E7%89%87%E7%BB%93%E6%9E%9C"><strong>【编写博客后】— 备份图片结果</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h3 id="编写博客前-进行配置"><a class="markdownIt-Anchor" href="#编写博客前-进行配置"></a> <strong>【编写博客前】 — 进行配置</strong></h3>
+<p>配置过程一共分为三个步骤：</p>
+<ol>
+<li>
+<h5 id="建立-资源文件夹asset-floder用来保存添加到博文中的本地图片"><a class="markdownIt-Anchor" href="#建立-资源文件夹asset-floder用来保存添加到博文中的本地图片"></a> <strong>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来保存添加到博文中的本地图片</strong></h5>
+<ul>
+<li>在本地Hexo根目录下的<code>source</code>文件夹中创建一个名为 <code>images</code> 的文件夹</li>
+</ul>
+</li>
+<li>
+<h5 id="在typora中设置图片的相对路径"><a class="markdownIt-Anchor" href="#在typora中设置图片的相对路径"></a> <strong>在Typora中设置图片的相对路径</strong></h5>
+<ul>
+<li>打开Typora的<code>文件 &gt; 偏好设置 &gt; 图像</code>，进行如下设置：</li>
+</ul>
+<center><img src="/images/Hexo-Local-Pictures/image-20200506223313787.png" alt="image-20200506223313787" style="zoom:50%;"></center>
+<ul>
+<li>这会使<code>source/images</code>文件夹下新增一个与所编辑的markdown文档同名的文件夹，文档中所添加的 <em>本地图片</em> 都将存档于此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。<br>
+<br></li>
+</ul>
+</li>
+<li>
+<h5 id="撰写markdown文档时配置-图片根目录-使其能够同步到hexo博客中去"><a class="markdownIt-Anchor" href="#撰写markdown文档时配置-图片根目录-使其能够同步到hexo博客中去"></a> <strong>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中去</strong></h5>
+<ul>
+<li>撰写博文时，先点击Typora菜单栏中的<code>格式 &gt; 图像 &gt; 设置图片根目录</code> , 将根目录配置为<code>'hexo根目录'/source</code>。然后再撰写博文。【注：每篇需要添加本地图片的博文都要先进行此步骤】</li>
+</ul>
+<center><img src="/images/Hexo-Local-Pictures/1.png" alt="1" style="zoom:50%;"></center>
+</li>
+</ol>
+<br>
+<h3 id="编写博客时-图片导入方法"><a class="markdownIt-Anchor" href="#编写博客时-图片导入方法"></a> <strong>【编写博客时】 — 图片导入方法</strong></h3>
+<p>在编写博客时导入本地图片有两种方法：</p>
+<ol>
+<li>
+<h5 id="直接拖拽"><a class="markdownIt-Anchor" href="#直接拖拽"></a> <strong>直接拖拽</strong></h5>
+<ul>
+<li>将原本存放于其他本地文件夹中的图片直接拖拽到文档中的相应位置中去</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>此时图片会被自动存档至生成的同名文件夹<code>'hexo根目录'/source/images/'md文档名'</code>中
+<ul>
+<li>文档中图片地址的代码会显示成 <em>自动生成的相对路径</em>，即<code>/images/'md文档名'/'图片名称'</code><br>
+<br></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>
+<h5 id="利用相对路径调取"><a class="markdownIt-Anchor" href="#利用相对路径调取"></a> <strong>利用相对路径调取</strong></h5>
+<ul>
+<li>当利用 <em>方法1</em> 插入了至少一张图片时（即已生成同名文件夹时），便可以把接下来要插入的图片复制到此同名文件夹中，在文档中<em>利用相对路径</em> 调取图片：</li>
+<li>所使用的命令是：<code>![图片显示名称](/images/'md文档名'/'图片名称')</code></li>
+<li>这里的<code>图片显示名称</code>不必与文件夹中保存的<code>图片名称</code>保持一致，<code>'图片名称'</code>中要记得包含图片格式（例如：tupian.jpg 或 picture.png 等）<br>
+<br></li>
+</ul>
+</li>
+</ol>
+<p>【注意】当还没有利用 <em>方法1</em> 插入过图片时（即同名文件夹尚未生成时），<strong>不可以自己创建同名文件夹</strong>保存图片。亲测不好使！！（.md文档中可以显示，但是hexo博文中无法显示）</p>
+<br>
+<h3 id="编写博客后-备份图片结果"><a class="markdownIt-Anchor" href="#编写博客后-备份图片结果"></a> <strong>【编写博客后】— 备份图片结果</strong></h3>
+<p>在利用上述方法完成了含有本地图片的markdown博文后，我们的资源文件夹<code>'hexo根目录'/source/images/</code>内最终会显示成什么样子呢？</p>
+<ul>
+<li>
+<p>每一篇配置了图片根目录的博文（即【编写博客前】的第3步），都会在<code>'hexo根目录'/source/images/</code>文件夹中有一个与文档名称同名的文件夹<code>'hexo根目录'/source/images/'md文档名'</code></p>
+<br>
+</li>
+<li>
+<p>该文件夹中会保存博文编写中曾经添加的<strong>所有本地文件</strong></p>
+<ul>
+<li><strong>所有</strong>的含义是：即使编辑过程中某些本地图片在添加后又被删除了，它们也仍然会保留在文件夹中，即该文件夹会备份你在博文中添加的 <em>所有本地图片历史</em></li>
+<li><strong>本地文件</strong>的含义是：这里只会保存插入的本地文件，而不会保存插入的网络文件。尽管在【编写博客前】的第2步配置中，我们也同样勾选了<code>对网络位置的图片应用上述规则</code>。（请原谅我并不知道其中的缘由。。）</li>
+</ul>
+</li>
+</ul>
+<p>就此，在Typora编辑器中编写Hexo博文时，往markdown文档中添加本地图片的方法就介绍完毕啦！快去应用到你的博文中去吧~</p>
+ <br>  
+ <br>  
+ <br> 
+ <hr>
+<p>本文参考了<a href="https://yinyoupoet.github.io/" target="_blank" rel="noopener">yinyoupoet</a>的<a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a><br>
+更多关于Typora中插入图片的内容可以参考<a href="https://support.typora.io/Images/#when-insert-images" target="_blank" rel="noopener">Typora的官方说明</a></p>
+ <hr>  
+ <br>  
+ <br>  
+</font><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【Study】Hexo Usage</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>markdown</tag>
+        <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/05/04/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【PROJECTS】</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Markdown的常用语法</title>
     <url>/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
@@ -229,190 +413,6 @@ World</p>
       </categories>
       <tags>
         <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/05/04/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>【PROJECTS】</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>在Hexo博文中添加本地图片的方法（基于Typora编辑器）</title>
-    <url>/2020/05/06/Hexo-Insert-local-images/</url>
-    <content><![CDATA[<font face="Microsoft YaHei">
-<p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，在markdown文档中添加本地图片的方法。快来看看吧~</p>
-<a id="more"></a>
-<br>
-<p></p><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D-%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE"><strong>【编写博客前】 — 进行配置</strong></a><br>
-*
-<ul>
-<li>[<strong>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来保存添加到博文中的本地图片</strong>](#建立-资源文件夹asset-floder用来保存添加到博文中的本地图片)</li>
-<li><a href="#%E5%9C%A8typora%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E7%9A%84%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><strong>在Typora中设置图片的相对路径</strong></a></li>
-<li><a href="#%E6%92%B0%E5%86%99markdown%E6%96%87%E6%A1%A3%E6%97%B6%E9%85%8D%E7%BD%AE-%E5%9B%BE%E7%89%87%E6%A0%B9%E7%9B%AE%E5%BD%95-%E4%BD%BF%E5%85%B6%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E5%88%B0hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8E%BB"><strong>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中去</strong></a></li>
-</ul>
-</li>
-<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6-%E5%9B%BE%E7%89%87%E5%AF%BC%E5%85%A5%E6%96%B9%E6%B3%95"><strong>【编写博客时】 — 图片导入方法</strong></a><br>
-*
-<ul>
-<li><a href="#%E7%9B%B4%E6%8E%A5%E6%8B%96%E6%8B%BD"><strong>直接拖拽</strong></a></li>
-<li><a href="#%E5%88%A9%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E8%B0%83%E5%8F%96"><strong>利用相对路径调取</strong></a></li>
-</ul>
-</li>
-<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%90%8E-%E5%A4%87%E4%BB%BD%E5%9B%BE%E7%89%87%E7%BB%93%E6%9E%9C"><strong>【编写博客后】— 备份图片结果</strong></a></li>
-</ul>
-</li>
-</ul>
-<p></p>
-<br>
-<h3 id="编写博客前-进行配置"><a class="markdownIt-Anchor" href="#编写博客前-进行配置"></a> <strong>【编写博客前】 — 进行配置</strong></h3>
-<p>配置过程一共分为三个步骤：</p>
-<ol>
-<li>
-<h5 id="建立-资源文件夹asset-floder用来保存添加到博文中的本地图片"><a class="markdownIt-Anchor" href="#建立-资源文件夹asset-floder用来保存添加到博文中的本地图片"></a> <strong>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来保存添加到博文中的本地图片</strong></h5>
-<ul>
-<li>在本地Hexo根目录下的<code>source</code>文件夹中创建一个名为 <code>images</code> 的文件夹</li>
-</ul>
-</li>
-<li>
-<h5 id="在typora中设置图片的相对路径"><a class="markdownIt-Anchor" href="#在typora中设置图片的相对路径"></a> <strong>在Typora中设置图片的相对路径</strong></h5>
-<ul>
-<li>打开Typora的<code>文件 &gt; 偏好设置 &gt; 图像</code>，进行如下设置：</li>
-</ul>
-<center><img src="/images/Hexo-Local-Pictures/image-20200506223313787.png" alt="image-20200506223313787" style="zoom:50%;"></center>
-<ul>
-<li>这会使<code>source/images</code>文件夹下新增一个与所编辑的markdown文档同名的文件夹，文档中所添加的 <em>本地图片</em> 都将存档于此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。<br>
-<br></li>
-</ul>
-</li>
-<li>
-<h5 id="撰写markdown文档时配置-图片根目录-使其能够同步到hexo博客中去"><a class="markdownIt-Anchor" href="#撰写markdown文档时配置-图片根目录-使其能够同步到hexo博客中去"></a> <strong>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中去</strong></h5>
-<ul>
-<li>撰写博文时，先点击Typora菜单栏中的<code>格式 &gt; 图像 &gt; 设置图片根目录</code> , 将根目录配置为<code>'hexo根目录'/source</code>。然后再撰写博文。【注：每篇需要添加本地图片的博文都要先进行此步骤】</li>
-</ul>
-<center><img src="/images/Hexo-Local-Pictures/1.png" alt="1" style="zoom:50%;"></center>
-</li>
-</ol>
-<br>
-<h3 id="编写博客时-图片导入方法"><a class="markdownIt-Anchor" href="#编写博客时-图片导入方法"></a> <strong>【编写博客时】 — 图片导入方法</strong></h3>
-<p>在编写博客时导入本地图片有两种方法：</p>
-<ol>
-<li>
-<h5 id="直接拖拽"><a class="markdownIt-Anchor" href="#直接拖拽"></a> <strong>直接拖拽</strong></h5>
-<ul>
-<li>将原本存放于其他本地文件夹中的图片直接拖拽到文档中的相应位置中去</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>此时图片会被自动存档至生成的同名文件夹<code>'hexo根目录'/source/images/'md文档名'</code>中
-<ul>
-<li>文档中图片地址的代码会显示成 <em>自动生成的相对路径</em>，即<code>/images/'md文档名'/'图片名称'</code><br>
-<br></li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>
-<h5 id="利用相对路径调取"><a class="markdownIt-Anchor" href="#利用相对路径调取"></a> <strong>利用相对路径调取</strong></h5>
-<ul>
-<li>当利用 <em>方法1</em> 插入了至少一张图片时（即已生成同名文件夹时），便可以把接下来要插入的图片复制到此同名文件夹中，在文档中<em>利用相对路径</em> 调取图片：</li>
-<li>所使用的命令是：<code>![图片显示名称](/images/'md文档名'/'图片名称')</code></li>
-<li>这里的<code>图片显示名称</code>不必与文件夹中保存的<code>图片名称</code>保持一致，<code>'图片名称'</code>中要记得包含图片格式（例如：tupian.jpg 或 picture.png 等）<br>
-<br></li>
-</ul>
-</li>
-</ol>
-<p>【注意】当还没有利用 <em>方法1</em> 插入过图片时（即同名文件夹尚未生成时），<strong>不可以自己创建同名文件夹</strong>保存图片。亲测不好使！！（.md文档中可以显示，但是hexo博文中无法显示）</p>
-<br>
-<h3 id="编写博客后-备份图片结果"><a class="markdownIt-Anchor" href="#编写博客后-备份图片结果"></a> <strong>【编写博客后】— 备份图片结果</strong></h3>
-<p>在利用上述方法完成了含有本地图片的markdown博文后，我们的资源文件夹<code>'hexo根目录'/source/images/</code>内最终会显示成什么样子呢？</p>
-<ul>
-<li>
-<p>每一篇配置了图片根目录的博文（即【编写博客前】的第3步），都会在<code>'hexo根目录'/source/images/</code>文件夹中有一个与文档名称同名的文件夹<code>'hexo根目录'/source/images/'md文档名'</code></p>
-<br>
-</li>
-<li>
-<p>该文件夹中会保存博文编写中曾经添加的<strong>所有本地文件</strong></p>
-<ul>
-<li><strong>所有</strong>的含义是：即使编辑过程中某些本地图片在添加后又被删除了，它们也仍然会保留在文件夹中，即该文件夹会备份你在博文中添加的 <em>所有本地图片历史</em></li>
-<li><strong>本地文件</strong>的含义是：这里只会保存插入的本地文件，而不会保存插入的网络文件。尽管在【编写博客前】的第2步配置中，我们也同样勾选了<code>对网络位置的图片应用上述规则</code>。（请原谅我并不知道其中的缘由。。）</li>
-</ul>
-</li>
-</ul>
-<p>就此，在Typora编辑器中编写Hexo博文时，往markdown文档中添加本地图片的方法就介绍完毕啦！快去应用到你的博文中去吧~</p>
- <br>  
- <br>  
- <br> 
- <hr>
-<p>本文参考了<a href="https://yinyoupoet.github.io/" target="_blank" rel="noopener">yinyoupoet</a>的<a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a><br>
-更多关于Typora中插入图片的内容可以参考<a href="https://support.typora.io/Images/#when-insert-images" target="_blank" rel="noopener">Typora的官方说明</a></p>
- <hr>  
- <br>  
- <br>  
-</font><script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>【Study】Hexo Usage</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>markdown</tag>
-        <tag>Typora</tag>
       </tags>
   </entry>
 </search>
