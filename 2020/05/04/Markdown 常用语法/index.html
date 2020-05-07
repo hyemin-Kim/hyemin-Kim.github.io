@@ -1,384 +1,232 @@
 <!DOCTYPE html>
-<html>
-<head hexo-theme='https://volantis.js.org/#2.6.5'>
-  <meta charset="utf-8">
-  <!-- SEO相关 -->
-  
-    
-  
-  <!-- 渲染优化 -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <meta name="renderer" content="webkit">
-  <meta name="force-rendering" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  <meta name="HandheldFriendly" content="True" >
+
+  
+  <title>Markdown 常用语法 | Hyemin&#39;s journey of growth in Data Analysis</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  
+  <meta name="description" content="1. 标题​     一级标题： “#” + 空格 + “一级标题”​     二级标题： “##” + 空格 + “二级标题”​     三级标题： “###” + 空格 + “三级标题”​     ……​     以此类推 【最多到6级】 2. 换行​    “内容” 末尾 + 2个空格   Hello  World  3. 加粗​     方法一：“内容”前后加 2 个 * 号（无空格）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown 常用语法">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
+<meta property="og:description" content="1. 标题​     一级标题： “#” + 空格 + “一级标题”​     二级标题： “##” + 空格 + “二级标题”​     三级标题： “###” + 空格 + “三级标题”​     ……​     以此类推 【最多到6级】 2. 换行​    “内容” 末尾 + 2个空格   Hello  World  3. 加粗​     方法一：“内容”前后加 2 个 * 号（无空格）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://t9.baidu.com/it/u=1307125826,3433407105&amp;fm=79&amp;app=86&amp;f=JPEG?w=5760&amp;h=3240">
+<meta property="article:published_time" content="2020-05-03T16:40:07.372Z">
+<meta property="article:modified_time" content="2020-05-06T05:27:08.603Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://t9.baidu.com/it/u=1307125826,3433407105&amp;fm=79&amp;app=86&amp;f=JPEG?w=5760&amp;h=3240">
+
+  <meta name="keywords" content=",markdown">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- 页面元数据 -->
-  
-    <title>Markdown 常用语法 - Hyemin&#39;s journey of growth in Data Analysis</title>
-  
-    <meta name="keywords" content="markdown">
-  
-  
-
-  <!-- feed -->
-  
-    <link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis">
-  
-
-  <!-- import meta -->
-  
-
-  <!-- link -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
 
   
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
-
+    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">
   
 
   
-
-  
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
-  
-
-  
-
-  <!-- import link -->
-  
-
-  
-  
-    
-<link rel="stylesheet" href="/css/style.css">
-
   
 
   <script>
-    function setLoadingBarProgress(num) {
-      document.getElementById('loading-bar').style.width=num+"%";
-    }
-  </script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create','hyemin2060','auto');ga('send','pageview');
+</script>
+  
+  
 
   
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
   
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
 </head>
-
-<body>
-  
-  <div id="loading-bar-wrapper">
-  <div id="loading-bar"></div>
-</div>
-<header class="l_header shadow blur">
-  <div class='container'>
-  <div class='wrapper'>
-    <div class='nav-sub'>
-      <p class="title"></p>
-      <ul class='switcher nav-list-h'>
-        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
-        
-          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
-        
-      </ul>
-    </div>
-		<div class="nav-main">
-      
-        
-        <a class="title flat-box" target="_self" href='/'>
-          
-          
-          
-            Hyemin's Blog
-          
-          
-        </a>
-      
-
-			<div class='menu navigation'>
-				<ul class='nav-list-h'>
-          
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas home fa-fw'></i>Home
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/archives/
-                  
-                  
-                  
-                    id="archives"
-                  >
-                  <i class='fas fa-archive fa-fw'></i>Archive
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/categories/
-                  
-                  
-                  
-                    id="categories"
-                  >
-                  <i class='fas fa-folder-open fa-fw'></i>Categories
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/tags/
-                  
-                  
-                  
-                    id="tags"
-                  >
-                  <i class='fas fa-tags fa-fw'></i>Tags
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>About
-                </a>
-                
-              </li>
-            
-          
-          
-				</ul>
-			</div>
-
-      <div class="m_search">
-        <form name="searchform" class="form u-search-form">
-          <i class="icon fas fa-search fa-fw"></i>
-          <input type="text" class="input u-search-input" placeholder="Search..." />
-        </form>
-      </div>
-
-			<ul class='switcher nav-list-h'>
-				
-					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
-				
-				<li>
-          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
-          <ul class="menu-phone list-v navigation white-box">
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas home fa-fw'></i>Home
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/archives/
-                  
-                  
-                  
-                    id="archives"
-                  >
-                  <i class='fas fa-archive fa-fw'></i>Archive
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/categories/
-                  
-                  
-                  
-                    id="categories"
-                  >
-                  <i class='fas fa-folder-open fa-fw'></i>Categories
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/tags/
-                  
-                  
-                  
-                    id="tags"
-                  >
-                  <i class='fas fa-tags fa-fw'></i>Tags
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>About
-                </a>
-                
-              </li>
-            
-          
-            
-          </ul>
-        </li>
-			</ul>
-		</div>
-	</div>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">Hyemin&#39;s journey of growth in Data Analysis</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
+    
   </div>
 </header>
-
-<script>setLoadingBarProgress(40);</script>
-
-
-
-  <div class="l_body nocover">
-    <div class='body-wrapper'>
-      
-
-<div class='l_main'>
+<div class="mdui-dialog" id="search">
   
-
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
   
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
-      
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h1 class="title">
-    <a href="/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">
-      Markdown 常用语法
-    </a>
-  </h1>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="https://xaoxuu.com" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Mr. X</p>
-  </a>
 </div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Hyemin Kim</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>김혜민 / 金慧敏</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:hyemin2060@naver.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'hyemin2060@naver.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
 
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/%E3%80%90Study%E3%80%91Markdown/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>【Study】Markdown</p>
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">Home</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">Archive</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">Category</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">Tag</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typora/" rel="tag">Typora<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/markdown/" rel="tag">markdown<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">About</div>
     </a>
   </div>
 
+  <div class="mdui-divider"></div>
 
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 4, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-        </div>
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">Links</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-          <hr>
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+          <a href="https://hexo.io/zh-cn/docs/" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Usage</a>
+        
         
       </div>
-    
-  </section>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
 
-
-      <section class="article typo">
-        <div class="article-entry" itemprop="articleBody">
-          
-          <font face="Microsoft YaHei">
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-7.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">Markdown 常用语法</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-04 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAADmUlEQVR42u3aSW4cMRAEQP3/0/bVgKyZzCqyPQaCp4HQCxl9KNXy9cv6Y30hwIEDBw4cOHDgwIHjgzm+4vWXB337e359fu9PO0muTM6CAwcOHDhucLwJRS+vabeb/379/OTe6BPiwIEDB45rHMnBkgCcBN1ku0mwbPeJAwcOHDg+kyM5fMuahNI8LcSBAwcOHP8XRx5E8+PlWHk6hwMHDhw4/i3HLK2ataBOpW37QicOHDhw4LjBkYe0z//96HwHDhw4cOD4xtGudrhhP4KwuSt6Mg4cOHDgOMpxqhWUN5zyYHnqY7y5CwcOHDhwHOWYFfJeJ3izltXsA+R7KFI4HDhw4MCx4GgTrfww+3ZREizzdtePT8CBAwcOHEc5ZgMBSZBrg2Ub/tuAXbedcODAgQPHgmOWVp1tRM3C+abUiAMHDhw4nuTID9ni5gdr9zZsoeHAgQMHjmscw0AVrHz0IUkgZ/8iFMVBHDhw4MCx4GjTofx3C9c+Ob/3DTEOHDhw4DjKkSc/eUjOQ289fFDuKvpIOHDgwIHjMkeSPiUHayGKpKv8JMOBBhw4cODAMeJo06Q6QYqHGPJBinb0oc5oceDAgQPHgiMvq+2bT8lAQ9uaasMqDhw4cOB4nqN9WZJ0tQF4f03xRhw4cODAcY0jaefk17QlxTbYt0w4cODAgeMZjtdltTyIJkW6dqxtFmjbgTkcOHDgwHGW49RAw6bktykgtgMTOHDgwIHjNkceRJMttmE4b1m9DqLHioM4cODAgeMQx6y016Z8+VFzsk3LCgcOHDhw3ODI2zmbEmGeHOYtsbZxNcxoceDAgQPHiCN/QbKtzSE3bxwWPXHgwIEDx1GOfHCtZUoKgpsWVF40fEOGAwcOHDgucLSHadO/Oq0KksZ2YKKoleLAgQMHjjVHXhZsN5ocOG9rnSod4sCBAweOZziSdOjUgMImoM7aTnVGiwMHDhw4DnHk5bZZgyoP5LPSZP4PAQ4cOHDguMHRrrYkNys4zt6eXPmmOIgDBw4cONYcm0DVHuxGkpaPNQwHGnDgwIEDx4gjP0bbHGrbSG1r6kqgxYEDBw4chzjyEee88NdusQ3G7T8KOHDgwIHjMznaFKs9cJs6zkYZcODAgQPHZ3IkAe9G6N28FwcOHDhwPMMxaxftk8DNAERblMSBAwcOHM9wbIprbXFwhjVL/+ohbBw4cODAseawcODAgQMHDhw4cODA8WHrN38PU7z7QkwSAAAAAElFTkSuQmCC">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Markdown 常用语法&url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=Markdown 常用语法&url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" target="_blank" class="mdui-ripple">Share to Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&title=Markdown 常用语法" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Markdown 常用语法&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" target="_blank" class="mdui-ripple">Share to QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&text=Markdown 常用语法" target="_blank" class="mdui-ripple">Share to Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <font face="Microsoft YaHei">
 
 <h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p>​     一级标题： “#” + 空格 + “一级标题”<br>​     二级标题： “##” + 空格 + “二级标题”<br>​     三级标题： “###” + 空格 + “三级标题”<br>​     ……<br>​     以此类推 【最多到6级】</p>
 <h4 id="2-换行"><a href="#2-换行" class="headerlink" title="2. 换行"></a>2. 换行</h4><p>​    “内容” 末尾 + 2个空格 </p>
@@ -531,661 +379,80 @@
             document.body.appendChild(img);
           });
       </script>
-          
-            <div class='article_footer'>
-              
-                
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-<section class="widget copyright  desktop mobile">
-  <div class='content'>
-    
-      <blockquote>
+      <blockquote class="mdui-m-t-5">
         
-          
-            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-          
-        
-          
-            <p>本文永久链接是：<a href=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/>https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</a></p>
-          
-        
+        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</a>
       </blockquote>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-<section class="widget qrcode  desktop mobile">
-  
-
-  <div class='content article-entry'>
-    
-      
-        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
-        
-          height='64px'
-        ></div>
-      
-    
-      
-        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
-        
-          height='64px'
-        ></div>
-      
-    
-  </div>
-</section>
-
-  
-
-
-              
-            </div>
-          
-        </div>
-        
-          
-
-
-  <section class='meta' id="footer-meta">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-06T14:27:08+09:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 6, 2020</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/markdown/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>markdown</p></a></div>
-
-
-        
-      
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&title=Markdown 常用语法 - Hyemin's journey of growth in Data Analysis&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
-          
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&title=Markdown 常用语法 - Hyemin's journey of growth in Data Analysis&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://service.weibo.com/share/share.php?url=https://hyemin-kim.github.io/2020/05/04/Markdown%20%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/&title=Markdown 常用语法 - Hyemin's journey of growth in Data Analysis&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
-          
-        </a>
-      
-    
-  </div>
-</div>
-
-
-
-        
       
     </div>
-  </section>
-
-
-        
-        
-          <div class="prev-next">
-            
-              <a class='prev' href='/2020/05/06/pic-test/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>pic test</p>
-                <p class='content'>插入图片：
-
-插入图片2：
-
-插入网络图片
-
-
-        document.querySelectorAll('.github-emoji')
-          .forEach(el ...</p>
-              </a>
-            
-            
-              <a class='next' href='/2020/05/04/hello-world/'>
-                <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
-              </a>
-            
-          </div>
-        
-      </section>
-    </article>
-  
-
-  
-    <!-- 显示推荐文章和评论 -->
-
-
-
-  <article class="post white-box reveal comments shadow">
-    <section class="article typo">
-      <p ct><i class='fas fa-comments'></i> 评论</p>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown</a>
       
       
+        <a class="mdui-ripple article_tags-link" href="/tags/markdown/" rel="tag">markdown</a>
       
-      
-      
-      
-        <section id="comments">
-          <div id="valine_container" class="valine_thread">
-            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-          </div>
-        </section>
-      
-      
-    </section>
+    </footer>
+    
   </article>
-
-
   
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="/2020/05/06/pic-test/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prev
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2020/05/04/hello-world/">
+        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
 
 
 
-
-<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
-
-
-
-  <script>
-    window.subData = {
-      title: 'Markdown 常用语法',
-      tools: true
-    }
-  </script>
-
-
-</div>
-<aside class='l_side'>
-  
-  
-
-  
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
     
     
-
-
-  <section class="widget toc-wrapper shadow desktop mobile">
     
-  <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
-  </header>
-
-
-    <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-标题"><span class="toc-text">1. 标题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-换行"><span class="toc-text">2. 换行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-加粗"><span class="toc-text">3. 加粗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-斜体"><span class="toc-text">4. 斜体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-斜体加粗"><span class="toc-text">5. 斜体加粗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-删除线"><span class="toc-text">6. 删除线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-高亮"><span class="toc-text">7. 高亮</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-上标-amp-下标"><span class="toc-text">8. 上标 &amp; 下标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-引用"><span class="toc-text">9. 引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-插入链接"><span class="toc-text">10. 插入链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-插入图片"><span class="toc-text">11. 插入图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-列表"><span class="toc-text">12.列表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#（1）-有序列表"><span class="toc-text">（1） 有序列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（2）无序列表"><span class="toc-text">（2）无序列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（3）任务列表"><span class="toc-text">（3）任务列表</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-添加表格"><span class="toc-text">13. 添加表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-代码"><span class="toc-text">14. 代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-插入目录-Only-for-Typora"><span class="toc-text">15.插入目录 [Only for Typora]</span></a></li></ol>
-    </div>
-  </section>
-
-
-  
-
-
-</aside>
-
-
-  
-  <footer class="clearfix">
-    <br><br>
     
-      
-        <div class="aplayer-container">
-          
-
-  
-    <meting-js
-      theme='#1BCDFC'
-      autoplay='false'
-      volume='0.7'
-      loop='all'
-      order='list'
-      fixed='false'
-      list-max-height='340px'
-      server='netease'
-      type='playlist'
-      id='3175833810'
-      list-folded='true'>
-    </meting-js>
-  
-
-
-        </div>
-      
     
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-              <a href="/atom.xml"
-                class="social fas fa-rss flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="mailto:me@xaoxuu.com"
-                class="social fas fa-envelope flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="https://github.com/xaoxuu"
-                class="social fab fa-github flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="https://music.163.com/#/user/home?id=63035382"
-                class="social fas fa-headphones-alt flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-        </div>
-      
     
-      
-        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
     
-      
-        Use
-        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        as theme, total visits
-          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-          times
-        
-      
     
-      
-        <div class='copyright'>
-        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
-
-        </div>
-      
     
-  </footer>
-
-<script>setLoadingBarProgress(80);</script>
-
-
-      <script>setLoadingBarProgress(60);</script>
-    </div>
-    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    
   </div>
-  
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
-
-
-  <script>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2020 - 2020 Hyemin Kim<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_site_pv"></span></span> &nbsp;&nbsp;
+      <span id="busuanzi_container_site_uv" style="display: none;"><i class="iconfont">&#xe601;</i> <span id="busuanzi_value_site_uv"></span></span>
     
-    var SEARCH_SERVICE = "hexo" || "hexo";
-    var ROOT = "/" || "/";
-    if (!ROOT.endsWith('/')) ROOT += '/';
-  </script>
-
-
-  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      ScrollReveal().reveal('.l_main .reveal', {
-        distance: '8px',
-        duration: '800',
-        interval: '100',
-        scale: '1'
-      });
-    });
-  </script>
-
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
 
   
-<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+<script src="/custom.js"></script>
 
-  <script type="text/javascript">
-    $(function() {
-      Waves.attach('.flat-btn', ['waves-button']);
-      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
-      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
-      Waves.attach('.flat-box', ['waves-block']);
-      Waves.attach('.float-box', ['waves-block', 'waves-float']);
-      Waves.attach('.waves-image');
-      Waves.init();
-    });
-  </script>
-
-
-  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
-
-
-
-  
-  
-  
-    
-<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
-
-    <script type="text/javascript">
-      $(function(){
-        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg"];
-        if ('true' == 'true') {
-          function shuffle(arr){
-            /*From countercurrent-time*/
-            var n = arr.length;
-            while(n--) {
-              var index = Math.floor(Math.random() * n);
-              var temp = arr[index];
-              arr[index] = arr[n];
-              arr[n] = temp;
-            }
-          }
-          shuffle(imgs);
-        }
-        if ('.cover') {
-          $('.cover').backstretch(
-            imgs,
-          {
-            duration: "20000",
-            fade: "1500"
-          });
-        } else {
-          $.backstretch(
-            imgs,
-          {
-            duration: "20000",
-            fade: "1500"
-          });
-        }
-      });
-    </script>
-  
-
-
-
-  
-    
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
-
-  
-    
-<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
-
-  
-
-
-
-
-
-
-
-
-
-  
-    
-<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
-
-  
-  <script>
-  var GUEST_INFO = ['nick','mail','link'];
-  var meta = 'nick,mail,link'.split(',').filter(function(item){
-    return GUEST_INFO.indexOf(item) > -1
-  });
-  var REQUIRED_FIELDS = ['nick','mail','link'];
-  var requiredFields = 'nick,mail'.split(',').filter(function(item){
-    return REQUIRED_FIELDS.indexOf(item) > -1
-  });
-  var valine = new Valine();
-  function emoji(path, idx, ext) {
-      return path + "/" + path + "-" + idx + "." + ext;
-  }
-  var emojiMaps = {};
-  for (var i = 1; i <= 54; i++) {
-    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
-  }
-  for (var i = 1; i <= 101; i++) {
-    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
-  }
-  for (var i = 1; i <= 116; i++) {
-    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
-  }
-  for (var i = 1; i <= 125; i++) {
-    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
-  }
-  for (var i = 1; i <= 4; i++) {
-    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
-  }
-  valine.init({
-    el: '#valine_container',
-    meta: meta,
-    
-    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
-    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
-    placeholder: "快来评论吧~",
-    pageSize:'10',
-    avatar:'robohash',
-    lang:'zh-cn',
-    visitor: 'true',
-    highlight: 'true',
-    mathJax: 'false',
-    enableQQ: 'true',
-    requiredFields: requiredFields,
-    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
-    emojiMaps: emojiMaps
-  })
-  </script>
-
-
-
-
-
-  
-<script src="/js/app.js"></script>
-
-
-
-  
-<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
-
-
-
-  
-<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
-
-
-
-
-
-
-<!-- 复制 -->
-
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('fa-copy');
-        $icon.addClass('fa-check-circle');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('fa-check-circle');
-          $icon.addClass('fa-copy');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('fa-copy');
-        $icon.addClass('fa-times-circle');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('fa-times-circle');
-          $icon.addClass('fa-copy');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-    }
-    initCopyCode();
-  }(window, document);
-</script>
-
-
-
-
-<!-- fancybox -->
-
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-  function pjax_fancybox() {
-    let LAZY_LOAD_IMAGE = "";
-    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
-      var element = document.createElement("a"); // a 标签
-      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
-      if (LAZY_LOAD_IMAGE) {
-        $(element).attr("href", $(this).attr("data-original"));
-      }
-      $(element).attr("data-fancybox", "images");
-      var caption = "";   // 描述信息
-      if ($(this).attr('alt')) {  // 标准 markdown 描述信息
-        $(element).attr('data-caption', $(this).attr('alt'));
-        caption = $(this).attr('alt');
-      }
-      var div = document.createElement("div");
-      $(div).addClass("fancybox");
-      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
-      var span = document.createElement("span");
-      $(span).addClass("image-caption");
-      $(span).text(caption); // 加描述
-      $(this).after(span);  // 再套一层描述
-      $(this).wrap(element);  // 最后套 a 标签
-    })
-    $(".article-entry").find("img").fancybox({
-      selector: '[data-fancybox="images"]',
-      hash: false,
-      loop: false,
-      closeClick: true,
-      helpers: {
-        overlay: {closeClick: true}
-      },
-      buttons: [
-        "zoom",
-        "close"
-      ]
-    });
-  };
-  $(function () {
-    pjax_fancybox();
-  });
-</script>
-
-
-
-
-
-
-  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>
