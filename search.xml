@@ -117,8 +117,8 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>markdown</tag>
         <tag>Typora</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -268,12 +268,11 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>markdown</tag>
         <tag>Typora</tag>
-        <tag>blog</tag>
-        <tag>git</tag>
-        <tag>github</tag>
         <tag>Jupyter notebook</tag>
+        <tag>Markdown</tag>
+        <tag>Git</tag>
+        <tag>Github</tag>
       </tags>
   </entry>
   <entry>
@@ -531,7 +530,7 @@
         <category>【Study】Markdown</category>
       </categories>
       <tags>
-        <tag>markdown</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
 </search>
