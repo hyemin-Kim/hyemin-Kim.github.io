@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>S_Python_base1 | Hyemin&#39;s journey of growth in Data Analysis</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  
+  <meta name="description" content="Python 기초문법 (1) 출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S_Python_base1">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/12/S-Python-base1/index.html">
+<meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
+<meta property="og:description" content="Python 기초문법 (1) 출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-11T17:18:11.000Z">
+<meta property="article:modified_time" content="2020-05-11T17:25:52.089Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",Python">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/12/S-Python-base1/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/12/S-Python-base1/">
+  
+
+  
+  
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create','hyemin2060','auto');ga('send','pageview');
+</script>
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">Hyemin&#39;s journey of growth in Data Analysis</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
+    
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Hyemin Kim</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>김혜민 / 金慧敏</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:hyemin2060@naver.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'hyemin2060@naver.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">Home</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">Archive</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">5</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">Category</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%910-Base/">【Study】0.Base<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">Tag</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Git/" rel="tag">Git<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Github/" rel="tag">Github<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Jupyter-notebook/" rel="tag">Jupyter notebook<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Markdown/" rel="tag">Markdown<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Python/" rel="tag">Python<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typora/" rel="tag">Typora<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">About</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">Tag cloud</a>
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">Links</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+          <a href="https://hexo.io/zh-cn/docs/" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Usage</a>
+        
+          <a href="https://hexo.io/plugins/#offline" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Plugins</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-18.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">S_Python_base1</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-12 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACUUlEQVR42u3aW24CMQwFUPa/6XYBiM61k5jp6OSr4hFyQIpd26+fR68XHh4eHh4eHh7ezXiveH3c7u3Z5PXvO3/ap3o2PDw8vBnexVUbHzd5/G/k+tnw8PDwJnnJlb3y+mpQqX4WHh4e3p15vbS7GkLw8PDwnsfLiwhVDB4eHt5/4SWJb6/0kOx5i1oLHh4eXszLm0zzf4/29/Dw8PACXnWtB4AkHV86IR4eHt5h3ukSbTU53nAePDw8vMO8/LrfhayWccuhBQ8PD+8wL2/b57BeI2297IuHh4f3XV5SLOgVF6rJevldeHh4eCO8agpbbYytB4k8kODh4eHN8PIreD2ErBcjLv4ZwMPDwzvMS67v3rhqfrjel/vxi8bDw8M7zEsOut6m6r23Gpzw8PDwZnhVUlK67bXQdqX4eHh4eDO8fFUHqr4QNvDw8PAO8/ItemWI3iBsPry1oQGGh4eHd4DXS53zEJLzojEvPDw8vEFebyygWtTIk+l8Zzw8PLx5XrWs0Cu89pLs6gABHh4e3iTvxOjVrpJx8ul4eHh487zqQXtDA/lBqz8DHh4e3jwvb3rl1PzZfF18uXh4eHiHeb00N09218cIlgIDHh4e3gFe9TruBYM8sU4GEZpDV3h4eHhbeSuFgHxcoFcaLjfP8PDw8AZ5vQs6eWRvYeLix8DDw8O7MS8vWERFhOKzGxpgeHh4eIO8XrF1PYEeSqnx8PDwthYjVlLnvIlVLQrj4eHhzfOqo07V9liSLq/sj4eHhzfJe97Cw8PDw8PDw8O7wfoFzfxy3ofyar8AAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=S_Python_base1&url=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=S_Python_base1&url=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/" target="_blank" class="mdui-ripple">Share to Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/&title=S_Python_base1" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=S_Python_base1&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/" target="_blank" class="mdui-ripple">Share to QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/12/S-Python-base1/&text=S_Python_base1" target="_blank" class="mdui-ripple">Share to Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h1 id="python-기초문법-1"><a class="markdownIt-Anchor" href="#python-기초문법-1"></a> Python 기초문법 (1)</h1>
+<p>출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.</p>
+<a id="more"></a>
+<br>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%EC%B6%9C%EB%A0%A5-print">1. 출력 (print)</a>
+<ul>
+<li><a href="#print-%ED%95%A8%EC%88%98">print( ) 함수</a></li>
+</ul>
+</li>
+<li><a href="#2-%EB%B3%80%EC%88%98%EC%99%80-%EB%8C%80%EC%9E%85">2. 변수와 대입</a>
+<ul>
+<li><a href="#2-1-%EB%B3%80%EC%88%98%EC%9D%98-%EC%9D%B4%EB%A6%84">2-1. 변수의 이름</a>
+<ul>
+<li><a href="#%EA%B0%80%EB%8A%A5%ED%95%9C-%EA%B2%BD%EC%9A%B0">【가능한 경우】</a></li>
+<li><a href="#%EB%B6%88%EA%B0%80%ED%95%9C-%EA%B2%BD%EC%9A%B0">【불가한 경우】</a></li>
+</ul>
+</li>
+<li><a href="#2-2-%EB%B3%80%EC%88%98%EC%9D%98-%EB%8C%80%EC%9E%85">2-2. 변수의 대입</a></li>
+<li><a href="#2-3-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B6%9C%EB%A0%A5">2-3. 변수의 출력</a></li>
+</ul>
+</li>
+<li><a href="#3-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85">3. 데이터 타입</a>
+<ul>
+<li><a href="#3-1-int%EC%A0%95%EC%88%98">3-1. int(정수)</a></li>
+<li><a href="#3-2-float%EC%8B%A4%EC%88%98">3-2. float(실수)</a></li>
+<li><a href="#3-3-str-%ED%98%B9%EC%9D%80-object-%EB%AC%B8%EC%9E%90%EC%97%B4">3-3. str 혹은 object (문자열)</a></li>
+<li><a href="#3-4-bool-%EC%B0%B8%EA%B1%B0%EC%A7%93">3-4. bool (참/거짓)</a></li>
+<li><a href="#3-5-%EC%95%84%EB%AC%B4%EA%B2%83%EB%8F%84-%EC%95%84%EB%8B%8C-none%ED%83%80%EC%9E%85%EB%8F%84-%EC%9E%88%EB%8B%A4">3-5. 아무것도 아닌 None타입도 있다</a></li>
+</ul>
+</li>
+<li><a href="#4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%9D%91%EC%9A%A9">4. 데이터의 응용</a>
+<ul>
+<li><a href="#4-1-%EC%82%AC%EC%B9%99-%EC%97%B0%EC%82%B0%EC%9E%90">4-1. 사칙 연산자</a></li>
+<li><a href="#4-2-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%98-%EC%97%B0%EA%B2%B0">4-2. 문자열의 연결</a></li>
+</ul>
+</li>
+<li><a href="#5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98">5. 데이터 타입 변환</a>
+<ul>
+<li><a href="#5-1-%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A1%9C-%EB%B3%80%ED%99%98-str-%ED%95%A8%EC%88%98-or-%EB%94%B0%EC%9B%80%ED%91%9C">5-1. 문자열로 변환:  “str( ) 함수”  or  “따움표”</a></li>
+<li><a href="#5-2-%EC%A0%95%EC%88%98%EB%A1%9C-%EB%B3%80%ED%99%98-int-%ED%95%A8%EC%88%98">5-2. 정수로 변환: " int( ) 함수"</a></li>
+<li><a href="#5-3-%EC%8B%A4%EC%88%98%EB%A1%9C-%EB%B3%80%ED%99%98-float-%ED%95%A8%EC%88%98">5-3. 실수로 변환: “float( ) 함수”</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-출력-print"><a class="markdownIt-Anchor" href="#1-출력-print"></a> 1. 출력 (print)</h2>
+<h3 id="print-함수"><a class="markdownIt-Anchor" href="#print-함수"></a> print( ) 함수</h3>
+<ol>
+<li>숫자를 출력할 때 따움표(’ ’ or " ") 필요없음</li>
+<li>문자를 출력할 때 따움표 필요
+<ul>
+<li>’ ’ 와 " "  차이없음</li>
+<li>‘’’  ‘’’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">1</span>+<span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'안녕하세요'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"반갑습니다"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>반갑습니다
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요,
+반갑습니다.
+</code></pre>
+<br>
+<br>
+<h2 id="2-변수와-대입"><a class="markdownIt-Anchor" href="#2-변수와-대입"></a> 2. 변수와 대입</h2>
+<br>
+<h3 id="2-1-변수의-이름"><a class="markdownIt-Anchor" href="#2-1-변수의-이름"></a> 2-1. 변수의 이름</h3>
+<h4 id="가능한-경우"><a class="markdownIt-Anchor" href="#가능한-경우"></a> 【가능한 경우】</h4>
+<p>case 1. 알파벳</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<p>case 2. 알파벳 + 숫자</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a1 = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<p>case 3. 알파벳 + 언더바(_)</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a_ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<p>case 4. 언더바(_) + 알파벳</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="불가한-경우"><a class="markdownIt-Anchor" href="#불가한-경우"></a> 【불가한 경우】</h4>
+<p>case 1. 언더바(_)를 제외한 특수문자</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-23-6d0163a9fd4c&gt;", line 1
+    * = 1
+      ^
+SyntaxError: invalid syntax
+</code></pre>
+<br>
+<p>case 2. 알파벳 + 언더바를 제외한 특수문자</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a$ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-25-2501fc576aab&gt;", line 1
+    a$ = 1
+     ^
+SyntaxError: invalid syntax
+</code></pre>
+<br>
+<p>case 3. 변수의 이름 사이의 공백</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a b = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-26-2bab97d7970c&gt;", line 1
+    a b = 1
+      ^
+SyntaxError: invalid syntax
+</code></pre>
+<br>
+<h3 id="2-2-변수의-대입"><a class="markdownIt-Anchor" href="#2-2-변수의-대입"></a> 2-2. 변수의 대입</h3>
+<p>변수 값을 부여할 때 "="를 사용한다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<h3 id="2-3-변수의-출력"><a class="markdownIt-Anchor" href="#2-3-변수의-출력"></a> 2-3. 변수의 출력</h3>
+<ol>
+<li>print() 구문 사이에 <strong>값을 직접</strong> 입력하면, 바로 값이 출력됨.</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">123</span>)   <span class="comment"># 숫자는 "" 필요없음</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"text"</span>)   <span class="comment"># 문자는 "" 필요함</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>text
+</code></pre>
+<br>
+<ol start="2">
+<li>print()구분 사이에 <strong>변수 이름</strong>을 입력하면, 변수의 값이 출력됨.</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="string">"text"</span></span><br><span class="line">print(b)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>text
+</code></pre>
+<br>
+ <br> 
+<h2 id="3-데이터-타입"><a class="markdownIt-Anchor" href="#3-데이터-타입"></a> 3. 데이터 타입</h2>
+<p><strong>데이터 type:</strong><br>
+1. int(정수)<br>
+2. float(실수)<br>
+3. str(문자열)<br>
+4. bool(참/거짓)</p>
+<br>
+<h3 id="3-1-int정수"><a class="markdownIt-Anchor" href="#3-1-int정수"></a> 3-1. int(정수)</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<p><strong>코딩에서 1은 참으로 취급, 0은 거짓으로  취급</strong></p>
+<p>다음 코딩으로 진단해보자:</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span>:</span><br><span class="line">    print(<span class="string">'1은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'1은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1은 참으로 취급
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'0은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'0은 저짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0은 저짓부렁이
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">123</span>:</span><br><span class="line">    print(<span class="string">'123은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'123은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123은 참으로 취급
+</code></pre>
+<p>[0 이외의 정수 다 참으로 취급]</p>
+<br>  
+<h3 id="3-2-float실수"><a class="markdownIt-Anchor" href="#3-2-float실수"></a> 3-2. float(실수)</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3.14</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3.14
+</code></pre>
+<br>
+<h3 id="3-3-str-혹은-object-문자열"><a class="markdownIt-Anchor" href="#3-3-str-혹은-object-문자열"></a> 3-3. str 혹은 object (문자열)</h3>
+<ol>
+<li>문자열은 반드시 ’ ’ 혹은 " " 로 묶어야 함</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">'안녕하세요'</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">"안녕하세요"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요
+</code></pre>
+<br>
+<ol start="2">
+<li>‘" "’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요,
+반갑습니다.
+</code></pre>
+   <br> 
+<h3 id="3-4-bool-참거짓"><a class="markdownIt-Anchor" href="#3-4-bool-참거짓"></a> 3-4. bool (참/거짓)</h3>
+<p>참:   True<br>
+거짓: False</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>bool
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(b)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>bool
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<ul>
+<li>1 이외의 정수는 조건절에서 참으로 인식되지만, bool과 비교할 때 참이 아니다</li>
+</ul>
+<br>
+<br>
+<h3 id="3-5-아무것도-아닌-none타입도-있다"><a class="markdownIt-Anchor" href="#3-5-아무것도-아닌-none타입도-있다"></a> 3-5. 아무것도 아닌 None타입도 있다</h3>
+<p>Null값을 넣는다고도 한다.</p>
+<ul>
+<li>Null: Nullify (무효화하다) – 사전상 의미</li>
+</ul>
+<p>Python에서는 <strong>None</strong> 입니다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">None</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>None
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>NoneType
+</code></pre>
+<br>
+<p>조건문에 None이라면?</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">"None은 참으로 취급"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"None은 거짓부렁이"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>None은 거짓부렁이
+</code></pre>
+<br>
+<br>
+<h2 id="4-데이터의-응용"><a class="markdownIt-Anchor" href="#4-데이터의-응용"></a> 4. 데이터의 응용</h2>
+<h3 id="4-1-사칙-연산자"><a class="markdownIt-Anchor" href="#4-1-사칙-연산자"></a> 4-1. 사칙 연산자</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">연산자</th>
+<th style="text-align:center">의미</th>
+<th style="text-align:center">예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">더하기</td>
+<td style="text-align:center">2 + 1 -&gt; 3</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">빼기</td>
+<td style="text-align:center">1 - 2 -&gt; -1</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">곱하기</td>
+<td style="text-align:center">1 * 2 -&gt; 2</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">나누기</td>
+<td style="text-align:center">1 / 2 -&gt; 0.5</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">몫</td>
+<td style="text-align:center">5 / 2 -&gt; 2</td>
+</tr>
+<tr>
+<td style="text-align:center">//</td>
+<td style="text-align:center">나머지</td>
+<td style="text-align:center">5 // 2 -&gt; 1</td>
+</tr>
+<tr>
+<td style="text-align:center">**</td>
+<td style="text-align:center">멱</td>
+<td style="text-align:center">2**3 -&gt; 8</td>
+</tr>
+</tbody>
+</table>
+  <br>
+ <br> 
+<h3 id="4-2-문자열의-연결"><a class="markdownIt-Anchor" href="#4-2-문자열의-연결"></a> 4-2. 문자열의 연결</h3>
+<p>여러 개 문자열을 "+"을 통해 연결할 수 있다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">subject = <span class="string">"나는 "</span></span><br><span class="line">object = <span class="string">"치킨을 "</span></span><br><span class="line">verb = <span class="string">"좋아한다"</span></span><br><span class="line"></span><br><span class="line">print(subject + object + verb)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>나는 치킨을 좋아한다
+</code></pre>
+<br>
+<p>하지만 문자열(str)과 숫자(int &amp; float)는 <em>직접</em>  연결할 수 없다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br><span class="line"></span><br><span class="line">print(a + b + c + d + e)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-82-34cd0f9ce519&gt; in &lt;module&gt;
+      5 e = "보기로 했다"
+      6 
+----&gt; 7 print(a + b + c + d + e)
+
+
+TypeError: can only concatenate str (not "int") to str
+</code></pre>
+<p>이 때는 데이터 타입을 변환할 필요가 있다</p>
+<p><br><br></p>
+<h2 id="5-데이터-타입-변환"><a class="markdownIt-Anchor" href="#5-데이터-타입-변환"></a> 5. 데이터 타입 변환</h2>
+<h3 id="5-1-문자열로-변환-str-함수-or-따움표"><a class="markdownIt-Anchor" href="#5-1-문자열로-변환-str-함수-or-따움표"></a> 5-1. 문자열로 변환:  “str( ) 함수”  or  “따움표”</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(<span class="number">6</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(str(<span class="number">6</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(<span class="string">'6'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(<span class="number">3.14</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(str(<span class="number">3.14</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(<span class="string">"3.14"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a + b + str(c) + d + e)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>내가 친구랑 12시에 보기로 했다
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a + b + <span class="string">'12'</span> + d + e)a</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>내가 친구랑 12시에 보기로 했다
+</code></pre>
+<br>
+<h3 id="5-2-정수로-변환-int-함수"><a class="markdownIt-Anchor" href="#5-2-정수로-변환-int-함수"></a> 5-2. 정수로 변환: " int( ) 함수"</h3>
+<ol>
+<li>“str” --&gt; “int”:  str( ) 안 내용이 정수일 때만 가능</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(int(<span class="string">"2"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">number1 = <span class="string">"2"</span></span><br><span class="line">number2 = <span class="string">"3"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(int(number1) + int(number2))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>5
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(int(<span class="string">"2.6"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-103-f4645c45f771&gt; in &lt;module&gt;
+----&gt; 1 print(int("2.6"))
+
+
+ValueError: invalid literal for int() with base 10: '2.6'
+</code></pre>
+<br>
+<ol start="2">
+<li>“float” --&gt; “int”: 소수점 버림</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3
+</code></pre>
+<br>
+<br>
+<h3 id="5-3-실수로-변환-float-함수"><a class="markdownIt-Anchor" href="#5-3-실수로-변환-float-함수"></a> 5-3. 실수로 변환: “float( ) 함수”</h3>
+<ol>
+<li>“str” --&gt; “float”:  str( ) 안 내용이 정수일 때만 가능</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3.14
+</code></pre>
+<br>
+<ol start="2">
+<li>“int” --&gt; “float”: 소수점 하나 추가</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>178.0
+</code></pre>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/12/S-Python-base1/">https://hyemin-kim.github.io/2020/05/12/S-Python-base1/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Python/" rel="tag">Python</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2020/05/08/Reference/">
+        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ed00dae828f43e807ca1',
+    clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+    repo: 'hyemin-Kim.github.io',
+    owner: 'hyemin-Kim',
+    admin: ['hyemin-Kim'],
+    id: '' || location.pathname,
+    distractionFreeMode: false
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2020 - 2020 Hyemin Kim<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_site_pv"></span></span> &nbsp;&nbsp;
+      <span id="busuanzi_container_site_uv" style="display: none;"><i class="iconfont">&#xe601;</i> <span id="busuanzi_value_site_uv"></span></span>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+</body>
+</html>
