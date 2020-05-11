@@ -20,7 +20,7 @@
 <meta property="og:description" content="출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-11T17:18:11.000Z">
-<meta property="article:modified_time" content="2020-05-11T17:35:55.980Z">
+<meta property="article:modified_time" content="2020-05-11T17:40:50.843Z">
 <meta property="article:author" content="Hyemin Kim">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-4.png" style="max-height: 240px;">
+      <img src="/images/random/material-7.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">Python 기초문법 (1)</div>
@@ -321,7 +321,7 @@
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
 <br>
 <h4 id="불가한-경우"><a class="markdownIt-Anchor" href="#불가한-경우"></a> 【불가한 경우】</h4>
-<p>case 1. 언더바(_)를 제외한 특수문자</p>
+<p><strong>case 1. 언더바(_)를 제외한 특수문자</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>  File "&lt;ipython-input-23-6d0163a9fd4c&gt;", line 1
     * = 1
@@ -329,7 +329,7 @@
 SyntaxError: invalid syntax
 </code></pre>
 <br>
-<p>case 2. 알파벳 + 언더바를 제외한 특수문자</p>
+<p><strong>case 2. 알파벳 + 언더바를 제외한 특수문자</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a$ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>  File "&lt;ipython-input-25-2501fc576aab&gt;", line 1
     a$ = 1
@@ -337,7 +337,7 @@ SyntaxError: invalid syntax
 SyntaxError: invalid syntax
 </code></pre>
 <br>
-<p>case 3. 변수의 이름 사이의 공백</p>
+<p><strong>case 3. 변수의 이름 사이의 공백</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a b = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>  File "&lt;ipython-input-26-2bab97d7970c&gt;", line 1
     a b = 1
@@ -346,7 +346,7 @@ SyntaxError: invalid syntax
 </code></pre>
 <p><br><br></p>
 <h3 id="2-2-변수의-대입"><a class="markdownIt-Anchor" href="#2-2-변수의-대입"></a> <strong>2-2. 변수의 대입</strong></h3>
-<p>변수 값을 부여할 때 "="를 사용한다</p>
+<p><strong>변수 값을 부여할 때 "="를 사용한다</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
   <br>
 <h3 id="2-3-변수의-출력"><a class="markdownIt-Anchor" href="#2-3-변수의-출력"></a> <strong>2-3. 변수의 출력</strong></h3>
@@ -416,7 +416,7 @@ SyntaxError: invalid syntax
 <br>
 <h3 id="3-3-str-혹은-object-문자열"><a class="markdownIt-Anchor" href="#3-3-str-혹은-object-문자열"></a> <strong>3-3. str 혹은 object (문자열)</strong></h3>
 <ol>
-<li>문자열은 반드시 ’ ’ 혹은 " " 로 묶어야 함</li>
+<li><strong>문자열은 반드시 ’ ’ 혹은 " " 로 묶어야 함</strong></li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">'안녕하세요'</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
@@ -435,7 +435,7 @@ SyntaxError: invalid syntax
 </code></pre>
 <br>
 <ol start="2">
-<li>‘" "’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</li>
+<li><strong>’" "’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</strong></li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>안녕하세요,
@@ -553,7 +553,7 @@ SyntaxError: invalid syntax
 </code></pre>
 <br>
 <p>하지만 문자열(str)과 숫자(int &amp; float)는 <em>직접</em>  연결할 수 없다</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br><span class="line"></span><br><span class="line">print(a + b + c + d + e)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br><span class="line"></span><br><span class="line">print(a + b + c + d + e)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>---------------------------------------------------------------------------
 
 TypeError                                 Traceback (most recent call last)
@@ -607,7 +607,7 @@ TypeError: can only concatenate str (not "int") to str
 <br>
 <h3 id="5-2-정수로-변환-int-함수"><a class="markdownIt-Anchor" href="#5-2-정수로-변환-int-함수"></a> <strong>5-2. 정수로 변환: " int( ) 함수"</strong></h3>
 <ol>
-<li>“str” --&gt; “int”:  str( ) 안 내용이 정수일 때만 가능</li>
+<li><strong>"str" --&gt; “int”:  str( ) 안 내용이 정수일 때만 가능</strong></li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(int(<span class="string">"2"</span>))</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>int
@@ -631,7 +631,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
 </code></pre>
 <br>
 <ol start="2">
-<li>“float” --&gt; “int”: 소수점 버림</li>
+<li><strong>"float" --&gt; “int”: 소수점 버림</strong></li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>int
@@ -644,7 +644,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
 <br>
 <h3 id="5-3-실수로-변환-float-함수"><a class="markdownIt-Anchor" href="#5-3-실수로-변환-float-함수"></a> <strong>5-3. 실수로 변환: "float( ) 함수"</strong></h3>
 <ol>
-<li>“str” --&gt; “float”:  str( ) 안 내용이 정수일 때만 가능</li>
+<li><strong>"str" --&gt; “float”:  str( ) 안 내용이 정수일 때만 가능</strong></li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>float
@@ -655,7 +655,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
 </code></pre>
 <br>
 <ol start="2">
-<li>“int” --&gt; “float”: 소수점 하나 추가</li>
+<li><strong>"int" --&gt; “float”: 소수점 하나 추가</strong></li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>float
