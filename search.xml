@@ -1010,7 +1010,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </categories>
   </entry>
   <entry>
-    <title>S-Python-base2</title>
+    <title>Python 기초문법 (2)</title>
     <url>/2020/05/13/S-Python-base2/</url>
     <content><![CDATA[<p>집합 형태의 데이터 타입: list, tuple, set, dict</p>
 <a id="more"></a>
