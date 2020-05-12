@@ -713,8 +713,8 @@ SyntaxError: invalid syntax
 <pre><code>1은 참으로 취급
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'0은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'0은 저짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0은 저짓부렁이
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'0은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'0은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0은 거짓부렁이
 </code></pre>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">123</span>:</span><br><span class="line">    print(<span class="string">'123은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'123은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
