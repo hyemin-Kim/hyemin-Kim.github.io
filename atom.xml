@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-05-12T17:15:14.353Z</updated>
+  <updated>2020-05-12T17:25:01.183Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>abc</title>
+    <link href="https://hyemin-kim.github.io/2020/05/13/abc/"/>
+    <id>https://hyemin-kim.github.io/2020/05/13/abc/</id>
+    <published>2020-05-12T17:24:29.000Z</published>
+    <updated>2020-05-12T17:25:01.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>abc</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;abc&lt;/p&gt;
+&lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { return;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Python 기초문법 (1)</title>
