@@ -1517,7 +1517,7 @@ TypeError: 'tuple' object does not support item assignment
 </li>
 <li><a href="#4-%EB%B0%98%EB%B3%B5%EB%AC%B8"><strong>4. 반복문</strong></a>
 <ul>
-<li><a href="#4-1-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9D%B4%EB%9E%80">**4-1. 반복문이란? **</a></li>
+<li><a href="#4-1-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9D%B4%EB%9E%80"><strong>4-1. 반복문이란?</strong></a></li>
 <li><a href="#4-2-for-%EC%99%80-in%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%98%EC%9E%90"><strong>4-2. for 와 in을 활용하자!</strong></a></li>
 <li><a href="#4-3-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%97%90%EC%84%9C-%EC%A7%9D%EC%88%98%EB%A7%8C-%EC%B6%9C%EB%A0%A5%ED%95%98%EB%A0%A4%EB%A9%B4-continue%EA%B5%AC%EB%AC%B8"><strong>4-3. 반복문에서 짝수만 출력하려면? (continue구문)</strong></a></li>
 <li><a href="#4-4-%EC%A1%B0%EA%B1%B4%EC%9D%84-%EC%B6%A9%EC%A1%B1%EC%8B%9C-%EC%88%9C%ED%99%98%EC%97%90%EC%84%9C-%EB%B9%A0%EC%A0%B8%EB%82%98%EC%99%80%EB%B3%B4%EC%9E%90-break%EA%B5%AC%EB%AC%B8"><strong>4-4. 조건을 충족시 순환에서 빠져나와보자! (break구문)</strong></a></li>
@@ -1694,7 +1694,7 @@ SyntaxError: invalid syntax
 <br>
 <br>
 <h2 id="4-반복문"><a class="markdownIt-Anchor" href="#4-반복문"></a> <strong>4. 반복문</strong></h2>
-<h3 id="4-1-반복문이란"><a class="markdownIt-Anchor" href="#4-1-반복문이란"></a> **4-1. 반복문이란? **</h3>
+<h3 id="4-1-반복문이란"><a class="markdownIt-Anchor" href="#4-1-반복문이란"></a> <strong>4-1. 반복문이란?</strong></h3>
 <ul>
 <li>일을 반복 처리 해준다는 것</li>
 <li>대상은 반드시 list, dict, set등 집합이어야 한다</li>
