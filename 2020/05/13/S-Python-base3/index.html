@@ -8,19 +8,19 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>Python 기초문법 (3) - 함수 | Hyemin&#39;s journey of growth in Data Analysis</title>
+  <title>Python 기초문법 (3) | Hyemin&#39;s journey of growth in Data Analysis</title>
 
   <link rel="shortcut icon" href="/images/favicon.png">
   
-  <meta name="description" content="함수   1. 함수란 무엇일까? 2. 함수 정의: def (define) 3. 함수는 값을 return할 수 있고, 안해도 됨 4. parameter가 여러 개 있으면, 함수에 넘겨 줄 때 순서가 중요     1. 함수란 무엇일까? 반복적으로 사용되는 부문을 묶어서, 재사용 가능하도록 만들어 주는 것 함수에는 **들어가는 놈 (input)**이 있고,">
+  <meta name="description" content="함수">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 기초문법 (3) - 함수">
+<meta property="og:title" content="Python 기초문법 (3)">
 <meta property="og:url" content="https://hyemin-kim.github.io/2020/05/13/S-Python-base3/index.html">
 <meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
-<meta property="og:description" content="함수   1. 함수란 무엇일까? 2. 함수 정의: def (define) 3. 함수는 값을 return할 수 있고, 안해도 됨 4. parameter가 여러 개 있으면, 함수에 넘겨 줄 때 순서가 중요     1. 함수란 무엇일까? 반복적으로 사용되는 부문을 묶어서, 재사용 가능하도록 만들어 주는 것 함수에는 **들어가는 놈 (input)**이 있고,">
+<meta property="og:description" content="함수">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-13T07:16:31.000Z">
-<meta property="article:modified_time" content="2020-05-13T07:23:25.697Z">
+<meta property="article:modified_time" content="2020-05-13T07:24:40.456Z">
 <meta property="article:author" content="Hyemin Kim">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -178,10 +178,10 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-15.png" style="max-height: 240px;">
+      <img src="/images/random/material-6.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">Python 기초문법 (3) - 함수</div>
+          <div class="mdui-card-primary-title">Python 기초문법 (3)</div>
           <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-13 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
         </div>
       </div>
@@ -203,10 +203,10 @@
           <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
           <ul class="mdui-menu" id="share_menu">
             <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=Python 기초문법 (3) - 함수&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Python 기초문법 (3)&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=Python 기초문법 (3) - 함수&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+              <a href="https://twitter.com/intent/tweet?text=Python 기초문법 (3)&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
             </li>
             <li class="mdui-menu-item">
               <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/" target="_blank" class="mdui-ripple">Share to Facebook</a>
@@ -215,20 +215,21 @@
               <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/" target="_blank" class="mdui-ripple">Share to Google+</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&title=Python 기초문법 (3) - 함수" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&title=Python 기초문법 (3)" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Python 기초문법 (3) - 함수&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/" target="_blank" class="mdui-ripple">Share to QQ</a>
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Python 기초문법 (3)&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/" target="_blank" class="mdui-ripple">Share to QQ</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&text=Python 기초문법 (3) - 함수" target="_blank" class="mdui-ripple">Share to Telegram</a>
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/13/S-Python-base3/&text=Python 기초문법 (3)" target="_blank" class="mdui-ripple">Share to Telegram</a>
             </li>
           </ul>
         
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <a id="more"></a>
+      <p><strong>함수</strong></p>
+<a id="more"></a>
 <h1 id="함수"><a class="markdownIt-Anchor" href="#함수"></a> <strong>함수</strong></h1>
 <br>
 <p></p><ul class="markdownIt-TOC">
