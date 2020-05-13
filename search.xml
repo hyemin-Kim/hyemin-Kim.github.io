@@ -1491,7 +1491,6 @@ TypeError: 'tuple' object does not support item assignment
     <url>/2020/05/13/S-Python-base4/</url>
     <content><![CDATA[<p>비교연산자. 조건문. 논리연산자</p>
 <a id="more"></a>
-<br>
 <h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> 목록</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#1-%EB%B9%84%EA%B5%90%EC%97%B0%EC%82%B0%EC%9E%90"><strong>1. 비교연산자</strong></a>
@@ -1521,7 +1520,6 @@ TypeError: 'tuple' object does not support item assignment
 <br>
 <h2 id="1-비교연산자"><a class="markdownIt-Anchor" href="#1-비교연산자"></a> <strong>1. 비교연산자</strong></h2>
 <p>비교 연산자는 주로 대소비교를 할 때 사용한다.</p>
-<br>
 <h3 id="1-1-대소비교"><a class="markdownIt-Anchor" href="#1-1-대소비교"></a> <strong>1-1. 대소비교 &gt;, &gt;=, &lt;, &lt;=</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">1</span> &gt; <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>False
