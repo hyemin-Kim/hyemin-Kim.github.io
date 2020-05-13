@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>Python 기초문법 (4) | Hyemin&#39;s journey of growth in Data Analysis</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  
+  <meta name="description" content="비교연산자. 조건문. 논리연산자">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 기초문법 (4)">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/13/S-Python-base4/index.html">
+<meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
+<meta property="og:description" content="비교연산자. 조건문. 논리연산자">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-13T08:25:46.000Z">
+<meta property="article:modified_time" content="2020-05-13T08:31:44.493Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",Python">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/13/S-Python-base4/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/13/S-Python-base4/">
+  
+
+  
+  
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create','hyemin2060','auto');ga('send','pageview');
+</script>
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">Hyemin&#39;s journey of growth in Data Analysis</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
+    
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Hyemin Kim</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>김혜민 / 金慧敏</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:hyemin2060@naver.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'hyemin2060@naver.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">Home</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">Archive</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">8</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">Category</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%910-Base/">【Study】0.Base<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">Tag</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Git/" rel="tag">Git<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Github/" rel="tag">Github<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Jupyter-notebook/" rel="tag">Jupyter notebook<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Markdown/" rel="tag">Markdown<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Python/" rel="tag">Python<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typora/" rel="tag">Typora<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">About</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">Tag cloud</a>
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">Links</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+          <a href="https://hexo.io/zh-cn/docs/" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Usage</a>
+        
+          <a href="https://hexo.io/plugins/#offline" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Plugins</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-14.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">Python 기초문법 (4)</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-13 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACY0lEQVR42u3aUW7DQAgFwNz/0u0BojgPsIkTzX5VTuXsbKWFAo+/n14PPDw8PDw8PDy8m/Ee8Xr5uqdPk99/fvOr91T3hoeHh7fDe3PVHgJefs3h0STH19wbHh4e3iIvubKTC/r4uq8eXDmc4OHh4X0hrxoGjp/j4eHh/RIvedLD4OHh4X0LL0l85+WDPO3+QK0FDw8PL+blTab9n1f7e3h4eHgBr7qSlDoPKtWxg2iHeHh4eBfzri7RVpPjE/aDh4eHt8KrjqUmo6W9Nlg1CJX/Y8DDw8Mb83rbfRRXEgbmZV88PDy8HV41FZ4UFyb4E1JqPDw8vAt4vaS22sSqjiNUAwkeHh7eDi950WT8NGr5x4f75nvx8PDwLubl1/q5JdfjgFENP3h4eHibvGRsdD4E0DuU/D14eHh4m7y8mJuUFZotqyCcFI4MDw8P72Je3ryfl3GXwgYeHh7eCq86ipqEit4g7CQU4eHh4d2Bl7OT9LdabsiPEg8PD2+Td9a4QF6eyJPpvFyCh4eHt8nLt1K+oFthIw9IozIuHh4e3km8fECqGkh6qzoKhoeHh/cp3uTq713r+SBXNEyAh4eHt8ibtK+qLa5egy0qeeDh4eFdzOulub0Rq8lBNAMDHh4e3gW86nWcN8Z6iXVviAEPDw9vnzcvpx5v8fh5VJzNQwseHh7eIq93QecB4KzCxJs/Bh4eHt6NedUrPk/T8+LyqL+Hh4eHt8irJs1nJdBLKTUeHh7eqcWIvK3VK91WCyJ4eHh4n+JVR52SzRWa/eP34+Hh4W3yfm/h4eHh4eHh4eHdYP0Dyk7tOb6d6gQAAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Python 기초문법 (4)&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=Python 기초문법 (4)&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/" target="_blank" class="mdui-ripple">Share to Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/&title=Python 기초문법 (4)" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Python 기초문법 (4)&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/" target="_blank" class="mdui-ripple">Share to QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/13/S-Python-base4/&text=Python 기초문법 (4)" target="_blank" class="mdui-ripple">Share to Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>비교연산자. 조건문. 논리연산자</p>
+<a id="more"></a>
+<br>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> 목록</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%EB%B9%84%EA%B5%90%EC%97%B0%EC%82%B0%EC%9E%90"><strong>1. 비교연산자</strong></a>
+<ul>
+<li><a href="#1-1-%EB%8C%80%EC%86%8C%EB%B9%84%EA%B5%90"><strong>1-1. 대소비교 &gt;, &gt;=, &lt;, &lt;=</strong></a></li>
+<li><a href="#1-2-%EA%B0%99%EB%8B%A4"><strong>1-2. 같다 ==</strong></a></li>
+<li><a href="#1-3-%EA%B0%99%EC%A7%80-%EC%95%8A%EB%8B%A4"><strong>1-3. 같지 않다 !=</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-%EC%A1%B0%EA%B1%B4%EB%AC%B8"><strong>2. 조건문</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90"><strong>2-1. 개념</strong></a></li>
+<li><a href="#2-2-if"><strong>2-2. if</strong></a></li>
+<li><a href="#2-3-else"><strong>2-3. else</strong></a></li>
+<li><a href="#2-4-elif"><strong>2-4. elif</strong></a></li>
+<li><a href="#2-5-1%EC%9D%B4%EB%82%98-0%EC%9D%80-%EC%B0%B8%EC%9D%B4%EB%82%98-%EA%B1%B0%EC%A7%93%EC%9D%84-%ED%91%9C%ED%98%84%ED%95%98%EA%B8%B0%EB%8F%84-%ED%95%9C%EB%8B%A4"><strong>2-5. 1이나 0은 참이나 거짓을 표현하기도 한다</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90-and-or"><strong>3. 논리 연산자 (and, or)</strong></a>
+<ul>
+<li><a href="#3-1-and"><strong>3-1. and</strong></a></li>
+<li><a href="#3-2-or"><strong>3-2. or</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-비교연산자"><a class="markdownIt-Anchor" href="#1-비교연산자"></a> <strong>1. 비교연산자</strong></h2>
+<p>비교 연산자는 주로 대소비교를 할 때 사용한다.</p>
+<br>
+<h3 id="1-1-대소비교"><a class="markdownIt-Anchor" href="#1-1-대소비교"></a> <strong>1-1. 대소비교 &gt;, &gt;=, &lt;, &lt;=</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &gt; <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> &gt;= <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9</span> &lt; <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span> &lt;= <span class="number">7</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<p><br><br></p>
+<h3 id="1-2-같다"><a class="markdownIt-Anchor" href="#1-2-같다"></a> <strong>1-2. 같다 ==</strong></h3>
+<ul>
+<li><strong>주의:</strong> = 는 대입연산자. == 는 비교연산자 중의 “같다”</li>
+<li>숫자형 &amp; 문자형 모두 비교 가능</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> = <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-6-a8e553549e25&gt;", line 1
+    2 = 2
+         ^
+SyntaxError: can't assign to literal
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> == <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> == <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"나"</span> == <span class="string">"나"</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+  <br>
+<h3 id="1-3-같지-않다"><a class="markdownIt-Anchor" href="#1-3-같지-않다"></a> <strong>1-3. 같지 않다 !=</strong></h3>
+<ul>
+<li>숫자형 &amp; 문자형 모두 비교 가능</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> != <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> != <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"나"</span> != <span class="string">"너"</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<br>  
+<h2 id="2-조건문"><a class="markdownIt-Anchor" href="#2-조건문"></a> <strong>2. 조건문</strong></h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> <strong>2-1. 개념</strong></h3>
+<p>주어진 조건이 <strong>참</strong>인 경우 그 다음 내가 규칙(로직)을 실행하는 개념이다</p>
+  <br>
+<h3 id="2-2-if"><a class="markdownIt-Anchor" href="#2-2-if"></a> <strong>2-2. if</strong></h3>
+<ul>
+<li>if는 어떤 조건이 성립한다면 ~이라는 의미</li>
+<li>if구문 끝에는 반드시 콜론( : )이 있어야 함</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">5</span> &gt; <span class="number">3</span>:</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>참
+</code></pre>
+<br>
+<ul>
+<li>if구문 뒤에 indent가 있는 명령어는 if조건이 성립하면 실행</li>
+<li>indent가 없으면 if의 성립여부와 무관하여 무조건 실행</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">5</span> &gt; <span class="number">3</span>:</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br><span class="line">   </span><br><span class="line">print(<span class="string">'끝'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>참
+참
+끝
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">5</span> &lt; <span class="number">3</span>:</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br><span class="line">   </span><br><span class="line">print(<span class="string">'끝'</span>)  <span class="comment"># 앞에 indent가 없으면 if의 성립여부와 무관하여 실행</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>끝
+</code></pre>
+<br>
+<br>
+<h3 id="2-3-else"><a class="markdownIt-Anchor" href="#2-3-else"></a> <strong>2-3. else</strong></h3>
+<p>else는 if 조견 후에 따라오면, if가 아닌 경우에 실행 됨</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">5</span> &lt; <span class="number">3</span>:</span><br><span class="line">    print(<span class="string">"성립한다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"성립하지 않은다"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>성립하지 않은다
+</code></pre>
+<br>
+<p>else는 꼭 if랑 같이 써야함. 단독으로 실행할 수 없음</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"성립하지 않은다"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-22-6c0f4debaa4b&gt;", line 1
+    else:
+       ^
+SyntaxError: invalid syntax
+</code></pre>
+<br>
+  <br>
+<h3 id="2-4-elif"><a class="markdownIt-Anchor" href="#2-4-elif"></a> <strong>2-4. elif</strong></h3>
+<p>elif구문은 3가지 이상 문기(조건)의 동작을 수행할 때 사용</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">3</span> &gt; <span class="number">5</span>:</span><br><span class="line">    print(<span class="string">'if 구문'</span>)</span><br><span class="line"><span class="keyword">elif</span> <span class="number">3</span> &lt; <span class="number">4</span>:</span><br><span class="line">    print(<span class="string">'elif 구문'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'이것도 저것도 아니다'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>elif 구문
+</code></pre>
+<br>
+<p>그럼, elif구문이 참인 여러 구문을 나열 했을 때는 어떻게 될까?</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">3</span> &gt; <span class="number">5</span>:</span><br><span class="line">    print(<span class="string">'if 구문'</span>)</span><br><span class="line"><span class="keyword">elif</span> <span class="number">3</span> &lt; <span class="number">4</span>:</span><br><span class="line">    print(<span class="string">'elif 1 구문'</span>)</span><br><span class="line"><span class="keyword">elif</span> <span class="number">3</span> &lt; <span class="number">5</span>:</span><br><span class="line">    print(<span class="string">'elif 2 구문'</span>)</span><br><span class="line"><span class="keyword">elif</span> <span class="number">3</span> &lt; <span class="number">6</span>:</span><br><span class="line">    print(<span class="string">'elif 3 구문'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'이것도 저것도 아니다'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>elif 1 구문
+</code></pre>
+<p>elif구문이 참인 여러 구문을 나열 했을 때는 <strong>첫번째 참인 elif구문만</strong> 실행됨</p>
+<p><br><br></p>
+<h3 id="2-5-1이나-0은-참이나-거짓을-표현하기도-한다"><a class="markdownIt-Anchor" href="#2-5-1이나-0은-참이나-거짓을-표현하기도-한다"></a> <strong>2-5. 1이나 0은 참이나 거짓을 표현하기도 한다</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span>:</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'거짓'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>참
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'참'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'거짓'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>거짓
+</code></pre>
+<br>
+<br>
+<h2 id="3-논리-연산자-and-or"><a class="markdownIt-Anchor" href="#3-논리-연산자-and-or"></a> <strong>3. 논리 연산자 (and, or)</strong></h2>
+<p><strong>and</strong>나 <strong>or</strong>조건은 두 가지 이상 조건을 다룰 때 활용한다</p>
+  <br>
+<h3 id="3-1-and"><a class="markdownIt-Anchor" href="#3-1-and"></a> <strong>3-1. and</strong></h3>
+<p>and 조건은 <strong>모두 만족</strong>할 때 <strong>참</strong>으로 인식한다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">True</span> <span class="keyword">and</span> <span class="literal">True</span> <span class="keyword">and</span> <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">True</span> <span class="keyword">and</span> <span class="literal">False</span> <span class="keyword">and</span> <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">0</span> &lt; <span class="number">1</span>) <span class="keyword">and</span> (<span class="number">0</span> &lt; <span class="number">2</span>):</span><br><span class="line">    print(<span class="string">'모두 참'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'거짓'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>모두 참
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">0</span> &lt; <span class="number">1</span>) <span class="keyword">and</span> (<span class="number">0</span> &gt; <span class="number">2</span>):</span><br><span class="line">    print(<span class="string">'모두 참'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'거짓'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>거짓
+</code></pre>
+<br>
+<br>
+<h3 id="3-2-or"><a class="markdownIt-Anchor" href="#3-2-or"></a> <strong>3-2. or</strong></h3>
+<p>or조건은 조건 중 <strong>하나라도 만족</strong>할 때 <strong>참</strong>으로 인식한다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">True</span> <span class="keyword">or</span> <span class="literal">False</span> <span class="keyword">or</span> <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">False</span> <span class="keyword">or</span> <span class="literal">False</span> <span class="keyword">or</span> <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">0</span> &lt; <span class="number">1</span>) <span class="keyword">or</span> (<span class="number">0</span> &gt; <span class="number">2</span>):</span><br><span class="line">    print(<span class="string">'하나라도 참'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'모두 거짓'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>하나라도 참
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">0</span> &gt; <span class="number">1</span>) <span class="keyword">or</span> (<span class="number">0</span> &gt; <span class="number">2</span>):</span><br><span class="line">    print(<span class="string">'하나라도 참'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'모두 거짓'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>모두 거짓
+</code></pre>
+<p><br><br></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/13/S-Python-base4/">https://hyemin-kim.github.io/2020/05/13/S-Python-base4/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Python/" rel="tag">Python</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2020/05/13/S-Python-base3/">
+        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ed00dae828f43e807ca1',
+    clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+    repo: 'hyemin-Kim.github.io',
+    owner: 'hyemin-Kim',
+    admin: ['hyemin-Kim'],
+    id: '' || location.pathname,
+    distractionFreeMode: false
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2020 - 2020 Hyemin Kim<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_site_pv"></span></span> &nbsp;&nbsp;
+      <span id="busuanzi_container_site_uv" style="display: none;"><i class="iconfont">&#xe601;</i> <span id="busuanzi_value_site_uv"></span></span>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+</body>
+</html>
