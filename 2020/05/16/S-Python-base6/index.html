@@ -8,29 +8,32 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>Hello World | Hyemin&#39;s journey of growth in Data Analysis</title>
+  <title>Python 기초분법 (6) | Hyemin&#39;s journey of growth in Data Analysis</title>
 
   <link rel="shortcut icon" href="/images/favicon.png">
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.  Quic">
+  <meta name="description" content="패키지(Package) 와 import">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/04/hello-world/index.html">
+<meta property="og:title" content="Python 기초분법 (6)">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/16/S-Python-base6/index.html">
 <meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.  Quic">
+<meta property="og:description" content="패키지(Package) 와 import">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-03T15:44:51.807Z">
-<meta property="article:modified_time" content="2020-05-07T17:52:28.226Z">
+<meta property="og:image" content="https://hyemin-kim.github.io/2020/05/16/images/S-Python-base6/output_3_0.png">
+<meta property="article:published_time" content="2020-05-16T04:52:05.000Z">
+<meta property="article:modified_time" content="2020-05-16T04:56:33.696Z">
 <meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyemin-kim.github.io/2020/05/16/images/S-Python-base6/output_3_0.png">
 
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Python">
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
-  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/04/hello-world/">
+  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/16/S-Python-base6/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
@@ -38,7 +41,7 @@
   <link rel="apple-touch-icon" href="/images/favicon.png">
 
   
-    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/04/hello-world/">
+    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/16/S-Python-base6/">
   
 
   
@@ -177,11 +180,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-1.png" style="max-height: 240px;">
+      <img src="/images/random/material-12.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">Hello World</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-04 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+          <div class="mdui-card-primary-title">Python 기초분법 (6)</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-16 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -193,7 +196,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZUlEQVR42u3aQY6DQAwEwPz/07sPiCBtGxwUFaeVFgI1B8a0/fr76eOFh4eHh4eHh4f3MN4rPqpXvZ//fu3ROaNnw8PDw1vhfXjVHpzzKh7n4Py+HxYFDw8Pb5F39EDnr/XqFnL033N28mx4eHh4z+fl51e3GTw8PLzf5uWM8xI5jzDw8PDwnsNLbpwXzUdldFI6fy1rwcPDw4t5eQi7//dqfw8PDw8v4JVHmsYl9fnDfXmmDA8PDy/gVSPaeZhbjXGri4KHh4e3w+tFAMlA1eSqJOAofDHg4eHhXcSrfvbnC9FrpOXNsMIXAx4eHt4NvF5rajJ0VY0kmiU1Hh4e3m283jhUNYrtldrJIAIeHh7eJq9aIk/i1zx0qBbleHh4eJu8yW3mG8NkaQ6XGw8PD+9mXjUw7YUIvRi32mDDw8PD2+TlMcGk7M4j2lGrDA8PD2+FNw9zz38zedx5wY2Hh4e3w5s/RHWwoNdgu2ymDA8PD2/Myz/1q2V3As7DiMJ2goeHh3czL/+5XrQaxQfJQMB8pgwPDw/vIt48GqgyCoFsHHbg4eHh7fN67ah5DDEfO2iGEXh4eHgX8aqlc3WryDeJnIqHh4f3XV715d6j5kvWa4Ph4eHh3c3rlbmTF3p1jCBZAjw8PLxN3rzdlQQWebjQ21rw8PDw9nnzIKA3UlAt36OtBQ8PD2+Rl7+gc0ZvFKCKx8PDw3s+L2rhx4OneREfnYmHh4f3SN5kULVXcBeCYDw8PLxFXt6Uqm4P1cD3azEuHh4e3g0NsN6Q1iSiTfB4eHh4m7zfO/Dw8PDw8PDw8B5w/AOn0Xy497uJqAAAAABJRU5ErkJggg==">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACbUlEQVR42u3aQW6EMAwF0Ln/pafbShXwHQcPHT1W1YiSPBZx+M7r/dXXCw8PDw8PDw8P72G8V3z9vv/vE85/OR/x/Dn53PDw8PAmeRdL7cEkjv737z1HU6mCz8fCw8PDm+dVhzm683DJPv197TXh4eHhPZ/XWb47bDw8PLz/y0u22kmgkAQZeHh4eM/n5R/8CS/ZcOe8oawFDw8PL+atNcBm/v5Yfw8PDw/vgFc+0rQUPZzHGfmToxni4eHh3cxLItpqoytZ1vN4N58tHh4e3gwvb2utHUKttsHyOCMKI/Dw8PBu4OWFYddSXt2Il0fEw8PDG+GthaqdcKEa3RYOK+Dh4eGN8DpNqWTqyUTzstGKcfHw8PDavF2Rbr8krDXY8PDw8OZ5uwpA9fBB5wjCxevDw8PD+yjvvXTtanEtxhx4eHh4I7xOTFAIWItx7dqrx8PDw/sUL1/EzzfB1QLQb7Ph4eHhzfCq29zqFPNgt3qAoPDFgIeHh7eJl5eH1pBBuNAJIPDw8PAmeZ3N9NpEk5KQRxh4eHh4z+Hl1LwMrLETMB4eHt4kL1nW80NXeSOtU2wu7sfDw8Mb4d1xTGotUFiLOfDw8PAmef1AYW0SeUGqBsd4eHh4d/OqV3V73d8iVwsGHh4e3t28teV478GsBJBv0PHw8PBmeHkxqLa1qpikMFxs0PHw8PAGeflnfzXwXSs5yXxaJyPw8PDwRnjVFle+0CcxRzQiHh4e3oN558NXo4d+1IuHh4c3z+s3varlYS0Cbh26wsPDw9vE23DUKYhx8xeUlJxCYcDDw8Pbyvu+Cw8PDw8PDw8P7wHXDxi9NQAPlcc1AAAAAElFTkSuQmCC">
               
             </li>
           </ul>
@@ -202,45 +205,175 @@
           <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
           <ul class="mdui-menu" id="share_menu">
             <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=Hello World&url=https://hyemin-kim.github.io/2020/05/04/hello-world/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Python 기초분법 (6)&url=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=Hello World&url=https://hyemin-kim.github.io/2020/05/04/hello-world/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+              <a href="https://twitter.com/intent/tweet?text=Python 기초분법 (6)&url=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/04/hello-world/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/" target="_blank" class="mdui-ripple">Share to Facebook</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/04/hello-world/" target="_blank" class="mdui-ripple">Share to Google+</a>
+              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/" target="_blank" class="mdui-ripple">Share to Google+</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/04/hello-world/&title=Hello World" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/&title=Python 기초분법 (6)" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Hello World&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/04/hello-world/" target="_blank" class="mdui-ripple">Share to QQ</a>
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Python 기초분법 (6)&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/" target="_blank" class="mdui-ripple">Share to QQ</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/04/hello-world/&text=Hello World" target="_blank" class="mdui-ripple">Share to Telegram</a>
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/16/S-Python-base6/&text=Python 기초분법 (6)" target="_blank" class="mdui-ripple">Share to Telegram</a>
             </li>
           </ul>
         
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+      <p>패키지(Package) 와 import</p>
+<a id="more"></a>
+<h1 id="패키지package-와-import"><a class="markdownIt-Anchor" href="#패키지package-와-import"></a> 패키지(Package) 와 import</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%99%80-%EB%AA%A8%EB%93%88-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%ED%95%A8%EC%88%98%EC%9D%98-%EA%B4%80%EA%B3%84%EB%8F%84">1. 패키지와 모듈 그리고 함수의 관계도</a></li>
+<li><a href="#2-%EB%AA%A8%EB%93%88-import-%ED%95%98%EA%B8%B0">2. 모듈 import 하기</a>
+<ul>
+<li><a href="#import-%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95">import 하는 방법</a></li>
+</ul>
+</li>
+<li><a href="#3-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%97%90%EC%84%9C-import%ED%95%98%EA%B8%B0">3. 패키지 에서 import하기</a></li>
+<li><a href="#4-%EB%B3%84%EC%B9%AD-alias-%EC%A7%80%EC%96%B4%EC%A3%BC%EA%B8%B0">4. 별칭 (alias) 지어주기</a></li>
+<li><a href="#5-%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%A0-%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%AA%A8%EB%93%88-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0">5. 앞으로 자주 사용할 패키지, 모듈 미리보기</a></li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-패키지와-모듈-그리고-함수의-관계도"><a class="markdownIt-Anchor" href="#1-패키지와-모듈-그리고-함수의-관계도"></a> 1. 패키지와 모듈 그리고 함수의 관계도</h2>
+<ul>
+<li>
+<p><strong>함수</strong>들이 뭉쳐진 하나의 .py파일 안에 이루어진 것을 <strong>모듈</strong>이라고 한다</p>
+</li>
+<li>
+<p>여러 개의 모듈을 그룹화 하면 <strong>패키지</strong>가 된다</p>
+</li>
+<li>
+<p><strong>패키지</strong>는 종종 <strong>라이브러비</strong>라고도 불린다</p>
+<br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image</span><br><span class="line"><span class="comment"># 출척: pythonstudy.xyz</span></span><br><span class="line">Image(<span class="string">'http://pythonstudy.xyz/images/basics/python-package.png'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<p><img src="../images/S-Python-base6/output_3_0.png" alt="png"></p>
+<p><br><br></p>
+<h2 id="2-모듈-import-하기"><a class="markdownIt-Anchor" href="#2-모듈-import-하기"></a> 2. 모듈 import 하기</h2>
+<h3 id="import-하는-방법"><a class="markdownIt-Anchor" href="#import-하는-방법"></a> import 하는 방법</h3>
+<p>.py (파이썬 파일 확장자)로 된 파일을 우리는 <strong>모듈</strong> 이라고 한다, import 구문을 통해 해당 파일을 불러올 수 있다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
+<p>위의 코드는 pandas라는 모듈을 우리가 불러오겠다라는 의미이다</p>
+<p><br> <br></p>
+<h2 id="3-패키지-에서-import하기"><a class="markdownIt-Anchor" href="#3-패키지-에서-import하기"></a> 3. 패키지 에서 import하기</h2>
+<ul>
+<li>패키지 안에서 하나의 모듈을 불러온다</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame   <span class="comment"># pandas라는 패키지 안에서 DataFrame이라는 모듈을 불러온다</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataFrame()  <span class="comment"># 모듈 DataFrame사용</span></span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<br />
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<br>
+<ul>
+<li>통째로 패키지나 모듈을 불러온다</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandas.DataFrame()  <span class="comment"># DataFrame이라는 모듈을 사용하기 위해서는 .을 찍고 이어서 쓰면 됨</span></span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<br />
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<br>
+  <br>
+<h2 id="4-별칭-alias-지어주기"><a class="markdownIt-Anchor" href="#4-별칭-alias-지어주기"></a> 4. 별칭 (alias) 지어주기</h2>
+<p>pandas라는 패키지 이름이 너무 길기 때문에 우리는 약어로 줄여쓸 수 있다. 보통 pd를 보편적으로 많이 사용한다.</p>
+<p>줄여서 별명을 지어줄 때는 as를 붙혀준다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<br />
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<br>
+ <br> 
+<h2 id="5-앞으로-자주-사용할-패키지-모듈-미리보기"><a class="markdownIt-Anchor" href="#5-앞으로-자주-사용할-패키지-모듈-미리보기"></a> 5. 앞으로 자주 사용할 패키지, 모듈 미리보기</h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>numpy: 과학계산을 위한 패키지</li>
+<li>pandas: 데이터 분석을 할 때 가장 많이 쓰이는 패키지</li>
+<li>matplotlib: 시각확를 위한 패키지</li>
+<li>seaborn: 시각화를 위한 패키지 (matplotlib을 더 쉽게 사용할 수 있도록 도와주는 패키지)</li>
+</ul>
+<p><br><br></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -262,14 +395,16 @@
       </script>
       <blockquote class="mdui-m-t-5">
         
-        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/04/hello-world/">https://hyemin-kim.github.io/2020/05/04/hello-world/</a>
+        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/16/S-Python-base6/">https://hyemin-kim.github.io/2020/05/16/S-Python-base6/</a>
       </blockquote>
       
     </div>
     <footer class="mdui-card-actions">
       
-        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】</a>
+        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python</a>
       
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Python/" rel="tag">Python</a>
       
     </footer>
     
@@ -283,12 +418,12 @@
 
   <nav id="paginator">
     
-      <a rel="prev" class="extend prev" href="/2020/05/04/Markdown-Syntax/">
-        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prev
-      </a>
-    
     <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2020/05/14/S-Python-base5/">
+        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
     
   </nav>
 
