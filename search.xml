@@ -125,6 +125,40 @@
     <title>Markdown 常用语法（持续更新）</title>
     <url>/2020/05/04/Markdown-Syntax/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
+<p></p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%A0%87%E9%A2%98">标题</a></li>
+<li><a href="#%E6%8D%A2%E8%A1%8C">换行</a></li>
+<li><a href="#%E6%96%9C%E4%BD%93">斜体</a></li>
+<li><a href="#%E5%8A%A0%E7%B2%97">加粗</a></li>
+<li><a href="#%E6%96%9C%E4%BD%93%E5%8A%A0%E7%B2%97">斜体加粗</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">删除线</a></li>
+<li><a href="#%E9%AB%98%E4%BA%AE">高亮</a></li>
+<li><a href="#%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E5%AD%97%E5%8F%B7">字体，颜色，字号</a></li>
+<li><a href="#%E4%B8%8A%E6%A0%87-%E4%B8%8B%E6%A0%87">上标 &amp; 下标</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8">引用</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E5%AF%B9%E9%BD%90%E8%AE%BE%E7%BD%AE">文字内容对齐设置</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5%E9%93%BE%E6%8E%A5">插入链接</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87">插入图片</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a>
+<ul>
+<li><a href="#1-%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">（1） 有序列表</a></li>
+<li><a href="#2%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">（2）无序列表</a></li>
+<li><a href="#3%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8">（3）任务列表</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E8%A1%A8%E6%A0%BC">添加表格</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5%E7%9B%AE%E5%BD%95-only-for-typora">插入目录 [Only for Typora]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
 <br>
 <h4 id="标题"><a class="markdownIt-Anchor" href="#标题"></a> 标题</h4>
 <p>一级标题： “#” + 空格 + “一级标题”<br>
@@ -184,8 +218,8 @@
 <br>
 <h4 id="字体颜色字号"><a class="markdownIt-Anchor" href="#字体颜色字号"></a> 字体，颜色，字号</h4>
 <p>使用 font 标签</p>
- <figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span>  <span class="attr">face</span>=<span class="string">'Microsift Yahei'</span>  <span class="attr">color</span>=<span class="string">'red'</span>  <span class="attr">size</span>=<span class="string">'8'</span>&gt;</span> 字体，颜色和字号 <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<p><font color="red" size="12"> 字体，颜色和字号 </font></p>
+ <figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span>  <span class="attr">face</span>=<span class="string">'Microsift Yahei'</span>  <span class="attr">color</span>=<span class="string">'red'</span>  <span class="attr">size</span>=<span class="string">'6'</span>&gt;</span> 字体，颜色和字号 <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p><font color="red" size="6"> 字体，颜色和字号 </font></p>
 <br>
 <h4 id="上标-下标"><a class="markdownIt-Anchor" href="#上标-下标"></a> 上标 &amp; 下标</h4>
 <ul>
@@ -219,24 +253,18 @@
 </blockquote>
 <br>
 <h4 id="文字内容对齐设置"><a class="markdownIt-Anchor" href="#文字内容对齐设置"></a> 文字内容对齐设置</h4>
-<ol>
-<li>
-<p>使用div标签：</p>
- <figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align: right"</span>&gt;</span>your-text-here<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-</li>
-</ol>
+<p><strong>1. 使用div标签：</strong></p>
+<pre><code><figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align: right"</span>&gt;</span>your-text-here<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+</code></pre>
 <blockquote>
 <div style="text-align: left">居左</div>
 <div style="text-align: center">居中</div>
 <div style="text-align: right">居右</div>
 </blockquote>
-<ol start="2">
-<li>
-<p>使用p标签：(在Jupyter Notebook中不适用)</p>
+<br>
+<p><strong>2. 使用p标签：(在Jupyter Notebook中不适用)</strong></p>
 <p>居中：<code>&lt;center&gt; 内容 &lt;/center&gt;</code></p>
 <p>居左/居右：<code>&lt;p align='left'&gt; 内容 &lt;/p&gt;</code></p>
-</li>
-</ol>
 <blockquote>
 <p align="left"> 居左 </p>
 <center> 居中 </center>
@@ -259,7 +287,7 @@
 <br>
 <ul>
 <li>
-<p>调整图片大小：</p>
+<p><strong>调整图片大小：</strong></p>
 <figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"链接"</span> <span class="attr">width</span>=<span class="string">"宽度(数字or百分比)"</span> <span class="attr">height</span>=<span class="string">"高度"</span> <span class="attr">alt</span>=<span class="string">"图片名称"</span> <span class="attr">align</span>=<span class="string">center/left/right</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ul>
@@ -284,6 +312,7 @@
 <li>第四点</li>
 </ol>
 </blockquote>
+<br>
 <h5 id="2无序列表"><a class="markdownIt-Anchor" href="#2无序列表"></a> （2）无序列表</h5>
 <p>​        使用“ + ”+空格+内容<br>
 ​       ​ 或者“ - ”+空格+内容<br>
