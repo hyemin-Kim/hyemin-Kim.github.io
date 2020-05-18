@@ -185,7 +185,7 @@
 <h4 id="字体颜色字号"><a class="markdownIt-Anchor" href="#字体颜色字号"></a> 字体，颜色，字号</h4>
 <p>使用 font 标签</p>
  <figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span>  <span class="attr">face</span>=<span class="string">'Microsift Yahei'</span>  <span class="attr">color</span>=<span class="string">'red'</span>  <span class="attr">size</span>=<span class="string">'8'</span>&gt;</span> 字体，颜色和字号 <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<p><font face="Microsift Yahei" color="red" size="12"> 字体，颜色和字号 </font></p>
+<p><font color="red" size="12"> 字体，颜色和字号 </font></p>
 <br>
 <h4 id="上标-下标"><a class="markdownIt-Anchor" href="#上标-下标"></a> 上标 &amp; 下标</h4>
 <ul>
@@ -233,8 +233,8 @@
 <ol start="2">
 <li>
 <p>使用p标签：(在Jupyter Notebook中不适用)</p>
-<p>居中：<code>html &lt;center&gt; 内容 &lt;/center&gt;</code></p>
-<p>居左/居右：<code>html&lt;p align='left'&gt; 内容 &lt;/p&gt;</code></p>
+<p>居中：<code>&lt;center&gt; 内容 &lt;/center&gt;</code></p>
+<p>居左/居右：<code>&lt;p align='left'&gt; 内容 &lt;/p&gt;</code></p>
 </li>
 </ol>
 <blockquote>
