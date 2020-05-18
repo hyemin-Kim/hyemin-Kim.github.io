@@ -2250,7 +2250,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
 <li><a href="#3-1-list%EB%A1%9C-%EB%B6%80%ED%84%B0-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0-nparraylist_name"><strong>3-1. list로 부터 생성하기 – "np.array(<em>list_name</em>)"</strong></a></li>
 <li><a href="#3-2-shape%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0-array_name-shape"><strong>3-2. shape확인하기 – "<em>array_name</em> .shape"</strong></a></li>
 <li><a href="#4-1-list%EC%97%90%EC%84%9C%EC%9D%98-data-type"><strong>4-1. list에서의 data type</strong></a></li>
-<li><a href="#4-2-array%EC%97%90%EC%84%9C%EC%9D%98-data-type">**4-2. array에서의 data type **</a>
+<li><a href="#4-2-array%EC%97%90%EC%84%9C%EC%9D%98-data-type"><strong>4-2. array에서의 data type</strong></a>
 <ul>
 <li><a href="#case-1-int%EC%99%80-float%ED%83%80%EC%9E%85%EC%9D%B4-%ED%98%BC%EC%9E%AC%EB%90%9C-%EA%B2%BD%EC%9A%B0"><strong>case 1. int와 float타입이 혼재된 경우</strong></a></li>
 <li><a href="#case-2-int%EC%99%80-float-%ED%83%80%EC%9E%85%EC%9D%B4-%ED%98%BC%EC%9E%AC%EB%90%98%EC%97%88%EC%9C%BC%EB%82%98-dtype%EC%9D%84-%EC%A7%80%EC%A0%95%ED%95%9C-%EA%B2%BD%EC%9A%B0"><strong>case 2. int와 float 타입이 혼재되었으나, dtype을 지정한 경우</strong></a></li>
@@ -2273,12 +2273,12 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
 <br>  
 <p><strong>&lt; 1차원 배열 &gt;</strong></p>
 <br>
-<img src="/images/S-Python-Numpy1/1_array.png" alt="1_array" style="zoom:80%;">
+<img src="/images/S-Python-Numpy1/1_array.png" alt="1_array" style="zoom:80%;" align="center/">
 <div style="text-align: center"> numpy.array([1, 2, 3, 4]) </div>
  <br> 
 <p><strong>&lt; 2차원 배열 &gt;</strong></p>
  <br>
-<img src="/images/S-Python-Numpy1/2_array.png" alt="2_array" style="zoom:80%;">
+<img src="/images/S-Python-Numpy1/2_array.png" alt="2_array" style="zoom:80%;" align="center">
 <div style="text-align: center"> 
 numpy.array([[1, 2, 3, 4],  
              [5, 6, 7, 8],  
@@ -2287,7 +2287,8 @@ numpy.array([[1, 2, 3, 4],
 </div>
 <br>
 <p><strong>&lt; n차원 배열 &gt;   (nd array: <em>n dimention</em> array)</strong></p>
-<img src="/images/S-Python-Numpy1/n_array.png" alt="n_array" style="zoom:80%;">
+<img src="/images/S-Python-Numpy1/n_array.png" alt="n_array" style="zoom:80%;" align="center/">
+  <br>
   <br>
 <h2 id="1-4-shape차원-axis축"><a class="markdownIt-Anchor" href="#1-4-shape차원-axis축"></a> <strong>1-4. shape(차원) &amp; axis(축)</strong></h2>
 <ul>
@@ -2377,7 +2378,7 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 </code></pre>
 <br>
  <br> 
-<h2 id="4-2-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-2-array에서의-data-type"></a> **4-2. array에서의 data type **</h2>
+<h2 id="4-2-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-2-array에서의-data-type"></a> <strong>4-2. array에서의 data type</strong></h2>
 <h3 id="case-1-int와-float타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-1-int와-float타입이-혼재된-경우"></a> <strong>case 1. int와 float타입이 혼재된 경우</strong></h3>
 <p>int와 float타입이 혼재된 경우 int(정수)가 float(실수)로 바꿔진다</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>])</span><br></pre></td></tr></tbody></table></figure>
