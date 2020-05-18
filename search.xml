@@ -184,9 +184,7 @@
 <br>
 <h4 id="字体颜色字号"><a class="markdownIt-Anchor" href="#字体颜色字号"></a> 字体，颜色，字号</h4>
 <p>使用 font 标签</p>
-<blockquote>
-<figure class="highlight plain"><figcaption><span>face</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">&lt;font  face='Microsift Yahei'  color='red'  size='12'&gt; 字体，颜色和字号 &lt;/font&gt;</span><br><span class="line"></span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">#### 上标 &amp; 下标</span><br><span class="line"></span><br><span class="line"> + 上标：“内容”前后加 1 个 ^ 号</span><br><span class="line"></span><br><span class="line"> + 下标：“内容”前后加 1 个 ~ 号</span><br><span class="line"></span><br><span class="line">我是 ^ 上标 ^  ——&gt;  我是^上标^  </span><br><span class="line"></span><br><span class="line">我是 ~ 下标 ~  ——&gt; 我是~下标~</span><br><span class="line"></span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">#### 引用</span><br><span class="line"></span><br><span class="line">“内容”前加 &gt; 号</span><br><span class="line"></span><br><span class="line">“内容”</span><br><span class="line"></span><br><span class="line">引用号可叠用，&gt;号越多，级数越低  </span><br><span class="line">例如：可以使用&gt;, &gt;&gt;, &gt;&gt;&gt; 的形式</span><br><span class="line"></span><br><span class="line">一级引用</span><br><span class="line">&gt; 二级引用</span><br><span class="line">&gt;</span><br><span class="line">&gt; &gt; 三级引用</span><br><span class="line"></span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">#### 文字内容对齐设置</span><br><span class="line"></span><br><span class="line">1. 使用div标签：</span><br><span class="line"></span><br><span class="line">```html</span><br><span class="line">&lt;div style="text-align: right"&gt;your-text-here&lt;/div&gt; </span><br></pre></td></tr></tbody></table></figure>
-</blockquote>
+ <figure class="highlight plain"><figcaption><span>face</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">&lt;font  face='Microsift Yahei'  color='red'  size='12'&gt; 字体，颜色和字号 &lt;/font&gt;</span><br><span class="line"></span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">#### 上标 &amp; 下标</span><br><span class="line"></span><br><span class="line">  + 上标：“内容”前后加 1 个 ^ 号</span><br><span class="line"></span><br><span class="line">  + 下标：“内容”前后加 1 个 ~ 号</span><br><span class="line"></span><br><span class="line">&gt; 我是 ^ 上标 ^  ——&gt;  我是^上标^  </span><br><span class="line">&gt;</span><br><span class="line">&gt; 我是 ~ 下标 ~  ——&gt; 我是~下标~</span><br><span class="line"></span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">#### 引用</span><br><span class="line"></span><br><span class="line">“内容”前加 &gt; 号</span><br><span class="line"></span><br><span class="line">&gt; “内容”</span><br><span class="line"></span><br><span class="line">引用号可叠用，&gt;号越多，级数越低  </span><br><span class="line">例如：可以使用&gt;, &gt;&gt;, &gt;&gt;&gt; 的形式</span><br><span class="line"></span><br><span class="line">&gt; 一级引用</span><br><span class="line">&gt; &gt; 二级引用</span><br><span class="line">&gt; &gt;</span><br><span class="line">&gt; &gt; &gt; 三级引用</span><br><span class="line"></span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">#### 文字内容对齐设置</span><br><span class="line"></span><br><span class="line">1. 使用div标签：</span><br><span class="line">	</span><br><span class="line">	```html</span><br><span class="line">	&lt;div style="text-align: right"&gt;your-text-here&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
 <div style="text-align: left">居左</div>
 <div style="text-align: center">居中</div>
@@ -195,8 +193,8 @@
 <ol start="2">
 <li>
 <p>使用p标签：(在Jupyter Notebook中不适用)</p>
-<p>居中：<code>&lt;center&gt; 内容 &lt;/center&gt;</code></p>
-<p>居左/居右：<code>&lt;p align='left'&gt; 内容 &lt;/p&gt;</code></p>
+<p>居中：<code>html &lt;center&gt; 内容 &lt;/center&gt;</code></p>
+<p>居左/居右：<code>html&lt;p align='left'&gt; 内容 &lt;/p&gt;</code></p>
 </li>
 </ol>
 <blockquote>
