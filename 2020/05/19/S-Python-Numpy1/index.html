@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://hyemin-kim.github.io/images/S-Python-Numpy1/2_array.png">
 <meta property="og:image" content="https://hyemin-kim.github.io/images/S-Python-Numpy1/n_array.png">
 <meta property="article:published_time" content="2020-05-18T15:07:32.000Z">
-<meta property="article:modified_time" content="2020-05-18T15:32:51.551Z">
+<meta property="article:modified_time" content="2020-05-18T15:39:50.529Z">
 <meta property="article:author" content="Hyemin Kim">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Numpy">
@@ -183,7 +183,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-8.png" style="max-height: 240px;">
+      <img src="/images/random/material-7.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">Python - Numpy (1)</div>
@@ -236,13 +236,27 @@
       <p>Numpy개요. Numpy import하기. nd array 생성. array에서의 데이터 타입</p>
 <a id="more"></a>
 <p></p><ul class="markdownIt-TOC">
+<li><a href="#1-numpy-%EA%B0%9C%EC%9A%94"><strong>1. Numpy 개요</strong></a>
+<ul>
 <li><a href="#1-1-numpy%EC%9D%B4%EB%9E%80"><strong>1-1. Numpy이란?</strong></a></li>
 <li><a href="#1-2-%EB%B3%84%EC%B9%AD-np"><strong>1-2. 별칭 - np</strong></a></li>
 <li><a href="#1-3-array-%EB%B0%B0%EC%97%B4"><strong>1-3. array (배열)</strong></a></li>
 <li><a href="#1-4-shape%EC%B0%A8%EC%9B%90-axis%EC%B6%95"><strong>1-4. shape(차원) &amp; axis(축)</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-numpy-import%ED%95%98%EA%B8%B0"><strong>2. Numpy import하기</strong></a>
+<ul>
 <li><a href="#2-1-%EB%B3%84%EC%B9%AD-alias-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0-%ED%95%AD%EC%83%81-%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94"><strong>2-1. 별칭 (alias) 지정하기 (항상 해주세요!)</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-nd-array-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0-nparray"><strong>3. nd array 생성하기 – "np.array([…])"</strong></a>
+<ul>
 <li><a href="#3-1-list%EB%A1%9C-%EB%B6%80%ED%84%B0-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0-nparraylist_name"><strong>3-1. list로 부터 생성하기 – "np.array(<em>list_name</em>)"</strong></a></li>
 <li><a href="#3-2-shape%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0-array_name-shape"><strong>3-2. shape확인하기 – "<em>array_name</em> .shape"</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-array%EC%97%90%EC%84%9C%EC%9D%98-data-type"><strong>4. array에서의 data type</strong></a>
+<ul>
 <li><a href="#4-1-list%EC%97%90%EC%84%9C%EC%9D%98-data-type"><strong>4-1. list에서의 data type</strong></a></li>
 <li><a href="#4-2-array%EC%97%90%EC%84%9C%EC%9D%98-data-type"><strong>4-2. array에서의 data type</strong></a>
 <ul>
@@ -253,26 +267,28 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 <p></p>
 <br>
-<h1 id="1-numpy-개요"><a class="markdownIt-Anchor" href="#1-numpy-개요"></a> <strong>1. Numpy 개요</strong></h1>
-<h2 id="1-1-numpy이란"><a class="markdownIt-Anchor" href="#1-1-numpy이란"></a> <strong>1-1. Numpy이란?</strong></h2>
+<h2 id="1-numpy-개요"><a class="markdownIt-Anchor" href="#1-numpy-개요"></a> <strong>1. Numpy 개요</strong></h2>
+<h3 id="1-1-numpy이란"><a class="markdownIt-Anchor" href="#1-1-numpy이란"></a> <strong>1-1. Numpy이란?</strong></h3>
 <p>Numpy: 수학, 과학 계산용 패키지</p>
 <p>​    <br></p>
-<h2 id="1-2-별칭-np"><a class="markdownIt-Anchor" href="#1-2-별칭-np"></a> <strong>1-2. 별칭 - np</strong></h2>
+<h3 id="1-2-별칭-np"><a class="markdownIt-Anchor" href="#1-2-별칭-np"></a> <strong>1-2. 별칭 - np</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
   <br>
-<h2 id="1-3-array-배열"><a class="markdownIt-Anchor" href="#1-3-array-배열"></a> <strong>1-3. array (배열)</strong></h2>
+<h3 id="1-3-array-배열"><a class="markdownIt-Anchor" href="#1-3-array-배열"></a> <strong>1-3. array (배열)</strong></h3>
 <p><strong>배열</strong>: 여러 값들의 그룹</p>
 <br>  
 <p><strong>&lt; 1차원 배열 &gt;</strong></p>
 <br>
-<img src="/images/S-Python-Numpy1/1_array.png" alt="1_array" style="zoom:80%;" align="center/">
+<center><img src="/images/S-Python-Numpy1/1_array.png" alt="1_array" style="zoom:80%;"></center>
 <div style="text-align: center"> numpy.array([1, 2, 3, 4]) </div>
  <br> 
 <p><strong>&lt; 2차원 배열 &gt;</strong></p>
  <br>
-<img src="/images/S-Python-Numpy1/2_array.png" alt="2_array" style="zoom:80%;" align="center">
+<center><img src="/images/S-Python-Numpy1/2_array.png" alt="2_array" style="zoom:80%;"></center>
 <div style="text-align: center"> 
 numpy.array([[1, 2, 3, 4],  
              [5, 6, 7, 8],  
@@ -281,10 +297,10 @@ numpy.array([[1, 2, 3, 4],
 </div>
 <br>
 <p><strong>&lt; n차원 배열 &gt;   (nd array: <em>n dimention</em> array)</strong></p>
-<img src="/images/S-Python-Numpy1/n_array.png" alt="n_array" style="zoom:80%;" align="center/">
+<center><img src="/images/S-Python-Numpy1/n_array.png" alt="n_array" style="zoom:80%;" align="center/"></center>
   <br>
   <br>
-<h2 id="1-4-shape차원-axis축"><a class="markdownIt-Anchor" href="#1-4-shape차원-axis축"></a> <strong>1-4. shape(차원) &amp; axis(축)</strong></h2>
+<h3 id="1-4-shape차원-axis축"><a class="markdownIt-Anchor" href="#1-4-shape차원-axis축"></a> <strong>1-4. shape(차원) &amp; axis(축)</strong></h3>
 <ul>
 <li>
 <p><strong>shape은 <font color="red"> 차원의 수 </font> 를 확인</strong></p>
@@ -300,20 +316,20 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 <br>
 </li>
 </ul>
-<h1 id="2-numpy-import하기"><a class="markdownIt-Anchor" href="#2-numpy-import하기"></a> <strong>2. Numpy import하기</strong></h1>
+<h2 id="2-numpy-import하기"><a class="markdownIt-Anchor" href="#2-numpy-import하기"></a> <strong>2. Numpy import하기</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>&lt;module 'numpy' from 'D:\\Anaconda\\lib\\site-packages\\numpy\\__init__.py'&gt;
 </code></pre>
 <br>
-<h2 id="2-1-별칭-alias-지정하기-항상-해주세요"><a class="markdownIt-Anchor" href="#2-1-별칭-alias-지정하기-항상-해주세요"></a> <strong>2-1. 별칭 (alias) 지정하기 (항상 해주세요!)</strong></h2>
+<h3 id="2-1-별칭-alias-지정하기-항상-해주세요"><a class="markdownIt-Anchor" href="#2-1-별칭-alias-지정하기-항상-해주세요"></a> <strong>2-1. 별칭 (alias) 지정하기 (항상 해주세요!)</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>&lt;module 'numpy' from 'D:\\Anaconda\\lib\\site-packages\\numpy\\__init__.py'&gt;
 </code></pre>
 <br>
   <br>
-<h1 id="3-nd-array-생성하기-nparray"><a class="markdownIt-Anchor" href="#3-nd-array-생성하기-nparray"></a> <strong>3. nd array 생성하기 – "np.array([…])"</strong></h1>
+<h2 id="3-nd-array-생성하기-nparray"><a class="markdownIt-Anchor" href="#3-nd-array-생성하기-nparray"></a> <strong>3. nd array 생성하기 – "np.array([…])"</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], dtype=int)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr <span class="comment"># 주의: list와 다름</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([1, 2, 3, 4])
@@ -328,7 +344,7 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 </code></pre>
 <br>
 <br>  
-<h2 id="3-1-list로-부터-생성하기-nparraylist_name"><a class="markdownIt-Anchor" href="#3-1-list로-부터-생성하기-nparraylist_name"></a> <strong>3-1. list로 부터 생성하기 – "np.array(<em>list_name</em>)"</strong></h2>
+<h3 id="3-1-list로-부터-생성하기-nparraylist_name"><a class="markdownIt-Anchor" href="#3-1-list로-부터-생성하기-nparraylist_name"></a> <strong>3-1. list로 부터 생성하기 – "np.array(<em>list_name</em>)"</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist2 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">           [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</span><br></pre></td></tr></tbody></table></figure>
 <br>
@@ -344,7 +360,7 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 </code></pre>
 <br>
  <br> 
-<h2 id="3-2-shape확인하기-array_name-shape"><a class="markdownIt-Anchor" href="#3-2-shape확인하기-array_name-shape"></a> <strong>3-2. shape확인하기 – "<em>array_name</em> .shape"</strong></h2>
+<h3 id="3-2-shape확인하기-array_name-shape"><a class="markdownIt-Anchor" href="#3-2-shape확인하기-array_name-shape"></a> <strong>3-2. shape확인하기 – "<em>array_name</em> .shape"</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr1.shape</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>(4,)
 </code></pre>
@@ -354,10 +370,10 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 </code></pre>
 <br>
  <br>   
-<h1 id="4-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-array에서의-data-type"></a> <strong>4. array에서의 data type</strong></h1>
+<h2 id="4-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-array에서의-data-type"></a> <strong>4. array에서의 data type</strong></h2>
 <p><strong>array에서는 list와 다르게 1개의 <font color="red">단일 데이터 타입 </font> 만 허용 된다</strong></p>
   <br>
-<h2 id="4-1-list에서의-data-type"><a class="markdownIt-Anchor" href="#4-1-list에서의-data-type"></a> <strong>4-1. list에서의 data type</strong></h2>
+<h3 id="4-1-list에서의-data-type"><a class="markdownIt-Anchor" href="#4-1-list에서의-data-type"></a> <strong>4-1. list에서의 data type</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist = [<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>]</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>[1, 3.14, '사과', '1234']
@@ -372,8 +388,8 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 </code></pre>
 <br>
  <br> 
-<h2 id="4-2-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-2-array에서의-data-type"></a> <strong>4-2. array에서의 data type</strong></h2>
-<h3 id="case-1-int와-float타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-1-int와-float타입이-혼재된-경우"></a> <strong>case 1. int와 float타입이 혼재된 경우</strong></h3>
+<h3 id="4-2-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-2-array에서의-data-type"></a> <strong>4-2. array에서의 data type</strong></h3>
+<h4 id="case-1-int와-float타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-1-int와-float타입이-혼재된-경우"></a> <strong>case 1. int와 float타입이 혼재된 경우</strong></h4>
 <p>int와 float타입이 혼재된 경우 int(정수)가 float(실수)로 바꿔진다</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>])</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr  <span class="comment"># 정수가 실수로 바꿔진다</span></span><br></pre></td></tr></tbody></table></figure>
@@ -381,14 +397,14 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 </code></pre>
 <br>
 <p>​</p>
-<h3 id="case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"><a class="markdownIt-Anchor" href="#case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"></a> <strong>case 2. int와 float 타입이 혼재되었으나, dtype을 지정한 경우</strong></h3>
+<h4 id="case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"><a class="markdownIt-Anchor" href="#case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"></a> <strong>case 2. int와 float 타입이 혼재되었으나, dtype을 지정한 경우</strong></h4>
 <p>int와 float 타입이 혼재되었으나, dtype가 int로 지정된 경우, float의 앞에 정수 부분만 보류된다</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([1, 2, 3, 3])
 </code></pre>
 <br>
-<h3 id="case-3-int-float-와-str-타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-3-int-float-와-str-타입이-혼재된-경우"></a> <strong>case 3. int / float 와 str 타입이 혼재된 경우</strong></h3>
+<h4 id="case-3-int-float-와-str-타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-3-int-float-와-str-타입이-혼재된-경우"></a> <strong>case 3. int / float 와 str 타입이 혼재된 경우</strong></h4>
 <p>int / float 와 float타입이 혼재된 경우 int(정수)가 str(문자열)로 바꿔진다</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>])</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
@@ -399,8 +415,8 @@ nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
 <pre><code>'13.14'
 </code></pre>
 <br>
-<h3 id="case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"><a class="markdownIt-Anchor" href="#case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"></a> <strong>case 4. int와 str 타입이 혼재되어 있고 dtype이 int로 지정한 경우</strong></h3>
-<p>(1) 문자내용인 str이 존재한 경우 error 발생</p>
+<h4 id="case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"><a class="markdownIt-Anchor" href="#case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"></a> <strong>case 4. int와 str 타입이 혼재되어 있고 dtype이 int로 지정한 경우</strong></h4>
+<p><strong>(1) 문자내용인 str이 존재한 경우 error 발생</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>, <span class="string">'5.8'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>---------------------------------------------------------------------------
 
@@ -413,7 +429,7 @@ ValueError                                Traceback (most recent call last)
 ValueError: invalid literal for int() with base 10: '사과'
 </code></pre>
 <br>
-<p>(2) 실수(float)내용인 str이 존재한 경우도 error발생</p>
+<p><strong>(2) 실수(float)내용인 str이 존재한 경우도 error발생</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'1234'</span>, <span class="string">'5.8'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>---------------------------------------------------------------------------
 
@@ -426,7 +442,7 @@ ValueError                                Traceback (most recent call last)
 ValueError: invalid literal for int() with base 10: '5.8'
 </code></pre>
 <br>
-<p>(3) 정수(int)내용인 str만 존재한 경우 해당 str이 자동으로 int로 바꿔짐</p>
+<p><strong>(3) 정수(int)내용인 str만 존재한 경우 해당 str이 자동으로 int로 바꿔짐</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'1234'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([   1,    3, 1234])
