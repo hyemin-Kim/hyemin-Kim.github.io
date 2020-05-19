@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>Python - Numpy (3) | Hyemin&#39;s journey of growth in Data Analysis</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  
+  <meta name="description" content="arange. range. 정렬(sort &amp; argsort)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - Numpy (3)">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/index.html">
+<meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
+<meta property="og:description" content="arange. range. 정렬(sort &amp; argsort)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-19T17:10:54.000Z">
+<meta property="article:modified_time" content="2020-05-19T17:16:22.394Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Numpy">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",Python,Numpy">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/">
+  
+
+  
+  
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create','hyemin2060','auto');ga('send','pageview');
+</script>
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">Hyemin&#39;s journey of growth in Data Analysis</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
+    
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Hyemin Kim</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>김혜민 / 金慧敏</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:hyemin2060@naver.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'hyemin2060@naver.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">Home</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">Archive</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">13</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">Category</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%910-Base/">【Study】0.Base<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python<span class="mdui-ripple sidebar_archives-count">9</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">Tag</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Git/" rel="tag">Git<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Github/" rel="tag">Github<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Jupyter-notebook/" rel="tag">Jupyter notebook<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Markdown/" rel="tag">Markdown<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Numpy/" rel="tag">Numpy<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Python/" rel="tag">Python<span class="mdui-ripple sidebar_archives-count">9</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typora/" rel="tag">Typora<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">About</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">Tag cloud</a>
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">Links</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+          <a href="https://hexo.io/zh-cn/docs/" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Usage</a>
+        
+          <a href="https://hexo.io/plugins/#offline" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Plugins</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-5.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">Python - Numpy (3)</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-20 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZ0lEQVR42u3aQXKDMAwF0Nz/0u0BOnG/JGNI5rHqFBJ4XmDlS6+frz5eeHh4eHh4eHh4D+O94mN9/d+zb2+//Ozk2fDw8PBO8v551S55a9he8PrZ8PDw8M7zerd5dzb/f3JlYTvBw8PDexgv2RJ616/ZeHh4eJ/LyyOJSQCBh4eH9ym8wg/+YnSbLMqadyhrwcPDw4t51QbYyb9v6O/h4eHhLXnlkaa4oTXffjYMXeHh4eFdwMsD1jxiyK/Jy+u8lMfDw8O7mlf+cLHU7sUQvWYbHh4e3kleEkAkj7gr5B0tCh4eHt7FvOoIVDVmzccCkld/0h7Dw8PDu5rXazvlYUSyPcy/AQ8PD+88r9q42hW8TlplhY0BDw8PbytvEgFM4trJmOw/WwgeHh7eTbyk7K5uFUk53otu8fDw8E7y8mZYvgQ5NUHmAS4eHh7eeV6VVA12q2Fx3pbDw8PDu4uXhALV9n91SKu30Hh4eHgneZOINi9282C3F0Dg4eHhnef1Xtx7y/Hq8EF5dAAPDw9vK6/X2p8vQbWIj87i4eHhXcyrFs292+ctrmopj4eHh3cXb1fRXB26Wi9xcmWUUuPh4eFt5VWbW/nQQO/b8mGC8i8GPDw8vE28yRhBL2ytbi3lDQMPDw/vYl5vbHQ+FpDHE3nRj4eHh3eSl28G8/ZVNcYtN8/w8PDwDvJ6DbBeGJHHGeUNAw8PD+9hvCRaTbaZ/HvKC42Hh4f3eF4+iDAvoC8vqfHw8PAuCCPyyLUQHxSL7ObGgIeHh7eV12tTTR4rWdw8gMDDw8M7yfu+Aw8PDw8PDw8P7wHHL07jXcnSNmeuAAAAAElFTkSuQmCC">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Python - Numpy (3)&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=Python - Numpy (3)&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/" target="_blank" class="mdui-ripple">Share to Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/&title=Python - Numpy (3)" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=Python - Numpy (3)&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/" target="_blank" class="mdui-ripple">Share to QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/&text=Python - Numpy (3)" target="_blank" class="mdui-ripple">Share to Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>arange. range. 정렬(sort &amp; argsort)</p>
+<a id="more"></a>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-arange%EB%9E%80"><strong>1. arange란?</strong></a>
+<ul>
+<li><a href="#1-1-%EC%88%9C%EC%84%9C%EB%8C%80%EB%A1%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EA%B0%92%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%A0%A4%EB%A9%B4"><strong>1-1. 순서대로 리스트에 값을 생성하려면?</strong></a></li>
+<li><a href="#1-2-arange%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%89%BD%EA%B2%8C-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0"><strong>1-2. arange를 사용해서 쉽게 생성하기</strong></a></li>
+<li><a href="#1-3-keyword%EC%9D%B8%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0"><strong>1-3. keyword인자를 사용해보기</strong></a></li>
+<li><a href="#1-4-%ED%99%80%EC%88%98%EC%9D%98-%EA%B0%92%EB%A7%8C-%EC%83%9D%EC%84%B1"><strong>1-4. 홀수의 값만 생성</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-range-numpy%EC%99%80%EB%8A%94-%EC%83%81%EA%B4%80%EC%97%86%EB%8A%94-python%EB%AC%B8%EB%B2%95"><strong>2. range (Numpy와는 상관없는 Python문법)</strong></a></li>
+<li><a href="#3-%EC%A0%95%EB%A0%AC"><strong>3. 정렬</strong></a>
+<ul>
+<li><a href="#3-1-1%EC%B0%A8%EC%9B%90-%EC%A0%95%EB%A0%AC"><strong>3-1. 1차원 정렬</strong></a></li>
+<li><a href="#3-2-n%EC%B0%A8%EC%9B%90-%EC%A0%95%EB%A0%AC"><strong>3-2. N차원 정렬</strong></a></li>
+<li><a href="#3-3-index%EB%A5%BC-%EB%B0%98%ED%99%98%ED%95%98%EB%8A%94-argsort"><strong>3-3. index를 반환하는 argsort</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="1-arange란"><a class="markdownIt-Anchor" href="#1-arange란"></a> <strong>1. arange란?</strong></h2>
+<p>arange와 range를 같이 보고 이해하면 됨</p>
+<p><strong>[실제 상황 예시]</strong></p>
+<p>우리는 순차적인 값을 생성할 때가 많다. 예를 들면:</p>
+<ol>
+<li>회원에 대한 가입번호 부여</li>
+<li>100개 한정 판매 상품에 대한 고유 번호 부여</li>
+</ol>
+<p>이 밖에도 데이터 관리를 위한 인덱스를 차례대로 부여하는 것은 매우 흔한 일이다.</p>
+  <br>
+<h3 id="1-1-순서대로-리스트에-값을-생성하려면"><a class="markdownIt-Anchor" href="#1-1-순서대로-리스트에-값을-생성하려면"></a> <strong>1-1. 순서대로 리스트에 값을 생성하려면?</strong></h3>
+<p>1~10까지 값을 생성하려면?</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre>
+ <br> 
+<h3 id="1-2-arange를-사용해서-쉽게-생성하기"><a class="markdownIt-Anchor" href="#1-2-arange를-사용해서-쉽게-생성하기"></a> <strong>1-2. arange를 사용해서 쉽게 생성하기</strong></h3>
+<p><strong>np.arange(a, b):</strong> <strong><font color="red">a</font></strong> 부터 <strong><font color="red">b-1</font></strong> 까지 생성한다  <strong><font color="red">(a포함, b미포함)</font></strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">11</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+</code></pre>
+ <br>
+<h3 id="1-3-keyword인자를-사용해보기"><a class="markdownIt-Anchor" href="#1-3-keyword인자를-사용해보기"></a> <strong>1-3. keyword인자를 사용해보기</strong></h3>
+<p><strong>np.arange(start = a,  stop = b)</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(start=<span class="number">1</span>, stop=<span class="number">11</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(stop=<span class="number">11</span>, start=<span class="number">1</span>)  <span class="comment"># start &amp; stop 지정했기 때문에 순서 바꿔도 됨</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(<span class="number">11</span>,<span class="number">1</span>)  <span class="comment"># start &amp; stop 지정 안하면 순서 바꿨을 때 오류 남</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([], dtype=int32)
+</code></pre>
+<br>
+<h3 id="1-4-홀수의-값만-생성"><a class="markdownIt-Anchor" href="#1-4-홀수의-값만-생성"></a> <strong>1-4. 홀수의 값만 생성</strong></h3>
+<p>1~10 사이의 값중 홀수만 생성</p>
+<p><strong>step 키워드 활용</strong></p>
+<p>np.arange(start, stop, step)</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">11</span>, <span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 3, 5, 7, 9])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(start=<span class="number">1</span>, stop=<span class="number">11</span>, step=<span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 3, 5, 7, 9])
+</code></pre>
+ <br>
+<br>
+<h2 id="2-range-numpy와는-상관없는-python문법"><a class="markdownIt-Anchor" href="#2-range-numpy와는-상관없는-python문법"></a> <strong>2. range (Numpy와는 상관없는 Python문법)</strong></h2>
+<ul>
+<li>
+<p>range는 말 그대로 범위를 지정해 주는 것이다</p>
+</li>
+<li>
+<p>보통 for-in 의 반복문에서 많이 사용된다</p>
+</li>
+<li>
+<p>arange와는 다르게 array형태로 저장되어있지 않고 그냥 가볍게 바로바로 쓴다</p>
+<br>
+</li>
+</ul>
+<p><strong>arange 구문 활용시</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">11</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">    print(i)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre>
+<br>
+<p><strong>range 구문 활용시</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">    print(i)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>, <span class="number">2</span>):</span><br><span class="line">    print(i)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+3
+5
+7
+9
+</code></pre>
+<br>
+<br>
+<h2 id="3-정렬"><a class="markdownIt-Anchor" href="#3-정렬"></a> <strong>3. 정렬</strong></h2>
+<h3 id="3-1-1차원-정렬"><a class="markdownIt-Anchor" href="#3-1-1차원-정렬"></a> <strong>3-1. 1차원 정렬</strong></h3>
+<p>1차원 정렬은 매우 간단함</p>
+<ul>
+<li>오름차순으로 정렬: np.sort(arr)</li>
+<li>내림차순으로 정렬: np.sort(arr)[::-1]</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">9</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1, 10,  5,  8,  2,  4,  3,  6,  8,  7,  9])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr)[::<span class="number">-1</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([10,  9,  8,  8,  7,  6,  5,  4,  3,  2,  1])
+</code></pre>
+<br>
+<p>하지만, 그냥 이상태에서는 정렬된 이 값들이 <strong>유지가 안됨</strong><br>
+값을 sort 된 상태로 유지시키려면:</p>
+<ul>
+<li>변수로 다시 지정해주기</li>
+<li>np.sort(arr) 대신 arr.sort() 쓴다 [arr자체에 sort명령을 씌워줌]</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1, 10,  5,  8,  2,  4,  3,  6,  8,  7,  9])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1, 10,  5,  8,  2,  4,  3,  6,  8,  7,  9])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2 = np.sort(arr)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.sort()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
+</code></pre>
+<br>
+ <br> 
+<h3 id="3-2-n차원-정렬"><a class="markdownIt-Anchor" href="#3-2-n차원-정렬"></a> <strong>3-2. N차원 정렬</strong></h3>
+<p>N차원 정렬에서 axis 중요함. (즉, 정렬 기준이 되는 축)</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>], </span><br><span class="line">                  [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">                  [<span class="number">10</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">11</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2d.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(3, 4)
+</code></pre>
+<br>
+<p><strong>열 정렬 (왼쪽에서 오른쪽으로 정렬) – axis 1을 기준으로 삼</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 5,  6,  7,  8],
+       [ 4,  3,  2,  1],
+       [10,  9, 12, 11]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 5,  6,  7,  8],
+       [ 1,  2,  3,  4],
+       [ 9, 10, 11, 12]])
+</code></pre>
+  <br>
+<p><strong>행 정렬 (위에서 아래로 정렬) – axis 0을 기준으로 삼</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 5,  6,  7,  8],
+       [ 4,  3,  2,  1],
+       [10,  9, 12, 11]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 4,  3,  2,  1],
+       [ 5,  6,  7,  8],
+       [10,  9, 12, 11]])
+</code></pre>
+<br>
+<br>  
+<h3 id="3-3-index를-반환하는-argsort"><a class="markdownIt-Anchor" href="#3-3-index를-반환하는-argsort"></a> <strong>3-3. index를 반환하는 argsort</strong></h3>
+<p>정렬한 결과에는 값을 반환하는 것이 아닌 index를 반환한다</p>
+<p><br> <br></p>
+<p><strong>열 정렬 (왼쪽에서 오른쪽으로 정렬)</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 5,  6,  7,  8],
+       [ 4,  3,  2,  1],
+       [10,  9, 12, 11]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 5,  6,  7,  8],
+       [ 1,  2,  3,  4],
+       [ 9, 10, 11, 12]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.argsort(arr2d, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[0, 1, 2, 3],
+       [3, 2, 1, 0],
+       [1, 0, 3, 2]], dtype=int64)
+</code></pre>
+ <br>
+<br>
+<p><strong>행 정렬 (위에서 아래로 정렬)</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 5,  6,  7,  8],
+       [ 4,  3,  2,  1],
+       [10,  9, 12, 11]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 4,  3,  2,  1],
+       [ 5,  6,  7,  8],
+       [10,  9, 12, 11]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.argsort(arr2d, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[1, 1, 1, 1],
+       [0, 0, 0, 0],
+       [2, 2, 2, 2]], dtype=int64)
+</code></pre>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/">https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy3/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Numpy/" rel="tag">Numpy</a><a class="mdui-ripple article_tags-link" href="/tags/Python/" rel="tag">Python</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2020/05/19/S-Python-Numpy2/">
+        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ed00dae828f43e807ca1',
+    clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+    repo: 'hyemin-Kim.github.io',
+    owner: 'hyemin-Kim',
+    admin: ['hyemin-Kim'],
+    id: '' || location.pathname,
+    distractionFreeMode: false
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2020 - 2020 Hyemin Kim<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_site_pv"></span></span> &nbsp;&nbsp;
+      <span id="busuanzi_container_site_uv" style="display: none;"><i class="iconfont">&#xe601;</i> <span id="busuanzi_value_site_uv"></span></span>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+</body>
+</html>
