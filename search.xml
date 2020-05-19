@@ -2980,49 +2980,49 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
 <pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr    <span class="comment"># np.sort 만 실행했을 때 유지가 아됨</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([ 1, 10,  5,  8,  2,  4,  3,  6,  8,  7,  9])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2 = np.sort(arr)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2 = np.sort(arr)   <span class="comment"># 방법1: arr2로 지정하기</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr.sort()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr.sort()    <span class="comment"># 방법2: arr.sort 사용하기</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  8,  9, 10])
 </code></pre>
 <br>
  <br> 
 <h3 id="3-2-n차원-정렬"><a class="markdownIt-Anchor" href="#3-2-n차원-정렬"></a> <strong>3-2. N차원 정렬</strong></h3>
-<p>N차원 정렬에서 axis 중요함. (즉, 정렬 기준이 되는 축)</p>
+<p>N차원 정렬에서는 axis 중요함. (즉, 정렬 기준이 되는 축)</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>], </span><br><span class="line">                  [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">                  [<span class="number">10</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">11</span>]])</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d.shape</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>(3, 4)
 </code></pre>
 <br>
 <p><strong>열 정렬 (왼쪽에서 오른쪽으로 정렬) – axis 1을 기준으로 삼</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d   <span class="comment"># 정렬 전</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
        [ 4,  3,  2,  1],
        [10,  9, 12, 11]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">1</span>)   <span class="comment"># 정렬 후</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
        [ 1,  2,  3,  4],
        [ 9, 10, 11, 12]])
 </code></pre>
   <br>
 <p><strong>행 정렬 (위에서 아래로 정렬) – axis 0을 기준으로 삼</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d   <span class="comment"># 정렬 전</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
        [ 4,  3,  2,  1],
        [10,  9, 12, 11]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">0</span>)   <span class="comment"># 정렬 후</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 4,  3,  2,  1],
        [ 5,  6,  7,  8],
        [10,  9, 12, 11]])
@@ -3033,19 +3033,19 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
 <p>정렬한 결과에는 값을 반환하는 것이 아닌 index를 반환한다</p>
 <p><br> <br></p>
 <p><strong>열 정렬 (왼쪽에서 오른쪽으로 정렬)</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d   <span class="comment"># 정렬 전</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
        [ 4,  3,  2,  1],
        [10,  9, 12, 11]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">1</span>)  <span class="comment"># sort 정렬 후</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
        [ 1,  2,  3,  4],
        [ 9, 10, 11, 12]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.argsort(arr2d, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.argsort(arr2d, axis = <span class="number">1</span>)   <span class="comment"># argsort 정렬 후</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[0, 1, 2, 3],
        [3, 2, 1, 0],
        [1, 0, 3, 2]], dtype=int64)
@@ -3053,19 +3053,19 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
  <br>
 <br>
 <p><strong>행 정렬 (위에서 아래로 정렬)</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d   <span class="comment"># 정렬 전</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
        [ 4,  3,  2,  1],
        [10,  9, 12, 11]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.sort(arr2d, axis = <span class="number">0</span>)   <span class="comment"># sort 정렬 후</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 4,  3,  2,  1],
        [ 5,  6,  7,  8],
        [10,  9, 12, 11]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.argsort(arr2d, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.argsort(arr2d, axis = <span class="number">0</span>)   <span class="comment"># argsort 정렬 후</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[1, 1, 1, 1],
        [0, 0, 0, 0],
        [2, 2, 2, 2]], dtype=int64)
