@@ -3031,7 +3031,7 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
 <br>  
 <h3 id="3-3-index를-반환하는-argsort"><a class="markdownIt-Anchor" href="#3-3-index를-반환하는-argsort"></a> <strong>3-3. index를 반환하는 argsort</strong></h3>
 <p>정렬한 결과에는 값을 반환하는 것이 아닌 index를 반환한다</p>
-<p><br> <br></p>
+ <br>
 <p><strong>열 정렬 (왼쪽에서 오른쪽으로 정렬)</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d   <span class="comment"># 정렬 전</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[ 5,  6,  7,  8],
