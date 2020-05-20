@@ -256,7 +256,9 @@
       
       <categories>
           
-          <category> 【Study】0.Base </category>
+          <category> 【Study】 </category>
+          
+          <category> 0.Base </category>
           
       </categories>
       
@@ -320,7 +322,9 @@
       
       <categories>
           
-          <category> 【Study】Markdown </category>
+          <category> 【Study】 </category>
+          
+          <category> Markdown </category>
           
       </categories>
       
