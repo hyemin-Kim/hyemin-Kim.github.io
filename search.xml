@@ -312,17 +312,17 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
-            <tag> Typora </tag>
-            
             <tag> Markdown </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Git </tag>
             
             <tag> Github </tag>
             
             <tag> Jupyter notebook </tag>
+            
+            <tag> Typora </tag>
             
         </tags>
       
@@ -349,11 +349,11 @@
       
         <tags>
             
+            <tag> Markdown </tag>
+            
             <tag> Hexo </tag>
             
             <tag> Typora </tag>
-            
-            <tag> Markdown </tag>
             
         </tags>
       
