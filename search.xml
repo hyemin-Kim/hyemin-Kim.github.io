@@ -3106,7 +3106,7 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
       </tags>
   </entry>
   <entry>
-    <title>S-Python-Numpy4</title>
+    <title>Python - Numpy (4)</title>
     <url>/2020/05/20/S-Python-Numpy4/</url>
     <content><![CDATA[<p>행렬 (덧셈, 뺄셈, 곱셈).  Broadcasting.</p>
 <a id="more"></a>
