@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>S-Python-Numpy4 | Hyemin&#39;s journey of growth in Data Analysis</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  
+  <meta name="description" content="행렬 (덧셈, 뺄셈, 곱셈).  Broadcasting.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S-Python-Numpy4">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/index.html">
+<meta property="og:site_name" content="Hyemin&#39;s journey of growth in Data Analysis">
+<meta property="og:description" content="행렬 (덧셈, 뺄셈, 곱셈).  Broadcasting.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-20T07:55:34.000Z">
+<meta property="article:modified_time" content="2020-05-20T08:01:18.283Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Numpy">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",Python,Numpy">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="msapplication-starturl" content="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hyemin&#39;s journey of growth in Data Analysis">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <link rel="canonical" href="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/">
+  
+
+  
+  
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create','hyemin2060','auto');ga('send','pageview');
+</script>
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin's journey of growth in Data Analysis" type="application/atom+xml">
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">Hyemin&#39;s journey of growth in Data Analysis</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
+    
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Hyemin Kim</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>김혜민 / 金慧敏</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:hyemin2060@naver.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'hyemin2060@naver.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">Home</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">Archive</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/05/">May 2020<span class="mdui-ripple sidebar_archives-count">14</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">Category</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90PROJECTS%E3%80%91/">【PROJECTS】<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%910-Base/">【Study】0.Base<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Hexo-Usage/">【Study】Hexo Usage<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Markdown/">【Study】Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python<span class="mdui-ripple sidebar_archives-count">10</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">Tag</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Git/" rel="tag">Git<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Github/" rel="tag">Github<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Jupyter-notebook/" rel="tag">Jupyter notebook<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Markdown/" rel="tag">Markdown<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Numpy/" rel="tag">Numpy<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Python/" rel="tag">Python<span class="mdui-ripple sidebar_archives-count">10</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Python-Base/" rel="tag">Python_Base<span class="mdui-ripple sidebar_archives-count">6</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typora/" rel="tag">Typora<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">About</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">Tag cloud</a>
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">Links</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+          <a href="https://hexo.io/zh-cn/docs/" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Usage</a>
+        
+          <a href="https://hexo.io/plugins/#offline" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Hexo Plugins</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-2.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">S-Python-Numpy4</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-20 / <i class="iconfont">&#xe601;</i> Hyemin Kim &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACY0lEQVR42u3aQW6EMBAEwP3/p5MHRGG7x8Yhq+IUIVhcHPCkZ15fH3288PDw8PDw8PDwHsZ7xcf1XT/P//r4y3s3rA0PDw/vCO/Np/aXa65514DrJa6sDQ8PD+8kL19Wgrm+NznTrg0PDw/vP/Kur8nP4OHh4X02L//o5xg8PDy8/8JL/uHPSXnQ8KCsBQ8PDy/m5U2m838f7e/h4eHhBbx6pKksndttI9kMiqErPDw8vBt4+Ye4JeWFeDuI8GaoCw8PD+84b6W1f31X+8ry5hkeHh7eeV67oHy5+UjBLEqONgY8PDy8G3htGLE+ojrjLZXUeHh4eJt4sxbUrMHfjmG11+Dh4eGd4SU/OgsLknJ8Fka8+R08PDy8m3n5A2ahQ95sS15Q9BQ8PDy8m3l1Yz4eYG2L9V1FPB4eHt4Z3mwpecDaFu7t0/Hw8PDO83ZFtNFQ1KahqyJrwcPDw9vKy9v2+eZRt6xGI19Ffw8PDw9vK6+4bSGkyNtj62EuHh4e3hleHqomZfFsmKAtrzek1Hh4eHjLvJWwoMWvD3vVGwMeHh7eVt76R3zlUz4LQYqhKzw8PLzbeG3YunI+3yTq0AQPDw/vj3htcyvfTmah7YaZMjw8PLxNvFmZ27bNZjFEXvrj4eHhneTNPsdtsyqJYvPtpC6p8fDw8G7grcSps+CgHW8tXjceHh7eQd7eKCEh5SX40tAVHh4e3sN4bfibv6acjYeHh/d83srSVwroQyU1Hh4e3tYwYhY6tE2s2bPw8PDwTvLyCCBvZbXl8izawMPDwzvP+7wDDw8PDw8PDw/vAcc3/AcrJoM8Dh0AAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=S-Python-Numpy4&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/&pic=https://hyemin-kim.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=S-Python-Numpy4&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/&via=Hyemin Kim" target="_blank" class="mdui-ripple">Share to Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/" target="_blank" class="mdui-ripple">Share to Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/&title=S-Python-Numpy4" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hyemin&#39;s journey of growth in Data Analysis&title=S-Python-Numpy4&pics=https://hyemin-kim.github.io/images/favicon.png&url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/" target="_blank" class="mdui-ripple">Share to QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/&text=S-Python-Numpy4" target="_blank" class="mdui-ripple">Share to Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>행렬 (덧셈, 뺄셈, 곱셈).  Broadcasting.</p>
+<a id="more"></a>
+<br>
+<p>#<strong>목록</strong></p>
+<p>[toc]</p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="1-행렬-덧셈"><a class="markdownIt-Anchor" href="#1-행렬-덧셈"></a> <strong>1. 행렬 - 덧셈</strong></h2>
+<p><strong>행렬의 shape이 같아야 덧셈 가능</strong></p>
+<h3 id="1-1-덧셈"><a class="markdownIt-Anchor" href="#1-1-덧셈"></a> <strong>1-1. 덧셈</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[4, 6, 8],
+       [3, 5, 7]])
+</code></pre>
+ <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">              [<span class="number">5</span>, <span class="number">6</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b    <span class="comment"># shape이 다르면 error발생</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-7-37f7d36ad418&gt; in &lt;module&gt;
+----&gt; 1 a + b    # shape이 다르면 error발생
+
+
+ValueError: operands could not be broadcast together with shapes (2,3) (3,2) 
+</code></pre>
+<br>
+<h3 id="1-2-sum-matrix안의-계산"><a class="markdownIt-Anchor" href="#1-2-sum-matrix안의-계산"></a> <strong>1-2. Sum – Matrix안의 계산</strong></h3>
+<p><strong>명령어:</strong> np.sum(‘array_name’, axis = ‘0/1/…’)</p>
+<p><strong>주의:</strong> 계산할 때 <strong>axis의 방향대로 Sum을 구한다.</strong></p>
+<p>예를 들면, 2darray에서,</p>
+<ul>
+<li>
+<p>axis = 0 이면: 수직방향으로 Sum을 구한다</p>
+</li>
+<li>
+<p>axis = 1 이면: 수평방향으로 Sum을 구한다</p>
+<br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sum(a, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([3, 5, 7])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sum(a, axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([6, 9])
+</code></pre>
+<br>
+  <br>
+<h2 id="2-행렬-뺄셈"><a class="markdownIt-Anchor" href="#2-행렬-뺄셈"></a> <strong>2. 행렬 - 뺄셈</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a - b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[-2, -2, -2],
+       [ 1,  1,  1]])
+</code></pre>
+ <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">              [<span class="number">5</span>, <span class="number">6</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a - b    <span class="comment"># shape이 다르면 error발생</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-18-e62ba154daaa&gt; in &lt;module&gt;
+----&gt; 1 a - b    # shape이 다르면 error발생
+
+
+ValueError: operands could not be broadcast together with shapes (2,3) (3,2) 
+</code></pre>
+<br>
+<br>
+<h2 id="3-행렬-곱셈"><a class="markdownIt-Anchor" href="#3-행렬-곱셈"></a> <strong>3. 행렬 - 곱셈</strong></h2>
+<h3 id="3-1-일반-곱셈"><a class="markdownIt-Anchor" href="#3-1-일반-곱셈"></a> <strong>3-1. 일반 곱셈</strong></h3>
+<p>일반곱셈은 덧셈과 뺏셈이랑 동일하게 같은 위치에 있는 애들끼리 곱한다.<br>
+<strong>[shape이 완전 같아야 함]</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a * b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 3,  8, 15],
+       [ 2,  6, 12]])
+</code></pre>
+ <br>  
+<h3 id="3-2-dot-product-내적곱"><a class="markdownIt-Anchor" href="#3-2-dot-product-내적곱"></a> <strong>3-2. dot product / 내적곱</strong></h3>
+<p><strong>[맞닿는 shape이 같아야 함]</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">              [<span class="number">5</span>, <span class="number">6</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.shape, b.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((2, 3), (3, 2))
+</code></pre>
+<br>
+<p><strong>방법 1: np.dot(a, b)</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.dot(a, b)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[22, 28],
+       [31, 40]])
+</code></pre>
+<br>
+<p><strong>방법2: a.dot(b)</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.dot(b)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[22, 28],
+       [31, 40]])
+</code></pre>
+<br>
+<br>  
+<h2 id="4-broadcasting"><a class="markdownIt-Anchor" href="#4-broadcasting"></a> <strong>4. Broadcasting</strong></h2>
+<h3 id="4-1-숫자의-연산"><a class="markdownIt-Anchor" href="#4-1-숫자의-연산"></a> <strong>4-1. 숫자의 연산</strong></h3>
+<p>array a 의 모든 원소에 3을 더하고 싶다면:</p>
+<ul>
+<li>단순히 행렬 덧셈을 사용할 때:</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[4, 5, 6],
+       [5, 6, 7]])
+</code></pre>
+<br>
+<ul>
+<li>Broadcasting 사용할 때:</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[4, 5, 6],
+       [5, 6, 7]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a - <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[-2, -1,  0],
+       [-1,  0,  1]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a * <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 3,  6,  9],
+       [ 6,  9, 12]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a / <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[0.33333333, 0.66666667, 1.        ],
+       [0.66666667, 1.        , 1.33333333]])
+</code></pre>
+<br>
+ <br> 
+<h3 id="4-2-array-배열의-broadcasting"><a class="markdownIt-Anchor" href="#4-2-array-배열의-broadcasting"></a> <strong>4-2. array (배열)의 broadcasting</strong></h3>
+<p>original array의 shape이 유지됨.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([[<span class="number">1</span>],</span><br><span class="line">              [<span class="number">2</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.shape, b.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((2, 3), (2, 1))
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a * b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[1, 2, 3],
+       [4, 6, 8]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a * b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 1,  4,  9],
+       [ 2,  6, 12]])
+</code></pre>
+<p><br><br></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>PermaLink: </strong><br><a href="https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/">https://hyemin-kim.github.io/2020/05/20/S-Python-Numpy4/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E3%80%90Study%E3%80%91Python/">【Study】Python</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Numpy/" rel="tag">Numpy</a><a class="mdui-ripple article_tags-link" href="/tags/Python/" rel="tag">Python</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2020/05/20/S-Python-Numpy3/">
+        Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ed00dae828f43e807ca1',
+    clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+    repo: 'hyemin-Kim.github.io',
+    owner: 'hyemin-Kim',
+    admin: ['hyemin-Kim'],
+    id: '' || location.pathname,
+    distractionFreeMode: false
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2020 - 2020 Hyemin Kim<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_site_pv"></span></span> &nbsp;&nbsp;
+      <span id="busuanzi_container_site_uv" style="display: none;"><i class="iconfont">&#xe601;</i> <span id="busuanzi_value_site_uv"></span></span>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+</body>
+</html>
