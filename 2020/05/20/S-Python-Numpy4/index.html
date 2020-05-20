@@ -20,7 +20,7 @@
 <meta property="og:description" content="행렬 (덧셈, 뺄셈, 곱셈).  Broadcasting.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-20T07:55:34.000Z">
-<meta property="article:modified_time" content="2020-05-20T08:01:18.283Z">
+<meta property="article:modified_time" content="2020-05-20T08:11:19.029Z">
 <meta property="article:author" content="Hyemin Kim">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Numpy">
@@ -179,7 +179,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-2.png" style="max-height: 240px;">
+      <img src="/images/random/material-14.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">S-Python-Numpy4</div>
@@ -232,8 +232,29 @@
       <p>행렬 (덧셈, 뺄셈, 곱셈).  Broadcasting.</p>
 <a id="more"></a>
 <br>
-<p>#<strong>목록</strong></p>
-<p>[toc]</p>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%ED%96%89%EB%A0%AC-%EB%8D%A7%EC%85%88"><strong>1. 행렬 - 덧셈</strong></a>
+<ul>
+<li><a href="#1-1-%EB%8D%A7%EC%85%88"><strong>1-1. 덧셈</strong></a></li>
+<li><a href="#1-2-sum-matrix%EC%95%88%EC%9D%98-%EA%B3%84%EC%82%B0"><strong>1-2. Sum – Matrix안의 계산</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-%ED%96%89%EB%A0%AC-%EB%BA%84%EC%85%88"><strong>2. 행렬 - 뺄셈</strong></a></li>
+<li><a href="#3-%ED%96%89%EB%A0%AC-%EA%B3%B1%EC%85%88"><strong>3. 행렬 - 곱셈</strong></a>
+<ul>
+<li><a href="#3-1-%EC%9D%BC%EB%B0%98-%EA%B3%B1%EC%85%88"><strong>3-1. 일반 곱셈</strong></a></li>
+<li><a href="#3-2-dot-product-%EB%82%B4%EC%A0%81%EA%B3%B1"><strong>3-2. dot product / 내적곱</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-broadcasting"><strong>4. Broadcasting</strong></a>
+<ul>
+<li><a href="#4-1-%EC%88%AB%EC%9E%90%EC%9D%98-%EC%97%B0%EC%82%B0"><strong>4-1. 숫자의 연산</strong></a></li>
+<li><a href="#4-2-array-%EB%B0%B0%EC%97%B4%EC%9D%98-broadcasting"><strong>4-2. array (배열)의 broadcasting</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="1-행렬-덧셈"><a class="markdownIt-Anchor" href="#1-행렬-덧셈"></a> <strong>1. 행렬 - 덧셈</strong></h2>
