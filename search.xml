@@ -112,366 +112,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python - Numpy (1)</title>
-    <url>/2020/05/19/S-Python-Numpy1/</url>
-    <content><![CDATA[<p>Numpy개요. Numpy import하기. nd array 생성. array에서의 데이터 타입</p>
-<a id="more"></a>
-<h2 id="1-numpy-개요"><a class="markdownIt-Anchor" href="#1-numpy-개요"></a> <strong>1. Numpy 개요</strong></h2>
-<h3 id="1-1-numpy이란"><a class="markdownIt-Anchor" href="#1-1-numpy이란"></a> <strong>1-1. Numpy이란?</strong></h3>
-<p>Numpy: 수학, 과학 계산용 패키지</p>
-<p>​    <br></p>
-<h3 id="1-2-별칭-np"><a class="markdownIt-Anchor" href="#1-2-별칭-np"></a> <strong>1-2. 별칭 - np</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
-  <br>
-<h3 id="1-3-array-배열"><a class="markdownIt-Anchor" href="#1-3-array-배열"></a> <strong>1-3. array (배열)</strong></h3>
-<p><strong>배열</strong>: 여러 값들의 그룹</p>
-<br>  
-<p><strong>&lt; 1차원 배열 &gt;</strong></p>
-<br>
-<center><img src="/images/S-Python-Numpy1/1_array.png" alt="1_array" style="zoom:80%;"></center>
-<div style="text-align: center"> numpy.array([1, 2, 3, 4]) </div>
- <br> 
-<p><strong>&lt; 2차원 배열 &gt;</strong></p>
- <br>
-<center><img src="/images/S-Python-Numpy1/2_array.png" alt="2_array" style="zoom:80%;"></center>
-<div style="text-align: center"> 
-numpy.array([[1, 2, 3, 4],  
-             [5, 6, 7, 8],  
-             [9, 10, 11, 12],  
-             [13, 14, 15, 16]]) 
-</div>
-<br>
-<p><strong>&lt; n차원 배열 &gt;   (nd array: <em>n dimention</em> array)</strong></p>
-<center><img src="/images/S-Python-Numpy1/n_array.png" alt="n_array" style="zoom:80%;" align="center/"></center>
-  <br>
-  <br>
-<h3 id="1-4-shape차원-axis축"><a class="markdownIt-Anchor" href="#1-4-shape차원-axis축"></a> <strong>1-4. shape(차원) &amp; axis(축)</strong></h3>
-<ul>
-<li>
-<p><strong>shape은 <font color="red"> 차원의 수 </font> 를 확인</strong></p>
-<p>(3, ) =&gt; 3 X 1의 배열<br>
-(4,3) =&gt; 4 X 3의 배열<br>
-(2,5,3) =&gt; 2 X 5 X 3의 배열</p>
-</li>
-<li>
-<p><strong>axis는 기준이 되는 <font color="red"> 축 </font></strong></p>
-<p>axis는 앞에서 부터 0, 1, 2…<br>
-nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
-<br>
-<br>
-</li>
-</ul>
-<h2 id="2-numpy-import하기"><a class="markdownIt-Anchor" href="#2-numpy-import하기"></a> <strong>2. Numpy import하기</strong></h2>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">numpy</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>&lt;module 'numpy' from 'D:\\Anaconda\\lib\\site-packages\\numpy\\__init__.py'&gt;
-</code></pre>
-<br>
-<h3 id="2-1-별칭-alias-지정하기-항상-해주세요"><a class="markdownIt-Anchor" href="#2-1-별칭-alias-지정하기-항상-해주세요"></a> <strong>2-1. 별칭 (alias) 지정하기 (항상 해주세요!)</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>&lt;module 'numpy' from 'D:\\Anaconda\\lib\\site-packages\\numpy\\__init__.py'&gt;
-</code></pre>
-<br>
-  <br>
-<h2 id="3-nd-array-생성하기-nparray"><a class="markdownIt-Anchor" href="#3-nd-array-생성하기-nparray"></a> <strong>3. nd array 생성하기 – "np.array([…])"</strong></h2>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], dtype=int)</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr <span class="comment"># 주의: list와 다름</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 4])
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]  <span class="comment"># list</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>[1, 2, 3, 4]
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(arr)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>numpy.ndarray
-</code></pre>
-<br>
-<br>  
-<h3 id="3-1-list로-부터-생성하기-nparraylist_name"><a class="markdownIt-Anchor" href="#3-1-list로-부터-생성하기-nparraylist_name"></a> <strong>3-1. list로 부터 생성하기 – "np.array(<em>list_name</em>)"</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist2 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">           [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr1 = np.array(mylist1)</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr1</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 4])
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2 = np.array(mylist2)</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([[1, 2, 3, 4],
-       [5, 6, 7, 8]])
-</code></pre>
-<br>
- <br> 
-<h3 id="3-2-shape확인하기-array_name-shape"><a class="markdownIt-Anchor" href="#3-2-shape확인하기-array_name-shape"></a> <strong>3-2. shape확인하기 – "<em>array_name</em> .shape"</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr1.shape</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>(4,)
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2.shape</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>(2, 4)
-</code></pre>
-<br>
- <br>   
-<h2 id="4-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-array에서의-data-type"></a> <strong>4. array에서의 data type</strong></h2>
-<p><strong>array에서는 list와 다르게 1개의 <font color="red">단일 데이터 타입 </font> 만 허용 된다</strong></p>
-  <br>
-<h3 id="4-1-list에서의-data-type"><a class="markdownIt-Anchor" href="#4-1-list에서의-data-type"></a> <strong>4-1. list에서의 data type</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist = [<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>[1, 3.14, '사과', '1234']
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>1
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist[<span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>'사과'
-</code></pre>
-<br>
- <br> 
-<h3 id="4-2-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-2-array에서의-data-type"></a> <strong>4-2. array에서의 data type</strong></h3>
-<h4 id="case-1-int와-float타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-1-int와-float타입이-혼재된-경우"></a> <strong>case 1. int와 float타입이 혼재된 경우</strong></h4>
-<p>int와 float타입이 혼재된 경우 int(정수)가 float(실수)로 바꿔진다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr  <span class="comment"># 정수가 실수로 바꿔진다</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1.  , 2.  , 3.  , 3.14])
-</code></pre>
-<br>
-<p>​</p>
-<h4 id="case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"><a class="markdownIt-Anchor" href="#case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"></a> <strong>case 2. int와 float 타입이 혼재되었으나, dtype을 지정한 경우</strong></h4>
-<p>int와 float 타입이 혼재되었으나, dtype가 int로 지정된 경우, float의 앞에 정수 부분만 보류된다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 3])
-</code></pre>
-<br>
-<h4 id="case-3-int-float-와-str-타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-3-int-float-와-str-타입이-혼재된-경우"></a> <strong>case 3. int / float 와 str 타입이 혼재된 경우</strong></h4>
-<p>int / float 와 float타입이 혼재된 경우 int(정수)가 str(문자열)로 바꿔진다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array(['1', '3.14', '사과', '1234'], dtype='&lt;U32')
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] + arr[<span class="number">1</span>]  <span class="comment">#str로 되어버려서 숫자의 사치연산이 안됨</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>'13.14'
-</code></pre>
-<br>
-<h4 id="case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"><a class="markdownIt-Anchor" href="#case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"></a> <strong>case 4. int와 str 타입이 혼재되어 있고 dtype이 int로 지정한 경우</strong></h4>
-<p><strong>(1) 문자내용인 str이 존재한 경우 error 발생</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>, <span class="string">'5.8'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>---------------------------------------------------------------------------
-
-ValueError                                Traceback (most recent call last)
-
-&lt;ipython-input-50-88e75a912236&gt; in &lt;module&gt;
-----&gt; 1 arr = np.array([1, 3.14, '사과', '1234', '5.8'], dtype = int)
-
-
-ValueError: invalid literal for int() with base 10: '사과'
-</code></pre>
-<br>
-<p><strong>(2) 실수(float)내용인 str이 존재한 경우도 error발생</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'1234'</span>, <span class="string">'5.8'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>---------------------------------------------------------------------------
-
-ValueError                                Traceback (most recent call last)
-
-&lt;ipython-input-52-98017763e514&gt; in &lt;module&gt;
-----&gt; 1 arr = np.array([1, 3.14, '1234', '5.8'], dtype = int)
-
-
-ValueError: invalid literal for int() with base 10: '5.8'
-</code></pre>
-<br>
-<p><strong>(3) 정수(int)내용인 str만 존재한 경우 해당 str이 자동으로 int로 바꿔짐</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'1234'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([   1,    3, 1234])
-</code></pre>
-<p><br><br></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>【Study】</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Numpy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>利用Git Pages+Hexo搭建博客过程中的参考资料</title>
-    <url>/2020/05/08/Reference/</url>
-    <content><![CDATA[<font face="Microsoft YaHei">
-<hr>
-<h3 id="博客搭建"><a class="markdownIt-Anchor" href="#博客搭建"></a> 博客搭建</h3>
-<ul>
-<li><a href="https://www.bilibili.com/video/BV1zp411o7y6" target="_blank" rel="noopener">bilibili — 超简单易懂的Git入门教程</a></li>
-<li><a href="https://www.bilibili.com/video/BV1Ep411R7cJ" target="_blank" rel="noopener">bilibili — github+hexo搭建个人博客</a></li>
-<li><a href="https://www.bilibili.com/video/BV1zp411R7gz" target="_blank" rel="noopener">bilibili — github博客搭建（二）：Markdown语法及hexo主题修改</a></li>
-<li><a href="https://blog.csdn.net/muzilanlan/article/details/81542917" target="_blank" rel="noopener">Git Pages + Jekyll/Hexo搭建自己的博客(最全总结你想知道的都在这里了)</a></li>
-</ul>
-<br>
-<h3 id="网页配置-主题配置"><a class="markdownIt-Anchor" href="#网页配置-主题配置"></a> 网页配置 &amp; 主题配置</h3>
-<ul>
-<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo Usage Documents</a></li>
-<li><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo Themes</a>
-<ul>
-<li><a href="https://github.com/niemingzhao/niemingzhao.github.io/tree/theme" target="_blank" rel="noopener">default</a> — <a href="http://www.niemingzhao.top/" target="_blank" rel="noopener">[Demo]</a></li>
-<li><a href="https://github.com/tomotoes/hexo-theme-tomotoes" target="_blank" rel="noopener">tomotoes</a> — <a href="https://tomotoes.com/" target="_blank" rel="noopener">[Demo]</a> / <a href="https://github.com/tomotoes/hexo-theme-tomotoes/wiki" target="_blank" rel="noopener">[Documents]</a></li>
-<li><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a> — <a href="https://jerryc.me/" target="_blank" rel="noopener">[Demo]</a> / <a href="https://docs.jerryc.me/#/" target="_blank" rel="noopener">[Documents]</a>  (应用中)</li>
-</ul>
-</li>
-<li><a href="https://blog.csdn.net/muzilanlan/article/details/81542917" target="_blank" rel="noopener">Git Pages + Jekyll/Hexo搭建自己的博客(最全总结你想知道的都在这里了)</a></li>
-<li><a href="https://blog.csdn.net/qq_41462923/article/details/100149605" target="_blank" rel="noopener">Hexo主题升级方法（实用！）</a></li>
-</ul>
-<br>
-<h3 id="markdown渲染"><a class="markdownIt-Anchor" href="#markdown渲染"></a> Markdown渲染</h3>
-<ul>
-<li><a href="https://www.bilibili.com/video/BV1zp411R7gz" target="_blank" rel="noopener">bilibili — github博客搭建（二）：Markdown语法及hexo主题修改</a> [字体修改方法(17:30)]</li>
-<li><a href="https://www.dazhuanlan.com/2019/10/06/5d99b91c5f0d5/#%E9%80%89%E9%A1%B9%E5%8D%A1-2" target="_blank" rel="noopener">Markdown在Hexo中的使用实例</a> [分割线，空行插入方法]</li>
-<li>Markdown渲染插件
-<ul>
-<li><a href="https://www.jianshu.com/p/f43dab5dbb48" target="_blank" rel="noopener">hexo-renderer-markdown-it 插件 快速配置</a></li>
-<li><a href="https://github.com/hexojs/hexo-renderer-markdown-it" target="_blank" rel="noopener">hexo-renderer-markdown-it</a> [<a href="https://github.com/hexojs/hexo-renderer-markdown-it/wiki/Getting-Started" target="_blank" rel="noopener">Documents</a>]</li>
-<li><a href="https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus" target="_blank" rel="noopener">hexo-renderer-markdown-it-plus</a> （应用中）</li>
-<li><a href="https://github.com/niemingzhao/hexo-renderer-markdown" target="_blank" rel="noopener">hexo-renderer-markdown</a></li>
-</ul>
-</li>
-<li>插入本地图片
-<ul>
-<li><a href="https://blog.csdn.net/dailingnan0827/article/details/86412414" target="_blank" rel="noopener">markdown插入本地图片小技巧</a></li>
-<li><a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a>（应用中）</li>
-</ul>
-</li>
-</ul>
-<br>
-<h3 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h3>
-<ul>
-<li>记录网站访问量:
-<ul>
-<li><a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="noopener">不蒜子</a></li>
-<li><a href="http://blog.sciencenet.cn/blog-3247241-1139774.html" target="_blank" rel="noopener">hexo博客解决不蒜子统计无法显示问题</a></li>
-</ul>
-</li>
-<li>设置博客评论：
-<ul>
-<li><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">Gitalk申请页面</a></li>
-<li><a href="https://www.jianshu.com/p/656e6101bf0f" target="_blank" rel="noopener">在个人博客里添加评论系统–Gitalk</a></li>
-<li><a href="https://www.jianshu.com/p/b4ca8e7c7980" target="_blank" rel="noopener">hexo 使用 gitalk 评论组件的几个注意点</a></li>
-</ul>
-</li>
-<li>多语言版本:
-<ul>
-<li>
-<p><a href="https://blog.kuretru.com/posts/812a334f/" target="_blank" rel="noopener">Hexo 巧用 abbrlink 插件实现文章多语言版本</a></p>
-</li>
-<li>
-<p><a href="https://www.v2ex.com/amp/t/280102" target="_blank" rel="noopener">(既然没人帮我，那就)自己弄了个 Hexo 多语言 index 生成插件</a></p>
-</li>
-</ul>
-</li>
-<li>更改tag大小写后出现404页面
-<ul>
-<li><a href="http://1mhz.me/2015/hexo-deploy-case-sensitive/" target="_blank" rel="noopener">Hexo 部署到 Github Pages 文件夹大小写问题</a></li>
-</ul>
-</li>
-</ul>
-<br>
-<h3 id="git-github"><a class="markdownIt-Anchor" href="#git-github"></a> Git &amp; Github</h3>
-<ul>
-<li><a href="https://www.bilibili.com/video/BV1Xx411m7kn" target="_blank" rel="noopener">bilibili — 【教程】学会Git玩转Github【全】</a></li>
-<li><a href="https://www.bilibili.com/video/BV1zp411o7y6" target="_blank" rel="noopener">bilibili — 超简单易懂的Git入门教程</a></li>
-<li><a href="https://www.cnblogs.com/flora5/p/7152556.html" target="_blank" rel="noopener">Git与Github的连接与使用</a></li>
-<li><a href="https://www.jianshu.com/p/296d22275cdd" target="_blank" rel="noopener">Git和GitHub使用教程</a></li>
-</ul>
-<br>
-<h3 id="jupyter-notebook"><a class="markdownIt-Anchor" href="#jupyter-notebook"></a> Jupyter Notebook</h3>
-<ul>
-<li><a href="https://www.bilibili.com/video/BV1Q4411H7fJ" target="_blank" rel="noopener">bilibili — python数据分析神器Jupyter notebook快速入门</a></li>
-<li><a href="https://www.bilibili.com/video/BV1bx411e77u" target="_blank" rel="noopener">bilibili —【冷门教学】记笔记神器-jupyter notebook 第二弹</a></li>
-<li><a href="https://blog.csdn.net/qq_27825451/article/details/84427269" target="_blank" rel="noopener">史上最详细、最完全的jupyter notebook使用教程，Python使用者必备！——ipython系列之三</a></li>
-<li><a href="https://blog.csdn.net/guleileo/article/details/80490921?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6" target="_blank" rel="noopener">机器学习新手必看：Jupyter Notebook入门指南</a></li>
-<li><a href="https://cloud.tencent.com/developer/article/1471240" target="_blank" rel="noopener">Jupyter notebook简介及嵌入Hexo博客中</a></li>
-<li><a href="https://www.jianshu.com/p/6c1196f12302" target="_blank" rel="noopener">用 Hexo 搭建个人博客-02：进阶试验（包括添加Jupyter Notebook支持的方法）</a></li>
-<li><a href="https://www.pianshen.com/article/81761066910/" target="_blank" rel="noopener">如何在你的Jupyter Notebook中使用R语言？</a></li>
-</ul>
-<br>
-<h3 id="markdown-typora"><a class="markdownIt-Anchor" href="#markdown-typora"></a> Markdown &amp; Typora</h3>
-<ul>
-<li><a href="https://www.bilibili.com/video/BV1Yb411c7Hi" target="_blank" rel="noopener">bilibili — 二十分钟精通排版神器Markdown</a></li>
-<li><a href="https://typora.io/" target="_blank" rel="noopener">Typora官网</a> [<a href="http://theme.typora.io/doc/" target="_blank" rel="noopener">Documents</a>]</li>
-<li><a href="https://www.cnblogs.com/zhiyin1209/p/12264711.html" target="_blank" rel="noopener">Typora中下载并安装主题</a></li>
-<li><a href="https://www.bilibili.com/video/BV1yW411s7og" target="_blank" rel="noopener">bilibili — Typora 编辑器 —— 书写即为美学</a></li>
-<li><a href="https://www.bilibili.com/video/BV1R4411575c" target="_blank" rel="noopener">bilibili — 【软件教程】如何用Typora记笔记？ | 附带Markdown基础教程</a></li>
-<li><a href="http://www.95408.com/blog/3283.html" target="_blank" rel="noopener">Typora设置（中文字体、颜色、行距、内边距等）</a></li>
-<li>Markdown中插入本地图片
-<ul>
-<li><a href="https://blog.csdn.net/dailingnan0827/article/details/86412414" target="_blank" rel="noopener">markdown插入本地图片小技巧</a></li>
-<li><a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a></li>
-</ul>
-</li>
-</ul>
-<br>
-<br>
-<hr>
-<p>在此感谢所有提供了宝贵学习资料的原po主们~</p>
-<hr>
-</font><script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>【Study】</category>
-        <category>Usage</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Typora</tag>
-        <tag>Markdown</tag>
-        <tag>Git</tag>
-        <tag>Github</tag>
-        <tag>Jupyter notebook</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 常用语法（持续更新）</title>
     <url>/2020/05/04/Markdown-Syntax/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
@@ -725,205 +365,335 @@ ValueError: invalid literal for int() with base 10: '5.8'
       </tags>
   </entry>
   <entry>
-    <title>Python - Numpy (2)</title>
-    <url>/2020/05/19/S-Python-Numpy2/</url>
-    <content><![CDATA[<p>슬라이싱 (Slicing).  Fancy 인덱싱.  Boolean 인덱싱.</p>
-<a id="more"></a>
-<h2 id="1-슬라이싱-slicing"><a class="markdownIt-Anchor" href="#1-슬라이싱-slicing"></a> <strong>1. 슬라이싱 (Slicing)</strong></h2>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
-<br>
-<p>베열의 부분 선택 (과일을 슬라이스해서 부분만 먹듯…)</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr.shape</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>(10,)
-</code></pre>
-<br>
-<h3 id="1-1-index-지정하여-색인"><a class="markdownIt-Anchor" href="#1-1-index-지정하여-색인"></a> <strong>1-1. index 지정하여 색인</strong></h3>
-<h4 id="1차원-array"><a class="markdownIt-Anchor" href="#1차원-array"></a> <strong>1차원 array</strong></h4>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>]  <span class="comment"># index: 앞에서 부터 0, 1, 2, ...</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>5
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">10</span>]  <span class="comment"># index가 넘으면 error남</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>---------------------------------------------------------------------------
-
-IndexError                                Traceback (most recent call last)
-
-&lt;ipython-input-7-ff656e92d79c&gt; in &lt;module&gt;
-----&gt; 1 arr[10]
-
-
-IndexError: index 10 is out of bounds for axis 0 with size 10
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">-1</span>]   <span class="comment"># 뒤에서 부터 1번째.  index: 뒤에서 부터 -1, -2, -3,...</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>9
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">-10</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">-11</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>---------------------------------------------------------------------------
-
-IndexError                                Traceback (most recent call last)
-
-&lt;ipython-input-10-91f133f07612&gt; in &lt;module&gt;
-----&gt; 1 arr[-11]
-
-
-IndexError: index -11 is out of bounds for axis 0 with size 10
-</code></pre>
-<br>
-<h4 id="2차원-array"><a class="markdownIt-Anchor" href="#2차원-array"></a> <strong>2차원 array</strong></h4>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d.shape</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>(3, 4)
-</code></pre>
-<br>
-<p><strong>arr2d[행, 열]</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[<span class="number">0</span>, <span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>3
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[<span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>10
-</code></pre>
-<br>
- <br> 
-<h3 id="1-2-범위-색인"><a class="markdownIt-Anchor" href="#1-2-범위-색인"></a> <strong>1-2. 범위 색인</strong></h3>
-<h4 id="1차원-array-2"><a class="markdownIt-Anchor" href="#1차원-array-2"></a> <strong>1차원 array</strong></h4>
+    <title>利用Git Pages+Hexo搭建博客过程中的参考资料</title>
+    <url>/2020/05/08/Reference/</url>
+    <content><![CDATA[<font face="Microsoft YaHei">
+<hr>
+<h3 id="博客搭建"><a class="markdownIt-Anchor" href="#博客搭建"></a> 博客搭建</h3>
 <ul>
-<li><strong>arr[a, b]</strong> –  arr의 “index <strong><font color="red">a</font></strong>” 부터 "index <strong><font color="red">b-1</font></strong>"까지  <font color="red">(a 포함, b 미포함)</font></li>
+<li><a href="https://www.bilibili.com/video/BV1zp411o7y6" target="_blank" rel="noopener">bilibili — 超简单易懂的Git入门教程</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Ep411R7cJ" target="_blank" rel="noopener">bilibili — github+hexo搭建个人博客</a></li>
+<li><a href="https://www.bilibili.com/video/BV1zp411R7gz" target="_blank" rel="noopener">bilibili — github博客搭建（二）：Markdown语法及hexo主题修改</a></li>
+<li><a href="https://blog.csdn.net/muzilanlan/article/details/81542917" target="_blank" rel="noopener">Git Pages + Jekyll/Hexo搭建自己的博客(最全总结你想知道的都在这里了)</a></li>
 </ul>
-<p><strong>index:</strong> 1 이상</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">1</span>:]   <span class="comment"># index 1 포함</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 4, 5, 6, 7, 8, 9])
-</code></pre>
 <br>
-<p><strong>index:</strong> 5 미만</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[:<span class="number">5</span>]  <span class="comment"># index 5 미포함</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([0, 1, 2, 3, 4])
-</code></pre>
+<h3 id="网页配置-主题配置"><a class="markdownIt-Anchor" href="#网页配置-主题配置"></a> 网页配置 &amp; 主题配置</h3>
+<ul>
+<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo Usage Documents</a></li>
+<li><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo Themes</a>
+<ul>
+<li><a href="https://github.com/niemingzhao/niemingzhao.github.io/tree/theme" target="_blank" rel="noopener">default</a> — <a href="http://www.niemingzhao.top/" target="_blank" rel="noopener">[Demo]</a></li>
+<li><a href="https://github.com/tomotoes/hexo-theme-tomotoes" target="_blank" rel="noopener">tomotoes</a> — <a href="https://tomotoes.com/" target="_blank" rel="noopener">[Demo]</a> / <a href="https://github.com/tomotoes/hexo-theme-tomotoes/wiki" target="_blank" rel="noopener">[Documents]</a></li>
+<li><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a> — <a href="https://jerryc.me/" target="_blank" rel="noopener">[Demo]</a> / <a href="https://docs.jerryc.me/#/" target="_blank" rel="noopener">[Documents]</a>  (应用中)</li>
+</ul>
+</li>
+<li><a href="https://blog.csdn.net/muzilanlan/article/details/81542917" target="_blank" rel="noopener">Git Pages + Jekyll/Hexo搭建自己的博客(最全总结你想知道的都在这里了)</a></li>
+<li><a href="https://blog.csdn.net/qq_41462923/article/details/100149605" target="_blank" rel="noopener">Hexo主题升级方法（实用！）</a></li>
+</ul>
 <br>
-<p><strong>index:</strong> 1이상 5미만</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">1</span>:<span class="number">5</span>]  <span class="comment"># index 1 포함 &amp; index 5 미포함</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 4])
-</code></pre>
+<h3 id="markdown渲染"><a class="markdownIt-Anchor" href="#markdown渲染"></a> Markdown渲染</h3>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1zp411R7gz" target="_blank" rel="noopener">bilibili — github博客搭建（二）：Markdown语法及hexo主题修改</a> [字体修改方法(17:30)]</li>
+<li><a href="https://www.dazhuanlan.com/2019/10/06/5d99b91c5f0d5/#%E9%80%89%E9%A1%B9%E5%8D%A1-2" target="_blank" rel="noopener">Markdown在Hexo中的使用实例</a> [分割线，空行插入方法]</li>
+<li>Markdown渲染插件
+<ul>
+<li><a href="https://www.jianshu.com/p/f43dab5dbb48" target="_blank" rel="noopener">hexo-renderer-markdown-it 插件 快速配置</a></li>
+<li><a href="https://github.com/hexojs/hexo-renderer-markdown-it" target="_blank" rel="noopener">hexo-renderer-markdown-it</a> [<a href="https://github.com/hexojs/hexo-renderer-markdown-it/wiki/Getting-Started" target="_blank" rel="noopener">Documents</a>]</li>
+<li><a href="https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus" target="_blank" rel="noopener">hexo-renderer-markdown-it-plus</a> （应用中）</li>
+<li><a href="https://github.com/niemingzhao/hexo-renderer-markdown" target="_blank" rel="noopener">hexo-renderer-markdown</a></li>
+</ul>
+</li>
+<li>插入本地图片
+<ul>
+<li><a href="https://blog.csdn.net/dailingnan0827/article/details/86412414" target="_blank" rel="noopener">markdown插入本地图片小技巧</a></li>
+<li><a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a>（应用中）</li>
+</ul>
+</li>
+</ul>
 <br>
-<p><strong>index:</strong> -1까지</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[:<span class="number">-1</span>]  <span class="comment"># index -1 (index 9) 미포함</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8])
-</code></pre>
+<h3 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h3>
+<ul>
+<li>记录网站访问量:
+<ul>
+<li><a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="noopener">不蒜子</a></li>
+<li><a href="http://blog.sciencenet.cn/blog-3247241-1139774.html" target="_blank" rel="noopener">hexo博客解决不蒜子统计无法显示问题</a></li>
+</ul>
+</li>
+<li>设置博客评论：
+<ul>
+<li><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">Gitalk申请页面</a></li>
+<li><a href="https://www.jianshu.com/p/656e6101bf0f" target="_blank" rel="noopener">在个人博客里添加评论系统–Gitalk</a></li>
+<li><a href="https://www.jianshu.com/p/b4ca8e7c7980" target="_blank" rel="noopener">hexo 使用 gitalk 评论组件的几个注意点</a></li>
+</ul>
+</li>
+<li>多语言版本:
+<ul>
+<li>
+<p><a href="https://blog.kuretru.com/posts/812a334f/" target="_blank" rel="noopener">Hexo 巧用 abbrlink 插件实现文章多语言版本</a></p>
+</li>
+<li>
+<p><a href="https://www.v2ex.com/amp/t/280102" target="_blank" rel="noopener">(既然没人帮我，那就)自己弄了个 Hexo 多语言 index 生成插件</a></p>
+</li>
+</ul>
+</li>
+<li>更改tag大小写后出现404页面
+<ul>
+<li><a href="http://1mhz.me/2015/hexo-deploy-case-sensitive/" target="_blank" rel="noopener">Hexo 部署到 Github Pages 文件夹大小写问题</a></li>
+</ul>
+</li>
+</ul>
 <br>
+<h3 id="git-github"><a class="markdownIt-Anchor" href="#git-github"></a> Git &amp; Github</h3>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1Xx411m7kn" target="_blank" rel="noopener">bilibili — 【教程】学会Git玩转Github【全】</a></li>
+<li><a href="https://www.bilibili.com/video/BV1zp411o7y6" target="_blank" rel="noopener">bilibili — 超简单易懂的Git入门教程</a></li>
+<li><a href="https://www.cnblogs.com/flora5/p/7152556.html" target="_blank" rel="noopener">Git与Github的连接与使用</a></li>
+<li><a href="https://www.jianshu.com/p/296d22275cdd" target="_blank" rel="noopener">Git和GitHub使用教程</a></li>
+</ul>
+<br>
+<h3 id="jupyter-notebook"><a class="markdownIt-Anchor" href="#jupyter-notebook"></a> Jupyter Notebook</h3>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1Q4411H7fJ" target="_blank" rel="noopener">bilibili — python数据分析神器Jupyter notebook快速入门</a></li>
+<li><a href="https://www.bilibili.com/video/BV1bx411e77u" target="_blank" rel="noopener">bilibili —【冷门教学】记笔记神器-jupyter notebook 第二弹</a></li>
+<li><a href="https://blog.csdn.net/qq_27825451/article/details/84427269" target="_blank" rel="noopener">史上最详细、最完全的jupyter notebook使用教程，Python使用者必备！——ipython系列之三</a></li>
+<li><a href="https://blog.csdn.net/guleileo/article/details/80490921?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6" target="_blank" rel="noopener">机器学习新手必看：Jupyter Notebook入门指南</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1471240" target="_blank" rel="noopener">Jupyter notebook简介及嵌入Hexo博客中</a></li>
+<li><a href="https://www.jianshu.com/p/6c1196f12302" target="_blank" rel="noopener">用 Hexo 搭建个人博客-02：进阶试验（包括添加Jupyter Notebook支持的方法）</a></li>
+<li><a href="https://www.pianshen.com/article/81761066910/" target="_blank" rel="noopener">如何在你的Jupyter Notebook中使用R语言？</a></li>
+</ul>
+<br>
+<h3 id="markdown-typora"><a class="markdownIt-Anchor" href="#markdown-typora"></a> Markdown &amp; Typora</h3>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1Yb411c7Hi" target="_blank" rel="noopener">bilibili — 二十分钟精通排版神器Markdown</a></li>
+<li><a href="https://typora.io/" target="_blank" rel="noopener">Typora官网</a> [<a href="http://theme.typora.io/doc/" target="_blank" rel="noopener">Documents</a>]</li>
+<li><a href="https://www.cnblogs.com/zhiyin1209/p/12264711.html" target="_blank" rel="noopener">Typora中下载并安装主题</a></li>
+<li><a href="https://www.bilibili.com/video/BV1yW411s7og" target="_blank" rel="noopener">bilibili — Typora 编辑器 —— 书写即为美学</a></li>
+<li><a href="https://www.bilibili.com/video/BV1R4411575c" target="_blank" rel="noopener">bilibili — 【软件教程】如何用Typora记笔记？ | 附带Markdown基础教程</a></li>
+<li><a href="http://www.95408.com/blog/3283.html" target="_blank" rel="noopener">Typora设置（中文字体、颜色、行距、内边距等）</a></li>
+<li>Markdown中插入本地图片
+<ul>
+<li><a href="https://blog.csdn.net/dailingnan0827/article/details/86412414" target="_blank" rel="noopener">markdown插入本地图片小技巧</a></li>
+<li><a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<hr>
+<p>在此感谢所有提供了宝贵学习资料的原po主们~</p>
+<hr>
+</font><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【Study】</category>
+        <category>Usage</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Typora</tag>
+        <tag>Markdown</tag>
+        <tag>Git</tag>
+        <tag>Github</tag>
+        <tag>Jupyter notebook</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python - Numpy (1)</title>
+    <url>/2020/05/19/S-Python-Numpy1/</url>
+    <content><![CDATA[<p>Numpy개요. Numpy import하기. nd array 생성. array에서의 데이터 타입</p>
+<a id="more"></a>
+<h2 id="1-numpy-개요"><a class="markdownIt-Anchor" href="#1-numpy-개요"></a> <strong>1. Numpy 개요</strong></h2>
+<h3 id="1-1-numpy이란"><a class="markdownIt-Anchor" href="#1-1-numpy이란"></a> <strong>1-1. Numpy이란?</strong></h3>
+<p>Numpy: 수학, 과학 계산용 패키지</p>
+<p>​    <br></p>
+<h3 id="1-2-별칭-np"><a class="markdownIt-Anchor" href="#1-2-별칭-np"></a> <strong>1-2. 별칭 - np</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
   <br>
-<h4 id="2차원-array-2"><a class="markdownIt-Anchor" href="#2차원-array-2"></a> <strong>2차원 array</strong></h4>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
-  <br>
-<p><strong>row(행)을 모두 가져오려는 경우</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[<span class="number">0</span>,:]  <span class="comment"># 0번 행의 모든 열 가져오기</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 4])
-</code></pre>
- <br>
-<p><strong>colomn(열)을 모두 가져오려는 경우</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:,<span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([ 3,  7, 11])
-</code></pre>
+<h3 id="1-3-array-배열"><a class="markdownIt-Anchor" href="#1-3-array-배열"></a> <strong>1-3. array (배열)</strong></h3>
+<p><strong>배열</strong>: 여러 값들의 그룹</p>
+<br>  
+<p><strong>&lt; 1차원 배열 &gt;</strong></p>
+<br>
+<center><img src="/images/S-Python-Numpy1/1_array.png" alt="1_array" style="zoom:80%;"></center>
+<div style="text-align: center"> numpy.array([1, 2, 3, 4]) </div>
  <br> 
-<p><strong>부분적으로 가져오려는 경우</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:<span class="number">2</span>, :]  <span class="comment"># 0,1번 행의 모든 열 가져오기</span></span><br></pre></td></tr></tbody></table></figure>
+<p><strong>&lt; 2차원 배열 &gt;</strong></p>
+ <br>
+<center><img src="/images/S-Python-Numpy1/2_array.png" alt="2_array" style="zoom:80%;"></center>
+<div style="text-align: center"> 
+numpy.array([[1, 2, 3, 4],  
+             [5, 6, 7, 8],  
+             [9, 10, 11, 12],  
+             [13, 14, 15, 16]]) 
+</div>
+<br>
+<p><strong>&lt; n차원 배열 &gt;   (nd array: <em>n dimention</em> array)</strong></p>
+<center><img src="/images/S-Python-Numpy1/n_array.png" alt="n_array" style="zoom:80%;" align="center/"></center>
+  <br>
+  <br>
+<h3 id="1-4-shape차원-axis축"><a class="markdownIt-Anchor" href="#1-4-shape차원-axis축"></a> <strong>1-4. shape(차원) &amp; axis(축)</strong></h3>
+<ul>
+<li>
+<p><strong>shape은 <font color="red"> 차원의 수 </font> 를 확인</strong></p>
+<p>(3, ) =&gt; 3 X 1의 배열<br>
+(4,3) =&gt; 4 X 3의 배열<br>
+(2,5,3) =&gt; 2 X 5 X 3의 배열</p>
+</li>
+<li>
+<p><strong>axis는 기준이 되는 <font color="red"> 축 </font></strong></p>
+<p>axis는 앞에서 부터 0, 1, 2…<br>
+nd array의 축: axis 0, axis 1, axis 2, … axis n</p>
+<br>
+<br>
+</li>
+</ul>
+<h2 id="2-numpy-import하기"><a class="markdownIt-Anchor" href="#2-numpy-import하기"></a> <strong>2. Numpy import하기</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">numpy</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;module 'numpy' from 'D:\\Anaconda\\lib\\site-packages\\numpy\\__init__.py'&gt;
+</code></pre>
+<br>
+<h3 id="2-1-별칭-alias-지정하기-항상-해주세요"><a class="markdownIt-Anchor" href="#2-1-별칭-alias-지정하기-항상-해주세요"></a> <strong>2-1. 별칭 (alias) 지정하기 (항상 해주세요!)</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;module 'numpy' from 'D:\\Anaconda\\lib\\site-packages\\numpy\\__init__.py'&gt;
+</code></pre>
+<br>
+  <br>
+<h2 id="3-nd-array-생성하기-nparray"><a class="markdownIt-Anchor" href="#3-nd-array-생성하기-nparray"></a> <strong>3. nd array 생성하기 – "np.array([…])"</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], dtype=int)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr <span class="comment"># 주의: list와 다름</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 4])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]  <span class="comment"># list</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3, 4]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(arr)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>numpy.ndarray
+</code></pre>
+<br>
+<br>  
+<h3 id="3-1-list로-부터-생성하기-nparraylist_name"><a class="markdownIt-Anchor" href="#3-1-list로-부터-생성하기-nparraylist_name"></a> <strong>3-1. list로 부터 생성하기 – "np.array(<em>list_name</em>)"</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist2 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">           [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr1 = np.array(mylist1)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr1</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 4])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2 = np.array(mylist2)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[1, 2, 3, 4],
        [5, 6, 7, 8]])
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:<span class="number">2</span>, <span class="number">2</span>:]  <span class="comment"># 0,1번 행의 2,3번 열 가져오기</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([[3, 4],
-       [7, 8]])
+ <br> 
+<h3 id="3-2-shape확인하기-array_name-shape"><a class="markdownIt-Anchor" href="#3-2-shape확인하기-array_name-shape"></a> <strong>3-2. shape확인하기 – "<em>array_name</em> .shape"</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr1.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(4,)
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(2, 4)
 </code></pre>
 <br>
  <br>   
-<h2 id="2-fancy-인덱싱"><a class="markdownIt-Anchor" href="#2-fancy-인덱싱"></a> <strong>2. Fancy 인덱싱</strong></h2>
-<p>fancy인덱싱은 범위가 아닌 <strong>특정 index의 집합의 값을 선택하여 추출</strong>하고 싶을 때 활용한다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">10</span>, <span class="number">23</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">90</span>, <span class="number">65</span>, <span class="number">32</span>, <span class="number">66</span>, <span class="number">70</span>])</span><br></pre></td></tr></tbody></table></figure>
- <br> 
-<h3 id="2-1-1차원-array"><a class="markdownIt-Anchor" href="#2-1-1차원-array"></a> <strong>2-1. 1차원 array</strong></h3>
-<p><strong>방법 1:</strong> 추출하고 싶은 index의 집합을 **[꺾쇠 괄호로]**묶어서 추출</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([23,  7, 65])
-</code></pre>
-<br>
-<p><strong>방법 2:</strong>  추출하고 싶은 index의 집합을 <strong>변수에 지정한 후</strong> 추출</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">idx = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[index]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([23,  7, 65])
-</code></pre>
+<h2 id="4-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-array에서의-data-type"></a> <strong>4. array에서의 data type</strong></h2>
+<p><strong>array에서는 list와 다르게 1개의 <font color="red">단일 데이터 타입 </font> 만 허용 된다</strong></p>
   <br>
-<br>
-<h3 id="2-2-2차원-array"><a class="markdownIt-Anchor" href="#2-2-2차원-array"></a> <strong>2-2. 2차원 array</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], </span><br><span class="line">                  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>], </span><br><span class="line">                  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[[<span class="number">0</span>,<span class="number">1</span>], :]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([[1, 2, 3, 4],
-       [5, 6, 7, 8]])
+<h3 id="4-1-list에서의-data-type"><a class="markdownIt-Anchor" href="#4-1-list에서의-data-type"></a> <strong>4-1. list에서의 data type</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist = [<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 3.14, '사과', '1234']
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:, [<span class="number">1</span>,<span class="number">3</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([[ 2,  4],
-       [ 6,  8],
-       [10, 12]])
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mylist[<span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>'사과'
 </code></pre>
 <br>
  <br> 
-<h2 id="3-boolean-인덱싱"><a class="markdownIt-Anchor" href="#3-boolean-인덱싱"></a> <strong>3. Boolean 인덱싱</strong></h2>
-<p>조건 필터링을 통하여 Boolean값을 이용한 색인</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                 [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                 [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
-<br>  
-<h3 id="3-1-true와-false값으로-색인하기"><a class="markdownIt-Anchor" href="#3-1-true와-false값으로-색인하기"></a> <strong>3-1. True와 False값으로 색인하기</strong></h3>
-<p>boolean index의 수가 꼭 array의 index와 같아야 됨!</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">myTrueFalse = [<span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>]</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[myTrueFalse]</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="4-2-array에서의-data-type"><a class="markdownIt-Anchor" href="#4-2-array에서의-data-type"></a> <strong>4-2. array에서의 data type</strong></h3>
+<h4 id="case-1-int와-float타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-1-int와-float타입이-혼재된-경우"></a> <strong>case 1. int와 float타입이 혼재된 경우</strong></h4>
+<p>int와 float타입이 혼재된 경우 int(정수)가 float(실수)로 바꿔진다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr  <span class="comment"># 정수가 실수로 바꿔진다</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1.  , 2.  , 3.  , 3.14])
+</code></pre>
+<br>
+<p>​</p>
+<h4 id="case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"><a class="markdownIt-Anchor" href="#case-2-int와-float-타입이-혼재되었으나-dtype을-지정한-경우"></a> <strong>case 2. int와 float 타입이 혼재되었으나, dtype을 지정한 경우</strong></h4>
+<p>int와 float 타입이 혼재되었으나, dtype가 int로 지정된 경우, float의 앞에 정수 부분만 보류된다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3.14</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 3])
+</code></pre>
+<br>
+<h4 id="case-3-int-float-와-str-타입이-혼재된-경우"><a class="markdownIt-Anchor" href="#case-3-int-float-와-str-타입이-혼재된-경우"></a> <strong>case 3. int / float 와 str 타입이 혼재된 경우</strong></h4>
+<p>int / float 와 float타입이 혼재된 경우 int(정수)가 str(문자열)로 바꿔진다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array(['1', '3.14', '사과', '1234'], dtype='&lt;U32')
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] + arr[<span class="number">1</span>]  <span class="comment">#str로 되어버려서 숫자의 사치연산이 안됨</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>'13.14'
+</code></pre>
+<br>
+<h4 id="case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"><a class="markdownIt-Anchor" href="#case-4-int와-str-타입이-혼재되어-있고-dtype이-int로-지정한-경우"></a> <strong>case 4. int와 str 타입이 혼재되어 있고 dtype이 int로 지정한 경우</strong></h4>
+<p><strong>(1) 문자내용인 str이 존재한 경우 error 발생</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'사과'</span>, <span class="string">'1234'</span>, <span class="string">'5.8'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>---------------------------------------------------------------------------
 
-IndexError                                Traceback (most recent call last)
+ValueError                                Traceback (most recent call last)
 
-&lt;ipython-input-43-9c52b39d81ae&gt; in &lt;module&gt;
-----&gt; 1 arr[myTrueFalse]
+&lt;ipython-input-50-88e75a912236&gt; in &lt;module&gt;
+----&gt; 1 arr = np.array([1, 3.14, '사과', '1234', '5.8'], dtype = int)
 
 
-IndexError: boolean index did not match indexed array along dimension 0; dimension is 7 but corresponding boolean dimension is 3
+ValueError: invalid literal for int() with base 10: '사과'
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">myTrueFalse = [<span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>]</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[myTrueFalse]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 3, 5, 7])
+<p><strong>(2) 실수(float)내용인 str이 존재한 경우도 error발생</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'1234'</span>, <span class="string">'5.8'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-52-98017763e514&gt; in &lt;module&gt;
+----&gt; 1 arr = np.array([1, 3.14, '1234', '5.8'], dtype = int)
+
+
+ValueError: invalid literal for int() with base 10: '5.8'
 </code></pre>
 <br>
-  <br>
-<h3 id="3-2-조건필터"><a class="markdownIt-Anchor" href="#3-2-조건필터"></a> <strong>3-2. 조건필터</strong></h3>
-<p>조건 연산자를 활용하여 필터를 생성할 수 있다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([[ 1,  2,  3,  4],
-       [ 5,  6,  7,  8],
-       [ 9, 10, 11, 12]])
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d &gt; <span class="number">2</span>  <span class="comment"># "2보다 크다"라는 조건의 만족여부에 따라 Boolean index 생성</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([[False, False,  True,  True],
-       [ True,  True,  True,  True],
-       [ True,  True,  True,  True]])
-</code></pre>
-<br>
-<p>위 Boolean index를 다시 array에 적용하여 해당 부분을 추출: <strong>arr2d[조건필터]</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[arr2d &gt; <span class="number">2</span>]  <span class="comment"># 1차원 array로 반환</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([ 3,  4,  5,  6,  7,  8,  9, 10, 11, 12])
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[arr2d &lt; <span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>array([1, 2, 3, 4])
+<p><strong>(3) 정수(int)내용인 str만 존재한 경우 해당 str이 자동으로 int로 바꿔짐</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">3.14</span>, <span class="string">'1234'</span>], dtype = int)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([   1,    3, 1234])
 </code></pre>
 <p><br><br></p>
 <script>
@@ -1222,6 +992,660 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
       <tags>
         <tag>Python</tag>
         <tag>Numpy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python - Numpy (2)</title>
+    <url>/2020/05/19/S-Python-Numpy2/</url>
+    <content><![CDATA[<p>슬라이싱 (Slicing).  Fancy 인덱싱.  Boolean 인덱싱.</p>
+<a id="more"></a>
+<h2 id="1-슬라이싱-slicing"><a class="markdownIt-Anchor" href="#1-슬라이싱-slicing"></a> <strong>1. 슬라이싱 (Slicing)</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<p>베열의 부분 선택 (과일을 슬라이스해서 부분만 먹듯…)</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(10,)
+</code></pre>
+<br>
+<h3 id="1-1-index-지정하여-색인"><a class="markdownIt-Anchor" href="#1-1-index-지정하여-색인"></a> <strong>1-1. index 지정하여 색인</strong></h3>
+<h4 id="1차원-array"><a class="markdownIt-Anchor" href="#1차원-array"></a> <strong>1차원 array</strong></h4>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>]  <span class="comment"># index: 앞에서 부터 0, 1, 2, ...</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>5
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">10</span>]  <span class="comment"># index가 넘으면 error남</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-7-ff656e92d79c&gt; in &lt;module&gt;
+----&gt; 1 arr[10]
+
+
+IndexError: index 10 is out of bounds for axis 0 with size 10
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">-1</span>]   <span class="comment"># 뒤에서 부터 1번째.  index: 뒤에서 부터 -1, -2, -3,...</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>9
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">-10</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">-11</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-10-91f133f07612&gt; in &lt;module&gt;
+----&gt; 1 arr[-11]
+
+
+IndexError: index -11 is out of bounds for axis 0 with size 10
+</code></pre>
+<br>
+<h4 id="2차원-array"><a class="markdownIt-Anchor" href="#2차원-array"></a> <strong>2차원 array</strong></h4>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(3, 4)
+</code></pre>
+<br>
+<p><strong>arr2d[행, 열]</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[<span class="number">0</span>, <span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[<span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>10
+</code></pre>
+<br>
+ <br> 
+<h3 id="1-2-범위-색인"><a class="markdownIt-Anchor" href="#1-2-범위-색인"></a> <strong>1-2. 범위 색인</strong></h3>
+<h4 id="1차원-array-2"><a class="markdownIt-Anchor" href="#1차원-array-2"></a> <strong>1차원 array</strong></h4>
+<ul>
+<li><strong>arr[a, b]</strong> –  arr의 “index <strong><font color="red">a</font></strong>” 부터 "index <strong><font color="red">b-1</font></strong>"까지  <font color="red">(a 포함, b 미포함)</font></li>
+</ul>
+<p><strong>index:</strong> 1 이상</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">1</span>:]   <span class="comment"># index 1 포함</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
+<br>
+<p><strong>index:</strong> 5 미만</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[:<span class="number">5</span>]  <span class="comment"># index 5 미포함</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0, 1, 2, 3, 4])
+</code></pre>
+<br>
+<p><strong>index:</strong> 1이상 5미만</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[<span class="number">1</span>:<span class="number">5</span>]  <span class="comment"># index 1 포함 &amp; index 5 미포함</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 4])
+</code></pre>
+<br>
+<p><strong>index:</strong> -1까지</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[:<span class="number">-1</span>]  <span class="comment"># index -1 (index 9) 미포함</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8])
+</code></pre>
+<br>
+  <br>
+<h4 id="2차원-array-2"><a class="markdownIt-Anchor" href="#2차원-array-2"></a> <strong>2차원 array</strong></h4>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<p><strong>row(행)을 모두 가져오려는 경우</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[<span class="number">0</span>,:]  <span class="comment"># 0번 행의 모든 열 가져오기</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 4])
+</code></pre>
+ <br>
+<p><strong>colomn(열)을 모두 가져오려는 경우</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:,<span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 3,  7, 11])
+</code></pre>
+ <br> 
+<p><strong>부분적으로 가져오려는 경우</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:<span class="number">2</span>, :]  <span class="comment"># 0,1번 행의 모든 열 가져오기</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[1, 2, 3, 4],
+       [5, 6, 7, 8]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:<span class="number">2</span>, <span class="number">2</span>:]  <span class="comment"># 0,1번 행의 2,3번 열 가져오기</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[3, 4],
+       [7, 8]])
+</code></pre>
+<br>
+ <br>   
+<h2 id="2-fancy-인덱싱"><a class="markdownIt-Anchor" href="#2-fancy-인덱싱"></a> <strong>2. Fancy 인덱싱</strong></h2>
+<p>fancy인덱싱은 범위가 아닌 <strong>특정 index의 집합의 값을 선택하여 추출</strong>하고 싶을 때 활용한다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">10</span>, <span class="number">23</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">90</span>, <span class="number">65</span>, <span class="number">32</span>, <span class="number">66</span>, <span class="number">70</span>])</span><br></pre></td></tr></tbody></table></figure>
+ <br> 
+<h3 id="2-1-1차원-array"><a class="markdownIt-Anchor" href="#2-1-1차원-array"></a> <strong>2-1. 1차원 array</strong></h3>
+<p><strong>방법 1:</strong> 추출하고 싶은 index의 집합을 **[꺾쇠 괄호로]**묶어서 추출</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([23,  7, 65])
+</code></pre>
+<br>
+<p><strong>방법 2:</strong>  추출하고 싶은 index의 집합을 <strong>변수에 지정한 후</strong> 추출</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">idx = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[index]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([23,  7, 65])
+</code></pre>
+  <br>
+<br>
+<h3 id="2-2-2차원-array"><a class="markdownIt-Anchor" href="#2-2-2차원-array"></a> <strong>2-2. 2차원 array</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], </span><br><span class="line">                  [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>], </span><br><span class="line">                  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[[<span class="number">0</span>,<span class="number">1</span>], :]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[1, 2, 3, 4],
+       [5, 6, 7, 8]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[:, [<span class="number">1</span>,<span class="number">3</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 2,  4],
+       [ 6,  8],
+       [10, 12]])
+</code></pre>
+<br>
+ <br> 
+<h2 id="3-boolean-인덱싱"><a class="markdownIt-Anchor" href="#3-boolean-인덱싱"></a> <strong>3. Boolean 인덱싱</strong></h2>
+<p>조건 필터링을 통하여 Boolean값을 이용한 색인</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                 [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">                 [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<br>  
+<h3 id="3-1-true와-false값으로-색인하기"><a class="markdownIt-Anchor" href="#3-1-true와-false값으로-색인하기"></a> <strong>3-1. True와 False값으로 색인하기</strong></h3>
+<p>boolean index의 수가 꼭 array의 index와 같아야 됨!</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">myTrueFalse = [<span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[myTrueFalse]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-43-9c52b39d81ae&gt; in &lt;module&gt;
+----&gt; 1 arr[myTrueFalse]
+
+
+IndexError: boolean index did not match indexed array along dimension 0; dimension is 7 but corresponding boolean dimension is 3
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">myTrueFalse = [<span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">False</span>, <span class="literal">True</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr[myTrueFalse]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 3, 5, 7])
+</code></pre>
+<br>
+  <br>
+<h3 id="3-2-조건필터"><a class="markdownIt-Anchor" href="#3-2-조건필터"></a> <strong>3-2. 조건필터</strong></h3>
+<p>조건 연산자를 활용하여 필터를 생성할 수 있다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 1,  2,  3,  4],
+       [ 5,  6,  7,  8],
+       [ 9, 10, 11, 12]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d &gt; <span class="number">2</span>  <span class="comment"># "2보다 크다"라는 조건의 만족여부에 따라 Boolean index 생성</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[False, False,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]])
+</code></pre>
+<br>
+<p>위 Boolean index를 다시 array에 적용하여 해당 부분을 추출: <strong>arr2d[조건필터]</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[arr2d &gt; <span class="number">2</span>]  <span class="comment"># 1차원 array로 반환</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 3,  4,  5,  6,  7,  8,  9, 10, 11, 12])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">arr2d[arr2d &lt; <span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([1, 2, 3, 4])
+</code></pre>
+<p><br><br></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【Study】</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Numpy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 기초문법 (1)</title>
+    <url>/2020/05/12/S-Python-base1/</url>
+    <content><![CDATA[<p>출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.</p>
+<a id="more"></a>
+<h2 id="1-출력-print"><a class="markdownIt-Anchor" href="#1-출력-print"></a> <strong>1. 출력 (print)</strong></h2>
+<h3 id="print-함수"><a class="markdownIt-Anchor" href="#print-함수"></a> <strong>print( ) 함수</strong></h3>
+<ol>
+<li>숫자를 출력할 때 따움표(’ ’ or " ") 필요없음</li>
+<li>문자를 출력할 때 따움표 필요
+<ul>
+<li>’ ’ 와 " "  차이없음</li>
+<li>‘’’  ‘’’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="number">1</span>+<span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">'안녕하세요'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">"반갑습니다"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>반갑습니다
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요,
+반갑습니다.
+</code></pre>
+<br>
+<br>
+<h2 id="2-변수와-대입"><a class="markdownIt-Anchor" href="#2-변수와-대입"></a> <strong>2. 변수와 대입</strong></h2>
+<h3 id="2-1-변수의-이름"><a class="markdownIt-Anchor" href="#2-1-변수의-이름"></a> <strong>2-1. 변수의 이름</strong></h3>
+<h4 id="가능한-경우"><a class="markdownIt-Anchor" href="#가능한-경우"></a> 【가능한 경우】</h4>
+<p>case 1. 알파벳</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">A = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<p>case 2. 알파벳 + 숫자</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a1 = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<p>case 3. 알파벳 + 언더바(_)</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a_ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<p>case 4. 언더바(_) + 알파벳</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">_a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="불가한-경우"><a class="markdownIt-Anchor" href="#불가한-경우"></a> 【불가한 경우】</h4>
+<p><strong>case 1. 언더바(_)를 제외한 특수문자</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">* = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-23-6d0163a9fd4c&gt;", line 1
+    * = 1
+      ^
+SyntaxError: invalid syntax
+</code></pre>
+<br>
+<p><strong>case 2. 알파벳 + 언더바를 제외한 특수문자</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a$ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-25-2501fc576aab&gt;", line 1
+    a$ = 1
+     ^
+SyntaxError: invalid syntax
+</code></pre>
+<br>
+<p><strong>case 3. 변수의 이름 사이의 공백</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a b = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>  File "&lt;ipython-input-26-2bab97d7970c&gt;", line 1
+    a b = 1
+      ^
+SyntaxError: invalid syntax
+</code></pre>
+<p><br><br></p>
+<h3 id="2-2-변수의-대입"><a class="markdownIt-Anchor" href="#2-2-변수의-대입"></a> <strong>2-2. 변수의 대입</strong></h3>
+<p>변수 값을 부여할 때 "="를 사용한다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<h3 id="2-3-변수의-출력"><a class="markdownIt-Anchor" href="#2-3-변수의-출력"></a> <strong>2-3. 변수의 출력</strong></h3>
+<ol>
+<li>print() 구문 사이에 <strong>값을 직접</strong> 입력하면, 바로 값이 출력됨.</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="number">123</span>)   <span class="comment"># 숫자는 "" 필요없음</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">"text"</span>)   <span class="comment"># 문자는 "" 필요함</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>text
+</code></pre>
+<br>
+<ol start="2">
+<li>print()구분 사이에 <strong>변수 이름</strong>을 입력하면, 변수의 값이 출력됨.</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">b = <span class="string">"text"</span></span><br><span class="line">print(b)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>text
+</code></pre>
+<br>
+ <br> 
+<h2 id="3-데이터-타입"><a class="markdownIt-Anchor" href="#3-데이터-타입"></a> <strong>3. 데이터 타입</strong></h2>
+<p><strong>데이터 type:</strong><br>
+1. int(정수)<br>
+2. float(실수)<br>
+3. str(문자열)<br>
+4. bool(참/거짓)</p>
+<br>
+<h3 id="3-1-int정수"><a class="markdownIt-Anchor" href="#3-1-int정수"></a> <strong>3-1. int(정수)</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<p><strong>코딩에서 1은 참으로 취급, 0은 거짓으로  취급</strong></p>
+<p>다음 코딩으로 진단해보자:</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span>:</span><br><span class="line">    print(<span class="string">'1은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'1은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1은 참으로 취급
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'0은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'0은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0은 거짓부렁이
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">123</span>:</span><br><span class="line">    print(<span class="string">'123은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'123은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123은 참으로 취급
+</code></pre>
+<p>[0 이외의 정수 다 참으로 취급]</p>
+<br>
+<br>  
+<h3 id="3-2-float실수"><a class="markdownIt-Anchor" href="#3-2-float실수"></a> <strong>3-2. float(실수)</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">3.14</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3.14
+</code></pre>
+<br>
+<h3 id="3-3-str-혹은-object-문자열"><a class="markdownIt-Anchor" href="#3-3-str-혹은-object-문자열"></a> <strong>3-3. str 혹은 object (문자열)</strong></h3>
+<ol>
+<li><strong>문자열은 반드시 ’ ’ 혹은 " " 로 묶어야 함</strong></li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">word = <span class="string">'안녕하세요'</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">word = <span class="string">"안녕하세요"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(word)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요
+</code></pre>
+<br>
+<ol start="2">
+<li><strong>’" "’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</strong></li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>안녕하세요,
+반갑습니다.
+</code></pre>
+<p><br> <br></p>
+<h3 id="3-4-bool-참거짓"><a class="markdownIt-Anchor" href="#3-4-bool-참거짓"></a> <strong>3-4. bool (참/거짓)</strong></h3>
+<p>참:   True<br>
+거짓: False</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>bool
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">b = <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">b</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(b)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>bool
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>True
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>False
+</code></pre>
+<ul>
+<li>1 이외의 정수는 조건절에서 참으로 인식되지만, bool과 비교할 때 참이 아니다</li>
+</ul>
+<br>
+<br>
+<h3 id="3-5-아무것도-아닌-none타입도-있다"><a class="markdownIt-Anchor" href="#3-5-아무것도-아닌-none타입도-있다"></a> <strong>3-5. 아무것도 아닌 None타입도 있다</strong></h3>
+<p>Null값을 넣는다고도 한다.</p>
+<ul>
+<li>Null: Nullify (무효화하다) – 사전상 의미</li>
+</ul>
+<p>Python에서는 <strong>None</strong> 입니다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="literal">None</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>None
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>NoneType
+</code></pre>
+<br>
+<p>조건문에 None이라면?</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">"None은 참으로 취급"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"None은 거짓부렁이"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>None은 거짓부렁이
+</code></pre>
+<br>
+<br>
+<h2 id="4-데이터의-응용"><a class="markdownIt-Anchor" href="#4-데이터의-응용"></a> <strong>4. 데이터의 응용</strong></h2>
+<h3 id="4-1-사칙-연산자"><a class="markdownIt-Anchor" href="#4-1-사칙-연산자"></a> <strong>4-1. 사칙 연산자</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">연산자</th>
+<th style="text-align:center">의미</th>
+<th style="text-align:center">예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">더하기</td>
+<td style="text-align:center">2 + 1 -&gt; 3</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">빼기</td>
+<td style="text-align:center">1 - 2 -&gt; -1</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">곱하기</td>
+<td style="text-align:center">1 * 2 -&gt; 2</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">나누기</td>
+<td style="text-align:center">1 / 2 -&gt; 0.5</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">몫</td>
+<td style="text-align:center">5 % 2 -&gt; 2</td>
+</tr>
+<tr>
+<td style="text-align:center">//</td>
+<td style="text-align:center">나머지</td>
+<td style="text-align:center">5 // 2 -&gt; 1</td>
+</tr>
+<tr>
+<td style="text-align:center">**</td>
+<td style="text-align:center">멱</td>
+<td style="text-align:center">2**3 -&gt; 8</td>
+</tr>
+</tbody>
+</table>
+  <br>
+<h3 id="4-2-문자열의-연결"><a class="markdownIt-Anchor" href="#4-2-문자열의-연결"></a> <strong>4-2. 문자열의 연결</strong></h3>
+<p>여러 개 문자열을 "+"을 통해 연결할 수 있다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">subject = <span class="string">"나는 "</span></span><br><span class="line">object = <span class="string">"치킨을 "</span></span><br><span class="line">verb = <span class="string">"좋아한다"</span></span><br><span class="line"></span><br><span class="line">print(subject + object + verb)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>나는 치킨을 좋아한다
+</code></pre>
+<br>
+<p>하지만 문자열(str)과 숫자(int &amp; float)는 <em>직접</em>  연결할 수 없다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br><span class="line"></span><br><span class="line">print(a + b + c + d + e)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-82-34cd0f9ce519&gt; in &lt;module&gt;
+      5 e = "보기로 했다"
+      6 
+----&gt; 7 print(a + b + c + d + e)
+
+
+TypeError: can only concatenate str (not "int") to str
+</code></pre>
+<p>이 때는 데이터 타입을 변환할 필요가 있다</p>
+<br>
+<br>
+<h2 id="5-데이터-타입-변환"><a class="markdownIt-Anchor" href="#5-데이터-타입-변환"></a> <strong>5. 데이터 타입 변환</strong></h2>
+<h3 id="5-1-문자열로-변환-str-함수-or-따움표"><a class="markdownIt-Anchor" href="#5-1-문자열로-변환-str-함수-or-따움표"></a> <strong>5-1. 문자열로 변환:  “str( ) 함수”  or  "따움표"</strong></h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="number">6</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(str(<span class="number">6</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="string">'6'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="number">3.14</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(str(<span class="number">3.14</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="string">"3.14"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>str
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a + b + str(c) + d + e)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>내가 친구랑 12시에 보기로 했다
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a + b + <span class="string">'12'</span> + d + e)a</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>내가 친구랑 12시에 보기로 했다
+</code></pre>
+<br>
+<br>
+<h3 id="5-2-정수로-변환-int-함수"><a class="markdownIt-Anchor" href="#5-2-정수로-변환-int-함수"></a> <strong>5-2. 정수로 변환: " int( ) 함수"</strong></h3>
+<ol>
+<li><strong>"str" --&gt; “int”:  str( ) 안 내용이 정수일 때만 가능</strong></li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(int(<span class="string">"2"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">number1 = <span class="string">"2"</span></span><br><span class="line">number2 = <span class="string">"3"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(int(number1) + int(number2))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>5
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(int(<span class="string">"2.6"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-103-f4645c45f771&gt; in &lt;module&gt;
+----&gt; 1 print(int("2.6"))
+
+
+ValueError: invalid literal for int() with base 10: '2.6'
+</code></pre>
+<br>
+<ol start="2">
+<li><strong>"float" --&gt; “int”: 소수점 버림</strong></li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>int
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3
+</code></pre>
+<br>
+<br>
+<h3 id="5-3-실수로-변환-float-함수"><a class="markdownIt-Anchor" href="#5-3-실수로-변환-float-함수"></a> <strong>5-3. 실수로 변환: "float( ) 함수"</strong></h3>
+<ol>
+<li><strong>"str" --&gt; “float”:  str( ) 안 내용이 정수일 때만 가능</strong></li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3.14
+</code></pre>
+<br>
+<ol start="2">
+<li><strong>"int" --&gt; “float”: 소수점 하나 추가</strong></li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>float
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>178.0
+</code></pre>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【Study】</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Python_Base</tag>
       </tags>
   </entry>
   <entry>
@@ -1794,430 +2218,6 @@ TypeError: 'tuple' object does not support item assignment
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (1)</title>
-    <url>/2020/05/12/S-Python-base1/</url>
-    <content><![CDATA[<p>출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.</p>
-<a id="more"></a>
-<h2 id="1-출력-print"><a class="markdownIt-Anchor" href="#1-출력-print"></a> <strong>1. 출력 (print)</strong></h2>
-<h3 id="print-함수"><a class="markdownIt-Anchor" href="#print-함수"></a> <strong>print( ) 함수</strong></h3>
-<ol>
-<li>숫자를 출력할 때 따움표(’ ’ or " ") 필요없음</li>
-<li>문자를 출력할 때 따움표 필요
-<ul>
-<li>’ ’ 와 " "  차이없음</li>
-<li>‘’’  ‘’’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>1
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="number">1</span>+<span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>3
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">'안녕하세요'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>안녕하세요
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">"반갑습니다"</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>반갑습니다
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>안녕하세요,
-반갑습니다.
-</code></pre>
-<br>
-<br>
-<h2 id="2-변수와-대입"><a class="markdownIt-Anchor" href="#2-변수와-대입"></a> <strong>2. 변수와 대입</strong></h2>
-<h3 id="2-1-변수의-이름"><a class="markdownIt-Anchor" href="#2-1-변수의-이름"></a> <strong>2-1. 변수의 이름</strong></h3>
-<h4 id="가능한-경우"><a class="markdownIt-Anchor" href="#가능한-경우"></a> 【가능한 경우】</h4>
-<p>case 1. 알파벳</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">A = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<p>case 2. 알파벳 + 숫자</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a1 = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<p>case 3. 알파벳 + 언더바(_)</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a_ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<p>case 4. 언더바(_) + 알파벳</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">_a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<br>
-<h4 id="불가한-경우"><a class="markdownIt-Anchor" href="#불가한-경우"></a> 【불가한 경우】</h4>
-<p><strong>case 1. 언더바(_)를 제외한 특수문자</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">* = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>  File "&lt;ipython-input-23-6d0163a9fd4c&gt;", line 1
-    * = 1
-      ^
-SyntaxError: invalid syntax
-</code></pre>
-<br>
-<p><strong>case 2. 알파벳 + 언더바를 제외한 특수문자</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a$ = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>  File "&lt;ipython-input-25-2501fc576aab&gt;", line 1
-    a$ = 1
-     ^
-SyntaxError: invalid syntax
-</code></pre>
-<br>
-<p><strong>case 3. 변수의 이름 사이의 공백</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a b = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>  File "&lt;ipython-input-26-2bab97d7970c&gt;", line 1
-    a b = 1
-      ^
-SyntaxError: invalid syntax
-</code></pre>
-<p><br><br></p>
-<h3 id="2-2-변수의-대입"><a class="markdownIt-Anchor" href="#2-2-변수의-대입"></a> <strong>2-2. 변수의 대입</strong></h3>
-<p>변수 값을 부여할 때 "="를 사용한다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-  <br>
-<h3 id="2-3-변수의-출력"><a class="markdownIt-Anchor" href="#2-3-변수의-출력"></a> <strong>2-3. 변수의 출력</strong></h3>
-<ol>
-<li>print() 구문 사이에 <strong>값을 직접</strong> 입력하면, 바로 값이 출력됨.</li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="number">123</span>)   <span class="comment"># 숫자는 "" 필요없음</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>123
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">"text"</span>)   <span class="comment"># 문자는 "" 필요함</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>text
-</code></pre>
-<br>
-<ol start="2">
-<li>print()구분 사이에 <strong>변수 이름</strong>을 입력하면, 변수의 값이 출력됨.</li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>123
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">b = <span class="string">"text"</span></span><br><span class="line">print(b)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>text
-</code></pre>
-<br>
- <br> 
-<h2 id="3-데이터-타입"><a class="markdownIt-Anchor" href="#3-데이터-타입"></a> <strong>3. 데이터 타입</strong></h2>
-<p><strong>데이터 type:</strong><br>
-1. int(정수)<br>
-2. float(실수)<br>
-3. str(문자열)<br>
-4. bool(참/거짓)</p>
-<br>
-<h3 id="3-1-int정수"><a class="markdownIt-Anchor" href="#3-1-int정수"></a> <strong>3-1. int(정수)</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>int
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>1
-</code></pre>
-<br>
-<p><strong>코딩에서 1은 참으로 취급, 0은 거짓으로  취급</strong></p>
-<p>다음 코딩으로 진단해보자:</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span>:</span><br><span class="line">    print(<span class="string">'1은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'1은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>1은 참으로 취급
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'0은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'0은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0은 거짓부렁이
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">123</span>:</span><br><span class="line">    print(<span class="string">'123은 참으로 취급'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'123은 거짓부렁이'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>123은 참으로 취급
-</code></pre>
-<p>[0 이외의 정수 다 참으로 취급]</p>
-<br>
-<br>  
-<h3 id="3-2-float실수"><a class="markdownIt-Anchor" href="#3-2-float실수"></a> <strong>3-2. float(실수)</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="number">3.14</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>float
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>3.14
-</code></pre>
-<br>
-<h3 id="3-3-str-혹은-object-문자열"><a class="markdownIt-Anchor" href="#3-3-str-혹은-object-문자열"></a> <strong>3-3. str 혹은 object (문자열)</strong></h3>
-<ol>
-<li><strong>문자열은 반드시 ’ ’ 혹은 " " 로 묶어야 함</strong></li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">word = <span class="string">'안녕하세요'</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>str
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(word)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>안녕하세요
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">word = <span class="string">"안녕하세요"</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(word)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>str
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(word)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>안녕하세요
-</code></pre>
-<br>
-<ol start="2">
-<li><strong>’" "’ 를 사용하면 출력시 “줄 바꿈” 형식이 보류될 수 있음</strong></li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(<span class="string">'''</span></span><br><span class="line"><span class="string">안녕하세요,</span></span><br><span class="line"><span class="string">반갑습니다.</span></span><br><span class="line"><span class="string">'''</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>안녕하세요,
-반갑습니다.
-</code></pre>
-<p><br> <br></p>
-<h3 id="3-4-bool-참거짓"><a class="markdownIt-Anchor" href="#3-4-bool-참거짓"></a> <strong>3-4. bool (참/거짓)</strong></h3>
-<p>참:   True<br>
-거짓: False</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>True
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>bool
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">b = <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">b</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>False
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(b)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>bool
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>True
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>True
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>False
-</code></pre>
-<ul>
-<li>1 이외의 정수는 조건절에서 참으로 인식되지만, bool과 비교할 때 참이 아니다</li>
-</ul>
-<br>
-<br>
-<h3 id="3-5-아무것도-아닌-none타입도-있다"><a class="markdownIt-Anchor" href="#3-5-아무것도-아닌-none타입도-있다"></a> <strong>3-5. 아무것도 아닌 None타입도 있다</strong></h3>
-<p>Null값을 넣는다고도 한다.</p>
-<ul>
-<li>Null: Nullify (무효화하다) – 사전상 의미</li>
-</ul>
-<p>Python에서는 <strong>None</strong> 입니다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="literal">None</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>None
-</code></pre>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>NoneType
-</code></pre>
-<br>
-<p>조건문에 None이라면?</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">"None은 참으로 취급"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"None은 거짓부렁이"</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>None은 거짓부렁이
-</code></pre>
-<br>
-<br>
-<h2 id="4-데이터의-응용"><a class="markdownIt-Anchor" href="#4-데이터의-응용"></a> <strong>4. 데이터의 응용</strong></h2>
-<h3 id="4-1-사칙-연산자"><a class="markdownIt-Anchor" href="#4-1-사칙-연산자"></a> <strong>4-1. 사칙 연산자</strong></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">연산자</th>
-<th style="text-align:center">의미</th>
-<th style="text-align:center">예</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:center">더하기</td>
-<td style="text-align:center">2 + 1 -&gt; 3</td>
-</tr>
-<tr>
-<td style="text-align:center">-</td>
-<td style="text-align:center">빼기</td>
-<td style="text-align:center">1 - 2 -&gt; -1</td>
-</tr>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">곱하기</td>
-<td style="text-align:center">1 * 2 -&gt; 2</td>
-</tr>
-<tr>
-<td style="text-align:center">/</td>
-<td style="text-align:center">나누기</td>
-<td style="text-align:center">1 / 2 -&gt; 0.5</td>
-</tr>
-<tr>
-<td style="text-align:center">%</td>
-<td style="text-align:center">몫</td>
-<td style="text-align:center">5 % 2 -&gt; 2</td>
-</tr>
-<tr>
-<td style="text-align:center">//</td>
-<td style="text-align:center">나머지</td>
-<td style="text-align:center">5 // 2 -&gt; 1</td>
-</tr>
-<tr>
-<td style="text-align:center">**</td>
-<td style="text-align:center">멱</td>
-<td style="text-align:center">2**3 -&gt; 8</td>
-</tr>
-</tbody>
-</table>
-  <br>
-<h3 id="4-2-문자열의-연결"><a class="markdownIt-Anchor" href="#4-2-문자열의-연결"></a> <strong>4-2. 문자열의 연결</strong></h3>
-<p>여러 개 문자열을 "+"을 통해 연결할 수 있다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">subject = <span class="string">"나는 "</span></span><br><span class="line">object = <span class="string">"치킨을 "</span></span><br><span class="line">verb = <span class="string">"좋아한다"</span></span><br><span class="line"></span><br><span class="line">print(subject + object + verb)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>나는 치킨을 좋아한다
-</code></pre>
-<br>
-<p>하지만 문자열(str)과 숫자(int &amp; float)는 <em>직접</em>  연결할 수 없다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br><span class="line"></span><br><span class="line">print(a + b + c + d + e)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>---------------------------------------------------------------------------
-
-TypeError                                 Traceback (most recent call last)
-
-&lt;ipython-input-82-34cd0f9ce519&gt; in &lt;module&gt;
-      5 e = "보기로 했다"
-      6 
-----&gt; 7 print(a + b + c + d + e)
-
-
-TypeError: can only concatenate str (not "int") to str
-</code></pre>
-<p>이 때는 데이터 타입을 변환할 필요가 있다</p>
-<br>
-<br>
-<h2 id="5-데이터-타입-변환"><a class="markdownIt-Anchor" href="#5-데이터-타입-변환"></a> <strong>5. 데이터 타입 변환</strong></h2>
-<h3 id="5-1-문자열로-변환-str-함수-or-따움표"><a class="markdownIt-Anchor" href="#5-1-문자열로-변환-str-함수-or-따움표"></a> <strong>5-1. 문자열로 변환:  “str( ) 함수”  or  "따움표"</strong></h3>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="number">6</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>int
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(str(<span class="number">6</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>str
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="string">'6'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>str
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="number">3.14</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>float
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(str(<span class="number">3.14</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>str
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(<span class="string">"3.14"</span>)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>str
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="string">"내가 "</span></span><br><span class="line">b = <span class="string">"친구랑 "</span></span><br><span class="line">c = <span class="number">12</span></span><br><span class="line">d = <span class="string">"시에 "</span></span><br><span class="line">e = <span class="string">"보기로 했다"</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a + b + str(c) + d + e)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>내가 친구랑 12시에 보기로 했다
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(a + b + <span class="string">'12'</span> + d + e)a</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>내가 친구랑 12시에 보기로 했다
-</code></pre>
-<br>
-<br>
-<h3 id="5-2-정수로-변환-int-함수"><a class="markdownIt-Anchor" href="#5-2-정수로-변환-int-함수"></a> <strong>5-2. 정수로 변환: " int( ) 함수"</strong></h3>
-<ol>
-<li><strong>"str" --&gt; “int”:  str( ) 안 내용이 정수일 때만 가능</strong></li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(int(<span class="string">"2"</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>int
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">number1 = <span class="string">"2"</span></span><br><span class="line">number2 = <span class="string">"3"</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(int(number1) + int(number2))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>5
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(int(<span class="string">"2.6"</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>---------------------------------------------------------------------------
-
-ValueError                                Traceback (most recent call last)
-
-&lt;ipython-input-103-f4645c45f771&gt; in &lt;module&gt;
-----&gt; 1 print(int("2.6"))
-
-
-ValueError: invalid literal for int() with base 10: '2.6'
-</code></pre>
-<br>
-<ol start="2">
-<li><strong>"float" --&gt; “int”: 소수점 버림</strong></li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>int
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(int(<span class="number">3.6</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>3
-</code></pre>
-<br>
-<br>
-<h3 id="5-3-실수로-변환-float-함수"><a class="markdownIt-Anchor" href="#5-3-실수로-변환-float-함수"></a> <strong>5-3. 실수로 변환: "float( ) 함수"</strong></h3>
-<ol>
-<li><strong>"str" --&gt; “float”:  str( ) 안 내용이 정수일 때만 가능</strong></li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>float
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(float(<span class="string">"3.14"</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>3.14
-</code></pre>
-<br>
-<ol start="2">
-<li><strong>"int" --&gt; “float”: 소수점 하나 추가</strong></li>
-</ol>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">type(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>float
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(float(<span class="number">178</span>))</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>178.0
-</code></pre>
-<br>
-<br><script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>【Study】</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Python_Base</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python 기초문법 (3)</title>
     <url>/2020/05/13/S-Python-base3/</url>
     <content><![CDATA[<p><strong>함수</strong></p>
@@ -2592,139 +2592,22 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (6)</title>
-    <url>/2020/05/16/S-Python-base6/</url>
-    <content><![CDATA[<p>패키지(Package) 와 import</p>
-<a id="more"></a>
-<h1 id="패키지package-와-import"><a class="markdownIt-Anchor" href="#패키지package-와-import"></a> <strong>패키지(Package) 와 import</strong></h1>
-<h2 id="1-패키지와-모듈-그리고-함수의-관계도"><a class="markdownIt-Anchor" href="#1-패키지와-모듈-그리고-함수의-관계도"></a> <strong>1. 패키지와 모듈 그리고 함수의 관계도</strong></h2>
-<ul>
-<li>
-<p><strong>함수</strong>들이 뭉쳐진 하나의 .py파일 안에 이루어진 것을 <strong>모듈</strong>이라고 한다</p>
-</li>
-<li>
-<p>여러 개의 모듈을 그룹화 하면 <strong>패키지</strong>가 된다</p>
-</li>
-<li>
-<p><strong>패키지</strong>는 종종 <strong>라이브러비</strong>라고도 불린다</p>
-<br>
-</li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image</span><br><span class="line"><span class="comment"># 출척: pythonstudy.xyz</span></span><br><span class="line">Image(<span class="string">'http://pythonstudy.xyz/images/basics/python-package.png'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<br>
-<p><img src="http://pythonstudy.xyz/images/basics/python-package.png" alt="png"></p>
-<p><br><br></p>
-<h2 id="2-모듈-import-하기"><a class="markdownIt-Anchor" href="#2-모듈-import-하기"></a> <strong>2. 모듈 import 하기</strong></h2>
-<p><strong>import 하는 방법</strong></p>
-<p>.py (파이썬 파일 확장자)로 된 파일을 우리는 <strong>모듈</strong> 이라고 한다, import 구문을 통해 해당 파일을 불러올 수 있다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
-<p>위의 코드는 pandas라는 모듈을 우리가 불러오겠다라는 의미이다</p>
-<p><br> <br></p>
-<h2 id="3-패키지-에서-import하기"><a class="markdownIt-Anchor" href="#3-패키지-에서-import하기"></a> <strong>3. 패키지 에서 import하기</strong></h2>
-<ul>
-<li>패키지 안에서 하나의 모듈을 불러온다</li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame   <span class="comment"># pandas라는 패키지 안에서 DataFrame이라는 모듈을 불러온다</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">DataFrame()  <span class="comment"># 모듈 DataFrame사용</span></span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<br />
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-<br>
-<ul>
-<li>통째로 패키지나 모듈을 불러온다</li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">pandas.DataFrame()  <span class="comment"># DataFrame이라는 모듈을 사용하기 위해서는 .을 찍고 이어서 쓰면 됨</span></span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<br />
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-<br>
-  <br>
-<h2 id="4-별칭-alias-지어주기"><a class="markdownIt-Anchor" href="#4-별칭-alias-지어주기"></a> <strong>4. 별칭 (alias) 지어주기</strong></h2>
-<p>pandas라는 패키지 이름이 너무 길기 때문에 우리는 약어로 줄여쓸 수 있다. 보통 pd를 보편적으로 많이 사용한다.</p>
-<p>줄여서 별명을 지어줄 때는 as를 붙혀준다</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">pd.DataFrame()</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<br />
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-<br>
- <br> 
-<h2 id="5-앞으로-자주-사용할-패키지-모듈-미리보기"><a class="markdownIt-Anchor" href="#5-앞으로-자주-사용할-패키지-모듈-미리보기"></a> <strong>5. 앞으로 자주 사용할 패키지, 모듈 미리보기</strong></h2>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li>numpy: 과학계산을 위한 패키지</li>
-<li>pandas: 데이터 분석을 할 때 가장 많이 쓰이는 패키지</li>
-<li>matplotlib: 시각확를 위한 패키지</li>
-<li>seaborn: 시각화를 위한 패키지 (matplotlib을 더 쉽게 사용할 수 있도록 도와주는 패키지)</li>
-</ul>
-<p><br><br></p>
+    <title>Hello World</title>
+    <url>/2020/05/04/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -2745,13 +2628,8 @@ ValueError: invalid literal for int() with base 10: '2.6'
           });
       </script>]]></content>
       <categories>
-        <category>【Study】</category>
-        <category>Python</category>
+        <category>【PROJECTS】</category>
       </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Python_Base</tag>
-      </tags>
   </entry>
   <entry>
     <title>Python 기초문법 (4)</title>
@@ -3029,22 +2907,139 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/05/04/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    <title>Python 기초문법 (6)</title>
+    <url>/2020/05/16/S-Python-base6/</url>
+    <content><![CDATA[<p>패키지(Package) 와 import</p>
+<a id="more"></a>
+<h1 id="패키지package-와-import"><a class="markdownIt-Anchor" href="#패키지package-와-import"></a> <strong>패키지(Package) 와 import</strong></h1>
+<h2 id="1-패키지와-모듈-그리고-함수의-관계도"><a class="markdownIt-Anchor" href="#1-패키지와-모듈-그리고-함수의-관계도"></a> <strong>1. 패키지와 모듈 그리고 함수의 관계도</strong></h2>
+<ul>
+<li>
+<p><strong>함수</strong>들이 뭉쳐진 하나의 .py파일 안에 이루어진 것을 <strong>모듈</strong>이라고 한다</p>
+</li>
+<li>
+<p>여러 개의 모듈을 그룹화 하면 <strong>패키지</strong>가 된다</p>
+</li>
+<li>
+<p><strong>패키지</strong>는 종종 <strong>라이브러비</strong>라고도 불린다</p>
+<br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image</span><br><span class="line"><span class="comment"># 출척: pythonstudy.xyz</span></span><br><span class="line">Image(<span class="string">'http://pythonstudy.xyz/images/basics/python-package.png'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<p><img src="http://pythonstudy.xyz/images/basics/python-package.png" alt="png"></p>
+<p><br><br></p>
+<h2 id="2-모듈-import-하기"><a class="markdownIt-Anchor" href="#2-모듈-import-하기"></a> <strong>2. 모듈 import 하기</strong></h2>
+<p><strong>import 하는 방법</strong></p>
+<p>.py (파이썬 파일 확장자)로 된 파일을 우리는 <strong>모듈</strong> 이라고 한다, import 구문을 통해 해당 파일을 불러올 수 있다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
+<p>위의 코드는 pandas라는 모듈을 우리가 불러오겠다라는 의미이다</p>
+<p><br> <br></p>
+<h2 id="3-패키지-에서-import하기"><a class="markdownIt-Anchor" href="#3-패키지-에서-import하기"></a> <strong>3. 패키지 에서 import하기</strong></h2>
+<ul>
+<li>패키지 안에서 하나의 모듈을 불러온다</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame   <span class="comment"># pandas라는 패키지 안에서 DataFrame이라는 모듈을 불러온다</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">DataFrame()  <span class="comment"># 모듈 DataFrame사용</span></span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<br />
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<br>
+<ul>
+<li>통째로 패키지나 모듈을 불러온다</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">pandas.DataFrame()  <span class="comment"># DataFrame이라는 모듈을 사용하기 위해서는 .을 찍고 이어서 쓰면 됨</span></span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<br />
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<br>
+  <br>
+<h2 id="4-별칭-alias-지어주기"><a class="markdownIt-Anchor" href="#4-별칭-alias-지어주기"></a> <strong>4. 별칭 (alias) 지어주기</strong></h2>
+<p>pandas라는 패키지 이름이 너무 길기 때문에 우리는 약어로 줄여쓸 수 있다. 보통 pd를 보편적으로 많이 사용한다.</p>
+<p>줄여서 별명을 지어줄 때는 as를 붙혀준다</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">pd.DataFrame()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<br />
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<br>
+ <br> 
+<h2 id="5-앞으로-자주-사용할-패키지-모듈-미리보기"><a class="markdownIt-Anchor" href="#5-앞으로-자주-사용할-패키지-모듈-미리보기"></a> <strong>5. 앞으로 자주 사용할 패키지, 모듈 미리보기</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>numpy: 과학계산을 위한 패키지</li>
+<li>pandas: 데이터 분석을 할 때 가장 많이 쓰이는 패키지</li>
+<li>matplotlib: 시각확를 위한 패키지</li>
+<li>seaborn: 시각화를 위한 패키지 (matplotlib을 더 쉽게 사용할 수 있도록 도와주는 패키지)</li>
+</ul>
+<p><br><br></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -3065,7 +3060,12 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
           });
       </script>]]></content>
       <categories>
-        <category>【PROJECTS】</category>
+        <category>【Study】</category>
+        <category>Python</category>
       </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Python_Base</tag>
+      </tags>
   </entry>
 </search>
