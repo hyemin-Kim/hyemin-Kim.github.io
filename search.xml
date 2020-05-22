@@ -3297,7 +3297,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
     <content><![CDATA[<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#1-pandas-%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%A1%9C%EB%93%9C"><strong>1. pandas 패키지 로드</strong></a></li>
-<li><a href="#2-pandas%EC%9D%98-series-%EC%99%80-dataframe">**2. pandas의 Series 와 DataFrame **</a>
+<li><a href="#2-pandas%EC%9D%98-series-%EC%99%80-dataframe"><strong>2. pandas의 Series 와 DataFrame</strong></a>
 <ul>
 <li><a href="#2-1-series"><strong>2-1. Series</strong></a></li>
 <li><a href="#2-2-dataframe"><strong>2-2. DataFrame</strong></a>
@@ -3323,7 +3323,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
 </code></pre>
 <br>
  <br> 
-<h2 id="2-pandas의-series-와-dataframe"><a class="markdownIt-Anchor" href="#2-pandas의-series-와-dataframe"></a> **2. pandas의 Series 와 DataFrame **</h2>
+<h2 id="2-pandas의-series-와-dataframe"><a class="markdownIt-Anchor" href="#2-pandas의-series-와-dataframe"></a> <strong>2. pandas의 Series 와 DataFrame</strong></h2>
 <p><strong>1차원, 1개의 column은 Series라고 한다</strong></p>
 <h3 id="2-1-series"><a class="markdownIt-Anchor" href="#2-1-series"></a> <strong>2-1. Series</strong></h3>
 <p><strong>Series 생성:</strong></p>
