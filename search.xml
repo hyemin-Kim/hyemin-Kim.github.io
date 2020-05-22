@@ -7,6 +7,17 @@
 <p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，向markdown文档中添加本地图片的方法。快来看看吧</p>
 <a id="more"></a>
 <br>
+<p></p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D-%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE"><strong>【编写博客前】— 进行配置</strong></a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6-%E5%9B%BE%E7%89%87%E5%AF%BC%E5%85%A5%E6%96%B9%E6%B3%95"><strong>【编写博客时】— 图片导入方法</strong></a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%90%8E-%E5%9B%BE%E7%89%87%E5%AD%98%E6%A1%A3%E7%BB%93%E6%9E%9C"><strong>【编写博客后】— 图片存档结果</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
 <h3 id="编写博客前-进行配置"><a class="markdownIt-Anchor" href="#编写博客前-进行配置"></a> <strong>【编写博客前】— 进行配置</strong></h3>
 <br>
 <ol>
@@ -808,6 +819,21 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
     <title>利用Git Pages+Hexo搭建博客过程中的参考资料</title>
     <url>/2020/05/08/Reference/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
+<p></p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA">博客搭建</a></li>
+<li><a href="#%E7%BD%91%E9%A1%B5%E9%85%8D%E7%BD%AE-%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE">网页配置 &amp; 主题配置</a></li>
+<li><a href="#markdown%E6%B8%B2%E6%9F%93">Markdown渲染</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
+<li><a href="#git-github">Git &amp; Github</a></li>
+<li><a href="#jupyter-notebook">Jupyter Notebook</a></li>
+<li><a href="#markdown-typora">Markdown &amp; Typora</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
 <hr>
 <h3 id="博客搭建"><a class="markdownIt-Anchor" href="#博客搭建"></a> 博客搭建</h3>
 <ul>
@@ -1442,10 +1468,54 @@ ValueError: operands could not be broadcast together with shapes (2,3) (3,2)
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (1)</title>
+    <title>Python 기초문법 (1) - 출력. 데이터 타입. 데이터의 응용</title>
     <url>/2020/05/12/S-Python-base1/</url>
     <content><![CDATA[<p>출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.</p>
 <a id="more"></a>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%EC%B6%9C%EB%A0%A5-print"><strong>1. 출력 (print)</strong></a>
+<ul>
+<li><a href="#print-%ED%95%A8%EC%88%98"><strong>print( ) 함수</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-%EB%B3%80%EC%88%98%EC%99%80-%EB%8C%80%EC%9E%85"><strong>2. 변수와 대입</strong></a>
+<ul>
+<li><a href="#2-1-%EB%B3%80%EC%88%98%EC%9D%98-%EC%9D%B4%EB%A6%84"><strong>2-1. 변수의 이름</strong></a>
+<ul>
+<li><a href="#%EA%B0%80%EB%8A%A5%ED%95%9C-%EA%B2%BD%EC%9A%B0">【가능한 경우】</a></li>
+<li><a href="#%EB%B6%88%EA%B0%80%ED%95%9C-%EA%B2%BD%EC%9A%B0">【불가한 경우】</a></li>
+</ul>
+</li>
+<li><a href="#2-2-%EB%B3%80%EC%88%98%EC%9D%98-%EB%8C%80%EC%9E%85"><strong>2-2. 변수의 대입</strong></a></li>
+<li><a href="#2-3-%EB%B3%80%EC%88%98%EC%9D%98-%EC%B6%9C%EB%A0%A5"><strong>2-3. 변수의 출력</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85"><strong>3. 데이터 타입</strong></a>
+<ul>
+<li><a href="#3-1-int%EC%A0%95%EC%88%98"><strong>3-1. int(정수)</strong></a></li>
+<li><a href="#3-2-float%EC%8B%A4%EC%88%98"><strong>3-2. float(실수)</strong></a></li>
+<li><a href="#3-3-str-%ED%98%B9%EC%9D%80-object-%EB%AC%B8%EC%9E%90%EC%97%B4"><strong>3-3. str 혹은 object (문자열)</strong></a></li>
+<li><a href="#3-4-bool-%EC%B0%B8%EA%B1%B0%EC%A7%93"><strong>3-4. bool (참/거짓)</strong></a></li>
+<li><a href="#3-5-%EC%95%84%EB%AC%B4%EA%B2%83%EB%8F%84-%EC%95%84%EB%8B%8C-none%ED%83%80%EC%9E%85%EB%8F%84-%EC%9E%88%EB%8B%A4"><strong>3-5. 아무것도 아닌 None타입도 있다</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%9D%91%EC%9A%A9"><strong>4. 데이터의 응용</strong></a>
+<ul>
+<li><a href="#4-1-%EC%82%AC%EC%B9%99-%EC%97%B0%EC%82%B0%EC%9E%90"><strong>4-1. 사칙 연산자</strong></a></li>
+<li><a href="#4-2-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%98-%EC%97%B0%EA%B2%B0"><strong>4-2. 문자열의 연결</strong></a></li>
+</ul>
+</li>
+<li><a href="#5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98"><strong>5. 데이터 타입 변환</strong></a>
+<ul>
+<li><a href="#5-1-%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A1%9C-%EB%B3%80%ED%99%98-str-%ED%95%A8%EC%88%98-or-%EB%94%B0%EC%9B%80%ED%91%9C"><strong>5-1. 문자열로 변환:  “str( ) 함수”  or  "따움표"</strong></a></li>
+<li><a href="#5-2-%EC%A0%95%EC%88%98%EB%A1%9C-%EB%B3%80%ED%99%98-int-%ED%95%A8%EC%88%98"><strong>5-2. 정수로 변환: " int( ) 함수"</strong></a></li>
+<li><a href="#5-3-%EC%8B%A4%EC%88%98%EB%A1%9C-%EB%B3%80%ED%99%98-float-%ED%95%A8%EC%88%98"><strong>5-3. 실수로 변환: "float( ) 함수"</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
 <h2 id="1-출력-print"><a class="markdownIt-Anchor" href="#1-출력-print"></a> <strong>1. 출력 (print)</strong></h2>
 <h3 id="print-함수"><a class="markdownIt-Anchor" href="#print-함수"></a> <strong>print( ) 함수</strong></h3>
 <ol>
@@ -1866,10 +1936,19 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (3)</title>
+    <title>Python 기초문법 (3) - 함수</title>
     <url>/2020/05/13/S-Python-base3/</url>
-    <content><![CDATA[<p><strong>함수</strong></p>
+    <content><![CDATA[<p><strong>함수의 기초</strong></p>
 <a id="more"></a>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%ED%95%A8%EC%88%98%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C"><strong>1. 함수란 무엇일까?</strong></a></li>
+<li><a href="#2-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98-def-define"><strong>2. 함수 정의: def (define)</strong></a></li>
+<li><a href="#3-%ED%95%A8%EC%88%98%EB%8A%94-%EA%B0%92%EC%9D%84-return%ED%95%A0-%EC%88%98-%EC%9E%88%EA%B3%A0-%EC%95%88%ED%95%B4%EB%8F%84-%EB%90%A8"><strong>3. 함수는 값을 return할 수 있고, 안해도 됨</strong></a></li>
+<li><a href="#4-parameter%EA%B0%80-%EC%97%AC%EB%9F%AC-%EA%B0%9C-%EC%9E%88%EC%9C%BC%EB%A9%B4-%ED%95%A8%EC%88%98%EC%97%90-%EB%84%98%EA%B2%A8-%EC%A4%84-%EB%95%8C-%EC%88%9C%EC%84%9C%EA%B0%80-%EC%A4%91%EC%9A%94"><strong>4. parameter가 여러 개 있으면, 함수에 넘겨 줄 때 순서가 중요</strong></a></li>
+</ul>
+<p></p>
+<br>
 <h1 id="함수"><a class="markdownIt-Anchor" href="#함수"></a> <strong>함수</strong></h1>
 <h2 id="1-함수란-무엇일까"><a class="markdownIt-Anchor" href="#1-함수란-무엇일까"></a> <strong>1. 함수란 무엇일까?</strong></h2>
 <p>반복적으로 사용되는 부문을 묶어서, <strong>재사용 가능</strong>하도록 만들어 주는 것</p>
@@ -1984,11 +2063,45 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (4)</title>
+    <title>Python 기초문법 (4) - 비교/논리 연산자. 조건문. 반복문</title>
     <url>/2020/05/13/S-Python-base4/</url>
     <content><![CDATA[<p>비교연산자. 조건문. 논리연산자. 반복문</p>
 <a id="more"></a>
 <h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> 목록</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%EB%B9%84%EA%B5%90%EC%97%B0%EC%82%B0%EC%9E%90"><strong>1. 비교연산자</strong></a>
+<ul>
+<li><a href="#1-1-%EB%8C%80%EC%86%8C%EB%B9%84%EA%B5%90"><strong>1-1. 대소비교 &gt;, &gt;=, &lt;, &lt;=</strong></a></li>
+<li><a href="#1-2-%EA%B0%99%EB%8B%A4"><strong>1-2. 같다 ==</strong></a></li>
+<li><a href="#1-3-%EA%B0%99%EC%A7%80-%EC%95%8A%EB%8B%A4"><strong>1-3. 같지 않다 !=</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-%EC%A1%B0%EA%B1%B4%EB%AC%B8"><strong>2. 조건문</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90"><strong>2-1. 개념</strong></a></li>
+<li><a href="#2-2-if"><strong>2-2. if</strong></a></li>
+<li><a href="#2-3-else"><strong>2-3. else</strong></a></li>
+<li><a href="#2-4-elif"><strong>2-4. elif</strong></a></li>
+<li><a href="#2-5-1%EC%9D%B4%EB%82%98-0%EC%9D%80-%EC%B0%B8%EC%9D%B4%EB%82%98-%EA%B1%B0%EC%A7%93%EC%9D%84-%ED%91%9C%ED%98%84%ED%95%98%EA%B8%B0%EB%8F%84-%ED%95%9C%EB%8B%A4"><strong>2-5. 1이나 0은 참이나 거짓을 표현하기도 한다</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%EB%85%BC%EB%A6%AC-%EC%97%B0%EC%82%B0%EC%9E%90-and-or"><strong>3. 논리 연산자 (and, or)</strong></a>
+<ul>
+<li><a href="#3-1-and"><strong>3-1. and</strong></a></li>
+<li><a href="#3-2-or"><strong>3-2. or</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-%EB%B0%98%EB%B3%B5%EB%AC%B8"><strong>4. 반복문</strong></a>
+<ul>
+<li><a href="#4-1-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9D%B4%EB%9E%80"><strong>4-1. 반복문이란?</strong></a></li>
+<li><a href="#4-2-for-%EC%99%80-in%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%98%EC%9E%90"><strong>4-2. for 와 in을 활용하자!</strong></a></li>
+<li><a href="#4-3-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%97%90%EC%84%9C-%EC%A7%9D%EC%88%98%EB%A7%8C-%EC%B6%9C%EB%A0%A5%ED%95%98%EB%A0%A4%EB%A9%B4-continue%EA%B5%AC%EB%AC%B8"><strong>4-3. 반복문에서 짝수만 출력하려면? (continue구문)</strong></a></li>
+<li><a href="#4-4-%EC%A1%B0%EA%B1%B4%EC%9D%84-%EC%B6%A9%EC%A1%B1%EC%8B%9C-%EC%88%9C%ED%99%98%EC%97%90%EC%84%9C-%EB%B9%A0%EC%A0%B8%EB%82%98%EC%99%80%EB%B3%B4%EC%9E%90-break%EA%B5%AC%EB%AC%B8"><strong>4-4. 조건을 충족시 순환에서 빠져나와보자! (break구문)</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
 <h2 id="1-비교연산자"><a class="markdownIt-Anchor" href="#1-비교연산자"></a> <strong>1. 비교연산자</strong></h2>
 <p>비교 연산자는 주로 대소비교를 할 때 사용한다.</p>
 <h3 id="1-1-대소비교"><a class="markdownIt-Anchor" href="#1-1-대소비교"></a> <strong>1-1. 대소비교 &gt;, &gt;=, &lt;, &lt;=</strong></h3>
@@ -2259,10 +2372,47 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (2)</title>
+    <title>Python 기초문법 (2) - 집합 형태의 데이터 타입</title>
     <url>/2020/05/13/S-Python-base2/</url>
     <content><![CDATA[<p>집합 형태의 데이터 타입: list, tuple, set, dict</p>
 <a id="more"></a>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-list-%EC%88%9C%EC%84%9C%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%A7%91%ED%95%A9"><strong>1. list (순서가 있는 집합)</strong></a>
+<ul>
+<li><a href="#1-1-%ED%98%95%ED%85%8C%EB%A1%9C-%ED%91%9C%ED%98%84%ED%95%9C%EB%8B%A4"><strong>1-1. [ ] 형테로 표현한다</strong></a></li>
+<li><a href="#1-2-list%EC%97%90-%EA%B0%92%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0-append-%ED%95%A9%EC%88%98"><strong>1-2. list에 값을 추가하기 – ".append( ) 합수"</strong></a></li>
+<li><a href="#1-3-list%EC%9D%98-%EA%B0%92%EC%9D%84-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0-remove-%ED%95%A8%EC%88%98"><strong>1-3. list의 값을 제거하기 – ".remove 함수"</strong></a></li>
+<li><a href="#1-4-%EA%B0%99%EC%9D%80-%EA%B0%92%EC%9D%B4-%EC%97%AC%EB%9F%AC-%EA%B0%9C-%ED%8F%AC%ED%95%A8%EB%90%98%EC%96%B4-%EC%9E%88%EC%9D%84-%EB%95%8C%EC%9D%98-%EC%A0%9C%EA%B1%B0-%EC%88%9C%EC%84%9C"><strong>1-4. 같은 값이 여러 개 포함되어 있을 때의 제거 순서</strong></a></li>
+<li><a href="#1-5-%EC%9D%B8%EB%8D%B1%EC%8B%B1indexing-%EC%83%89%EC%9D%B8"><strong>1-5. 인덱싱(Indexing) -&gt; 색인</strong></a></li>
+<li><a href="#1-6-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A1%9C-%EC%A0%91%EA%B7%BC%ED%95%98%EC%97%AC-%EA%B0%92-%EB%B0%94%EA%BE%B8%EA%B8%B0"><strong>1-6. 인덱스로 접근하여 값 바꾸기</strong></a></li>
+<li><a href="#1-7-%EC%A0%84%EC%B2%B4-%EA%B8%B8%EC%9D%B4-%EC%82%AC%EC%9D%B4%EC%A6%88-%EC%95%8C%EC%95%84%EB%82%B4%EA%B8%B0"><strong>1-7. 전체 길이 (사이즈) 알아내기</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-tuple-%EC%88%9C%EC%84%9C%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%A7%91%ED%95%A9-%EC%9D%BD%EA%B8%B0-%EC%A0%84%EC%9A%A9"><strong>2. tuple (순서가 있는 집합, 읽기 전용)</strong></a>
+<ul>
+<li><a href="#2-1-%ED%98%95%ED%83%9C%EB%A1%9C-%ED%91%9C%ED%98%84%ED%95%9C%EB%8B%A4"><strong>2-1. ( ) 형태로 표현한다</strong></a></li>
+<li><a href="#2-2-%EC%9D%BD%EA%B8%B0-%EC%A0%84%EC%9A%A9%EC%9D%B4%EB%9D%BC-%EA%B0%92-%EC%B6%94%EA%B0%80-%EA%B0%92-%EC%82%AD%EC%A0%9C-%EA%B0%92-%EB%B0%94%EA%BE%B8%EA%B8%B0-%EB%AA%A8%EB%91%90-%EC%95%88%EB%90%A8"><strong>2-2. 읽기 전용이라 “값 추가”, “값 삭제”, “값 바꾸기” 모두 안됨</strong></a></li>
+<li><a href="#2-3-%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0"><strong>2-3. 길이 파악하기</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-set-%EC%88%9C%EC%84%9C-x-%EC%A4%91%EB%B3%B5-x"><strong>3. set (순서 X, 중복 X)</strong></a>
+<ul>
+<li><a href="#3-1-set%EC%9D%98-%ED%95%A0%EB%8B%B9-set"><strong>3-1. set의 할당: set()</strong></a></li>
+<li><a href="#3-2-set%EC%97%90-%EA%B0%92%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0-add-%ED%95%A8%EC%88%98"><strong>3-2. set에 값을 추가하기 –  ".add 함수"</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-dict-%EC%82%AC%EC%A0%84%ED%98%95-%EC%A7%91%ED%95%A9-key%EC%99%80-value-%EC%8C%8D"><strong>4. dict (사전형 집합, key와 value 쌍)</strong></a>
+<ul>
+<li><a href="#4-1-%ED%98%95%ED%83%9C%EB%A1%9C-%ED%91%9C%ED%97%8C%ED%95%9C%EB%8B%A4"><strong>4-1. { } 형태로 표헌한다</strong></a></li>
+<li><a href="#4-2-dict%EC%97%90-%EA%B0%92%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0-key%EC%99%80-value-%EB%AA%A8%EB%91%90-%EC%A7%80%EC%A0%95%ED%95%B4%EC%A4%98%EC%95%BC-%ED%95%A8"><strong>4-2. dict에 값을 추가하기 (key와 value 모두 지정해줘야 함)</strong></a></li>
+<li><a href="#4-3-dict%EC%9D%98-%EA%B0%92%EC%9D%84-%EB%B0%94%EA%BE%B8%EA%B8%B0"><strong>4-3. dict의 값을 바꾸기</strong></a></li>
+<li><a href="#4-4-%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0"><strong>4-4. 길이 파악하기</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
 <h1 id="집합-형태의-데이터-타입"><a class="markdownIt-Anchor" href="#집합-형태의-데이터-타입"></a> <strong>집합 형태의 데이터 타입</strong></h1>
 <br>
 <p></p><ul class="markdownIt-TOC">
@@ -2611,17 +2761,40 @@ TypeError: 'tuple' object does not support item assignment
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (5)</title>
+    <title>Python 기초문법 (5) - List Comprehension. 문자열</title>
     <url>/2020/05/14/S-Python-base5/</url>
-    <content><![CDATA[<p>List Comprehension.  문자열을 가지고 노는 방법.</p>
+    <content><![CDATA[<p>List Comprehension (List에 조건필터를 적용).  문자열을 가지고 노는 방법.</p>
 <a id="more"></a>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-list-comprehension-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EA%B3%A0%EC%9C%A0%EC%9D%98-%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4-%EB%AC%B8%EB%B2%95"><strong>1. List Comprehension (파이썬 고유의 아름다운 문법)</strong></a>
+<ul>
+<li><a href="#1-1-list-comprehension-%EC%A1%B0%EA%B1%B4%ED%95%84%ED%84%B0"><strong>1-1. list comprehension 조건필터</strong></a></li>
+<li><a href="#1-2-step-1-list%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EC%95%BC-%ED%95%98%EB%8B%88-%EC%9D%BC%EB%8B%A8-%EA%BA%BE%EC%87%A0-%EB%A5%BC-%EC%94%8C%EC%9A%B4%EB%8B%A4"><strong>1-2. [STEP 1] list를 만들어야 하니 일단 꺾쇠[ ]를 씌운다</strong></a></li>
+<li><a href="#1-3-step-2-%EC%A1%B0%EA%B1%B4-%ED%95%84%ED%84%B0%EB%A5%BC-%EA%B1%B8%EC%96%B4-%EC%A4%80%EB%8B%A4"><strong>1-3. [STEP 2] 조건 필터를 걸어 준다</strong></a></li>
+<li><a href="#1-4-%EC%9D%91%EC%9A%A9-step-%EB%B3%80%EC%88%98-%EA%B0%92%EC%9D%84-%EA%B0%80%EA%B3%B5%ED%95%A0-%EC%88%98%EB%8F%84-%EC%9E%88%EB%8B%A4"><strong>1-4. [응용 STEP] 변수 값을 가공할 수도 있다</strong></a></li>
+</ul>
+</li>
+<li><a href="#2-%EB%AC%B8%EC%9E%90%EC%97%B4string%EC%9D%84-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%86%80%EA%B8%B0"><strong>2. 문자열(string)을 가지고 놀기</strong></a>
+<ul>
+<li><a href="#2-1-%EB%AC%B8%EC%9E%90%EC%9D%98-%EA%B8%B8%EC%9D%B4"><strong>2-1. 문자의 길이</strong></a></li>
+<li><a href="#2-2-%EB%AC%B8%EC%9E%A5-%EC%AA%BC%EA%B0%9C%EA%B8%B0-split"><strong>2-2. 문장 쪼개기 – ".split"</strong></a></li>
+<li><a href="#2-3-%EB%8C%80%EB%AC%B8%EC%9E%90-%EC%86%8C%EB%AC%B8%EC%9E%90%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0-upper-lower"><strong>2-3. 대문자 / 소문자로 만들기 – “.upper” / ".lower"</strong></a></li>
+<li><a href="#24-~%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94-~%EB%A1%9C-%EB%81%9D%EB%82%98%EB%8A%94-startswith-endswith"><strong>2.4. ~로 시작하는, ~로 끝나는 – “.startswith” , ".endswith"</strong></a></li>
+<li><a href="#2-5-%EB%B0%94%EA%BE%B8%EA%B8%B0-replace%EB%B0%94%EA%BF%80-%EB%8C%80%EC%83%81-%EB%B0%94%EA%BF%94%EC%95%BC%ED%95%A0-%EA%B0%92"><strong>2-5. 바꾸기 – ".replace(‘바꿀 대상, 바꿔야할 값’)"</strong></a></li>
+<li><a href="#2-6-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-%EA%B3%B5%EB%B0%B1-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0-strip"><strong>2-6. 불필요한 공백 제거하기 – ".strip"</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
 <h2 id="1-list-comprehension-파이썬-고유의-아름다운-문법"><a class="markdownIt-Anchor" href="#1-list-comprehension-파이썬-고유의-아름다운-문법"></a> <strong>1. List Comprehension (파이썬 고유의 아름다운 문법)</strong></h2>
 <ul>
 <li>
 <p>for ~ in 구조를 기본적으로 가지고 있다</p>
 </li>
 <li>
-<p>ListComprehension 이니까 당연히 List를 사용한다</p>
+<p>List Comprehension 이니까 당연히 List를 사용한다</p>
 <br>
 </li>
 </ul>
@@ -2867,10 +3040,20 @@ TypeError: 'tuple' object does not support item assignment
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 (6)</title>
+    <title>Python 기초문법 (6) - Package</title>
     <url>/2020/05/16/S-Python-base6/</url>
     <content><![CDATA[<p>패키지(Package) 와 import</p>
 <a id="more"></a>
+<h1 id="목록"><a class="markdownIt-Anchor" href="#목록"></a> <strong>목록</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%99%80-%EB%AA%A8%EB%93%88-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%ED%95%A8%EC%88%98%EC%9D%98-%EA%B4%80%EA%B3%84%EB%8F%84"><strong>1. 패키지와 모듈 그리고 함수의 관계도</strong></a></li>
+<li><a href="#2-%EB%AA%A8%EB%93%88-import-%ED%95%98%EA%B8%B0"><strong>2. 모듈 import 하기</strong></a></li>
+<li><a href="#3-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%97%90%EC%84%9C-import%ED%95%98%EA%B8%B0"><strong>3. 패키지 에서 import하기</strong></a></li>
+<li><a href="#4-%EB%B3%84%EC%B9%AD-alias-%EC%A7%80%EC%96%B4%EC%A3%BC%EA%B8%B0"><strong>4. 별칭 (alias) 지어주기</strong></a></li>
+<li><a href="#5-%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%A0-%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%AA%A8%EB%93%88-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0"><strong>5. 앞으로 자주 사용할 패키지, 모듈 미리보기</strong></a></li>
+</ul>
+<p></p>
+<br>
 <h1 id="패키지package-와-import"><a class="markdownIt-Anchor" href="#패키지package-와-import"></a> <strong>패키지(Package) 와 import</strong></h1>
 <h2 id="1-패키지와-모듈-그리고-함수의-관계도"><a class="markdownIt-Anchor" href="#1-패키지와-모듈-그리고-함수의-관계도"></a> <strong>1. 패키지와 모듈 그리고 함수의 관계도</strong></h2>
 <ul>
