@@ -379,21 +379,6 @@
     <title>利用Git Pages+Hexo搭建博客过程中的参考资料</title>
     <url>/2020/05/08/Reference/</url>
     <content><![CDATA[<font face="Microsoft YaHei">
-<p></p><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA">博客搭建</a></li>
-<li><a href="#%E7%BD%91%E9%A1%B5%E9%85%8D%E7%BD%AE-%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE">网页配置 &amp; 主题配置</a></li>
-<li><a href="#markdown%E6%B8%B2%E6%9F%93">Markdown渲染</a></li>
-<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
-<li><a href="#git-github">Git &amp; Github</a></li>
-<li><a href="#jupyter-notebook">Jupyter Notebook</a></li>
-<li><a href="#markdown-typora">Markdown &amp; Typora</a></li>
-</ul>
-</li>
-</ul>
-<p></p>
-<br>
 <hr>
 <h3 id="博客搭建"><a class="markdownIt-Anchor" href="#博客搭建"></a> 博客搭建</h3>
 <ul>
@@ -465,6 +450,11 @@
 <li>更改tag大小写后出现404页面
 <ul>
 <li><a href="http://1mhz.me/2015/hexo-deploy-case-sensitive/" target="_blank" rel="noopener">Hexo 部署到 Github Pages 文件夹大小写问题</a></li>
+</ul>
+</li>
+<li>更改博客 Front Page 的默认配置
+<ul>
+<li><a href="https://zhangjiejun.com/posts/config_Front-matter_in_hexo/" target="_blank" rel="noopener">hexo博客Front-matter模板配置</a></li>
 </ul>
 </li>
 </ul>
@@ -3301,5 +3291,28 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
         <tag>Python</tag>
         <tag>Python_Base</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2020/05/22/test/</url>
+    <content><![CDATA[<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
   </entry>
 </search>
