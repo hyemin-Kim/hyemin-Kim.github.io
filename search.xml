@@ -1343,16 +1343,15 @@ ValueError: invalid literal for int() with base 10: '5.8'
 <ul>
 <li><a href="#%EB%B0%A9%EB%B2%95-1-list%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0"><strong>방법 1. list로 만들기</strong></a></li>
 <li><a href="#%EB%B0%A9%EB%B2%95-2-dict%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0"><strong>방법 2. dict로 만들기</strong></a></li>
-<li><a href="#index%EB%A5%BC-%ED%8A%B9%EC%A0%95column%EC%9C%BC%EB%A1%9C-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0"><strong>index를 특정column으로 지정하기</strong></a></li>
-<li><a href="#column-series"><strong>column = Series</strong></a></li>
 </ul>
 </li>
+<li><a href="#2-3-index%EB%A5%BC-%ED%8A%B9%EC%A0%95column%EC%9C%BC%EB%A1%9C-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0"><strong>2-3. index를 특정column으로 지정하기</strong></a></li>
+<li><a href="#2-4-column-series"><strong>2-4. column = Series</strong></a></li>
 </ul>
 </li>
 </ul>
 <p></p>
 <br>
-<h1 id="series와-dataframe"><a class="markdownIt-Anchor" href="#series와-dataframe"></a> <strong>Series와 DataFrame</strong></h1>
 <h2 id="1-pandas-패키지-로드"><a class="markdownIt-Anchor" href="#1-pandas-패키지-로드"></a> <strong>1. pandas 패키지 로드</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br></pre></td></tr></tbody></table></figure>
 <p>별칭은 주로 pd로 사용한다</p>
@@ -1606,7 +1605,7 @@ dtype: int64
 </table>
 </div>
 <br>  
-<h4 id="index를-특정column으로-지정하기"><a class="markdownIt-Anchor" href="#index를-특정column으로-지정하기"></a> <strong>index를 특정column으로 지정하기</strong></h4>
+<h3 id="2-3-index를-특정column으로-지정하기"><a class="markdownIt-Anchor" href="#2-3-index를-특정column으로-지정하기"></a> <strong>2-3. index를 특정column으로 지정하기</strong></h3>
 <p>“dfname.index = [ ]” 명령을 사용한다</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -1709,7 +1708,7 @@ dtype: int64
 </table>
 </div>
 <br>  
-<h4 id="column-series"><a class="markdownIt-Anchor" href="#column-series"></a> <strong>column = Series</strong></h4>
+<h3 id="2-4-column-series"><a class="markdownIt-Anchor" href="#2-4-column-series"></a> <strong>2-4. column = Series</strong></h3>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1[<span class="string">'매출액'</span>]</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>기업명
 삼성     2000
