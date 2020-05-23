@@ -1460,7 +1460,7 @@ canvas:not(#ribbon-canvas),
   margin: 0 0 1rem;
   padding: 0;
   background: #f6f8fa;
-  color: #90a4ae;
+  color: rgba(255,160,124,56.565);
   line-height: 20px;
 }
 .code-area-wrap {
