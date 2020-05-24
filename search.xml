@@ -6072,7 +6072,7 @@ memory usage: 1.1+ KB
     <url>/2020/05/24/S-Python-Pandas4/</url>
     <content><![CDATA[<h1 id="범위선텍"><a class="markdownIt-Anchor" href="#범위선텍"></a> 범위선텍</h1>
 <p></p><ul class="markdownIt-TOC">
-<li><a href="#0-dataframe-%EB%A1%9C%EB%93%9C"><strong>0. DataFrame 로드</strong></a></li>
+<li><a href="#0-dataframe-%EB%A1%9C%EB%93%9C">0. DataFrame 로드</a></li>
 <li><a href="#1-column%EC%9D%84-%EC%84%A0%ED%83%9D%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95">1. Column을 선택하는 방법</a></li>
 <li><a href="#2-%EB%B2%94%EC%9C%84-%EC%84%A0%ED%83%9D-range-selection">2. 범위 선택 (range selection)</a>
 <ul>
@@ -6090,7 +6090,7 @@ memory usage: 1.1+ KB
 <li><a href="#4-%EC%A1%B0%EA%B1%B4%EB%B2%94%EC%9C%84%EC%84%A0%ED%83%9D-inis%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%83%89%EC%9D%B8">4. 조건범위선택 – inis을 활용한 색인</a></li>
 </ul>
 <p></p>
-<h2 id="0-dataframe-로드"><a class="markdownIt-Anchor" href="#0-dataframe-로드"></a> <strong>0. DataFrame 로드</strong></h2>
+<h2 id="0-dataframe-로드"><a class="markdownIt-Anchor" href="#0-dataframe-로드"></a> 0. DataFrame 로드</h2>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'korean-idol.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
@@ -6800,7 +6800,6 @@ Name: 이름, dtype: object
 등 형식을 사용</p>
 </li>
 </ul>
-<br>
 <p><font color="red"> <strong>주의:</strong>  </font></p>
 <ul>
 <li>
@@ -7166,7 +7165,6 @@ c:d<br>
 등 형식을 사용</p>
 </li>
 </ul>
-<br>
 <p><font color="red"> <strong>주의:</strong>  </font></p>
 <ul>
 <li>
