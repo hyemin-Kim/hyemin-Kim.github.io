@@ -3559,7 +3559,8 @@ ValueError: invalid literal for int() with base 10: '2.6'
 <h3 id="2-2-문장-쪼개기-split"><a class="markdownIt-Anchor" href="#2-2-문장-쪼개기-split"></a> <strong>2-2. 문장 쪼개기 – ".split"</strong></h3>
 <ul>
 <li>split은 문장을 특정 규칙에 의해 쪼개 주는 기능을 한다</li>
-<li><strong>명령어:</strong>  변수명.split(‘쪼개는 기준’)</li>
+<li><strong>명령어:</strong>  변수명.split(‘<em>쪼개는 기준</em>’)</li>
+<li>쪼개는 기준이 설정되어 있지 않으면 그냥 '빈칸’으로 인식된다</li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = <span class="string">'This is a pen'</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a.split(<span class="string">' '</span>)</span><br></pre></td></tr></tbody></table></figure>
@@ -3649,7 +3650,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
 <pre><code>'01-sample.jpg'
 </code></pre>
 <br>
-<p>이 때 a의 값을 변하지 않아. 다시 할당 해야 함</p>
+<p>이 때 a의 값이 변하지 않아. 다시 할당 해야 함</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>'01-sample.png'
 </code></pre>
