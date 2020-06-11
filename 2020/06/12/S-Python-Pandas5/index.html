@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출 | Hyemin Kim</title><meta name="description" content="결측값 확인 및 추출  1. 결측값에 대하여 2. column별 (비)결측값 개수 확인 – info() 3. (비)결측값 위치 확인  3-1. 전체 Data 3-2. 특정 column   4. (비)결측값 추출  4-1. 해당 column만 추출 4-2. 전체 column 추출 4-3. 지정한 column 추출      1import pandas as p"><meta name="keywords" content="Python,Pandas"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출"><meta name="twitter:description" content="결측값 확인 및 추출  1. 결측값에 대하여 2. column별 (비)결측값 개수 확인 – info() 3. (비)결측값 위치 확인  3-1. 전체 Data 3-2. 특정 column   4. (비)결측값 추출  4-1. 해당 column만 추출 4-2. 전체 column 추출 4-3. 지정한 column 추출      1import pandas as p"><meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출"><meta property="og:url" content="https://hyemin-kim.github.io/2020/06/12/S-Python-Pandas5/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="결측값 확인 및 추출  1. 결측값에 대하여 2. column별 (비)결측값 개수 확인 – info() 3. (비)결측값 위치 확인  3-1. 전체 Data 3-2. 특정 column   4. (비)결측값 추출  4-1. 해당 column만 추출 4-2. 전체 column 추출 4-3. 지정한 column 추출      1import pandas as p"><meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="article:published_time" content="2020-06-11T16:21:05.000Z"><meta property="article:modified_time" content="2020-06-11T16:33:36.869Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출 | Hyemin Kim</title><meta name="description" content="결측값 확인 및 추출  1. 결측값에 대하여 2. column별 (비)결측값 개수 확인 – info() 3. (비)결측값 위치 확인  3-1. 전체 Data 3-2. 특정 column   4. (비)결측값 추출  4-1. 해당 column만 추출 4-2. 전체 column 추출 4-3. 지정한 column 추출      1import pandas as p"><meta name="keywords" content="Python,Pandas"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출"><meta name="twitter:description" content="결측값 확인 및 추출  1. 결측값에 대하여 2. column별 (비)결측값 개수 확인 – info() 3. (비)결측값 위치 확인  3-1. 전체 Data 3-2. 특정 column   4. (비)결측값 추출  4-1. 해당 column만 추출 4-2. 전체 column 추출 4-3. 지정한 column 추출      1import pandas as p"><meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출"><meta property="og:url" content="https://hyemin-kim.github.io/2020/06/12/S-Python-Pandas5/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="결측값 확인 및 추출  1. 결측값에 대하여 2. column별 (비)결측값 개수 확인 – info() 3. (비)결측값 위치 확인  3-1. 전체 Data 3-2. 특정 column   4. (비)결측값 추출  4-1. 해당 column만 추출 4-2. 전체 column 추출 4-3. 지정한 column 추출      1import pandas as p"><meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="article:published_time" content="2020-06-11T16:21:05.000Z"><meta property="article:modified_time" content="2020-06-11T16:42:32.574Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
 var t = Cookies.get("theme")
 if (autoChangeMode == '1'){
   var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -91,7 +91,7 @@ ga('send', 'pageview');
   opacity: 1
 }
 </style></noscript><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#결측값-확인-및-추출"><span class="toc-text"> 결측값 확인 및 추출</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-결측값에-대하여"><span class="toc-text"> 1. 결측값에 대하여</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-column별-비결측값-개수-확인-info"><span class="toc-text"> 2. column별 (비)결측값 개수 확인 – info()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-비결측값-위치-확인"><span class="toc-text"> 3. (비)결측값 위치 확인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-전체-data"><span class="toc-text"> 3-1. 전체 Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-특정-column"><span class="toc-text"> 3-2. 특정 column</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-비결측값-추출"><span class="toc-text"> 4. (비)결측값 추출</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-해당-column만-추출"><span class="toc-text"> 4-1. 해당 column만 추출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-전체-column-추출"><span class="toc-text"> 4-2. 전체 column 추출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-지정한-column-추출"><span class="toc-text"> 4-3. 지정한 column 추출</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-06-12 01:21:05"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-06-12</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-12 01:33:36"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-06-12</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="결측값-확인-및-추출"><a class="markdownIt-Anchor" href="#결측값-확인-및-추출"></a> 결측값 확인 및 추출</h1>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#결측값-확인-및-추출"><span class="toc-text"> 결측값 확인 및 추출</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-결측값에-대하여"><span class="toc-text"> 1. 결측값에 대하여</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-column별-비결측값-개수-확인-info"><span class="toc-text"> 2. column별 (비)결측값 개수 확인 – info()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-비결측값-위치-확인"><span class="toc-text"> 3. (비)결측값 위치 확인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-전체-data"><span class="toc-text"> 3-1. 전체 Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-특정-column"><span class="toc-text"> 3-2. 특정 column</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-비결측값-추출"><span class="toc-text"> 4. (비)결측값 추출</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-해당-column만-추출"><span class="toc-text"> 4-1. 해당 column만 추출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-전체-column-추출"><span class="toc-text"> 4-2. 전체 column 추출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-지정한-column-추출"><span class="toc-text"> 4-3. 지정한 column 추출</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-06-12 01:21:05"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-06-12</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-12 01:42:32"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-06-12</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="결측값-확인-및-추출"><a class="markdownIt-Anchor" href="#결측값-확인-및-추출"></a> 결측값 확인 및 추출</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#1-%EA%B2%B0%EC%B8%A1%EA%B0%92%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC"><strong>1. 결측값에 대하여</strong></a></li>
 <li><a href="#2-column%EB%B3%84-%EB%B9%84%EA%B2%B0%EC%B8%A1%EA%B0%92-%EA%B0%9C%EC%88%98-%ED%99%95%EC%9D%B8-info"><strong>2. column별 (비)결측값 개수 확인 – info()</strong></a></li>
@@ -363,211 +363,12 @@ memory usage: 1.1+ KB
 </li>
 </ul>
 <h3 id="3-1-전체-data"><a class="markdownIt-Anchor" href="#3-1-전체-data"></a> 3-1. 전체 Data</h3>
-<ul>
-<li>
+<blockquote>
 <p><em>df_name</em> .명령어</p>
+</blockquote>
 <br>
-</li>
-</ul>
 <p><strong>(1) 결측값 = True</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.isna()</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.isnull()</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -770,203 +571,6 @@ memory usage: 1.1+ KB
 <br>
 <p><strong>(2) 비결측값 = True</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.notna()</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.notnull()</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -1168,31 +772,12 @@ memory usage: 1.1+ KB
 </div>
 <p><br> <br></p>
 <h3 id="3-2-특정-column"><a class="markdownIt-Anchor" href="#3-2-특정-column"></a> 3-2. 특정 column</h3>
-<ul>
-<li>
+<blockquote>
 <p><em>df_name</em> [ ‘<em>col_name</em>’ ] .명령어</p>
+</blockquote>
 <br>
-</li>
-</ul>
 <p><strong>(1) 결측값 = True</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'그룹'</span>].isna()</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0     False
-1     False
-2      True
-3     False
-4     False
-5     False
-6     False
-7     False
-8     False
-9     False
-10    False
-11    False
-12    False
-13    False
-14    False
-Name: 그룹, dtype: bool
-</code></pre>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'그룹'</span>].isnull()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>0     False
@@ -1215,23 +800,6 @@ Name: 그룹, dtype: bool
 <br>
 <p><strong>(2) 비결측값 = True</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'그룹'</span>].notna()</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0      True
-1      True
-2     False
-3      True
-4      True
-5      True
-6      True
-7      True
-8      True
-9      True
-10     True
-11     True
-12     True
-13     True
-14     True
-Name: 그룹, dtype: bool
-</code></pre>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'그룹'</span>].notnull()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>0      True
@@ -1255,15 +823,11 @@ Name: 그룹, dtype: bool
 <br>  
 <h2 id="4-비결측값-추출"><a class="markdownIt-Anchor" href="#4-비결측값-추출"></a> <strong>4. (비)결측값 추출</strong></h2>
 <h3 id="4-1-해당-column만-추출"><a class="markdownIt-Anchor" href="#4-1-해당-column만-추출"></a> 4-1. 해당 column만 추출</h3>
-<ul>
-<li>
-<p>결측값: <em>df_name</em> [ ‘<em>col_name</em>’]  [ <em>df_name</em> [ ‘<em>col_name</em>’ ] .isna() / isnull() ]</p>
-</li>
-<li>
-<p>비결측값: <em>df_name</em> [ ‘<em>col_name</em>’ ]  [<em>df_name</em> [ ‘<em>col_name</em>’ ] .notna() / notnull()]</p>
-<br>
-</li>
-</ul>
+<blockquote>
+<p>결측값: <em>df_name</em> [ ‘<em>col_name</em>’]  [ <em>df_name</em> [ ‘<em>col_name</em>’ ] .isna() / isnull() ]<br>
+비결측값: <em>df_name</em> [ ‘<em>col_name</em>’ ]  [<em>df_name</em> [ ‘<em>col_name</em>’ ] .notna() / notnull()]</p>
+</blockquote>
+  <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'그룹'</span>][df[<span class="string">'그룹'</span>].isna()]</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>2    NaN
 Name: 그룹, dtype: object
@@ -1289,15 +853,11 @@ Name: 그룹, dtype: object
   <br>
 <br>
 <h3 id="4-2-전체-column-추출"><a class="markdownIt-Anchor" href="#4-2-전체-column-추출"></a> 4-2. 전체 column 추출</h3>
-<ul>
-<li>
+<blockquote>
 <p>결측값: <em>df_name</em> .loc [<em>df_name</em> [ ‘<em>col_name</em>’ ] .isna() / isnull() ]</p>
-</li>
-<li>
 <p>비결측값: <em>df_name</em> .loc [<em>df_name</em> ['<em>col_name</em>] .notna() / notnull() ]</p>
+</blockquote>
 <br>
-</li>
-</ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[df[<span class="string">'그룹'</span>].isna()]</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -1533,15 +1093,11 @@ Name: 그룹, dtype: object
 <br>
 <br>  
 <h3 id="4-3-지정한-column-추출"><a class="markdownIt-Anchor" href="#4-3-지정한-column-추출"></a> 4-3. 지정한 column 추출</h3>
-<ul>
-<li>
+<blockquote>
 <p>결측값: <em>df_name</em> .loc [<em>df_name</em> [ ‘<em>na_col_name</em>’ ] .isna() / isnull() , [‘<em>col_name1</em>’, ‘<em>col_name2</em>’, …]]</p>
-</li>
-<li>
 <p>비결측값: <em>df_name</em> .loc [<em>df_name</em> ['<em>na_col_name</em>] .notna() / notnull() , [‘<em>col_name1</em>’, ‘<em>col_name2</em>’, …]]</p>
+</blockquote>
 <br>
-</li>
-</ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[df[<span class="string">'그룹'</span>].isna(), [<span class="string">'이름'</span>, <span class="string">'소속사'</span>]]</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
