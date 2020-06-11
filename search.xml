@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>Python &gt;&gt; Pandas (5) - 결측값 확인 및 추출</title>
+      <title>Python &gt;&gt; Pandas 데이터 파악 - (5) 결측값 확인 및 추출</title>
       <link href="/2020/06/12/S-Python-Pandas5/"/>
       <url>/2020/06/12/S-Python-Pandas5/</url>
       
@@ -33,7 +33,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Pandas (4) - 범위선택</title>
+      <title>Python &gt;&gt; Pandas 데이터 파악 - (4) 범위선택</title>
       <link href="/2020/05/24/S-Python-Pandas4/"/>
       <url>/2020/05/24/S-Python-Pandas4/</url>
       
@@ -62,7 +62,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Pandas (3) - 요약정보, 통계값, 정렬</title>
+      <title>Python &gt;&gt; Pandas 데이터 파악 - (3) 요약정보, 통계값, 정렬</title>
       <link href="/2020/05/24/S-Python-Pandas3/"/>
       <url>/2020/05/24/S-Python-Pandas3/</url>
       
@@ -91,7 +91,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Pandas (2) - 파일 불러오기</title>
+      <title>Python &gt;&gt; Pandas 데이터 파악 - (2) 파일 불러오기</title>
       <link href="/2020/05/24/S-Python-Pandas2/"/>
       <url>/2020/05/24/S-Python-Pandas2/</url>
       
@@ -120,7 +120,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Pandas (1) - Series와 DataFrame</title>
+      <title>Python &gt;&gt; Pandas 데이터 파악 - (1) Series와 DataFrame</title>
       <link href="/2020/05/22/S-Python-Pandas1/"/>
       <url>/2020/05/22/S-Python-Pandas1/</url>
       
@@ -149,7 +149,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Numpy (4) - 행렬. Broadcasting</title>
+      <title>Python &gt;&gt; Numpy - (4) 행렬. Broadcasting</title>
       <link href="/2020/05/20/S-Python-Numpy4/"/>
       <url>/2020/05/20/S-Python-Numpy4/</url>
       
@@ -178,7 +178,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Numpy (3) - 수열. 정렬</title>
+      <title>Python &gt;&gt; Numpy - (3) 수열. 정렬</title>
       <link href="/2020/05/20/S-Python-Numpy3/"/>
       <url>/2020/05/20/S-Python-Numpy3/</url>
       
@@ -207,7 +207,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Numpy (2) - Slicing. 인덱싱</title>
+      <title>Python &gt;&gt; Numpy - (2) Slicing. 인덱싱</title>
       <link href="/2020/05/19/S-Python-Numpy2/"/>
       <url>/2020/05/19/S-Python-Numpy2/</url>
       
@@ -236,7 +236,7 @@
     
     
     <entry>
-      <title>Python &gt;&gt; Numpy (1) - Numpy. array</title>
+      <title>Python &gt;&gt; Numpy - (1) Numpy. array</title>
       <link href="/2020/05/19/S-Python-Numpy1/"/>
       <url>/2020/05/19/S-Python-Numpy1/</url>
       
@@ -265,7 +265,7 @@
     
     
     <entry>
-      <title>Python 기초문법 (6) - Package</title>
+      <title>Python 기초문법 - (6) Package</title>
       <link href="/2020/05/16/S-Python-base6/"/>
       <url>/2020/05/16/S-Python-base6/</url>
       
@@ -294,7 +294,7 @@
     
     
     <entry>
-      <title>Python 기초문법 (5) - List Comprehension. 문자열</title>
+      <title>Python 기초문법 - (5) List Comprehension. 문자열</title>
       <link href="/2020/05/14/S-Python-base5/"/>
       <url>/2020/05/14/S-Python-base5/</url>
       
@@ -323,7 +323,7 @@
     
     
     <entry>
-      <title>Python 기초문법 (4) - 비교/논리 연산자. 조건문. 반복문</title>
+      <title>Python 기초문법 - (4) 비교/논리 연산자. 조건문. 반복문</title>
       <link href="/2020/05/13/S-Python-base4/"/>
       <url>/2020/05/13/S-Python-base4/</url>
       
@@ -352,7 +352,7 @@
     
     
     <entry>
-      <title>Python 기초문법 (3) - 함수</title>
+      <title>Python 기초문법 - (3) 함수</title>
       <link href="/2020/05/13/S-Python-base3/"/>
       <url>/2020/05/13/S-Python-base3/</url>
       
@@ -381,7 +381,7 @@
     
     
     <entry>
-      <title>Python 기초문법 (2) - 집합 형태의 데이터 타입</title>
+      <title>Python 기초문법 - (2) 집합 형태의 데이터 타입</title>
       <link href="/2020/05/13/S-Python-base2/"/>
       <url>/2020/05/13/S-Python-base2/</url>
       
@@ -410,7 +410,7 @@
     
     
     <entry>
-      <title>Python 기초문법 (1) - 출력. 데이터 타입. 데이터의 응용</title>
+      <title>Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용</title>
       <link href="/2020/05/12/S-Python-base1/"/>
       <url>/2020/05/12/S-Python-base1/</url>
       
