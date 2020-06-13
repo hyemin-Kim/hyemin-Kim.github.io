@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Pandas 데이터 파악 - (4) 범위선택 | Hyemin Kim</title><meta name="description" content="index &amp; column의 범위선택과 조건범위선택"><meta name="keywords" content="Python,Pandas"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; Pandas 데이터 파악 - (4) 범위선택"><meta name="twitter:description" content="index &amp; column의 범위선택과 조건범위선택"><meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; Pandas 데이터 파악 - (4) 범위선택"><meta property="og:url" content="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="index &amp; column의 범위선택과 조건범위선택"><meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="article:published_time" content="2020-05-24T12:58:03.000Z"><meta property="article:modified_time" content="2020-06-11T17:08:46.651Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Pandas 데이터 파악 - (4) 정렬 | Hyemin Kim</title><meta name="description" content="정렬 (sort)  1. index 순으로 정렬 2. column의 value순으로 정렬  2-1. 단일 column 기준 2-2. 복수 column 기준      1import pandas as pd 1df &#x3D; pd.read_csv(&#39;korean-idol.csv&#39;) 1df       .dataframe tbody tr th:only-of-type {"><meta name="keywords" content="Python,Pandas"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; Pandas 데이터 파악 - (4) 정렬"><meta name="twitter:description" content="정렬 (sort)  1. index 순으로 정렬 2. column의 value순으로 정렬  2-1. 단일 column 기준 2-2. 복수 column 기준      1import pandas as pd 1df &#x3D; pd.read_csv(&#39;korean-idol.csv&#39;) 1df       .dataframe tbody tr th:only-of-type {"><meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; Pandas 데이터 파악 - (4) 정렬"><meta property="og:url" content="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="정렬 (sort)  1. index 순으로 정렬 2. column의 value순으로 정렬  2-1. 단일 column 기준 2-2. 복수 column 기준      1import pandas as pd 1df &#x3D; pd.read_csv(&#39;korean-idol.csv&#39;) 1df       .dataframe tbody tr th:only-of-type {"><meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="article:published_time" content="2020-05-24T08:06:08.000Z"><meta property="article:modified_time" content="2020-06-13T12:53:36.410Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
 var t = Cookies.get("theme")
 if (autoChangeMode == '1'){
   var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -42,7 +42,7 @@ function activateLightMode(){
   if (document.querySelector('meta[name="theme-color"]') !== null){
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
   }
-}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/"><link rel="prev" title="Python &gt;&gt; Pandas 데이터 파악 - (5) 결측값 확인 및 추출" href="https://hyemin-kim.github.io/2020/06/12/S-Python-Pandas5/"><link rel="next" title="Python &gt;&gt; Pandas 데이터 파악 - (3) 요약정보, 통계값, 정렬" href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas3/"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/"><link rel="prev" title="Python &gt;&gt; Pandas 데이터 파악 - (3) 기본정보 &amp; 통계정보 파악" href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas3/"><link rel="next" title="Python &gt;&gt; Pandas 데이터 파악 - (2) 파일 불러오기 및 복사" href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas2/"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
@@ -91,27 +91,18 @@ ga('send', 'pageview');
   opacity: 1
 }
 </style></noscript><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#범위선텍"><span class="toc-text"> 범위선텍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-dataframe-로드"><span class="toc-text"> 0. DataFrame 로드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-column을-선택하는-방법"><span class="toc-text"> 1. Column을 선택하는 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-범위-선택-range-selection"><span class="toc-text"> 2. 범위 선택 (range selection)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-단순-index에-대한-범위-선택"><span class="toc-text"> 2-1. 단순 index에 대한 범위 선택</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-index-column-범위선택-loc"><span class="toc-text"> 2-2. index &amp; column 범위선택 – loc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-index-column-범위선택-iloc-position으로-색인"><span class="toc-text"> 2-3. index &amp; column 범위선택 – iloc (position으로 색인)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-조건범위선택-boolean-indexing"><span class="toc-text"> 3. 조건범위선택 – Boolean Indexing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-조건에-만족한-row들의-모든-column을-추출"><span class="toc-text"> 3-1. 조건에 만족한 row들의 모든 column을 추출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-조건에-만족한-row들의-특정-column들을-추출"><span class="toc-text"> 3-2. 조건에 만족한 row들의 특정 column들을 추출</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-조건범위선택-inis을-활용한-색인"><span class="toc-text"> 4. 조건범위선택 – inis을 활용한 색인</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Pandas 데이터 파악 - (4) 범위선택</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-05-24 21:58:03"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-05-24</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-12 02:08:46"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-06-12</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="범위선텍"><a class="markdownIt-Anchor" href="#범위선텍"></a> 범위선텍</h1>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#정렬-sort"><span class="toc-text"> 정렬 (sort)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-index-순으로-정렬"><span class="toc-text"> 1. index 순으로 정렬</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-column의-value순으로-정렬"><span class="toc-text"> 2. column의 value순으로 정렬</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-단일-column-기준"><span class="toc-text"> 2-1. 단일 column 기준</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-복수-column-기준"><span class="toc-text"> 2-2. 복수 column 기준</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Pandas 데이터 파악 - (4) 정렬</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-05-24 17:06:08"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-05-24</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-13 21:53:36"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-06-13</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="정렬-sort"><a class="markdownIt-Anchor" href="#정렬-sort"></a> 정렬 (sort)</h1>
 <p></p><ul class="markdownIt-TOC">
-<li><a href="#0-dataframe-%EB%A1%9C%EB%93%9C"><strong>0. DataFrame 로드</strong></a></li>
-<li><a href="#1-column%EC%9D%84-%EC%84%A0%ED%83%9D%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"><strong>1. Column을 선택하는 방법</strong></a></li>
-<li><a href="#2-%EB%B2%94%EC%9C%84-%EC%84%A0%ED%83%9D-range-selection"><strong>2. 범위 선택 (range selection)</strong></a>
+<li><a href="#1-index-%EC%88%9C%EC%9C%BC%EB%A1%9C-%EC%A0%95%EB%A0%AC"><strong>1. index 순으로 정렬</strong></a></li>
+<li><a href="#2-column%EC%9D%98-value%EC%88%9C%EC%9C%BC%EB%A1%9C-%EC%A0%95%EB%A0%AC"><strong>2. column의 value순으로 정렬</strong></a>
 <ul>
-<li><a href="#2-1-%EB%8B%A8%EC%88%9C-index%EC%97%90-%EB%8C%80%ED%95%9C-%EB%B2%94%EC%9C%84-%EC%84%A0%ED%83%9D">2-1. 단순 index에 대한 범위 선택</a></li>
-<li><a href="#2-2-index-column-%EB%B2%94%EC%9C%84%EC%84%A0%ED%83%9D-loc">2-2. index &amp; column 범위선택 – loc</a></li>
-<li><a href="#2-3-index-column-%EB%B2%94%EC%9C%84%EC%84%A0%ED%83%9D-iloc-position%EC%9C%BC%EB%A1%9C-%EC%83%89%EC%9D%B8">2-3. index &amp; column 범위선택 – iloc (position으로 색인)</a></li>
+<li><a href="#2-1-%EB%8B%A8%EC%9D%BC-column-%EA%B8%B0%EC%A4%80">2-1. 단일 column 기준</a></li>
+<li><a href="#2-2-%EB%B3%B5%EC%88%98-column-%EA%B8%B0%EC%A4%80">2-2. 복수 column 기준</a></li>
 </ul>
 </li>
-<li><a href="#3-%EC%A1%B0%EA%B1%B4%EB%B2%94%EC%9C%84%EC%84%A0%ED%83%9D-boolean-indexing"><strong>3. 조건범위선택 – Boolean Indexing</strong></a>
-<ul>
-<li><a href="#3-1-%EC%A1%B0%EA%B1%B4%EC%97%90-%EB%A7%8C%EC%A1%B1%ED%95%9C-row%EB%93%A4%EC%9D%98-%EB%AA%A8%EB%93%A0-column%EC%9D%84-%EC%B6%94%EC%B6%9C">3-1. 조건에 만족한 row들의 모든 column을 추출</a></li>
-<li><a href="#3-2-%EC%A1%B0%EA%B1%B4%EC%97%90-%EB%A7%8C%EC%A1%B1%ED%95%9C-row%EB%93%A4%EC%9D%98-%ED%8A%B9%EC%A0%95-column%EB%93%A4%EC%9D%84-%EC%B6%94%EC%B6%9C">3-2. 조건에 만족한 row들의 특정 column들을 추출</a></li>
-</ul>
-</li>
-<li><a href="#4-%EC%A1%B0%EA%B1%B4%EB%B2%94%EC%9C%84%EC%84%A0%ED%83%9D-inis%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%83%89%EC%9D%B8"><strong>4. 조건범위선택 – inis을 활용한 색인</strong></a></li>
 </ul>
 <p></p>
-<h2 id="0-dataframe-로드"><a class="markdownIt-Anchor" href="#0-dataframe-로드"></a> <strong>0. DataFrame 로드</strong></h2>
+<br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'korean-idol.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
@@ -312,15 +303,14 @@ ga('send', 'pageview');
   </tbody>
 </table>
 </div>
-<br>
- <br> 
-<h2 id="1-column을-선택하는-방법"><a class="markdownIt-Anchor" href="#1-column을-선택하는-방법"></a> <strong>1. Column을 선택하는 방법</strong></h2>
-<ul>
-<li><em>df_name</em>['<em>column 명</em> ']</li>
-<li><em>df_name</em>["<em>column 명</em> "]</li>
-<li><em>df_name</em>.<em>column 명</em></li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+  <br>
+<h2 id="1-index-순으로-정렬"><a class="markdownIt-Anchor" href="#1-index-순으로-정렬"></a> <strong>1. index 순으로 정렬</strong></h2>
+<blockquote>
+<p>오름차순 정렬: <em>df_name</em>.sort_index()   <font color="blue"><em>(default)</em></font><br>
+내림차순 정렬: <em>df_name</em>.sort_index(ascending = False)</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_index()  <span class="comment"># 오름차순</span></span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -339,155 +329,7 @@ ga('send', 'pageview');
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-10-13</td>
-      <td>173.6</td>
-      <td>A</td>
-      <td>10523260</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-      <td>1988-08-18</td>
-      <td>177.0</td>
-      <td>A</td>
-      <td>9916947</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-      <td>180.0</td>
-      <td>A</td>
-      <td>8273745</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-12-30</td>
-      <td>178.0</td>
-      <td>AB</td>
-      <td>8073501</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>마마무</td>
-      <td>RBW</td>
-      <td>여자</td>
-      <td>1995-07-23</td>
-      <td>162.1</td>
-      <td>A</td>
-      <td>7650928</td>
-    </tr>
-  </tbody>
-</table>
-</div>
- <br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'이름'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0       지민
-1     지드래곤
-2     강다니엘
-3        뷔
-4       화사
-5       정국
-6       민현
-7       소연
-8        진
-9      하성운
-10      태연
-11     차은우
-12      백호
-13      JR
-14      슈가
-Name: 이름, dtype: object
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"이름"</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0       지민
-1     지드래곤
-2     강다니엘
-3        뷔
-4       화사
-5       정국
-6       민현
-7       소연
-8        진
-9      하성운
-10      태연
-11     차은우
-12      백호
-13      JR
-14      슈가
-Name: 이름, dtype: object
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.이름</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0       지민
-1     지드래곤
-2     강다니엘
-3        뷔
-4       화사
-5       정국
-6       민현
-7       소연
-8        진
-9      하성운
-10      태연
-11     차은우
-12      백호
-13      JR
-14      슈가
-Name: 이름, dtype: object
-</code></pre>
-<br>
-<br>  
-<h2 id="2-범위-선택-range-selection"><a class="markdownIt-Anchor" href="#2-범위-선택-range-selection"></a> <strong>2. 범위 선택 (range selection)</strong></h2>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
+      <th>name</th>
       <th>그룹</th>
       <th>소속사</th>
       <th>성별</th>
@@ -666,191 +508,8 @@ Name: 이름, dtype: object
   </tbody>
 </table>
 </div>
-<p><br> <br></p>
-<h3 id="2-1-단순-index에-대한-범위-선택"><a class="markdownIt-Anchor" href="#2-1-단순-index에-대한-범위-선택"></a> 2-1. 단순 index에 대한 범위 선택</h3>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[:<span class="number">3</span>]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-10-13</td>
-      <td>173.6</td>
-      <td>A</td>
-      <td>10523260</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-      <td>1988-08-18</td>
-      <td>177.0</td>
-      <td>A</td>
-      <td>9916947</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-      <td>180.0</td>
-      <td>A</td>
-      <td>8273745</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br> 
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-10-13</td>
-      <td>173.6</td>
-      <td>A</td>
-      <td>10523260</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-      <td>1988-08-18</td>
-      <td>177.0</td>
-      <td>A</td>
-      <td>9916947</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-      <td>180.0</td>
-      <td>A</td>
-      <td>8273745</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
 <br>  
-<h3 id="2-2-index-column-범위선택-loc"><a class="markdownIt-Anchor" href="#2-2-index-column-범위선택-loc"></a> 2-2. index &amp; column 범위선택 – loc</h3>
-<p><em>df_name</em>.loc[행(index) 범위, (열)column 범위]</p>
-<ul>
-<li>
-<p><strong>행 범위는</strong><br>
-“:”<br>
-“:b”<br>
-“a:b”<br>
-등 형식을 사용</p>
-</li>
-<li>
-<p><strong>열 범위는</strong><br>
-['<em>column name</em> ']<br>
-['<em>column name1</em> ', '<em>column name2</em> ']<br>
-'<em>column name1</em> ’ : '<em>column name2</em> ’<br>
-등 형식을 사용</p>
-</li>
-</ul>
-<p><font color="red"> <strong>주의:</strong>  </font></p>
-<ul>
-<li>
-<p><font color="red">pandas의 loc</font>에서 범위 [a, b]는 <font color="blue"><strong>index a &amp; index b 모두 포함</strong></font></p>
-</li>
-<li>
-<p><font color="red">numpy</font>에서는 <font color="blue"><strong>index a 포함, index b 미포함</strong></font></p>
-<br>
-</li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[:, <span class="string">'이름'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0       지민
-1     지드래곤
-2     강다니엘
-3        뷔
-4       화사
-5       정국
-6       민현
-7       소연
-8        진
-9      하성운
-10      태연
-11     차은우
-12      백호
-13      JR
-14      슈가
-Name: 이름, dtype: object
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[:, [<span class="string">'이름'</span>, <span class="string">'생년월일'</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_index(ascending = <span class="literal">False</span>)  <span class="comment"># 내림차순</span></span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -869,786 +528,49 @@ Name: 이름, dtype: object
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>이름</th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
       <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>1995-10-13</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>1988-08-18</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>1996-12-10</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>1995-12-30</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>1995-07-23</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>정국</td>
-      <td>1997-09-01</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>민현</td>
-      <td>1995-08-09</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>소연</td>
-      <td>1998-08-26</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>진</td>
-      <td>1992-12-04</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>하성운</td>
-      <td>1994-03-22</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>태연</td>
-      <td>1989-03-09</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>차은우</td>
-      <td>1997-03-30</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>백호</td>
-      <td>1995-07-21</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>JR</td>
-      <td>1995-06-08</td>
-    </tr>
-    <tr>
       <th>14</th>
       <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
       <td>1993-03-09</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="number">3</span>:<span class="number">8</span>, [<span class="string">'이름'</span>, <span class="string">'생년월일'</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>생년월일</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>1995-12-30</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>1995-07-23</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>정국</td>
-      <td>1997-09-01</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>민현</td>
-      <td>1995-08-09</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>소연</td>
-      <td>1998-08-26</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>진</td>
-      <td>1992-12-04</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-10-13</td>
-      <td>173.6</td>
-      <td>A</td>
-      <td>10523260</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-      <td>1988-08-18</td>
-      <td>177.0</td>
-      <td>A</td>
-      <td>9916947</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-      <td>180.0</td>
-      <td>A</td>
-      <td>8273745</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-12-30</td>
-      <td>178.0</td>
-      <td>AB</td>
-      <td>8073501</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>마마무</td>
-      <td>RBW</td>
-      <td>여자</td>
-      <td>1995-07-23</td>
-      <td>162.1</td>
-      <td>A</td>
-      <td>7650928</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="number">2</span>:<span class="number">5</span>, <span class="string">'이름'</span>:<span class="string">'생년월일'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-12-30</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>마마무</td>
-      <td>RBW</td>
-      <td>여자</td>
-      <td>1995-07-23</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>정국</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1997-09-01</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<p><br><br></p>
-<h3 id="2-3-index-column-범위선택-iloc-position으로-색인"><a class="markdownIt-Anchor" href="#2-3-index-column-범위선택-iloc-position으로-색인"></a> 2-3. index &amp; column 범위선택 – iloc (position으로 색인)</h3>
-<ul>
-<li>
-<p>행(index) 범위 선택은 loc와 동일</p>
-</li>
-<li>
-<p>열(column) 범위는 'column 명’대신 column position을 사용</p>
-</li>
-<li>
-<p><strong>행 범위는</strong><br>
-“:”<br>
-“:b”<br>
-“a:b”<br>
-등 형식을 사용</p>
-</li>
-<li>
-<p><strong>열 범위는</strong><br>
-[c]<br>
-[c, d]<br>
-c:d<br>
-등 형식을 사용</p>
-</li>
-</ul>
-<p><font color="red"> <strong>주의:</strong>  </font></p>
-<ul>
-<li>
-<p>pandas의 <font color="red">iloc</font>에서 범위 [a, b]는 <font color="blue"><strong>index a 포함, index b 미포함</strong></font> (<font color="red">numpy</font>와 동일)</p>
-</li>
-<li>
-<p>pandas의 <font color="red">loc</font>에서 범위 [a, b]는 <font color="blue"><strong>index a &amp; index b 모두 포함</strong></font></p>
-<br>
-</li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[:, [<span class="number">0</span>, <span class="number">2</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>소속사</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>빅히트</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>YG</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>커넥트</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>빅히트</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>RBW</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>정국</td>
-      <td>빅히트</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>민현</td>
-      <td>플레디스</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>소연</td>
-      <td>큐브</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>진</td>
-      <td>빅히트</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>하성운</td>
-      <td>스타크루이엔티</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>태연</td>
-      <td>SM</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>차은우</td>
-      <td>판타지오</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>백호</td>
-      <td>플레디스</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
     </tr>
     <tr>
       <th>13</th>
       <td>JR</td>
-      <td>플레디스</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>슈가</td>
-      <td>빅히트</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">1</span>:<span class="number">5</span>, [<span class="number">0</span>, <span class="number">2</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>소속사</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>YG</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>커넥트</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>빅히트</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>RBW</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-10-13</td>
-      <td>173.6</td>
-      <td>A</td>
-      <td>10523260</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-      <td>1988-08-18</td>
-      <td>177.0</td>
-      <td>A</td>
-      <td>9916947</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-      <td>180.0</td>
-      <td>A</td>
-      <td>8273745</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-12-30</td>
-      <td>178.0</td>
-      <td>AB</td>
-      <td>8073501</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>마마무</td>
-      <td>RBW</td>
-      <td>여자</td>
-      <td>1995-07-23</td>
-      <td>162.1</td>
-      <td>A</td>
-      <td>7650928</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">1</span>:<span class="number">5</span>, <span class="number">0</span>:<span class="number">4</span>]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>마마무</td>
-      <td>RBW</td>
-      <td>여자</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<br>   
-<h2 id="3-조건범위선택-boolean-indexing"><a class="markdownIt-Anchor" href="#3-조건범위선택-boolean-indexing"></a> <strong>3. 조건범위선택 – Boolean Indexing</strong></h2>
-<p>Boolean indexing은 Numpy에서의 Boolean indexing과 같은 원리다</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>지민</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-10-13</td>
-      <td>173.6</td>
-      <td>A</td>
-      <td>10523260</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>지드래곤</td>
-      <td>빅뱅</td>
-      <td>YG</td>
-      <td>남자</td>
-      <td>1988-08-18</td>
-      <td>177.0</td>
-      <td>A</td>
-      <td>9916947</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>강다니엘</td>
-      <td>NaN</td>
-      <td>커넥트</td>
-      <td>남자</td>
-      <td>1996-12-10</td>
-      <td>180.0</td>
-      <td>A</td>
-      <td>8273745</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>뷔</td>
-      <td>방탄소년단</td>
-      <td>빅히트</td>
-      <td>남자</td>
-      <td>1995-12-30</td>
-      <td>178.0</td>
-      <td>AB</td>
-      <td>8073501</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>화사</td>
-      <td>마마무</td>
-      <td>RBW</td>
-      <td>여자</td>
-      <td>1995-07-23</td>
-      <td>162.1</td>
-      <td>A</td>
-      <td>7650928</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<h3 id="3-1-조건에-만족한-row들의-모든-column을-추출"><a class="markdownIt-Anchor" href="#3-1-조건에-만족한-row들의-모든-column을-추출"></a> 3-1. 조건에 만족한 row들의 모든 column을 추출</h3>
-<ul>
-<li>df [<em>조건</em> ]</li>
-</ul>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>] &gt; <span class="number">180</span></span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0     False
-1     False
-2     False
-3     False
-4     False
-5     False
-6      True
-7     False
-8     False
-9     False
-10    False
-11     True
-12    False
-13    False
-14    False
-Name: 키, dtype: bool
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'키'</span>] &gt; <span class="number">180</span>]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>6</th>
-      <td>민현</td>
       <td>뉴이스트</td>
       <td>플레디스</td>
       <td>남자</td>
-      <td>1995-08-09</td>
-      <td>182.3</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
       <td>O</td>
-      <td>4989792</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>백호</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-07-21</td>
+      <td>175.0</td>
+      <td>AB</td>
+      <td>3301654</td>
     </tr>
     <tr>
       <th>11</th>
@@ -1661,197 +583,50 @@ Name: 키, dtype: bool
       <td>B</td>
       <td>3506027</td>
     </tr>
-  </tbody>
-</table>
-</div>
-<br>  
-<h3 id="3-2-조건에-만족한-row들의-특정-column들을-추출"><a class="markdownIt-Anchor" href="#3-2-조건에-만족한-row들의-특정-column들을-추출"></a> 3-2. 조건에 만족한 row들의 특정 column들을 추출</h3>
-<p><strong>방법 1.</strong> <em>df_name</em> [<em>조건</em> ] [<em>column범위</em> ]</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[ df[<span class="string">'키'</span>] &gt; <span class="number">180</span> ] [<span class="string">'이름'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>6      민현
-11    차은우
-Name: 이름, dtype: object
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df [ df[<span class="string">'키'</span>] &gt; <span class="number">180</span> ] [[<span class="string">'이름'</span>, <span class="string">'키'</span>]]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>키</th>
-    </tr>
-  </thead>
-  <tbody>
     <tr>
-      <th>6</th>
-      <td>민현</td>
-      <td>182.3</td>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>차은우</td>
-      <td>183.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
- <br> 
-<p><strong>방법 2.</strong> loc를 활용: <em>df_name</em>.loc[ <em>조건</em> , <em>column범위</em>  ]       <font color="blue"> <em>【추천】</em> </font></p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[ df[<span class="string">'키'</span>] &gt; <span class="number">180</span>, <span class="string">'이름'</span> ]</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>6      민현
-11    차은우
-Name: 이름, dtype: object
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[ df[<span class="string">'키'</span>] &gt; <span class="number">180</span>, [<span class="string">'이름'</span>, <span class="string">'그룹'</span>] ]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>6</th>
-      <td>민현</td>
-      <td>뉴이스트</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>차은우</td>
-      <td>아스트로</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[ df[<span class="string">'키'</span>] &gt; <span class="number">180</span>, <span class="string">'이름'</span> : <span class="string">'성별'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>6</th>
-      <td>민현</td>
-      <td>뉴이스트</td>
-      <td>플레디스</td>
+      <th>9</th>
+      <td>하성운</td>
+      <td>핫샷</td>
+      <td>스타크루이엔티</td>
       <td>남자</td>
+      <td>1994-03-22</td>
+      <td>167.1</td>
+      <td>A</td>
+      <td>4036489</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>차은우</td>
-      <td>아스트로</td>
-      <td>판타지오</td>
+      <th>8</th>
+      <td>진</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
       <td>남자</td>
+      <td>1992-12-04</td>
+      <td>179.2</td>
+      <td>O</td>
+      <td>4570308</td>
     </tr>
-  </tbody>
-</table>
-</div>
-<p><br> <br></p>
-<h2 id="4-조건범위선택-inis을-활용한-색인"><a class="markdownIt-Anchor" href="#4-조건범위선택-inis을-활용한-색인"></a> <strong>4. 조건범위선택 – inis을 활용한 색인</strong></h2>
-<p>column값이 미리 정의한 list에 속한다는 조건을 걸고자 할 때 사용한다</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_condition = [<span class="string">'플레디스'</span>, <span class="string">'SM'</span>]</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'소속사'</span>].isin(my_condition)</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>0     False
-1     False
-2     False
-3     False
-4     False
-5     False
-6      True
-7     False
-8     False
-9     False
-10     True
-11    False
-12     True
-13     True
-14    False
-Name: 소속사, dtype: bool
-</code></pre>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[ df[<span class="string">'소속사'</span>].isin(my_condition) ]</span><br></pre></td></tr></tbody></table></figure>
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>이름</th>
-      <th>그룹</th>
-      <th>소속사</th>
-      <th>성별</th>
-      <th>생년월일</th>
-      <th>키</th>
-      <th>혈액형</th>
-      <th>브랜드평판지수</th>
+    <tr>
+      <th>7</th>
+      <td>소연</td>
+      <td>아이들</td>
+      <td>큐브</td>
+      <td>여자</td>
+      <td>1998-08-26</td>
+      <td>NaN</td>
+      <td>B</td>
+      <td>4668615</td>
     </tr>
-  </thead>
-  <tbody>
     <tr>
       <th>6</th>
       <td>민현</td>
@@ -1864,15 +639,155 @@ Name: 소속사, dtype: bool
       <td>4989792</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>태연</td>
-      <td>소녀시대</td>
-      <td>SM</td>
-      <td>여자</td>
-      <td>1989-03-09</td>
-      <td>NaN</td>
+      <th>5</th>
+      <td>정국</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1997-09-01</td>
+      <td>178.0</td>
       <td>A</td>
-      <td>3918661</td>
+      <td>5208335</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <br>
+ <br> 
+<h2 id="2-column의-value순으로-정렬"><a class="markdownIt-Anchor" href="#2-column의-value순으로-정렬"></a> <strong>2. column의 value순으로 정렬</strong></h2>
+<blockquote>
+<p>오름차순 정렬: <em>df_name</em>.sort_values(by = ‘<em>col_name</em>’)<br>
+내림차순 정렬: <em>df_name</em>.sort_values(by = ‘<em>col_name</em>’, ascending = False)</p>
+</blockquote>
+<h3 id="2-1-단일-column-기준"><a class="markdownIt-Anchor" href="#2-1-단일-column-기준"></a> 2-1. 단일 column 기준</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by=<span class="string">'키'</span>)  <span class="comment"># 오름차순</span></span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>하성운</td>
+      <td>핫샷</td>
+      <td>스타크루이엔티</td>
+      <td>남자</td>
+      <td>1994-03-22</td>
+      <td>167.1</td>
+      <td>A</td>
+      <td>4036489</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
     </tr>
     <tr>
       <th>12</th>
@@ -1896,11 +811,110 @@ Name: 소속사, dtype: bool
       <td>O</td>
       <td>3274137</td>
     </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>정국</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1997-09-01</td>
+      <td>178.0</td>
+      <td>A</td>
+      <td>5208335</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>진</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1992-12-04</td>
+      <td>179.2</td>
+      <td>O</td>
+      <td>4570308</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>민현</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-08-09</td>
+      <td>182.3</td>
+      <td>O</td>
+      <td>4989792</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>차은우</td>
+      <td>아스트로</td>
+      <td>판타지오</td>
+      <td>남자</td>
+      <td>1997-03-30</td>
+      <td>183.0</td>
+      <td>B</td>
+      <td>3506027</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>소연</td>
+      <td>아이들</td>
+      <td>큐브</td>
+      <td>여자</td>
+      <td>1998-08-26</td>
+      <td>NaN</td>
+      <td>B</td>
+      <td>4668615</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
+    </tr>
   </tbody>
 </table>
 </div>
-<br>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[ df[<span class="string">'소속사'</span>].isin(my_condition) , [<span class="string">'이름'</span>, <span class="string">'소속사'</span>] ]</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by = <span class="string">'키'</span>, ascending = <span class="literal">False</span>)</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1919,35 +933,593 @@ Name: 소속사, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>이름</th>
+      <th>name</th>
+      <th>그룹</th>
       <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th>11</th>
+      <td>차은우</td>
+      <td>아스트로</td>
+      <td>판타지오</td>
+      <td>남자</td>
+      <td>1997-03-30</td>
+      <td>183.0</td>
+      <td>B</td>
+      <td>3506027</td>
+    </tr>
+    <tr>
       <th>6</th>
       <td>민현</td>
+      <td>뉴이스트</td>
       <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-08-09</td>
+      <td>182.3</td>
+      <td>O</td>
+      <td>4989792</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>태연</td>
-      <td>SM</td>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>백호</td>
-      <td>플레디스</td>
+      <th>8</th>
+      <td>진</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1992-12-04</td>
+      <td>179.2</td>
+      <td>O</td>
+      <td>4570308</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>정국</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1997-09-01</td>
+      <td>178.0</td>
+      <td>A</td>
+      <td>5208335</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
     </tr>
     <tr>
       <th>13</th>
       <td>JR</td>
+      <td>뉴이스트</td>
       <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
+      <td>O</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>백호</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-07-21</td>
+      <td>175.0</td>
+      <td>AB</td>
+      <td>3301654</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>하성운</td>
+      <td>핫샷</td>
+      <td>스타크루이엔티</td>
+      <td>남자</td>
+      <td>1994-03-22</td>
+      <td>167.1</td>
+      <td>A</td>
+      <td>4036489</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>소연</td>
+      <td>아이들</td>
+      <td>큐브</td>
+      <td>여자</td>
+      <td>1998-08-26</td>
+      <td>NaN</td>
+      <td>B</td>
+      <td>4668615</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
     </tr>
   </tbody>
 </table>
 </div>
-<br><script>
+<br>  
+<h3 id="2-2-복수-column-기준"><a class="markdownIt-Anchor" href="#2-2-복수-column-기준"></a> 2-2. 복수 column 기준</h3>
+<blockquote>
+<p>먼저 column1 기준으로 정렬하고, column1 값이 동일한 row들은 column2기준으로 정렬:</p>
+<ul>
+<li><em>df_name</em> .sort_value ( by = [ ‘<em>col_name 1</em>’ , ‘<em>col_name 2</em>’ ] )</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by = [<span class="string">'키'</span>, <span class="string">'브랜드평판지수'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>하성운</td>
+      <td>핫샷</td>
+      <td>스타크루이엔티</td>
+      <td>남자</td>
+      <td>1994-03-22</td>
+      <td>167.1</td>
+      <td>A</td>
+      <td>4036489</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>백호</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-07-21</td>
+      <td>175.0</td>
+      <td>AB</td>
+      <td>3301654</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>JR</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
+      <td>O</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>정국</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1997-09-01</td>
+      <td>178.0</td>
+      <td>A</td>
+      <td>5208335</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>진</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1992-12-04</td>
+      <td>179.2</td>
+      <td>O</td>
+      <td>4570308</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>민현</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-08-09</td>
+      <td>182.3</td>
+      <td>O</td>
+      <td>4989792</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>차은우</td>
+      <td>아스트로</td>
+      <td>판타지오</td>
+      <td>남자</td>
+      <td>1997-03-30</td>
+      <td>183.0</td>
+      <td>B</td>
+      <td>3506027</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>소연</td>
+      <td>아이들</td>
+      <td>큐브</td>
+      <td>여자</td>
+      <td>1998-08-26</td>
+      <td>NaN</td>
+      <td>B</td>
+      <td>4668615</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>  
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by = [<span class="string">'키'</span>, <span class="string">'브랜드평판지수'</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11</th>
+      <td>차은우</td>
+      <td>아스트로</td>
+      <td>판타지오</td>
+      <td>남자</td>
+      <td>1997-03-30</td>
+      <td>183.0</td>
+      <td>B</td>
+      <td>3506027</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>민현</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-08-09</td>
+      <td>182.3</td>
+      <td>O</td>
+      <td>4989792</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>진</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1992-12-04</td>
+      <td>179.2</td>
+      <td>O</td>
+      <td>4570308</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>정국</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1997-09-01</td>
+      <td>178.0</td>
+      <td>A</td>
+      <td>5208335</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>JR</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
+      <td>O</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>백호</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-07-21</td>
+      <td>175.0</td>
+      <td>AB</td>
+      <td>3301654</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>하성운</td>
+      <td>핫샷</td>
+      <td>스타크루이엔티</td>
+      <td>남자</td>
+      <td>1994-03-22</td>
+      <td>167.1</td>
+      <td>A</td>
+      <td>4036489</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>소연</td>
+      <td>아이들</td>
+      <td>큐브</td>
+      <td>여자</td>
+      <td>1998-08-26</td>
+      <td>NaN</td>
+      <td>B</td>
+      <td>4668615</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1965,7 +1537,7 @@ Name: 소속사, dtype: bool
             });
             document.body.appendChild(img);
           });
-      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/">https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Pandas/">Pandas</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/05/22/YjVKwF.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/06/12/S-Python-Pandas5/"><img class="prev_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python &gt;&gt; Pandas 데이터 파악 - (5) 결측값 확인 및 추출</div></div></a></div><div class="next-post pull_right"><a href="/2020/05/24/S-Python-Pandas3/"><img class="next_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; Pandas 데이터 파악 - (3) 요약정보, 통계값, 정렬</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/05/22/S-Python-Pandas1/" title="Python >> Pandas 데이터 파악 - (1) Series와 DataFrame"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-22</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (1) Series와 DataFrame</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/24/S-Python-Pandas2/" title="Python >> Pandas 데이터 파악 - (2) 파일 불러오기 및 복사"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-24</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (2) 파일 불러오기 및 복사</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/24/S-Python-Pandas3/" title="Python >> Pandas 데이터 파악 - (3) 요약정보, 통계값, 정렬"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-24</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (3) 요약정보, 통계값, 정렬</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/12/S-Python-Pandas5/" title="Python >> Pandas 데이터 파악 - (5) 결측값 확인 및 추출"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-06-12</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (5) 결측값 확인 및 추출</div></div></a></div></div><div class="clear_both"></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><script>var endLoading = function () {
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/">https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Pandas/">Pandas</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/05/22/YjVKwF.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/05/24/S-Python-Pandas3/"><img class="prev_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python &gt;&gt; Pandas 데이터 파악 - (3) 기본정보 &amp; 통계정보 파악</div></div></a></div><div class="next-post pull_right"><a href="/2020/05/24/S-Python-Pandas2/"><img class="next_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; Pandas 데이터 파악 - (2) 파일 불러오기 및 복사</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/05/22/S-Python-Pandas1/" title="Python >> Pandas 데이터 파악 - (1) Series와 DataFrame"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-22</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (1) Series와 DataFrame</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/24/S-Python-Pandas2/" title="Python >> Pandas 데이터 파악 - (2) 파일 불러오기 및 복사"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-24</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (2) 파일 불러오기 및 복사</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/24/S-Python-Pandas3/" title="Python >> Pandas 데이터 파악 - (3) 기본정보 & 통계정보 파악"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-24</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (3) 기본정보 & 통계정보 파악</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/24/S-Python-Pandas5/" title="Python >> Pandas 데이터 파악 - (5) 범위선택"><img class="relatedPosts_cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-24</div><div class="relatedPosts_title">Python >> Pandas 데이터 파악 - (5) 범위선택</div></div></a></div></div><div class="clear_both"></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><script>var endLoading = function () {
   document.body.style.overflow = 'auto';
   document.getElementById('loading-box').classList.add("loaded")
 }
