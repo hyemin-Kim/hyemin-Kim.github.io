@@ -21657,7 +21657,13 @@ Name: 성별, dtype: object
 <li><a href="#3-%EB%B3%B5%ED%95%A9-%EC%97%B0%EC%82%B0"><strong>3. 복합 연산</strong></a></li>
 <li><a href="#4-mean-sum-%EC%9D%84-axis-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EC%97%B0%EC%82%B0"><strong>4. mean(), sum() 을 axis 기준으로 연산</strong></a></li>
 <li><a href="#5-nan-%EA%B0%92%EC%9D%B4-%EC%A1%B4%EC%9E%AC%ED%95%A0-%EA%B2%BD%EC%9A%B0-%EC%97%B0%EC%82%B0"><strong>5. NaN 값이 존재할 경우 연산</strong></a></li>
-<li><a href="#6-dataframe-%EA%B3%BC-dataframe-%EA%B0%84-%EC%97%B0%EC%82%B0"><strong>6. DataFrame 과 DataFrame 간 연산</strong></a></li>
+<li><a href="#6-dataframe-%EA%B3%BC-dataframe-%EA%B0%84-%EC%97%B0%EC%82%B0"><strong>6. DataFrame 과 DataFrame 간 연산</strong></a>
+<ul>
+<li><a href="#6-1-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B4-%ED%8F%AC%ED%95%A8%EB%90%9C-series-dataframe%EC%9D%98-%EC%97%B0%EC%82%B0%EC%9D%80-%EB%B6%88%EA%B0%80%ED%95%98%EB%8B%A4">6-1. 문자열이 포함된 Series / DataFrame의 연산은 불가하다</a></li>
+<li><a href="#6-2-%EB%91%90-dataframe%EC%9D%98-column-%EC%9D%B4%EB%A6%84%EC%9D%80-%EA%B0%99%EC%9C%BC%EB%82%98-column-%EC%88%9C%EC%84%9C%EB%A7%8C-%EB%B0%94%EB%80%8C%EC%96%B4-%EC%9E%88%EB%8A%94-%EA%B2%BD%EC%9A%B0">6-2. 두 DataFrame의 column 이름은 같으나 column 순서만 바뀌어 있는 경우</a></li>
+<li><a href="#6-3-%ED%96%89%EC%9D%98-%EA%B0%AF%EC%88%98%EA%B0%80-%EB%8B%A4%EB%A5%B8-%EA%B2%BD%EC%9A%B0">6-3. 행의 갯수가 다른 경우</a></li>
+</ul>
+</li>
 </ul>
 <p></p>
 <br>
@@ -22171,7 +22177,7 @@ Name: 통계, dtype: float64
 <br>
  <br>  
 <h2 id="6-dataframe-과-dataframe-간-연산"><a class="markdownIt-Anchor" href="#6-dataframe-과-dataframe-간-연산"></a> <strong>6. DataFrame 과 DataFrame 간 연산</strong></h2>
-<p><strong>(1) 문자열이 포함된 Series 혹은 DataFrame의 연산은 불가한다</strong></p>
+<h3 id="6-1-문자열이-포함된-series-dataframe의-연산은-불가하다"><a class="markdownIt-Anchor" href="#6-1-문자열이-포함된-series-dataframe의-연산은-불가하다"></a> 6-1. 문자열이 포함된 Series / DataFrame의 연산은 불가하다</h3>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">75</span>], <span class="string">'미술'</span>: [<span class="number">50</span>, <span class="number">55</span>, <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">'체육'</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">95</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df2 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="string">'good'</span>, <span class="string">'bad'</span>, <span class="string">'ok'</span> , <span class="string">'good'</span>, <span class="string">'ok'</span>], <span class="string">'미술'</span>: [<span class="number">50</span>, <span class="number">60</span> , <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">'체육'</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">70</span> , <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
@@ -22355,9 +22361,13 @@ D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in _evaluat
 
 TypeError: can only concatenate str (not "int") to str
 </code></pre>
-<p>​    <br></p>
-<p><strong>(2) 두 DataFrame 간 column의 이름은 같지만 순서만 바뀌어 있는 경우:</strong><br>
-연산시 자동으로 column 이름 기준으로 연산 된다</p>
+<br>
+<br>
+<h3 id="6-2-두-dataframe의-column-이름은-같으나-column-순서만-바뀌어-있는-경우"><a class="markdownIt-Anchor" href="#6-2-두-dataframe의-column-이름은-같으나-column-순서만-바뀌어-있는-경우"></a> 6-2. 두 DataFrame의 column 이름은 같으나 column 순서만 바뀌어 있는 경우</h3>
+<blockquote>
+<p>연산시 자동으로 column 이름 기준으로 연산 된다</p>
+</blockquote>
+<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1 = pd.DataFrame({<span class="string">'미술'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], <span class="string">'통계'</span>:[<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>] })</span><br><span class="line">df2 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], <span class="string">'미술'</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -22517,9 +22527,13 @@ TypeError: can only concatenate str (not "int") to str
   </tbody>
 </table>
 </div>
+<br>
 <br> 
-<p><strong>(3) 행의 갯수가 다른 경우:</strong><br>
-행 index 기준으로 연산하되, 하나의 DataFrame에만 존재하는 행은 연산결과가 NaN으로 나옴</p>
+<h3 id="6-3-행의-갯수가-다른-경우"><a class="markdownIt-Anchor" href="#6-3-행의-갯수가-다른-경우"></a> 6-3. 행의 갯수가 다른 경우</h3>
+<blockquote>
+<p>행 index 기준으로 연산하되, 하나의 DataFrame에만 존재하는 행은 연산결과가 NaN으로 나옴</p>
+</blockquote>
+<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1 = pd.DataFrame({<span class="string">'미술'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>], <span class="string">'통계'</span>:[<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>, <span class="number">110</span>] })</span><br><span class="line">df2 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], <span class="string">'미술'</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
 <div>
