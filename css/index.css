@@ -113,7 +113,7 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
   empty-cells: show;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 table thead {
   background-color: #fff;
@@ -121,8 +121,14 @@ table thead {
 }
 table th,
 table td {
-  padding: 0.3rem 0.6rem;
+  padding: 0.1rem 0.5rem;
   text-align: right;
+}
+table tr:nth-child(odd) {
+  background: #e9e9e9;
+}
+table tr:nth-child(even) {
+  background: #fdfdfd;
 }
 *::selection {
   background: #963694;
