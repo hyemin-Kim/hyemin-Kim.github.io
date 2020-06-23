@@ -113,21 +113,16 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
   empty-cells: show;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 table thead {
-  background: #fff;
+  background-color: #fff;
   border-bottom: 1px solid #1b1b1b;
-}
-table tr:nth-child(odd) {
-  background: #f6f6f6;
-}
-table tr:nth-child(even) {
-  background: #fbfbfb;
 }
 table th,
 table td {
-  vertical-align: middle;
+  padding: 0.3rem 0.6rem;
+  text-align: right;
 }
 *::selection {
   background: #963694;
