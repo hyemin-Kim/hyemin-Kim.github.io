@@ -19094,7 +19094,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
