@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터 | Hyemin Kim</title><meta name="description" content="column 이름 제정의; Data Overview; 특수부호 처리; 데이터 타입 바꾸기; groupby; 피벗테이블"><meta name="keywords" content="Python,Pandas,전처리"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터"><meta name="twitter:description" content="column 이름 제정의; Data Overview; 특수부호 처리; 데이터 타입 바꾸기; groupby; 피벗테이블"><meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="og:type" content="article"><meta property="og:title" content="【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터"><meta property="og:url" content="https://hyemin-kim.github.io/2020/06/22/E-Python-Pandas-Pre-1/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="column 이름 제정의; Data Overview; 특수부호 처리; 데이터 타입 바꾸기; groupby; 피벗테이블"><meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="article:published_time" content="2020-06-22T10:14:57.000Z"><meta property="article:modified_time" content="2020-06-23T03:18:27.507Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터 | Hyemin Kim</title><meta name="description" content="column 이름 제정의; Data Overview; 특수부호 처리; 데이터 타입 바꾸기; groupby; 피벗테이블"><meta name="keywords" content="Python,Pandas,전처리"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터"><meta name="twitter:description" content="column 이름 제정의; Data Overview; 특수부호 처리; 데이터 타입 바꾸기; groupby; 피벗테이블"><meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="og:type" content="article"><meta property="og:title" content="【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터"><meta property="og:url" content="https://hyemin-kim.github.io/2020/06/22/E-Python-Pandas-Pre-1/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="column 이름 제정의; Data Overview; 특수부호 처리; 데이터 타입 바꾸기; groupby; 피벗테이블"><meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><meta property="article:published_time" content="2020-06-22T10:14:57.000Z"><meta property="article:modified_time" content="2020-06-23T04:03:21.151Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
 var t = Cookies.get("theme")
 if (autoChangeMode == '1'){
   var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -91,7 +91,7 @@ ga('send', 'pageview');
   opacity: 1
 }
 </style></noscript><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pandas-전처리-실습-부동산-데이터"><span class="toc-text"> &lt;Pandas 전처리&gt; 실습 – 부동산 데이터</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-샘플데이터"><span class="toc-text"> 0. 샘플데이터</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-column-이름-제정의-rename"><span class="toc-text"> 1. column 이름 제정의 (rename)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-data-overview"><span class="toc-text"> 2. Data Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-data-shape-확인하기"><span class="toc-text"> 2-1. Data Shape 확인하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-걸측값과-data-type-확인하기"><span class="toc-text"> 2-2. 걸측값과 Data Type 확인하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-통계값-확인하기"><span class="toc-text"> 2-3. 통계값 확인하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-데이터-타입-변환"><span class="toc-text"> 3. 데이터 타입 변환</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-strstrip을-활용하여-공백이-있는-데이터의-공백-없애기"><span class="toc-text"> 3-1. str.strip()을 활용하여 공백이 있는 데이터의 공백 없애기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-빈-공백에-0을-넣어주기"><span class="toc-text"> 3-2. 빈 공백에 0을 넣어주기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-nan-값은-fillna로-채워주기"><span class="toc-text"> 3-3. NaN 값은 fillna로 채워주기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-strreplace-를-활용하여-콤마를-제거하기"><span class="toc-text"> 3-4. str.replace() 를 활용하여 콤마를 제거하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-strreplace를-활용하여-제거하기"><span class="toc-text"> 3-5. str.replace()를 활용하여 “-” 제거하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-전처리-내용-복습하기"><span class="toc-text"> 4. 전처리 내용 복습하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-지역별-분양가격을-확인해보기"><span class="toc-text"> 5. 지역별 분양가격을 확인해보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-지역별-평균-분양가격-확인해보기"><span class="toc-text"> 5-1. 지역별 평균 분양가격 확인해보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-분양가격이-100보다-작은-행을-제거해보기"><span class="toc-text"> 5-2. 분양가격이 100보다 작은 행을 제거해보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-지역별-분양가격-데이터의-갯수를-확인해보기"><span class="toc-text"> 5-3. 지역별 “분양가격” 데이터의 갯수를 확인해보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-지역별-제일-비싼-분양가를-확인해보기"><span class="toc-text"> 5-4. 지역별 제일 비싼 분양가를 확인해보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-연도별-평균-분양가격을-확인해보기"><span class="toc-text"> 6. 연도별 평균 분양가격을 확인해보기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-피벗테이블-활용하기"><span class="toc-text"> 7. 피벗테이블 활용하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-연도별-규모별-가격을-알아보기"><span class="toc-text"> 8. 연도별, 규모별 가격을 알아보기</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-06-22 19:14:57"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-06-22</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-23 12:18:27"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-06-23</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Exercise%E3%80%91/">【Exercise】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Exercise%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="pandas-전처리-실습-부동산-데이터"><a class="markdownIt-Anchor" href="#pandas-전처리-실습-부동산-데이터"></a> &lt;Pandas 전처리&gt; 실습 – 부동산 데이터</h1>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pandas-전처리-실습-부동산-데이터"><span class="toc-text"> &lt;Pandas 전처리&gt; 실습 – 부동산 데이터</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-샘플데이터"><span class="toc-text"> 0. 샘플데이터</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-column-이름-제정의-rename"><span class="toc-text"> 1. column 이름 제정의 (rename)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-data-overview"><span class="toc-text"> 2. Data Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-data-shape-확인하기"><span class="toc-text"> 2-1. Data Shape 확인하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-걸측값과-data-type-확인하기"><span class="toc-text"> 2-2. 걸측값과 Data Type 확인하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-통계값-확인하기"><span class="toc-text"> 2-3. 통계값 확인하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-데이터-타입-변환"><span class="toc-text"> 3. 데이터 타입 변환</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-strstrip을-활용하여-공백이-있는-데이터의-공백-없애기"><span class="toc-text"> 3-1. str.strip()을 활용하여 공백이 있는 데이터의 공백 없애기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-빈-공백에-0을-넣어주기"><span class="toc-text"> 3-2. 빈 공백에 0을 넣어주기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-nan-값은-fillna로-채워주기"><span class="toc-text"> 3-3. NaN 값은 fillna로 채워주기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-strreplace-를-활용하여-콤마를-제거하기"><span class="toc-text"> 3-4. str.replace() 를 활용하여 콤마를 제거하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-strreplace를-활용하여-제거하기"><span class="toc-text"> 3-5. str.replace()를 활용하여 “-” 제거하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-규모구분-column에-불필요한-전용면적-제거하기"><span class="toc-text"> 3-6. 규모구분 column에 불필요한 “전용면적” 제거하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-전처리-내용-복습하기"><span class="toc-text"> 4. 전처리 내용 복습하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-지역별-분양가격을-확인해보기"><span class="toc-text"> 5. 지역별 분양가격을 확인해보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-지역별-평균-분양가격-확인해보기"><span class="toc-text"> 5-1. 지역별 평균 분양가격 확인해보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-분양가격이-100보다-작은-행을-제거해보기"><span class="toc-text"> 5-2. 분양가격이 100보다 작은 행을 제거해보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-지역별-분양가격-데이터의-갯수를-확인해보기"><span class="toc-text"> 5-3. 지역별 “분양가격” 데이터의 갯수를 확인해보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-지역별-제일-비싼-분양가를-확인해보기"><span class="toc-text"> 5-4. 지역별 제일 비싼 분양가를 확인해보기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-연도별-평균-분양가격을-확인해보기"><span class="toc-text"> 6. 연도별 평균 분양가격을 확인해보기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-피벗테이블-활용하기"><span class="toc-text"> 7. 피벗테이블 활용하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-연도별-규모별-가격을-알아보기"><span class="toc-text"> 8. 연도별, 규모별 가격을 알아보기</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">【실습】 Python &gt;&gt; Pandas 전처리 -- 부동산 데이터</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-06-22 19:14:57"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-06-22</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-23 13:03:21"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-06-23</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Exercise%E3%80%91/">【Exercise】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Exercise%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="pandas-전처리-실습-부동산-데이터"><a class="markdownIt-Anchor" href="#pandas-전처리-실습-부동산-데이터"></a> &lt;Pandas 전처리&gt; 실습 – 부동산 데이터</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#0-%EC%83%98%ED%94%8C%EB%8D%B0%EC%9D%B4%ED%84%B0"><strong>0. 샘플데이터</strong></a></li>
 <li><a href="#1-column-%EC%9D%B4%EB%A6%84-%EC%A0%9C%EC%A0%95%EC%9D%98-rename"><strong>1. column 이름 제정의 (rename)</strong></a></li>
@@ -109,6 +109,7 @@ ga('send', 'pageview');
 <li><a href="#3-3-nan-%EA%B0%92%EC%9D%80-fillna%EB%A1%9C-%EC%B1%84%EC%9B%8C%EC%A3%BC%EA%B8%B0">3-3. NaN 값은 fillna로 채워주기</a></li>
 <li><a href="#3-4-strreplace-%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%98%EC%97%AC-%EC%BD%A4%EB%A7%88%EB%A5%BC-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0">3-4. str.replace() 를 활용하여 콤마를 제거하기</a></li>
 <li><a href="#3-5-strreplace%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%98%EC%97%AC-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0">3-5. str.replace()를 활용하여 “-” 제거하기</a></li>
+<li><a href="#3-6-%EA%B7%9C%EB%AA%A8%EA%B5%AC%EB%B6%84-column%EC%97%90-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-%EC%A0%84%EC%9A%A9%EB%A9%B4%EC%A0%81-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0">3-6. 규모구분 column에 불필요한 “전용면적” 제거하기</a></li>
 </ul>
 </li>
 <li><a href="#4-%EC%A0%84%EC%B2%98%EB%A6%AC-%EB%82%B4%EC%9A%A9-%EB%B3%B5%EC%8A%B5%ED%95%98%EA%B8%B0"><strong>4. 전처리 내용 복습하기</strong></a></li>
@@ -473,7 +474,7 @@ memory usage: 176.1+ KB
 <br>
  <br>
 <h2 id="3-데이터-타입-변환"><a class="markdownIt-Anchor" href="#3-데이터-타입-변환"></a> <strong>3. 데이터 타입 변환</strong></h2>
-<p><strong>[목표] 분양가격 column을 int타입으로 변환하기</strong></p>
+<p><strong>[목표] &lt;object 타입&gt;으로 되어있는 "분양가격"을 &lt;int 타입&gt;으로 변환하기</strong></p>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"분양가격"</span>].astype(int)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>---------------------------------------------------------------------------
@@ -1281,7 +1282,7 @@ ValueError: invalid literal for int() with base 10: '-'
 <blockquote>
 <p>!! 이번에는 <font color="blue">"-"가</font> 멀썽이네요…</p>
 </blockquote>
-<p><br> <br></p>
+ <br>
 <h3 id="3-5-strreplace를-활용하여-제거하기"><a class="markdownIt-Anchor" href="#3-5-strreplace를-활용하여-제거하기"></a> 3-5. str.replace()를 활용하여 “-” 제거하기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"분양가격"</span>] = df[<span class="string">"분양가격"</span>].str.replace(<span class="string">"-"</span>, <span class="string">""</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[df[<span class="string">"분양가격"</span>] == <span class="string">""</span>, <span class="string">"분양가격"</span>] = <span class="number">0</span></span><br></pre></td></tr></tbody></table></figure>
@@ -1360,17 +1361,161 @@ memory usage: 158.5+ KB
 <blockquote>
 <p>이제 드디어 “분양가격” column의 Type을 int로 성공적으로 바꿨습니다!!!</p>
 </blockquote>
-<p><br>  <br></p>
+<br>
+<h3 id="3-6-규모구분-column에-불필요한-전용면적-제거하기"><a class="markdownIt-Anchor" href="#3-6-규모구분-column에-불필요한-전용면적-제거하기"></a> 3-6. 규모구분 column에 불필요한 “전용면적” 제거하기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>지역명</th>
+      <th>규모구분</th>
+      <th>연도</th>
+      <th>월</th>
+      <th>분양가격</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>서울</td>
+      <td>전체</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5841</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>서울</td>
+      <td>전용면적 60㎡이하</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5652</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>서울</td>
+      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5882</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>서울</td>
+      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5721</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>서울</td>
+      <td>전용면적 102㎡초과</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5879</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+ <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"규모구분"</span>] = df[<span class="string">"규모구분"</span>].str.replace(<span class="string">"전용면적"</span>, <span class="string">""</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>지역명</th>
+      <th>규모구분</th>
+      <th>연도</th>
+      <th>월</th>
+      <th>분양가격</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>서울</td>
+      <td>전체</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5841</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>서울</td>
+      <td>60㎡이하</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5652</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>서울</td>
+      <td>60㎡초과 85㎡이하</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5882</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>서울</td>
+      <td>85㎡초과 102㎡이하</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5721</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>서울</td>
+      <td>102㎡초과</td>
+      <td>2015</td>
+      <td>10</td>
+      <td>5879</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+ <br>
+   <br>
 <h2 id="4-전처리-내용-복습하기"><a class="markdownIt-Anchor" href="#4-전처리-내용-복습하기"></a> <strong>4. 전처리 내용 복습하기</strong></h2>
 <p><strong>방급 진행 했던 전처리 과정을 복습해봅시다!</strong></p>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2 = pd.read_csv(<span class="string">"seoul_house_price.csv"</span>)</span><br></pre></td></tr></tbody></table></figure>
-  <br>
+   <br>
 <p><strong>(1) 콤마가 있는 경우</strong></p>
 <blockquote>
 <p><em>df_name</em> [ “<em>col_name</em>” ] <strong>.str.replace</strong> (’,’, ‘’)</p>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.iloc[<span class="number">2125</span>]</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>지역명           서울
 규모구분          전체
@@ -1379,7 +1524,7 @@ memory usage: 158.5+ KB
 분양가격(㎡)    6,657
 Name: 2125, dtype: object
 </code></pre>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2 = df2.rename(columns = {<span class="string">"분양가격(㎡)"</span> : <span class="string">"분양가격"</span>})</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2[<span class="string">"분양가격"</span>] = df2[<span class="string">"분양가격"</span>].str.replace(<span class="string">","</span>, <span class="string">""</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.iloc[<span class="number">2125</span>]</span><br></pre></td></tr></tbody></table></figure>
@@ -1390,12 +1535,12 @@ Name: 2125, dtype: object
 분양가격    6657
 Name: 2125, dtype: object
 </code></pre>
-<br>  
+ <br>
 <p><strong>(2) - 가 있는 경우</strong></p>
 <blockquote>
-<p><em>df_name</em> [ “<em>col_name</em>” ] <strong>.str.replace</strong>(’-’, ‘’)</p>
+<p><em>df_name</em> [ “<em>col_name</em>” ] **.str.replace(’-’, ‘’)</p>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">"-"</span>]</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -1498,7 +1643,7 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2[<span class="string">"분양가격"</span>] = df2[<span class="string">"분양가격"</span>].str.replace(<span class="string">"-"</span>, <span class="string">""</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">"-"</span>]</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -1530,12 +1675,12 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
-<br>
+ <br>
 <p><strong>(3) 공백이 2개 들어간 경우</strong></p>
 <blockquote>
-<p><em>df_name</em> [ “<em>col_name</em>” ] <strong>.str.strip</strong>("  ")</p>
+<p><em>df_name</em> [ “<em>col_name</em>” ] **.str.strip("  ")</p>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">"  "</span>]</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -1694,7 +1839,7 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2[<span class="string">"분양가격"</span>] = df2[<span class="string">"분양가격"</span>].str.strip(<span class="string">"  "</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">"  "</span>]</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -1726,12 +1871,12 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
-<br>
+  <br> 
 <p><strong>(4) 빈 칸을 0으로 채우기</strong></p>
 <blockquote>
 <p><em>df_name</em>.loc [ <em>df_name</em> [ “<em>col_name</em>” ] == “” , “<em>col_name</em>”] = 0</p>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">""</span>]</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -1962,7 +2107,7 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">""</span>, <span class="string">"분양가격"</span>] = <span class="number">0</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>] == <span class="string">""</span>]</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -1994,13 +2139,13 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
- <br> 
+ <br>  
 <p><strong>(5) NaN 값을 0으로 바꾸기</strong></p>
 <blockquote>
 <p><em>df_name</em>.loc [ <em>df_name</em> [ “<em>col_name</em>” ] <strong>.isna()</strong> ]<br>
 <em>df_name</em> [ “<em>col_name</em>” ].fillna(0)</p>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>].isna()]</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -2120,7 +2265,7 @@ Name: 2125, dtype: object
 </table>
 <p>295 rows × 5 columns</p>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2[<span class="string">"분양가격"</span>] = df2[<span class="string">"분양가격"</span>].fillna(<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.loc[df2[<span class="string">"분양가격"</span>].isna()]</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -2152,12 +2297,12 @@ Name: 2125, dtype: object
   </tbody>
 </table>
 </div>
-<br>  
+ <br>  
 <p><strong>(6) column type 바꾸기</strong></p>
 <blockquote>
 <p><em>df_name</em> [ “<em>col_name</em>” ] <strong>.astype(…)</strong></p>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2[<span class="string">"분양가격"</span>].astype(int)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>0       5841
 1       5652
@@ -2172,7 +2317,8 @@ Name: 2125, dtype: object
 4504    3601
 Name: 분양가격, Length: 4505, dtype: int32
 </code></pre>
-<p><br>  <br></p>
+ <br>
+   <br>
 <h2 id="5-지역별-분양가격을-확인해보기"><a class="markdownIt-Anchor" href="#5-지역별-분양가격을-확인해보기"></a> <strong>5. 지역별 분양가격을 확인해보기</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -2212,7 +2358,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>1</th>
       <td>서울</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5652</td>
@@ -2220,7 +2366,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>2</th>
       <td>서울</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5882</td>
@@ -2228,7 +2374,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>3</th>
       <td>서울</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5721</td>
@@ -2236,7 +2382,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>4</th>
       <td>서울</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2015</td>
       <td>10</td>
       <td>5879</td>
@@ -2260,7 +2406,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>4501</th>
       <td>제주</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>4039</td>
@@ -2268,7 +2414,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>4502</th>
       <td>제주</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>3962</td>
@@ -2276,7 +2422,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>4503</th>
       <td>제주</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>0</td>
@@ -2284,7 +2430,7 @@ Name: 분양가격, Length: 4505, dtype: int32
     <tr>
       <th>4504</th>
       <td>제주</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2020</td>
       <td>2</td>
       <td>3601</td>
@@ -2293,7 +2439,7 @@ Name: 분양가격, Length: 4505, dtype: int32
 </table>
 <p>4505 rows × 5 columns</p>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 4505 entries, 0 to 4504
@@ -2308,7 +2454,7 @@ Data columns (total 5 columns):
 dtypes: int32(1), int64(2), object(2)
 memory usage: 158.5+ KB
 </code></pre>
-<br>
+ <br>
 <h3 id="5-1-지역별-평균-분양가격-확인해보기"><a class="markdownIt-Anchor" href="#5-1-지역별-평균-분양가격-확인해보기"></a> 5-1. 지역별 평균 분양가격 확인해보기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">"지역명"</span>)[<span class="string">"분양가격"</span>].mean()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>지역명
@@ -2331,7 +2477,7 @@ memory usage: 158.5+ KB
 충북    2316.871698
 Name: 분양가격, dtype: float64
 </code></pre>
-  <br>
+  <br> 
 <h3 id="5-2-분양가격이-100보다-작은-행을-제거해보기"><a class="markdownIt-Anchor" href="#5-2-분양가격이-100보다-작은-행을-제거해보기"></a> 5-2. 분양가격이 100보다 작은 행을 제거해보기</h3>
 <blockquote>
 <p>특정 조건에 만족하는 행을 제거하고자 할 때는</p>
@@ -2348,7 +2494,7 @@ Name: 분양가격, dtype: float64
 </li>
 </ol>
 </blockquote>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idx = df.loc[df[<span class="string">"분양가격"</span>] &lt; <span class="number">100</span>].index</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idx</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Int64Index([  28,   29,   34,   81,  113,  114,  119,  166,  198,  199,
@@ -2356,7 +2502,7 @@ Name: 분양가격, dtype: float64
             4418, 4448, 4453, 4458, 4459, 4461, 4488, 4493, 4499, 4503],
            dtype='int64', length=320)
 </code></pre>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -2395,7 +2541,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>1</th>
       <td>서울</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5652</td>
@@ -2403,7 +2549,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>2</th>
       <td>서울</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5882</td>
@@ -2411,7 +2557,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>3</th>
       <td>서울</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5721</td>
@@ -2419,7 +2565,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4</th>
       <td>서울</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2015</td>
       <td>10</td>
       <td>5879</td>
@@ -2443,7 +2589,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4501</th>
       <td>제주</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>4039</td>
@@ -2451,7 +2597,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4502</th>
       <td>제주</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>3962</td>
@@ -2459,7 +2605,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4503</th>
       <td>제주</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>0</td>
@@ -2467,7 +2613,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4504</th>
       <td>제주</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2020</td>
       <td>2</td>
       <td>3601</td>
@@ -2476,7 +2622,7 @@ Name: 분양가격, dtype: float64
 </table>
 <p>4505 rows × 5 columns</p>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = df.drop(idx, axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -2516,7 +2662,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>1</th>
       <td>서울</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5652</td>
@@ -2524,7 +2670,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>2</th>
       <td>서울</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5882</td>
@@ -2532,7 +2678,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>3</th>
       <td>서울</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5721</td>
@@ -2540,7 +2686,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4</th>
       <td>서울</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2015</td>
       <td>10</td>
       <td>5879</td>
@@ -2556,7 +2702,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4498</th>
       <td>경남</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>3247</td>
@@ -2572,7 +2718,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4501</th>
       <td>제주</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>4039</td>
@@ -2580,7 +2726,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4502</th>
       <td>제주</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2020</td>
       <td>2</td>
       <td>3962</td>
@@ -2588,7 +2734,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4504</th>
       <td>제주</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2020</td>
       <td>2</td>
       <td>3601</td>
@@ -2597,7 +2743,7 @@ Name: 분양가격, dtype: float64
 </table>
 <p>4185 rows × 5 columns</p>
 </div>
-<br>
+   <br>
 <p>다시 한 번 지역명으로 group을 묶어 분양가격을 확인해보자!</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">"지역명"</span>)[<span class="string">"분양가격"</span>].mean()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>지역명
@@ -2620,7 +2766,7 @@ Name: 분양가격, dtype: float64
 충북    2316.871698
 Name: 분양가격, dtype: float64
 </code></pre>
-<br>
+ <br>
 <h3 id="5-3-지역별-분양가격-데이터의-갯수를-확인해보기"><a class="markdownIt-Anchor" href="#5-3-지역별-분양가격-데이터의-갯수를-확인해보기"></a> 5-3. 지역별 “분양가격” 데이터의 갯수를 확인해보기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">"지역명"</span>)[<span class="string">"분양가격"</span>].count()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>지역명
@@ -2643,7 +2789,7 @@ Name: 분양가격, dtype: float64
 충북    265
 Name: 분양가격, dtype: int64
 </code></pre>
- <br> 
+ <br>  
 <h3 id="5-4-지역별-제일-비싼-분양가를-확인해보기"><a class="markdownIt-Anchor" href="#5-4-지역별-제일-비싼-분양가를-확인해보기"></a> 5-4. 지역별 제일 비싼 분양가를 확인해보기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">"지역명"</span>)[<span class="string">"분양가격"</span>].max()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>지역명
@@ -2666,8 +2812,7 @@ Name: 분양가격, dtype: int64
 충북     2855
 Name: 분양가격, dtype: int32
 </code></pre>
-  <br>
-  <br>
+<p><br>  <br></p>
 <h2 id="6-연도별-평균-분양가격을-확인해보기"><a class="markdownIt-Anchor" href="#6-연도별-평균-분양가격을-확인해보기"></a> <strong>6. 연도별 평균 분양가격을 확인해보기</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -2707,7 +2852,7 @@ Name: 분양가격, dtype: int32
     <tr>
       <th>1</th>
       <td>서울</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5652</td>
@@ -2715,7 +2860,7 @@ Name: 분양가격, dtype: int32
     <tr>
       <th>2</th>
       <td>서울</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5882</td>
@@ -2723,7 +2868,7 @@ Name: 분양가격, dtype: int32
     <tr>
       <th>3</th>
       <td>서울</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5721</td>
@@ -2731,7 +2876,7 @@ Name: 분양가격, dtype: int32
     <tr>
       <th>4</th>
       <td>서울</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2015</td>
       <td>10</td>
       <td>5879</td>
@@ -2739,7 +2884,7 @@ Name: 분양가격, dtype: int32
   </tbody>
 </table>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">"연도"</span>)[<span class="string">"분양가격"</span>].mean()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>연도
 2015    2788.707819
@@ -2750,8 +2895,8 @@ Name: 분양가격, dtype: int32
 2020    3853.960526
 Name: 분양가격, dtype: float64
 </code></pre>
-<br>
-  <br>
+ <br>
+   <br>
 <h2 id="7-피벗테이블-활용하기"><a class="markdownIt-Anchor" href="#7-피벗테이블-활용하기"></a> <strong>7. 피벗테이블 활용하기</strong></h2>
 <ul>
 <li>
@@ -2762,7 +2907,7 @@ Name: 분양가격, dtype: float64
 </li>
 <li>
 <p><strong>값:</strong> 분양가 (평균)</p>
-<br>
+ <br>
 </li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
@@ -2803,7 +2948,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>1</th>
       <td>서울</td>
-      <td>전용면적 60㎡이하</td>
+      <td>60㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5652</td>
@@ -2811,7 +2956,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>2</th>
       <td>서울</td>
-      <td>전용면적 60㎡초과 85㎡이하</td>
+      <td>60㎡초과 85㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5882</td>
@@ -2819,7 +2964,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>3</th>
       <td>서울</td>
-      <td>전용면적 85㎡초과 102㎡이하</td>
+      <td>85㎡초과 102㎡이하</td>
       <td>2015</td>
       <td>10</td>
       <td>5721</td>
@@ -2827,7 +2972,7 @@ Name: 분양가격, dtype: float64
     <tr>
       <th>4</th>
       <td>서울</td>
-      <td>전용면적 102㎡초과</td>
+      <td>102㎡초과</td>
       <td>2015</td>
       <td>10</td>
       <td>5879</td>
@@ -2835,7 +2980,7 @@ Name: 분양가격, dtype: float64
   </tbody>
 </table>
 </div>
-<br>
+ <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.pivot_table(df, index = <span class="string">"연도"</span>, columns = <span class="string">"규모구분"</span>, values = <span class="string">"분양가격"</span>)</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -2855,10 +3000,10 @@ Name: 분양가격, dtype: float64
   <thead>
     <tr style="text-align: right;">
       <th>규모구분</th>
-      <th>전용면적 102㎡초과</th>
-      <th>전용면적 60㎡이하</th>
-      <th>전용면적 60㎡초과 85㎡이하</th>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>102㎡초과</th>
+      <th>60㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <th>전체</th>
     </tr>
     <tr>
@@ -2922,46 +3067,44 @@ Name: 분양가격, dtype: float64
   </tbody>
 </table>
 </div>
-<br>
-  <br>
+<p><br>  <br></p>
 <h2 id="8-연도별-규모별-가격을-알아보기"><a class="markdownIt-Anchor" href="#8-연도별-규모별-가격을-알아보기"></a> <strong>8. 연도별, 규모별 가격을 알아보기</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby([<span class="string">"연도"</span>, <span class="string">"규모구분"</span>])[<span class="string">"분양가격"</span>].mean()</span><br></pre></td></tr></tbody></table></figure>
-<pre><code>연도    규모구분             
-2015  전용면적 102㎡초과          2980.977778
-      전용면적 60㎡이하           2712.583333
-      전용면적 60㎡초과 85㎡이하     2694.490196
-      전용면적 85㎡초과 102㎡이하    2884.395833
-      전체                   2694.862745
-2016  전용면적 102㎡초과          3148.099476
-      전용면적 60㎡이하           2848.144279
-      전용면적 60㎡초과 85㎡이하     2816.965686
-      전용면적 85㎡초과 102㎡이하    3067.380435
-      전체                   2816.073529
-2017  전용면적 102㎡초과          3427.649746
-      전용면적 60㎡이하           3112.538071
-      전용면적 60㎡초과 85㎡이하     2981.950980
-      전용면적 85㎡초과 102㎡이하    3204.075145
-      전체                   3008.279412
-2018  전용면적 102㎡초과          3468.355932
-      전용면적 60㎡이하           3286.184783
-      전용면적 60㎡초과 85㎡이하     3227.458128
-      전용면적 85㎡초과 102㎡이하    3467.184211
-      전체                   3235.098522
-2019  전용면적 102㎡초과          4039.854839
-      전용면적 60㎡이하           3486.910112
-      전용면적 60㎡초과 85㎡이하     3538.545918
-      전용면적 85㎡초과 102㎡이하    3933.538462
-      전체                   3515.974490
-2020  전용면적 102㎡초과          4187.566667
-      전용면적 60㎡이하           3615.968750
-      전용면적 60㎡초과 85㎡이하     3594.852941
-      전용면적 85㎡초과 102㎡이하    4532.090909
-      전체                   3603.911765
+<pre><code>연도    규모구분         
+2015   102㎡초과          2980.977778
+       60㎡이하           2712.583333
+       60㎡초과 85㎡이하     2694.490196
+       85㎡초과 102㎡이하    2884.395833
+      전체               2694.862745
+2016   102㎡초과          3148.099476
+       60㎡이하           2848.144279
+       60㎡초과 85㎡이하     2816.965686
+       85㎡초과 102㎡이하    3067.380435
+      전체               2816.073529
+2017   102㎡초과          3427.649746
+       60㎡이하           3112.538071
+       60㎡초과 85㎡이하     2981.950980
+       85㎡초과 102㎡이하    3204.075145
+      전체               3008.279412
+2018   102㎡초과          3468.355932
+       60㎡이하           3286.184783
+       60㎡초과 85㎡이하     3227.458128
+       85㎡초과 102㎡이하    3467.184211
+      전체               3235.098522
+2019   102㎡초과          4039.854839
+       60㎡이하           3486.910112
+       60㎡초과 85㎡이하     3538.545918
+       85㎡초과 102㎡이하    3933.538462
+      전체               3515.974490
+2020   102㎡초과          4187.566667
+       60㎡이하           3615.968750
+       60㎡초과 85㎡이하     3594.852941
+       85㎡초과 102㎡이하    4532.090909
+      전체               3603.911765
 Name: 분양가격, dtype: float64
 </code></pre>
-<br>
+  <br> 
 <p>예쁘게 출력이 안되어서 보기가 힘들때는 pd.DataFrame()으로 한 번 더 감싸주면 됩니다.</p>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame(df.groupby([<span class="string">"연도"</span>, <span class="string">"규모구분"</span>])[<span class="string">"분양가격"</span>].mean())</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -2993,19 +3136,19 @@ Name: 분양가격, dtype: float64
   <tbody>
     <tr>
       <th rowspan="5" valign="top">2015</th>
-      <th>전용면적 102㎡초과</th>
+      <th>102㎡초과</th>
       <td>2980.977778</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡이하</th>
+      <th>60㎡이하</th>
       <td>2712.583333</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡초과 85㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
       <td>2694.490196</td>
     </tr>
     <tr>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <td>2884.395833</td>
     </tr>
     <tr>
@@ -3014,19 +3157,19 @@ Name: 분양가격, dtype: float64
     </tr>
     <tr>
       <th rowspan="5" valign="top">2016</th>
-      <th>전용면적 102㎡초과</th>
+      <th>102㎡초과</th>
       <td>3148.099476</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡이하</th>
+      <th>60㎡이하</th>
       <td>2848.144279</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡초과 85㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
       <td>2816.965686</td>
     </tr>
     <tr>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <td>3067.380435</td>
     </tr>
     <tr>
@@ -3035,19 +3178,19 @@ Name: 분양가격, dtype: float64
     </tr>
     <tr>
       <th rowspan="5" valign="top">2017</th>
-      <th>전용면적 102㎡초과</th>
+      <th>102㎡초과</th>
       <td>3427.649746</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡이하</th>
+      <th>60㎡이하</th>
       <td>3112.538071</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡초과 85㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
       <td>2981.950980</td>
     </tr>
     <tr>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <td>3204.075145</td>
     </tr>
     <tr>
@@ -3056,19 +3199,19 @@ Name: 분양가격, dtype: float64
     </tr>
     <tr>
       <th rowspan="5" valign="top">2018</th>
-      <th>전용면적 102㎡초과</th>
+      <th>102㎡초과</th>
       <td>3468.355932</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡이하</th>
+      <th>60㎡이하</th>
       <td>3286.184783</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡초과 85㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
       <td>3227.458128</td>
     </tr>
     <tr>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <td>3467.184211</td>
     </tr>
     <tr>
@@ -3077,19 +3220,19 @@ Name: 분양가격, dtype: float64
     </tr>
     <tr>
       <th rowspan="5" valign="top">2019</th>
-      <th>전용면적 102㎡초과</th>
+      <th>102㎡초과</th>
       <td>4039.854839</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡이하</th>
+      <th>60㎡이하</th>
       <td>3486.910112</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡초과 85㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
       <td>3538.545918</td>
     </tr>
     <tr>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <td>3933.538462</td>
     </tr>
     <tr>
@@ -3098,19 +3241,19 @@ Name: 분양가격, dtype: float64
     </tr>
     <tr>
       <th rowspan="5" valign="top">2020</th>
-      <th>전용면적 102㎡초과</th>
+      <th>102㎡초과</th>
       <td>4187.566667</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡이하</th>
+      <th>60㎡이하</th>
       <td>3615.968750</td>
     </tr>
     <tr>
-      <th>전용면적 60㎡초과 85㎡이하</th>
+      <th>60㎡초과 85㎡이하</th>
       <td>3594.852941</td>
     </tr>
     <tr>
-      <th>전용면적 85㎡초과 102㎡이하</th>
+      <th>85㎡초과 102㎡이하</th>
       <td>4532.090909</td>
     </tr>
     <tr>
@@ -3120,8 +3263,8 @@ Name: 분양가격, dtype: float64
   </tbody>
 </table>
 </div>
-<br>
-<br><script>
+ <br>
+ <br><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
