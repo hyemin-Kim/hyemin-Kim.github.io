@@ -110,23 +110,24 @@ table {
   display: table;
   overflow: auto;
   margin: 0 0 1rem;
-  width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
   empty-cells: show;
+  font-size: 0.7rem;
 }
 table thead {
   background: #fff;
   border-bottom: 1px solid #1b1b1b;
 }
 table tr:nth-child(odd) {
-  background: #e9e9e9;
+  background: #f6f6f6;
 }
 table tr:nth-child(even) {
-  background: #fdfdfd;
+  background: #fbfbfb;
 }
+table th,
 table td {
-  text-align: right;
+  vertical-align: middle;
 }
 *::selection {
   background: #963694;
