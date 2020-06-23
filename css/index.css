@@ -114,18 +114,18 @@ table {
   border-collapse: collapse;
   empty-cells: show;
 }
-table thead {
+table thead th {
   background-color: #fff;
   border-bottom: 1px solid #1b1b1b;
 }
 table th,
 table td {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   padding: 0.1rem 0.5rem;
   text-align: right;
 }
 table tr:nth-child(odd) {
-  background: #fff;
+  background: #f3f3f3;
 }
 table tr:nth-child(even) {
   background: #fdfdfd;
