@@ -1468,6 +1468,7 @@ canvas:not(#ribbon-canvas),
   background: #f6f8fa;
   color: #90a4ae;
   line-height: 20px;
+  font-size: 1rem;
 }
 .code-area-wrap {
   position: relative;
