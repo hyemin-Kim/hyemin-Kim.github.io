@@ -122,7 +122,6 @@ table th,
 table td {
   font-size: 0.65rem;
   padding: 0.1rem 0.5rem;
-  text-align: center;
 }
 table tr:nth-child(odd) {
   background: #f3f3f3;
