@@ -664,6 +664,7 @@
 <blockquote>
 <p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" target="_blank" rel="noopener">pyplot 공식 Document 살펴보기</a></p>
 </blockquote>
+<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># plt.rcParams["figure.figsize"] = (12, 9)  # figure size 설정</span></span><br></pre></td></tr></tbody></table></figure>
   <br>
@@ -673,7 +674,6 @@
 <p><strong>plt.plot</strong>(<em>df_name</em>)<br>
 <strong>plt.show()</strong></p>
 </blockquote>
-  <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">## data 생성</span></span><br><span class="line">data = np.arange(<span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## plot</span></span><br><span class="line">plt.plot(data)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 그래프만 보여주는 코드 (타 실행 결과 생략하고 그래프만 보여줌)</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/S-Python-Matplotlib1/output_10_0.png" alt="png"></p>
 <br>
@@ -712,6 +712,7 @@
   <br>
 <p><strong>(1) subplot (plot의 좌표를 설정하기)</strong></p>
 <p>이 방법은 <strong>그래프마다 설정</strong>해줘야 함</p>
+<br>
 <blockquote>
 <p><strong>plt.subplot</strong>(row, column, index)  <font color="blue"># 콤마를 제거해도 됨</font></p>
 </blockquote>
@@ -727,6 +728,7 @@
 <br>
 <p><strong>(2) subplots (배열 기준인 행,열수를 지정하기)</strong></p>
 <p>subplot와 다르게 <strong>subplots()명령어는 한번만 설정</strong>해주면 됨</p>
+<br>
 <blockquote>
 <p><strong>plt.subplots</strong>(행의 갯수, 열의 갯수)</p>
 </blockquote>
@@ -739,6 +741,7 @@
 <img src="/images/S-Python-Matplotlib1/output_41_0.png" alt="png" style="zoom:67%;">
 <br>  
 <h3 id="2-1-타이틀"><a class="markdownIt-Anchor" href="#2-1-타이틀"></a> 2-1. 타이틀</h3>
+<br>
 <blockquote>
 <ul>
 <li><strong>타이틀 추가:</strong> plt.title("…")</li>
@@ -757,10 +760,11 @@
 <p><img src="/images/S-Python-Matplotlib1/output_48_1.png" alt="png"></p>
 <br>
 <h3 id="2-2-x-y축-label-설정"><a class="markdownIt-Anchor" href="#2-2-x-y축-label-설정"></a> 2-2. X, Y축 Label 설정</h3>
+<br>
 <blockquote>
 <ul>
-<li>plt.xlabel( “<em>x_name</em>”, fontsize = …)</li>
-<li>plt.ylabel( “<em>y_name</em>”, fontsize = …)</li>
+<li><strong>plt.xlabel</strong> ( “<em>x_name</em>”, fontsize = …)</li>
+<li><strong>plt.ylabel</strong> ( “<em>y_name</em>”, fontsize = …)</li>
 </ul>
 </blockquote>
 <br>
@@ -775,8 +779,8 @@ rotation 명령어를 통해 Tick의 각도를 조절할 수 있다</p>
 <br>
 <blockquote>
 <ul>
-<li>plt.xticks(rotation = …)</li>
-<li>plt.yticks(rotation = …)<br>
+<li><strong>plt.xticks</strong> ( <em>rotation = …</em> )</li>
+<li><strong>plt.yticks</strong> ( <em>rotation = …</em> )<br>
 Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말한다</li>
 </ul>
 </blockquote>
@@ -793,9 +797,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <br>
 <h3 id="2-4-범례-legend-설정"><a class="markdownIt-Anchor" href="#2-4-범례-legend-설정"></a> 2-4. 범례 (Legend) 설정</h3>
 <blockquote>
-<p>plt.legend ( [ “<em>name1</em>” , “<em>name2</em>” , … ], fontsize = …)</p>
+<p><strong>plt.legend</strong> ( [ “<em>name1</em>” , “<em>name2</em>” , … ], fontsize = …)</p>
 </blockquote>
-  <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)*<span class="number">2</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)**<span class="number">2</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.log(np.arange(<span class="number">10</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">"범례(Legend) 설정"</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># X축, Y축 Label 설정</span></span><br><span class="line">plt.xlabel(<span class="string">"X축"</span>, fontsize = <span class="number">16</span>)</span><br><span class="line">plt.ylabel(<span class="string">"Y축"</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># X tick, Y tick rotation 조정</span></span><br><span class="line">plt.xticks(rotation = <span class="number">90</span>)</span><br><span class="line">plt.yticks(rotation = <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># legend 설정</span></span><br><span class="line">plt.legend([<span class="string">"2x"</span>, <span class="string">"x^2"</span>, <span class="string">"logx"</span>], fontsize = <span class="number">14</span>)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>D:\Anaconda\lib\site-packages\ipykernel_launcher.py:3: RuntimeWarning: divide by zero encountered in log
   This is separate from the ipykernel package so we can avoid doing imports until
@@ -807,8 +810,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <h3 id="2-5-x와-y의-한계점limit-설정"><a class="markdownIt-Anchor" href="#2-5-x와-y의-한계점limit-설정"></a> 2-5. X와 Y의 한계점(Limit) 설정</h3>
 <blockquote>
 <ul>
-<li>plt.xlim (a, b)</li>
-<li>plt.ylim (c, d)</li>
+<li><strong>plt.xlim</strong> ( <em>a, b</em> )</li>
+<li><strong>plt.ylim</strong> ( <em>c, d</em> )</li>
 </ul>
 </blockquote>
 <br>
@@ -821,10 +824,11 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <p><img src="/images/S-Python-Matplotlib1/output_68_2.png" alt="png"></p>
 <br>
 <h3 id="2-6-스타일-세부-설정-마커-라인-컬러"><a class="markdownIt-Anchor" href="#2-6-스타일-세부-설정-마커-라인-컬러"></a> 2-6. 스타일 세부 설정 - 마커, 라인, 컬러</h3>
-<p>스타일 세부 설정은 마커, 선의 동류 설정, 드리고 컬러가 있으며, 문다열로 세부설정을 하게 된다</p>
 <blockquote>
-<p><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" target="_blank" rel="noopener">세부 Document 확인하기</a></p>
+<p><em><strong>reference:</strong></em>  <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" target="_blank" rel="noopener">세부 Document 확인하기</a></p>
 </blockquote>
+  <br>
+<p>스타일 세부 설정은 마커, 선의 동류 설정, 드리고 컬러가 있으며, 문다열로 세부설정을 하게 된다</p>
   <br>
 <p><strong>(1) marker의 종류</strong></p>
 <ul>
@@ -914,7 +918,6 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <blockquote>
 <p><strong>그리드 (grid) 추가:</strong> plt.grid()</p>
 </blockquote>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)*<span class="number">2</span>, marker=<span class="string">'o'</span>, linestyle=<span class="string">'-'</span>, color=<span class="string">'b'</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)*<span class="number">2</span> - <span class="number">10</span>, marker=<span class="string">'v'</span>, linestyle=<span class="string">'--'</span>, color=<span class="string">'c'</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)*<span class="number">2</span> - <span class="number">20</span>, marker=<span class="string">'+'</span>, linestyle=<span class="string">'-.'</span>, color=<span class="string">'y'</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)*<span class="number">2</span> - <span class="number">30</span>, marker=<span class="string">'*'</span>, linestyle=<span class="string">':'</span>, color=<span class="string">'r'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 타이틀 &amp; font 설정</span></span><br><span class="line">plt.title(<span class="string">'그리드 설정 예제'</span>, fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># X축 &amp; Y축 Label 설정</span></span><br><span class="line">plt.xlabel(<span class="string">'X축'</span>, fontsize=<span class="number">20</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Y축'</span>, fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># grid 옵션 추가</span></span><br><span class="line">plt.grid()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/S-Python-Matplotlib1/output_94_0.png" alt="png"></p>
 <br>
@@ -1010,7 +1013,7 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plt.rcParams[<span class="string">"figure.figsize"</span>] = (<span class="number">9</span>, <span class="number">6</span>)  <span class="comment"># figure size 설정</span></span><br><span class="line">plt.rcParams[<span class="string">"font.size"</span>] = <span class="number">14</span>  <span class="comment"># fontsize 설정</span></span><br></pre></td></tr></tbody></table></figure>
-<p><br> <br></p>
+ <br>
 <h2 id="1-scatterplot"><a class="markdownIt-Anchor" href="#1-scatterplot"></a> <strong>1. Scatterplot</strong></h2>
 <blockquote>
 <p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.scatter.html" target="_blank" rel="noopener">&lt;plt.scatter&gt; Document</a></p>
