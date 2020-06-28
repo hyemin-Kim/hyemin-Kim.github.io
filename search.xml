@@ -712,7 +712,6 @@
   <br>
 <p><strong>(1) subplot (plot의 좌표를 설정하기)</strong></p>
 <p>이 방법은 <strong>그래프마다 설정</strong>해줘야 함</p>
-<br>
 <blockquote>
 <p><strong>plt.subplot</strong>(row, column, index)  <font color="blue"># 콤마를 제거해도 됨</font></p>
 </blockquote>
@@ -728,7 +727,6 @@
 <br>
 <p><strong>(2) subplots (배열 기준인 행,열수를 지정하기)</strong></p>
 <p>subplot와 다르게 <strong>subplots()명령어는 한번만 설정</strong>해주면 됨</p>
-<br>
 <blockquote>
 <p><strong>plt.subplots</strong>(행의 갯수, 열의 갯수)</p>
 </blockquote>
@@ -814,7 +812,6 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <li><strong>plt.ylim</strong> ( <em>c, d</em> )</li>
 </ul>
 </blockquote>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)*<span class="number">2</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.arange(<span class="number">10</span>)**<span class="number">2</span>)</span><br><span class="line">plt.plot(np.arange(<span class="number">10</span>), np.log(np.arange(<span class="number">10</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">"X축, Y축 Limit 설정"</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># X축, Y축 Label 설정</span></span><br><span class="line">plt.xlabel(<span class="string">"X축"</span>, fontsize = <span class="number">16</span>)</span><br><span class="line">plt.ylabel(<span class="string">"Y축"</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># X tick, Y tick rotation 조정</span></span><br><span class="line">plt.xticks(rotation = <span class="number">90</span>)</span><br><span class="line">plt.yticks(rotation = <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># legend 설정</span></span><br><span class="line">plt.legend([<span class="string">"2x"</span>, <span class="string">"x^2"</span>, <span class="string">"logx"</span>], fontsize = <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x, y limit 설정</span></span><br><span class="line">plt.xlim(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>, <span class="number">20</span>)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>D:\Anaconda\lib\site-packages\ipykernel_launcher.py:3: RuntimeWarning: divide by zero encountered in log
   This is separate from the ipykernel package so we can avoid doing imports until
@@ -827,7 +824,6 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
 <blockquote>
 <p><em><strong>reference:</strong></em>  <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" target="_blank" rel="noopener">세부 Document 확인하기</a></p>
 </blockquote>
-  <br>
 <p>스타일 세부 설정은 마커, 선의 동류 설정, 드리고 컬러가 있으며, 문다열로 세부설정을 하게 된다</p>
   <br>
 <p><strong>(1) marker의 종류</strong></p>
