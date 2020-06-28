@@ -1469,6 +1469,7 @@ canvas:not(#ribbon-canvas),
   color: #90a4ae;
   line-height: 20px;
   font-size: 14px;
+  text-align: left;
 }
 .code-area-wrap {
   position: relative;
