@@ -30094,7 +30094,7 @@ matplotlib을 활용하여 구현해야 함</p>
   <entry>
     <title>Python &gt;&gt; Seaborn - (2) 통계 기반의 시각화</title>
     <url>/2020/07/03/S-Python-Seaborn2/</url>
-    <content><![CDATA[<h1 id="통계-기반의-시각화"><a class="markdownIt-Anchor" href="#통계-기반의-시각화"></a> 통계 기반의 시각화</h1>
+    <content><![CDATA[<h1 id="통계-기반의-시각화11"><a class="markdownIt-Anchor" href="#통계-기반의-시각화11"></a> 통계 기반의 시각화11</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#0-%ED%86%B5%EA%B3%84-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%8B%9C%EA%B0%81%ED%99%94%EB%A5%BC-%EC%A0%9C%EA%B3%B5%ED%95%B4%EC%A3%BC%EB%8A%94-seaborn"><strong>0. 통계 기반의 시각화를 제공해주는 Seaborn</strong></a></li>
 <li><a href="#1-countplot"><strong>1. countplot</strong></a>
@@ -30190,7 +30190,8 @@ matplotlib을 활용하여 구현해야 함</p>
 }
 </code></pre>
 </style>
-<table style="width=100%">
+<div style="overflow:auto">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -30412,6 +30413,7 @@ matplotlib을 활용하여 구현해야 함</p>
     </tr>
   </tbody>
 </table>
+</div>
 <p>891 rows × 15 columns</p>
 </div>
 <br>
