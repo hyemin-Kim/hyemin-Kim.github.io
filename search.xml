@@ -29176,7 +29176,7 @@ Name: 분양가격, dtype: float64
       </tags>
   </entry>
   <entry>
-    <title>S-Python-Seaborn1</title>
+    <title>Python &gt;&gt; Seaborn - (1) Seaborn을 활용한 다양한 그래프 그리기</title>
     <url>/2020/07/03/S-Python-Seaborn1/</url>
     <content><![CDATA[<h1 id="seaborn을-활용한-다양한-그래프-그리기"><a class="markdownIt-Anchor" href="#seaborn을-활용한-다양한-그래프-그리기"></a> Seaborn을 활용한 다양한 그래프 그리기</h1>
 <p></p><ul class="markdownIt-TOC">
@@ -29494,7 +29494,6 @@ matplotlib으로 대부분의 시각화는 가능하지만, 다음과 같은 이
 <blockquote>
 <p><em><strong>reference:</strong></em> <a href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html" target="_blank" rel="noopener">&lt;sns.scatterplot&gt; Document</a></p>
 </blockquote>
-<br>
 <blockquote>
 <p><strong>sns.scatterplot</strong> ( <em>x, y, size=None, sizes=None, hue=None, palette=None, color=‘auto’, alpha=‘auto’…</em> )</p>
 <ul>
@@ -29506,7 +29505,7 @@ matplotlib으로 대부분의 시각화는 가능하지만, 다음과 같은 이
 </blockquote>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">sns.set_style(<span class="string">'darkgrid'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<br>  
+  <br>
 <h3 id="1-1-x-y-color-area-설정하기"><a class="markdownIt-Anchor" href="#1-1-x-y-color-area-설정하기"></a> 1-1. x, y, color, area 설정하기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 데이터 생성</span></span><br><span class="line">x = np.random.rand(<span class="number">50</span>)</span><br><span class="line">y = np.random.rand(<span class="number">50</span>)</span><br><span class="line">colors = np.arange(<span class="number">50</span>)</span><br><span class="line">area = x * y * <span class="number">1000</span></span><br></pre></td></tr></tbody></table></figure>
   <br>
@@ -29630,7 +29629,7 @@ seaborn에서 <code>hue</code>옵션으로 매우 쉽게 비교 <strong>barplot<
 }
 </code></pre>
 </style>
-<table>
+<table style="width = 100%;">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -29918,7 +29917,7 @@ matplotlib을 활용하여 구현해야 함</p>
 }
 </code></pre>
 </style>
-<table>
+<table style="width = 100%;">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -30101,10 +30100,7 @@ matplotlib을 활용하여 구현해야 함</p>
 <li><a href="#1-countplot"><strong>1. countplot</strong></a>
 <ul>
 <li><a href="#1-1-%EC%84%B8%EB%A1%9C%EB%A1%9C-%EA%B7%B8%EB%A6%AC%EA%B8%B0">1-1. 세로로 그리기</a></li>
-</ul>
-</li>
-<li><a href="#1-2-%EA%B0%80%EB%A1%9C%EB%A1%9C-%EA%B7%B8%EB%A6%AC%EA%B8%B0">1-2. 가로로 그리기</a>
-<ul>
+<li><a href="#1-2-%EA%B0%80%EB%A1%9C%EB%A1%9C-%EA%B7%B8%EB%A6%AC%EA%B8%B0">1-2. 가로로 그리기</a></li>
 <li><a href="#1-3-%EC%83%89%EC%83%81-%ED%8C%94%EB%A0%88%ED%8A%B8-%EC%84%A4%EC%A0%95">1-3. 색상 팔레트 설정</a></li>
 </ul>
 </li>
@@ -30194,7 +30190,7 @@ matplotlib을 활용하여 구현해야 함</p>
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table style="width=100%">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -30480,7 +30476,7 @@ matplotlib을 활용하여 구현해야 함</p>
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -30651,7 +30647,7 @@ matplotlib을 활용하여 구현해야 함</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">sns.countplot(x=<span class="string">'class'</span>, hue=<span class="string">'who'</span>, data=titanic)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/S-Python-Seaborn2/output_26_0.png" alt="png"></p>
 <br>
-<h2 id="1-2-가로로-그리기"><a class="markdownIt-Anchor" href="#1-2-가로로-그리기"></a> 1-2. 가로로 그리기</h2>
+<h3 id="1-2-가로로-그리기"><a class="markdownIt-Anchor" href="#1-2-가로로-그리기"></a> 1-2. 가로로 그리기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">sns.countplot(y=<span class="string">'class'</span>, hue=<span class="string">'who'</span>, data=titanic)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/S-Python-Seaborn2/output_29_0.png" alt="png"></p>
 <br>
@@ -30787,7 +30783,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -30931,7 +30927,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th>size</th>
@@ -31013,7 +31009,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -31149,7 +31145,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -31267,7 +31263,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -31387,7 +31383,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -31494,7 +31490,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -31606,7 +31602,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -31690,7 +31686,7 @@ Name: x variable, Length: 100, dtype: float64
 <p><img src="/images/S-Python-Seaborn2/output_186_0.png" alt="png"></p>
 <br>
 <h3 id="8-4-등고선-모양으로-밀집도-확인하기"><a class="markdownIt-Anchor" href="#8-4-등고선-모양으로-밀집도-확인하기"></a> 8-4. 등고선 모양으로 밀집도 확인하기</h3>
-<p>**kind=‘kde’**옵션으로 데이터의 밀집도를 보다 부드러운 선으로 확인할 수 있다</p>
+<p><strong>kind=‘kde’</strong> 옵션으로 데이터의 밀집도를 보다 부드러운 선으로 확인할 수 있다</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">iris = sns.load_dataset(<span class="string">'iris'</span>)</span><br><span class="line">iris</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -31706,7 +31702,7 @@ Name: x variable, Length: 100, dtype: float64
 }
 </code></pre>
 </style>
-<table border="1" class="dataframe">
+<table>
   <thead>
     <tr style="text-align: right;">
       <th></th>
