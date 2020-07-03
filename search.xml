@@ -29629,6 +29629,7 @@ seaborn에서 <code>hue</code>옵션으로 매우 쉽게 비교 <strong>barplot<
 }
 </code></pre>
 </style>
+<div style="overflow:auto">
 <table style="width = 100%;">
   <thead>
     <tr style="text-align: right;">
@@ -29743,6 +29744,7 @@ seaborn에서 <code>hue</code>옵션으로 매우 쉽게 비교 <strong>barplot<
     </tr>
   </tbody>
 </table>
+</div>
 </div>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">sns.barplot(x=<span class="string">'sex'</span>, y=<span class="string">'survived'</span>, hue=<span class="string">'pclass'</span>, data=titanic, palette=<span class="string">'muted'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
@@ -29917,6 +29919,7 @@ matplotlib을 활용하여 구현해야 함</p>
 }
 </code></pre>
 </style>
+<div style="overflow:auto">
 <table style="width = 100%;">
   <thead>
     <tr style="text-align: right;">
@@ -30032,6 +30035,7 @@ matplotlib을 활용하여 구현해야 함</p>
   </tbody>
 </table>
 </div>
+</div>
  <br> 
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">sns.boxplot(x=<span class="string">'pclass'</span>, y=<span class="string">'age'</span>, hue=<span class="string">'survived'</span>, data=titanic)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/S-Python-Seaborn1/output_199_0.png" alt="png"></p>
@@ -30094,7 +30098,7 @@ matplotlib을 활용하여 구현해야 함</p>
   <entry>
     <title>Python &gt;&gt; Seaborn - (2) 통계 기반의 시각화</title>
     <url>/2020/07/03/S-Python-Seaborn2/</url>
-    <content><![CDATA[<h1 id="통계-기반의-시각화11"><a class="markdownIt-Anchor" href="#통계-기반의-시각화11"></a> 통계 기반의 시각화11</h1>
+    <content><![CDATA[<h1 id="통계-기반의-시각화"><a class="markdownIt-Anchor" href="#통계-기반의-시각화"></a> 통계 기반의 시각화</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#0-%ED%86%B5%EA%B3%84-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%8B%9C%EA%B0%81%ED%99%94%EB%A5%BC-%EC%A0%9C%EA%B3%B5%ED%95%B4%EC%A3%BC%EB%8A%94-seaborn"><strong>0. 통계 기반의 시각화를 제공해주는 Seaborn</strong></a></li>
 <li><a href="#1-countplot"><strong>1. countplot</strong></a>
