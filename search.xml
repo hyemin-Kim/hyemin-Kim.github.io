@@ -31848,11 +31848,11 @@ Name: x variable, Length: 100, dtype: float64
   <entry>
     <title>Python &gt;&gt; sklearn -(0) sklearn 개요</title>
     <url>/2020/07/17/S-Python-sklearn0/</url>
-    <content><![CDATA[<h1 id="scikit-learn-개요"><a class="markdownIt-Anchor" href="#scikit-learn-개요"></a> scikit-learn 개요</h1>
+    <content><![CDATA[<h1 id="scikit-learn-개요"><a class="markdownIt-Anchor" href="#scikit-learn-개요"></a> <strong>scikit-learn 개요</strong></h1>
 <p></p><ul class="markdownIt-TOC">
-<li><a href="#install-package">Install Package</a></li>
-<li><a href="#import-functions-from-sub-packages">Import Functions from Sub-packages</a></li>
-<li><a href="#3-steps-to-fit-model-and-do-prediction">3 Steps to Fit Model and Do Prediction</a></li>
+<li><a href="#install-package"><strong>Install Package</strong></a></li>
+<li><a href="#import-functions-from-sub-packages"><strong>Import Functions from Sub-packages</strong></a></li>
+<li><a href="#3-steps-to-fit-model-and-do-prediction"><strong>3 Steps to Fit Model and Do Prediction</strong></a></li>
 </ul>
 <p></p>
 <br>
@@ -31860,9 +31860,9 @@ Name: x variable, Length: 100, dtype: float64
 <p><a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener">&lt; scikit-learn &gt; Homepage</a></p>
 </blockquote>
 <p>scikit-learn 패키지는 지도학습, 비지도학습 등 대부분의 머신러닝 알고리즘을 제공하고 있으며, Python에서 머신러닝을 수행할 때 굉장히 많이 쓰이는 패키지 중의 하나다</p>
-<p><img src="../images/S-Python-sklearn0/NzXkk9.png" alt="sk_learn"></p>
+<p><img src="/images/S-Python-sklearn0/NzXkk9.png" alt="sk_learn"></p>
   <br>
-<h2 id="install-package"><a class="markdownIt-Anchor" href="#install-package"></a> Install Package</h2>
+<h2 id="install-package"><a class="markdownIt-Anchor" href="#install-package"></a> <strong>Install Package</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">pip install -U scikit-learn  <span class="comment"># -U: Update</span></span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Note: you may need to restart the kernel to use updated packages.
 </code></pre>
@@ -31877,10 +31877,10 @@ Name: x variable, Length: 100, dtype: float64
 no such option: -:
 </code></pre>
 <br>
-<h2 id="import-functions-from-sub-packages"><a class="markdownIt-Anchor" href="#import-functions-from-sub-packages"></a> Import Functions from Sub-packages</h2>
+<h2 id="import-functions-from-sub-packages"><a class="markdownIt-Anchor" href="#import-functions-from-sub-packages"></a> <strong>Import Functions from Sub-packages</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br></pre></td></tr></tbody></table></figure>
   <br>
-<h2 id="3-steps-to-fit-model-and-do-prediction"><a class="markdownIt-Anchor" href="#3-steps-to-fit-model-and-do-prediction"></a> 3 Steps to Fit Model and Do Prediction</h2>
+<h2 id="3-steps-to-fit-model-and-do-prediction"><a class="markdownIt-Anchor" href="#3-steps-to-fit-model-and-do-prediction"></a> <strong>3 Steps to Fit Model and Do Prediction</strong></h2>
 <p><strong>STEP 1. 모델 정의</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line">model = LinearRegression()</span><br></pre></td></tr></tbody></table></figure>
   <br>
@@ -31928,20 +31928,18 @@ no such option: -:
   <entry>
     <title>Python &gt;&gt; sklearn - (1) 전처리</title>
     <url>/2020/07/17/S-Python-sklearn1/</url>
-    <content><![CDATA[<h1 id="전처리-pre-processing"><a class="markdownIt-Anchor" href="#전처리-pre-processing"></a> 전처리 (Pre-Processing)</h1>
+    <content><![CDATA[<h1 id="전처리-pre-processing"><a class="markdownIt-Anchor" href="#전처리-pre-processing"></a> <strong>전처리 (Pre-Processing)</strong></h1>
 <p></p><ul class="markdownIt-TOC">
-<li><a href="#%EA%B0%9C%EC%9A%94">개요</a>
+<li><a href="#%EA%B0%9C%EC%9A%94"><strong>개요</strong></a>
 <ul>
 <li><a href="#1-%EC%A0%84%EC%B2%98%EB%A6%AC%EC%9D%98-%EC%A0%95%EC%9D%98">1. 전처리의 정의</a></li>
 <li><a href="#2-%EC%A0%84%EC%B2%98%EB%A6%AC%EC%9D%98-%EC%A2%85%EB%A5%98">2. 전처리의 종류</a></li>
 </ul>
 </li>
-<li><a href="#%EC%8B%A4%EC%8A%B5-titanic">실습 – Titanic</a>
+<li><a href="#%EC%8B%A4%EC%8A%B5-titanic"><strong>실습 – Titanic</strong></a>
 <ul>
 <li><a href="#0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%85%8B-%ED%8C%8C%EC%95%85">0. 데이터 셋 파악</a></li>
 <li><a href="#1-train-validation-%EC%85%8B-%EB%82%98%EB%88%84%EA%B8%B0">1. train / validation 셋 나누기</a></li>
-</ul>
-</li>
 <li><a href="#2-%EA%B2%B0%EC%B8%A1%EC%B9%98-%EC%B2%98%EB%A6%AC">2. 결측치 처리</a>
 <ul>
 <li><a href="#2-0-%EA%B2%B0%EC%B8%A1%EC%B9%98-%ED%99%95%EC%9D%B8">2-0. 결측치 확인</a></li>
@@ -31954,39 +31952,41 @@ no such option: -:
 <li><a href="#5-normalize-%EC%A0%95%EA%B7%9C%ED%99%94">5. Normalize (정규화)</a></li>
 <li><a href="#6-standard-scaling-%ED%91%9C%EC%A4%80%ED%99%94">6. Standard Scaling (표준화)</a></li>
 </ul>
+</li>
+</ul>
 <p></p>
 <br>
-<h2 id="개요"><a class="markdownIt-Anchor" href="#개요"></a> 개요</h2>
+<h2 id="개요"><a class="markdownIt-Anchor" href="#개요"></a> <strong>개요</strong></h2>
 <h3 id="1-전처리의-정의"><a class="markdownIt-Anchor" href="#1-전처리의-정의"></a> 1. 전처리의 정의</h3>
 <p><strong>데이터 전처리</strong>는 데이터 분석에 적합하게 데이터를 <strong>가공/ 변경/ 처리/ 클리닝</strong>하는 과정이다</p>
   <br>
 <h3 id="2-전처리의-종류"><a class="markdownIt-Anchor" href="#2-전처리의-종류"></a> 2. 전처리의 종류</h3>
 <ol>
 <li>
-<p>결측치 - Imputer</p>
+<p><strong>결측치</strong> - Imputer</p>
 </li>
 <li>
-<p>이상치</p>
+<p><strong>이상치</strong></p>
 </li>
 <li>
-<p>정규화 (Normalization)</p>
+<p><strong>정규화 (Normalization)</strong></p>
 <ul>
 <li>0~1사이의 분포로 조정</li>
 <li><font size="5"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mi>e</mi><mi>w</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><msub><mi>x</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>−</mo><msub><mi>x</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">x_{new} = \frac{x-x_{min}}{x_{max}-x_{min}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.263531em;vertical-align:-0.44509999999999994em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8184309999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></font></li>
 </ul>
 </li>
 <li>
-<p>표준화 (Standardization)</p>
+<p><strong>표준화 (Standardization)</strong></p>
 <ul>
 <li>평균을 0, 표준편차를 1로 맞춤</li>
 <li><font size="5"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mi>e</mi><mi>w</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac></mrow><annotation encoding="application/x-tex">x_{new} = \frac{x-\mu}{\sigma}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.199439em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.854439em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">σ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></font></li>
 </ul>
 </li>
 <li>
-<p>샘플링 (over/under sampling)</p>
+<p><strong>샘플링 (over/under sampling)</strong></p>
 </li>
 <li>
-<p>피처 공학 (Feature Engineering)</p>
+<p><strong>피처 공학 (Feature Engineering)</strong></p>
 <ul>
 <li>feature 생성/ 연산</li>
 <li>구간 생성, 스케일 변경</li>
@@ -31994,7 +31994,7 @@ no such option: -:
 </li>
 </ol>
 <p><br>  <br></p>
-<h2 id="실습-titanic"><a class="markdownIt-Anchor" href="#실습-titanic"></a> 실습 – Titanic</h2>
+<h2 id="실습-titanic"><a class="markdownIt-Anchor" href="#실습-titanic"></a> <strong>실습 – Titanic</strong></h2>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">test = pd.read_csv(<span class="string">'test.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
   <br>
@@ -32293,8 +32293,8 @@ no such option: -:
 <pre><code>((179, 4), (179, 1))
 </code></pre>
 <p><br> <br></p>
-<h2 id="2-결측치-처리"><a class="markdownIt-Anchor" href="#2-결측치-처리"></a> 2. 결측치 처리</h2>
-<h3 id="2-0-결측치-확인"><a class="markdownIt-Anchor" href="#2-0-결측치-확인"></a> 2-0. 결측치 확인</h3>
+<h3 id="2-결측치-처리"><a class="markdownIt-Anchor" href="#2-결측치-처리"></a> 2. 결측치 처리</h3>
+<h4 id="2-0-결측치-확인"><a class="markdownIt-Anchor" href="#2-0-결측치-확인"></a> 2-0. 결측치 확인</h4>
 <p><strong>방법 1.</strong> pandas의 <code>info()</code></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train.info()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -32335,13 +32335,12 @@ Cabin          687
 Embarked         2
 dtype: int64
 </code></pre>
-<br>  
 <p>개별 column의 결측치 확인하기</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[<span class="string">'Age'</span>].isnull().sum()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>177
 </code></pre>
 <br>  
-<h3 id="2-1-numerical-column의-결측치-처리"><a class="markdownIt-Anchor" href="#2-1-numerical-column의-결측치-처리"></a> 2-1. Numerical Column의 결측치 처리</h3>
+<h4 id="2-1-numerical-column의-결측치-처리"><a class="markdownIt-Anchor" href="#2-1-numerical-column의-결측치-처리"></a> 2-1. Numerical Column의 결측치 처리</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train.head()</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -32480,7 +32479,7 @@ memory usage: 83.7+ KB
 </code></pre>
 <br>
 <p><strong>1. Pandas의 <font color="blue">"fillna()"</font>를 사용</strong>: 1개의 column을 처리할 때</p>
-<p>a. 숫자"0"으로 채우기</p>
+<p><strong>a. 숫자"0"으로 채우기</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[<span class="string">'Age'</span>].fillna(<span class="number">0</span>).describe()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>count    891.000000
 mean      23.799293
@@ -32493,7 +32492,7 @@ max       80.000000
 Name: Age, dtype: float64
 </code></pre>
  <br> 
-<p>b. 통계값(평균)으로 채우기</p>
+<p><strong>b. 통계값(평균)으로 채우기</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[<span class="string">'Age'</span>].fillna(train[<span class="string">'Age'</span>].mean()).describe()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>count    891.000000
 mean      29.699118
@@ -32520,15 +32519,15 @@ Name: Age, dtype: float64
 <li>strategy: “mean” / “median” / “most_frequent” / “constant”</li>
 </ul>
 </blockquote>
+<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer</span><br></pre></td></tr></tbody></table></figure>
   <br>
-<p>a. 숫자"0"으로 채우기</p>
+<p><strong>a. 숫자"0"으로 채우기</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># STEP 1. imputer 만들기</span></span><br><span class="line">imputer = SimpleImputer(strategy=<span class="string">'constant'</span>, fill_value=<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># STEP 2. fit() 을 통해 결측치에 대한 학습을 진행하기</span></span><br><span class="line">imputer.fit(train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]])</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>SimpleImputer(add_indicator=False, copy=True, fill_value=0, missing_values=nan,
               strategy='constant', verbose=0)
 </code></pre>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># STEP 3. transform() 을 통해 실제 결측치에 대해 처리하기</span></span><br><span class="line">result = imputer.transform(train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]])</span><br><span class="line">result</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>array([[22.,  3.],
        [38.,  1.],
@@ -32538,7 +32537,6 @@ Name: Age, dtype: float64
        [26.,  1.],
        [32.,  3.]])
 </code></pre>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># STEP 4. 처리 결과를 original data에 대입</span></span><br><span class="line">train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]] = result</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]].isnull().sum()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Age       0
@@ -32546,7 +32544,7 @@ Pclass    0
 dtype: int64
 </code></pre>
 <br>  
-<p>**fit_transform()**은 fit()과 transform()을 한 번에 해주는 합수다.</p>
+<p><strong>fit_transform()</strong> 은 fit()과 transform()을 한 번에 해주는 합수다.</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]].isnull().sum()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Age       177
@@ -32562,7 +32560,6 @@ dtype: int64
 Pclass    0
 dtype: int64
 </code></pre>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]].describe()</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -32631,7 +32628,7 @@ dtype: int64
 </table>
 </div>
  <br> 
-<p>b. 통계값(평균)으로 채우기</p>
+<p><strong>b. 통계값(평균)으로 채우기</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]].isnull().sum()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Age       177
@@ -32645,7 +32642,6 @@ dtype: int64
 Pclass    0
 dtype: int64
 </code></pre>
-<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[[<span class="string">'Age'</span>, <span class="string">'Pclass'</span>]].describe()</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -32714,7 +32710,7 @@ dtype: int64
 </table>
 </div>
 <br>
-<h3 id="2-2-categorical-column의-결측치-처리"><a class="markdownIt-Anchor" href="#2-2-categorical-column의-결측치-처리"></a> 2-2. Categorical Column의 결측치 처리</h3>
+<h4 id="2-2-categorical-column의-결측치-처리"><a class="markdownIt-Anchor" href="#2-2-categorical-column의-결측치-처리"></a> 2-2. Categorical Column의 결측치 처리</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train.head()</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -32877,7 +32873,7 @@ Cabin       0
 dtype: int64
 </code></pre>
 <p><br>  <br></p>
-<h2 id="3-label-encoding-문자categorivcal를-수치numerical로-변환"><a class="markdownIt-Anchor" href="#3-label-encoding-문자categorivcal를-수치numerical로-변환"></a> 3. Label Encoding: 문자(categorivcal)를 수치(numerical)로 변환</h2>
+<h3 id="3-label-encoding-문자categorivcal를-수치numerical로-변환"><a class="markdownIt-Anchor" href="#3-label-encoding-문자categorivcal를-수치numerical로-변환"></a> 3. Label Encoding: 문자(categorivcal)를 수치(numerical)로 변환</h3>
 <p>기계학습을 위해서 모든 <strong>문자</strong>로된 데이터는 <strong>수치로 변환</strong>해야 한다</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">train.info()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -32967,7 +32963,7 @@ Name: Sex_num, dtype: int64
       dtype=object)
 </code></pre>
 <br>  
-<p>NaN 값이 포함되어 있으면, <code>LabeEncoder</code>가 정상 동작하지 못함</p>
+<p>NaN 값이 포함되어 있으면, <code>LabeEncoder</code>가 정상 동작하지 않음</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">train[<span class="string">'Embarked'</span>]</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>0      S
 1      C
@@ -33063,7 +33059,7 @@ Name: Embarked, dtype: int64
 </code></pre>
   <br>
   <br>
-<h2 id="4-원-핫-인코딩-one-hot-encoding"><a class="markdownIt-Anchor" href="#4-원-핫-인코딩-one-hot-encoding"></a> 4. 원 핫 인코딩 (One Hot Encoding)</h2>
+<h3 id="4-원-핫-인코딩-one-hot-encoding"><a class="markdownIt-Anchor" href="#4-원-핫-인코딩-one-hot-encoding"></a> 4. 원 핫 인코딩 (One Hot Encoding)</h3>
 <blockquote>
 <p><strong>pd.get_dummies</strong> ( <em>df_name</em> [ <em>‘col_name’</em> ] )</p>
 </blockquote>
@@ -33205,7 +33201,7 @@ dtypes: float64(2), int64(5), object(5)
 memory usage: 83.7+ KB
 </code></pre>
 <br>
-<p>"Embarked"를 살펴보기</p>
+<p><strong>"Embarked"를 살펴보기</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Unique Value 확인하기</span></span><br><span class="line">train[<span class="string">'Embarked'</span>].value_counts()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>S    644
 C    168
@@ -33383,7 +33379,7 @@ Name: Embarked_num, dtype: int32
 <br>
 <p><strong>원핫인코딩</strong>은 카테고리의 특성을(계절, 항구, 성별, 종류…) 가지는 column에 대해서 적용한다</p>
 <p><br>  <br></p>
-<h2 id="5-normalize-정규화"><a class="markdownIt-Anchor" href="#5-normalize-정규화"></a> 5. Normalize (정규화)</h2>
+<h3 id="5-normalize-정규화"><a class="markdownIt-Anchor" href="#5-normalize-정규화"></a> 5. Normalize (정규화)</h3>
 <p><strong>정규화:</strong> column간에 다른 min,max 값을 가지는 경우, 정규화를 통해 min / max 의 척도를 맞추어 주는 작업이다</p>
 <blockquote>
 <p>sklearn.preprocessing  --&gt;  MinMaxScaler()</p>
@@ -33505,7 +33501,7 @@ Name: Embarked_num, dtype: int32
 </div>
 <br>
   <br>
-<h2 id="6-standard-scaling-표준화"><a class="markdownIt-Anchor" href="#6-standard-scaling-표준화"></a> 6. Standard Scaling (표준화)</h2>
+<h3 id="6-standard-scaling-표준화"><a class="markdownIt-Anchor" href="#6-standard-scaling-표준화"></a> 6. Standard Scaling (표준화)</h3>
 <p><strong>표준화:</strong> 평균이 0, 표준편차가 1이 되도록 변환해주는 작업</p>
 <blockquote>
 <p>sklearn.preprocessing  --&gt;  StandardScaler()</p>
