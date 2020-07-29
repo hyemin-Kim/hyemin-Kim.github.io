@@ -34539,4 +34539,1580 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
         <tag>분류</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Python &gt;&gt; sklearn - (3) 회귀(Regression)</title>
+    <url>/2020/07/29/S-Python-sklearn3/</url>
+    <content><![CDATA[<h1 id="회귀-regression-예측"><a class="markdownIt-Anchor" href="#회귀-regression-예측"></a> 회귀 (Regression) 예측</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%85%8B"><strong>0. 데이터 셋</strong></a>
+<ul>
+<li><a href="#0-1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A1%9C%EB%93%9C">0-1. 데이터 로드</a></li>
+<li><a href="#0-2-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EB%A7%8C%EB%93%A4%EA%B8%B0">0-2. 데이터프레임 만들기</a></li>
+</ul>
+</li>
+<li><a href="#1-training-set-test-set-%EB%82%98%EB%88%84%EA%B8%B0"><strong>1. Training set / Test set 나누기</strong></a></li>
+<li><a href="#2-%ED%8F%89%EA%B0%80-%EC%A7%80%ED%91%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0"><strong>2. 평가 지표 만들기</strong></a>
+<ul>
+<li><a href="#2-1-%ED%8F%89%EA%B0%80-%EC%A7%80%ED%91%9C-%EA%B3%84%EC%82%B0%EC%8B%9D">2-1. 평가 지표 계산식</a></li>
+<li><a href="#2-2-%EC%BD%94%EB%94%A9%EC%9C%BC%EB%A1%9C-%ED%8F%89%EA%B0%80-%EC%A7%80%ED%91%9C-%EB%A7%8C%EB%93%A4%EC%96%B4-%EB%B3%B4%EA%B8%B0">2-2. 코딩으로 평가 지표 만들어 보기</a></li>
+<li><a href="#2-3-sklearn%EC%9D%98-%ED%8F%89%EA%B0%80-%EC%A7%80%ED%91%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0">2-3. sklearn의 평가 지표 활용하기</a></li>
+<li><a href="#2-4-%EB%AA%A8%EB%8D%B8-%EC%84%B1%EB%8A%A5-%ED%99%95%EC%9D%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%95%A8%EC%88%98">2-4. 모델 성능 확인을 위한 함수</a></li>
+</ul>
+</li>
+<li><a href="#3-%ED%9A%8C%EA%B7%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98"><strong>3. 회귀 알고리즘</strong></a>
+<ul>
+<li><a href="#3-1-linear-regression">3-1. Linear Regression</a></li>
+<li><a href="#3-2-ridge-lasso">3-2. Ridge &amp; LASSO</a>
+<ul>
+<li><a href="#1-%EA%B0%9C%EB%85%90">(1) 개념</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-scaling"><strong>3. Scaling</strong></a>
+<ul>
+<li><a href="#3-1-scaler-%EC%86%8C%EA%B0%9C">3-1. Scaler 소개</a></li>
+<li><a href="#3-2-scaling-%ED%9B%84-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%9D%B4%EC%9A%A9">3-2. Scaling 후 모델 학습 – 파이프라인 이용</a></li>
+</ul>
+</li>
+<li><a href="#4-polynomial-features"><strong>4. Polynomial Features</strong></a></li>
+</ul>
+<p></p>
+<br>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/supervised_learning.html#supervised-learning" target="_blank" rel="noopener">[Supervised Learning] Document</a></p>
+</blockquote>
+<p><strong>특성:</strong> 수치형 값을 예측 (Y의 값이 연속형 수치로 표현)</p>
+<p><strong>예시:</strong></p>
+<ul>
+<li>
+<p>주택 가격 예측</p>
+</li>
+<li>
+<p>매출앵 예측</p>
+<br>
+</li>
+</ul>
+<h2 id="0-데이터-셋"><a class="markdownIt-Anchor" href="#0-데이터-셋"></a> <strong>0. 데이터 셋</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">np.set_printoptions(suppress=<span class="literal">True</span>) <span class="comment"># If True, print floating point numbers instead of scientific notation</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_boston</span><br></pre></td></tr></tbody></table></figure>
+<p>[<a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html#sklearn.datasets.load_boston" target="_blank" rel="noopener">Boston Dataset</a>]</p>
+  <br>
+<h3 id="0-1-데이터-로드"><a class="markdownIt-Anchor" href="#0-1-데이터-로드"></a> 0-1. 데이터 로드</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">data = load_boston()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">print(data[<span class="string">'DESCR'</span>])  <span class="comment"># data description</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>.. _boston_dataset:
+
+Boston house prices dataset
+---------------------------
+
+**Data Set Characteristics:**  
+
+    :Number of Instances: 506 
+
+    :Number of Attributes: 13 numeric/categorical predictive. Median Value (attribute 14) is usually the target.
+
+    :Attribute Information (in order):
+        - CRIM     per capita crime rate by town
+        - ZN       proportion of residential land zoned for lots over 25,000 sq.ft.
+        - INDUS    proportion of non-retail business acres per town
+        - CHAS     Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+        - NOX      nitric oxides concentration (parts per 10 million)
+        - RM       average number of rooms per dwelling
+        - AGE      proportion of owner-occupied units built prior to 1940
+        - DIS      weighted distances to five Boston employment centres
+        - RAD      index of accessibility to radial highways
+        - TAX      full-value property-tax rate per $10,000
+        - PTRATIO  pupil-teacher ratio by town
+        - B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+        - LSTAT    % lower status of the population
+        - MEDV     Median value of owner-occupied homes in $1000's
+
+    :Missing Attribute Values: None
+
+    :Creator: Harrison, D. and Rubinfeld, D.L.
+
+This is a copy of UCI ML housing dataset.
+https://archive.ics.uci.edu/ml/machine-learning-databases/housing/
+</code></pre>
+<p>​</p>
+<pre><code>This dataset was taken from the StatLib library which is maintained at Carnegie Mellon University.
+
+The Boston house-price data of Harrison, D. and Rubinfeld, D.L. 'Hedonic
+prices and the demand for clean air', J. Environ. Economics &amp; Management,
+vol.5, 81-102, 1978.   Used in Belsley, Kuh &amp; Welsch, 'Regression diagnostics
+...', Wiley, 1980.   N.B. Various transformations are used in the table on
+pages 244-261 of the latter.
+
+The Boston house-price data has been used in many machine learning papers that address regression
+problems.   
+     
+.. topic:: References
+
+   - Belsley, Kuh &amp; Welsch, 'Regression diagnostics: Identifying Influential Data and Sources of Collinearity', Wiley, 1980. 244-261.
+   - Quinlan,R. (1993). Combining Instance-Based and Model-Based Learning. In Proceedings on the Tenth International Conference of Machine Learning, 236-243, University of Massachusetts, Amherst. Morgan Kaufmann.
+</code></pre>
+<p>​</p>
+ <br> 
+<h3 id="0-2-데이터프레임-만들기"><a class="markdownIt-Anchor" href="#0-2-데이터프레임-만들기"></a> 0-2. 데이터프레임 만들기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># step 1. features (X)</span></span><br><span class="line"><span class="comment"># data['data'] - feature data; data['feature_names'] - feature column names</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(data[<span class="string">'data'</span>], columns = data[<span class="string">'feature_names'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># step 2. target (y) 추가 </span></span><br><span class="line">df[<span class="string">'MEDV'</span>] = data[<span class="string">'target'</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>MEDV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0.0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1.0</td>
+      <td>296.0</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+      <td>21.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+      <td>34.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+      <td>33.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+      <td>36.2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+ <br> 
+<p><strong>컬럼 소게</strong> (feature 13 + target 1):</p>
+<ul>
+<li>
+<p><strong>CRIM</strong>: 범죄율</p>
+</li>
+<li>
+<p><strong>ZN</strong>: 25,000 square feet 당 주거용 토지의 비율</p>
+</li>
+<li>
+<p><strong>INDUS</strong>: 비소매(non-retail) 비즈니스 면적 비율</p>
+</li>
+<li>
+<p><strong>CHAS</strong>: 찰스 강 더미 변수 (통로가 하천을 향하면 1; 그렇지 않으면 0)</p>
+</li>
+<li>
+<p><strong>NOX</strong>: 산화 질소 농도 (천만 분의 1)</p>
+</li>
+<li>
+<p><strong>RM</strong>:주거 당 평균 객실 수</p>
+</li>
+<li>
+<p><strong>AGE</strong>: 1940 년 이전에 건축된 자가 소유 점유 비율</p>
+</li>
+<li>
+<p><strong>DIS</strong>: 5 개의 보스턴 고용 센터까지의 가중 거리</p>
+</li>
+<li>
+<p><strong>RAD</strong>: 고속도로 접근성 지수</p>
+</li>
+<li>
+<p><strong>TAX</strong>: 10,000 달러 당 전체 가치 재산 세율</p>
+</li>
+<li>
+<p><strong>PTRATIO</strong>  도시 별 학생-교사 비율</p>
+</li>
+<li>
+<p><strong>B</strong>: 1000 (Bk-0.63) ^ 2 여기서 Bk는 도시 별 검정 비율입니다.</p>
+</li>
+<li>
+<p><strong>LSTAT</strong>: 인구의 낮은 지위</p>
+</li>
+<li>
+<p><strong>MEDV</strong>: 자가 주택의 중앙값 (1,000 달러 단위)</p>
+<br>
+<br>
+</li>
+</ul>
+<h2 id="1-training-set-test-set-나누기"><a class="markdownIt-Anchor" href="#1-training-set-test-set-나누기"></a> <strong>1. Training set / Test set 나누기</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train, x_test, y_train, y_test = train_test_split(df.drop(<span class="string">'MEDV'</span>, <span class="number">1</span>), df[<span class="string">'MEDV'</span>], random_state=<span class="number">23</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.shape, y_train.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((379, 13), (379,))
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_test.shape, y_test.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((127, 13), (127,))
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>112</th>
+      <td>0.12329</td>
+      <td>0.0</td>
+      <td>10.01</td>
+      <td>0.0</td>
+      <td>0.547</td>
+      <td>5.913</td>
+      <td>92.9</td>
+      <td>2.3534</td>
+      <td>6.0</td>
+      <td>432.0</td>
+      <td>17.8</td>
+      <td>394.95</td>
+      <td>16.21</td>
+    </tr>
+    <tr>
+      <th>301</th>
+      <td>0.03537</td>
+      <td>34.0</td>
+      <td>6.09</td>
+      <td>0.0</td>
+      <td>0.433</td>
+      <td>6.590</td>
+      <td>40.4</td>
+      <td>5.4917</td>
+      <td>7.0</td>
+      <td>329.0</td>
+      <td>16.1</td>
+      <td>395.75</td>
+      <td>9.50</td>
+    </tr>
+    <tr>
+      <th>401</th>
+      <td>14.23620</td>
+      <td>0.0</td>
+      <td>18.10</td>
+      <td>0.0</td>
+      <td>0.693</td>
+      <td>6.343</td>
+      <td>100.0</td>
+      <td>1.5741</td>
+      <td>24.0</td>
+      <td>666.0</td>
+      <td>20.2</td>
+      <td>396.90</td>
+      <td>20.32</td>
+    </tr>
+    <tr>
+      <th>177</th>
+      <td>0.05425</td>
+      <td>0.0</td>
+      <td>4.05</td>
+      <td>0.0</td>
+      <td>0.510</td>
+      <td>6.315</td>
+      <td>73.4</td>
+      <td>3.3175</td>
+      <td>5.0</td>
+      <td>296.0</td>
+      <td>16.6</td>
+      <td>395.60</td>
+      <td>6.29</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>0.12816</td>
+      <td>12.5</td>
+      <td>6.07</td>
+      <td>0.0</td>
+      <td>0.409</td>
+      <td>5.885</td>
+      <td>33.0</td>
+      <td>6.4980</td>
+      <td>4.0</td>
+      <td>345.0</td>
+      <td>18.9</td>
+      <td>396.90</td>
+      <td>8.79</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">y_train.head()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>112    18.8
+301    22.0
+401     7.2
+177    24.6
+69     20.9
+Name: MEDV, dtype: float64
+</code></pre>
+<br>
+  <br>
+<h2 id="2-평가-지표-만들기"><a class="markdownIt-Anchor" href="#2-평가-지표-만들기"></a> <strong>2. 평가 지표 만들기</strong></h2>
+<h3 id="2-1-평가-지표-계산식"><a class="markdownIt-Anchor" href="#2-1-평가-지표-계산식"></a> 2-1. 평가 지표 계산식</h3>
+<p><strong>(1) MAE (Mean Absolute Error)</strong></p>
+<p>MAE (평균 절대 오차): 에측값과 실제값의 차이의 <strong>절대값</strong>에 대하여 평균을 낸 것</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>A</mi><mi>E</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo fence="true">∣</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="true">^</mo></mover><mo fence="true">∣</mo></mrow></mrow><annotation encoding="application/x-tex">MAE = \frac{1}{n} \sum_{i=1}^n \left\vert y_i - \widehat{y_i} \right\vert
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.67056em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span class="svg-align" style="top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.24em;"><svg width="100%" height="0.24em" viewBox="0 0 1062 239" preserveAspectRatio="none"><path d="M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22
+c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span></span></span></span></span></p>
+<p><strong>(2) MSE (Mean Squared Error)</strong></p>
+<p>MSE (평균 제곱 오차): 예측값과 실제값의 차이의 <strong>제곱</strong>에 대하여 평균을 낸 것</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>S</mi><mi>E</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo fence="true">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="true">^</mo></mover><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">MSE = \frac{1}{n} \sum_{i=1}^n \left( y_i - \widehat{y_i} \right)^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.67056em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span class="svg-align" style="top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.24em;"><svg width="100%" height="0.24em" viewBox="0 0 1062 239" preserveAspectRatio="none"><path d="M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22
+c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p><strong>(3) RMSE (Root Mean Squared Error)</strong></p>
+<p>RMSE (평균 제곱근 오차): 예측값과 실제값의 차이의 <strong>제곱</strong>에 대하여 평균을 낸 뒤 <strong>루트</strong>를 씌운 것</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>M</mi><mi>S</mi><mi>E</mi><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo fence="true">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="true">^</mo></mover><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n \left( y_i - \widehat{y_i} \right)^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1568160000000005em;vertical-align:-1.277669em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8791470000000006em;"><span class="svg-align" style="top:-5.116816em;"><span class="pstrut" style="height:5.116816em;"></span><span class="mord" style="padding-left:1.056em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.67056em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span class="svg-align" style="top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.24em;"><svg width="100%" height="0.24em" viewBox="0 0 1062 239" preserveAspectRatio="none"><path d="M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22
+c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.8391470000000005em;"><span class="pstrut" style="height:5.116816em;"></span><span class="hide-tail" style="min-width:0.742em;height:3.196816em;"><svg width="400em" height="3.196816em" viewBox="0 0 400000 3196" preserveAspectRatio="xMinYMin slice"><path d="M702 80H400000v40H742v3062l-4 4-4 4c-.667.7
+-2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1h-12l-28-84c-16.667-52-96.667
+-294.333-240-727l-212 -643 -85 170c-4-3.333-8.333-7.667-13 -13l-13-13l77-155
+ 77-156c66 199.333 139 419.667 219 661 l218 661zM702 80H400000v40H742z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span></span></span></span></span></p>
+ <br> 
+<h3 id="2-2-코딩으로-평가-지표-만들어-보기"><a class="markdownIt-Anchor" href="#2-2-코딩으로-평가-지표-만들어-보기"></a> 2-2. 코딩으로 평가 지표 만들어 보기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">actual = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">pred = np.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># MAE</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_mae</span><span class="params">(actual, pred)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.abs(actual - pred).mean()</span><br><span class="line"></span><br><span class="line">my_mae(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>2.0
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># MSE</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_mse</span><span class="params">(actual, pred)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> ((actual - pred)**<span class="number">2</span>).mean()</span><br><span class="line"></span><br><span class="line">my_mse(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>4.0
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># RMSE</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_rmse</span><span class="params">(actual, pred)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.sqrt(my_mse(actual, pred))</span><br><span class="line"></span><br><span class="line">my_rmse(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>2.0
+</code></pre>
+<br>
+<h3 id="2-3-sklearn의-평가-지표-활용하기"><a class="markdownIt-Anchor" href="#2-3-sklearn의-평가-지표-활용하기"></a> 2-3. sklearn의 평가 지표 활용하기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error, mean_squared_error</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html" target="_blank" rel="noopener">[sklearn.metrics.<strong>mean_absolute_error</strong>]</a><br>
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html" target="_blank" rel="noopener">[sklearn.metrics.<strong>mean_squared_error</strong>]</a></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># MAE (my_mae VS sklearn_mae)</span></span><br><span class="line">my_mae(actual, pred), mean_absolute_error(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(2.0, 2.0)
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># MSE (my_mse VS sklearn_mse)</span></span><br><span class="line">my_mse(actual, pred), mean_squared_error(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(4.0, 4.0)
+</code></pre>
+<br>
+<h3 id="2-4-모델-성능-확인을-위한-함수"><a class="markdownIt-Anchor" href="#2-4-모델-성능-확인을-위한-함수"></a> 2-4. 모델 성능 확인을 위한 함수</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line">my_predictions = {}</span><br><span class="line"></span><br><span class="line">colors = [<span class="string">'r'</span>, <span class="string">'c'</span>, <span class="string">'m'</span>, <span class="string">'y'</span>, <span class="string">'k'</span>, <span class="string">'khaki'</span>, <span class="string">'teal'</span>, <span class="string">'orchid'</span>, <span class="string">'sandybrown'</span>,</span><br><span class="line">          <span class="string">'greenyellow'</span>, <span class="string">'dodgerblue'</span>, <span class="string">'deepskyblue'</span>, <span class="string">'rosybrown'</span>, <span class="string">'firebrick'</span>,</span><br><span class="line">          <span class="string">'deeppink'</span>, <span class="string">'crimson'</span>, <span class="string">'salmon'</span>, <span class="string">'darkred'</span>, <span class="string">'olivedrab'</span>, <span class="string">'olive'</span>, </span><br><span class="line">          <span class="string">'forestgreen'</span>, <span class="string">'royalblue'</span>, <span class="string">'indigo'</span>, <span class="string">'navy'</span>, <span class="string">'mediumpurple'</span>, <span class="string">'chocolate'</span>,</span><br><span class="line">          <span class="string">'gold'</span>, <span class="string">'darkorange'</span>, <span class="string">'seagreen'</span>, <span class="string">'turquoise'</span>, <span class="string">'steelblue'</span>, <span class="string">'slategray'</span>, </span><br><span class="line">          <span class="string">'peru'</span>, <span class="string">'midnightblue'</span>, <span class="string">'slateblue'</span>, <span class="string">'dimgray'</span>, <span class="string">'cadetblue'</span>, <span class="string">'tomato'</span></span><br><span class="line">         ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># prediction plot</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_predictions</span><span class="params">(name_, actual, pred)</span>:</span></span><br><span class="line">    df = pd.DataFrame({<span class="string">'actual'</span>: y_test, <span class="string">'prediction'</span>: pred})</span><br><span class="line">    df = df.sort_values(by=<span class="string">'actual'</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    plt.figure(figsize=(<span class="number">12</span>, <span class="number">9</span>))</span><br><span class="line">    plt.scatter(df.index, df[<span class="string">'prediction'</span>], marker=<span class="string">'x'</span>, color=<span class="string">'r'</span>)</span><br><span class="line">    plt.scatter(df.index, df[<span class="string">'actual'</span>], alpha=<span class="number">0.7</span>, marker=<span class="string">'o'</span>, color=<span class="string">'black'</span>)</span><br><span class="line">    plt.title(name_, fontsize=<span class="number">15</span>)</span><br><span class="line">    plt.legend([<span class="string">'prediction'</span>, <span class="string">'actual'</span>], fontsize=<span class="number">12</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># evaluation plot</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mse_eval</span><span class="params">(name_, actual, pred)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> predictions</span><br><span class="line">    <span class="keyword">global</span> colors</span><br><span class="line"></span><br><span class="line">    plot_predictions(name_, actual, pred)</span><br><span class="line"></span><br><span class="line">    mse = mean_squared_error(actual, pred)</span><br><span class="line">    my_predictions[name_] = mse</span><br><span class="line"></span><br><span class="line">    y_value = sorted(my_predictions.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    df = pd.DataFrame(y_value, columns=[<span class="string">'model'</span>, <span class="string">'mse'</span>])</span><br><span class="line">    print(df)</span><br><span class="line">    min_ = df[<span class="string">'mse'</span>].min() - <span class="number">10</span></span><br><span class="line">    max_ = df[<span class="string">'mse'</span>].max() + <span class="number">10</span></span><br><span class="line">    </span><br><span class="line">    length = len(df)</span><br><span class="line">    </span><br><span class="line">    plt.figure(figsize=(<span class="number">10</span>, length))</span><br><span class="line">    ax = plt.subplot()</span><br><span class="line">    ax.set_yticks(np.arange(len(df)))</span><br><span class="line">    ax.set_yticklabels(df[<span class="string">'model'</span>], fontsize=<span class="number">15</span>)</span><br><span class="line">    bars = ax.barh(np.arange(len(df)), df[<span class="string">'mse'</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i, v <span class="keyword">in</span> enumerate(df[<span class="string">'mse'</span>]):</span><br><span class="line">        idx = np.random.choice(len(colors))</span><br><span class="line">        bars[i].set_color(colors[idx])</span><br><span class="line">        ax.text(v + <span class="number">2</span>, i, str(round(v, <span class="number">3</span>)), color=<span class="string">'k'</span>, fontsize=<span class="number">15</span>, fontweight=<span class="string">'bold'</span>)</span><br><span class="line">        </span><br><span class="line">    plt.title(<span class="string">'MSE Error'</span>, fontsize=<span class="number">18</span>)</span><br><span class="line">    plt.xlim(min_, max_)</span><br><span class="line">    </span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># remove model</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_model</span><span class="params">(name_)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> my_predictions</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">del</span> my_predictions[name_]</span><br><span class="line">    <span class="keyword">except</span> KeyError:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+<p><br>  <br></p>
+<h2 id="3-회귀-알고리즘"><a class="markdownIt-Anchor" href="#3-회귀-알고리즘"></a> <strong>3. 회귀 알고리즘</strong></h2>
+<h3 id="3-1-linear-regression"><a class="markdownIt-Anchor" href="#3-1-linear-regression"></a> 3-1. Linear Regression</h3>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html" target="_blank" rel="noopener">[sklearn.linear_model.<strong>LinearRegression</strong>] Document</a></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">model = LinearRegression(n_jobs=<span class="number">-1</span>)  <span class="comment"># n_jobs: CPU코어의 사용</span></span><br><span class="line">model.fit(x_train, y_train)</span><br><span class="line">pred = model.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mse_eval(<span class="string">'LinearRegression'</span>, y_test, pred)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_59_0.png" alt="png"></p>
+<pre><code>              model        mse
+0  LinearRegression  22.770784
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_59_2.png" alt="png"></p>
+<br>
+<h3 id="3-2-ridge-lasso"><a class="markdownIt-Anchor" href="#3-2-ridge-lasso"></a> 3-2. Ridge &amp; LASSO</h3>
+<h4 id="1-개념"><a class="markdownIt-Anchor" href="#1-개념"></a> (1) 개념</h4>
+<p><a href="https://medium.com/mighty-data-science-bootcamp/linear-regression-ridge-lasso-elastic-net-fb8115c0a635" target="_blank" rel="noopener">참고</a></p>
+<p><strong>규제(Regularization):</strong> 학습이 과적합 되는 것을 방지하고자 일종의 <strong>penalty</strong>를 부여하는 것.<br>
+[원리] penalty를 부여하여 가중치(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>)를 축소함으로써 학습 모델의 예측 variance를 감소 시키는 것</p>
+<br>
+<p><strong>&gt;&gt; L2 규제 &amp; Ridge (릿지)</strong></p>
+<ul>
+<li>
+<p><strong>L2 규제 (L2 Regularization):</strong>  각 <font color="blue">가중치 제곱의 합</font>에 규제 강도 (Regularization Strength) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> 를 곱한다</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mn>2</mn><mtext>&nbsp;</mtext><mi mathvariant="normal">규</mi><mi mathvariant="normal">제</mi><mo>=</mo><mi>λ</mi><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msubsup><mi>β</mi><mi>j</mi><mn>2</mn></msubsup><mo>=</mo><mi>λ</mi><mtext>&nbsp;</mtext><mo stretchy="false">∥</mo><mi>β</mi><msubsup><mo stretchy="false">∥</mo><mn>2</mn><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">L2 \ 규제 = \lambda \sum_{j=1}^p \beta_j^2 = \lambda\  \lVert \beta \rVert_2^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord">2</span><span class="mspace">&nbsp;</span><span class="mord hangul_fallback">규</span><span class="mord hangul_fallback">제</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1122820000000004em;vertical-align:-1.4137769999999998em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord mathdefault">λ</span><span class="mspace">&nbsp;</span><span class="mopen">∥</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>l</mi><mn>2</mn></msub><mtext>&nbsp;</mtext><mi>n</mi><mi>o</mi><mi>r</mi><mi>m</mi><mo>:</mo><mo stretchy="false">∥</mo><mi>β</mi><msub><mo stretchy="false">∥</mo><mn>2</mn></msub><mo>=</mo><msqrt><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msubsup><mi>β</mi><mi>j</mi><mn>2</mn></msubsup></mrow></msqrt></mrow><annotation encoding="application/x-tex">l_2 \ norm:  \lVert \beta \rVert_2 = \sqrt{\sum_{j=1}^p \beta_j^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace">&nbsp;</span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">∥</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.3400320000000003em;vertical-align:-1.4137769999999998em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.9262550000000005em;"><span class="svg-align" style="top:-5.300032em;"><span class="pstrut" style="height:5.300032em;"></span><span class="mord" style="padding-left:1.056em;"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.795908em;"><span style="top:-2.4231360000000004em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.0448000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4129719999999999em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.8862550000000002em;"><span class="pstrut" style="height:5.300032em;"></span><span class="hide-tail" style="min-width:0.742em;height:3.3800320000000004em;"><svg width="400em" height="3.3800320000000004em" viewBox="0 0 400000 3380" preserveAspectRatio="xMinYMin slice"><path d="M702 80H400000v40H742v3246l-4 4-4 4c-.667.7
+-2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1h-12l-28-84c-16.667-52-96.667
+-294.333-240-727l-212 -643 -85 170c-4-3.333-8.333-7.667-13 -13l-13-13l77-155
+ 77-156c66 199.333 139 419.667 219 661 l218 661zM702 80H400000v40H742z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p><strong>Ridge:</strong> Loss Function에 L2 규제를 더한 값을 최소화 시키는 것</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder><mo><mi>min</mi><mo>⁡</mo></mo><msub><mi>β</mi><mi>j</mi></msub></munder><mtext>&nbsp;</mtext><mrow><mo fence="true">[</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo fence="true">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mi>β</mi><mn>0</mn></msub><mo>−</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>β</mi><mi>j</mi></msub><msub><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo fence="true">)</mo></mrow><mo>+</mo><mi>λ</mi><mtext>&nbsp;</mtext><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msubsup><mi>β</mi><mi>j</mi><mn>2</mn></msubsup><mo fence="true">]</mo></mrow><mo>=</mo><munder><mo><mi>min</mi><mo>⁡</mo></mo><msub><mi>β</mi><mi>j</mi></msub></munder><mtext>&nbsp;</mtext><mrow><mo fence="true">[</mo><mi>R</mi><mi>S</mi><mi>S</mi><mo>+</mo><mi>λ</mi><mtext>&nbsp;</mtext><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msubsup><mi>β</mi><mi>j</mi><mn>2</mn></msubsup><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\min_{\beta_j} \ \left[ \sum_{i=1}^n \left( y_i-\beta_0-\sum_{j=1}^p\beta_jx_{ij} \right) + \lambda\ \sum_{j=1}^p\beta_j^2 \right]= \min_{\beta_j} \ \left[ RSS + \lambda\ \sum_{j=1}^p\beta_j^2 \right]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.1637769999999996em;vertical-align:-1.4137769999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9494279999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace">&nbsp;</span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">[</span></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace">&nbsp;</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">]</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1637769999999996em;vertical-align:-1.4137769999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9494279999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace">&nbsp;</span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">[</span></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace">&nbsp;</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">]</span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> 를 크게 하면 가중치(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>) 가 더 많이 감소되고(규제를 중요시 함), <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> 를 작게 하면 가중치(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>) 가 증가한다(규제를 중요시하지 않음)</p>
+<br>
+</li>
+</ul>
+<p><strong>&gt;&gt; L1 규제 &amp; LASSO (라쏘)</strong></p>
+<ul>
+<li>
+<p><strong>L1 규제 (L1 Regularization):</strong> 각 <font color="blue">가중치 절대값의 합</font>에 규제 강도 (Regularization Strength) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> 를 곱한다</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mn>1</mn><mtext>&nbsp;</mtext><mi mathvariant="normal">규</mi><mi mathvariant="normal">제</mi><mo>=</mo><mi>λ</mi><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mrow><mo fence="true">∣</mo><msub><mi>β</mi><mi>j</mi></msub><mo fence="true">∣</mo></mrow><mo>=</mo><mi>λ</mi><mtext>&nbsp;</mtext><mo stretchy="false">∥</mo><mi>β</mi><msub><mo stretchy="false">∥</mo><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L1\ 규제 = \lambda \sum_{j=1}^p \left| \beta_j \right| = \lambda \ \lVert \beta \rVert_1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord">1</span><span class="mspace">&nbsp;</span><span class="mord hangul_fallback">규</span><span class="mord hangul_fallback">제</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1122820000000004em;vertical-align:-1.4137769999999998em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">λ</span><span class="mspace">&nbsp;</span><span class="mopen">∥</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mn>1</mn><mtext>&nbsp;</mtext><mi>n</mi><mi>o</mi><mi>r</mi><mi>m</mi><mo>:</mo><mo stretchy="false">∥</mo><mi>β</mi><msub><mo stretchy="false">∥</mo><mn>1</mn></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mrow><mo fence="true">∣</mo><msub><mi>β</mi><mi>j</mi></msub><mo fence="true">∣</mo></mrow></mrow><annotation encoding="application/x-tex">l1\ norm: \lVert \beta \rVert_1 = \sum_{j=1}^p \left| \beta_j \right|
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord">1</span><span class="mspace">&nbsp;</span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">∥</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1122820000000004em;vertical-align:-1.4137769999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span></span></span></span></span></p>
+</li>
+<li>
+<p><strong>LASSO:</strong> Loss Function에 L1 규제를 더한 값을 최소화 시키는 것</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder><mo><mi>min</mi><mo>⁡</mo></mo><msub><mi>β</mi><mi>j</mi></msub></munder><mtext>&nbsp;</mtext><mrow><mo fence="true">[</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo fence="true">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mi>β</mi><mn>0</mn></msub><mo>−</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>β</mi><mi>j</mi></msub><msub><mi>x</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo fence="true">)</mo></mrow><mo>+</mo><mi>λ</mi><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mrow><mo fence="true">∣</mo><msub><mi>β</mi><mi>j</mi></msub><mo fence="true">∣</mo></mrow><mo fence="true">]</mo></mrow><mo>=</mo><munder><mo><mi>min</mi><mo>⁡</mo></mo><msub><mi>β</mi><mi>j</mi></msub></munder><mtext>&nbsp;</mtext><mrow><mo fence="true">[</mo><mi>R</mi><mi>S</mi><mi>S</mi><mo>+</mo><mi>λ</mi><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mrow><mo fence="true">∣</mo><msub><mi>β</mi><mi>j</mi></msub><mo fence="true">∣</mo></mrow><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\min_{\beta_j} \ \left[ \sum_{i=1}^n \left( y_i-\beta_0-\sum_{j=1}^p\beta_jx_{ij} \right) + \lambda \sum_{j=1}^p \left| \beta_j \right| \right]= \min_{\beta_j} \ \left[ RSS + \lambda \sum_{j=1}^p \left| \beta_j \right| \right]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.1637769999999996em;vertical-align:-1.4137769999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9494279999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace">&nbsp;</span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">[</span></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">]</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1637769999999996em;vertical-align:-1.4137769999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9494279999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace">&nbsp;</span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">[</span></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6985050000000006em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.347113em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">]</span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>어떤 가중치(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>) 는 실제로 0이 된다. 즉, 모델에서 완전히 제외되는 특성이 생기는 것이다</p>
+<br>
+</li>
+</ul>
+<p><strong>&gt;&gt; ElasticNet</strong></p>
+<p><strong>l1_ratio (default=0.5)</strong></p>
+<ul>
+<li>
+<p>l1_ratio = 0 (L2 규제만 사용)</p>
+</li>
+<li>
+<p>l1_ratio = 1 (L1 규제만 사용)</p>
+</li>
+<li>
+<p>0 &lt; l1_ratio &lt;1 (L1 and L2 규제 혼합사용)</p>
+<br>
+</li>
+</ul>
+<p><strong>(2) 실습</strong></p>
+<p><strong>&gt;&gt; Ridge</strong>   <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html" target="_blank" rel="noopener">[Document]</a></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><strong>예측 결과 확인</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># lambda (규제강도) 범위 설정</span></span><br><span class="line">alphas = [<span class="number">100</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">0.1</span>, <span class="number">0.01</span>, <span class="number">0.001</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모델 학습</span></span><br><span class="line"><span class="keyword">for</span> alpha <span class="keyword">in</span> alphas:</span><br><span class="line">    ridge = Ridge(alpha = alpha)</span><br><span class="line">    ridge.fit(x_train, y_train)</span><br><span class="line">    ridge_pred = ridge.predict(x_test)</span><br><span class="line">    mse_eval(<span class="string">'Ridge(alpha={})'</span>.format(alpha), y_test, ridge_pred)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_0.png" alt="png"></p>
+<pre><code>              model        mse
+0  Ridge(alpha=100)  23.487453
+1  LinearRegression  22.770784
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_2.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_3.png" alt="png"></p>
+<pre><code>              model        mse
+0  Ridge(alpha=100)  23.487453
+1   Ridge(alpha=10)  22.793119
+2  LinearRegression  22.770784
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_5.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_6.png" alt="png"></p>
+<pre><code>              model        mse
+0  Ridge(alpha=100)  23.487453
+1   Ridge(alpha=10)  22.793119
+2  LinearRegression  22.770784
+3    Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_8.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_9.png" alt="png"></p>
+<pre><code>              model        mse
+0  Ridge(alpha=100)  23.487453
+1   Ridge(alpha=10)  22.793119
+2  LinearRegression  22.770784
+3  Ridge(alpha=0.1)  22.718126
+4    Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_11.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_12.png" alt="png"></p>
+<pre><code>               model        mse
+0   Ridge(alpha=100)  23.487453
+1    Ridge(alpha=10)  22.793119
+2   LinearRegression  22.770784
+3  Ridge(alpha=0.01)  22.764254
+4   Ridge(alpha=0.1)  22.718126
+5     Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_14.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_15.png" alt="png"></p>
+<pre><code>                model        mse
+0    Ridge(alpha=100)  23.487453
+1     Ridge(alpha=10)  22.793119
+2    LinearRegression  22.770784
+3  Ridge(alpha=0.001)  22.770117
+4   Ridge(alpha=0.01)  22.764254
+5    Ridge(alpha=0.1)  22.718126
+6      Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_17.png" alt="png"></p>
+<br>
+<ul>
+<li><strong>coefficents 값 확인</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
+       'PTRATIO', 'B', 'LSTAT'],
+      dtype='object')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">ridge.coef_  <span class="comment"># for the last alpha in 'alphas'</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ -0.09608448,   0.04753482,   0.0259022 ,   3.24479273,
+       -18.89579975,   4.06725732,   0.0020486 ,  -1.46883742,
+         0.28149275,  -0.0094656 ,  -0.87454099,   0.01240815,
+        -0.52406249])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># coefficients visulization</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_coef</span><span class="params">(columns, coef)</span>:</span></span><br><span class="line">    coef_df = pd.DataFrame(list(zip(columns, coef)))</span><br><span class="line">    coef_df.columns=[<span class="string">'feature'</span>, <span class="string">'coef'</span>]</span><br><span class="line">    coef_df = coef_df.sort_values(<span class="string">'coef'</span>, ascending=<span class="literal">False</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">7</span>))</span><br><span class="line">    ax.barh(np.arange(len(coef_df)), coef_df[<span class="string">'coef'</span>])</span><br><span class="line">    idx = np.arange(len(coef_df))</span><br><span class="line">    ax.set_yticks(idx)</span><br><span class="line">    ax.set_yticklabels(coef_df[<span class="string">'feature'</span>])</span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, ridge.coef_)   <span class="comment"># alpha = 0.001</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_81_0.png" alt="png"></p>
+<br>
+<ul>
+<li><strong>alpha 값에 따른 coef의 차이</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">ridge_1 = Ridge(alpha=<span class="number">1</span>)</span><br><span class="line">ridge_1.fit(x_train, y_train)</span><br><span class="line">ridge_pred_1 = ridge_1.predict(x_test)</span><br><span class="line"></span><br><span class="line">ridge_100 = Ridge(alpha=<span class="number">100</span>)</span><br><span class="line">ridge_100.fit(x_train, y_train)</span><br><span class="line">ridge_pred_100 = ridge_100.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, ridge_1.coef_)   <span class="comment"># alpha = 1</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_85_0.png" alt="png"></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, ridge_100.coef_)   <span class="comment"># alpha = 100</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_86_0.png" alt="png"></p>
+<br>
+<p><strong>&gt;&gt; LASSO</strong> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html" target="_blank" rel="noopener">[Document]</a></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Lasso</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><strong>예측 결과 확인</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># lambda (규제강도) 범위 설정</span></span><br><span class="line">alphas = [<span class="number">100</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">0.1</span>, <span class="number">0.01</span>, <span class="number">0.001</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모델 학습</span></span><br><span class="line"><span class="keyword">for</span> alpha <span class="keyword">in</span> alphas:</span><br><span class="line">    lasso = Lasso(alpha=alpha)</span><br><span class="line">    lasso.fit(x_train, y_train)</span><br><span class="line">    lasso_pred = lasso.predict(x_test)</span><br><span class="line">    mse_eval(<span class="string">'Lasso(alpha={})'</span>.format(alpha), y_test, lasso_pred)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_0.png" alt="png"></p>
+<pre><code>                model        mse
+0    Lasso(alpha=100)  63.348818
+1    Ridge(alpha=100)  23.487453
+2     Ridge(alpha=10)  22.793119
+3    LinearRegression  22.770784
+4  Ridge(alpha=0.001)  22.770117
+5   Ridge(alpha=0.01)  22.764254
+6    Ridge(alpha=0.1)  22.718126
+7      Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_2.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_3.png" alt="png"></p>
+<pre><code>                model        mse
+0    Lasso(alpha=100)  63.348818
+1     Lasso(alpha=10)  42.436622
+2    Ridge(alpha=100)  23.487453
+3     Ridge(alpha=10)  22.793119
+4    LinearRegression  22.770784
+5  Ridge(alpha=0.001)  22.770117
+6   Ridge(alpha=0.01)  22.764254
+7    Ridge(alpha=0.1)  22.718126
+8      Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_5.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_6.png" alt="png"></p>
+<pre><code>                model        mse
+0    Lasso(alpha=100)  63.348818
+1     Lasso(alpha=10)  42.436622
+2      Lasso(alpha=1)  27.493672
+3    Ridge(alpha=100)  23.487453
+4     Ridge(alpha=10)  22.793119
+5    LinearRegression  22.770784
+6  Ridge(alpha=0.001)  22.770117
+7   Ridge(alpha=0.01)  22.764254
+8    Ridge(alpha=0.1)  22.718126
+9      Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_8.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_9.png" alt="png"></p>
+<pre><code>                 model        mse
+0     Lasso(alpha=100)  63.348818
+1      Lasso(alpha=10)  42.436622
+2       Lasso(alpha=1)  27.493672
+3     Ridge(alpha=100)  23.487453
+4     Lasso(alpha=0.1)  22.979708
+5      Ridge(alpha=10)  22.793119
+6     LinearRegression  22.770784
+7   Ridge(alpha=0.001)  22.770117
+8    Ridge(alpha=0.01)  22.764254
+9     Ridge(alpha=0.1)  22.718126
+10      Ridge(alpha=1)  22.690411
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_11.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_12.png" alt="png"></p>
+<pre><code>                 model        mse
+0     Lasso(alpha=100)  63.348818
+1      Lasso(alpha=10)  42.436622
+2       Lasso(alpha=1)  27.493672
+3     Ridge(alpha=100)  23.487453
+4     Lasso(alpha=0.1)  22.979708
+5      Ridge(alpha=10)  22.793119
+6     LinearRegression  22.770784
+7   Ridge(alpha=0.001)  22.770117
+8    Ridge(alpha=0.01)  22.764254
+9     Ridge(alpha=0.1)  22.718126
+10      Ridge(alpha=1)  22.690411
+11   Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_14.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_15.png" alt="png"></p>
+<pre><code>                 model        mse
+0     Lasso(alpha=100)  63.348818
+1      Lasso(alpha=10)  42.436622
+2       Lasso(alpha=1)  27.493672
+3     Ridge(alpha=100)  23.487453
+4     Lasso(alpha=0.1)  22.979708
+5      Ridge(alpha=10)  22.793119
+6     LinearRegression  22.770784
+7   Ridge(alpha=0.001)  22.770117
+8    Ridge(alpha=0.01)  22.764254
+9   Lasso(alpha=0.001)  22.753017
+10    Ridge(alpha=0.1)  22.718126
+11      Ridge(alpha=1)  22.690411
+12   Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_17.png" alt="png"></p>
+<br>
+<ul>
+<li><strong>coefficients 값 확인</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># alpha = 0.01</span></span><br><span class="line">lasso_01 = Lasso(alpha=<span class="number">0.01</span>)</span><br><span class="line">lasso_01.fit(x_train, y_train)</span><br><span class="line">lasso_pred_01 = lasso_01.predict(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># alpha = 100</span></span><br><span class="line">lasso_100 = Lasso(alpha=<span class="number">100</span>)</span><br><span class="line">lasso_100.fit(x_train, y_train)</span><br><span class="line">lasso_pred_100 = lasso_100.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
+<br>  
+<p>[alpha = 0.01]</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
+       'PTRATIO', 'B', 'LSTAT'],
+      dtype='object')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">lasso_01.coef_</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ -0.09427142,   0.04759954,   0.01255668,   3.08256139,
+       -15.36800113,   4.07373679,  -0.00100439,  -1.40819927,
+         0.27152905,  -0.0097157 ,  -0.84377679,   0.01249204,
+        -0.52790174])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, lasso_01.coef_)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_100_0.png" alt="png"></p>
+<br>
+<p>[alpha = 100]</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
+       'PTRATIO', 'B', 'LSTAT'],
+      dtype='object')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">lasso_100.coef_</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([-0.        ,  0.        , -0.        ,  0.        , -0.        ,
+        0.        , -0.        ,  0.        , -0.        , -0.02078349,
+       -0.        ,  0.00644409, -0.        ])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, lasso_100.coef_)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_105_0.png" alt="png"></p>
+<br>
+<p><strong>&gt;&gt; ElasticNet</strong>  <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html" target="_blank" rel="noopener">[Document]</a></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> ElasticNet</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><strong>예측 결과 확인</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">ratios = [<span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.8</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># alpha = 0.5 로 고정</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ratio <span class="keyword">in</span> ratios:</span><br><span class="line">    elasticnet = ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=ratio)</span><br><span class="line">    elasticnet.fit(x_train, y_train)</span><br><span class="line">    elas_pred = elasticnet.predict(x_test)</span><br><span class="line">    mse_eval(<span class="string">'ElasticNet(l1_ratio={})'</span>.format(ratio), y_test, elas_pred)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_0.png" alt="png"></p>
+<pre><code>                       model        mse
+0           Lasso(alpha=100)  63.348818
+1            Lasso(alpha=10)  42.436622
+2             Lasso(alpha=1)  27.493672
+3           Ridge(alpha=100)  23.487453
+4           Lasso(alpha=0.1)  22.979708
+5            Ridge(alpha=10)  22.793119
+6           LinearRegression  22.770784
+7         Ridge(alpha=0.001)  22.770117
+8          Ridge(alpha=0.01)  22.764254
+9         Lasso(alpha=0.001)  22.753017
+10  ElasticNet(l1_ratio=0.2)  22.749018
+11          Ridge(alpha=0.1)  22.718126
+12            Ridge(alpha=1)  22.690411
+13         Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_2.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_3.png" alt="png"></p>
+<pre><code>                       model        mse
+0           Lasso(alpha=100)  63.348818
+1            Lasso(alpha=10)  42.436622
+2             Lasso(alpha=1)  27.493672
+3           Ridge(alpha=100)  23.487453
+4           Lasso(alpha=0.1)  22.979708
+5            Ridge(alpha=10)  22.793119
+6   ElasticNet(l1_ratio=0.5)  22.787269
+7           LinearRegression  22.770784
+8         Ridge(alpha=0.001)  22.770117
+9          Ridge(alpha=0.01)  22.764254
+10        Lasso(alpha=0.001)  22.753017
+11  ElasticNet(l1_ratio=0.2)  22.749018
+12          Ridge(alpha=0.1)  22.718126
+13            Ridge(alpha=1)  22.690411
+14         Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_5.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_6.png" alt="png"></p>
+<pre><code>                       model        mse
+0           Lasso(alpha=100)  63.348818
+1            Lasso(alpha=10)  42.436622
+2             Lasso(alpha=1)  27.493672
+3           Ridge(alpha=100)  23.487453
+4           Lasso(alpha=0.1)  22.979708
+5   ElasticNet(l1_ratio=0.8)  22.865628
+6            Ridge(alpha=10)  22.793119
+7   ElasticNet(l1_ratio=0.5)  22.787269
+8           LinearRegression  22.770784
+9         Ridge(alpha=0.001)  22.770117
+10         Ridge(alpha=0.01)  22.764254
+11        Lasso(alpha=0.001)  22.753017
+12  ElasticNet(l1_ratio=0.2)  22.749018
+13          Ridge(alpha=0.1)  22.718126
+14            Ridge(alpha=1)  22.690411
+15         Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_8.png" alt="png"></p>
+<br>
+<ul>
+<li><strong>coefficients 값 확인</strong></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># ㅣ1_ratio = 0.2</span></span><br><span class="line">elasticnet_2 = ElasticNet(alpha = <span class="number">0.1</span>, l1_ratio = <span class="number">0.2</span>)</span><br><span class="line">elasticnet_2.fit(x_train, y_train)</span><br><span class="line">elast_pred_2 = elasticnet_2.predict(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># l1_ratio = 0.8</span></span><br><span class="line">elasticnet_8 = ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio = <span class="number">0.8</span>)</span><br><span class="line">elasticnet_8.fit(x_train, y_train)</span><br><span class="line">elast_pred_8 = elasticnet_8.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<p>[ l1_ratio = 0.2 ]</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
+       'PTRATIO', 'B', 'LSTAT'],
+      dtype='object')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">elasticnet_2.coef_</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([-0.09297585,  0.05293361, -0.03950412,  1.30126199, -0.41996826,
+        3.15838796, -0.00644646, -1.15290012,  0.25973467, -0.01231233,
+       -0.77186571,  0.01201684, -0.60780037])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, elasticnet_2.coef_)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_119_0.png" alt="png"></p>
+<br>
+<p>[ l1_ratio = 0.8 ]</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
+       'PTRATIO', 'B', 'LSTAT'],
+      dtype='object')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">elasticnet_8.coef_</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([-0.08797633,  0.05035601, -0.03058513,  1.51071961, -0.        ,
+        3.70247373, -0.01017259, -1.12431077,  0.24389841, -0.01189981,
+       -0.73481448,  0.01259147, -0.573733  ])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plot_coef(x_train.columns, elasticnet_8.coef_)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_124_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="3-scaling"><a class="markdownIt-Anchor" href="#3-scaling"></a> <strong>3. Scaling</strong></h2>
+<h3 id="3-1-scaler-소개"><a class="markdownIt-Anchor" href="#3-1-scaler-소개"></a> 3-1. Scaler 소개</h3>
+<ul>
+<li>
+<p>StandardScaler</p>
+</li>
+<li>
+<p>MinMaxScaler</p>
+</li>
+<li>
+<p>RobustScaler</p>
+<br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler, MinMaxScaler, RobustScaler</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.describe()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+      <td>379.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>3.512192</td>
+      <td>11.779683</td>
+      <td>10.995013</td>
+      <td>0.076517</td>
+      <td>0.548712</td>
+      <td>6.266953</td>
+      <td>67.223483</td>
+      <td>3.917811</td>
+      <td>9.282322</td>
+      <td>404.680739</td>
+      <td>18.448549</td>
+      <td>357.048100</td>
+      <td>12.633773</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>8.338717</td>
+      <td>23.492842</td>
+      <td>6.792065</td>
+      <td>0.266175</td>
+      <td>0.115006</td>
+      <td>0.681796</td>
+      <td>28.563787</td>
+      <td>2.084167</td>
+      <td>8.583051</td>
+      <td>166.813256</td>
+      <td>2.154917</td>
+      <td>92.745266</td>
+      <td>7.259213</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.006320</td>
+      <td>0.000000</td>
+      <td>0.460000</td>
+      <td>0.000000</td>
+      <td>0.385000</td>
+      <td>3.561000</td>
+      <td>2.900000</td>
+      <td>1.129600</td>
+      <td>1.000000</td>
+      <td>188.000000</td>
+      <td>12.600000</td>
+      <td>2.520000</td>
+      <td>1.730000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.078910</td>
+      <td>0.000000</td>
+      <td>5.190000</td>
+      <td>0.000000</td>
+      <td>0.445000</td>
+      <td>5.876500</td>
+      <td>42.250000</td>
+      <td>2.150900</td>
+      <td>4.000000</td>
+      <td>278.000000</td>
+      <td>17.150000</td>
+      <td>375.425000</td>
+      <td>6.910000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.228760</td>
+      <td>0.000000</td>
+      <td>9.690000</td>
+      <td>0.000000</td>
+      <td>0.532000</td>
+      <td>6.208000</td>
+      <td>74.400000</td>
+      <td>3.414500</td>
+      <td>5.000000</td>
+      <td>330.000000</td>
+      <td>19.000000</td>
+      <td>392.110000</td>
+      <td>11.380000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.756855</td>
+      <td>19.000000</td>
+      <td>18.100000</td>
+      <td>0.000000</td>
+      <td>0.624000</td>
+      <td>6.611000</td>
+      <td>93.850000</td>
+      <td>5.400900</td>
+      <td>8.000000</td>
+      <td>666.000000</td>
+      <td>20.200000</td>
+      <td>396.260000</td>
+      <td>16.580000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>73.534100</td>
+      <td>100.000000</td>
+      <td>27.740000</td>
+      <td>1.000000</td>
+      <td>0.871000</td>
+      <td>8.398000</td>
+      <td>100.000000</td>
+      <td>10.585700</td>
+      <td>24.000000</td>
+      <td>711.000000</td>
+      <td>22.000000</td>
+      <td>396.900000</td>
+      <td>37.970000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>  
+<p><strong>&gt;&gt; StandardScaler</strong></p>
+<p>평균(mean)을 0, 표준편차(std)를 1로 만들어 주는 scaler</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">std_scaler = StandardScaler()</span><br><span class="line">std_scaled = std_scaler.fit_transform(x_train)</span><br><span class="line">round(pd.DataFrame(std_scaled).describe(), <span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>-0.00</td>
+      <td>-0.00</td>
+      <td>-0.00</td>
+      <td>-0.00</td>
+      <td>0.00</td>
+      <td>-0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-0.42</td>
+      <td>-0.50</td>
+      <td>-1.55</td>
+      <td>-0.29</td>
+      <td>-1.43</td>
+      <td>-3.97</td>
+      <td>-2.25</td>
+      <td>-1.34</td>
+      <td>-0.97</td>
+      <td>-1.30</td>
+      <td>-2.72</td>
+      <td>-3.83</td>
+      <td>-1.50</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.41</td>
+      <td>-0.50</td>
+      <td>-0.86</td>
+      <td>-0.29</td>
+      <td>-0.90</td>
+      <td>-0.57</td>
+      <td>-0.88</td>
+      <td>-0.85</td>
+      <td>-0.62</td>
+      <td>-0.76</td>
+      <td>-0.60</td>
+      <td>0.20</td>
+      <td>-0.79</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-0.39</td>
+      <td>-0.50</td>
+      <td>-0.19</td>
+      <td>-0.29</td>
+      <td>-0.15</td>
+      <td>-0.09</td>
+      <td>0.25</td>
+      <td>-0.24</td>
+      <td>-0.50</td>
+      <td>-0.45</td>
+      <td>0.26</td>
+      <td>0.38</td>
+      <td>-0.17</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>-0.09</td>
+      <td>0.31</td>
+      <td>1.05</td>
+      <td>-0.29</td>
+      <td>0.66</td>
+      <td>0.51</td>
+      <td>0.93</td>
+      <td>0.71</td>
+      <td>-0.15</td>
+      <td>1.57</td>
+      <td>0.81</td>
+      <td>0.42</td>
+      <td>0.54</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>8.41</td>
+      <td>3.76</td>
+      <td>2.47</td>
+      <td>3.47</td>
+      <td>2.81</td>
+      <td>3.13</td>
+      <td>1.15</td>
+      <td>3.20</td>
+      <td>1.72</td>
+      <td>1.84</td>
+      <td>1.65</td>
+      <td>0.43</td>
+      <td>3.49</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>  
+<p><strong>&gt;&gt; MinMaxScaler</strong></p>
+<p>min값과 max값을 0~1사이로 정규화 (Normalize)</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">minmax_scaler = MinMaxScaler()</span><br><span class="line">minmax_scaled = minmax_scaler.fit_transform(x_train)</span><br><span class="line">round(pd.DataFrame(minmax_scaled).describe(), <span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+      <td>379.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.05</td>
+      <td>0.12</td>
+      <td>0.39</td>
+      <td>0.08</td>
+      <td>0.34</td>
+      <td>0.56</td>
+      <td>0.66</td>
+      <td>0.29</td>
+      <td>0.36</td>
+      <td>0.41</td>
+      <td>0.62</td>
+      <td>0.90</td>
+      <td>0.30</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.11</td>
+      <td>0.23</td>
+      <td>0.25</td>
+      <td>0.27</td>
+      <td>0.24</td>
+      <td>0.14</td>
+      <td>0.29</td>
+      <td>0.22</td>
+      <td>0.37</td>
+      <td>0.32</td>
+      <td>0.23</td>
+      <td>0.24</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.17</td>
+      <td>0.00</td>
+      <td>0.12</td>
+      <td>0.48</td>
+      <td>0.41</td>
+      <td>0.11</td>
+      <td>0.13</td>
+      <td>0.17</td>
+      <td>0.48</td>
+      <td>0.95</td>
+      <td>0.14</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.34</td>
+      <td>0.00</td>
+      <td>0.30</td>
+      <td>0.55</td>
+      <td>0.74</td>
+      <td>0.24</td>
+      <td>0.17</td>
+      <td>0.27</td>
+      <td>0.68</td>
+      <td>0.99</td>
+      <td>0.27</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.04</td>
+      <td>0.19</td>
+      <td>0.65</td>
+      <td>0.00</td>
+      <td>0.49</td>
+      <td>0.63</td>
+      <td>0.94</td>
+      <td>0.45</td>
+      <td>0.30</td>
+      <td>0.91</td>
+      <td>0.81</td>
+      <td>1.00</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+ <br> 
+<p><strong>&gt;&gt; RobustScaler</strong></p>
+<p>중앙값(median)이 0, IQR(interquartile rage)이 1이 되도록 변환<br>
+<strong>outlier 처리에 유용</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">robust_scaler = RobustScaler()</span><br><span class="line">robust_scaled = robust_scaler.fit_transform(x_train)</span><br><span class="line">round(pd.DataFrame(robust_scaled).median(), <span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0     0.0
+1     0.0
+2     0.0
+3     0.0
+4     0.0
+5     0.0
+6     0.0
+7     0.0
+8     0.0
+9     0.0
+10    0.0
+11    0.0
+12    0.0
+dtype: float64
+</code></pre>
+<br>  
+<h3 id="3-2-scaling-후-모델-학습-파이프라인-이용"><a class="markdownIt-Anchor" href="#3-2-scaling-후-모델-학습-파이프라인-이용"></a> 3-2. Scaling 후 모델 학습 – 파이프라인 이용</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># elasticnet(alpha=0.1, l1_ratio=0.2) &lt; without standard scaling &gt;</span></span><br><span class="line">elasticnet_no_scale = ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=<span class="number">0.2</span>)</span><br><span class="line">no_scale_pred = elasticnet_no_scale.fit(x_train, y_train).predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'No Standard ElasticNet'</span>, y_test, no_scale_pred)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># elasticnet(alpha=0.1, l1_ratio=0.2) &lt; with standard scaling &gt;</span></span><br><span class="line">elasticnet_pipeline = make_pipeline(</span><br><span class="line">    StandardScaler(),</span><br><span class="line">    ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=<span class="number">0.2</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">with_scale_pred = elasticnet_pipeline.fit(x_train, y_train).predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'With Standard ElasticNet'</span>, y_test, with_scale_pred)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_0.png" alt="png"></p>
+<pre><code>                       model        mse
+0           Lasso(alpha=100)  63.348818
+1            Lasso(alpha=10)  42.436622
+2             Lasso(alpha=1)  27.493672
+3           Ridge(alpha=100)  23.487453
+4           Lasso(alpha=0.1)  22.979708
+5   ElasticNet(l1_ratio=0.8)  22.865628
+6            Ridge(alpha=10)  22.793119
+7   ElasticNet(l1_ratio=0.5)  22.787269
+8           LinearRegression  22.770784
+9         Ridge(alpha=0.001)  22.770117
+10         Ridge(alpha=0.01)  22.764254
+11        Lasso(alpha=0.001)  22.753017
+12  ElasticNet(l1_ratio=0.2)  22.749018
+13    No Standard ElasticNet  22.749018
+14          Ridge(alpha=0.1)  22.718126
+15            Ridge(alpha=1)  22.690411
+16         Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_2.png" alt="png"></p>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_3.png" alt="png"></p>
+<pre><code>                       model        mse
+0           Lasso(alpha=100)  63.348818
+1            Lasso(alpha=10)  42.436622
+2             Lasso(alpha=1)  27.493672
+3           Ridge(alpha=100)  23.487453
+4   With Standard ElasticNet  23.230164
+5           Lasso(alpha=0.1)  22.979708
+6   ElasticNet(l1_ratio=0.8)  22.865628
+7            Ridge(alpha=10)  22.793119
+8   ElasticNet(l1_ratio=0.5)  22.787269
+9           LinearRegression  22.770784
+10        Ridge(alpha=0.001)  22.770117
+11         Ridge(alpha=0.01)  22.764254
+12        Lasso(alpha=0.001)  22.753017
+13  ElasticNet(l1_ratio=0.2)  22.749018
+14    No Standard ElasticNet  22.749018
+15          Ridge(alpha=0.1)  22.718126
+16            Ridge(alpha=1)  22.690411
+17         Lasso(alpha=0.01)  22.635614
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_5.png" alt="png"></p>
+<br>
+<br>
+<h2 id="4-polynomial-features"><a class="markdownIt-Anchor" href="#4-polynomial-features"></a> <strong>4. Polynomial Features</strong></h2>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html?highlight=poly%20feature#sklearn.preprocessing.PolynomialFeatures" target="_blank" rel="noopener">[Document]</a></p>
+<p>다항식의 계수간 상호작용을 통해 <strong>새로운 feature를 생성</strong>한다.<br>
+예를 들면, [a, b] 2개의 feature가 존재한다고 가정하고,<br>
+degree=2로 설정한다면, polynomial features 는 [1, a, b, a^2, ab, b^2]가 돤다</p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>Polynomial Features 생성</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">poly = PolynomialFeatures(degree=<span class="number">2</span>, include_bias=<span class="literal">False</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">poly_features = poly.fit_transform(x_train)[<span class="number">0</span>]</span><br><span class="line">poly_features</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([     0.12329   ,      0.        ,     10.01      ,      0.        ,
+            0.547     ,      5.913     ,     92.9       ,      2.3534    ,
+            6.        ,    432.        ,     17.8       ,    394.95      ,
+           16.21      ,      0.01520042,      0.        ,      1.2341329 ,
+            0.        ,      0.06743963,      0.72901377,     11.453641  ,
+            0.29015069,      0.73974   ,     53.26128   ,      2.194562  ,
+           48.6933855 ,      1.9985309 ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,    100.2001    ,      0.        ,
+            5.47547   ,     59.18913   ,    929.929     ,     23.557534  ,
+           60.06      ,   4324.32      ,    178.178     ,   3953.4495    ,
+          162.2621    ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.        ,
+            0.        ,      0.        ,      0.        ,      0.299209  ,
+            3.234411  ,     50.8163    ,      1.2873098 ,      3.282     ,
+          236.304     ,      9.7366    ,    216.03765   ,      8.86687   ,
+           34.963569  ,    549.3177    ,     13.9156542 ,     35.478     ,
+         2554.416     ,    105.2514    ,   2335.33935   ,     95.84973   ,
+         8630.41      ,    218.63086   ,    557.4       ,  40132.8       ,
+         1653.62      ,  36690.855     ,   1505.909     ,      5.53849156,
+           14.1204    ,   1016.6688    ,     41.89052   ,    929.47533   ,
+           38.148614  ,     36.        ,   2592.        ,    106.8       ,
+         2369.7       ,     97.26      , 186624.        ,   7689.6       ,
+       170618.4       ,   7002.72      ,    316.84      ,   7030.11      ,
+          288.538     , 155985.5025    ,   6402.1395    ,    262.7641    ])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">x_train.iloc[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>CRIM         0.12329
+ZN           0.00000
+INDUS       10.01000
+CHAS         0.00000
+NOX          0.54700
+RM           5.91300
+AGE         92.90000
+DIS          2.35340
+RAD          6.00000
+TAX        432.00000
+PTRATIO     17.80000
+B          394.95000
+LSTAT       16.21000
+Name: 112, dtype: float64
+</code></pre>
+ <br> 
+<p><strong>Polynomial Features + Standard Scaling 후 모델 학습</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">poly_pipeline = make_pipeline(</span><br><span class="line">    PolynomialFeatures(degree=<span class="number">2</span>, include_bias=<span class="literal">False</span>),</span><br><span class="line">    StandardScaler(),</span><br><span class="line">    ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=<span class="number">0.2</span>)</span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">poly_pred = poly_pipeline.fit(x_train, y_train).predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>D:\Anaconda\lib\site-packages\sklearn\linear_model\_coordinate_descent.py:476: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 32.61172784964583, tolerance: 3.2374824854881266
+  positive)
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">mse_eval(<span class="string">'Poly ElasticNet'</span>, y_test, poly_pred)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_163_0.png" alt="png"></p>
+<pre><code>                       model        mse
+0           Lasso(alpha=100)  63.348818
+1            Lasso(alpha=10)  42.436622
+2             Lasso(alpha=1)  27.493672
+3           Ridge(alpha=100)  23.487453
+4   With Standard ElasticNet  23.230164
+5           Lasso(alpha=0.1)  22.979708
+6   ElasticNet(l1_ratio=0.8)  22.865628
+7            Ridge(alpha=10)  22.793119
+8   ElasticNet(l1_ratio=0.5)  22.787269
+9           LinearRegression  22.770784
+10        Ridge(alpha=0.001)  22.770117
+11         Ridge(alpha=0.01)  22.764254
+12        Lasso(alpha=0.001)  22.753017
+13  ElasticNet(l1_ratio=0.2)  22.749018
+14    No Standard ElasticNet  22.749018
+15          Ridge(alpha=0.1)  22.718126
+16            Ridge(alpha=1)  22.690411
+17         Lasso(alpha=0.01)  22.635614
+18           Poly ElasticNet  17.526214
+</code></pre>
+<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_163_2.png" alt="png"></p>
+<p>2차 Polynomial Features 추가 후 학습된 모델의 성능이 많이 향상 된것을 확인할 수 있다</p>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【Study】</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>sklearn</tag>
+        <tag>Machine Learning</tag>
+        <tag>회귀</tag>
+      </tags>
+  </entry>
 </search>
