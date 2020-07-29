@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; sklearn - (3) 회귀(Regression) | Hyemin Kim</title><meta name="description" content="Linear Regression, Ridge, LASSO, ElasticNet, Scaling, Polynomial Features"><meta name="keywords" content="Python,sklearn,Machine Learning,회귀"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; sklearn - (3) 회귀(Regression)"><meta name="twitter:description" content="Linear Regression, Ridge, LASSO, ElasticNet, Scaling, Polynomial Features"><meta name="twitter:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; sklearn - (3) 회귀(Regression)"><meta property="og:url" content="https://hyemin-kim.github.io/2020/07/29/S-Python-sklearn3/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="Linear Regression, Ridge, LASSO, ElasticNet, Scaling, Polynomial Features"><meta property="og:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="article:published_time" content="2020-07-29T08:09:54.000Z"><meta property="article:modified_time" content="2020-07-29T08:27:30.889Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; sklearn - (3) 회귀 (Regression) | Hyemin Kim</title><meta name="description" content="Linear Regression, Ridge, LASSO, ElasticNet, Scaling, Polynomial Features"><meta name="keywords" content="Python,sklearn,Machine Learning,회귀"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; sklearn - (3) 회귀 (Regression)"><meta name="twitter:description" content="Linear Regression, Ridge, LASSO, ElasticNet, Scaling, Polynomial Features"><meta name="twitter:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; sklearn - (3) 회귀 (Regression)"><meta property="og:url" content="https://hyemin-kim.github.io/2020/07/29/S-Python-sklearn3/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="Linear Regression, Ridge, LASSO, ElasticNet, Scaling, Polynomial Features"><meta property="og:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="article:published_time" content="2020-07-29T09:53:05.000Z"><meta property="article:modified_time" content="2020-07-29T10:16:26.997Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
 var t = Cookies.get("theme")
 if (autoChangeMode == '1'){
   var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -91,7 +91,7 @@ ga('send', 'pageview');
   opacity: 1
 }
 </style></noscript><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">38</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">20</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#회귀-regression-예측"><span class="toc-text"> 회귀 (Regression) 예측</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-데이터-셋"><span class="toc-text"> 0. 데이터 셋</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-데이터-로드"><span class="toc-text"> 0-1. 데이터 로드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-데이터프레임-만들기"><span class="toc-text"> 0-2. 데이터프레임 만들기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-training-set-test-set-나누기"><span class="toc-text"> 1. Training set &#x2F; Test set 나누기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-평가-지표-만들기"><span class="toc-text"> 2. 평가 지표 만들기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-평가-지표-계산식"><span class="toc-text"> 2-1. 평가 지표 계산식</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-코딩으로-평가-지표-만들어-보기"><span class="toc-text"> 2-2. 코딩으로 평가 지표 만들어 보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-sklearn의-평가-지표-활용하기"><span class="toc-text"> 2-3. sklearn의 평가 지표 활용하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-모델-성능-확인을-위한-함수"><span class="toc-text"> 2-4. 모델 성능 확인을 위한 함수</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-회귀-알고리즘"><span class="toc-text"> 3. 회귀 알고리즘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-linear-regression"><span class="toc-text"> 3-1. Linear Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ridge-lasso"><span class="toc-text"> 3-2. Ridge &amp; LASSO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-개념"><span class="toc-text"> (1) 개념</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-scaling"><span class="toc-text"> 3. Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-scaler-소개"><span class="toc-text"> 3-1. Scaler 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-scaling-후-모델-학습-파이프라인-이용"><span class="toc-text"> 3-2. Scaling 후 모델 학습 – 파이프라인 이용</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-polynomial-features"><span class="toc-text"> 4. Polynomial Features</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; sklearn - (3) 회귀(Regression)</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-29 17:09:54"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-07-29</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-29 17:27:30"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-07-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="회귀-regression-예측"><a class="markdownIt-Anchor" href="#회귀-regression-예측"></a> 회귀 (Regression) 예측</h1>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">38</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">20</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#회귀-regression-예측"><span class="toc-text"> 회귀 (Regression) 예측</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-데이터-셋"><span class="toc-text"> 0. 데이터 셋</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-데이터-로드"><span class="toc-text"> 0-1. 데이터 로드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-데이터프레임-만들기"><span class="toc-text"> 0-2. 데이터프레임 만들기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-training-set-test-set-나누기"><span class="toc-text"> 1. Training set &#x2F; Test set 나누기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-평가-지표-만들기"><span class="toc-text"> 2. 평가 지표 만들기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-평가-지표-계산식"><span class="toc-text"> 2-1. 평가 지표 계산식</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-코딩으로-평가-지표-만들어-보기"><span class="toc-text"> 2-2. 코딩으로 평가 지표 만들어 보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-sklearn의-평가-지표-활용하기"><span class="toc-text"> 2-3. sklearn의 평가 지표 활용하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-모델-성능-확인을-위한-함수"><span class="toc-text"> 2-4. 모델 성능 확인을 위한 함수</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-회귀-알고리즘"><span class="toc-text"> 3. 회귀 알고리즘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-linear-regression"><span class="toc-text"> 3-1. Linear Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ridge-lasso-elasticnet"><span class="toc-text"> 3-2. Ridge &amp; LASSO &amp; ElasticNet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-개념"><span class="toc-text"> (1) 개념</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-실습"><span class="toc-text"> (2) 실습</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-scaling"><span class="toc-text"> 4. Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-scaler-소개"><span class="toc-text"> 4-1. Scaler 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-scaling-후-모델-학습-파이프라인-활용"><span class="toc-text"> 4-2. Scaling 후 모델 학습 – 파이프라인 활용</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-polynomial-features"><span class="toc-text"> 5. Polynomial Features</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; sklearn - (3) 회귀 (Regression)</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-29 18:53:05"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-07-29</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-29 19:16:26"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-07-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="회귀-regression-예측"><a class="markdownIt-Anchor" href="#회귀-regression-예측"></a> 회귀 (Regression) 예측</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%85%8B"><strong>0. 데이터 셋</strong></a>
 <ul>
@@ -111,20 +111,21 @@ ga('send', 'pageview');
 <li><a href="#3-%ED%9A%8C%EA%B7%80-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98"><strong>3. 회귀 알고리즘</strong></a>
 <ul>
 <li><a href="#3-1-linear-regression">3-1. Linear Regression</a></li>
-<li><a href="#3-2-ridge-lasso">3-2. Ridge &amp; LASSO</a>
+<li><a href="#3-2-ridge-lasso-elasticnet">3-2. Ridge &amp; LASSO &amp; ElasticNet</a>
 <ul>
 <li><a href="#1-%EA%B0%9C%EB%85%90">(1) 개념</a></li>
+<li><a href="#2-%EC%8B%A4%EC%8A%B5">(2) 실습</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#3-scaling"><strong>3. Scaling</strong></a>
+<li><a href="#4-scaling"><strong>4. Scaling</strong></a>
 <ul>
-<li><a href="#3-1-scaler-%EC%86%8C%EA%B0%9C">3-1. Scaler 소개</a></li>
-<li><a href="#3-2-scaling-%ED%9B%84-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%9D%B4%EC%9A%A9">3-2. Scaling 후 모델 학습 – 파이프라인 이용</a></li>
+<li><a href="#4-1-scaler-%EC%86%8C%EA%B0%9C">4-1. Scaler 소개</a></li>
+<li><a href="#4-2-scaling-%ED%9B%84-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%ED%99%9C%EC%9A%A9">4-2. Scaling 후 모델 학습 – 파이프라인 활용</a></li>
 </ul>
 </li>
-<li><a href="#4-polynomial-features"><strong>4. Polynomial Features</strong></a></li>
+<li><a href="#5-polynomial-features"><strong>5. Polynomial Features</strong></a></li>
 </ul>
 <p></p>
 <br>
@@ -146,7 +147,7 @@ ga('send', 'pageview');
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">np.set_printoptions(suppress=<span class="literal">True</span>) <span class="comment"># If True, print floating point numbers instead of scientific notation</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_boston</span><br></pre></td></tr></tbody></table></figure>
 <p>[<a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html#sklearn.datasets.load_boston" target="_blank" rel="noopener">Boston Dataset</a>]</p>
-  <br>
+ <br> 
 <h3 id="0-1-데이터-로드"><a class="markdownIt-Anchor" href="#0-1-데이터-로드"></a> 0-1. 데이터 로드</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = load_boston()</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(data[<span class="string">'DESCR'</span>])  <span class="comment"># data description</span></span><br></pre></td></tr></tbody></table></figure>
@@ -202,7 +203,7 @@ problems.
    - Quinlan,R. (1993). Combining Instance-Based and Model-Based Learning. In Proceedings on the Tenth International Conference of Machine Learning, 236-243, University of Massachusetts, Amherst. Morgan Kaufmann.
 </code></pre>
 <p>​</p>
- <br> 
+  <br>
 <h3 id="0-2-데이터프레임-만들기"><a class="markdownIt-Anchor" href="#0-2-데이터프레임-만들기"></a> 0-2. 데이터프레임 만들기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># step 1. features (X)</span></span><br><span class="line"><span class="comment"># data['data'] - feature data; data['feature_names'] - feature column names</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(data[<span class="string">'data'</span>], columns = data[<span class="string">'feature_names'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># step 2. target (y) 추가 </span></span><br><span class="line">df[<span class="string">'MEDV'</span>] = data[<span class="string">'target'</span>]</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
@@ -220,7 +221,6 @@ problems.
 }
 </code></pre>
 </style>
-<div style="overflow:auto">
 <table>
   <thead>
     <tr style="text-align: right;">
@@ -330,8 +330,7 @@ problems.
   </tbody>
 </table>
 </div>
-</div>
- <br> 
+<br>  
 <p><strong>컬럼 소게</strong> (feature 13 + target 1):</p>
 <ul>
 <li>
@@ -403,7 +402,6 @@ problems.
 }
 </code></pre>
 </style>
-<div style="overflow:auto">
 <table>
   <thead>
     <tr style="text-align: right;">
@@ -507,7 +505,6 @@ problems.
   </tbody>
 </table>
 </div>
-</div>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_train.head()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>112    18.8
 301    22.0
@@ -538,7 +535,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1h-12l-28-84c-16.667-52-96.667
 -294.333-240-727l-212 -643 -85 170c-4-3.333-8.333-7.667-13 -13l-13-13l77-155
  77-156c66 199.333 139 419.667 219 661 l218 661zM702 80H400000v40H742z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span></span></span></span></span></p>
- <br> 
+  <br>
 <h3 id="2-2-코딩으로-평가-지표-만들어-보기"><a class="markdownIt-Anchor" href="#2-2-코딩으로-평가-지표-만들어-보기"></a> 2-2. 코딩으로 평가 지표 만들어 보기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">actual = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">pred = np.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br></pre></td></tr></tbody></table></figure>
@@ -551,7 +548,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RMSE</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_rmse</span><span class="params">(actual, pred)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.sqrt(my_mse(actual, pred))</span><br><span class="line"></span><br><span class="line">my_rmse(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>2.0
 </code></pre>
-<br>
+<br>  
 <h3 id="2-3-sklearn의-평가-지표-활용하기"><a class="markdownIt-Anchor" href="#2-3-sklearn의-평가-지표-활용하기"></a> 2-3. sklearn의 평가 지표 활용하기</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error, mean_squared_error</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
@@ -564,23 +561,24 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MSE (my_mse VS sklearn_mse)</span></span><br><span class="line">my_mse(actual, pred), mean_squared_error(actual, pred)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>(4.0, 4.0)
 </code></pre>
-<br>
+ <br> 
 <h3 id="2-4-모델-성능-확인을-위한-함수"><a class="markdownIt-Anchor" href="#2-4-모델-성능-확인을-위한-함수"></a> 2-4. 모델 성능 확인을 위한 함수</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line">my_predictions = {}</span><br><span class="line"></span><br><span class="line">colors = [<span class="string">'r'</span>, <span class="string">'c'</span>, <span class="string">'m'</span>, <span class="string">'y'</span>, <span class="string">'k'</span>, <span class="string">'khaki'</span>, <span class="string">'teal'</span>, <span class="string">'orchid'</span>, <span class="string">'sandybrown'</span>,</span><br><span class="line">          <span class="string">'greenyellow'</span>, <span class="string">'dodgerblue'</span>, <span class="string">'deepskyblue'</span>, <span class="string">'rosybrown'</span>, <span class="string">'firebrick'</span>,</span><br><span class="line">          <span class="string">'deeppink'</span>, <span class="string">'crimson'</span>, <span class="string">'salmon'</span>, <span class="string">'darkred'</span>, <span class="string">'olivedrab'</span>, <span class="string">'olive'</span>, </span><br><span class="line">          <span class="string">'forestgreen'</span>, <span class="string">'royalblue'</span>, <span class="string">'indigo'</span>, <span class="string">'navy'</span>, <span class="string">'mediumpurple'</span>, <span class="string">'chocolate'</span>,</span><br><span class="line">          <span class="string">'gold'</span>, <span class="string">'darkorange'</span>, <span class="string">'seagreen'</span>, <span class="string">'turquoise'</span>, <span class="string">'steelblue'</span>, <span class="string">'slategray'</span>, </span><br><span class="line">          <span class="string">'peru'</span>, <span class="string">'midnightblue'</span>, <span class="string">'slateblue'</span>, <span class="string">'dimgray'</span>, <span class="string">'cadetblue'</span>, <span class="string">'tomato'</span></span><br><span class="line">         ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># prediction plot</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_predictions</span><span class="params">(name_, actual, pred)</span>:</span></span><br><span class="line">    df = pd.DataFrame({<span class="string">'actual'</span>: y_test, <span class="string">'prediction'</span>: pred})</span><br><span class="line">    df = df.sort_values(by=<span class="string">'actual'</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    plt.figure(figsize=(<span class="number">12</span>, <span class="number">9</span>))</span><br><span class="line">    plt.scatter(df.index, df[<span class="string">'prediction'</span>], marker=<span class="string">'x'</span>, color=<span class="string">'r'</span>)</span><br><span class="line">    plt.scatter(df.index, df[<span class="string">'actual'</span>], alpha=<span class="number">0.7</span>, marker=<span class="string">'o'</span>, color=<span class="string">'black'</span>)</span><br><span class="line">    plt.title(name_, fontsize=<span class="number">15</span>)</span><br><span class="line">    plt.legend([<span class="string">'prediction'</span>, <span class="string">'actual'</span>], fontsize=<span class="number">12</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># evaluation plot</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mse_eval</span><span class="params">(name_, actual, pred)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> predictions</span><br><span class="line">    <span class="keyword">global</span> colors</span><br><span class="line"></span><br><span class="line">    plot_predictions(name_, actual, pred)</span><br><span class="line"></span><br><span class="line">    mse = mean_squared_error(actual, pred)</span><br><span class="line">    my_predictions[name_] = mse</span><br><span class="line"></span><br><span class="line">    y_value = sorted(my_predictions.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    df = pd.DataFrame(y_value, columns=[<span class="string">'model'</span>, <span class="string">'mse'</span>])</span><br><span class="line">    print(df)</span><br><span class="line">    min_ = df[<span class="string">'mse'</span>].min() - <span class="number">10</span></span><br><span class="line">    max_ = df[<span class="string">'mse'</span>].max() + <span class="number">10</span></span><br><span class="line">    </span><br><span class="line">    length = len(df)</span><br><span class="line">    </span><br><span class="line">    plt.figure(figsize=(<span class="number">10</span>, length))</span><br><span class="line">    ax = plt.subplot()</span><br><span class="line">    ax.set_yticks(np.arange(len(df)))</span><br><span class="line">    ax.set_yticklabels(df[<span class="string">'model'</span>], fontsize=<span class="number">15</span>)</span><br><span class="line">    bars = ax.barh(np.arange(len(df)), df[<span class="string">'mse'</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i, v <span class="keyword">in</span> enumerate(df[<span class="string">'mse'</span>]):</span><br><span class="line">        idx = np.random.choice(len(colors))</span><br><span class="line">        bars[i].set_color(colors[idx])</span><br><span class="line">        ax.text(v + <span class="number">2</span>, i, str(round(v, <span class="number">3</span>)), color=<span class="string">'k'</span>, fontsize=<span class="number">15</span>, fontweight=<span class="string">'bold'</span>)</span><br><span class="line">        </span><br><span class="line">    plt.title(<span class="string">'MSE Error'</span>, fontsize=<span class="number">18</span>)</span><br><span class="line">    plt.xlim(min_, max_)</span><br><span class="line">    </span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># remove model</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_model</span><span class="params">(name_)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> my_predictions</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">del</span> my_predictions[name_]</span><br><span class="line">    <span class="keyword">except</span> KeyError:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
-<p><br>  <br></p>
+  <br>
+  <br>
 <h2 id="3-회귀-알고리즘"><a class="markdownIt-Anchor" href="#3-회귀-알고리즘"></a> <strong>3. 회귀 알고리즘</strong></h2>
 <h3 id="3-1-linear-regression"><a class="markdownIt-Anchor" href="#3-1-linear-regression"></a> 3-1. Linear Regression</h3>
 <p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html" target="_blank" rel="noopener">[sklearn.linear_model.<strong>LinearRegression</strong>] Document</a></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = LinearRegression(n_jobs=<span class="number">-1</span>)  <span class="comment"># n_jobs: CPU코어의 사용</span></span><br><span class="line">model.fit(x_train, y_train)</span><br><span class="line">pred = model.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mse_eval(<span class="string">'LinearRegression'</span>, y_test, pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_59_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_59_0.png" alt="output_59_0"></p>
 <pre><code>              model        mse
 0  LinearRegression  22.770784
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_59_2.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_59_2.png" alt="output_59_2"></p>
 <br>
-<h3 id="3-2-ridge-lasso"><a class="markdownIt-Anchor" href="#3-2-ridge-lasso"></a> 3-2. Ridge &amp; LASSO</h3>
+<h3 id="3-2-ridge-lasso-elasticnet"><a class="markdownIt-Anchor" href="#3-2-ridge-lasso-elasticnet"></a> 3-2. Ridge &amp; LASSO &amp; ElasticNet</h3>
 <h4 id="1-개념"><a class="markdownIt-Anchor" href="#1-개념"></a> (1) 개념</h4>
 <p><a href="https://medium.com/mighty-data-science-bootcamp/linear-regression-ridge-lasso-elastic-net-fb8115c0a635" target="_blank" rel="noopener">참고</a></p>
 <p><strong>규제(Regularization):</strong> 학습이 과적합 되는 것을 방지하고자 일종의 <strong>penalty</strong>를 부여하는 것.<br>
@@ -641,35 +639,35 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <br>
 </li>
 </ul>
-<p><strong>(2) 실습</strong></p>
+<h4 id="2-실습"><a class="markdownIt-Anchor" href="#2-실습"></a> (2) 실습</h4>
 <p><strong>&gt;&gt; Ridge</strong>   <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html" target="_blank" rel="noopener">[Document]</a></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></tbody></table></figure>
 <ul>
 <li><strong>예측 결과 확인</strong></li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lambda (규제강도) 범위 설정</span></span><br><span class="line">alphas = [<span class="number">100</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">0.1</span>, <span class="number">0.01</span>, <span class="number">0.001</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모델 학습</span></span><br><span class="line"><span class="keyword">for</span> alpha <span class="keyword">in</span> alphas:</span><br><span class="line">    ridge = Ridge(alpha = alpha)</span><br><span class="line">    ridge.fit(x_train, y_train)</span><br><span class="line">    ridge_pred = ridge.predict(x_test)</span><br><span class="line">    mse_eval(<span class="string">'Ridge(alpha={})'</span>.format(alpha), y_test, ridge_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_0.png" alt="output_75_0"></p>
 <pre><code>              model        mse
 0  Ridge(alpha=100)  23.487453
 1  LinearRegression  22.770784
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_2.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_3.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_2.png" alt="output_75_2"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_3.png" alt="output_75_3"></p>
 <pre><code>              model        mse
 0  Ridge(alpha=100)  23.487453
 1   Ridge(alpha=10)  22.793119
 2  LinearRegression  22.770784
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_5.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_6.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_5.png" alt="output_75_5"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_6.png" alt="output_75_6"></p>
 <pre><code>              model        mse
 0  Ridge(alpha=100)  23.487453
 1   Ridge(alpha=10)  22.793119
 2  LinearRegression  22.770784
 3    Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_8.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_9.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_8.png" alt="output_75_8"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_9.png" alt="output_75_9"></p>
 <pre><code>              model        mse
 0  Ridge(alpha=100)  23.487453
 1   Ridge(alpha=10)  22.793119
@@ -677,8 +675,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 3  Ridge(alpha=0.1)  22.718126
 4    Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_11.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_12.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_11.png" alt="output_75_11"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_12.png" alt="output_75_12"></p>
 <pre><code>               model        mse
 0   Ridge(alpha=100)  23.487453
 1    Ridge(alpha=10)  22.793119
@@ -687,8 +685,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 4   Ridge(alpha=0.1)  22.718126
 5     Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_14.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_15.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_14.png" alt="output_75_14"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_15.png" alt="output_75_15"></p>
 <pre><code>                model        mse
 0    Ridge(alpha=100)  23.487453
 1     Ridge(alpha=10)  22.793119
@@ -698,7 +696,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 5    Ridge(alpha=0.1)  22.718126
 6      Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_75_17.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_75_17.png" alt="output_75_17"></p>
 <br>
 <ul>
 <li><strong>coefficents 값 확인</strong></li>
@@ -716,16 +714,16 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coefficients visulization</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_coef</span><span class="params">(columns, coef)</span>:</span></span><br><span class="line">    coef_df = pd.DataFrame(list(zip(columns, coef)))</span><br><span class="line">    coef_df.columns=[<span class="string">'feature'</span>, <span class="string">'coef'</span>]</span><br><span class="line">    coef_df = coef_df.sort_values(<span class="string">'coef'</span>, ascending=<span class="literal">False</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">7</span>))</span><br><span class="line">    ax.barh(np.arange(len(coef_df)), coef_df[<span class="string">'coef'</span>])</span><br><span class="line">    idx = np.arange(len(coef_df))</span><br><span class="line">    ax.set_yticks(idx)</span><br><span class="line">    ax.set_yticklabels(coef_df[<span class="string">'feature'</span>])</span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, ridge.coef_)   <span class="comment"># alpha = 0.001</span></span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_81_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_81_0.png" alt="output_81_0"></p>
 <br>
 <ul>
 <li><strong>alpha 값에 따른 coef의 차이</strong></li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ridge_1 = Ridge(alpha=<span class="number">1</span>)</span><br><span class="line">ridge_1.fit(x_train, y_train)</span><br><span class="line">ridge_pred_1 = ridge_1.predict(x_test)</span><br><span class="line"></span><br><span class="line">ridge_100 = Ridge(alpha=<span class="number">100</span>)</span><br><span class="line">ridge_100.fit(x_train, y_train)</span><br><span class="line">ridge_pred_100 = ridge_100.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, ridge_1.coef_)   <span class="comment"># alpha = 1</span></span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_85_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_85_0.png" alt="output_85_0"></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, ridge_100.coef_)   <span class="comment"># alpha = 100</span></span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_86_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_86_0.png" alt="output_86_0"></p>
 <br>
 <p><strong>&gt;&gt; LASSO</strong> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html" target="_blank" rel="noopener">[Document]</a></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Lasso</span><br></pre></td></tr></tbody></table></figure>
@@ -733,7 +731,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <li><strong>예측 결과 확인</strong></li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lambda (규제강도) 범위 설정</span></span><br><span class="line">alphas = [<span class="number">100</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">0.1</span>, <span class="number">0.01</span>, <span class="number">0.001</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모델 학습</span></span><br><span class="line"><span class="keyword">for</span> alpha <span class="keyword">in</span> alphas:</span><br><span class="line">    lasso = Lasso(alpha=alpha)</span><br><span class="line">    lasso.fit(x_train, y_train)</span><br><span class="line">    lasso_pred = lasso.predict(x_test)</span><br><span class="line">    mse_eval(<span class="string">'Lasso(alpha={})'</span>.format(alpha), y_test, lasso_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_0.png" alt="output_92_0"></p>
 <pre><code>                model        mse
 0    Lasso(alpha=100)  63.348818
 1    Ridge(alpha=100)  23.487453
@@ -744,8 +742,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 6    Ridge(alpha=0.1)  22.718126
 7      Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_2.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_3.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_2.png" alt="output_92_2"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_3.png" alt="output_92_3"></p>
 <pre><code>                model        mse
 0    Lasso(alpha=100)  63.348818
 1     Lasso(alpha=10)  42.436622
@@ -757,8 +755,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 7    Ridge(alpha=0.1)  22.718126
 8      Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_5.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_6.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_5.png" alt="output_92_5"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_6.png" alt="output_92_6"></p>
 <pre><code>                model        mse
 0    Lasso(alpha=100)  63.348818
 1     Lasso(alpha=10)  42.436622
@@ -771,8 +769,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 8    Ridge(alpha=0.1)  22.718126
 9      Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_8.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_9.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_8.png" alt="output_92_8"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_9.png" alt="output_92_9"></p>
 <pre><code>                 model        mse
 0     Lasso(alpha=100)  63.348818
 1      Lasso(alpha=10)  42.436622
@@ -786,8 +784,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 9     Ridge(alpha=0.1)  22.718126
 10      Ridge(alpha=1)  22.690411
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_11.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_12.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_11.png" alt="output_92_11"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_12.png" alt="output_92_12"></p>
 <pre><code>                 model        mse
 0     Lasso(alpha=100)  63.348818
 1      Lasso(alpha=10)  42.436622
@@ -802,8 +800,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 10      Ridge(alpha=1)  22.690411
 11   Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_14.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_15.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_14.png" alt="output_92_14"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_15.png" alt="output_92_15"></p>
 <pre><code>                 model        mse
 0     Lasso(alpha=100)  63.348818
 1      Lasso(alpha=10)  42.436622
@@ -819,13 +817,13 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 11      Ridge(alpha=1)  22.690411
 12   Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_92_17.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_92_17.png" alt="output_92_17"></p>
 <br>
 <ul>
 <li><strong>coefficients 값 확인</strong></li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># alpha = 0.01</span></span><br><span class="line">lasso_01 = Lasso(alpha=<span class="number">0.01</span>)</span><br><span class="line">lasso_01.fit(x_train, y_train)</span><br><span class="line">lasso_pred_01 = lasso_01.predict(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># alpha = 100</span></span><br><span class="line">lasso_100 = Lasso(alpha=<span class="number">100</span>)</span><br><span class="line">lasso_100.fit(x_train, y_train)</span><br><span class="line">lasso_pred_100 = lasso_100.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
-<br>  
+  <br>
 <p>[alpha = 0.01]</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Index(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
@@ -839,7 +837,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
         -0.52790174])
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, lasso_01.coef_)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_100_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_100_0.png" alt="output_100_0"></p>
 <br>
 <p>[alpha = 100]</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
@@ -853,7 +851,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
        -0.        ,  0.00644409, -0.        ])
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, lasso_100.coef_)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_105_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_105_0.png" alt="output_105_0"></p>
 <br>
 <p><strong>&gt;&gt; ElasticNet</strong>  <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html" target="_blank" rel="noopener">[Document]</a></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> ElasticNet</span><br></pre></td></tr></tbody></table></figure>
@@ -862,7 +860,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ratios = [<span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.8</span>]</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># alpha = 0.5 로 고정</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ratio <span class="keyword">in</span> ratios:</span><br><span class="line">    elasticnet = ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=ratio)</span><br><span class="line">    elasticnet.fit(x_train, y_train)</span><br><span class="line">    elas_pred = elasticnet.predict(x_test)</span><br><span class="line">    mse_eval(<span class="string">'ElasticNet(l1_ratio={})'</span>.format(ratio), y_test, elas_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_111_0.png" alt="output_111_0"></p>
 <pre><code>                       model        mse
 0           Lasso(alpha=100)  63.348818
 1            Lasso(alpha=10)  42.436622
@@ -879,8 +877,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 12            Ridge(alpha=1)  22.690411
 13         Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_2.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_3.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_111_2.png" alt="output_111_2"></p>
+<p><img src="/images/S-Python-sklearn3/output_111_3.png" alt="output_111_3"></p>
 <pre><code>                       model        mse
 0           Lasso(alpha=100)  63.348818
 1            Lasso(alpha=10)  42.436622
@@ -898,8 +896,8 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 13            Ridge(alpha=1)  22.690411
 14         Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_5.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_6.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_111_5.png" alt="output_111_5"></p>
+<p><img src="/images/S-Python-sklearn3/output_111_6.png" alt="output_111_6"></p>
 <pre><code>                       model        mse
 0           Lasso(alpha=100)  63.348818
 1            Lasso(alpha=10)  42.436622
@@ -918,7 +916,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 14            Ridge(alpha=1)  22.690411
 15         Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_111_8.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_111_8.png" alt="output_111_8"></p>
 <br>
 <ul>
 <li><strong>coefficients 값 확인</strong></li>
@@ -937,7 +935,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
        -0.77186571,  0.01201684, -0.60780037])
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, elasticnet_2.coef_)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_119_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_119_0.png" alt="output_119_0"></p>
 <br>
 <p>[ l1_ratio = 0.8 ]</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.columns</span><br></pre></td></tr></tbody></table></figure>
@@ -951,11 +949,11 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
        -0.73481448,  0.01259147, -0.573733  ])
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_coef(x_train.columns, elasticnet_8.coef_)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_124_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_124_0.png" alt="output_124_0"></p>
 <br>
 <br>
-<h2 id="3-scaling"><a class="markdownIt-Anchor" href="#3-scaling"></a> <strong>3. Scaling</strong></h2>
-<h3 id="3-1-scaler-소개"><a class="markdownIt-Anchor" href="#3-1-scaler-소개"></a> 3-1. Scaler 소개</h3>
+<h2 id="4-scaling"><a class="markdownIt-Anchor" href="#4-scaling"></a> <strong>4. Scaling</strong></h2>
+<h3 id="4-1-scaler-소개"><a class="markdownIt-Anchor" href="#4-1-scaler-소개"></a> 4-1. Scaler 소개</h3>
 <ul>
 <li>
 <p>StandardScaler</p>
@@ -1137,7 +1135,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 </table>
 </div>
 </div>
-<br>  
+ <br> 
 <p><strong>&gt;&gt; StandardScaler</strong></p>
 <p>평균(mean)을 0, 표준편차(std)를 1로 만들어 주는 scaler</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std_scaler = StandardScaler()</span><br><span class="line">std_scaled = std_scaler.fit_transform(x_train)</span><br><span class="line">round(pd.DataFrame(std_scaled).describe(), <span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
@@ -1155,7 +1153,6 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 }
 </code></pre>
 </style>
-<div style="overflow:auto">
 <table>
   <thead>
     <tr style="text-align: right;">
@@ -1307,7 +1304,6 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
   </tbody>
 </table>
 </div>
-</div>
 <br>  
 <p><strong>&gt;&gt; MinMaxScaler</strong></p>
 <p>min값과 max값을 0~1사이로 정규화 (Normalize)</p>
@@ -1326,7 +1322,6 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 }
 </code></pre>
 </style>
-<div style="overflow:auto">
 <table>
   <thead>
     <tr style="text-align: right;">
@@ -1478,8 +1473,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
   </tbody>
 </table>
 </div>
-</div>
- <br> 
+<br>  
 <p><strong>&gt;&gt; RobustScaler</strong></p>
 <p>중앙값(median)이 0, IQR(interquartile rage)이 1이 되도록 변환<br>
 <strong>outlier 처리에 유용</strong></p>
@@ -1499,11 +1493,11 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 12    0.0
 dtype: float64
 </code></pre>
-<br>  
-<h3 id="3-2-scaling-후-모델-학습-파이프라인-이용"><a class="markdownIt-Anchor" href="#3-2-scaling-후-모델-학습-파이프라인-이용"></a> 3-2. Scaling 후 모델 학습 – 파이프라인 이용</h3>
+  <br>
+<h3 id="4-2-scaling-후-모델-학습-파이프라인-활용"><a class="markdownIt-Anchor" href="#4-2-scaling-후-모델-학습-파이프라인-활용"></a> 4-2. Scaling 후 모델 학습 – 파이프라인 활용</h3>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># elasticnet(alpha=0.1, l1_ratio=0.2) &lt; without standard scaling &gt;</span></span><br><span class="line">elasticnet_no_scale = ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=<span class="number">0.2</span>)</span><br><span class="line">no_scale_pred = elasticnet_no_scale.fit(x_train, y_train).predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'No Standard ElasticNet'</span>, y_test, no_scale_pred)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># elasticnet(alpha=0.1, l1_ratio=0.2) &lt; with standard scaling &gt;</span></span><br><span class="line">elasticnet_pipeline = make_pipeline(</span><br><span class="line">    StandardScaler(),</span><br><span class="line">    ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=<span class="number">0.2</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">with_scale_pred = elasticnet_pipeline.fit(x_train, y_train).predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'With Standard ElasticNet'</span>, y_test, with_scale_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_148_0.png" alt="output_148_0"></p>
 <pre><code>                       model        mse
 0           Lasso(alpha=100)  63.348818
 1            Lasso(alpha=10)  42.436622
@@ -1523,8 +1517,8 @@ dtype: float64
 15            Ridge(alpha=1)  22.690411
 16         Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_2.png" alt="png"></p>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_3.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_148_2.png" alt="output_148_2"></p>
+<p><img src="/images/S-Python-sklearn3/output_148_3.png" alt="output_148_3"></p>
 <pre><code>                       model        mse
 0           Lasso(alpha=100)  63.348818
 1            Lasso(alpha=10)  42.436622
@@ -1545,10 +1539,10 @@ dtype: float64
 16            Ridge(alpha=1)  22.690411
 17         Lasso(alpha=0.01)  22.635614
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_148_5.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_148_5.png" alt="output_148_5"></p>
 <br>
 <br>
-<h2 id="4-polynomial-features"><a class="markdownIt-Anchor" href="#4-polynomial-features"></a> <strong>4. Polynomial Features</strong></h2>
+<h2 id="5-polynomial-features"><a class="markdownIt-Anchor" href="#5-polynomial-features"></a> <strong>5. Polynomial Features</strong></h2>
 <p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html?highlight=poly%20feature#sklearn.preprocessing.PolynomialFeatures" target="_blank" rel="noopener">[Document]</a></p>
 <p>다항식의 계수간 상호작용을 통해 <strong>새로운 feature를 생성</strong>한다.<br>
 예를 들면, [a, b] 2개의 feature가 존재한다고 가정하고,<br>
@@ -1601,7 +1595,7 @@ B          394.95000
 LSTAT       16.21000
 Name: 112, dtype: float64
 </code></pre>
- <br> 
+  <br>
 <p><strong>Polynomial Features + Standard Scaling 후 모델 학습</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">poly_pipeline = make_pipeline(</span><br><span class="line">    PolynomialFeatures(degree=<span class="number">2</span>, include_bias=<span class="literal">False</span>),</span><br><span class="line">    StandardScaler(),</span><br><span class="line">    ElasticNet(alpha=<span class="number">0.1</span>, l1_ratio=<span class="number">0.2</span>)</span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poly_pred = poly_pipeline.fit(x_train, y_train).predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
@@ -1609,7 +1603,7 @@ Name: 112, dtype: float64
   positive)
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mse_eval(<span class="string">'Poly ElasticNet'</span>, y_test, poly_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_163_0.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_163_0.png" alt="output_163_0"></p>
 <pre><code>                       model        mse
 0           Lasso(alpha=100)  63.348818
 1            Lasso(alpha=10)  42.436622
@@ -1631,7 +1625,7 @@ Name: 112, dtype: float64
 17         Lasso(alpha=0.01)  22.635614
 18           Poly ElasticNet  17.526214
 </code></pre>
-<p><img src="/../../../0.%2520Study%2520Note/All%2520Study%2520Notes/Python/Study/%255BP%255D%2520Python%2520-%2520sklearn%2520(3)/output_163_2.png" alt="png"></p>
+<p><img src="/images/S-Python-sklearn3/output_163_2.png" alt="output_163_2"></p>
 <p>2차 Polynomial Features 추가 후 학습된 모델의 성능이 많이 향상 된것을 확인할 수 있다</p>
 <br>
 <br><script>
