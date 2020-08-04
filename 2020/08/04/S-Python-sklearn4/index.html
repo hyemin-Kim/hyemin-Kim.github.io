@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble) | Hyemin Kim</title><meta name="description" content="Voting, Bagging, Boosting, Stacking, Cross Validation"><meta name="keywords" content="Python,sklearn,Machine Learning,앙상블"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble)"><meta name="twitter:description" content="Voting, Bagging, Boosting, Stacking, Cross Validation"><meta name="twitter:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble)"><meta property="og:url" content="https://hyemin-kim.github.io/2020/08/04/S-Python-sklearn4/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="Voting, Bagging, Boosting, Stacking, Cross Validation"><meta property="og:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="article:published_time" content="2020-08-04T11:40:35.000Z"><meta property="article:modified_time" content="2020-08-04T12:18:19.749Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble) | Hyemin Kim</title><meta name="description" content="Voting, Bagging, Boosting, Stacking, Cross Validation"><meta name="keywords" content="Python,sklearn,Machine Learning,앙상블"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_m.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble)"><meta name="twitter:description" content="Voting, Bagging, Boosting, Stacking, Cross Validation"><meta name="twitter:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble)"><meta property="og:url" content="https://hyemin-kim.github.io/2020/08/04/S-Python-sklearn4/"><meta property="og:site_name" content="Hyemin Kim"><meta property="og:description" content="Voting, Bagging, Boosting, Stacking, Cross Validation"><meta property="og:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><meta property="article:published_time" content="2020-08-04T11:40:35.000Z"><meta property="article:modified_time" content="2020-08-04T12:26:39.153Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = 'false'
 var t = Cookies.get("theme")
 if (autoChangeMode == '1'){
   var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -91,7 +91,7 @@ ga('send', 'pageview');
   opacity: 1
 }
 </style></noscript><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">39</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">21</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#앙상블-ensemble"><span class="toc-text"> 앙상블 (Ensemble)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-데이터-셋"><span class="toc-text"> 0. 데이터 셋</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-데이터-로드"><span class="toc-text"> 0-1. 데이터 로드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-데이터프레임-만들기"><span class="toc-text"> 0-2. 데이터프레임 만들기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-training-set-test-set-나누기"><span class="toc-text"> 1. Training set &#x2F; Test set 나누기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-평가-지표-만들기"><span class="toc-text"> 2. 평가 지표 만들기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-평가-지표"><span class="toc-text"> 2-1. 평가 지표</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-모델-성능-확인을-위한-함수"><span class="toc-text"> 2-2. 모델 성능 확인을 위한 함수</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-단일-회귀-모델-지난-시간"><span class="toc-text"> 3. 단일 회귀 모델 (지난 시간)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-linear-regression"><span class="toc-text"> (1)  Linear Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ridge"><span class="toc-text"> (2)  Ridge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-lasso"><span class="toc-text"> (3)  LASSO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-elasticnet"><span class="toc-text"> (4) ElasticNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-with-standard-scaling"><span class="toc-text"> (5) With Standard Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-polynomial-features"><span class="toc-text"> (6) Polynomial Features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-앙상블-ensemble-알고리즘"><span class="toc-text"> 4. 앙상블 (Ensemble)  알고리즘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-보팅-voting"><span class="toc-text"> 4-1. 보팅 (Voting)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#회귀-regression"><span class="toc-text"> &gt;&gt; 회귀 (Regression)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#분류-classification"><span class="toc-text"> &gt;&gt; 분류 (Classification)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-배깅-bagging"><span class="toc-text"> 4-2. 배깅 (Bagging)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#random-forest"><span class="toc-text"> &gt;&gt; Random Forest</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-부스팅-boosting"><span class="toc-text"> 4-3. 부스팅 (Boosting)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-gradient-boost"><span class="toc-text"> 4-3-1. Gradient Boost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-xgboost"><span class="toc-text"> 4-3-2. XGBoost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-lightgbm"><span class="toc-text"> 4-3-3. LightGBM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-스태킹-stacking"><span class="toc-text"> 4-4. 스태킹 (Stacking)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-weighted-blending"><span class="toc-text"> 4-5. Weighted Blending</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-앙상블-모델-정리"><span class="toc-text"> 4-6. 앙상블 모델 정리</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-cross-validation"><span class="toc-text"> 5. Cross Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-cross-validation-소개"><span class="toc-text"> 5-1. Cross Validation 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-hyper-parameter-튜닝"><span class="toc-text"> 5-2. Hyper-parameter 튜닝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-randomizedsearchcv"><span class="toc-text"> (1) RandomizedSearchCV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-gridserchcv"><span class="toc-text"> (2) GridSerchCV</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble)</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-08-04 20:40:35"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-08-04</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-08-04 21:18:19"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-08-04</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="앙상블-ensemble"><a class="markdownIt-Anchor" href="#앙상블-ensemble"></a> 앙상블 (Ensemble)</h1>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">39</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">21</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#앙상블-ensemble"><span class="toc-text"> 앙상블 (Ensemble)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-데이터-셋"><span class="toc-text"> 0. 데이터 셋</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-데이터-로드"><span class="toc-text"> 0-1. 데이터 로드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-데이터프레임-만들기"><span class="toc-text"> 0-2. 데이터프레임 만들기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-training-set-test-set-나누기"><span class="toc-text"> 1. Training set &#x2F; Test set 나누기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-평가-지표-만들기"><span class="toc-text"> 2. 평가 지표 만들기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-평가-지표"><span class="toc-text"> 2-1. 평가 지표</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-모델-성능-확인을-위한-함수"><span class="toc-text"> 2-2. 모델 성능 확인을 위한 함수</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-단일-회귀-모델-지난-시간"><span class="toc-text"> 3. 단일 회귀 모델 (지난 시간)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-linear-regression"><span class="toc-text"> (1)  Linear Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ridge"><span class="toc-text"> (2)  Ridge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-lasso"><span class="toc-text"> (3)  LASSO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-elasticnet"><span class="toc-text"> (4) ElasticNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-with-standard-scaling"><span class="toc-text"> (5) With Standard Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-polynomial-features"><span class="toc-text"> (6) Polynomial Features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-앙상블-ensemble-알고리즘"><span class="toc-text"> 4. 앙상블 (Ensemble)  알고리즘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-보팅-voting"><span class="toc-text"> 4-1. 보팅 (Voting)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#회귀-regression"><span class="toc-text"> &gt;&gt; 회귀 (Regression)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#분류-classification"><span class="toc-text"> &gt;&gt; 분류 (Classification)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-배깅-bagging"><span class="toc-text"> 4-2. 배깅 (Bagging)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#random-forest"><span class="toc-text"> &gt;&gt; Random Forest</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-부스팅-boosting"><span class="toc-text"> 4-3. 부스팅 (Boosting)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-gradient-boost"><span class="toc-text"> 4-3-1. Gradient Boost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-xgboost"><span class="toc-text"> 4-3-2. XGBoost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-lightgbm"><span class="toc-text"> 4-3-3. LightGBM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-스태킹-stacking"><span class="toc-text"> 4-4. 스태킹 (Stacking)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-weighted-blending"><span class="toc-text"> 4-5. Weighted Blending</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-앙상블-모델-정리"><span class="toc-text"> 4-6. 앙상블 모델 정리</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-cross-validation"><span class="toc-text"> 5. Cross Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-cross-validation-소개"><span class="toc-text"> 5-1. Cross Validation 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-hyper-parameter-튜닝"><span class="toc-text"> 5-2. Hyper-parameter 튜닝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-randomizedsearchcv"><span class="toc-text"> (1) RandomizedSearchCV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-gridserchcv"><span class="toc-text"> (2) GridSerchCV</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div class="post-bg" id="nav" style="background-image: url(https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hyemin Kim</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; sklearn - (4) 앙상블 (Ensemble)</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-08-04 20:40:35"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-08-04</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-08-04 21:26:39"><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-08-04</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fa fa-angle-right post-meta__separator" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="앙상블-ensemble"><a class="markdownIt-Anchor" href="#앙상블-ensemble"></a> 앙상블 (Ensemble)</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%85%8B"><strong>0. 데이터 셋</strong></a>
 <ul>
@@ -580,7 +580,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
                 n_jobs=-1, weights=None)
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">voting_pred = voting_regressor.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'Voting Ensemble'</span>, y_test, voting_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_74_0.png" alt="output_74_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_74_0-1596543659301.png" alt="output_74_0"></p>
 <pre><code>                      model        mse
 0       Standard ElasticNet  26.010756
 1  ElasticNet(l1_ratio=0.2)  24.481069
@@ -590,7 +590,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 5           Voting Ensemble  22.092158
 6           Poly ElasticNet  20.805986
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_74_2.png" alt="output_74_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_74_2-1596543665427.png" alt="output_74_2"></p>
 <br>
 <h4 id="분류-classification"><a class="markdownIt-Anchor" href="#분류-classification"></a> &gt;&gt; 분류 (Classification)</h4>
 <p><a href="https://teddylee777.github.io/machine-learning/ensemble%EA%B8%B0%EB%B2%95%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4%EC%99%80-%EC%A2%85%EB%A5%98-1" target="_blank" rel="noopener">참고 자료 (Blog)</a></p>
@@ -633,7 +633,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <li>group 3 = [2, 3, 5]</li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image(<span class="string">'https://teddylee777.github.io/images/2019-12-17/image-20191217015537872.png'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_94_0.png" alt="output_94_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_94_0-1596543677837.png" alt="output_94_0"></p>
 <br>  
 <p><strong>Voting VS Bagging</strong></p>
 <ul>
@@ -674,7 +674,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
                       random_state=1, verbose=0, warm_start=False)
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rfr_pred = rfr.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'RandomForest Ensemble'</span>, y_test, rfr_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_107_0.png" alt="output_107_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_107_0-1596543686370.png" alt="output_107_0"></p>
 <pre><code>                      model        mse
 0       Standard ElasticNet  26.010756
 1  ElasticNet(l1_ratio=0.2)  24.481069
@@ -685,7 +685,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 6           Poly ElasticNet  20.805986
 7     RandomForest Ensemble  13.781191
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_107_2.png" alt="output_107_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_107_2-1596543692042.png" alt="output_107_2"></p>
 <br>
 <p><strong>주요 Hyper-parameter</strong></p>
 <ul>
@@ -697,11 +697,11 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <li><strong>min_samples_split:</strong> 트리가 분할할 때 최소 샘플의 갯수. default=2. 과대적합 방지용</li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image(<span class="string">'https://teddylee777.github.io/images/2020-01-09/decistion-tree.png'</span>, width=<span class="number">600</span>)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_110_0.png" alt="output_110_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_110_0-1596543700142.png" alt="output_110_0"></p>
  <br> 
 <p><strong>With Hyper-parameter Tuning</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rfr_t = RandomForestRegressor(random_state=<span class="number">1</span>, n_estimators=<span class="number">500</span>, max_depth=<span class="number">7</span>, max_features=<span class="string">'sqrt'</span>)</span><br><span class="line">rfr_t.fit(x_train, y_train)</span><br><span class="line">rfr_t_pred = rfr_t.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'RandomForest Ensemble w/ Tuning'</span>, y_test, rfr_t_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_113_0.png" alt="output_113_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_113_0-1596543713401.png" alt="output_113_0"></p>
 <pre><code>                             model        mse
 0              Standard ElasticNet  26.010756
 1         ElasticNet(l1_ratio=0.2)  24.481069
@@ -713,7 +713,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 7            RandomForest Ensemble  13.781191
 8  RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_113_2.png" alt="output_113_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_113_2-1596543719396.png" alt="output_113_2"></p>
 <br>
 <h3 id="4-3-부스팅-boosting"><a class="markdownIt-Anchor" href="#4-3-부스팅-boosting"></a> 4-3. 부스팅 (Boosting)</h3>
 <p><a href="https://teddylee777.github.io/machine-learning/ensemble%EA%B8%B0%EB%B2%95%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4%EC%99%80-%EC%A2%85%EB%A5%98-3" target="_blank" rel="noopener">참고 자료 (Blog)</a></p>
@@ -728,7 +728,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 <li>다른 앙상블 대비 <strong>학습 시간이 오래걸린다는 단점</strong>이 존재</li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image(<span class="string">'https://keras.io/img/graph-kaggle-1.jpeg'</span>, width=<span class="number">800</span>)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_120_0.jpg" alt="output_120_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_120_0-1596543725618.jpg" alt="output_120_0"></p>
   <br>
 <p><strong>대표적인 Boosting 앙상블</strong></p>
 <ol>
@@ -765,7 +765,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
                           validation_fraction=0.1, verbose=0, warm_start=False)
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gbr_pred = gbr.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'GradientBoost Ensemble'</span>, y_test, gbr_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_129_0.png" alt="output_129_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_129_0-1596543733348.png" alt="output_129_0"></p>
 <pre><code>                             model        mse
 0              Standard ElasticNet  26.010756
 1         ElasticNet(l1_ratio=0.2)  24.481069
@@ -778,7 +778,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 8           GradientBoost Ensemble  13.451877
 9  RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_129_2.png" alt="output_129_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_129_2-1596543738508.png" alt="output_129_2"></p>
 <br>
 <p><strong>주요 Hyper-parameter</strong></p>
 <ul>
@@ -796,7 +796,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 </blockquote>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># with hyper-parameter tuning</span></span><br><span class="line"><span class="comment"># learning_rate=0.01 (without tuning n_estimators together)</span></span><br><span class="line">gbr_t = GradientBoostingRegressor(random_state=<span class="number">1</span>, learning_rate=<span class="number">0.01</span>)</span><br><span class="line">gbr_t.fit(x_train, y_train)</span><br><span class="line">gbr_t_pred = gbr_t.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'GradientBoost Ensemble w/ tuning (lr=0.01)'</span>, y_test, gbr_t_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_133_0.png" alt="output_133_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_133_0-1596543744823.png" alt="output_133_0"></p>
 <pre><code>                                         model        mse
 0                          Standard ElasticNet  26.010756
 1   GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -810,10 +810,10 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 9                       GradientBoost Ensemble  13.451877
 10             RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_133_2.png" alt="output_133_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_133_2-1596543750011.png" alt="output_133_2"></p>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tuning: learning_rate=0.01, n_estimators=1000</span></span><br><span class="line">gbr_t2 = GradientBoostingRegressor(random_state=<span class="number">1</span>, learning_rate=<span class="number">0.01</span>, n_estimators=<span class="number">1000</span>)</span><br><span class="line">gbr_t2.fit(x_train, y_train)</span><br><span class="line">gbr_t2_pred = gbr_t2.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'GradientBoost Ensemble w/ tuning (lr=0.01, est=1000)'</span>, y_test, gbr_t2_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_135_0.png" alt="output_135_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_135_0-1596543755501.png" alt="output_135_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -828,10 +828,10 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 10  GradientBoost Ensemble w/ tuning (lr=0.01, est...  13.002472
 11                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_135_2.png" alt="output_135_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_135_2-1596543760559.png" alt="output_135_2"></p>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tuning: learning_rate=0.01, n_estimators=1000, subsample=0.8</span></span><br><span class="line">gbr_t3 = GradientBoostingRegressor(random_state=<span class="number">42</span>, learning_rate=<span class="number">0.01</span>, n_estimators=<span class="number">1000</span>, subsample=<span class="number">0.7</span>)</span><br><span class="line">gbr_t3.fit(x_train, y_train)</span><br><span class="line">gbr_t3_pred = gbr_t3.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'GradientBoost Ensemble w/ tuning (lr=0.01, est=1000, subsample=0.7)'</span>, y_test, gbr_t3_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_137_0.png" alt="output_137_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_137_0-1596543766188.png" alt="output_137_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -847,7 +847,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"></path><
 11  GradientBoost Ensemble w/ tuning (lr=0.01, est...  12.607717
 12                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_137_2.png" alt="output_137_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_137_2-1596543771241.png" alt="output_137_2"></p>
 <br>
 <h4 id="4-3-2-xgboost"><a class="markdownIt-Anchor" href="#4-3-2-xgboost"></a> 4-3-2. XGBoost</h4>
 <p>e<strong>X</strong>treme <strong>G</strong>radient <strong>B</strong>oosting</p>
@@ -887,7 +887,7 @@ Note: you may need to restart the kernel to use updated packages.
              validate_parameters=1, verbosity=None)
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xgb_pred = xgb.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'XGBoost'</span>, y_test, xgb_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_146_0.png" alt="output_146_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_146_0-1596543778583.png" alt="output_146_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -904,7 +904,7 @@ Note: you may need to restart the kernel to use updated packages.
 12  GradientBoost Ensemble w/ tuning (lr=0.01, est...  12.607717
 13                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_146_2.png" alt="output_146_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_146_2-1596543783973.png" alt="output_146_2"></p>
 <br>
 <p><strong>주요 Hyper-parameter</strong></p>
 <ul>
@@ -941,7 +941,7 @@ Parameters: { max_features } might not be used.
 </code></pre>
 <p>​<br>
 ​</p>
-<p><img src="../images/S-Python-sklearn4/output_150_1.png" alt="output_150_1"></p>
+<p><img src="/images/S-Python-sklearn4/output_150_1-1596543791859.png" alt="output_150_1"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -959,7 +959,7 @@ Parameters: { max_features } might not be used.
 13                                  XGBoost w/ Tuning  11.987602
 14                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_150_3.png" alt="output_150_3"></p>
+<p><img src="/images/S-Python-sklearn4/output_150_3-1596543797426.png" alt="output_150_3"></p>
 <br>
 <h4 id="4-3-3-lightgbm"><a class="markdownIt-Anchor" href="#4-3-3-lightgbm"></a> 4-3-3. LightGBM</h4>
 <p><a href="https://lightgbm.readthedocs.io/en/latest/" target="_blank" rel="noopener">[LightGBM] Document</a></p>
@@ -994,7 +994,7 @@ Note: you may need to restart the kernel to use updated packages.
               subsample=1.0, subsample_for_bin=200000, subsample_freq=0)
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lgbm_pred = lgbm.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'LightGBM'</span>, y_test, lgbm_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_158_0.png" alt="output_158_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_158_0-1596543804030.png" alt="output_158_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -1013,7 +1013,8 @@ Note: you may need to restart the kernel to use updated packages.
 14                                  XGBoost w/ Tuning  11.987602
 15                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_158_2.png" alt="output_158_2"><br></p>
+<p><img src="/images/S-Python-sklearn4/output_158_2-1596543812633.png" alt="output_158_2"></p>
+<br>
 <p><strong>주요 Hyperparameter</strong></p>
 <ul>
 <li>
@@ -1037,7 +1038,7 @@ Note: you may need to restart the kernel to use updated packages.
 </li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># with hyper-parameter tuning</span></span><br><span class="line">lgbm_t = LGBMRegressor(random_state=<span class="number">1</span>, learning_rate=<span class="number">0.01</span>, n_estimators=<span class="number">2000</span>, colsample_bytree=<span class="number">0.9</span>, subsample=<span class="number">0.7</span>, max_depth=<span class="number">5</span>)</span><br><span class="line">lgbm_t.fit(x_train, y_train)</span><br><span class="line">lgbm_t_pred = lgbm_t.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'LightGBM w/ Tuning'</span>, y_test, lgbm_t_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_162_0.png" alt="output_162_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_162_0-1596543872792.png" alt="output_162_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -1057,7 +1058,7 @@ Note: you may need to restart the kernel to use updated packages.
 15                                  XGBoost w/ Tuning  11.987602
 16                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_162_2.png" alt="output_162_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_162_2-1596543881929.png" alt="output_162_2"></p>
 <br>
 <h3 id="4-4-스태킹-stacking"><a class="markdownIt-Anchor" href="#4-4-스태킹-stacking"></a> 4-4. 스태킹 (Stacking)</h3>
 <p>개별 모델이 예측한 데이터를 기반으로 <strong>final_estimators</strong> 종합하여 예측을 수행</p>
@@ -1074,7 +1075,7 @@ Note: you may need to restart the kernel to use updated packages.
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> StackingRegressor</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stack_models = [</span><br><span class="line">    (<span class="string">'elasticnet'</span>, poly_elasticnet),</span><br><span class="line">    (<span class="string">'randomforest'</span>, rfr_t),</span><br><span class="line">    (<span class="string">'lgbm'</span>, lgbm_t)</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stack_reg = StackingRegressor(stack_models, final_estimator=xgb, n_jobs=<span class="number">-1</span>)</span><br><span class="line">stack_reg.fit(x_train, y_train)</span><br><span class="line">stack_pred = stack_reg.predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'Stacking Ensemble'</span>, y_test, stack_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_171_0.png" alt="output_171_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_171_0-1596543891772.png" alt="output_171_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -1095,7 +1096,7 @@ Note: you may need to restart the kernel to use updated packages.
 16                                  XGBoost w/ Tuning  11.987602
 17                    RandomForest Ensemble w/ Tuning  11.481491
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_171_2.png" alt="output_171_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_171_2-1596543909420.png" alt="output_171_2"></p>
 <br>
 <h3 id="4-5-weighted-blending"><a class="markdownIt-Anchor" href="#4-5-weighted-blending"></a> 4-5. Weighted Blending</h3>
 <p>각 모델의 <strong>예측값</strong>에 대하여 weight를 곱해혀 최종 output 산출</p>
@@ -1111,7 +1112,7 @@ Note: you may need to restart the kernel to use updated packages.
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">final_outputs = {</span><br><span class="line">    <span class="string">'randomforest'</span>: rfr_t_pred,</span><br><span class="line">    <span class="string">'xgboost'</span>: xgb_t_pred,</span><br><span class="line">    <span class="string">'lgbm'</span>: lgbm_t_pred</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">final_prediction=\</span><br><span class="line">final_outputs[<span class="string">'randomforest'</span>] * <span class="number">0.5</span>\</span><br><span class="line">+final_outputs[<span class="string">'xgboost'</span>] * <span class="number">0.3</span>\</span><br><span class="line">+final_outputs[<span class="string">'lgbm'</span>] * <span class="number">0.2</span>\</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mse_eval(<span class="string">'Weighted Blending'</span>, y_test, final_prediction)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_178_0.png" alt="output_178_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_178_0-1596543918172.png" alt="output_178_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -1133,7 +1134,7 @@ Note: you may need to restart the kernel to use updated packages.
 17                    RandomForest Ensemble w/ Tuning  11.481491
 18                                  Weighted Blending  10.585610
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_178_2.png" alt="output_178_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_178_2-1596543958921.png" alt="output_178_2"></p>
 <br>
 <h3 id="4-6-앙상블-모델-정리"><a class="markdownIt-Anchor" href="#4-6-앙상블-모델-정리"></a> 4-6. 앙상블 모델 정리</h3>
 <ol>
@@ -1407,7 +1408,7 @@ Average Error: 12.06743160435072
  'colsample_bytree': 0.9}
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lgbm_best = LGBMRegressor(learning_rate=<span class="number">0.05</span>, n_estimators=<span class="number">1000</span>, subsample=<span class="number">0.8</span>, max_depth=<span class="number">3</span>, colsample_bytree=<span class="number">0.9</span>)</span><br><span class="line">lgbm_best_pred = lgbm_best.fit(x_train, y_train).predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'RandomSearch LGBM'</span>, y_test, lgbm_best_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_216_0.png" alt="output_216_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_216_0-1596543976320.png" alt="output_216_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -1430,7 +1431,7 @@ Average Error: 12.06743160435072
 18                    RandomForest Ensemble w/ Tuning  11.481491
 19                                  Weighted Blending  10.585610
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_216_2.png" alt="output_216_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_216_2-1596543983232.png" alt="output_216_2"></p>
 <br>
 <h4 id="2-gridserchcv"><a class="markdownIt-Anchor" href="#2-gridserchcv"></a> (2) GridSerchCV</h4>
 <ul>
@@ -1472,7 +1473,7 @@ Average Error: 12.06743160435072
  'subsample': 0.8}
 </code></pre>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lgbm_best = LGBMRegressor(learning_rate=<span class="number">0.05</span>, n_estimators=<span class="number">800</span>, subsample=<span class="number">0.8</span>, max_depth=<span class="number">3</span>, colsample_bytree=<span class="number">0.9</span>)</span><br><span class="line">lgbm_best_pred = lgbm_best.fit(x_train, y_train).predict(x_test)</span><br><span class="line">mse_eval(<span class="string">'GridSearch LGBM'</span>, y_test, lgbm_best_pred)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/S-Python-sklearn4/output_226_0.png" alt="output_226_0"></p>
+<p><img src="/images/S-Python-sklearn4/output_226_0-1596543990796.png" alt="output_226_0"></p>
 <pre><code>                                                model        mse
 0                                 Standard ElasticNet  26.010756
 1          GradientBoost Ensemble w/ tuning (lr=0.01)  24.599441
@@ -1496,7 +1497,7 @@ Average Error: 12.06743160435072
 19                    RandomForest Ensemble w/ Tuning  11.481491
 20                                  Weighted Blending  10.585610
 </code></pre>
-<p><img src="../images/S-Python-sklearn4/output_226_2.png" alt="output_226_2"></p>
+<p><img src="/images/S-Python-sklearn4/output_226_2-1596543997347.png" alt="output_226_2"></p>
 <br>
 <br><script>
         document.querySelectorAll('.github-emoji')
