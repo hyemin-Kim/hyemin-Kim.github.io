@@ -38246,7 +38246,7 @@ Average Error: 12.06743160435072
       </tags>
   </entry>
   <entry>
-    <title>【실습】Python &gt;&gt; EDA &amp; Linear Regression -- 부동산 데이터</title>
+    <title>【실습】 Python &gt;&gt; EDA &amp; Linear Regression -- 부동산 데이터</title>
     <url>/2020/08/11/E-Python-LinearRegression-1/</url>
     <content><![CDATA[<h1 id="eda-regression-실습-부동산-데이터"><a class="markdownIt-Anchor" href="#eda-regression-실습-부동산-데이터"></a> 【EDA &amp; Regression 실습】 – 부동산 데이터</h1>
 <p></p><ul class="markdownIt-TOC">
@@ -38255,13 +38255,32 @@ Average Error: 12.06743160435072
 <ul>
 <li><a href="#2-1-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B-%EA%B8%B0%EB%B3%B8-%EC%A0%95%EB%B3%B4-%ED%83%90%EC%83%89">2-1. 데이터셋 기본 정보 탐색</a></li>
 <li><a href="#2-2-%ED%9A%8C%EA%B7%80-%EB%B6%84%EC%84%9D-%EC%A2%85%EC%86%8D%EB%AA%A9%ED%91%9C-%EB%B3%80%EC%88%98-%ED%83%90%EC%83%89">2-2. 회귀 분석 종속(목표) 변수 탐색</a></li>
-<li><a href="#2-3-%ED%9A%8C%EA%B7%80-%EB%B6%84%EC%84%9D-%EC%84%A4%EB%AA%85-%EB%B3%80%EC%88%98-%ED%83%90%EC%83%89">2-3. 회귀 분석 설명 변수 탐색</a></li>
+<li><a href="#2-3-%ED%9A%8C%EA%B7%80-%EB%B6%84%EC%84%9D-%EC%84%A4%EB%AA%85-%EB%B3%80%EC%88%98-%ED%83%90%EC%83%89">2-3. 회귀 분석 설명 변수 탐색</a>
+<ul>
+<li><a href="#%EC%84%A4%EB%AA%85-%EB%B3%80%EC%88%98%EB%93%A4%EC%9D%98-%EB%B6%84%ED%8F%AC-%ED%83%90%EC%83%89">&gt;&gt; 설명 변수들의 분포 탐색</a></li>
+<li><a href="#%EC%84%A4%EB%AA%85-%EB%B3%80%EC%88%98%EB%93%A4%EC%9D%98-%EC%83%81%EA%B4%80%EA%B4%80%EA%B3%84-%ED%83%90%EC%83%89-with-target-variable-cmedv">&gt;&gt; 설명 변수들의 상관관계 탐색  (with target variable “CMEDV”)</a></li>
+<li><a href="#%EC%84%A4%EB%AA%85-%EB%B3%80%EC%88%98%EC%99%80-%EC%A2%85%EC%86%8D-%EB%B3%80%EC%88%98%EC%9D%98-%EA%B4%80%EA%B3%84-%ED%83%90%EC%83%89">&gt;&gt; 설명 변수와 종속 변수의 관계 탐색</a></li>
+<li><a href="#%EC%A7%80%EC%97%AD%EB%B3%84-%EC%B0%A8%EC%9D%B4-%ED%83%90%EC%83%89">&gt;&gt; 지역별 차이 탐색</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#3-%EC%A7%91%EA%B0%92-%EC%98%88%EC%B8%A1-%EB%B6%84%EC%84%9D-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D"><strong>3. 집값 예측 분석: 회귀분석</strong></a>
 <ul>
-<li><a href="#3-1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%84%EC%B2%98%EB%A6%AC">3-1. 데이터 전처리</a></li>
-<li><a href="#3-2-%ED%9A%8C%EA%B7%80-%EB%B6%84%EC%84%9D-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5">3-2. 회귀 분석 모델 학습</a></li>
+<li><a href="#3-1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%84%EC%B2%98%EB%A6%AC">3-1. 데이터 전처리</a>
+<ul>
+<li><a href="#feature-%ED%91%9C%EC%A4%80%ED%99%94">&gt;&gt; feature 표준화</a></li>
+<li><a href="#training-set-test-set-%EB%82%98%EB%88%84%EA%B8%B0">&gt;&gt; Training set / Test set 나누기</a></li>
+<li><a href="#%EB%8B%A4%EC%A4%91-%EA%B3%B5%EC%84%A0%EC%84%B1">&gt;&gt; 다중 공선성</a></li>
+</ul>
+</li>
+<li><a href="#3-2-%ED%9A%8C%EA%B7%80-%EB%B6%84%EC%84%9D-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5-%EB%B0%8F-%EC%98%88%EC%B8%A1">3-2. 회귀 분석 모델 학습 및 예측</a>
+<ul>
+<li><a href="#coefficients-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0">&gt;&gt; coefficients 확인하기</a></li>
+<li><a href="#feature-%EC%9C%A0%EC%9D%98%EC%84%B1-%EA%B2%80%EC%A0%95">&gt;&gt; feature 유의성 검정</a></li>
+<li><a href="#%EC%98%88%EC%B8%A1-%EA%B2%B0%EA%B3%BC-%EB%B0%8F-%EB%AA%A8%EB%8D%B8-%EC%84%B1%EB%8A%A5-%ED%99%95%EC%9D%B8">&gt;&gt; 예측 결과 및 모델 성능 확인</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -38560,11 +38579,11 @@ Name: CMEDV, dtype: float64
 <p><img src="/images/E-Python-LinearRegression-1/output_27_0.png" alt="output_27_0"></p>
 <br>
 <h3 id="2-3-회귀-분석-설명-변수-탐색"><a class="markdownIt-Anchor" href="#2-3-회귀-분석-설명-변수-탐색"></a> 2-3. 회귀 분석 설명 변수 탐색</h3>
-<p><strong>&gt;&gt; 설명 변수들의 분포 탐색</strong></p>
+<h4 id="설명-변수들의-분포-탐색"><a class="markdownIt-Anchor" href="#설명-변수들의-분포-탐색"></a> &gt;&gt; 설명 변수들의 분포 탐색</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># numerical features (except "LON" &amp; "LAT")</span></span><br><span class="line">numerical_columns = [<span class="string">'CRIM'</span>, <span class="string">'ZN'</span>, <span class="string">'INDUS'</span>, <span class="string">'CHAS'</span>, <span class="string">'NOX'</span>, <span class="string">'RM'</span>, <span class="string">'AGE'</span>, <span class="string">'DIS'</span>, <span class="string">'RAD'</span>, <span class="string">'TAX'</span>, <span class="string">'PTRATIO'</span>, <span class="string">'B'</span>, <span class="string">'LSTAT'</span>]</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">16</span>, <span class="number">20</span>))</span><br><span class="line">ax = fig.gca()  <span class="comment"># Axes 생성</span></span><br><span class="line"></span><br><span class="line">df[numerical_columns].hist(ax=ax)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/E-Python-LinearRegression-1/output_31_0.png" alt="output_31_0"></p>
 <br>
-<p><strong>&gt;&gt; 설명 변수들의 상관관계 탐색</strong>  (with target variable “CMEDV”)</p>
+<h4 id="설명-변수들의-상관관계-탐색-with-target-variable-cmedv"><a class="markdownIt-Anchor" href="#설명-변수들의-상관관계-탐색-with-target-variable-cmedv"></a> &gt;&gt; 설명 변수들의 상관관계 탐색  (with target variable “CMEDV”)</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Person 상관계수</span></span><br><span class="line">cols = [<span class="string">'CMEDV'</span>, <span class="string">'CRIM'</span>, <span class="string">'ZN'</span>, <span class="string">'INDUS'</span>, <span class="string">'CHAS'</span>, <span class="string">'NOX'</span>, <span class="string">'RM'</span>, <span class="string">'AGE'</span>, <span class="string">'DIS'</span>, <span class="string">'RAD'</span>, <span class="string">'TAX'</span>, <span class="string">'PTRATIO'</span>, <span class="string">'B'</span>, <span class="string">'LSTAT'</span>]</span><br><span class="line"></span><br><span class="line">corr = df[cols].corr(method = <span class="string">'pearson'</span>)</span><br><span class="line">corr</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -38845,12 +38864,13 @@ Name: CMEDV, dtype: float64
 </div>
 </div>
 <br>
+<br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># heatmap (seaborn)</span></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">16</span>, <span class="number">12</span>))</span><br><span class="line">ax = fig.gca()</span><br><span class="line"></span><br><span class="line">sns.set(font_scale = <span class="number">1.5</span>)  <span class="comment"># heatmap 안의 font-size 설정</span></span><br><span class="line">heatmap = sns.heatmap(corr.values, annot = <span class="literal">True</span>, fmt=<span class="string">'.2f'</span>, annot_kws={<span class="string">'size'</span>:<span class="number">15</span>},</span><br><span class="line">                      yticklabels = cols, xticklabels = cols, ax=ax)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/E-Python-LinearRegression-1/output_35_0.png" alt="output_35_0"></p>
 <p>우리의 관심사인 target variable **“CMEDV”**가 다른 feature간의 상관관계를 살펴보면, 이는 <strong>“RM - 자택당 평균 방 갯수”(0.7)</strong> 및 **“LSTAT - 빈곤층의 비율”(-0.74)**과 <strong>강한 상관관계</strong>를 보이고 있다는 것을 알 수 있다.</p>
 <p>이 두 변수와의 관계를 좀 더 자세히 살펴볼게요.</p>
   <br>
-<p><strong>&gt;&gt; 설명 변수와 종속 변수의 관계 탐색</strong></p>
+<h4 id="설명-변수와-종속-변수의-관계-탐색"><a class="markdownIt-Anchor" href="#설명-변수와-종속-변수의-관계-탐색"></a> &gt;&gt; 설명 변수와 종속 변수의 관계 탐색</h4>
 <ul>
 <li>집값 ( “CMEDV” )  ~  방 갯수 ( “RM” )</li>
 </ul>
@@ -38865,7 +38885,7 @@ Name: CMEDV, dtype: float64
 <p><img src="/images/E-Python-LinearRegression-1/output_43_0.png" alt="output_43_0"></p>
 <p>집값은 빈곤층의 비율과 음의 상관관계(negative correlation)를 갖는다. 즉, 빈곤층의 비율이 높을 수록 집값이 낮은 경향이 있다.</p>
   <br>
-<p><strong>&gt;&gt; 지역별 차이 탐색</strong></p>
+<h4 id="지역별-차이-탐색"><a class="markdownIt-Anchor" href="#지역별-차이-탐색"></a> &gt;&gt; 지역별 차이 탐색</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 지역 데이터 - "TOWN"</span></span><br><span class="line">df[<span class="string">'TOWN'</span>].value_counts()</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>Cambridge            30
 Boston Savin Hill    23
@@ -38899,7 +38919,7 @@ Name: TOWN, Length: 92, dtype: int64
 <br>
 <h2 id="3-집값-예측-분석-회귀분석"><a class="markdownIt-Anchor" href="#3-집값-예측-분석-회귀분석"></a> <strong>3. 집값 예측 분석: 회귀분석</strong></h2>
 <h3 id="3-1-데이터-전처리"><a class="markdownIt-Anchor" href="#3-1-데이터-전처리"></a> 3-1. 데이터 전처리</h3>
-<p><strong>&gt;&gt; feature 표준화</strong></p>
+<h4 id="feature-표준화"><a class="markdownIt-Anchor" href="#feature-표준화"></a> &gt;&gt; feature 표준화</h4>
 <p>Feature 들의 scale 차이를 없애기 위해 먼저 Feature 표준화를 진행한다.</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
 <div>
@@ -39219,7 +39239,7 @@ memory usage: 67.3+ KB
 </div>
 </div>
 <br>  
-<p><strong>&gt;&gt; Training set / Test set 나누기</strong></p>
+<h4 id="training-set-test-set-나누기"><a class="markdownIt-Anchor" href="#training-set-test-set-나누기"></a> &gt;&gt; Training set / Test set 나누기</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># features for linear regression model</span></span><br><span class="line">df[numerical_columns].head()</span><br></pre></td></tr></tbody></table></figure>
 <div>
 <style scoped="">
@@ -39348,7 +39368,7 @@ memory usage: 67.3+ KB
 <pre><code>((102, 13), (102,))
 </code></pre>
 <br>
-<p><strong>&gt;&gt; 다중 공선성</strong></p>
+<h4 id="다중-공선성"><a class="markdownIt-Anchor" href="#다중-공선성"></a> &gt;&gt; 다중 공선성</h4>
 <p>다중 공선성을 판단할 때 보통 VIF값을 본다.</p>
 <p>일반적으로, VIF &gt; 10인 feature들은 다른 변수와 상관관계가 높아, 다중 공선성이 존재하는 것으로 판단한다.</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.stats.outliers_influence <span class="keyword">import</span> variance_inflation_factor</span><br><span class="line"></span><br><span class="line">vif = pd.DataFrame()</span><br><span class="line">vif[<span class="string">'features'</span>] = X_train.columns</span><br><span class="line">vif[<span class="string">"VIF Factor"</span>] = [variance_inflation_factor(X_train.values, i) <span class="keyword">for</span> i <span class="keyword">in</span> range(X_train.shape[<span class="number">1</span>])]</span><br><span class="line">vif.round(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
@@ -39444,10 +39464,10 @@ memory usage: 67.3+ KB
 </table>
 </div>
 <br>
-<h3 id="3-2-회귀-분석-모델-학습"><a class="markdownIt-Anchor" href="#3-2-회귀-분석-모델-학습"></a> 3-2. 회귀 분석 모델 학습</h3>
+<h3 id="3-2-회귀-분석-모델-학습-및-예측"><a class="markdownIt-Anchor" href="#3-2-회귀-분석-모델-학습-및-예측"></a> 3-2. 회귀 분석 모델 학습 및 예측</h3>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># fit regression model in training set</span></span><br><span class="line">lr = linear_model.LinearRegression()</span><br><span class="line">model = lr.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># predict in test set</span></span><br><span class="line">pred_test = lr.predict(X_test)</span><br></pre></td></tr></tbody></table></figure>
   <br>
-<p><strong>&gt;&gt; coefficients 확인하기</strong></p>
+<h4 id="coefficients-확인하기"><a class="markdownIt-Anchor" href="#coefficients-확인하기"></a> &gt;&gt; coefficients 확인하기</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># print coef</span></span><br><span class="line">print(lr.coef_)</span><br></pre></td></tr></tbody></table></figure>
 <pre><code>[-0.9479409   1.39796831  0.14786968  2.13469673 -2.25995614  2.15879342
   0.12103297 -3.23121173  2.63662665 -1.95959865 -2.05639351  0.65670428
@@ -39641,7 +39661,7 @@ memory usage: 67.3+ KB
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">## coefficients 시각화</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># figure size</span></span><br><span class="line">plt.figure(figsize = (<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># bar plot</span></span><br><span class="line">plt.barh(coefs[<span class="string">'feature'</span>], coefs[<span class="string">'coefficients'</span>])</span><br><span class="line">plt.title(<span class="string">'"feature - coefficient" Graph'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'coefficients'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'features'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/E-Python-LinearRegression-1/output_81_0.png" alt="output_81_0"></p>
 <br>
-<p><strong>&gt;&gt; feature 유의성 검정</strong></p>
+<h4 id="feature-유의성-검정"><a class="markdownIt-Anchor" href="#feature-유의성-검정"></a> &gt;&gt; feature 유의성 검정</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"></span><br><span class="line">X_train2 = sm.add_constant(X_train)</span><br><span class="line">model2 = sm.OLS(y_train, X_train2).fit()</span><br><span class="line">model2.summary()</span><br></pre></td></tr></tbody></table></figure>
 <table class="simpletable">
 <caption>OLS Regression Results</caption>
@@ -39737,7 +39757,7 @@ memory usage: 67.3+ KB
 <br>
 <p>t검정 결과를 확인해보면, INDUS(상업적 비즈니스에 활용되지 않는 농지 면적)과 AGE(1940 년 이전에 건설된 비율) 두 변수가 유의하지 않다는 것을 확인할 수 있다.</p>
  <br> 
-<p><strong>&gt;&gt; 예측 결과 및 모델 성능 확인</strong></p>
+<h4 id="예측-결과-및-모델-성능-확인"><a class="markdownIt-Anchor" href="#예측-결과-및-모델-성능-확인"></a> &gt;&gt; 예측 결과 및 모델 성능 확인</h4>
 <ul>
 <li>예측 결과 시각화</li>
 </ul>
