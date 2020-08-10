@@ -39753,7 +39753,8 @@ memory usage: 67.3+ KB
 <tr>
   <th>Kurtosis:</th>      <td> 9.213</td>  <th>  Cond. No.          </th> <td>    10.7</td> 
 </tr>
-</tbody></table><br><br>Warnings:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</tbody></table><br>Warnings:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+<br>
 <br>
 <p>t검정 결과를 확인해보면, INDUS(상업적 비즈니스에 활용되지 않는 농지 면적)과 AGE(1940 년 이전에 건설된 비율) 두 변수가 유의하지 않다는 것을 확인할 수 있다.</p>
  <br> 
