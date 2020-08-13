@@ -38251,6 +38251,7 @@ Average Error: 12.06743160435072
     <url>/2020/08/11/E-Python-LinearRegression-1/</url>
     <content><![CDATA[<h1 id="eda-regression-실습-부동산-데이터"><a class="markdownIt-Anchor" href="#eda-regression-실습-부동산-데이터"></a> 【EDA &amp; Regression 실습】 – 부동산 데이터</h1>
 <p></p><ul class="markdownIt-TOC">
+<li><a href="#0-%EB%AA%A9%ED%91%9C"><strong>0. 목표</strong></a></li>
 <li><a href="#1-library-data-import"><strong>1. Library &amp; Data Import</strong></a></li>
 <li><a href="#2-eda-exploratory-data-analysis-%ED%83%90%EC%83%89%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D"><strong>2. EDA (Exploratory Data Analysis: 탐색적 데이터 분석)</strong></a>
 <ul>
@@ -38286,7 +38287,11 @@ Average Error: 12.06743160435072
 </li>
 </ul>
 <p></p>
-<br>  
+<br> 
+<h2 id="0-목표"><a class="markdownIt-Anchor" href="#0-목표"></a> <strong>0. 목표</strong></h2>
+<p>Boston 지역의 부동산 데이터를 이용하여 선형 집값 예측 모델을 만듭니다.</p>
+<p>사용 방법: 지도학습 — Linear Regression</p>
+ <br>
 <h2 id="1-library-data-import"><a class="markdownIt-Anchor" href="#1-library-data-import"></a> <strong>1. Library &amp; Data Import</strong></h2>
 <p><strong>&gt;&gt; 사용할 Library</strong></p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></tbody></table></figure>
@@ -40085,7 +40090,7 @@ Name: Legendary, dtype: int64
 Name: Generation, dtype: int64
 </code></pre>
 <br>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 세대 순서로 데이터 갯수 시각화</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">df[<span class="string">'Generation'</span>].value_counts().sort_index().plot()</span><br><span class="line">plt.title(<span class="string">"'Generation 별 데이터 겟수'"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 세대 순서로 데이터 갯수 시각화</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">df[<span class="string">'Generation'</span>].value_counts().sort_index().plot()</span><br><span class="line">plt.title(<span class="string">"'Generation 별 데이터 갯수'"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/E-Python-Classification-1/output_34_0.png" alt="output_34_0"></p>
 <br>
 <ul>
@@ -40114,17 +40119,19 @@ Name: Generation, dtype: int64
 <h3 id="2-2-변수feature-특징-탐색"><a class="markdownIt-Anchor" href="#2-2-변수feature-특징-탐색"></a> 2-2. 변수(Feature) 특징 탐색</h3>
 <p>각 변수(Feature)의 분포를 관찰함으로써, 변수들의 특징을 알아보도록 하겠습니다.</p>
 <p>특히, 저희가 분류할 목표 Feature가 "Legendary"이므로, 각 변수의 분포를 탐색 시:</p>
-<pre><code>  1. 각 항목(feature)에서 **전체 데이터의 분포** 뿐만 아닌
-  2. **"Legendary"변수 class 별의 데이터 분포**도 함께 살펴볼게요.
-</code></pre>
+<ol>
+<li>각 항목(feature)에서 <strong>전체 데이터의 분포</strong> 뿐만 아닌</li>
+<li><strong>"Legendary"변수 class 별의 데이터 분포</strong>도 함께 살펴볼게요.</li>
+</ol>
    <br> 
 <p><strong>GUIDE</strong></p>
 <p>【전체 데이터 탐색】  <strong>&amp;</strong>  【“Legendary” class별 탐색】</p>
-<pre><code>1. 각 능력치 분포
-2. 총 능력치 (Toal) 분포
-3. 포켓몬 타입 (Type 1 &amp; Type 2) 분포
-4. 포켓몬 세대 (Generation) 분포
-</code></pre>
+<ol>
+<li>각 능력치 분포</li>
+<li>총 능력치 (Toal) 분포</li>
+<li>포켓몬 타입 (Type 1 &amp; Type 2) 분포</li>
+<li>포켓몬 세대 (Generation) 분포</li>
+</ol>
  <br> 
 <h4 id="1-각-능력치-분포"><a class="markdownIt-Anchor" href="#1-각-능력치-분포"></a> (1) 각 능력치 분포</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 전체 포켓몬의 각 능력치 분포</span></span><br><span class="line"></span><br><span class="line">stats = [<span class="string">'HP'</span>, <span class="string">'Attack'</span>, <span class="string">'Defense'</span>, <span class="string">'Sp. Atk'</span>, <span class="string">'Sp. Def'</span>, <span class="string">'Speed'</span>] <span class="comment"># 능력치 변수 집합</span></span><br><span class="line">sns.boxplot(data = df[stats])</span><br><span class="line">plt.title(<span class="string">'각 능력치 분포'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
