@@ -42096,22 +42096,9 @@ k: 14 | cost: 1536.785887021493
       </tags>
   </entry>
   <entry>
-    <title>E-Python-TextMining-1</title>
+    <title>【실습】 Python &gt;&gt; Text Mining -- 영화 시나리오</title>
     <url>/2020/08/20/E-Python-TextMining-1/</url>
-    <content><![CDATA[<p>title: E-Python-TextMining-1<br>
-date: 2020-08-20 21:15:53<br>
-tags:</p>
-<ul>
-<li>Python</li>
-<li>Text Mining<br>
-categories:</li>
-<li>【Exercise】</li>
-<li>Python<br>
-cover: ‘<a href="https://s1.ax1x.com/2020/08/19/d1JMTS.png" target="_blank" rel="noopener">https://s1.ax1x.com/2020/08/19/d1JMTS.png</a>’<br>
-description: 1. 단어별 빈도 분석 – Word Cloud 산출; 2. 장면별 중요 단어 시각화 – TF-IDF 중요도 분석<br>
-typora-root-url: …</li>
-</ul>
-<h1 id="text-mining-실습-영화-시나리오-word-cloud-단어-중요도tf-idf-분석"><a class="markdownIt-Anchor" href="#text-mining-실습-영화-시나리오-word-cloud-단어-중요도tf-idf-분석"></a> 【Text Mining 실습】-- 영화 시나리오: Word Cloud &amp; 단어 중요도(TF-IDF) 분석</h1>
+    <content><![CDATA[<h1 id="text-mining-실습-영화-시나리오-word-cloud-단어-중요도tf-idf-분석"><a class="markdownIt-Anchor" href="#text-mining-실습-영화-시나리오-word-cloud-단어-중요도tf-idf-분석"></a> 【Text Mining 실습】-- 영화 시나리오: Word Cloud &amp; 단어 중요도(TF-IDF) 분석</h1>
 <p></p><ul class="markdownIt-TOC">
 <li><a href="#0-%EB%AA%A9%ED%91%9C"><strong>0. 목표</strong></a></li>
 <li><a href="#1-library-data-import"><strong>1. Library &amp; Data Import</strong></a></li>
@@ -42360,7 +42347,7 @@ memory usage: 7.6+ KB
 <h4 id="1-말뭉치코퍼스-생성"><a class="markdownIt-Anchor" href="#1-말뭉치코퍼스-생성"></a> (1) 말뭉치(코퍼스) 생성</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># make corpus</span></span><br><span class="line">corpus = df[<span class="string">'processed_text'</span>].tolist()</span><br><span class="line">corpus</span><br></pre></td></tr></tbody></table></figure>
 <div style="height:300px; overflow:scroll">
-    [' its raining light strobes across the wet glass at a rhythmic pace suddenly through the window a face jason bourne riding in the backseat his gaze fixed ',
+<pre>    [' its raining light strobes across the wet glass at a rhythmic pace suddenly through the window a face jason bourne riding in the backseat his gaze fixed ',
      ' a on his knee a syringe and a gun the eyes of the driver jarda watching bournes pov the passenger back of his head cell phone rings the head turns its conklin bourne returns his stare ',
      ' bournes eyes open panicked gasping trying to stay quiet marie sleeps ',
      ' a bourne moving for the medicine cabinet digs through the medicine cabinet downs something specific ',
@@ -42680,6 +42667,7 @@ memory usage: 7.6+ KB
      ' long sterile hallway cronin and nicky standing there with an air force sentry assigned to guard the room cronin and nicky trying to play it cool but now as they get some distance down the hallway pamela to the sentry lets give him half an hour nicky quietly so pamela felt promising its a start a chill in the air both of them going quiet because theres a nurse carrying a tray of food shes coming toward us theyre walking away staying with the nurse now coming up the hall the sentry smiles opens the door and she enters ',
      ' empty bed open window bourne is gone as the music starts pumping and we ',
      ' off he goes disappearing into thin air fade out the end ']
+</pre>
 </div>
 <br>
 <h4 id="2-bow-bag-of-words-벡터-생성"><a class="markdownIt-Anchor" href="#2-bow-bag-of-words-벡터-생성"></a> (2) BoW (Bag of Words) 벡터 생성</h4>
@@ -44724,7 +44712,7 @@ memory usage: 7.6+ KB
  <br> 
 <h4 id="3-단어-분포-탐색"><a class="markdownIt-Anchor" href="#3-단어-분포-탐색"></a> (3) 단어 분포 탐색</h4>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plt.hist(list(word_count_dict.values()), bins=<span class="number">150</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/E-Python-TextMining-1/output_60_0.png" alt="output_60_0"></p>
+<p><img src="/images/E-Python-TextMining-1/output_60_0.png" alt="output_60_0"></p>
 <p>대부분의 단어가 0번~50번 사이에 등장했고, 일부 소수의 단어들이 100번 이상 등장한 것을 확인할 수 있습니다.</p>
   <br>
   <br>
@@ -44793,7 +44781,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 </li>
 </ol>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Top 40 단어로 word cloud 생성하기</span></span><br><span class="line">taglist = pytagcloud.make_tags(sorted(word_count_dict.items(), key = operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)[:<span class="number">40</span>], maxsize=<span class="number">60</span>)  <span class="comment"># 빈도수(itemgetter(1)) 내림차순(reverse=True)으로 정렬, maxsize: 글자 크기</span></span><br><span class="line"><span class="comment"># taglist = pytagcloud.make_tages(Counter(word_count_dict).most_common(40), maxsize=60)</span></span><br><span class="line"></span><br><span class="line">pytagcloud.create_tag_image(taglist, <span class="string">'movie_wordcloud.jpg'</span>, rectangular=<span class="literal">False</span>)</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image</span><br><span class="line">Image(filename=<span class="string">'movie_wordcloud.jpg'</span>)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="../images/E-Python-TextMining-1/output_74_0.jpg" alt="output_74_0"></p>
+<p><img src="/images/E-Python-TextMining-1/output_74_0.jpg" alt="output_74_0"></p>
 <p>​    <br></p>
 <h3 id="4-2-장면별-중요-단어-시각화-tf-idf"><a class="markdownIt-Anchor" href="#4-2-장면별-중요-단어-시각화-tf-idf"></a> 4-2. 장면별 중요 단어 시각화 (TF-IDF)</h3>
 <h4 id="1-tf-idf-변환"><a class="markdownIt-Anchor" href="#1-tf-idf-변환"></a> (1) TF-IDF 변환</h4>
@@ -44809,7 +44797,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 </li>
 <li>
 <p>한 열(column)은 한 단어를 의미합니다.</p>
- <br>
+<br>
 </li>
 </ul>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 첫번째 행 출력 (0이 아닌것 만) -- 즉 첫 씬에서 모든 단어의 TF-IDF 값</span></span><br><span class="line">print(tf_idf_vect[<span class="number">0</span>])</span><br></pre></td></tr></tbody></table></figure>
@@ -46354,5 +46342,13 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>【Exercise】</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Text Mining</tag>
+      </tags>
   </entry>
 </search>
