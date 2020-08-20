@@ -42687,7 +42687,7 @@ memory usage: 7.6+ KB
   <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 등장한 단어 list</span></span><br><span class="line"></span><br><span class="line">word_list</span><br></pre></td></tr></tbody></table></figure>
 <div style="height:300px; overflow:scroll">
-    ['aa',
+<pre>    ['aa',
      'ab',
      'abandoned',
      'abandons',
@@ -43688,6 +43688,7 @@ memory usage: 7.6+ KB
      'glances',
      'glancing',
      ...]
+</pre>
 </div>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 각 단어가 씬별의 등장 횟수</span></span><br><span class="line"></span><br><span class="line">bow_vect.toarray()</span><br></pre></td></tr></tbody></table></figure>
@@ -43709,7 +43710,7 @@ memory usage: 7.6+ KB
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># "단어" - "총 등장 횟수" Matching</span></span><br><span class="line"></span><br><span class="line">word_count_dict = dict(zip(word_list, count_list))</span><br><span class="line">word_count_dict</span><br></pre></td></tr></tbody></table></figure>
 <div style="height:300px; overflow:scroll">
-    {'aa': 3,
+<pre>    {'aa': 3,
      'ab': 3,
      'abandoned': 2,
      'abandons': 1,
@@ -44710,6 +44711,7 @@ memory usage: 7.6+ KB
      'glances': 1,
      'glancing': 8,
      ...}
+</pre>
 </div>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 등장 횟수 (count) 순으로 정렬</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line">sorted(word_count_dict.items(), key = operator.itemgetter(<span class="number">1</span>), reverse = <span class="literal">True</span>)[:<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
@@ -44839,7 +44841,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <p>길이가 2850인 단어 벡터의 각 위치가 어떤 단어를 상징하는지를 알아내기 위해 단어 벡터에 대해서 “단어” - “index No.” Mapping 을 진행합니다.</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">vect.vocabulary_</span><br></pre></td></tr></tbody></table></figure>
 <div style="height:300px; overflow:scroll">
-    {'raining': 1898,
+<pre>    {'raining': 1898,
      'light': 1366,
      'strobes': 2387,
      'wet': 2763,
@@ -45840,6 +45842,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
      'fingerprint': 861,
      'didnt': 633,
      ...}
+</pre>
 </div>
 <br>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Mapping: 단어 &lt;-&gt; 벡터안의 index no. </span></span><br><span class="line">invert_index_vectorizer = {v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> vect.vocabulary_.items()}  <span class="comment"># value : key</span></span><br><span class="line">print(str(invert_index_vectorizer)[:<span class="number">100</span>]+<span class="string">'...'</span>)</span><br></pre></td></tr></tbody></table></figure>
@@ -45856,7 +45859,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <p>이제 전체 TF-IDF matrix 에 적용해볼게요.</p>
 <figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">np.argsort(tf_idf_vect.toarray())[:, <span class="number">-3</span>:]</span><br></pre></td></tr></tbody></table></figure>
 <div style="height:300px; overflow:scroll">
-    array([[1984, 2387, 1978],
+<pre>    array([[1984, 2387, 1978],
            [1297, 1971, 1097],
            [1693, 2221,  968],
            [ 690,  299, 1482],
@@ -46176,6 +46179,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
            [1600, 1621, 2102],
            [ 162, 1566, 1864],
            [  46,  803,  646]], dtype=int64)
+</pre>
 </div>
 <br>
 <p>이를 변수로 저장해서 원본 데이터셋에 추가하면 다음와 같습니다.</p>
