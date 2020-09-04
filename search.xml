@@ -52203,7 +52203,7 @@ F1: 0.72
  <br> 
 <h2 id="2-aarrr-framework의-5가지-지표"><a class="markdownIt-Anchor" href="#2-aarrr-framework의-5가지-지표"></a> 2. AARRR Framework의 5가지 지표</h2>
 <p>AARRR의 지표를 하나씩 뜯어본다면 다음과 같습니다.</p>
-<p><img src="../images/P-Marketing-AARRR/wS4RWF.png" alt="AARRR"></p>
+<p><img src="/images/P-Marketing-AARRR/wS4RWF.png" alt="AARRR"></p>
  <br> 
 <h3 id="acquisition-사용자-유입"><a class="markdownIt-Anchor" href="#acquisition-사용자-유입"></a> Acquisition (사용자 유입)</h3>
 <p>우리가 목표하는 고객이 어떻게 우리 서비스를 발견하는지에 대한 지표입니다.<br>
@@ -52211,13 +52211,13 @@ F1: 0.72
 <p><strong>핵심 지표:</strong></p>
 <ul>
 <li>
-<p><font color="steelblue">***DAU:***</font>  Daily Active User, 일간 개별 사용자</p>
+<p><em><strong><font color="steelblue">DAU:</font></strong></em>  Daily Active User, 일간 개별 사용자</p>
 </li>
 <li>
-<p><font color="steelblue">***MAU:***</font> Monthly Active User, 월간 개별 사용자</p>
+<p><em><strong><font color="steelblue">MAU:</font></strong></em> Monthly Active User, 월간 개별 사용자</p>
 </li>
 <li>
-<p><font color="steelblue">***New User:***</font> 신규 사용자</p>
+<p><em><strong><font color="steelblue">New User:</font></strong></em> 신규 사용자</p>
 <br>
 </li>
 </ul>
@@ -52227,16 +52227,16 @@ F1: 0.72
 <p><strong>핵심 지표:</strong></p>
 <ul>
 <li>
-<p><font color="steelblue">***Bounce Rate:***</font> 반송률/이탈율. 처음 방문한 사용자가 오직 하나의 페이지만 보고 바로 서비스를 종류한 비율로, 부정적 사용자 경험을 나타나는 지표임.</p>
+<p><em><strong><font color="steelblue">Bounce Rate:</font></strong></em> 반송률/이탈율. 처음 방문한 사용자가 오직 하나의 페이지만 보고 바로 서비스를 종류한 비율로, 부정적 사용자 경험을 나타나는 지표임.</p>
 </li>
 <li>
-<p><font color="steelblue">***Avg.PV:***</font> Average Page View. 평균 페이지 뷰</p>
+<p><em><strong><font color="steelblue">Avg.PV:</font></strong></em> Average Page View. 평균 페이지 뷰</p>
 </li>
 <li>
-<p><font color="steelblue">***Avg.Duration:***</font> 평균 체류 시간</p>
+<p><em><strong><font color="steelblue">Avg.Duration:</font></strong></em> 평균 체류 시간</p>
 </li>
 <li>
-<p><font color="steelblue">***Signup:***</font> 회원가입</p>
+<p><em><strong><font color="steelblue">Signup:</font></strong></em> 회원가입</p>
 <br>
 </li>
 </ul>
@@ -52246,7 +52246,7 @@ F1: 0.72
 <p><strong>핵심 지표:</strong></p>
 <ul>
 <li>
-<p><font color="steelblue">***Retention Rate:***</font> 재방문율</p>
+<p><em><strong><font color="steelblue">Retention Rate:</font></strong></em> 재방문율</p>
 <br>
 </li>
 </ul>
@@ -52259,13 +52259,13 @@ F1: 0.72
 <p>자발적인 바이럴 마케팅 (공유 / 댓글 / 태그)</p>
 </li>
 <li>
-<p><font color="steelblue">***NPS:***</font> Net Promoter Score. 순 추천지수</p>
+<p><em><strong><font color="steelblue">NPS:</font></strong></em> Net Promoter Score. 순 추천지수</p>
 </li>
 <li>
-<p><font color="steelblue">***Number of invitations send to invite friends:***</font> 초대 발송 수</p>
+<p><em><strong><font color="steelblue">Number of invitations send to invite friends:</font></strong></em> 초대 발송 수</p>
 </li>
 <li>
-<p><font color="steelblue">***Number of app installs per invite:***</font> 초대 응답 수</p>
+<p><em><strong><font color="steelblue">Number of app installs per invite:</font></strong></em> 초대 응답 수</p>
 <br>
 </li>
 </ul>
@@ -52274,10 +52274,10 @@ F1: 0.72
 비즈니스의 궁극적인 목표는 수익 창출에 있습니다. 획득한 사용자를 활성화시키고 꾸준히 방문하더라도 구매가 일어나지 않는다면, 비즈니스는 성공적이라고 할 수 없습니다. 이 단계에서는 우리가 확보한 사용자들을 실제 매출까지 전환시킬 수 있는지, 매출까지 전환되는 사용자들은 어떤 행동적 특성이 있는지를 이해하는 것이 중요합니다.</p>
 <p><strong>핵심 지표:</strong></p>
 <ul>
-<li><font color="steelblue">***Conversion Rate:***</font> 전환율</li>
-<li><font color="steelblue">***CLTV:***</font> Customer LifeTime Value. 고객생애가치</li>
-<li><font color="steelblue">***CAC:***</font> Customer Acquisition Cost. 고객획득비용</li>
-<li><font color="steelblue">***Average order value per user:***</font> 평균 주문율</li>
+<li><em><strong><font color="steelblue">Conversion Rate:</font></strong></em> 전환율</li>
+<li><em><strong><font color="steelblue">CLTV:</font></strong></em> Customer LifeTime Value. 고객생애가치</li>
+<li><em><strong><font color="steelblue">CAC:</font></strong></em> Customer Acquisition Cost. 고객획득비용</li>
+<li><em><strong><font color="steelblue">Average order value per user:</font></strong></em> 평균 주문율</li>
 </ul>
 <br>
 <br><script>
