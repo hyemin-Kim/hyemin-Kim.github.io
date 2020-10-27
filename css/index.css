@@ -3030,18 +3030,20 @@ table {
   border-collapse: collapse;
   empty-cells: show;
 }
-thead {
-  background: #fff;
+table thead th {
+  background-color: #fff;
   border-bottom: 1px solid #1b1b1b;
 }
-tr:nth-child(odd) {
+table th,
+table td {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.5rem;
+}
+table tr:nth-child(odd) {
   background: #f3f3f3;
 }
-tr:nth-child(even) {
+table tr:nth-child(even) {
   background: #fdfdfd;
-}
-td {
-  text-align: right;
 }
 *::selection {
   background: #00c4b6;
@@ -3155,7 +3157,7 @@ figure.highlight pre .meta {
   color: #7c4dff;
 }
 figure.highlight pre .comment {
-  color: rgba(149,165,166,0.8);
+  color: #ff7c38;
 }
 figure.highlight pre .variable,
 figure.highlight pre .attribute,
