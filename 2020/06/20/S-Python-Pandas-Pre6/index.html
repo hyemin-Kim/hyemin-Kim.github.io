@@ -1,0 +1,1284 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Pandas 전처리 - (6) 데이터프레임의 산술연산 | Hyemin Kim</title><meta name="keywords" content="Python,Pandas,전처리"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="데이터프레임의 산술연산  1. Column 과 Column 간 연산 (+, -, *, &#x2F;, %) 2. Column 과 숫자 간 연산 (+, -, *, &#x2F;, %) 3. 복합 연산 4. mean(), sum() 을 axis 기준으로 연산 5. NaN 값이 존재할 경우 연산 6. DataFrame 과 DataFrame 간 연산  6-1. 문자열이 포함된 Ser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python &gt;&gt; Pandas 전처리 - (6) 데이터프레임의 산술연산">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/06/20/S-Python-Pandas-Pre6/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="데이터프레임의 산술연산  1. Column 과 Column 간 연산 (+, -, *, &#x2F;, %) 2. Column 과 숫자 간 연산 (+, -, *, &#x2F;, %) 3. 복합 연산 4. mean(), sum() 을 axis 기준으로 연산 5. NaN 값이 존재할 경우 연산 6. DataFrame 과 DataFrame 간 연산  6-1. 문자열이 포함된 Ser">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png">
+<meta property="article:published_time" content="2020-06-20T13:28:21.000Z">
+<meta property="article:modified_time" content="2020-06-23T16:52:30.215Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="전처리">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/06/20/S-Python-Pandas-Pre6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-06-24 01:52:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#데이터프레임의-산술연산"><span class="toc-text"> 데이터프레임의 산술연산</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-column-과-column-간-연산-"><span class="toc-text"> 1. Column 과 Column 간 연산 (+, -, *, &#x2F;, %)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-column-과-숫자-간-연산-"><span class="toc-text"> 2. Column 과 숫자 간 연산 (+, -, *, &#x2F;, %)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-복합-연산"><span class="toc-text"> 3. 복합 연산</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-mean-sum-을-axis-기준으로-연산"><span class="toc-text"> 4. mean(), sum() 을 axis 기준으로 연산</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-nan-값이-존재할-경우-연산"><span class="toc-text"> 5. NaN 값이 존재할 경우 연산</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-dataframe-과-dataframe-간-연산"><span class="toc-text"> 6. DataFrame 과 DataFrame 간 연산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-문자열이-포함된-series-dataframe의-연산은-불가하다"><span class="toc-text"> 6-1. 문자열이 포함된 Series &#x2F; DataFrame의 연산은 불가하다</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-두-dataframe의-column-이름은-같으나-column-순서만-바뀌어-있는-경우"><span class="toc-text"> 6-2. 두 DataFrame의 column 이름은 같으나 column 순서만 바뀌어 있는 경우</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-행의-갯수가-다른-경우"><span class="toc-text"> 6-3. 행의 갯수가 다른 경우</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Pandas 전처리 - (6) 데이터프레임의 산술연산</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-20T13:28:21.000Z" title="Created 2020-06-20 22:28:21">2020-06-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-23T16:52:30.215Z" title="Updated 2020-06-24 01:52:30">2020-06-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="데이터프레임의-산술연산"><a class="markdownIt-Anchor" href="#데이터프레임의-산술연산"></a> 데이터프레임의 산술연산</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-column-%EA%B3%BC-column-%EA%B0%84-%EC%97%B0%EC%82%B0-"><strong>1. Column 과 Column 간 연산 (+, -, *, /, %)</strong></a></li>
+<li><a href="#2-column-%EA%B3%BC-%EC%88%AB%EC%9E%90-%EA%B0%84-%EC%97%B0%EC%82%B0-"><strong>2. Column 과 숫자 간 연산 (+, -, *, /, %)</strong></a></li>
+<li><a href="#3-%EB%B3%B5%ED%95%A9-%EC%97%B0%EC%82%B0"><strong>3. 복합 연산</strong></a></li>
+<li><a href="#4-mean-sum-%EC%9D%84-axis-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EC%97%B0%EC%82%B0"><strong>4. mean(), sum() 을 axis 기준으로 연산</strong></a></li>
+<li><a href="#5-nan-%EA%B0%92%EC%9D%B4-%EC%A1%B4%EC%9E%AC%ED%95%A0-%EA%B2%BD%EC%9A%B0-%EC%97%B0%EC%82%B0"><strong>5. NaN 값이 존재할 경우 연산</strong></a></li>
+<li><a href="#6-dataframe-%EA%B3%BC-dataframe-%EA%B0%84-%EC%97%B0%EC%82%B0"><strong>6. DataFrame 과 DataFrame 간 연산</strong></a>
+<ul>
+<li><a href="#6-1-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B4-%ED%8F%AC%ED%95%A8%EB%90%9C-series-dataframe%EC%9D%98-%EC%97%B0%EC%82%B0%EC%9D%80-%EB%B6%88%EA%B0%80%ED%95%98%EB%8B%A4">6-1. 문자열이 포함된 Series / DataFrame의 연산은 불가하다</a></li>
+<li><a href="#6-2-%EB%91%90-dataframe%EC%9D%98-column-%EC%9D%B4%EB%A6%84%EC%9D%80-%EA%B0%99%EC%9C%BC%EB%82%98-column-%EC%88%9C%EC%84%9C%EB%A7%8C-%EB%B0%94%EB%80%8C%EC%96%B4-%EC%9E%88%EB%8A%94-%EA%B2%BD%EC%9A%B0">6-2. 두 DataFrame의 column 이름은 같으나 column 순서만 바뀌어 있는 경우</a></li>
+<li><a href="#6-3-%ED%96%89%EC%9D%98-%EA%B0%AF%EC%88%98%EA%B0%80-%EB%8B%A4%EB%A5%B8-%EA%B2%BD%EC%9A%B0">6-3. 행의 갯수가 다른 경우</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<p><strong>예제 DataFrame 생성</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame({<span class="string">"통계"</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">75</span>], <span class="string">"미술"</span>: [<span class="number">50</span>, <span class="number">55</span>, <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">"체육"</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">95</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60</td>
+      <td>50</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>70</td>
+      <td>55</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>80</td>
+      <td>80</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>85</td>
+      <td>100</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>75</td>
+      <td>95</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>  
+<h2 id="1-column-과-column-간-연산-"><a class="markdownIt-Anchor" href="#1-column-과-column-간-연산-"></a> <strong>1. Column 과 Column 간 연산 (+, -, *, /, %)</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(df[<span class="string">"통계"</span>])</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>pandas.core.series.Series
+</code></pre>
+<p>즉 Series 과 Series 간의 연산</p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] + df[<span class="string">"미술"</span>] + df[<span class="string">"체육"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    180
+1    190
+2    210
+3    280
+4    270
+dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] - df[<span class="string">"미술"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    10
+1    15
+2     0
+3   -15
+4   -20
+dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] * df[<span class="string">"미술"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    3000
+1    3850
+2    6400
+3    8500
+4    7125
+dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] / df[<span class="string">"미술"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    1.200000
+1    1.272727
+2    1.000000
+3    0.850000
+4    0.789474
+dtype: float64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] % df[<span class="string">"미술"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    10
+1    15
+2     0
+3    85
+4    75
+dtype: int64
+</code></pre>
+<p><br> <br></p>
+<h2 id="2-column-과-숫자-간-연산-"><a class="markdownIt-Anchor" href="#2-column-과-숫자-간-연산-"></a> <strong>2. Column 과 숫자 간 연산 (+, -, *, /, %)</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    60
+1    70
+2    80
+3    85
+4    75
+Name: 통계, dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] + <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    70
+1    80
+2    90
+3    95
+4    85
+Name: 통계, dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] - <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    50
+1    60
+2    70
+3    75
+4    65
+Name: 통계, dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] * <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    600
+1    700
+2    800
+3    850
+4    750
+Name: 통계, dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] / <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    6.0
+1    7.0
+2    8.0
+3    8.5
+4    7.5
+Name: 통계, dtype: float64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] % <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    0
+1    0
+2    0
+3    5
+4    5
+Name: 통계, dtype: int64
+</code></pre>
+<br>
+<br>
+<h2 id="3-복합-연산"><a class="markdownIt-Anchor" href="#3-복합-연산"></a> <strong>3. 복합 연산</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame({<span class="string">"통계"</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">75</span>], <span class="string">"미술"</span>: [<span class="number">50</span>, <span class="number">55</span>, <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">"체육"</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">95</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60</td>
+      <td>50</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>70</td>
+      <td>55</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>80</td>
+      <td>80</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>85</td>
+      <td>100</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>75</td>
+      <td>95</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계미술+10"</span>] = df[<span class="string">"통계"</span>] + df[<span class="string">"미술"</span>] + <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+      <th>통계미술+10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60</td>
+      <td>50</td>
+      <td>70</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>70</td>
+      <td>55</td>
+      <td>65</td>
+      <td>135</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>80</td>
+      <td>80</td>
+      <td>50</td>
+      <td>170</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>85</td>
+      <td>100</td>
+      <td>95</td>
+      <td>195</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>75</td>
+      <td>95</td>
+      <td>100</td>
+      <td>180</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] + df[<span class="string">"미술"</span>] - df[<span class="string">"체육"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0     40
+1     60
+2    110
+3     90
+4     70
+dtype: int64
+</code></pre>
+<br>
+  <br>
+<h2 id="4-mean-sum-을-axis-기준으로-연산"><a class="markdownIt-Anchor" href="#4-mean-sum-을-axis-기준으로-연산"></a> <strong>4. mean(), sum() 을 axis 기준으로 연산</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame({<span class="string">"통계"</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">75</span>], <span class="string">"미술"</span>: [<span class="number">50</span>, <span class="number">55</span>, <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">"체육"</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">95</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60</td>
+      <td>50</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>70</td>
+      <td>55</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>80</td>
+      <td>80</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>85</td>
+      <td>100</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>75</td>
+      <td>95</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p><strong>(1) 각 column의 <font color="blue">모든 row 값의 합</font> 구하기</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sum(axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>통계    370
+미술    380
+체육    380
+dtype: int64
+</code></pre>
+<br>  
+<p><strong>(2) 각 column의 <font color="blue">모든 row 값의 평균</font> 구하기</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.mean(axis = <span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>통계    74.0
+미술    76.0
+체육    76.0
+dtype: float64
+</code></pre>
+<br>
+<p><strong>(3) 각 row의 <font color="blue">모든 column 값의 합</font> 구하기</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sum(axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    180
+1    190
+2    210
+3    280
+4    270
+dtype: int64
+</code></pre>
+<br>
+<p><strong>(4) 각 row의 <font color="blue">모든 column 값의 평균</font> 구하기</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.mean(axis = <span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    60.000000
+1    63.333333
+2    70.000000
+3    93.333333
+4    90.000000
+dtype: float64
+</code></pre>
+<br>
+  <br>
+<h2 id="5-nan-값이-존재할-경우-연산"><a class="markdownIt-Anchor" href="#5-nan-값이-존재할-경우-연산"></a> <strong>5. NaN 값이 존재할 경우 연산</strong></h2>
+<blockquote>
+<p>NaN 값이 포함된 모든 연산의 결과가 다 NaN 값이다</p>
+</blockquote>
+  <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame({<span class="string">"통계"</span>: [<span class="number">60</span>, np.nan, <span class="number">80</span>, <span class="number">85</span>, <span class="number">75</span>], <span class="string">"미술"</span>: [<span class="number">50</span>, <span class="number">55</span>, np.nan, <span class="number">100</span>, <span class="number">95</span>], <span class="string">"체육"</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">95</span>, np.nan] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60.0</td>
+      <td>50.0</td>
+      <td>70.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>55.0</td>
+      <td>65.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>80.0</td>
+      <td>NaN</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>85.0</td>
+      <td>100.0</td>
+      <td>95.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>75.0</td>
+      <td>95.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] / <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    30.0
+1     NaN
+2    40.0
+3    42.5
+4    37.5
+Name: 통계, dtype: float64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1000</span> / df[<span class="string">"통계"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    16.666667
+1          NaN
+2    12.500000
+3    11.764706
+4    13.333333
+Name: 통계, dtype: float64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"통계"</span>] / np.nan</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0   NaN
+1   NaN
+2   NaN
+3   NaN
+4   NaN
+Name: 통계, dtype: float64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.nan / df[<span class="string">"통계"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0   NaN
+1   NaN
+2   NaN
+3   NaN
+4   NaN
+Name: 통계, dtype: float64
+</code></pre>
+<br>
+ <br>  
+<h2 id="6-dataframe-과-dataframe-간-연산"><a class="markdownIt-Anchor" href="#6-dataframe-과-dataframe-간-연산"></a> <strong>6. DataFrame 과 DataFrame 간 연산</strong></h2>
+<h3 id="6-1-문자열이-포함된-series-dataframe의-연산은-불가하다"><a class="markdownIt-Anchor" href="#6-1-문자열이-포함된-series-dataframe의-연산은-불가하다"></a> 6-1. 문자열이 포함된 Series / DataFrame의 연산은 불가하다</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">75</span>], <span class="string">'미술'</span>: [<span class="number">50</span>, <span class="number">55</span>, <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">'체육'</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">95</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="string">'good'</span>, <span class="string">'bad'</span>, <span class="string">'ok'</span> , <span class="string">'good'</span>, <span class="string">'ok'</span>], <span class="string">'미술'</span>: [<span class="number">50</span>, <span class="number">60</span> , <span class="number">80</span>, <span class="number">100</span>, <span class="number">95</span>], <span class="string">'체육'</span>: [<span class="number">70</span>, <span class="number">65</span>, <span class="number">50</span>, <span class="number">70</span> , <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60</td>
+      <td>50</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>70</td>
+      <td>55</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>80</td>
+      <td>80</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>85</td>
+      <td>100</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>75</td>
+      <td>95</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+      <th>체육</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>good</td>
+      <td>50</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>bad</td>
+      <td>60</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ok</td>
+      <td>80</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>good</td>
+      <td>100</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ok</td>
+      <td>95</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1 + df2</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+D:\Anaconda\lib\site-packages\pandas\core\ops\array_ops.py in na_arithmetic_op(left, right, op, str_rep)
+    148     try:
+--&gt; 149         result = expressions.evaluate(op, str_rep, left, right)
+    150     except TypeError:
+
+
+D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in evaluate(op, op_str, a, b, use_numexpr)
+    207     if use_numexpr:
+--&gt; 208         return _evaluate(op, op_str, a, b)
+    209     return _evaluate_standard(op, op_str, a, b)
+
+
+D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in _evaluate_numexpr(op, op_str, a, b)
+    120     if result is None:
+--&gt; 121         result = _evaluate_standard(op, op_str, a, b)
+    122 
+
+
+D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in _evaluate_standard(op, op_str, a, b)
+     69     with np.errstate(all="ignore"):
+---&gt; 70         return op(a, b)
+     71 
+
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2 + <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+D:\Anaconda\lib\site-packages\pandas\core\ops\array_ops.py in na_arithmetic_op(left, right, op, str_rep)
+    148     try:
+--&gt; 149         result = expressions.evaluate(op, str_rep, left, right)
+    150     except TypeError:
+
+
+D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in evaluate(op, op_str, a, b, use_numexpr)
+    207     if use_numexpr:
+--&gt; 208         return _evaluate(op, op_str, a, b)
+    209     return _evaluate_standard(op, op_str, a, b)
+
+
+D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in _evaluate_numexpr(op, op_str, a, b)
+    120     if result is None:
+--&gt; 121         result = _evaluate_standard(op, op_str, a, b)
+    122 
+
+
+D:\Anaconda\lib\site-packages\pandas\core\computation\expressions.py in _evaluate_standard(op, op_str, a, b)
+     69     with np.errstate(all="ignore"):
+---&gt; 70         return op(a, b)
+     71 
+
+
+TypeError: can only concatenate str (not "int") to str
+</code></pre>
+<br>
+<br>
+<h3 id="6-2-두-dataframe의-column-이름은-같으나-column-순서만-바뀌어-있는-경우"><a class="markdownIt-Anchor" href="#6-2-두-dataframe의-column-이름은-같으나-column-순서만-바뀌어-있는-경우"></a> 6-2. 두 DataFrame의 column 이름은 같으나 column 순서만 바뀌어 있는 경우</h3>
+<blockquote>
+<p>연산시 자동으로 column 이름 기준으로 연산 된다</p>
+</blockquote>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1 = pd.DataFrame({<span class="string">'미술'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], <span class="string">'통계'</span>:[<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>] })</span><br><span class="line">df2 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], <span class="string">'미술'</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>미술</th>
+      <th>통계</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1 + df2</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>미술</th>
+      <th>통계</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>70</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>90</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>110</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>130</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>150</td>
+      <td>150</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br> 
+<h3 id="6-3-행의-갯수가-다른-경우"><a class="markdownIt-Anchor" href="#6-3-행의-갯수가-다른-경우"></a> 6-3. 행의 갯수가 다른 경우</h3>
+<blockquote>
+<p>행 index 기준으로 연산하되, 하나의 DataFrame에만 존재하는 행은 연산결과가 NaN으로 나옴</p>
+</blockquote>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1 = pd.DataFrame({<span class="string">'미술'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>], <span class="string">'통계'</span>:[<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>, <span class="number">110</span>] })</span><br><span class="line">df2 = pd.DataFrame({<span class="string">'통계'</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], <span class="string">'미술'</span>: [<span class="number">60</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>] })</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>미술</th>
+      <th>통계</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60</td>
+      <td>110</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>통계</th>
+      <th>미술</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1 * df2</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>미술</th>
+      <th>통계</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>600.0</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1400.0</td>
+      <td>1400.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2400.0</td>
+      <td>2400.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3600.0</td>
+      <td>3600.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5000.0</td>
+      <td>5000.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/06/20/S-Python-Pandas-Pre6/">https://hyemin-kim.github.io/2020/06/20/S-Python-Pandas-Pre6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Pandas/">Pandas</a><a class="post-meta__tags" href="/tags/%EC%A0%84%EC%B2%98%EB%A6%AC/">전처리</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/05/22/YjVKwF.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/06/20/S-Python-Pandas-Pre7/"><img class="prev-cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python &gt;&gt; Pandas 전처리 - (7) 기타</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/19/S-Python-Pandas-Pre5/"><img class="next-cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; Pandas 전처리 - (5) column 값을 변환시키는 방법</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/06/18/S-Python-Pandas-Pre1/" title="Python >> Pandas 전처리 - (1) row & column 의 추가 및 제거"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-18</div><div class="title">Python >> Pandas 전처리 - (1) row & column 의 추가 및 제거</div></div></a></div><div><a href="/2020/06/19/S-Python-Pandas-Pre4/" title="Python >> Pandas 전처리 - (4) Series의 Type 변환하기"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-19</div><div class="title">Python >> Pandas 전처리 - (4) Series의 Type 변환하기</div></div></a></div><div><a href="/2020/06/18/S-Python-Pandas-Pre2/" title="Python >> Pandas 전처리 - (2) 결측값 및 중복값 처리"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-18</div><div class="title">Python >> Pandas 전처리 - (2) 결측값 및 중복값 처리</div></div></a></div><div><a href="/2020/06/19/S-Python-Pandas-Pre5/" title="Python >> Pandas 전처리 - (5) column 값을 변환시키는 방법"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-19</div><div class="title">Python >> Pandas 전처리 - (5) column 값을 변환시키는 방법</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'f3ddacf572c2f778e2268a142a8d5357',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

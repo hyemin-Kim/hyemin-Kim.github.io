@@ -1,0 +1,1189 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; sklearn - (2) 분류 (Classification) | Hyemin Kim</title><meta name="keywords" content="Python,sklearn,Machine Learning,분류"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Logistic Regression, SGD, KNN, SVM, Decision Tree, 분류 모델 성능 평가 (confusion matrix)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python &gt;&gt; sklearn - (2) 분류 (Classification)">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/07/26/S-Python-sklearn2/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Logistic Regression, SGD, KNN, SVM, Decision Tree, 분류 모델 성능 평가 (confusion matrix)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg">
+<meta property="article:published_time" content="2020-07-26T11:23:49.000Z">
+<meta property="article:modified_time" content="2020-07-30T07:54:02.033Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="sklearn">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="분류">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/07/26/S-Python-sklearn2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-30 16:54:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#분류-classification"><span class="toc-text"> 분류 (Classification)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-데이터-셋"><span class="toc-text"> 0. 데이터 셋</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-iris-데이터-셋"><span class="toc-text"> 0-1. iris 데이터 셋</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-데이터프레임-만들기"><span class="toc-text"> 0-2. 데이터프레임 만들기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-3-시각화로-데이터셋-파악하기"><span class="toc-text"> 0-3. 시각화로 데이터셋 파악하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-training-set-validation-set-나누기"><span class="toc-text"> 1. training set &#x2F; validation set 나누기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-하이퍼-파라미터-hyper-parameter-튜닝"><span class="toc-text"> 2. 하이퍼 파라미터 (hyper-parameter) 튜닝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-분류-알고리즘"><span class="toc-text"> 3. 분류 알고리즘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-logistic-regression"><span class="toc-text"> 3-1. Logistic Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-sgd-sgdclassifier"><span class="toc-text"> 3-2. SGD (SGDClassifier)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-knn-kneighborsclassifier"><span class="toc-text"> 3-3. KNN (KNeighborsClassifier)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-svm-svc"><span class="toc-text"> 3-4. SVM (SVC)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-decision-tree-decisiontreeclassifier"><span class="toc-text"> 3-5. Decision Tree (DecisionTreeClassifier)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-decision-tree-의사-결정-나무-나무-가지치기를-통해-소그룹으로-나누어-판별하는것"><span class="toc-text"> 1. Decision Tree (의사 결정 나무): 나무 가지치기를 통해 소그룹으로 나누어 판별하는것</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-decision-tree-분류-결과-시각화"><span class="toc-text"> 2. Decision Tree 분류 결과 시각화</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-가지-치기-pruning"><span class="toc-text"> 3. 가지 치기 (pruning)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-모델-성능-평가-지표"><span class="toc-text"> 4. 모델 성능 평가 지표</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-오차-행렬-confusion-matrix"><span class="toc-text"> 4-1. 오차 행렬 (Confusion Matrix)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-정확도-accuracy"><span class="toc-text"> 4-2. 정확도 (Accuracy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-정밀도-precision"><span class="toc-text"> 4-3. 정밀도 (Precision)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-민감도-sensitivity-재현율-recall"><span class="toc-text"> 4-4. 민감도 (Sensitivity)  &#x2F;  재현율 (Recall)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-특이도-specificity"><span class="toc-text"> 4-5. 특이도 (Specificity)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-f1-score"><span class="toc-text"> 4-6. F1 Score</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-text"> </span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; sklearn - (2) 분류 (Classification)</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-07-26T11:23:49.000Z" title="Created 2020-07-26 20:23:49">2020-07-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-07-30T07:54:02.033Z" title="Updated 2020-07-30 16:54:02">2020-07-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="분류-classification"><a class="markdownIt-Anchor" href="#분류-classification"></a> <strong>분류 (Classification)</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%85%8B"><strong>0. 데이터 셋</strong></a>
+<ul>
+<li><a href="#0-1-iris-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%85%8B">0-1. iris 데이터 셋</a></li>
+<li><a href="#0-2-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EB%A7%8C%EB%93%A4%EA%B8%B0">0-2. 데이터프레임 만들기</a></li>
+<li><a href="#0-3-%EC%8B%9C%EA%B0%81%ED%99%94%EB%A1%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0">0-3. 시각화로 데이터셋 파악하기</a></li>
+</ul>
+</li>
+<li><a href="#1-training-set-validation-set-%EB%82%98%EB%88%84%EA%B8%B0"><strong>1. training set / validation set 나누기</strong></a></li>
+<li><a href="#2-%ED%95%98%EC%9D%B4%ED%8D%BC-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-hyper-parameter-%ED%8A%9C%EB%8B%9D"><strong>2. 하이퍼 파라미터 (hyper-parameter) 튜닝</strong></a></li>
+<li><a href="#3-%EB%B6%84%EB%A5%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98"><strong>3. 분류 알고리즘</strong></a>
+<ul>
+<li><a href="#3-1-logistic-regression">3-1. Logistic Regression</a></li>
+<li><a href="#3-2-sgd-sgdclassifier">3-2. SGD (SGDClassifier)</a></li>
+<li><a href="#3-3-knn-kneighborsclassifier">3-3. KNN (KNeighborsClassifier)</a></li>
+<li><a href="#3-4-svm-svc">3-4. SVM (SVC)</a></li>
+<li><a href="#3-5-decision-tree-decisiontreeclassifier">3-5. Decision Tree (DecisionTreeClassifier)</a>
+<ul>
+<li><a href="#1-decision-tree-%EC%9D%98%EC%82%AC-%EA%B2%B0%EC%A0%95-%EB%82%98%EB%AC%B4-%EB%82%98%EB%AC%B4-%EA%B0%80%EC%A7%80%EC%B9%98%EA%B8%B0%EB%A5%BC-%ED%86%B5%ED%95%B4-%EC%86%8C%EA%B7%B8%EB%A3%B9%EC%9C%BC%EB%A1%9C-%EB%82%98%EB%88%84%EC%96%B4-%ED%8C%90%EB%B3%84%ED%95%98%EB%8A%94%EA%B2%83">1. Decision Tree (의사 결정 나무): 나무 가지치기를 통해 소그룹으로 나누어 판별하는것</a></li>
+<li><a href="#2-decision-tree-%EB%B6%84%EB%A5%98-%EA%B2%B0%EA%B3%BC-%EC%8B%9C%EA%B0%81%ED%99%94">2. Decision Tree 분류 결과 시각화</a></li>
+<li><a href="#3-%EA%B0%80%EC%A7%80-%EC%B9%98%EA%B8%B0-pruning">3. 가지 치기 (pruning)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-%EB%AA%A8%EB%8D%B8-%EC%84%B1%EB%8A%A5-%ED%8F%89%EA%B0%80-%EC%A7%80%ED%91%9C"><strong>4. 모델 성능 평가 지표</strong></a>
+<ul>
+<li><a href="#4-1-%EC%98%A4%EC%B0%A8-%ED%96%89%EB%A0%AC-confusion-matrix">4-1. 오차 행렬 (Confusion Matrix)</a></li>
+<li><a href="#4-2-%EC%A0%95%ED%99%95%EB%8F%84-accuracy">4-2. 정확도 (Accuracy)</a></li>
+<li><a href="#4-3-%EC%A0%95%EB%B0%80%EB%8F%84-precision">4-3. 정밀도 (Precision)</a></li>
+<li><a href="#4-4-%EB%AF%BC%EA%B0%90%EB%8F%84-sensitivity-%EC%9E%AC%ED%98%84%EC%9C%A8-recall">4-4. 민감도 (Sensitivity)  /  재현율 (Recall)</a></li>
+<li><a href="#4-5-%ED%8A%B9%EC%9D%B4%EB%8F%84-specificity">4-5. 특이도 (Specificity)</a></li>
+<li><a href="#4-6-f1-score">4-6. F1 Score</a></li>
+<li></li>
+</ul>
+</li>
+</ul>
+<p></p>
+ <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>) <span class="comment"># 불필요한 경고 출력을 방지함</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<h2 id="0-데이터-셋"><a class="markdownIt-Anchor" href="#0-데이터-셋"></a> <strong>0. 데이터 셋</strong></h2>
+<p><a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.datasets" target="_blank" rel="noopener">sklearn.dataset</a> 에서 제공해주는 다양한 샘플 데이터를 활용한다</p>
+<p>여기서는 iris 데이터 셋을 활용한다</p>
+ <br> 
+<h3 id="0-1-iris-데이터-셋"><a class="markdownIt-Anchor" href="#0-1-iris-데이터-셋"></a> 0-1. iris 데이터 셋</h3>
+<p><strong>Mission:</strong> 꽃 종류 분류하기</p>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html#sklearn.datasets.load_iris" target="_blank" rel="noopener">iris 데이터 셋</a></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iris 데이터 셋 로드</span></span><br><span class="line">iris = load_iris()</span><br></pre></td></tr></tbody></table></figure>
+ <br>
+<p><strong>iris 데이터 셋 구성 (key values):</strong></p>
+<ul>
+<li>
+<p><code>DESCR</code>: 데이터 셋의 정보를 보여줌</p>
+</li>
+<li>
+<p><code>data</code>: feature data</p>
+</li>
+<li>
+<p><code>feature_names</code>: feature data의 컬럼 이름</p>
+</li>
+<li>
+<p><code>target</code>: label data (수치형)</p>
+</li>
+<li>
+<p><code>target_names</code>: label data의 value 이름 (문자형)</p>
+ <br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 데이터 셋 정보 확인하기</span></span><br><span class="line">print(iris[<span class="string">'DESCR'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>.. _iris_dataset:
+
+Iris plants dataset
+--------------------
+
+**Data Set Characteristics:**
+
+    :Number of Instances: 150 (50 in each of three classes)
+    :Number of Attributes: 4 numeric, predictive attributes and the class
+    :Attribute Information:
+        - sepal length in cm
+        - sepal width in cm
+        - petal length in cm
+        - petal width in cm
+        - class:
+                - Iris-Setosa
+                - Iris-Versicolour
+                - Iris-Virginica
+                
+    :Summary Statistics:
+
+    ============== ==== ==== ======= ===== ====================
+                    Min  Max   Mean    SD   Class Correlation
+    ============== ==== ==== ======= ===== ====================
+    sepal length:   4.3  7.9   5.84   0.83    0.7826
+    sepal width:    2.0  4.4   3.05   0.43   -0.4194
+    petal length:   1.0  6.9   3.76   1.76    0.9490  (high!)
+    petal width:    0.1  2.5   1.20   0.76    0.9565  (high!)
+    ============== ==== ==== ======= ===== ====================
+
+    :Missing Attribute Values: None
+    :Class Distribution: 33.3% for each of 3 classes.
+    :Creator: R.A. Fisher
+    :Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)
+    :Date: July, 1988
+
+The famous Iris database, first used by Sir R.A. Fisher. The dataset is taken
+from Fisher's paper. Note that it's the same as in R, but not as in the UCI
+Machine Learning Repository, which has two wrong data points.
+
+This is perhaps the best known database to be found in the
+pattern recognition literature.  Fisher's paper is a classic in the field and
+is referenced frequently to this day.  (See Duda &amp; Hart, for example.)  The
+data set contains 3 classes of 50 instances each, where each class refers to a
+type of iris plant.  One class is linearly separable from the other 2; the
+latter are NOT linearly separable from each other.
+
+.. topic:: References
+
+   - Fisher, R.A. "The use of multiple measurements in taxonomic problems"
+     Annual Eugenics, 7, Part II, 179-188 (1936); also in "Contributions to
+     Mathematical Statistics" (John Wiley, NY, 1950).
+   - Duda, R.O., &amp; Hart, P.E. (1973) Pattern Classification and Scene Analysis.
+     (Q327.D83) John Wiley &amp; Sons.  ISBN 0-471-22361-1.  See page 218.
+   - Dasarathy, B.V. (1980) "Nosing Around the Neighborhood: A New System
+     Structure and Classification Rule for Recognition in Partially Exposed
+     Environments".  IEEE Transactions on Pattern Analysis and Machine
+     Intelligence, Vol. PAMI-2, No. 1, 67-71.
+   - Gates, G.W. (1972) "The Reduced Nearest Neighbor Rule".  IEEE Transactions
+     on Information Theory, May 1972, 431-433.
+   - See also: 1988 MLC Proceedings, 54-64.  Cheeseman et al"s AUTOCLASS II
+     conceptual clustering system finds 3 classes in the data.
+   - Many, many more ...
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># data 불러오기</span></span><br><span class="line">data = iris[<span class="string">'data'</span>]</span><br><span class="line">data[:<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[5.1, 3.5, 1.4, 0.2],
+       [4.9, 3. , 1.4, 0.2],
+       [4.7, 3.2, 1.3, 0.2],
+       [4.6, 3.1, 1.5, 0.2],
+       [5. , 3.6, 1.4, 0.2]])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># feature names 확인하기</span></span><br><span class="line">feature_names = iris[<span class="string">'feature_names'</span>]</span><br><span class="line">feature_names</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>['sepal length (cm)',
+ 'sepal width (cm)',
+ 'petal length (cm)',
+ 'petal width (cm)']
+</code></pre>
+<p><strong>[해석]</strong> sepal: 꽃 받침;  petal: 꽃잎</p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># label data 확인하기</span></span><br><span class="line">target = iris[<span class="string">'target'</span>]</span><br><span class="line">target[:<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0, 0, 0, 0, 0])
+</code></pre>
+ <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># target names 확인하기</span></span><br><span class="line">iris[<span class="string">'target_names'</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array(['setosa', 'versicolor', 'virginica'], dtype='&lt;U10')
+</code></pre>
+<br>
+<h3 id="0-2-데이터프레임-만들기"><a class="markdownIt-Anchor" href="#0-2-데이터프레임-만들기"></a> 0-2. 데이터프레임 만들기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># feature data 먼저 생성하기</span></span><br><span class="line">df_iris = pd.DataFrame(data, columns = feature_names)</span><br><span class="line">df_iris.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># target column 추가하기</span></span><br><span class="line">df_iris[<span class="string">'target'</span>] = target</span><br><span class="line">df_iris.head()  <span class="comment"># 최종 dataframe</span></span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>  
+<h3 id="0-3-시각화로-데이터셋-파악하기"><a class="markdownIt-Anchor" href="#0-3-시각화로-데이터셋-파악하기"></a> 0-3. 시각화로 데이터셋 파악하기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
+ <br> 
+<p><strong>1. Sepal data로 보는 꽃 종류</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_iris.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)',
+       'petal width (cm)', 'target'],
+      dtype='object')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.scatterplot(<span class="string">'sepal width (cm)'</span>, <span class="string">'sepal length (cm)'</span>, hue=<span class="string">'target'</span>, palette=<span class="string">'muted'</span>, data=df_iris)</span><br><span class="line">plt.title(<span class="string">'Sepal'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_32_0.png" alt="png"></p>
+<br>
+<p><strong>2. petal data로 보는 꽃 종류</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.scatterplot(<span class="string">'petal width (cm)'</span>, <span class="string">'petal length (cm)'</span>, hue=<span class="string">'target'</span>, palette=<span class="string">'muted'</span>, data=df_iris)</span><br><span class="line">plt.title(<span class="string">'Petal'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_35_0.png" alt="png"></p>
+<br>
+<p><strong>3. 3D plot로 보는 꽃 종류 (PCA 이용)</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">ax = Axes3D(fig, elev=<span class="number">-150</span>, azim=<span class="number">110</span>)</span><br><span class="line">X_reduced = PCA(n_components=<span class="number">3</span>).fit_transform(df_iris.drop(<span class="string">'target'</span>, <span class="number">1</span>))</span><br><span class="line">ax.scatter(X_reduced[:, <span class="number">0</span>], X_reduced[:, <span class="number">1</span>], X_reduced[:, <span class="number">2</span>], c=df_iris[<span class="string">'target'</span>],</span><br><span class="line">           cmap=plt.cm.Set1, edgecolor=<span class="string">'k'</span>, s=<span class="number">40</span>)</span><br><span class="line">ax.set_title(<span class="string">"Iris 3D"</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">"x"</span>)</span><br><span class="line">ax.w_xaxis.set_ticklabels([])</span><br><span class="line">ax.set_ylabel(<span class="string">"y"</span>)</span><br><span class="line">ax.w_yaxis.set_ticklabels([])</span><br><span class="line">ax.set_zlabel(<span class="string">"z"</span>)</span><br><span class="line">ax.w_zaxis.set_ticklabels([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_38_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="1-training-set-validation-set-나누기"><a class="markdownIt-Anchor" href="#1-training-set-validation-set-나누기"></a> <strong>1. training set / validation set 나누기</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train, x_valid, y_train, y_valid = train_test_split(df_iris.drop(<span class="string">'target'</span>, <span class="number">1</span>), df_iris[<span class="string">'target'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.shape, y_train.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((112, 4), (112,))
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_valid.shape, y_valid.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((38, 4), (38,))
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(y_train)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1cb7aaaeec8&gt;
+</code></pre>
+<p><img src="/images/S-Python-sklearn2/output_46_1.png" alt="png"></p>
+<p>'target’값이 0, 1, 2인 데이터가 Original dataset으로 부터 랜덤으로 뽑히기 때문에 <strong>비율의 차이가 존재</strong>할 수 있다. 따라서 기계학습할 때 <strong>sample size가 큰 데이터 위주로 학습</strong>하여 모델의 <strong>예측성능이 떨어질</strong> 수 있다. (위 상황에서, 학습된 머신러닝 모델이 sample size가 큰 target=1인 경우를 좀 더 잘 예측하고, target=2에 대한 예측도가 떨어질 수 있다)</p>
+<p>이를 방지하기 위해 우리는 <strong><code>stratify</code>옵션</strong>을 이용하여 label의 class 분포를 균등하게 배분한다.</p>
+ <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train, x_valid, y_train, y_valid = train_test_split(df_iris.drop(<span class="string">'target'</span>, <span class="number">1</span>), df_iris[<span class="string">'target'</span>], stratify=df_iris[<span class="string">'target'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(y_train)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1cb7b17b508&gt;
+</code></pre>
+<p><img src="/images/S-Python-sklearn2/output_50_1.png" alt="png"></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.shape, y_train.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((112, 4), (112,))
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_valid.shape, y_valid.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((38, 4), (38,))
+</code></pre>
+<br>
+  <br>
+<h2 id="2-하이퍼-파라미터-hyper-parameter-튜닝"><a class="markdownIt-Anchor" href="#2-하이퍼-파라미터-hyper-parameter-튜닝"></a> <strong>2. 하이퍼 파라미터 (hyper-parameter) 튜닝</strong></h2>
+<p>모델 학습할 때 설정 한 옵션들은 **하이퍼 파라미터 (hyper-parameter)**라고 한다. 설정한 값에 따라 모델 성능도 달라질 수 있다.</p>
+<p>각 알고리즘 별, hyper-parameter의 종류가 매우 다양하다. 다음 두 가지 parameter는 기본적으로 설정해주는 것이 좋다:</p>
+<ul>
+<li>
+<p>random_state: sampling seed 설정 (항상 동일하게 sampling 하기)</p>
+</li>
+<li>
+<p>n_jobs=-1: CPU를 모두 사용 (학습속도가 빠름)</p>
+<br>
+</li>
+</ul>
+<h2 id="3-분류-알고리즘"><a class="markdownIt-Anchor" href="#3-분류-알고리즘"></a> <strong>3. 분류 알고리즘</strong></h2>
+<h3 id="3-1-logistic-regression"><a class="markdownIt-Anchor" href="#3-1-logistic-regression"></a> 3-1. Logistic Regression</h3>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regression#sklearn.linear_model.LogisticRegression" target="_blank" rel="noopener">[sklearn.linear_model.<strong>LogisticRegression</strong>] Document</a></p>
+</blockquote>
+<p>Logistic Regression, SVM(Support Vector Machine)과 같은 알고리즘은 <strong>이진(Binary Class) 분류만 가능</strong>한다. (2개의 클래스 판별만 가능한다.)</p>
+<p>하지만, <strong>3개 이상의 클래스에 대한 판별</strong> **[다중 클래스(Multi-Class) 분류]**을 진행하는 경우, 다음과 같은 전략으로 판별한다.</p>
+<ul>
+<li>
+<p><strong>one-vs-one (OvO)</strong>:   K 개의 클래스가 존재할 때, 이 중 2개의 클래스 조합을 선택하여  <font color="blue">K(K−1)/2 개</font>의 이진 클래스 분류 문제를 풀고 이진판별을 통해 가장 많은 판별값을 얻은 클래스를 선택하는 방법이다.</p>
+</li>
+<li>
+<p><strong>one-vs-rest (OvR)</strong>: K 개의 클래스가 존재할 때, 클래스들을 “k번째 클래스(one)” &amp; "나머지(rest)"로 나누어서 <font color="blue">K개</font>의 개별 이진 분류 문제를 푼다. 즉, 각각의 클래스에 대해 표본이 속하는지(y=1) 속하지 않는지(y=0)의 이진 분류 문제를 푸는 것이다. OvO와 달리 클래스 수만큼의 이진 분류 문제를 풀면 된다.</p>
+</li>
+</ul>
+<p>대부분 <strong>OvsR 전략을 선호</strong>합니다.</p>
+  <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>step 1: 모델 선언</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lr = LogisticRegression(random_state=<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>step 2: 모델 학습</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lr.fit(x_train, y_train)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=None, penalty='l2',
+                   random_state=0, solver='lbfgs', tol=0.0001, verbose=0,
+                   warm_start=False)
+</code></pre>
+<p><strong>step 3: 예측</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction = lr.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction[:<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0, 1, 2, 2, 0])
+</code></pre>
+<p><strong>step 4: 평가</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(prediction == y_valid).mean()  <span class="comment"># 정확도</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9473684210526315
+</code></pre>
+ <br> 
+<h3 id="3-2-sgd-sgdclassifier"><a class="markdownIt-Anchor" href="#3-2-sgd-sgdclassifier"></a> 3-2. SGD (SGDClassifier)</h3>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html" target="_blank" rel="noopener">[sklearn.linear_model.<strong>SGDClassifier</strong>] Document</a></p>
+</blockquote>
+<p><strong>stochastic gradient descent (SGD):</strong> 확률적 경사 하강법</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 출처: https://machinelearningnotepad.wordpress.com/</span></span><br><span class="line">Image(<span class="string">'https://machinelearningnotepad.files.wordpress.com/2018/04/yk1mk.png'</span>, width=<span class="number">500</span>)</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-Python-sklearn2/output_80_0.png" alt="png" style="zoom: 33%;">
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> SGDClassifier</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>step 1: 모델 선언</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd = SGDClassifier(random_state=<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>step 2: 모델 학습</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd.fit(x_train, y_train)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>SGDClassifier(alpha=0.0001, average=False, class_weight=None,
+              early_stopping=False, epsilon=0.1, eta0=0.0, fit_intercept=True,
+              l1_ratio=0.15, learning_rate='optimal', loss='hinge',
+              max_iter=1000, n_iter_no_change=5, n_jobs=None, penalty='l2',
+              power_t=0.5, random_state=0, shuffle=True, tol=0.001,
+              validation_fraction=0.1, verbose=0, warm_start=False)
+</code></pre>
+<p><strong>step 3: 예측</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction = sgd.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>step 4: 평가</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(prediction == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9473684210526315
+</code></pre>
+ <br> 
+<p><strong>Change hyper-parameter values:</strong></p>
+<p>e.g.: penalty = ‘l1’, random_state = 1, n_jobs = -1</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd2 = SGDClassifier(penalty=<span class="string">'l1'</span>, random_state=<span class="number">1</span>, n_jobs=<span class="number">-1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd2.fit(x_train, y_train)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>SGDClassifier(alpha=0.0001, average=False, class_weight=None,
+              early_stopping=False, epsilon=0.1, eta0=0.0, fit_intercept=True,
+              l1_ratio=0.15, learning_rate='optimal', loss='hinge',
+              max_iter=1000, n_iter_no_change=5, n_jobs=-1, penalty='l1',
+              power_t=0.5, random_state=1, shuffle=True, tol=0.001,
+              validation_fraction=0.1, verbose=0, warm_start=False)
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction2 = sgd2.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(prediction2 == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1.0
+</code></pre>
+ <br> 
+<h3 id="3-3-knn-kneighborsclassifier"><a class="markdownIt-Anchor" href="#3-3-knn-kneighborsclassifier"></a> 3-3. KNN (KNeighborsClassifier)</h3>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html" target="_blank" rel="noopener">[sklearn.neighbors.<strong>KNeighborsClassifier</strong>] Document</a></p>
+</blockquote>
+<p><strong>KNN (K Nearest Neighbors):</strong> K 최근접 이웃 알고리즘</p>
+<p>새로운 데이터의 분류 결과가 K 개 최근접 이웃의 클래스에 의해서 결정되며, 데이터는 가장 많이 할당되는 클래스로 분류하게 된다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 출처: 데이터 캠프</span></span><br><span class="line">Image(<span class="string">'https://res.cloudinary.com/dyd911kmh/image/upload/f_auto,q_auto:best/v1531424125/KNN_final_a1mrv9.png'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_102_0.png" alt="png"></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 모델 선언</span></span><br><span class="line">knn = KNeighborsClassifier()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2. 모델 학습</span></span><br><span class="line">knn.fit(x_train, y_train)  <span class="comment"># default: n_neighbors=5</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=None, n_neighbors=5, p=2,
+                     weights='uniform')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3. 예측</span></span><br><span class="line">prediction = knn.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 4. 평가</span></span><br><span class="line">(prediction == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9210526315789473
+</code></pre>
+  <br>
+<p>n_neighnors를 9개로 설정하여 다시 예측해본다:</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">knn2 = KNeighborsClassifier(n_neighbors=<span class="number">9</span>)</span><br><span class="line">knn2.fit(x_train, y_train)</span><br><span class="line">knn2_pred = knn2.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(knn2_pred == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9473684210526315
+</code></pre>
+<br>  
+<h3 id="3-4-svm-svc"><a class="markdownIt-Anchor" href="#3-4-svm-svc"></a> 3-4. SVM (SVC)</h3>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC" target="_blank" rel="noopener">[sklearn.svm.<strong>SVC</strong>] Document</a></p>
+</blockquote>
+<ul>
+<li>새로운 데이터가 어느 카테고리에 속할지 판단하는 비확률적 이진 선형 분류 모델을 만듦.</li>
+<li>경계로 표현되는 데이터들 중 가장 큰 폭을 가진 경계를 찾는 알고리즘.</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image(<span class="string">'https://csstudy.files.wordpress.com/2011/03/screen-shot-2011-02-28-at-5-53-26-pm.png'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_117_0.png" alt="png"></p>
+<br>
+<p>SVM은 Logistic Regression과 같이 이진 분류만 가능하다. (2개의 클래스 판별만 가능)<br>
+3개 이상의 클래스인 경우: <strong>OvsR 전략</strong> 사용</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC  <span class="comment"># SVC: Support Vector Classification</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">svc = SVC(random_state=<span class="number">0</span>)</span><br><span class="line">svc.fit(x_train, y_train)</span><br><span class="line">svc_pred = svc.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svc  <span class="comment"># hyper-parameter 확인</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>SVC(C=1.0, break_ties=False, cache_size=200, class_weight=None, coef0=0.0,
+    decision_function_shape='ovr', degree=3, gamma='scale', kernel='rbf',
+    max_iter=-1, probability=False, random_state=0, shrinking=True, tol=0.001,
+    verbose=False)
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(svc_pred == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9473684210526315
+</code></pre>
+<br>
+<p>각 클래스 별 확률값을 return해주는 <code>decision_function()</code></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svc.decision_function(x_valid)[:<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 2.22273426,  1.18194657, -0.25426485],
+       [-0.22060229,  2.23192595,  0.91725911],
+       [-0.23638817,  1.18969144,  2.17593611],
+       [-0.23457057,  1.07146337,  2.22588253],
+       [ 2.22808358,  1.16872302, -0.25381783]])
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svc_pred[:<span class="number">5</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0, 1, 2, 2, 0])
+</code></pre>
+<p><strong>확률값이 제일 높은 클래스</strong>로 분류(예측) 된 것을 확인하실 수 있다</p>
+<br>  
+<h3 id="3-5-decision-tree-decisiontreeclassifier"><a class="markdownIt-Anchor" href="#3-5-decision-tree-decisiontreeclassifier"></a> 3-5. Decision Tree (DecisionTreeClassifier)</h3>
+<blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html?highlight=decision%20tree#sklearn.tree.DecisionTreeClassifier" target="_blank" rel="noopener">[sklearn.tree.<strong>DecisionTreeClassifier</strong>] Document</a></p>
+</blockquote>
+<h4 id="1-decision-tree-의사-결정-나무-나무-가지치기를-통해-소그룹으로-나누어-판별하는것"><a class="markdownIt-Anchor" href="#1-decision-tree-의사-결정-나무-나무-가지치기를-통해-소그룹으로-나누어-판별하는것"></a> 1. Decision Tree (의사 결정 나무): 나무 가지치기를 통해 소그룹으로 나누어 판별하는것</h4>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image(<span class="string">'https://www.researchgate.net/profile/Ludmila_Aleksejeva/publication/293194222/figure/fig1/AS:669028842487827@1536520314657/Decision-tree-for-Iris-dataset.png'</span>, width=<span class="number">500</span>)</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-Python-sklearn2/output_132_0.png" alt="png" style="zoom: 67%;">
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dt = DecisionTreeClassifier(random_state=<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dt.fit(x_train, y_train)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='gini',
+                       max_depth=None, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort='deprecated',
+                       random_state=0, splitter='best')
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dt_pred = dt.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(dt_pred == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9210526315789473
+</code></pre>
+<br>  
+<h4 id="2-decision-tree-분류-결과-시각화"><a class="markdownIt-Anchor" href="#2-decision-tree-분류-결과-시각화"></a> 2. Decision Tree 분류 결과 시각화</h4>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> export_graphviz</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<p><strong>방법 1:</strong> <code>pydot</code>을 사용하여 "<em>dot</em> 파일"을 "<em>png</em> 이미지"로 전환 (<a href="https://niceman.tistory.com/169" target="_blank" rel="noopener">참고</a>)</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pydot</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Collecting pydotNote: you may need to restart the kernel to use updated packages.
+  Downloading pydot-1.4.1-py2.py3-none-any.whl (19 kB)
+Requirement already satisfied: pyparsing&gt;=2.1.4 in d:\anaconda\lib\site-packages (from pydot) (2.4.6)
+Installing collected packages: pydot
+Successfully installed pydot-1.4.1
+</code></pre>
+<p>​    <br></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 참고: https://niceman.tistory.com/169</span></span><br><span class="line"><span class="keyword">import</span> pydot</span><br><span class="line"></span><br><span class="line"><span class="comment"># .dot결과 생성</span></span><br><span class="line">export_graphviz(dt, out_file=<span class="string">'tree.dot'</span>, feature_names=feature_names, class_names=np.unique(iris[<span class="string">'target_names'</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Encoding</span></span><br><span class="line">(graph,) = pydot.graph_from_dot_file(<span class="string">'tree.dot'</span>, encoding=<span class="string">'utf8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># .dot파일을 .png이미지로 저장</span></span><br><span class="line">graph.write_png(<span class="string">'tree.png'</span>)</span><br><span class="line"></span><br><span class="line">Image(filename = <span class="string">'tree.png'</span>, width=<span class="number">600</span>)</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-Python-sklearn2/output_144_0.png" alt="png" style="zoom: 80%;">
+  <br>
+ <br>
+<p><strong>방법 2:</strong> <code>graphviz.Source</code>이용 (<a href="https://www.kaggle.com/praanj/titanic-decision-tree-complete-evaluation" target="_blank" rel="noopener">참고</a>)</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -U graphviz</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Requirement already up-to-date: graphviz in d:\anaconda\lib\site-packages (0.14.1)
+Note: you may need to restart the kernel to use updated packages.
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> graphviz</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 참고: https://www.kaggle.com/vaishvik25/titanic-eda-fe-3-model-decision-tree-viz</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier, export_graphviz</span><br><span class="line"></span><br><span class="line">tree_dot = export_graphviz(dt,out_file=<span class="literal">None</span>, feature_names=feature_names, class_names=np.unique(iris[<span class="string">'target_names'</span>]))</span><br><span class="line">tree = graphviz.Source(tree_dot)</span><br><span class="line">tree</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-Python-sklearn2/output_149_0.svg" alt="svg" style="zoom: 80%;">
+ <br>
+<p><strong>gini계수:</strong> 불순도를 의미함. gini계수가 높을 수록 엔트로피(Entropy)가 큼. 즉, 클래스가 혼잡하게 섞여 있음.</p>
+  <br>
+<h4 id="3-가지-치기-pruning"><a class="markdownIt-Anchor" href="#3-가지-치기-pruning"></a> 3. 가지 치기 (pruning)</h4>
+<p>Overfitting을 방지하기 위해 적당히 가지 치기를 진행한다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 수동으로 max_depth 설정</span></span><br><span class="line">dt2 = DecisionTreeClassifier(max_depth=<span class="number">2</span>)</span><br><span class="line">dt2.fit(x_train, y_train)</span><br><span class="line">dt2_pred = dt2.predict(x_valid)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(dt2_pred == y_valid).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9210526315789473
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tree2_dot = export_graphviz(dt2,out_file=<span class="literal">None</span>, feature_names=feature_names, class_names=np.unique(iris[<span class="string">'target_names'</span>]))</span><br><span class="line">tree2 = graphviz.Source(tree2_dot)</span><br><span class="line">tree2</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_156_0.svg" alt="svg"></p>
+  <br>
+  <br>
+<h2 id="4-모델-성능-평가-지표"><a class="markdownIt-Anchor" href="#4-모델-성능-평가-지표"></a> <strong>4. 모델 성능 평가 지표</strong></h2>
+<blockquote>
+<p>참고자료: <a href="https://sumniya.tistory.com/26" target="_blank" rel="noopener">분류성능평가지표 - Precision(정밀도), Recall(재현율) and Accuracy(정확도)</a></p>
+</blockquote>
+<h3 id="4-1-오차-행렬-confusion-matrix"><a class="markdownIt-Anchor" href="#4-1-오차-행렬-confusion-matrix"></a> 4-1. 오차 행렬 (Confusion Matrix)</h3>
+<img src="/images/S-Python-sklearn2/a9psOK.png" alt="confusion_matrix" style="zoom: 67%;">
+  <br>
+<h3 id="4-2-정확도-accuracy"><a class="markdownIt-Anchor" href="#4-2-정확도-accuracy"></a> 4-2. 정확도 (Accuracy)</h3>
+<p><strong>정확도 (Accuracy):</strong> 모델이 샘플을 올바르게 예측하는 비율</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>c</mi><mi>c</mi><mi>u</mi><mi>r</mi><mi>a</mi><mi>c</mi><mi>y</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Accuracy = \frac{TP+TN}{TP+FP+TN+FN}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span><span class="mord mathdefault">u</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+ <br> 
+<p><strong>!!정확도의 함정!!</strong></p>
+<p>정확도는 모델의 성능을 가장 지관적으로 나타낼 수 있는 평가 지표다. 하지만, 만약 Actual positive sample과 Actual negative sample의 비율이 차이가 많이 나면 <strong>정확도의 함정</strong>에 빠질 수 있다.</p>
+<p>즉, <em><strong>모두 positive / negative로 예측</strong></em> 했을 때 모델의 정확도가 매우 높은 경우다. 이 경우에 <font color="blue"><strong>예측 정확도가 높지만, 모델의 예측 성능이 좋다라고 말할 수는 없다.</strong></font></p>
+  <br>
+<p>유방암 환자 데이터셋을 이용하여 한번 이해해 볼게요.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cancer = load_breast_cancer(유방암 환자 데이터셋)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cancer[<span class="string">'DESCR'</span>])  <span class="comment"># describe</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>.. _breast_cancer_dataset:
+
+Breast cancer wisconsin (diagnostic) dataset
+--------------------------------------------
+
+**Data Set Characteristics:**
+
+    :Number of Instances: 569
+
+    :Number of Attributes: 30 numeric, predictive attributes and the class
+
+    :Attribute Information:
+        - radius (mean of distances from center to points on the perimeter)
+        - texture (standard deviation of gray-scale values)
+        - perimeter
+        - area
+        - smoothness (local variation in radius lengths)
+        - compactness (perimeter^2 / area - 1.0)
+        - concavity (severity of concave portions of the contour)
+        - concave points (number of concave portions of the contour)
+        - symmetry 
+        - fractal dimension ("coastline approximation" - 1)
+
+        The mean, standard error, and "worst" or largest (mean of the three
+        largest values) of these features were computed for each image,
+        resulting in 30 features.  For instance, field 3 is Mean Radius, field
+        13 is Radius SE, field 23 is Worst Radius.
+
+        - class:
+                - WDBC-Malignant
+                - WDBC-Benign
+
+    :Summary Statistics:
+
+    ===================================== ====== ======
+                                           Min    Max
+    ===================================== ====== ======
+    radius (mean):                        6.981  28.11
+    texture (mean):                       9.71   39.28
+    perimeter (mean):                     43.79  188.5
+    area (mean):                          143.5  2501.0
+    smoothness (mean):                    0.053  0.163
+    compactness (mean):                   0.019  0.345
+    concavity (mean):                     0.0    0.427
+    concave points (mean):                0.0    0.201
+    symmetry (mean):                      0.106  0.304
+    fractal dimension (mean):             0.05   0.097
+    radius (standard error):              0.112  2.873
+    texture (standard error):             0.36   4.885
+    perimeter (standard error):           0.757  21.98
+    area (standard error):                6.802  542.2
+    smoothness (standard error):          0.002  0.031
+    compactness (standard error):         0.002  0.135
+    concavity (standard error):           0.0    0.396
+    concave points (standard error):      0.0    0.053
+    symmetry (standard error):            0.008  0.079
+    fractal dimension (standard error):   0.001  0.03
+    radius (worst):                       7.93   36.04
+    texture (worst):                      12.02  49.54
+    perimeter (worst):                    50.41  251.2
+    area (worst):                         185.2  4254.0
+    smoothness (worst):                   0.071  0.223
+    compactness (worst):                  0.027  1.058
+    concavity (worst):                    0.0    1.252
+    concave points (worst):               0.0    0.291
+    symmetry (worst):                     0.156  0.664
+    fractal dimension (worst):            0.055  0.208
+    ===================================== ====== ======
+
+    :Missing Attribute Values: None
+
+    :Class Distribution: 212 - Malignant, 357 - Benign
+
+    :Creator:  Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian
+
+    :Donor: Nick Street
+
+    :Date: November, 1995
+
+This is a copy of UCI ML Breast Cancer Wisconsin (Diagnostic) datasets.
+https://goo.gl/U2Uwz2
+
+Features are computed from a digitized image of a fine needle
+aspirate (FNA) of a breast mass.  They describe
+characteristics of the cell nuclei present in the image.
+
+Separating plane described above was obtained using
+Multisurface Method-Tree (MSM-T) [K. P. Bennett, "Decision Tree
+Construction Via Linear Programming." Proceedings of the 4th
+Midwest Artificial Intelligence and Cognitive Science Society,
+pp. 97-101, 1992], a classification method which uses linear
+programming to construct a decision tree.  Relevant features
+were selected using an exhaustive search in the space of 1-4
+features and 1-3 separating planes.
+
+The actual linear program used to obtain the separating plane
+in the 3-dimensional space is that described in:
+[K. P. Bennett and O. L. Mangasarian: "Robust Linear
+Programming Discrimination of Two Linearly Inseparable Sets",
+Optimization Methods and Software 1, 1992, 23-34].
+
+This database is also available through the UW CS ftp server:
+
+ftp ftp.cs.wisc.edu
+cd math-prog/cpo-dataset/machine-learn/WDBC/
+
+.. topic:: References
+
+   - W.N. Street, W.H. Wolberg and O.L. Mangasarian. Nuclear feature extraction 
+     for breast tumor diagnosis. IS&amp;T/SPIE 1993 International Symposium on 
+     Electronic Imaging: Science and Technology, volume 1905, pages 861-870,
+     San Jose, CA, 1993.
+   - O.L. Mangasarian, W.N. Street and W.H. Wolberg. Breast cancer diagnosis and 
+     prognosis via linear programming. Operations Research, 43(4), pages 570-577, 
+     July-August 1995.
+   - W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Machine learning techniques
+     to diagnose breast cancer from fine-needle aspirates. Cancer Letters 77 (1994) 
+     163-171.
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = cancer[<span class="string">'data'</span>]</span><br><span class="line">target = cancer[<span class="string">'target'</span>]</span><br><span class="line">feature_names = cancer[<span class="string">'feature_names'</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 데이터 프레임 생성</span></span><br><span class="line">df = pd.DataFrame(data = data, columns = feature_names)</span><br><span class="line">df[<span class="string">'target'</span>] = target</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean radius</th>
+      <th>mean texture</th>
+      <th>mean perimeter</th>
+      <th>mean area</th>
+      <th>mean smoothness</th>
+      <th>mean compactness</th>
+      <th>mean concavity</th>
+      <th>mean concave points</th>
+      <th>mean symmetry</th>
+      <th>mean fractal dimension</th>
+      <th>...</th>
+      <th>worst texture</th>
+      <th>worst perimeter</th>
+      <th>worst area</th>
+      <th>worst smoothness</th>
+      <th>worst compactness</th>
+      <th>worst concavity</th>
+      <th>worst concave points</th>
+      <th>worst symmetry</th>
+      <th>worst fractal dimension</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>17.99</td>
+      <td>10.38</td>
+      <td>122.80</td>
+      <td>1001.0</td>
+      <td>0.11840</td>
+      <td>0.27760</td>
+      <td>0.3001</td>
+      <td>0.14710</td>
+      <td>0.2419</td>
+      <td>0.07871</td>
+      <td>...</td>
+      <td>17.33</td>
+      <td>184.60</td>
+      <td>2019.0</td>
+      <td>0.1622</td>
+      <td>0.6656</td>
+      <td>0.7119</td>
+      <td>0.2654</td>
+      <td>0.4601</td>
+      <td>0.11890</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20.57</td>
+      <td>17.77</td>
+      <td>132.90</td>
+      <td>1326.0</td>
+      <td>0.08474</td>
+      <td>0.07864</td>
+      <td>0.0869</td>
+      <td>0.07017</td>
+      <td>0.1812</td>
+      <td>0.05667</td>
+      <td>...</td>
+      <td>23.41</td>
+      <td>158.80</td>
+      <td>1956.0</td>
+      <td>0.1238</td>
+      <td>0.1866</td>
+      <td>0.2416</td>
+      <td>0.1860</td>
+      <td>0.2750</td>
+      <td>0.08902</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>19.69</td>
+      <td>21.25</td>
+      <td>130.00</td>
+      <td>1203.0</td>
+      <td>0.10960</td>
+      <td>0.15990</td>
+      <td>0.1974</td>
+      <td>0.12790</td>
+      <td>0.2069</td>
+      <td>0.05999</td>
+      <td>...</td>
+      <td>25.53</td>
+      <td>152.50</td>
+      <td>1709.0</td>
+      <td>0.1444</td>
+      <td>0.4245</td>
+      <td>0.4504</td>
+      <td>0.2430</td>
+      <td>0.3613</td>
+      <td>0.08758</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11.42</td>
+      <td>20.38</td>
+      <td>77.58</td>
+      <td>386.1</td>
+      <td>0.14250</td>
+      <td>0.28390</td>
+      <td>0.2414</td>
+      <td>0.10520</td>
+      <td>0.2597</td>
+      <td>0.09744</td>
+      <td>...</td>
+      <td>26.50</td>
+      <td>98.87</td>
+      <td>567.7</td>
+      <td>0.2098</td>
+      <td>0.8663</td>
+      <td>0.6869</td>
+      <td>0.2575</td>
+      <td>0.6638</td>
+      <td>0.17300</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20.29</td>
+      <td>14.34</td>
+      <td>135.10</td>
+      <td>1297.0</td>
+      <td>0.10030</td>
+      <td>0.13280</td>
+      <td>0.1980</td>
+      <td>0.10430</td>
+      <td>0.1809</td>
+      <td>0.05883</td>
+      <td>...</td>
+      <td>16.67</td>
+      <td>152.20</td>
+      <td>1575.0</td>
+      <td>0.1374</td>
+      <td>0.2050</td>
+      <td>0.4000</td>
+      <td>0.1625</td>
+      <td>0.2364</td>
+      <td>0.07678</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+</div>
+<br>
+<p><strong>target:</strong> 0: Malignant (악성종양);  1: Benign (양성종양)</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pos = df.loc[df[<span class="string">'target'</span>] == <span class="number">1</span>] <span class="comment"># 앙성 sample</span></span><br><span class="line">neg = df.loc[df[<span class="string">'target'</span>] == <span class="number">0</span>] <span class="comment"># 음성 sample</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pos.shape, neg.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((357, 31), (212, 31))
+</code></pre>
+<br>
+<p><strong>시범용 sample data를 생성:</strong> 양성 환자 357 + 음성 환자 5</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample = pd.concat([pos, neg[:<span class="number">5</span>]], sort=<span class="literal">True</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train, x_test, y_train, y_test = train_test_split(sample.drop(<span class="string">'target'</span>,<span class="number">1</span>), sample[<span class="string">'target'</span>], random_state=<span class="number">42</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.shape, y_train.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((271, 30), (271,))
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_test.shape, y_test.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((91, 30), (91,))
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 모델 정의 및 학습</span></span><br><span class="line">model = LogisticRegression()</span><br><span class="line">model.fit(x_train, y_train)</span><br><span class="line">model_pred = model.predict(x_test)</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<ul>
+<li>Confusion Matrix</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion_matrix(y_test, model_pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 1,  0],
+       [ 2, 88]], dtype=int64)
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sns.heatmap(confusion_matrix(y_test, model_pred), annot=<span class="literal">True</span>, cmap=<span class="string">'Reds'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Predict'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Actual'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-sklearn2/output_192_0.png" alt="png"></p>
+<br>
+<ul>
+<li>정확도 (Accuracy)</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># logistic 모델 정확도</span></span><br><span class="line">(model_pred == y_test).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.978021978021978
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 모두 양성으로 예측한 경우</span></span><br><span class="line">my_pred = np.ones(shape=y_test.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 정확도</span></span><br><span class="line">(my_pred == y_test).mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.989010989010989
+</code></pre>
+<p>정확도만 놓고 본다면, 무조건 양성 환자로 예측하는 분류기가 성능이 더 좋다. 하지만 <strong>무조건 양성 환자로 예측해서 예측율이 98.9%로 말하는 의사는</strong> 당영히 자질이 좋은 의사라고 볼 수 없다</p>
+<p>정확도(Accuracy)만 보고 분류기의 성능을 판별하는 것은 위와 같은 오류에 빠질 수 있다. 이를 보완하기 위해 다음과 같은 지표들도 같이 활용하게 된다</p>
+  <br>
+<h3 id="4-3-정밀도-precision"><a class="markdownIt-Anchor" href="#4-3-정밀도-precision"></a> 4-3. 정밀도 (Precision)</h3>
+<p><strong>정밀도 (Precision):</strong> 양성 예측의 정확도. 즉, Positive Prediction 중에서 올바르게 예측되는 비율</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Precision=\frac{TP}{TP+FP}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">precision_score(y_test, model_pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1.0
+</code></pre>
+<br>
+<h3 id="4-4-민감도-sensitivity-재현율-recall"><a class="markdownIt-Anchor" href="#4-4-민감도-sensitivity-재현율-recall"></a> 4-4. 민감도 (Sensitivity)  /  재현율 (Recall)</h3>
+<p><strong>민감도 (Sensitivity) / 재현율 (Recall):</strong><br>
+분류기가 양성 샘플에 대한 식별력을 나타남. 즉, Positive Condition 중에서 올바르게 예측되는 비율. True Positive Rate (TPR) 이라고도 불린다.</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>e</mi><mi>n</mi><mi>s</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>t</mi><mi>y</mi><mi mathvariant="normal">/</mi><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Sensitivity / Recall = \frac{TP}{TP+FN}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recall_score(y_test, model_pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9777777777777777
+</code></pre>
+  <br>
+<h3 id="4-5-특이도-specificity"><a class="markdownIt-Anchor" href="#4-5-특이도-specificity"></a> 4-5. 특이도 (Specificity)</h3>
+<p><strong>특이도 (Specificity):</strong> 분류기가 음성 샘플에 대한 식별력을 나타남. 즉, Negative Condition 중에서 올바르게 예측되는 비율. True Negative Rate (TNR) 이라고도 불린다.</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>f</mi><mi>i</mi><mi>c</mi><mi>i</mi><mi>t</mi><mi>y</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Specificity = \frac{TN}{TN+FP}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<br>  
+<h3 id="4-6-f1-score"><a class="markdownIt-Anchor" href="#4-6-f1-score"></a> 4-6. F1 Score</h3>
+<p><strong>F1 Score:</strong> 정밀도(Precision)와 재현율(Recall)의 조화 평균을 나타나는 지표임.<br>
+데이터 label이 불균형 구조일 때, 모델의 성능을 정확하게 평가할 수 있으며, 성능을 하나의 숫자로 표현할 수 있다.</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mn>1</mn><mtext>&nbsp;</mtext><mi>S</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mo>=</mo><mn>2</mn><mo>∗</mo><mfrac><mrow><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>∗</mo><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow><mrow><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>+</mo><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mfrac><mrow><mi>F</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow><mn>2</mn></mfrac></mrow></mfrac></mrow><annotation encoding="application/x-tex">F1\ Score = 2*\frac{Precision * Recall}{Precision + Recall}=\frac{TP}{TP+\frac{FN+FP}{2}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord">1</span><span class="mspace">&nbsp;</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.4676609999999997em;vertical-align:-1.1073309999999998em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.2376690000000004em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1073309999999998em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1_score(y_test, model_pred)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.9887640449438202
+</code></pre>
+<br>
+<br>
+<h3 id=""><a class="markdownIt-Anchor" href="#"></a> </h3>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/07/26/S-Python-sklearn2/">https://hyemin-kim.github.io/2020/07/26/S-Python-sklearn2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/sklearn/">sklearn</a><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/%EB%B6%84%EB%A5%98/">분류</a></div><div class="post_share"><div class="social-share" data-image="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/29/S-Python-sklearn3/"><img class="prev-cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python &gt;&gt; sklearn - (3) 회귀 (Regression)</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/17/S-Python-sklearn1/"><img class="next-cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; sklearn - (1) 전처리</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/08/13/E-Python-Classification-1/" title="【실습】 Python >> Classification -- 포켓몬 분류 분석"><img class="cover" src="https://s1.ax1x.com/2020/08/25/dcPqB9.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-13</div><div class="title">【실습】 Python >> Classification -- 포켓몬 분류 분석</div></div></a></div><div><a href="/2020/08/11/E-Python-LinearRegression-1/" title="【실습】 Python >> EDA & Linear Regression -- 부동산 가격 예측"><img class="cover" src="https://s1.ax1x.com/2020/08/25/dciYCV.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-11</div><div class="title">【실습】 Python >> EDA & Linear Regression -- 부동산 가격 예측</div></div></a></div><div><a href="/2020/07/17/S-Python-sklearn0/" title="Python >> sklearn -(0) sklearn 개요"><img class="cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-17</div><div class="title">Python >> sklearn -(0) sklearn 개요</div></div></a></div><div><a href="/2020/07/17/S-Python-sklearn1/" title="Python >> sklearn - (1) 전처리"><img class="cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-17</div><div class="title">Python >> sklearn - (1) 전처리</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'cb47210b6037658734dbe7438d1450db',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python 기초문법 - (2) 집합 형태의 데이터 타입 | Hyemin Kim</title><meta name="keywords" content="Python,Python_Base"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="집합 형태의 데이터 타입-- list, tuple, set, dict">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 기초문법 - (2) 집합 형태의 데이터 타입">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/13/S-Python-base2/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="집합 형태의 데이터 타입-- list, tuple, set, dict">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg">
+<meta property="article:published_time" content="2020-05-12T17:26:49.000Z">
+<meta property="article:modified_time" content="2020-06-11T17:10:22.797Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Python_Base">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/05/13/S-Python-base2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-06-12 02:10:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#집합-형태의-데이터-타입"><span class="toc-text"> 집합 형태의 데이터 타입</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-list-순서가-있는-집합"><span class="toc-text"> 1. list (순서가 있는 집합)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-형테로-표현"><span class="toc-text"> 1-1. [ ] 형테로 표현</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-값-추가-append"><span class="toc-text"> 1-2. 값 추가 – “.append( )”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-값-제거-remove-clear"><span class="toc-text"> 1-3. 값 제거 – “.remove” &#x2F; “.clear”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-인덱싱indexing-색인"><span class="toc-text"> 1-4. 인덱싱(Indexing) -&gt; 색인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-인덱스로-접근하여-값-바꾸기"><span class="toc-text"> 1-5. 인덱스로 접근하여 값 바꾸기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-길이-파악하기"><span class="toc-text"> 1-6. 길이 파악하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-tuple-순서가-있는-집합-읽기-전용"><span class="toc-text"> 2. tuple (순서가 있는 집합, 읽기 전용)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-형태로-표현"><span class="toc-text"> 2-1. ( ) 형태로 표현</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-읽기-전용이라-값-추가-값-제거-값-바꾸기-모두-안됨"><span class="toc-text"> 2-2. 읽기 전용이라 “값 추가”, “값 제거”, “값 바꾸기” 모두 안됨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-길이-파악하기"><span class="toc-text"> 2-3. 길이 파악하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-set-순서-x-중복-x"><span class="toc-text"> 3. set (순서 X, 중복 X)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-set의-할당-set"><span class="toc-text"> 3-1. set의 할당: set()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-값-추가-add"><span class="toc-text"> 3-2. 값 추가 –  &quot;.add &quot;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-값-제거-remove-clear"><span class="toc-text"> 3-3. 값 제거 – “.remove” &#x2F; “.clear”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-dict-사전형-집합-key와-value-쌍"><span class="toc-text"> 4. dict (사전형 집합, key와 value 쌍)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-형태로-표헌"><span class="toc-text"> 4-1. { } 형태로 표헌</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-값-추가-key와-value-모두-지정"><span class="toc-text"> 4-2. 값 추가 (key와 value 모두 지정)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-값-바꾸기"><span class="toc-text"> 4-3. 값 바꾸기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-값-제거-pop-clear"><span class="toc-text"> 4-4. 값 제거 – “.pop” &#x2F; “.clear”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-길이-파악하기"><span class="toc-text"> 4-5. 길이 파악하기</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python 기초문법 - (2) 집합 형태의 데이터 타입</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-12T17:26:49.000Z" title="Created 2020-05-13 02:26:49">2020-05-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-11T17:10:22.797Z" title="Updated 2020-06-12 02:10:22">2020-06-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="집합-형태의-데이터-타입"><a class="markdownIt-Anchor" href="#집합-형태의-데이터-타입"></a> <strong>집합 형태의 데이터 타입</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-list-%EC%88%9C%EC%84%9C%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%A7%91%ED%95%A9"><strong>1. list (순서가 있는 집합)</strong></a>
+<ul>
+<li><a href="#1-1-%ED%98%95%ED%85%8C%EB%A1%9C-%ED%91%9C%ED%98%84">1-1. [ ] 형테로 표현</a></li>
+<li><a href="#1-2-%EA%B0%92-%EC%B6%94%EA%B0%80-append">1-2. 값 추가 – “.append( )”</a></li>
+<li><a href="#1-3-%EA%B0%92-%EC%A0%9C%EA%B1%B0-remove-clear">1-3. 값 제거 – “.remove” / “.clear”</a></li>
+<li><a href="#1-4-%EC%9D%B8%EB%8D%B1%EC%8B%B1indexing-%EC%83%89%EC%9D%B8">1-4. 인덱싱(Indexing) -&gt; 색인</a></li>
+<li><a href="#1-5-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A1%9C-%EC%A0%91%EA%B7%BC%ED%95%98%EC%97%AC-%EA%B0%92-%EB%B0%94%EA%BE%B8%EA%B8%B0">1-5. 인덱스로 접근하여 값 바꾸기</a></li>
+<li><a href="#1-6-%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0">1-6. 길이 파악하기</a></li>
+</ul>
+</li>
+<li><a href="#2-tuple-%EC%88%9C%EC%84%9C%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%A7%91%ED%95%A9-%EC%9D%BD%EA%B8%B0-%EC%A0%84%EC%9A%A9"><strong>2. tuple (순서가 있는 집합, 읽기 전용)</strong></a>
+<ul>
+<li><a href="#2-1-%ED%98%95%ED%83%9C%EB%A1%9C-%ED%91%9C%ED%98%84">2-1. ( ) 형태로 표현</a></li>
+<li><a href="#2-2-%EC%9D%BD%EA%B8%B0-%EC%A0%84%EC%9A%A9%EC%9D%B4%EB%9D%BC-%EA%B0%92-%EC%B6%94%EA%B0%80-%EA%B0%92-%EC%A0%9C%EA%B1%B0-%EA%B0%92-%EB%B0%94%EA%BE%B8%EA%B8%B0-%EB%AA%A8%EB%91%90-%EC%95%88%EB%90%A8">2-2. 읽기 전용이라 “값 추가”, “값 제거”, “값 바꾸기” 모두 안됨</a></li>
+<li><a href="#2-3-%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0">2-3. 길이 파악하기</a></li>
+</ul>
+</li>
+<li><a href="#3-set-%EC%88%9C%EC%84%9C-x-%EC%A4%91%EB%B3%B5-x"><strong>3. set (순서 X, 중복 X)</strong></a>
+<ul>
+<li><a href="#3-1-set%EC%9D%98-%ED%95%A0%EB%8B%B9-set">3-1. set의 할당: set()</a></li>
+<li><a href="#3-2-%EA%B0%92-%EC%B6%94%EA%B0%80-add">3-2. 값 추가 –  ".add "</a></li>
+<li><a href="#3-3-%EA%B0%92-%EC%A0%9C%EA%B1%B0-remove-clear">3-3. 값 제거 – “.remove” / “.clear”</a></li>
+</ul>
+</li>
+<li><a href="#4-dict-%EC%82%AC%EC%A0%84%ED%98%95-%EC%A7%91%ED%95%A9-key%EC%99%80-value-%EC%8C%8D"><strong>4. dict (사전형 집합, key와 value 쌍)</strong></a>
+<ul>
+<li><a href="#4-1-%ED%98%95%ED%83%9C%EB%A1%9C-%ED%91%9C%ED%97%8C">4-1. { } 형태로 표헌</a></li>
+<li><a href="#4-2-%EA%B0%92-%EC%B6%94%EA%B0%80-key%EC%99%80-value-%EB%AA%A8%EB%91%90-%EC%A7%80%EC%A0%95">4-2. 값 추가 (key와 value 모두 지정)</a></li>
+<li><a href="#4-3-%EA%B0%92-%EB%B0%94%EA%BE%B8%EA%B8%B0">4-3. 값 바꾸기</a></li>
+<li><a href="#4-4-%EA%B0%92-%EC%A0%9C%EA%B1%B0-pop-clear">4-4. 값 제거 – “.pop” / “.clear”</a></li>
+<li><a href="#4-5-%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0">4-5. 길이 파악하기</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<p><strong>짐합 형태의 데이터 타입</strong></p>
+<ol>
+<li>
+<p>list (순서 O, 짐합)</p>
+</li>
+<li>
+<p>tuple (순서 X, 읽기 전용 집합)</p>
+</li>
+<li>
+<p>set (순서 X, 중복 X 집합)</p>
+</li>
+<li>
+<p>dict (key, value로 이루어진 사전형 집합)</p>
+<br>
+</li>
+</ol>
+<h2 id="1-list-순서가-있는-집합"><a class="markdownIt-Anchor" href="#1-list-순서가-있는-집합"></a> <strong>1. list (순서가 있는 집합)</strong></h2>
+<h3 id="1-1-형테로-표현"><a class="markdownIt-Anchor" href="#1-1-형테로-표현"></a> 1-1. [ ] 형테로 표현</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist = []</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(mylist)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>list
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3, 4, 5]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist2 = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]   <span class="comment"># 순서가 있다</span></span><br><span class="line">mylist2</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[5, 4, 3, 2, 1]
+</code></pre>
+<br>
+<h3 id="1-2-값-추가-append"><a class="markdownIt-Anchor" href="#1-2-값-추가-append"></a> 1-2. 값 추가 – “.append( )”</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist = []</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist.append(<span class="number">1</span>)</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mylist.append(<span class="number">2</span>)</span><br><span class="line">mylist.append(<span class="number">3</span>)</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3]
+</code></pre>
+<br>
+<p><strong>.append 함수 안에 1 argument만 들어갈 수 있다</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist.append(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-22-6f00703728b8&gt; in &lt;module&gt;
+----&gt; 1 mylist.append(4,5)
+      2 mylist
+
+
+TypeError: append() takes exactly one argument (2 given)
+</code></pre>
+<br>
+<h3 id="1-3-값-제거-remove-clear"><a class="markdownIt-Anchor" href="#1-3-값-제거-remove-clear"></a> 1-3. 값 제거 – “.remove” / “.clear”</h3>
+<p><strong>부분 제거 – ".remove"</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist.remove(<span class="number">1</span>)</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[2, 3]
+</code></pre>
+ <br>
+<p><strong>전부 제거 – ".clear"</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist.clear()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[]
+</code></pre>
+<br> 
+<p><strong>같은 값이 여러 개 포함되어 있을 때의 제거 순서</strong></p>
+<p>앞에서 부터 순차적으로 제거 됨</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3, 1, 2, 3]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist.remove(<span class="number">1</span>)</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[2, 3, 1, 2, 3]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mylist.remove(<span class="number">1</span>)</span><br><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[2, 3, 2, 3]
+</code></pre>
+  <br>
+<h3 id="1-4-인덱싱indexing-색인"><a class="markdownIt-Anchor" href="#1-4-인덱싱indexing-색인"></a> 1-4. 인덱싱(Indexing) -&gt; 색인</h3>
+<p>인덱스는 <strong>0번 부터 시작</strong>한다</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]  <span class="comment"># 인덱스: 0번, 1번, 2번, 3번</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist[<span class="number">3</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>4
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist[<span class="number">4</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-34-88b11041aa4f&gt; in &lt;module&gt;
+----&gt; 1 mylist[4]
+
+
+IndexError: list index out of range
+</code></pre>
+<br>
+<p>인덱스가 음수일 경우: 뒤에서 부터 n번째</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist[<span class="number">-1</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>4
+</code></pre>
+<br>
+<h3 id="1-5-인덱스로-접근하여-값-바꾸기"><a class="markdownIt-Anchor" href="#1-5-인덱스로-접근하여-값-바꾸기"></a> 1-5. 인덱스로 접근하여 값 바꾸기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[1, 2, 3, 4]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist[<span class="number">0</span>] = <span class="number">100</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[100, 2, 3, 4]
+</code></pre>
+<br>
+<h3 id="1-6-길이-파악하기"><a class="markdownIt-Anchor" href="#1-6-길이-파악하기"></a> 1-6. 길이 파악하기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[100, 2, 3, 4]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(mylist)  <span class="comment"># length</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>4
+</code></pre>
+<br>
+  <br>
+<h2 id="2-tuple-순서가-있는-집합-읽기-전용"><a class="markdownIt-Anchor" href="#2-tuple-순서가-있는-집합-읽기-전용"></a> <strong>2. tuple (순서가 있는 집합, 읽기 전용)</strong></h2>
+<h3 id="2-1-형태로-표현"><a class="markdownIt-Anchor" href="#2-1-형태로-표현"></a> 2-1. ( ) 형태로 표현</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mytuple = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br></pre></td></tr></tbody></table></figure>
+<br>  
+<h3 id="2-2-읽기-전용이라-값-추가-값-제거-값-바꾸기-모두-안됨"><a class="markdownIt-Anchor" href="#2-2-읽기-전용이라-값-추가-값-제거-값-바꾸기-모두-안됨"></a> 2-2. 읽기 전용이라 “값 추가”, “값 제거”, “값 바꾸기” 모두 안됨</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mytuple.append(<span class="number">1</span>)    <span class="comment"># 읽기 전용이라 값을 추가할 수 없음</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-45-d0f55ea1e3f6&gt; in &lt;module&gt;
+----&gt; 1 mytuple.append(1)    # 읽기 전용이라 값을 추가할 수 없음
+
+
+AttributeError: 'tuple' object has no attribute 'append'
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mytuple.remove(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-46-05a40423345b&gt; in &lt;module&gt;
+----&gt; 1 mytuple.remove(1)
+
+
+AttributeError: 'tuple' object has no attribute 'remove'
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mytuple[<span class="number">0</span>] = <span class="number">100</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-48-4e527888818c&gt; in &lt;module&gt;
+----&gt; 1 mytuple[0] = 100
+
+
+TypeError: 'tuple' object does not support item assignment
+</code></pre>
+<br>
+<h3 id="2-3-길이-파악하기"><a class="markdownIt-Anchor" href="#2-3-길이-파악하기"></a> 2-3. 길이 파악하기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mytuple</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(1, 2, 3, 4, 5)
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(mytuple)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>5
+</code></pre>
+<br>
+  <br>
+<h2 id="3-set-순서-x-중복-x"><a class="markdownIt-Anchor" href="#3-set-순서-x-중복-x"></a> <strong>3. set (순서 X, 중복 X)</strong></h2>
+<h3 id="3-1-set의-할당-set"><a class="markdownIt-Anchor" href="#3-1-set의-할당-set"></a> 3-1. set의 할당: set()</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myset = set()</span><br><span class="line">myset</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>set()
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(myset)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>set
+</code></pre>
+<br>
+<h3 id="3-2-값-추가-add"><a class="markdownIt-Anchor" href="#3-2-값-추가-add"></a> 3-2. 값 추가 –  ".add "</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myset.add(<span class="number">1</span>)</span><br><span class="line">myset.add(<span class="number">2</span>)</span><br><span class="line">myset.add(<span class="number">3</span>)</span><br><span class="line">myset</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{1, 2, 3}
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myset.add(<span class="number">1</span>)  </span><br><span class="line">myset.add(<span class="number">2</span>)</span><br><span class="line">myset.add(<span class="number">3</span>)</span><br><span class="line">myset.add(<span class="number">1</span>)  <span class="comment"># 중복된 값을 한번만 기록</span></span><br><span class="line">myset.add(<span class="number">2</span>)</span><br><span class="line">myset.add(<span class="number">3</span>)</span><br><span class="line">myset</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{1, 2, 3}
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myset.add(<span class="number">4</span>)</span><br><span class="line">myset</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{1, 2, 3, 4}
+</code></pre>
+<br>
+<h3 id="3-3-값-제거-remove-clear"><a class="markdownIt-Anchor" href="#3-3-값-제거-remove-clear"></a> 3-3. 값 제거 – “.remove” / “.clear”</h3>
+<p><strong>부분 제거 – ".remove"</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myset</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{1, 2, 3, 4}
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myset.remove(<span class="number">3</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myset</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{1, 2, 4}
+</code></pre>
+<br> 
+<p><strong>전부 제거 – ".clear"</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist.clear()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mylist</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[]
+</code></pre>
+<br>
+<br>
+<h2 id="4-dict-사전형-집합-key와-value-쌍"><a class="markdownIt-Anchor" href="#4-dict-사전형-집합-key와-value-쌍"></a> <strong>4. dict (사전형 집합, key와 value 쌍)</strong></h2>
+<h3 id="4-1-형태로-표헌"><a class="markdownIt-Anchor" href="#4-1-형태로-표헌"></a> 4-1. { } 형태로 표헌</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict = dict()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{}
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(mydict)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>dict
+</code></pre>
+<br>
+<h3 id="4-2-값-추가-key와-value-모두-지정"><a class="markdownIt-Anchor" href="#4-2-값-추가-key와-value-모두-지정"></a> 4-2. 값 추가 (key와 value 모두 지정)</h3>
+<ul>
+<li>mydict [ " <em>key</em> " ] = <em>value</em></li>
+<li>key는 문자형 (str) / 숫자형 (int &amp; float) 모두 가능</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="string">"apple"</span>] = <span class="number">123</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{'apple': 123}
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="string">"apple"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>123
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="number">0</span>] = <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{'apple': 123, 0: 2}
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>2
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="number">3.14</span>] = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{'apple': 123, 0: 2, 3.14: 1}
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="number">3.14</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>1
+</code></pre>
+<br>
+<h3 id="4-3-값-바꾸기"><a class="markdownIt-Anchor" href="#4-3-값-바꾸기"></a> 4-3. 값 바꾸기</h3>
+<p>새 값을 해당 key에 할당하기</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="string">"apple"</span>] = <span class="string">"hello"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{'apple': 'hello', 0: 2, 3.14: 1}
+</code></pre>
+<br>
+<h3 id="4-4-값-제거-pop-clear"><a class="markdownIt-Anchor" href="#4-4-값-제거-pop-clear"></a> 4-4. 값 제거 – “.pop” / “.clear”</h3>
+<p><strong>부분 제거 – ".pop"</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict.pop(<span class="string">'apple'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>'hello'
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{0: 2, 3.14: 1}
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict.pop(<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>2
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{3.14: 1}
+</code></pre>
+<br>
+<p><strong>전부 제거 – ".clear"</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict.clear()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{}
+</code></pre>
+<br>
+<h3 id="4-5-길이-파악하기"><a class="markdownIt-Anchor" href="#4-5-길이-파악하기"></a> 4-5. 길이 파악하기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mydict[<span class="string">"apple"</span>] = <span class="number">123</span></span><br><span class="line">mydict[<span class="number">0</span>] = <span class="number">2</span></span><br><span class="line">mydict[<span class="number">3.14</span>] = <span class="number">1</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydict</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>{'apple': 'hello', 0: 2, 3.14: 1}
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(mydict)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>3
+</code></pre>
+  <br>
+  <br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/05/13/S-Python-base2/">https://hyemin-kim.github.io/2020/05/13/S-Python-base2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Python-Base/">Python_Base</a></div><div class="post_share"><div class="social-share" data-image="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/13/S-Python-base3/"><img class="prev-cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python 기초문법 - (3) 함수</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/12/S-Python-base1/"><img class="next-cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/12/S-Python-base1/" title="Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용"><img class="cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-12</div><div class="title">Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용</div></div></a></div><div><a href="/2020/05/13/S-Python-base4/" title="Python 기초문법 - (4) 비교/논리 연산자. 조건문. 반복문"><img class="cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-13</div><div class="title">Python 기초문법 - (4) 비교/논리 연산자. 조건문. 반복문</div></div></a></div><div><a href="/2020/05/13/S-Python-base3/" title="Python 기초문법 - (3) 함수"><img class="cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-13</div><div class="title">Python 기초문법 - (3) 함수</div></div></a></div><div><a href="/2020/05/16/S-Python-base6/" title="Python 기초문법 - (6) Package"><img class="cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-16</div><div class="title">Python 기초문법 - (6) Package</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '303b484d839165570e1c9a4ce378aa70',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

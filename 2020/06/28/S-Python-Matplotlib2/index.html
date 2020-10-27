@@ -1,0 +1,648 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Matplotlib - (2) 다양한 그래프 그리기 | Hyemin Kim</title><meta name="keywords" content="Python,Matplotlib,시각화"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="scatterplot, barplot, line plot, areaplot, histogram, pie chart, box plot, 3D plot, imshow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python &gt;&gt; Matplotlib - (2) 다양한 그래프 그리기">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/06/28/S-Python-Matplotlib2/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="scatterplot, barplot, line plot, areaplot, histogram, pie chart, box plot, 3D plot, imshow">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/06/28/NgUVOS.png">
+<meta property="article:published_time" content="2020-06-28T05:12:32.000Z">
+<meta property="article:modified_time" content="2020-07-03T12:52:46.206Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Matplotlib">
+<meta property="article:tag" content="시각화">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/06/28/NgUVOS.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/06/28/S-Python-Matplotlib2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-03 21:52:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#matplotlib을-활용한-다양한-그래프-그리기"><span class="toc-text"> matplotlib을 활용한 다양한 그래프 그리기</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-scatterplot"><span class="toc-text"> 1. Scatterplot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-x-y-colors-area-설정하기"><span class="toc-text"> 1-1. x, y, colors, area 설정하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-cmap과-alpha"><span class="toc-text"> 1-2. cmap과 alpha</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-barplot-barhplot"><span class="toc-text"> 2. Barplot, Barhplot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-기본-barplot-그리기"><span class="toc-text"> 2-1. 기본 barplot 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-기본-barhplot-그리기"><span class="toc-text"> 2-2. 기본 Barhplot 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-barplot에서-비교-그래프-그리기"><span class="toc-text"> 2-3. Barplot에서 비교 그래프 그리기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-line-plot"><span class="toc-text"> 3. Line Plot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-기본-lineplot-그리기"><span class="toc-text"> 3-1. 기본 lineplot 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2개-이상의-그래프-그리기"><span class="toc-text"> 3-2. 2개 이상의 그래프 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-마커-스타일링"><span class="toc-text"> 3-3. 마커 스타일링</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-라인-스타일링"><span class="toc-text"> 3-4. 라인 스타일링</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-areaplot-filled-area"><span class="toc-text"> 4. Areaplot (Filled Area)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-기본-areaplot-그리기"><span class="toc-text"> 4-1. 기본 areaplot 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-경계선을-굵게-그리고-area는-옅게-그리는-효과-적용"><span class="toc-text"> 4-2. 경계선을 굵게 그리고 area는 옅게 그리는 효과 적용</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-여러-그래프를-겹쳐서-표현"><span class="toc-text"> 4-3. 여러 그래프를 겹쳐서 표현</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-histogram"><span class="toc-text"> 5. Histogram</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-기본-histogram-그리기"><span class="toc-text"> 5-1. 기본 Histogram 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-다중-histogram-그리기"><span class="toc-text"> 5-2. 다중 Histogram 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-y축에-density-표기"><span class="toc-text"> 5-3. Y축에 Density 표기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-pie-chart"><span class="toc-text"> 6. Pie Chart</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-box-plot"><span class="toc-text"> 7. Box Plot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-기본-박스플롯-생성"><span class="toc-text"> 7-1. 기본 박스플롯 생성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-다중-박스플롯-생성"><span class="toc-text"> 7-2. 다중 박스플롯 생성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-box-plot-축-바꾸기"><span class="toc-text"> 7-3. Box Plot 축 바꾸기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-outlier-마커-심볼과-컬러-변경"><span class="toc-text"> 7-4. Outlier 마커 심볼과 컬러 변경</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3d-그래프-그리기"><span class="toc-text"> 8. 3D 그래프 그리기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-밑그림-그리기-canvas"><span class="toc-text"> 8-1. 밑그림 그리기 (canvas)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-3d-plot-그리기"><span class="toc-text"> 8-2. 3D plot 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-3d-scatter-그리기"><span class="toc-text"> 8-3. 3d-scatter 그리기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-contour3d-그리기-등고선"><span class="toc-text"> 8-4. contour3D 그리기 (등고선)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-imshow"><span class="toc-text"> 9. imshow</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/06/28/NgUVOS.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Matplotlib - (2) 다양한 그래프 그리기</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-28T05:12:32.000Z" title="Created 2020-06-28 14:12:32">2020-06-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-07-03T12:52:46.206Z" title="Updated 2020-07-03 21:52:46">2020-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="matplotlib을-활용한-다양한-그래프-그리기"><a class="markdownIt-Anchor" href="#matplotlib을-활용한-다양한-그래프-그리기"></a> matplotlib을 활용한 다양한 그래프 그리기</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-scatterplot"><strong>1. Scatterplot</strong></a>
+<ul>
+<li><a href="#1-1-x-y-colors-area-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">1-1. x, y, colors, area 설정하기</a></li>
+<li><a href="#1-2-cmap%EA%B3%BC-alpha">1-2. cmap과 alpha</a></li>
+</ul>
+</li>
+<li><a href="#2-barplot-barhplot"><strong>2. Barplot, Barhplot</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B8%B0%EB%B3%B8-barplot-%EA%B7%B8%EB%A6%AC%EA%B8%B0">2-1. 기본 barplot 그리기</a></li>
+<li><a href="#2-2-%EA%B8%B0%EB%B3%B8-barhplot-%EA%B7%B8%EB%A6%AC%EA%B8%B0">2-2. 기본 Barhplot 그리기</a></li>
+<li><a href="#2-3-barplot%EC%97%90%EC%84%9C-%EB%B9%84%EA%B5%90-%EA%B7%B8%EB%9E%98%ED%94%84-%EA%B7%B8%EB%A6%AC%EA%B8%B0">2-3. Barplot에서 비교 그래프 그리기</a></li>
+</ul>
+</li>
+<li><a href="#3-line-plot"><strong>3. Line Plot</strong></a>
+<ul>
+<li><a href="#3-1-%EA%B8%B0%EB%B3%B8-lineplot-%EA%B7%B8%EB%A6%AC%EA%B8%B0">3-1. 기본 lineplot 그리기</a></li>
+<li><a href="#3-2-2%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%98-%EA%B7%B8%EB%9E%98%ED%94%84-%EA%B7%B8%EB%A6%AC%EA%B8%B0">3-2. 2개 이상의 그래프 그리기</a></li>
+<li><a href="#3-3-%EB%A7%88%EC%BB%A4-%EC%8A%A4%ED%83%80%EC%9D%BC%EB%A7%81">3-3. 마커 스타일링</a></li>
+<li><a href="#3-4-%EB%9D%BC%EC%9D%B8-%EC%8A%A4%ED%83%80%EC%9D%BC%EB%A7%81">3-4. 라인 스타일링</a></li>
+</ul>
+</li>
+<li><a href="#4-areaplot-filled-area"><strong>4. Areaplot (Filled Area)</strong></a>
+<ul>
+<li><a href="#4-1-%EA%B8%B0%EB%B3%B8-areaplot-%EA%B7%B8%EB%A6%AC%EA%B8%B0">4-1. 기본 areaplot 그리기</a></li>
+<li><a href="#4-2-%EA%B2%BD%EA%B3%84%EC%84%A0%EC%9D%84-%EA%B5%B5%EA%B2%8C-%EA%B7%B8%EB%A6%AC%EA%B3%A0-area%EB%8A%94-%EC%98%85%EA%B2%8C-%EA%B7%B8%EB%A6%AC%EB%8A%94-%ED%9A%A8%EA%B3%BC-%EC%A0%81%EC%9A%A9">4-2. 경계선을 굵게 그리고 area는 옅게 그리는 효과 적용</a></li>
+<li><a href="#4-3-%EC%97%AC%EB%9F%AC-%EA%B7%B8%EB%9E%98%ED%94%84%EB%A5%BC-%EA%B2%B9%EC%B3%90%EC%84%9C-%ED%91%9C%ED%98%84">4-3. 여러 그래프를 겹쳐서 표현</a></li>
+</ul>
+</li>
+<li><a href="#5-histogram"><strong>5. Histogram</strong></a>
+<ul>
+<li><a href="#5-1-%EA%B8%B0%EB%B3%B8-histogram-%EA%B7%B8%EB%A6%AC%EA%B8%B0">5-1. 기본 Histogram 그리기</a></li>
+<li><a href="#5-2-%EB%8B%A4%EC%A4%91-histogram-%EA%B7%B8%EB%A6%AC%EA%B8%B0">5-2. 다중 Histogram 그리기</a></li>
+<li><a href="#5-3-y%EC%B6%95%EC%97%90-density-%ED%91%9C%EA%B8%B0">5-3. Y축에 Density 표기</a></li>
+</ul>
+</li>
+<li><a href="#6-pie-chart"><strong>6. Pie Chart</strong></a></li>
+<li><a href="#7-box-plot"><strong>7. Box Plot</strong></a>
+<ul>
+<li><a href="#7-1-%EA%B8%B0%EB%B3%B8-%EB%B0%95%EC%8A%A4%ED%94%8C%EB%A1%AF-%EC%83%9D%EC%84%B1">7-1. 기본 박스플롯 생성</a></li>
+<li><a href="#7-2-%EB%8B%A4%EC%A4%91-%EB%B0%95%EC%8A%A4%ED%94%8C%EB%A1%AF-%EC%83%9D%EC%84%B1">7-2. 다중 박스플롯 생성</a></li>
+<li><a href="#7-3-box-plot-%EC%B6%95-%EB%B0%94%EA%BE%B8%EA%B8%B0">7-3. Box Plot 축 바꾸기</a></li>
+<li><a href="#7-4-outlier-%EB%A7%88%EC%BB%A4-%EC%8B%AC%EB%B3%BC%EA%B3%BC-%EC%BB%AC%EB%9F%AC-%EB%B3%80%EA%B2%BD">7-4. Outlier 마커 심볼과 컬러 변경</a></li>
+</ul>
+</li>
+<li><a href="#8-3d-%EA%B7%B8%EB%9E%98%ED%94%84-%EA%B7%B8%EB%A6%AC%EA%B8%B0"><strong>8. 3D 그래프 그리기</strong></a>
+<ul>
+<li><a href="#8-1-%EB%B0%91%EA%B7%B8%EB%A6%BC-%EA%B7%B8%EB%A6%AC%EA%B8%B0-canvas">8-1. 밑그림 그리기 (canvas)</a></li>
+<li><a href="#8-2-3d-plot-%EA%B7%B8%EB%A6%AC%EA%B8%B0">8-2. 3D plot 그리기</a></li>
+<li><a href="#8-3-3d-scatter-%EA%B7%B8%EB%A6%AC%EA%B8%B0">8-3. 3d-scatter 그리기</a></li>
+<li><a href="#8-4-contour3d-%EA%B7%B8%EB%A6%AC%EA%B8%B0-%EB%93%B1%EA%B3%A0%EC%84%A0">8-4. contour3D 그리기 (등고선)</a></li>
+</ul>
+</li>
+<li><a href="#9-imshow"><strong>9. imshow</strong></a></li>
+</ul>
+<p></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[<span class="string">"figure.figsize"</span>] = (<span class="number">9</span>, <span class="number">6</span>)  <span class="comment"># figure size 설정</span></span><br><span class="line">plt.rcParams[<span class="string">"font.size"</span>] = <span class="number">14</span>  <span class="comment"># fontsize 설정</span></span><br></pre></td></tr></tbody></table></figure>
+ <br>
+<h2 id="1-scatterplot"><a class="markdownIt-Anchor" href="#1-scatterplot"></a> <strong>1. Scatterplot</strong></h2>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.scatter.html" target="_blank" rel="noopener">&lt;plt.scatter&gt; Document</a></p>
+</blockquote>
+<blockquote>
+<p><strong>plt.scatter</strong>( <em>x, y, s=None, c=None, cmap=None, alpha=None</em> )</p>
+<ul>
+<li><strong>s:</strong> marker size</li>
+<li><strong>c:</strong> color</li>
+<li><strong>cmap:</strong> colormap</li>
+<li><strong>alpha:</strong> between 0 and 1</li>
+</ul>
+</blockquote>
+  <br>
+<p><strong>Data 생성</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0~1 사이의 random value 50 개 생성</span></span><br><span class="line">np.random.rand(<span class="number">50</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([0.65532609, 0.19008877, 0.72343673, 0.63981883, 0.07531076,
+       0.67080518, 0.93282479, 0.04750706, 0.81240348, 0.40032198,
+       0.59662026, 0.25797641, 0.37315105, 0.6266855 , 0.50732916,
+       0.55803591, 0.63610033, 0.88673444, 0.99751021, 0.03723629,
+       0.07695327, 0.44247   , 0.5245731 , 0.41263818, 0.8009583 ,
+       0.57238283, 0.58647938, 0.9882001 , 0.88993497, 0.5396632 ,
+       0.24683042, 0.0838774 , 0.0826096 , 0.89701004, 0.78305308,
+       0.21027637, 0.93441558, 0.05756907, 0.6299839 , 0.05833447,
+       0.24247082, 0.9057054 , 0.1585265 , 0.45569918, 0.85597115,
+       0.43875418, 0.96962923, 0.17476189, 0.68713067, 0.832518  ])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0 부터 50 개의 value 생성</span></span><br><span class="line">np.arange(<span class="number">50</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+       17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+       34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])
+</code></pre>
+ <br> 
+<h3 id="1-1-x-y-colors-area-설정하기"><a class="markdownIt-Anchor" href="#1-1-x-y-colors-area-설정하기"></a> 1-1. x, y, colors, area 설정하기</h3>
+<blockquote>
+<p><strong>plt.scatter</strong> ( <em>x, y, s = , c =</em> )</p>
+<ul>
+<li><strong>s</strong>: 점의 넓이. area 값이 커지면 넓이도 커진다</li>
+<li><strong>c</strong>: 임의 값을 color 값으로 변환</li>
+</ul>
+</blockquote>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.rand(<span class="number">50</span>)</span><br><span class="line">y = np.random.rand(<span class="number">50</span>)</span><br><span class="line">colors = np.arange(<span class="number">50</span>)</span><br><span class="line">area = x * y * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">plt.scatter(x, y, s = area, c = colors)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_16_0.png" alt="png"></p>
+<br>
+<h3 id="1-2-cmap과-alpha"><a class="markdownIt-Anchor" href="#1-2-cmap과-alpha"></a> 1-2. cmap과 alpha</h3>
+<blockquote>
+<ul>
+<li>cmap에 컬러를 지정하면, 컬러 값을 모두 같게 가져갈 수도 있다</li>
+<li>alpha값은 투명도를 나타내며 0~1 사이의 값을 지정해 둘 수 있으며, 0에 가까울 수록 투명한 값을 가진다</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">12</span> ,<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">131</span>)</span><br><span class="line">plt.scatter(x, y, s = area, cmap = <span class="string">'blue'</span>, alpha = <span class="number">0.1</span>)</span><br><span class="line">plt.title(<span class="string">'alpha = 0.1'</span>)</span><br><span class="line">  </span><br><span class="line">plt.subplot(<span class="number">132</span>)</span><br><span class="line">plt.scatter(x, y, s = area, cmap = <span class="string">'blue'</span>, alpha = <span class="number">0.5</span>)</span><br><span class="line">plt.title(<span class="string">'alpha = 0.5'</span>)</span><br><span class="line">    </span><br><span class="line">plt.subplot(<span class="number">133</span>)</span><br><span class="line">plt.scatter(x, y, s = area, cmap = <span class="string">'blue'</span>, alpha = <span class="number">1.0</span>)</span><br><span class="line">plt.title(<span class="string">'alpha = 1.0'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_20_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="2-barplot-barhplot"><a class="markdownIt-Anchor" href="#2-barplot-barhplot"></a> <strong>2. Barplot, Barhplot</strong></h2>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.bar.html" target="_blank" rel="noopener">&lt;plt.bar&gt;  Document</a></p>
+</blockquote>
+<blockquote>
+<p><strong>plt.bar</strong>(<em>x, height, width = 0.8, align = ‘center’, alpha = …, color = …</em> )</p>
+<ul>
+<li><strong>x:</strong> The x coordinates of the bars</li>
+<li><strong>height:</strong> The height(s) of the bars</li>
+<li><strong>width:</strong> The width(s) of the bars (default: 0.8)</li>
+<li><strong>align:</strong> Alignment of the bars to the x coordinates:<br>
+{‘center’, ‘edge’}</li>
+</ul>
+</blockquote>
+<br>
+<h3 id="2-1-기본-barplot-그리기"><a class="markdownIt-Anchor" href="#2-1-기본-barplot-그리기"></a> 2-1. 기본 barplot 그리기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'Math'</span>, <span class="string">'Programming'</span>, <span class="string">'Data Science'</span>, <span class="string">'Art'</span>, <span class="string">'English'</span>, <span class="string">'Physics'</span>]</span><br><span class="line">y = [<span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">40</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># figure size</span></span><br><span class="line">plt.figure(figsize = (<span class="number">7</span>,<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 수직 barplot</span></span><br><span class="line">plt.bar(x, y, alpha = <span class="number">0.7</span>, color = <span class="string">'red'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">'Subjects'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># y label</span></span><br><span class="line">plt.ylabel(<span class="string">'Grades'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_28_0.png" alt="png"></p>
+<br>
+<p>문자열이 겹히는 현상 발생했다. 이를 해결하는 방법은 2가지다:</p>
+<ol>
+<li>
+<p>문자열 화전:  plt.xtick(rotation = …)</p>
+</li>
+<li>
+<p>barh(수평바 그래프) 사용</p>
+</li>
+</ol>
+  <br> 
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'Math'</span>, <span class="string">'Programming'</span>, <span class="string">'Data Science'</span>, <span class="string">'Art'</span>, <span class="string">'English'</span>, <span class="string">'Physics'</span>]</span><br><span class="line">y = [<span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">40</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># figure size</span></span><br><span class="line">plt.figure(figsize = (<span class="number">7</span>,<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 수직 barplot</span></span><br><span class="line">plt.bar(x, y, alpha = <span class="number">0.7</span>, color = <span class="string">'red'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">'Subjects'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x ticks</span></span><br><span class="line">plt.xticks(rotation = <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># y label</span></span><br><span class="line">plt.ylabel(<span class="string">'Grades'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_32_0.png" alt="png"></p>
+<br>
+<h3 id="2-2-기본-barhplot-그리기"><a class="markdownIt-Anchor" href="#2-2-기본-barhplot-그리기"></a> 2-2. 기본 Barhplot 그리기</h3>
+<p>barh 함수에서는 <strong>xticks / ylabel 로 설정</strong>했던 부분을 <strong>yticks / xlabel 로 변경함</strong></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'Math'</span>, <span class="string">'Programming'</span>, <span class="string">'Data Science'</span>, <span class="string">'Art'</span>, <span class="string">'English'</span>, <span class="string">'Physics'</span>]</span><br><span class="line">y = [<span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">40</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># figure size</span></span><br><span class="line">plt.figure(figsize = (<span class="number">7</span>,<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 수직 barplot</span></span><br><span class="line">plt.barh(x, y, alpha = <span class="number">0.7</span>, color = <span class="string">'green'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">'Subjects'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># y ticks</span></span><br><span class="line"><span class="comment"># plt.yticks(x)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># x label</span></span><br><span class="line">plt.xlabel(<span class="string">'Grades'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_36_0.png" alt="png"></p>
+<br>
+<h3 id="2-3-barplot에서-비교-그래프-그리기"><a class="markdownIt-Anchor" href="#2-3-barplot에서-비교-그래프-그리기"></a> 2-3. Barplot에서 비교 그래프 그리기</h3>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/gallery/lines_bars_and_markers/barchart.html#sphx-glr-gallery-lines-bars-and-markers-barchart-py" target="_blank" rel="noopener">Grouped bar chart with labels</a></p>
+</blockquote>
+<p><strong>(1) barplot</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">x_label = [<span class="string">'Math'</span>, <span class="string">'Programming'</span>, <span class="string">'Data Science'</span>, <span class="string">'Art'</span>, <span class="string">'English'</span>, <span class="string">'Physics'</span>]</span><br><span class="line">x = np.arange(len(x_label))  <span class="comment"># x = [0, 1, 2, 3, 4, 5]</span></span><br><span class="line">y_1 = [<span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">40</span>]</span><br><span class="line">y_2 = [<span class="number">80</span>, <span class="number">40</span>, <span class="number">90</span>, <span class="number">60</span>, <span class="number">50</span>, <span class="number">70</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 넓이 지정</span></span><br><span class="line">width = <span class="number">0.35</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># subplots 생성</span></span><br><span class="line">fig, axes = plt.subplots()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 넓이 설정</span></span><br><span class="line">axes.bar(x - width/<span class="number">2</span>, y_1, width, alpha = <span class="number">0.5</span>)</span><br><span class="line">axes.bar(x + width/<span class="number">2</span>, y_2, width, alpha = <span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ticks &amp; label 설정</span></span><br><span class="line">plt.xticks(x)</span><br><span class="line">axes.set_xticklabels(x_label)</span><br><span class="line">plt.ylabel(<span class="string">'Grades'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">'Subjects'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># legend</span></span><br><span class="line">plt.legend([<span class="string">'John'</span>, <span class="string">'Peter'</span>])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_41_0.png" alt="png"></p>
+<br>
+<p><strong>(2) barhplot</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">x_label = [<span class="string">'Math'</span>, <span class="string">'Programming'</span>, <span class="string">'Data Science'</span>, <span class="string">'Art'</span>, <span class="string">'English'</span>, <span class="string">'Physics'</span>]</span><br><span class="line">x = np.arange(len(x_label))  <span class="comment"># x = [0, 1, 2, 3, 4, 5]</span></span><br><span class="line">y_1 = [<span class="number">90</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">40</span>]</span><br><span class="line">y_2 = [<span class="number">80</span>, <span class="number">40</span>, <span class="number">90</span>, <span class="number">60</span>, <span class="number">50</span>, <span class="number">70</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 넓이 지정</span></span><br><span class="line">width = <span class="number">0.35</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># subplots 생성</span></span><br><span class="line">fig, axes = plt.subplots()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 넓이 설정</span></span><br><span class="line">axes.barh(x - width/<span class="number">2</span>, y_1, width, alpha = <span class="number">0.5</span>, color = <span class="string">"green"</span>)</span><br><span class="line">axes.barh(x + width/<span class="number">2</span>, y_2, width, alpha = <span class="number">0.5</span>, color = <span class="string">"blue"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ticks &amp; label 설정</span></span><br><span class="line">plt.yticks(x)</span><br><span class="line">axes.set_yticklabels(x_label)</span><br><span class="line">plt.xlabel(<span class="string">'Grades'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.title(<span class="string">'Subjects'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># legend</span></span><br><span class="line">plt.legend([<span class="string">'John'</span>, <span class="string">'Peter'</span>])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_44_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="3-line-plot"><a class="markdownIt-Anchor" href="#3-line-plot"></a> <strong>3. Line Plot</strong></h2>
+<blockquote>
+<p><strong>plt.plot</strong> ( <em>x, y, label=…, color=…, alpha=…, marker=…, linestyle=…</em>)</p>
+</blockquote>
+<h3 id="3-1-기본-lineplot-그리기"><a class="markdownIt-Anchor" href="#3-1-기본-lineplot-그리기"></a> 3-1. 기본 lineplot 그리기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line">y = <span class="number">1</span> + np.sin(x)</span><br><span class="line"></span><br><span class="line">plt.plot(x, y)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x value'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y value'</span>)</span><br><span class="line">plt.title(<span class="string">'sin graph'</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">plt.grid()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_50_0.png" alt="png"></p>
+<br>
+<h3 id="3-2-2개-이상의-그래프-그리기"><a class="markdownIt-Anchor" href="#3-2-2개-이상의-그래프-그리기"></a> 3-2. 2개 이상의 그래프 그리기</h3>
+<ul>
+<li>label: line 이름 (legend에 나타남)</li>
+<li>color: 컬러 옵션</li>
+<li>alpha: 투명도 옵션</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line">y_1 = <span class="number">1</span> + np.sin(x)</span><br><span class="line">y_2 = <span class="number">1</span> + np.cos(x)</span><br><span class="line"></span><br><span class="line">plt.plot(x, y_1,label=<span class="string">'1+sin'</span>, color=<span class="string">'blue'</span>, alpha = <span class="number">0.3</span>)  <span class="comment"># label 설정값을 legend에 나타날 수 있음</span></span><br><span class="line">plt.plot(x, y_2, label=<span class="string">'1+cos'</span>, color=<span class="string">'red'</span>, alpha = <span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">"x value"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"y value"</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">"sin and cos graph"</span>, fontsize = <span class="number">18</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_54_0.png" alt="png"></p>
+<br>
+<h3 id="3-3-마커-스타일링"><a class="markdownIt-Anchor" href="#3-3-마커-스타일링"></a> 3-3. 마커 스타일링</h3>
+<ul>
+<li>marker: 마커 옵션</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line">y_1 = <span class="number">1</span> + np.sin(x)</span><br><span class="line">y_2 = <span class="number">1</span>+ np.cos(x)</span><br><span class="line"></span><br><span class="line">plt.plot(x, y_1, label=<span class="string">'1+sin'</span>, color=<span class="string">'blue'</span>, alpha=<span class="number">0.3</span>, marker=<span class="string">'o'</span>)</span><br><span class="line">plt.plot(x, y_2, label=<span class="string">'1+cos'</span>, color=<span class="string">'red'</span>, alpha=<span class="number">0.7</span>, marker=<span class="string">'+'</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x value'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y value'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'sin and cos graph'</span>, fontsize = <span class="number">18</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_58_0.png" alt="png"></p>
+<br>
+<h3 id="3-4-라인-스타일링"><a class="markdownIt-Anchor" href="#3-4-라인-스타일링"></a> 3-4. 라인 스타일링</h3>
+<ul>
+<li>linestyle: 라인 스타일 변경 옵션</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line">y_1 = <span class="number">1</span> + np.sin(x)</span><br><span class="line">y_2 = <span class="number">1</span>+ np.cos(x)</span><br><span class="line"></span><br><span class="line">plt.plot(x, y_1, label=<span class="string">'1+sin'</span>, color=<span class="string">'blue'</span>, linestyle=<span class="string">':'</span>)</span><br><span class="line">plt.plot(x, y_2, label=<span class="string">'1+cos'</span>, color=<span class="string">'red'</span>, linestyle=<span class="string">'-.'</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x value'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y value'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'sin and cos graph'</span>, fontsize = <span class="number">18</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_62_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="4-areaplot-filled-area"><a class="markdownIt-Anchor" href="#4-areaplot-filled-area"></a> <strong>4. Areaplot (Filled Area)</strong></h2>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.fill_between.html" target="_blank" rel="noopener">&lt;plt.fill_between&gt; Document</a></p>
+</blockquote>
+<blockquote>
+<p><strong>plt.fill_between</strong> (<em>x, y, color=…, alpha=…</em>)</p>
+</blockquote>
+<h3 id="4-1-기본-areaplot-그리기"><a class="markdownIt-Anchor" href="#4-1-기본-areaplot-그리기"></a> 4-1. 기본 areaplot 그리기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = np.random.randint(low=<span class="number">5</span>, high=<span class="number">10</span>, size=<span class="number">20</span>)</span><br><span class="line">y</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([8, 8, 7, 6, 5, 8, 6, 9, 8, 8, 5, 5, 6, 6, 5, 5, 6, 8, 9, 5])
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">1</span>,<span class="number">21</span>)</span><br><span class="line">y = np.random.randint(low=<span class="number">5</span>, high=<span class="number">10</span>, size=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fill_between으로 색칠하기</span></span><br><span class="line">plt.fill_between(x, y, color = <span class="string">"green"</span>, alpha = <span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_72_0.png" alt="png"></p>
+<br>
+<h3 id="4-2-경계선을-굵게-그리고-area는-옅게-그리는-효과-적용"><a class="markdownIt-Anchor" href="#4-2-경계선을-굵게-그리고-area는-옅게-그리는-효과-적용"></a> 4-2. 경계선을 굵게 그리고 area는 옅게 그리는 효과 적용</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.fill_between(x, y, color=<span class="string">'green'</span>, alpha=<span class="number">0.3</span>)</span><br><span class="line">plt.plot(x, y, color=<span class="string">'green'</span>, alpha=<span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_75_0.png" alt="png"></p>
+<br>
+<h3 id="4-3-여러-그래프를-겹쳐서-표현"><a class="markdownIt-Anchor" href="#4-3-여러-그래프를-겹쳐서-표현"></a> 4-3. 여러 그래프를 겹쳐서 표현</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0.05</span>)</span><br><span class="line">y_1 = np.cos(x) + <span class="number">1</span></span><br><span class="line">y_2 = np.sin(x) + <span class="number">1</span></span><br><span class="line">y_3 = y_1 * y_2 / np.pi</span><br><span class="line"></span><br><span class="line">plt.fill_between(x, y_1, label=<span class="string">'1+cos'</span>, color=<span class="string">'green'</span>, alpha=<span class="number">0.1</span>)</span><br><span class="line">plt.fill_between(x, y_2, label=<span class="string">'1+sin'</span>, color=<span class="string">'blue'</span>, alpha=<span class="number">0.2</span>)</span><br><span class="line">plt.fill_between(x, y_3, label=<span class="string">'sin*cos/pi'</span>, color=<span class="string">'red'</span>, alpha=<span class="number">0.3</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_78_0.png" alt="png"></p>
+<p>많이 겹치는 부분이 어디인지 확인하고 싶을 때 많이 활용됨</p>
+<p><br> <br></p>
+<h2 id="5-histogram"><a class="markdownIt-Anchor" href="#5-histogram"></a> <strong>5. Histogram</strong></h2>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.hist.html" target="_blank" rel="noopener">&lt;plt.hist&gt; Document</a></p>
+</blockquote>
+<blockquote>
+<p><strong>plt.hist</strong> (x, bins = …)</p>
+</blockquote>
+<h3 id="5-1-기본-histogram-그리기"><a class="markdownIt-Anchor" href="#5-1-기본-histogram-그리기"></a> 5-1. 기본 Histogram 그리기</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100000</span></span><br><span class="line">bins = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">x = np.random.randn(N)</span><br><span class="line"></span><br><span class="line">plt.hist(x, bins = bins)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_87_0.png" alt="png"></p>
+<br>
+<h3 id="5-2-다중-histogram-그리기"><a class="markdownIt-Anchor" href="#5-2-다중-histogram-그리기"></a> 5-2. 다중 Histogram 그리기</h3>
+<blockquote>
+<p><strong>fig, axs = plt.subplots</strong> (<em>row, column, sharey = True, tight_layout = True</em>)<br>
+<strong>axes[i].hist</strong> ( <em>x, bins = …</em>)</p>
+<ul>
+<li><strong>sharey:</strong> 다중 그래프가 같은 y축을 share</li>
+<li><strong>tight_layout:</strong> graph의 패딩을 자동으로 조절해주어 fit한 graph를 생성</li>
+</ul>
+</blockquote>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100000</span></span><br><span class="line">bins = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">x = np.random.randn(N)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, </span><br><span class="line">                        sharey = <span class="literal">True</span>,</span><br><span class="line">                        tight_layout = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">fig.set_size_inches(<span class="number">12</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">axes[<span class="number">0</span>].hist(x, bins = bins)</span><br><span class="line">axes[<span class="number">1</span>].hist(x, bins = bins*<span class="number">2</span>)</span><br><span class="line">axes[<span class="number">2</span>].hist(x, bins = bins*<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_91_0.png" alt="png"></p>
+<br>
+<h3 id="5-3-y축에-density-표기"><a class="markdownIt-Anchor" href="#5-3-y축에-density-표기"></a> 5-3. Y축에 Density 표기</h3>
+<ul>
+<li><strong>pdf(확률 밀도 함수):</strong> density = True</li>
+<li><strong>cdf(누적 확률 함수):</strong> density = True, cumulatice = True</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100000</span></span><br><span class="line">bins = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">x = np.random.randn(N)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, tight_layout = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">fig.set_size_inches(<span class="number">12</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># density=True 값을 통하여 Y축에 density를 표기할 수 있다</span></span><br><span class="line">axes[<span class="number">0</span>].hist(x, bins = bins, density = <span class="literal">True</span>, cumulative = <span class="literal">True</span>)  <span class="comment">#cdf: 누적확률함수</span></span><br><span class="line">axes[<span class="number">1</span>].hist(x, bins = bins, density = <span class="literal">True</span>)  <span class="comment"># pdf: 확률밀도함수</span></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_95_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="6-pie-chart"><a class="markdownIt-Anchor" href="#6-pie-chart"></a> <strong>6. Pie Chart</strong></h2>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.pie.html" target="_blank" rel="noopener">&lt;plt.pie&gt; Document</a></p>
+</blockquote>
+<blockquote>
+<p><strong>plt.pie</strong>( <em>x, explode=None, labels=None, colors=None, autopct=None, shadow=False, startangle=None,…</em>)</p>
+</blockquote>
+<p><strong>pie chart 옵션</strong></p>
+<ul>
+<li>explode: 파이에서 툭 튀어져 나온 비율</li>
+<li>autopct: 퍼센트 자동으로 표기</li>
+<li>shadow: 그림자 표시</li>
+<li>startangle: 파이를 그리기 시작할 각도</li>
+</ul>
+<p><strong>리턴을 받는 인자</strong></p>
+<ul>
+<li>
+<p>texts: label에 대한 텍스트 효과</p>
+</li>
+<li>
+<p>autotexts: 파이 위에 그려지는 텍스트 효과</p>
+<br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">labels = [<span class="string">'Samsung'</span>, <span class="string">'Huawei'</span>, <span class="string">'Apple'</span>, <span class="string">'Xiaomi'</span>, <span class="string">'Oppo'</span>, <span class="string">'Etc'</span>]</span><br><span class="line">sizes = [<span class="number">20.4</span>, <span class="number">15.8</span>, <span class="number">10.5</span>, <span class="number">9</span>, <span class="number">7.6</span>, <span class="number">36.7</span>]</span><br><span class="line">explode = (<span class="number">0.3</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># text, autotext 인자를 활용하여 텍스트 스타일링을 적용한다</span></span><br><span class="line">patches, texts, autotexts = plt.pie(sizes,</span><br><span class="line">                                    explode = explode,</span><br><span class="line">                                    labels = labels,</span><br><span class="line">                                    autopct = <span class="string">"%1.1f%%"</span>,</span><br><span class="line">                                    shadow = <span class="literal">True</span>,</span><br><span class="line">                                    startangle=<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Smartphone Pie'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># label 텍스트에 대한 스타일 적용</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> texts:</span><br><span class="line">    t.set_fontsize(<span class="number">12</span>)</span><br><span class="line">    t.set_color(<span class="string">'gray'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># pie 위의 텍스트에 대한 스타일 적용</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> autotexts:</span><br><span class="line">    t.set_fontsize(<span class="number">18</span>)</span><br><span class="line">    t.set_color(<span class="string">'white'</span>)</span><br><span class="line">    </span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_103_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="7-box-plot"><a class="markdownIt-Anchor" href="#7-box-plot"></a> <strong>7. Box Plot</strong></h2>
+<img src="/images/S-Python-Matplotlib2/R800x0" alt="box plot 해석" style="zoom:80%;">
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.boxplot.html" target="_blank" rel="noopener">&lt;plt.boxplot&gt; Document</a></p>
+</blockquote>
+<blockquote>
+<p><strong>plt.boxplot</strong> (<em>data, vert=True, flierprops = …</em>)</p>
+<ul>
+<li><strong>vert:</strong> boxplot 축 바꾸기 (If True: 수직 boxplot; If not: 수평 boxplot)</li>
+<li><strong>flierprops:</strong> oulier marker 설정 (Symbol &amp; Color)</li>
+</ul>
+</blockquote>
+  <br>
+<p><strong>샘플 데이터 생성</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Data Generation Process (DGP)</span></span><br><span class="line">spread = np.random.rand(<span class="number">50</span>) * <span class="number">100</span></span><br><span class="line">center = np.ones(<span class="number">25</span>) * <span class="number">50</span></span><br><span class="line">flier_high = np.random.rand(<span class="number">10</span>) * <span class="number">100</span> + <span class="number">100</span></span><br><span class="line">flier_low = np.random.rand(<span class="number">10</span>) * <span class="number">-100</span></span><br><span class="line">data = np.concatenate((spread, center, flier_high, flier_low))</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<h3 id="7-1-기본-박스플롯-생성"><a class="markdownIt-Anchor" href="#7-1-기본-박스플롯-생성"></a> 7-1. 기본 박스플롯 생성</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.boxplot(data)</span><br><span class="line">plt.tight_layout</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_115_0.png" alt="png"></p>
+<br>
+<h3 id="7-2-다중-박스플롯-생성"><a class="markdownIt-Anchor" href="#7-2-다중-박스플롯-생성"></a> 7-2. 다중 박스플롯 생성</h3>
+<blockquote>
+<ul>
+<li>다중 그래프 생성을 위해서는 data 자체가 <strong>2차원으로 구성</strong>되어 있어야 한다</li>
+<li>row와 column으로 구성된 DataFrame에서 Column은 x축에 Row는 Y축에 구성되어 있음</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DGP</span></span><br><span class="line">spread1 = np.random.rand(<span class="number">50</span>) * <span class="number">100</span></span><br><span class="line">center1 = np.ones(<span class="number">25</span>) * <span class="number">50</span></span><br><span class="line">flier_high1 = np.random.rand(<span class="number">10</span>) * <span class="number">100</span> + <span class="number">100</span></span><br><span class="line">flier_low1 = np.random.rand(<span class="number">10</span>) * <span class="number">-100</span></span><br><span class="line">data1 = np.concatenate((spread1, center1, flier_high1, flier_low1))</span><br><span class="line"></span><br><span class="line">spread2 = np.random.rand(<span class="number">50</span>) * <span class="number">100</span></span><br><span class="line">center2 = np.ones(<span class="number">25</span>) * <span class="number">40</span></span><br><span class="line">flier_high2 = np.random.rand(<span class="number">10</span>) * <span class="number">100</span> + <span class="number">100</span></span><br><span class="line">flier_low2 = np.random.rand(<span class="number">10</span>) * <span class="number">-100</span></span><br><span class="line">data2 = np.concatenate((spread2, center2, flier_high2, flier_low2))</span><br><span class="line"></span><br><span class="line">data1.shape = (<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">data2.shape = (<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">data = [data1, data2, data2[::<span class="number">2</span>, <span class="number">0</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.boxplot(data)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_120_0.png" alt="png"></p>
+<br>
+<h3 id="7-3-box-plot-축-바꾸기"><a class="markdownIt-Anchor" href="#7-3-box-plot-축-바꾸기"></a> 7-3. Box Plot 축 바꾸기</h3>
+<ul>
+<li><strong>vert = False</strong> 옵션을 사용</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.boxplot(data, vert = <span class="literal">False</span>)</span><br><span class="line">plt.title(<span class="string">'Horizontal Box Plot'</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_124_0.png" alt="png"></p>
+<br>
+<h3 id="7-4-outlier-마커-심볼과-컬러-변경"><a class="markdownIt-Anchor" href="#7-4-outlier-마커-심볼과-컬러-변경"></a> 7-4. Outlier 마커 심볼과 컬러 변경</h3>
+<ul>
+<li><strong>flierprops = …</strong> 옵션 사용</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">outlier_marker = dict(markerfacecolor = <span class="string">'r'</span>, marker = <span class="string">'D'</span>)  <span class="comment"># red diamond</span></span><br><span class="line"></span><br><span class="line">plt.boxplot(data, flierprops = outlier_marker)</span><br><span class="line">plt.title(<span class="string">'Change Outlier Symbols'</span>, fontsize = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_128_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="8-3d-그래프-그리기"><a class="markdownIt-Anchor" href="#8-3d-그래프-그리기"></a> <strong>8. 3D 그래프 그리기</strong></h2>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#contour-plots" target="_blank" rel="noopener">mplot3d tutorial</a></p>
+</blockquote>
+<p>3D 로 그래프를 그리기 위해서는 <code>mplot3d</code>를 추가로 import 해야 함</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpl_toolkits <span class="keyword">import</span> mplot3d</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<h3 id="8-1-밑그림-그리기-canvas"><a class="markdownIt-Anchor" href="#8-1-밑그림-그리기-canvas"></a> 8-1. 밑그림 그리기 (canvas)</h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure()</span><br><span class="line">ax = plt.axes(projection = <span class="string">'3d'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_137_0.png" alt="png"></p>
+<br>
+<h3 id="8-2-3d-plot-그리기"><a class="markdownIt-Anchor" href="#8-2-3d-plot-그리기"></a> 8-2. 3D plot 그리기</h3>
+<blockquote>
+<p><em>Axes</em> = plt.axes(projection = ‘3d’)</p>
+<ul>
+<li><em>Axes</em> <strong>.plot</strong> (<em>x, y, z, color=…, alpha=…, marker=…</em>)</li>
+<li><em>Axes</em> <strong>.plot3D</strong> (<em>x, y, z, color=…, alpha=…, marker=…</em>)</li>
+</ul>
+</blockquote>
+  <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># projection = 3d로 설정</span></span><br><span class="line">ax = plt.axes(projection = <span class="string">'3d'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x, y, z 데이터 생성</span></span><br><span class="line">z = np.linspace(<span class="number">0</span>, <span class="number">15</span>, <span class="number">1000</span>)</span><br><span class="line">x = np.sin(z)</span><br><span class="line">y = np.cos(z)</span><br><span class="line"></span><br><span class="line">ax.plot(x, y, z, <span class="string">'gray'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_142_0.png" alt="png"></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># projection = 3d로 설정</span></span><br><span class="line">ax = plt.axes(projection = <span class="string">'3d'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x, y, z 데이터 생성</span></span><br><span class="line">sample_size = <span class="number">100</span></span><br><span class="line">x = np.cumsum(np.random.normal(<span class="number">0</span>, <span class="number">1</span>, sample_size)) <span class="comment"># cumsum: 누적 합</span></span><br><span class="line">y = np.cumsum(np.random.normal(<span class="number">0</span>, <span class="number">1</span>, sample_size))</span><br><span class="line">z = np.cumsum(np.random.normal(<span class="number">0</span>, <span class="number">1</span>, sample_size))</span><br><span class="line"></span><br><span class="line">ax.plot3D(x, y, z, alpha=<span class="number">0.6</span>, marker=<span class="string">'o'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'ax.plot'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_144_0.png" alt="png"></p>
+<br>
+<h3 id="8-3-3d-scatter-그리기"><a class="markdownIt-Anchor" href="#8-3-3d-scatter-그리기"></a> 8-3. 3d-scatter 그리기</h3>
+<blockquote>
+<p><em><strong>reference:</strong></em> <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html" target="_blank" rel="noopener">&lt;Axes.scatter&gt; Document</a></p>
+</blockquote>
+<blockquote>
+<p><em>Axes</em> = fig.add_subplot(111, projection=‘3d’) <font color="blue"># Axe3D object</font></p>
+<p><em>Axes</em> <strong>.scatter</strong>( <em>x, y, z, s=None, c=None, marker=None, cmap=None, alpha=None, …</em>)</p>
+<ul>
+<li><strong>s:</strong> marker size</li>
+<li><strong>c:</strong> marker color</li>
+</ul>
+</blockquote>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">ax = fig.add_subplot(<span class="number">111</span>, projection=<span class="string">'3d'</span>) <span class="comment"># Axe3D object</span></span><br><span class="line"></span><br><span class="line">sample_size = <span class="number">500</span></span><br><span class="line"></span><br><span class="line">x = np.cumsum(np.random.normal(<span class="number">0</span>, <span class="number">5</span>, sample_size))</span><br><span class="line">y = np.cumsum(np.random.normal(<span class="number">0</span>, <span class="number">5</span>, sample_size))</span><br><span class="line">z = np.cumsum(np.random.normal(<span class="number">0</span>, <span class="number">5</span>, sample_size))</span><br><span class="line"></span><br><span class="line">ax.scatter(x, y, z, c=z, s=<span class="number">20</span>, alpha=<span class="number">0.5</span>, cmap=<span class="string">'Greens'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'ax.scatter'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_148_0.png" alt="png"></p>
+<p>컬러가 찐한 부분에 데이터가 더 많이 몰려있음</p>
+  <br>
+<h3 id="8-4-contour3d-그리기-등고선"><a class="markdownIt-Anchor" href="#8-4-contour3d-그리기-등고선"></a> 8-4. contour3D 그리기 (등고선)</h3>
+<blockquote>
+<p><em>Axes</em> = plt.axes(projection=‘3d’)<br>
+<em>Axes</em> <strong>.contour3D</strong> (<em>x, y, z</em> )</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(<span class="number">-6</span>, <span class="number">6</span>, <span class="number">30</span>)</span><br><span class="line">y = np.linspace(<span class="number">-6</span>, <span class="number">6</span>, <span class="number">30</span>)</span><br><span class="line">x, y = np.meshgrid(x, y)</span><br><span class="line"></span><br><span class="line">z = np.sin(np.sqrt(x**<span class="number">2</span> + y**<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">ax = plt.axes(projection=<span class="string">'3d'</span>)</span><br><span class="line"></span><br><span class="line">ax.contour3D(x, y, z, <span class="number">20</span>, cmap=<span class="string">'Reds'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">"ax.contour3D"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_153_0.png" alt="png"></p>
+<br>
+<br>
+<h2 id="9-imshow"><a class="markdownIt-Anchor" href="#9-imshow"></a> <strong>9. imshow</strong></h2>
+<p>이미지 데이터가 numpy array에서는 숫자형식으로 표현됨<br>
+명령어<code>imshow</code>는 이 컬러숫자들을 이미지로 변환하여 보여줌</p>
+  <br>
+<p>예제: <code>sklearn.datasets</code>안의 <code>load_digits</code>데이터</p>
+<ul>
+<li>
+<p><code>load_digits</code> 는 0~16 값을 가지는 array로 이루어져 있다</p>
+</li>
+<li>
+<p>1개의 array는 8 X 8 배열 안에 표현되어 있다</p>
+</li>
+<li>
+<p>숫자는 0~9까지 이루어져있다</p>
+<br>
+</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"></span><br><span class="line">digits = load_digits()</span><br><span class="line">X = digits.images[:<span class="number">10</span>]  <span class="comment"># 앞에 10개 image를 뽑아서 저장함</span></span><br><span class="line">X[<span class="number">0</span>]  <span class="comment"># 첫번째 image의 컬러숫자를 살펴보자</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>array([[ 0.,  0.,  5., 13.,  9.,  1.,  0.,  0.],
+       [ 0.,  0., 13., 15., 10., 15.,  5.,  0.],
+       [ 0.,  3., 15.,  2.,  0., 11.,  8.,  0.],
+       [ 0.,  4., 12.,  0.,  0.,  8.,  8.,  0.],
+       [ 0.,  5.,  8.,  0.,  0.,  9.,  8.,  0.],
+       [ 0.,  4., 11.,  0.,  1., 12.,  7.,  0.],
+       [ 0.,  2., 14.,  5., 10., 12.,  0.,  0.],
+       [ 0.,  0.,  6., 13., 10.,  0.,  0.,  0.]])
+</code></pre>
+<br>
+<p>지금 한 위치에 숫자 하나밖에 없어서 컬러는 흑백으로 나옴.<br>
+숫자가 클수록 black에 가깝고, 작을수록 white에 가까움</p>
+  <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">5</span>, sharex=<span class="literal">True</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>), sharey=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    axes[i//<span class="number">5</span>][i%<span class="number">5</span>].imshow(X[i], cmap=<span class="string">'Blues'</span>)</span><br><span class="line">    axes[i//<span class="number">5</span>][i%<span class="number">5</span>].set_title(str(i), fontsize=<span class="number">20</span>)</span><br><span class="line">    </span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-Python-Matplotlib2/output_164_0.png" alt="png"></p>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/06/28/S-Python-Matplotlib2/">https://hyemin-kim.github.io/2020/06/28/S-Python-Matplotlib2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Matplotlib/">Matplotlib</a><a class="post-meta__tags" href="/tags/%EC%8B%9C%EA%B0%81%ED%99%94/">시각화</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/06/28/NgUVOS.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/03/S-Python-Seaborn1/"><img class="prev-cover" src="https://s1.ax1x.com/2020/07/03/NjPQXV.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python &gt;&gt; Seaborn - (1) Seaborn을 활용한 다양한 그래프 그리기</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/28/S-Python-Matplotlib1/"><img class="next-cover" src="https://s1.ax1x.com/2020/06/28/NgUVOS.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; Matplotlib - (1) 기본 canvas 그리기 및 스타일링</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/06/28/S-Python-Matplotlib1/" title="Python >> Matplotlib - (1) 기본 canvas 그리기 및 스타일링"><img class="cover" src="https://s1.ax1x.com/2020/06/28/NgUVOS.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-28</div><div class="title">Python >> Matplotlib - (1) 기본 canvas 그리기 및 스타일링</div></div></a></div><div><a href="/2020/06/28/S-Python-Matplotlib0/" title="Python >> Matplotlib 개요"><img class="cover" src="https://s1.ax1x.com/2020/06/28/NgUVOS.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-28</div><div class="title">Python >> Matplotlib 개요</div></div></a></div><div><a href="/2020/06/25/S-Python-Pandas-visual/" title="Python >> Pandas 시각화"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-25</div><div class="title">Python >> Pandas 시각화</div></div></a></div><div><a href="/2020/07/03/S-Python-Seaborn1/" title="Python >> Seaborn - (1) Seaborn을 활용한 다양한 그래프 그리기"><img class="cover" src="https://s1.ax1x.com/2020/07/03/NjPQXV.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-03</div><div class="title">Python >> Seaborn - (1) Seaborn을 활용한 다양한 그래프 그리기</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/06/28/NgUVOS.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '6c296f1334523c1c791725ece8d8e235',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

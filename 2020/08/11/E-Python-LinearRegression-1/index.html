@@ -1,0 +1,2052 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【실습】 Python &gt;&gt; EDA &amp; Linear Regression -- 부동산 가격 예측 | Hyemin Kim</title><meta name="keywords" content="Python,sklearn,Machine Learning,회귀"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Linear Regression -- 부동산 가격 예측">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【실습】 Python &gt;&gt; EDA &amp; Linear Regression -- 부동산 가격 예측">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/08/11/E-Python-LinearRegression-1/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Linear Regression -- 부동산 가격 예측">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/08/25/dciYCV.png">
+<meta property="article:published_time" content="2020-08-10T15:42:27.000Z">
+<meta property="article:modified_time" content="2020-10-27T02:04:42.541Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="sklearn">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="회귀">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/08/25/dciYCV.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/08/11/E-Python-LinearRegression-1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-10-27 11:04:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#eda-regression-실습-부동산-데이터"><span class="toc-text"> 【EDA &amp; Regression 실습】 – 부동산 데이터</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-개요"><span class="toc-text"> 0. 개요</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-library-data-import"><span class="toc-text"> 1. Library &amp; Data Import</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-데이터-파악-eda-탐색적-데이터-분석"><span class="toc-text"> 2. 데이터 파악 (EDA: 탐색적 데이터 분석)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-데이터셋-기본-정보-파악"><span class="toc-text"> 2-1. 데이터셋 기본 정보 파악</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-종속-변수목표-변수-탐색"><span class="toc-text"> 2-2. 종속 변수(목표 변수) 탐색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-설명-변수-탐색"><span class="toc-text"> 2-3. 설명 변수 탐색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-설명변수와-종속변수-간의-관계-탐색"><span class="toc-text"> 2-4. 설명변수와 종속변수 간의 관계 탐색</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-주택-가격-예측-모델링-회귀-분석"><span class="toc-text"> 3. 주택 가격 예측 모델링: 회귀 분석</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-데이터-전처리"><span class="toc-text"> 3-1. 데이터 전처리</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-회귀-모델링"><span class="toc-text"> 3-2. 회귀 모델링</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-모델-해석"><span class="toc-text"> 3-3. 모델 해석</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-모델-예측-결과-및-성능-평가"><span class="toc-text"> 3-4. 모델 예측 결과 및 성능 평가</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/08/25/dciYCV.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">【실습】 Python &gt;&gt; EDA &amp; Linear Regression -- 부동산 가격 예측</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-08-10T15:42:27.000Z" title="Created 2020-08-11 00:42:27">2020-08-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-10-27T02:04:42.541Z" title="Updated 2020-10-27 11:04:42">2020-10-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Exercise%E3%80%91/">【Exercise】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Exercise%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="eda-regression-실습-부동산-데이터"><a class="markdownIt-Anchor" href="#eda-regression-실습-부동산-데이터"></a> 【EDA &amp; Regression 실습】 – 부동산 데이터</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#0-%EA%B0%9C%EC%9A%94"><strong>0. 개요</strong></a></li>
+<li><a href="#1-library-data-import"><strong>1. Library &amp; Data Import</strong></a></li>
+<li><a href="#2-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8C%8C%EC%95%85-eda-%ED%83%90%EC%83%89%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D"><strong>2. 데이터 파악 (EDA: 탐색적 데이터 분석)</strong></a>
+<ul>
+<li><a href="#2-1-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B-%EA%B8%B0%EB%B3%B8-%EC%A0%95%EB%B3%B4-%ED%8C%8C%EC%95%85">2-1. 데이터셋 기본 정보 파악</a></li>
+<li><a href="#2-2-%EC%A2%85%EC%86%8D-%EB%B3%80%EC%88%98%EB%AA%A9%ED%91%9C-%EB%B3%80%EC%88%98-%ED%83%90%EC%83%89">2-2. 종속 변수(목표 변수) 탐색</a></li>
+<li><a href="#2-3-%EC%84%A4%EB%AA%85-%EB%B3%80%EC%88%98-%ED%83%90%EC%83%89">2-3. 설명 변수 탐색</a></li>
+<li><a href="#2-4-%EC%84%A4%EB%AA%85%EB%B3%80%EC%88%98%EC%99%80-%EC%A2%85%EC%86%8D%EB%B3%80%EC%88%98-%EA%B0%84%EC%9D%98-%EA%B4%80%EA%B3%84-%ED%83%90%EC%83%89">2-4. 설명변수와 종속변수 간의 관계 탐색</a></li>
+</ul>
+</li>
+<li><a href="#3-%EC%A3%BC%ED%83%9D-%EA%B0%80%EA%B2%A9-%EC%98%88%EC%B8%A1-%EB%AA%A8%EB%8D%B8%EB%A7%81-%ED%9A%8C%EA%B7%80-%EB%B6%84%EC%84%9D"><strong>3. 주택 가격 예측 모델링: 회귀 분석</strong></a>
+<ul>
+<li><a href="#3-1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%84%EC%B2%98%EB%A6%AC">3-1. 데이터 전처리</a></li>
+<li><a href="#3-2-%ED%9A%8C%EA%B7%80-%EB%AA%A8%EB%8D%B8%EB%A7%81">3-2. 회귀 모델링</a></li>
+<li><a href="#3-3-%EB%AA%A8%EB%8D%B8-%ED%95%B4%EC%84%9D">3-3. 모델 해석</a></li>
+<li><a href="#3-4-%EB%AA%A8%EB%8D%B8-%EC%98%88%EC%B8%A1-%EA%B2%B0%EA%B3%BC-%EB%B0%8F-%EC%84%B1%EB%8A%A5-%ED%8F%89%EA%B0%80">3-4. 모델 예측 결과 및 성능 평가</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="0-개요"><a class="markdownIt-Anchor" href="#0-개요"></a> <strong>0. 개요</strong></h2>
+<p>미국 매사추세츠주의 주택 가격 데이터(Boston Housing 1970)를 활용해 지역의 평균 주택 가격을 예측하는 선형 회귀 모델을 만들었고, 이를 기초하여 주택 가격의 영향 요소 파악 및 주택 가격 예측을 진행하였습니다.</p>
+<p>전체 분석 절차는 다음과 같습니다:</p>
+<ol>
+<li>
+<p>데이터 파악 (EDA: 탐색적 데이터 분석)</p>
+<ul>
+<li>데이터셋 기본 정보 파악</li>
+<li>변수 특징 탐색</li>
+<li>변수간 관계 탐색</li>
+</ul>
+</li>
+<li>
+<p>데이터 전처리</p>
+</li>
+<li>
+<p>모델링</p>
+</li>
+<li>
+<p>주택 가격 영향 요소 파악</p>
+</li>
+<li>
+<p>주택 가격 예측 및 모델 예측 성능 평가</p>
+<br>  
+</li>
+</ol>
+<h2 id="1-library-data-import"><a class="markdownIt-Anchor" href="#1-library-data-import"></a> <strong>1. Library &amp; Data Import</strong></h2>
+<p><strong>&gt;&gt; 사용할 Library</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<br>  
+<p><strong>&gt;&gt; 사용할 데이터셋 – Boston Housing Dataset</strong></p>
+<p>분석에 사용될 데이터셋은 <a href="http://lib.stat.cmu.edu/datasets/boston_corrected.txt" target="_blank" rel="noopener">Boston Housing 1970</a>데이터의 일부 변수를 추출한 데이터입니다.<br>
+여기에 미국 매사추세츠주 92개 도시(TOWN)의 506개 지역의 주택 가격 및 기타 지역 특성 데이터가 포함되어 있습니다. <a href="https://geodacenter.github.io/data-and-lab/boston-housing/" target="_blank" rel="noopener">(Dataset Introduction)</a></p>
+<p>데이터셋을 불러와서 첫 다섯 줄을 출력하여 데이터의 구성을 한 번 살펴볼게요.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">"https://raw.githubusercontent.com/yoonkt200/FastCampusDataset/master/BostonHousing2.csv"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TOWN</th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>CMEDV</th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Nahant</td>
+      <td>-70.955</td>
+      <td>42.2550</td>
+      <td>24.0</td>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1</td>
+      <td>296</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Swampscott</td>
+      <td>-70.950</td>
+      <td>42.2875</td>
+      <td>21.6</td>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Swampscott</td>
+      <td>-70.936</td>
+      <td>42.2830</td>
+      <td>34.7</td>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Marblehead</td>
+      <td>-70.928</td>
+      <td>42.2930</td>
+      <td>33.4</td>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Marblehead</td>
+      <td>-70.922</td>
+      <td>42.2980</td>
+      <td>36.2</td>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<p><strong>&gt;&gt; Feature Description</strong></p>
+<p>각 변수의 의미는 다음과 같습니다:</p>
+<ul>
+<li>
+<p>TOWN: 소속 도시 이름</p>
+</li>
+<li>
+<p>LON, LAT: 해당 지역의 경도(Longitudes) 위도(Latitudes) 정보</p>
+</li>
+<li>
+<p><strong>CMEDV: 해당 지역의 주택 가격 (중앙값)</strong> (corrected median values of housing in USD 1000)</p>
+</li>
+<li>
+<p>CRIM: 지역 범죄율 (per capita crime)</p>
+</li>
+<li>
+<p>ZN: 소속 도시에 25,000 제곱 피트(sq.ft) 이상의 주택지 비율</p>
+</li>
+<li>
+<p>INDUS: 소속 도시에 상업적 비즈니스에 활용되지 않는 농지 면적</p>
+</li>
+<li>
+<p>CHAS: 해당 지역이 Charles 강과 접하고 있는지 여부 (dummy variable)</p>
+</li>
+<li>
+<p>NOX: 소속 도시의 산화질소 농도</p>
+</li>
+<li>
+<p>RM: 해당 지역의 자택당 평균 방 갯수</p>
+</li>
+<li>
+<p>AGE: 해당 지역에 1940년 이전에 건설된 주택의 비율</p>
+</li>
+<li>
+<p>DIS: 5개의 보스턴 고용 센터와의 거리에 따른 가중치 부여</p>
+</li>
+<li>
+<p>RAD: 소속 도시가 Radial 고속도로와의 접근성 지수</p>
+</li>
+<li>
+<p>TAX: 소속 도시의 10000달러당 재산세</p>
+</li>
+<li>
+<p>PTRATIO: 소속 도시의 학생-교사 비율</p>
+</li>
+<li>
+<p>B: 해당 지역의 흑인 지수 (1000(Bk - 0.63)^2), Bk는 흑인의 비율</p>
+</li>
+<li>
+<p>LSTAT: 해당 지역의 빈곤층 비율</p>
+<br>
+<br>
+</li>
+</ul>
+<h2 id="2-데이터-파악-eda-탐색적-데이터-분석"><a class="markdownIt-Anchor" href="#2-데이터-파악-eda-탐색적-데이터-분석"></a> <strong>2. 데이터 파악 (EDA: 탐색적 데이터 분석)</strong></h2>
+<p>이제 데이터셋의 기본 정보 및 각 변수의 특성을 파악해 보겠습니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 그래프 배경 설정</span></span><br><span class="line">sns.set_style(<span class="string">'darkgrid'</span>)</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<h3 id="2-1-데이터셋-기본-정보-파악"><a class="markdownIt-Anchor" href="#2-1-데이터셋-기본-정보-파악"></a> 2-1. 데이터셋 기본 정보 파악</h3>
+<p>먼저 데이터셋의 기본 정보부터 알아볼게요.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shape (dimension)</span></span><br><span class="line">df.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(506, 17)
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 결측치</span></span><br><span class="line">df.isnull().sum()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>TOWN       0
+LON        0
+LAT        0
+CMEDV      0
+CRIM       0
+ZN         0
+INDUS      0
+CHAS       0
+NOX        0
+RM         0
+AGE        0
+DIS        0
+RAD        0
+TAX        0
+PTRATIO    0
+B          0
+LSTAT      0
+dtype: int64
+</code></pre>
+<br>
+<p>데이터셋은 총 506개의 관측치(observations)과 17개의 변수(variables)로 구성되어 있고 결측치는 존재하지 않습니다.</p>
+<p>각 <strong>변수의 타입</strong> 및 <strong>기초 통계량 (범주형 변수는 범주 구성)</strong> 을 확인 해보면 다음과 같습니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># data type</span></span><br><span class="line">df.info()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 506 entries, 0 to 505
+Data columns (total 17 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   TOWN     506 non-null    object 
+ 1   LON      506 non-null    float64
+ 2   LAT      506 non-null    float64
+ 3   CMEDV    506 non-null    float64
+ 4   CRIM     506 non-null    float64
+ 5   ZN       506 non-null    float64
+ 6   INDUS    506 non-null    float64
+ 7   CHAS     506 non-null    int64  
+ 8   NOX      506 non-null    float64
+ 9   RM       506 non-null    float64
+ 10  AGE      506 non-null    float64
+ 11  DIS      506 non-null    float64
+ 12  RAD      506 non-null    int64  
+ 13  TAX      506 non-null    int64  
+ 14  PTRATIO  506 non-null    float64
+ 15  B        506 non-null    float64
+ 16  LSTAT    506 non-null    float64
+dtypes: float64(13), int64(3), object(1)
+memory usage: 67.3+ KB
+</code></pre>
+<p>이중 TOWN(소속 도시 이름)만 문자형 변수이고, 이를 제외한 모든 변수가 숫자형 변수입니다.</p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># numerical variable</span></span><br><span class="line">df.describe()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>CMEDV</th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-71.056389</td>
+      <td>42.216440</td>
+      <td>22.528854</td>
+      <td>3.613524</td>
+      <td>11.363636</td>
+      <td>11.136779</td>
+      <td>0.069170</td>
+      <td>0.554695</td>
+      <td>6.284634</td>
+      <td>68.574901</td>
+      <td>3.795043</td>
+      <td>9.549407</td>
+      <td>408.237154</td>
+      <td>18.455534</td>
+      <td>356.674032</td>
+      <td>12.653063</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.075405</td>
+      <td>0.061777</td>
+      <td>9.182176</td>
+      <td>8.601545</td>
+      <td>23.322453</td>
+      <td>6.860353</td>
+      <td>0.253994</td>
+      <td>0.115878</td>
+      <td>0.702617</td>
+      <td>28.148861</td>
+      <td>2.105710</td>
+      <td>8.707259</td>
+      <td>168.537116</td>
+      <td>2.164946</td>
+      <td>91.294864</td>
+      <td>7.141062</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-71.289500</td>
+      <td>42.030000</td>
+      <td>5.000000</td>
+      <td>0.006320</td>
+      <td>0.000000</td>
+      <td>0.460000</td>
+      <td>0.000000</td>
+      <td>0.385000</td>
+      <td>3.561000</td>
+      <td>2.900000</td>
+      <td>1.129600</td>
+      <td>1.000000</td>
+      <td>187.000000</td>
+      <td>12.600000</td>
+      <td>0.320000</td>
+      <td>1.730000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-71.093225</td>
+      <td>42.180775</td>
+      <td>17.025000</td>
+      <td>0.082045</td>
+      <td>0.000000</td>
+      <td>5.190000</td>
+      <td>0.000000</td>
+      <td>0.449000</td>
+      <td>5.885500</td>
+      <td>45.025000</td>
+      <td>2.100175</td>
+      <td>4.000000</td>
+      <td>279.000000</td>
+      <td>17.400000</td>
+      <td>375.377500</td>
+      <td>6.950000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-71.052900</td>
+      <td>42.218100</td>
+      <td>21.200000</td>
+      <td>0.256510</td>
+      <td>0.000000</td>
+      <td>9.690000</td>
+      <td>0.000000</td>
+      <td>0.538000</td>
+      <td>6.208500</td>
+      <td>77.500000</td>
+      <td>3.207450</td>
+      <td>5.000000</td>
+      <td>330.000000</td>
+      <td>19.050000</td>
+      <td>391.440000</td>
+      <td>11.360000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>-71.019625</td>
+      <td>42.252250</td>
+      <td>25.000000</td>
+      <td>3.677082</td>
+      <td>12.500000</td>
+      <td>18.100000</td>
+      <td>0.000000</td>
+      <td>0.624000</td>
+      <td>6.623500</td>
+      <td>94.075000</td>
+      <td>5.188425</td>
+      <td>24.000000</td>
+      <td>666.000000</td>
+      <td>20.200000</td>
+      <td>396.225000</td>
+      <td>16.955000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>-70.810000</td>
+      <td>42.381000</td>
+      <td>50.000000</td>
+      <td>88.976200</td>
+      <td>100.000000</td>
+      <td>27.740000</td>
+      <td>1.000000</td>
+      <td>0.871000</td>
+      <td>8.780000</td>
+      <td>100.000000</td>
+      <td>12.126500</td>
+      <td>24.000000</td>
+      <td>711.000000</td>
+      <td>22.000000</td>
+      <td>396.900000</td>
+      <td>37.970000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># categorical variable</span></span><br><span class="line">num_town = df[<span class="string">'TOWN'</span>].unique()</span><br><span class="line">print(len(num_town))</span><br><span class="line">num_town</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>92
+
+
+
+array(['Nahant', 'Swampscott', 'Marblehead', 'Salem', 'Lynn', 'Sargus',
+       'Lynnfield', 'Peabody', 'Danvers', 'Middleton', 'Topsfield',
+       'Hamilton', 'Wenham', 'Beverly', 'Manchester', 'North Reading',
+       'Wilmington', 'Burlington', 'Woburn', 'Reading', 'Wakefield',
+       'Melrose', 'Stoneham', 'Winchester', 'Medford', 'Malden',
+       'Everett', 'Somerville', 'Cambridge', 'Arlington', 'Belmont',
+       'Lexington', 'Bedford', 'Lincoln', 'Concord', 'Sudbury', 'Wayland',
+       'Weston', 'Waltham', 'Watertown', 'Newton', 'Natick', 'Framingham',
+       'Ashland', 'Sherborn', 'Brookline', 'Dedham', 'Needham',
+       'Wellesley', 'Dover', 'Medfield', 'Millis', 'Norfolk', 'Walpole',
+       'Westwood', 'Norwood', 'Sharon', 'Canton', 'Milton', 'Quincy',
+       'Braintree', 'Randolph', 'Holbrook', 'Weymouth', 'Cohasset',
+       'Hull', 'Hingham', 'Rockland', 'Hanover', 'Norwell', 'Scituate',
+       'Marshfield', 'Duxbury', 'Pembroke', 'Boston Allston-Brighton',
+       'Boston Back Bay', 'Boston Beacon Hill', 'Boston North End',
+       'Boston Charlestown', 'Boston East Boston', 'Boston South Boston',
+       'Boston Downtown', 'Boston Roxbury', 'Boston Savin Hill',
+       'Boston Dorchester', 'Boston Mattapan', 'Boston Forest Hills',
+       'Boston West Roxbury', 'Boston Hyde Park', 'Chelsea', 'Revere',
+       'Winthrop'], dtype=object)
+</code></pre>
+<br>
+<h3 id="2-2-종속-변수목표-변수-탐색"><a class="markdownIt-Anchor" href="#2-2-종속-변수목표-변수-탐색"></a> 2-2. 종속 변수(목표 변수) 탐색</h3>
+<p><strong>&gt;&gt; Target Variable: ‘CMEDV’(주택 가격) 탐색</strong></p>
+<p>이제 각 변수의 특성을 시각화 도구를 통해 파악해보겠습니다.<br>
+먼저 우리가 예측하고자 하는 대상, 즉 회귀 모델의 종속 변수인 “주택 가격”(‘CMECV’) 부터 살펴볼게요.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 기초 통계량</span></span><br><span class="line">df[<span class="string">'CMEDV'</span>].describe()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>count    506.000000
+mean      22.528854
+std        9.182176
+min        5.000000
+25%       17.025000
+50%       21.200000
+75%       25.000000
+max       50.000000
+Name: CMEDV, dtype: float64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 분포</span></span><br><span class="line">df[<span class="string">'CMEDV'</span>].hist(bins=<span class="number">50</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1ca69ebcf48&gt;
+</code></pre>
+<p><img src="/images/E-Python-LinearRegression-1/output_36_1.png" alt="png"></p>
+<p><strong>boxplot:</strong></p>
+<ol>
+<li>Pandas Function (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html?highlight=boxplot#pandas.DataFrame.boxplot" target="_blank" rel="noopener">pandas.DataFrame.boxplot</a>)</li>
+<li>Matplotlib Function (<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot" target="_blank" rel="noopener">matplotlib.pyplot.boxplot</a>)</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># boxplot - Pandas</span></span><br><span class="line">df.boxplot(column=[<span class="string">'CMEDV'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_38_0.png" alt="png"></p>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># boxplot - matplotlib</span></span><br><span class="line">plt.boxplot(df[<span class="string">'CMEDV'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_39_0.png" alt="png"></p>
+<p>분포를 살펴보면, 주택 가격이 대부분 <code>$17,000</code> ~ <code>$25,000</code> 사이에 분포되어 있으며, 소수의 <code>$40,000</code> 이상인 고가 주택도 존재합니다.</p>
+<br>  
+<h3 id="2-3-설명-변수-탐색"><a class="markdownIt-Anchor" href="#2-3-설명-변수-탐색"></a> 2-3. 설명 변수 탐색</h3>
+<p><strong>&gt;&gt; 설명 변수의 분포 탐색</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># numerical features (except "LON" &amp; "LAT")</span></span><br><span class="line">numerical_columns = [<span class="string">'CRIM'</span>, <span class="string">'ZN'</span>, <span class="string">'INDUS'</span>, <span class="string">'CHAS'</span>, <span class="string">'NOX'</span>, <span class="string">'RM'</span>, <span class="string">'AGE'</span>, <span class="string">'DIS'</span>, <span class="string">'RAD'</span>, <span class="string">'TAX'</span>, <span class="string">'PTRATIO'</span>, <span class="string">'B'</span>, <span class="string">'LSTAT'</span>]</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">16</span>, <span class="number">20</span>))</span><br><span class="line">ax = fig.gca()  <span class="comment"># Axes 생성</span></span><br><span class="line"></span><br><span class="line">df[numerical_columns].hist(ax=ax)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_44_0.png" alt="png"></p>
+<br>
+<h3 id="2-4-설명변수와-종속변수-간의-관계-탐색"><a class="markdownIt-Anchor" href="#2-4-설명변수와-종속변수-간의-관계-탐색"></a> 2-4. 설명변수와 종속변수 간의 관계 탐색</h3>
+<p><strong>&gt;&gt; 변수간의 상관계수 파악</strong></p>
+<p>먼저 변수간의 상관계수를 추출해보겠습니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Person 상관계수</span></span><br><span class="line">cols = [<span class="string">'CMEDV'</span>, <span class="string">'CRIM'</span>, <span class="string">'ZN'</span>, <span class="string">'INDUS'</span>, <span class="string">'CHAS'</span>, <span class="string">'NOX'</span>, <span class="string">'RM'</span>, <span class="string">'AGE'</span>, <span class="string">'DIS'</span>, <span class="string">'RAD'</span>, <span class="string">'TAX'</span>, <span class="string">'PTRATIO'</span>, <span class="string">'B'</span>, <span class="string">'LSTAT'</span>]</span><br><span class="line"></span><br><span class="line">corr = df[cols].corr(method = <span class="string">'pearson'</span>)</span><br><span class="line">corr</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CMEDV</th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CMEDV</th>
+      <td>1.000000</td>
+      <td>-0.389582</td>
+      <td>0.360386</td>
+      <td>-0.484754</td>
+      <td>0.175663</td>
+      <td>-0.429300</td>
+      <td>0.696304</td>
+      <td>-0.377999</td>
+      <td>0.249315</td>
+      <td>-0.384766</td>
+      <td>-0.471979</td>
+      <td>-0.505655</td>
+      <td>0.334861</td>
+      <td>-0.740836</td>
+    </tr>
+    <tr>
+      <th>CRIM</th>
+      <td>-0.389582</td>
+      <td>1.000000</td>
+      <td>-0.200469</td>
+      <td>0.406583</td>
+      <td>-0.055892</td>
+      <td>0.420972</td>
+      <td>-0.219247</td>
+      <td>0.352734</td>
+      <td>-0.379670</td>
+      <td>0.625505</td>
+      <td>0.582764</td>
+      <td>0.289946</td>
+      <td>-0.385064</td>
+      <td>0.455621</td>
+    </tr>
+    <tr>
+      <th>ZN</th>
+      <td>0.360386</td>
+      <td>-0.200469</td>
+      <td>1.000000</td>
+      <td>-0.533828</td>
+      <td>-0.042697</td>
+      <td>-0.516604</td>
+      <td>0.311991</td>
+      <td>-0.569537</td>
+      <td>0.664408</td>
+      <td>-0.311948</td>
+      <td>-0.314563</td>
+      <td>-0.391679</td>
+      <td>0.175520</td>
+      <td>-0.412995</td>
+    </tr>
+    <tr>
+      <th>INDUS</th>
+      <td>-0.484754</td>
+      <td>0.406583</td>
+      <td>-0.533828</td>
+      <td>1.000000</td>
+      <td>0.062938</td>
+      <td>0.763651</td>
+      <td>-0.391676</td>
+      <td>0.644779</td>
+      <td>-0.708027</td>
+      <td>0.595129</td>
+      <td>0.720760</td>
+      <td>0.383248</td>
+      <td>-0.356977</td>
+      <td>0.603800</td>
+    </tr>
+    <tr>
+      <th>CHAS</th>
+      <td>0.175663</td>
+      <td>-0.055892</td>
+      <td>-0.042697</td>
+      <td>0.062938</td>
+      <td>1.000000</td>
+      <td>0.091203</td>
+      <td>0.091251</td>
+      <td>0.086518</td>
+      <td>-0.099176</td>
+      <td>-0.007368</td>
+      <td>-0.035587</td>
+      <td>-0.121515</td>
+      <td>0.048788</td>
+      <td>-0.053929</td>
+    </tr>
+    <tr>
+      <th>NOX</th>
+      <td>-0.429300</td>
+      <td>0.420972</td>
+      <td>-0.516604</td>
+      <td>0.763651</td>
+      <td>0.091203</td>
+      <td>1.000000</td>
+      <td>-0.302188</td>
+      <td>0.731470</td>
+      <td>-0.769230</td>
+      <td>0.611441</td>
+      <td>0.668023</td>
+      <td>0.188933</td>
+      <td>-0.380051</td>
+      <td>0.590879</td>
+    </tr>
+    <tr>
+      <th>RM</th>
+      <td>0.696304</td>
+      <td>-0.219247</td>
+      <td>0.311991</td>
+      <td>-0.391676</td>
+      <td>0.091251</td>
+      <td>-0.302188</td>
+      <td>1.000000</td>
+      <td>-0.240265</td>
+      <td>0.205246</td>
+      <td>-0.209847</td>
+      <td>-0.292048</td>
+      <td>-0.355501</td>
+      <td>0.128069</td>
+      <td>-0.613808</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>-0.377999</td>
+      <td>0.352734</td>
+      <td>-0.569537</td>
+      <td>0.644779</td>
+      <td>0.086518</td>
+      <td>0.731470</td>
+      <td>-0.240265</td>
+      <td>1.000000</td>
+      <td>-0.747881</td>
+      <td>0.456022</td>
+      <td>0.506456</td>
+      <td>0.261515</td>
+      <td>-0.273534</td>
+      <td>0.602339</td>
+    </tr>
+    <tr>
+      <th>DIS</th>
+      <td>0.249315</td>
+      <td>-0.379670</td>
+      <td>0.664408</td>
+      <td>-0.708027</td>
+      <td>-0.099176</td>
+      <td>-0.769230</td>
+      <td>0.205246</td>
+      <td>-0.747881</td>
+      <td>1.000000</td>
+      <td>-0.494588</td>
+      <td>-0.534432</td>
+      <td>-0.232471</td>
+      <td>0.291512</td>
+      <td>-0.496996</td>
+    </tr>
+    <tr>
+      <th>RAD</th>
+      <td>-0.384766</td>
+      <td>0.625505</td>
+      <td>-0.311948</td>
+      <td>0.595129</td>
+      <td>-0.007368</td>
+      <td>0.611441</td>
+      <td>-0.209847</td>
+      <td>0.456022</td>
+      <td>-0.494588</td>
+      <td>1.000000</td>
+      <td>0.910228</td>
+      <td>0.464741</td>
+      <td>-0.444413</td>
+      <td>0.488676</td>
+    </tr>
+    <tr>
+      <th>TAX</th>
+      <td>-0.471979</td>
+      <td>0.582764</td>
+      <td>-0.314563</td>
+      <td>0.720760</td>
+      <td>-0.035587</td>
+      <td>0.668023</td>
+      <td>-0.292048</td>
+      <td>0.506456</td>
+      <td>-0.534432</td>
+      <td>0.910228</td>
+      <td>1.000000</td>
+      <td>0.460853</td>
+      <td>-0.441808</td>
+      <td>0.543993</td>
+    </tr>
+    <tr>
+      <th>PTRATIO</th>
+      <td>-0.505655</td>
+      <td>0.289946</td>
+      <td>-0.391679</td>
+      <td>0.383248</td>
+      <td>-0.121515</td>
+      <td>0.188933</td>
+      <td>-0.355501</td>
+      <td>0.261515</td>
+      <td>-0.232471</td>
+      <td>0.464741</td>
+      <td>0.460853</td>
+      <td>1.000000</td>
+      <td>-0.177383</td>
+      <td>0.374044</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.334861</td>
+      <td>-0.385064</td>
+      <td>0.175520</td>
+      <td>-0.356977</td>
+      <td>0.048788</td>
+      <td>-0.380051</td>
+      <td>0.128069</td>
+      <td>-0.273534</td>
+      <td>0.291512</td>
+      <td>-0.444413</td>
+      <td>-0.441808</td>
+      <td>-0.177383</td>
+      <td>1.000000</td>
+      <td>-0.366087</td>
+    </tr>
+    <tr>
+      <th>LSTAT</th>
+      <td>-0.740836</td>
+      <td>0.455621</td>
+      <td>-0.412995</td>
+      <td>0.603800</td>
+      <td>-0.053929</td>
+      <td>0.590879</td>
+      <td>-0.613808</td>
+      <td>0.602339</td>
+      <td>-0.496996</td>
+      <td>0.488676</td>
+      <td>0.543993</td>
+      <td>0.374044</td>
+      <td>-0.366087</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<p>상관계수를 좀 더 직관적인 Heatmap으로 표현해볼게요.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># heatmap (seaborn)</span></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">16</span>, <span class="number">12</span>))</span><br><span class="line">ax = fig.gca()</span><br><span class="line"></span><br><span class="line">sns.set(font_scale = <span class="number">1.5</span>)  <span class="comment"># heatmap 안의 font-size 설정</span></span><br><span class="line">heatmap = sns.heatmap(corr.values, annot = <span class="literal">True</span>, fmt=<span class="string">'.2f'</span>, annot_kws={<span class="string">'size'</span>:<span class="number">15</span>},</span><br><span class="line">                      yticklabels = cols, xticklabels = cols, ax=ax, cmap = <span class="string">"RdYlBu"</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_52_0.png" alt="png"></p>
+<p>우리의 관심사인 target variable **“CMEDV - 주택 가격”**과 다른 변수간의 상관관계를 살펴보면, **“CMEDV - 주택 가격”**은 <strong>“RM - 자택당 평균 방 갯수”(0.7)</strong> 및 **“LSTAT - 빈곤층의 비율”(-0.74)**과 <strong>강한 상관관계</strong>를 보이고 있다는 것을 알 수 있습니다.</p>
+<p>이 두 변수와의 관계를 좀 더 자세히 살펴볼게요.</p>
+ <br> 
+<p><strong>&gt;&gt; 종속 변수와 설명 변수간의 관계 탐색</strong></p>
+<ul>
+<li>주택 가격 ( “CMEDV” )  ~  방 갯수 ( “RM” )</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scatter plot</span></span><br><span class="line">sns.scatterplot(data=df, x=<span class="string">'RM'</span>, y=<span class="string">'CMEDV'</span>, markers=<span class="string">'o'</span>, color=<span class="string">'blue'</span>, alpha=<span class="number">0.6</span>)</span><br><span class="line">plt.title(<span class="string">'Scatter Plot'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_57_0.png" alt="png"></p>
+<p>주택 가격이 방 갯수와 양의 상관관계(positive correlation)를 갖고 있습니다. 즉, 방 갯수가 많은 주택들이 상대적으로 더 높은 가격을 갖고 있습니다.</p>
+ <br> 
+<ul>
+<li>주택 가격(“CMEDV”) ~ 빈곤층의 비율(“LSTAT”)</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scatter plot</span></span><br><span class="line">sns.scatterplot(data=df, x=<span class="string">'LSTAT'</span>, y=<span class="string">'CMEDV'</span>, markers=<span class="string">'o'</span>, color=<span class="string">'blue'</span>, alpha=<span class="number">0.6</span>)</span><br><span class="line">plt.title(<span class="string">'Scatter Plot'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_61_0.png" alt="png"></p>
+<p>주택 가격이 빈곤층의 비율과 음의 상관관계(negative correlation)를 갖고 있습니다. 즉, 빈곤층의 비율이 높은 지역의 주택 가격이 상대적으로 낮은 경향이 있습니다.</p>
+ <br> 
+<p><strong>&gt;&gt; 도시별 차이 탐색</strong></p>
+<p>데이터를 살펴보면 여러 지역이 같은 도시에 속한 경우가 있습니다. 변수 중에서도 도시 단위로 측정되는 변수가 많고요. 따라서 우리는 자연스럽게 도시 간의 차이를 궁금하게 됩니다.</p>
+<p>먼저 각 도시의 데이터 갯수부터 살펴볼게요.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도시별 데이터 갯수</span></span><br><span class="line">df[<span class="string">'TOWN'</span>].value_counts()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Cambridge            30
+Boston Savin Hill    23
+Lynn                 22
+Boston Roxbury       19
+Newton               18
+                     ..
+Hanover               1
+Hull                  1
+Sherborn              1
+Hamilton              1
+Dover                 1
+Name: TOWN, Length: 92, dtype: int64
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도시별 데이터 갯수 (bar plot)</span></span><br><span class="line">df[<span class="string">'TOWN'</span>].value_counts().hist(bins=<span class="number">50</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1ca6c233a48&gt;
+</code></pre>
+<p><img src="/images/E-Python-LinearRegression-1/output_68_1.png" alt="png"></p>
+<br>
+<p>이제 각 도시의 주택 가격 분포를 box plot을 통해 표현 해보겠습니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도시별 주택 가격 특징 (boxplot 이용)</span></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">12</span>, <span class="number">20</span>))</span><br><span class="line">sns.boxplot(x=<span class="string">'CMEDV'</span>, y=<span class="string">'TOWN'</span>, data=df)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x23cf3ff9ec8&gt;
+</code></pre>
+<p><img src="/images/E-Python-LinearRegression-1/output_71_1.png" alt="png"></p>
+<p>그림을 보면, Boston 지역(Boston으로 시작하는 도시)의 주택 가격이 전반적으로 다른 지역보다 낮다는 것을 알 수 있습니다.</p>
+<p>도시별 범죄율을 한 번 확인 해보면,</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도시별 범죄율 특징</span></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">12</span>, <span class="number">20</span>))</span><br><span class="line">sns.boxplot(x=<span class="string">'CRIM'</span>, y=<span class="string">'TOWN'</span>, data=df)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x23cf407fec8&gt;
+</code></pre>
+<p><img src="/images/E-Python-LinearRegression-1/output_73_1.png" alt="png"></p>
+<p>Boston 지역의 범죄율이 유독 높다는 것을 확인할 수 있고, 따라서 범죄율이 높은 지역의 주택 가격이 상대적으로 낮다는 것을 추측해볼 수 있겠습니다.</p>
+<p><br>  <br></p>
+<h2 id="3-주택-가격-예측-모델링-회귀-분석"><a class="markdownIt-Anchor" href="#3-주택-가격-예측-모델링-회귀-분석"></a> <strong>3. 주택 가격 예측 모델링: 회귀 분석</strong></h2>
+<p>이제 변수들을 활용하여 매사추세츠주 각 지역의 주택 가격을 예측하는 회귀 모델을 만들어 보겠습니다.</p>
+<h3 id="3-1-데이터-전처리"><a class="markdownIt-Anchor" href="#3-1-데이터-전처리"></a> 3-1. 데이터 전처리</h3>
+<p><strong>&gt;&gt;  Feature 표준화</strong></p>
+<p>먼저 Feature 들의 scale 차이를 없애기 위해 수치형 Feature에 대해서 표준화를 진행해야 합니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TOWN</th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>CMEDV</th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Nahant</td>
+      <td>-70.955</td>
+      <td>42.2550</td>
+      <td>24.0</td>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1</td>
+      <td>296</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Swampscott</td>
+      <td>-70.950</td>
+      <td>42.2875</td>
+      <td>21.6</td>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Swampscott</td>
+      <td>-70.936</td>
+      <td>42.2830</td>
+      <td>34.7</td>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Marblehead</td>
+      <td>-70.928</td>
+      <td>42.2930</td>
+      <td>33.4</td>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Marblehead</td>
+      <td>-70.922</td>
+      <td>42.2980</td>
+      <td>36.2</td>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 506 entries, 0 to 505
+Data columns (total 17 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   TOWN     506 non-null    object 
+ 1   LON      506 non-null    float64
+ 2   LAT      506 non-null    float64
+ 3   CMEDV    506 non-null    float64
+ 4   CRIM     506 non-null    float64
+ 5   ZN       506 non-null    float64
+ 6   INDUS    506 non-null    float64
+ 7   CHAS     506 non-null    int64  
+ 8   NOX      506 non-null    float64
+ 9   RM       506 non-null    float64
+ 10  AGE      506 non-null    float64
+ 11  DIS      506 non-null    float64
+ 12  RAD      506 non-null    int64  
+ 13  TAX      506 non-null    int64  
+ 14  PTRATIO  506 non-null    float64
+ 15  B        506 non-null    float64
+ 16  LSTAT    506 non-null    float64
+dtypes: float64(13), int64(3), object(1)
+memory usage: 67.3+ KB
+</code></pre>
+<p><br>문자형 변수인 "TOWN"와 범주형 변수인 “CHAS” (Dummy variable)를 제외하여 모든 수치형 변수에 대해서 표준화를 진행합니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"></span><br><span class="line"><span class="comment"># feature standardization  (numerical_columns except dummy var.-"CHAS")</span></span><br><span class="line">scaler = StandardScaler()  <span class="comment"># 평균 0, 표준편차 1</span></span><br><span class="line">scale_columns = [<span class="string">'CRIM'</span>, <span class="string">'ZN'</span>, <span class="string">'INDUS'</span>, <span class="string">'NOX'</span>, <span class="string">'RM'</span>, <span class="string">'AGE'</span>, <span class="string">'DIS'</span>, <span class="string">'RAD'</span>, <span class="string">'TAX'</span>, <span class="string">'PTRATIO'</span>, <span class="string">'B'</span>, <span class="string">'LSTAT'</span>]</span><br><span class="line">df[scale_columns] = scaler.fit_transform(df[scale_columns])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TOWN</th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>CMEDV</th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Nahant</td>
+      <td>-70.955</td>
+      <td>42.2550</td>
+      <td>24.0</td>
+      <td>-0.419782</td>
+      <td>0.284830</td>
+      <td>-1.287909</td>
+      <td>0</td>
+      <td>-0.144217</td>
+      <td>0.413672</td>
+      <td>-0.120013</td>
+      <td>0.140214</td>
+      <td>-0.982843</td>
+      <td>-0.666608</td>
+      <td>-1.459000</td>
+      <td>0.441052</td>
+      <td>-1.075562</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Swampscott</td>
+      <td>-70.950</td>
+      <td>42.2875</td>
+      <td>21.6</td>
+      <td>-0.417339</td>
+      <td>-0.487722</td>
+      <td>-0.593381</td>
+      <td>0</td>
+      <td>-0.740262</td>
+      <td>0.194274</td>
+      <td>0.367166</td>
+      <td>0.557160</td>
+      <td>-0.867883</td>
+      <td>-0.987329</td>
+      <td>-0.303094</td>
+      <td>0.441052</td>
+      <td>-0.492439</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Swampscott</td>
+      <td>-70.936</td>
+      <td>42.2830</td>
+      <td>34.7</td>
+      <td>-0.417342</td>
+      <td>-0.487722</td>
+      <td>-0.593381</td>
+      <td>0</td>
+      <td>-0.740262</td>
+      <td>1.282714</td>
+      <td>-0.265812</td>
+      <td>0.557160</td>
+      <td>-0.867883</td>
+      <td>-0.987329</td>
+      <td>-0.303094</td>
+      <td>0.396427</td>
+      <td>-1.208727</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Marblehead</td>
+      <td>-70.928</td>
+      <td>42.2930</td>
+      <td>33.4</td>
+      <td>-0.416750</td>
+      <td>-0.487722</td>
+      <td>-1.306878</td>
+      <td>0</td>
+      <td>-0.835284</td>
+      <td>1.016303</td>
+      <td>-0.809889</td>
+      <td>1.077737</td>
+      <td>-0.752922</td>
+      <td>-1.106115</td>
+      <td>0.113032</td>
+      <td>0.416163</td>
+      <td>-1.361517</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Marblehead</td>
+      <td>-70.922</td>
+      <td>42.2980</td>
+      <td>36.2</td>
+      <td>-0.412482</td>
+      <td>-0.487722</td>
+      <td>-1.306878</td>
+      <td>0</td>
+      <td>-0.835284</td>
+      <td>1.228577</td>
+      <td>-0.511180</td>
+      <td>1.077737</td>
+      <td>-0.752922</td>
+      <td>-1.106115</td>
+      <td>0.113032</td>
+      <td>0.441052</td>
+      <td>-1.026501</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+ <br> 
+<p><strong>&gt;&gt; Training set / Test set 나누기</strong></p>
+<p>나중에 도출될 예측 모델의 예측 성능을 평가하기 위해, 먼저 전체 데이터셋을 "Training set"과 "Test set"으로 나누겠습니다. Training set에서 모델을 학습하고 Test set에서 모델의 예측 성능을 검증할 겁니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># features for linear regression model</span></span><br><span class="line">df[numerical_columns].head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<div style="overflow:auto">
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.419782</td>
+      <td>0.284830</td>
+      <td>-1.287909</td>
+      <td>0</td>
+      <td>-0.144217</td>
+      <td>0.413672</td>
+      <td>-0.120013</td>
+      <td>0.140214</td>
+      <td>-0.982843</td>
+      <td>-0.666608</td>
+      <td>-1.459000</td>
+      <td>0.441052</td>
+      <td>-1.075562</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.417339</td>
+      <td>-0.487722</td>
+      <td>-0.593381</td>
+      <td>0</td>
+      <td>-0.740262</td>
+      <td>0.194274</td>
+      <td>0.367166</td>
+      <td>0.557160</td>
+      <td>-0.867883</td>
+      <td>-0.987329</td>
+      <td>-0.303094</td>
+      <td>0.441052</td>
+      <td>-0.492439</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.417342</td>
+      <td>-0.487722</td>
+      <td>-0.593381</td>
+      <td>0</td>
+      <td>-0.740262</td>
+      <td>1.282714</td>
+      <td>-0.265812</td>
+      <td>0.557160</td>
+      <td>-0.867883</td>
+      <td>-0.987329</td>
+      <td>-0.303094</td>
+      <td>0.396427</td>
+      <td>-1.208727</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.416750</td>
+      <td>-0.487722</td>
+      <td>-1.306878</td>
+      <td>0</td>
+      <td>-0.835284</td>
+      <td>1.016303</td>
+      <td>-0.809889</td>
+      <td>1.077737</td>
+      <td>-0.752922</td>
+      <td>-1.106115</td>
+      <td>0.113032</td>
+      <td>0.416163</td>
+      <td>-1.361517</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.412482</td>
+      <td>-0.487722</td>
+      <td>-1.306878</td>
+      <td>0</td>
+      <td>-0.835284</td>
+      <td>1.228577</td>
+      <td>-0.511180</td>
+      <td>1.077737</td>
+      <td>-0.752922</td>
+      <td>-1.106115</td>
+      <td>0.113032</td>
+      <td>0.441052</td>
+      <td>-1.026501</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># split dataset into training &amp; test</span></span><br><span class="line">X = df[numerical_columns]</span><br><span class="line">y = df[<span class="string">'CMEDV'</span>]</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="number">0.2</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_train.shape, y_train.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((404, 13), (404,))
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_test.shape, y_test.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>((102, 13), (102,))
+</code></pre>
+  <br>
+<p><strong>&gt;&gt; 다중공선성</strong></p>
+<p>회귀 분석에서 하나의 feature(예측 변수)가 다른 feature와의 상관 관계가 높으면(즉, 다중공선성이 존재하면), 회귀 분석 시 부정적인 영향을 미칠 수 있기 때문에, 모델링 하기 전에 먼저 다중공선성의 존재 여부를 확인해야합니다.</p>
+<p>보통 다중공선성을 판단할 때 VIF값을 확인합니다. 일반적으로, VIF &gt; 10인 feature들은 다른 변수와의 상관관계가 높아, 다중공선성이 존재하는 것으로 판단합니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.stats.outliers_influence <span class="keyword">import</span> variance_inflation_factor</span><br><span class="line"></span><br><span class="line">vif = pd.DataFrame()</span><br><span class="line">vif[<span class="string">'features'</span>] = X_train.columns</span><br><span class="line">vif[<span class="string">"VIF Factor"</span>] = [variance_inflation_factor(X_train.values, i) <span class="keyword">for</span> i <span class="keyword">in</span> range(X_train.shape[<span class="number">1</span>])]</span><br><span class="line">vif.round(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>features</th>
+      <th>VIF Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CRIM</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZN</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>INDUS</td>
+      <td>3.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CHAS</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NOX</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>RM</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>AGE</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>DIS</td>
+      <td>4.2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>RAD</td>
+      <td>8.1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TAX</td>
+      <td>9.8</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PTRATIO</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>B</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LSTAT</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p>VIF값을 확인해보면, 모든 변수의 VIF값이 다 10 이하입니다. 따라서 다중공선성 문제가 존재하지 않아 모든 feature을 활용하여 회귀 모델링을 진행하면 됩니다.</p>
+ <br> 
+<h3 id="3-2-회귀-모델링"><a class="markdownIt-Anchor" href="#3-2-회귀-모델링"></a> 3-2. 회귀 모델링</h3>
+<p>먼저 Training set에서 선형 회귀 예측 모델을 학습합니다.<br>
+그 다음 도출된 모델을 Test set에 적용해 주택 가격(“CMEDV”)을 예측합니다. 이 결과는 다중에 실제 “CMEDV” 값과 비교하여 모델의 예측 성능을 평가하는 데 활용하게 됩니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># fit regression model in training set</span></span><br><span class="line">lr = linear_model.LinearRegression()</span><br><span class="line">model = lr.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># predict in test set</span></span><br><span class="line">pred_test = lr.predict(X_test)</span><br></pre></td></tr></tbody></table></figure>
+<br>  
+<h3 id="3-3-모델-해석"><a class="markdownIt-Anchor" href="#3-3-모델-해석"></a> 3-3. 모델 해석</h3>
+<p><strong>&gt;&gt; coefficients 확인하기</strong></p>
+<p>먼저 각 feature의 회귀 계수를 확인해보겠습니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># print coef</span></span><br><span class="line">print(lr.coef_)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>[-0.9479409   1.39796831  0.14786968  2.13469673 -2.25995614  2.15879342
+  0.12103297 -3.23121173  2.63662665 -1.95959865 -2.05639351  0.65670428
+ -3.93702535]
+</code></pre>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># "feature - coefficients" DataFrame 만들기</span></span><br><span class="line">coefs = pd.DataFrame(zip(df[numerical_columns].columns, lr.coef_), columns = [<span class="string">'feature'</span>, <span class="string">'coefficients'</span>])</span><br><span class="line">coefs</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CRIM</td>
+      <td>-0.947941</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZN</td>
+      <td>1.397968</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>INDUS</td>
+      <td>0.147870</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CHAS</td>
+      <td>2.134697</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NOX</td>
+      <td>-2.259956</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>RM</td>
+      <td>2.158793</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>AGE</td>
+      <td>0.121033</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>DIS</td>
+      <td>-3.231212</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>RAD</td>
+      <td>2.636627</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TAX</td>
+      <td>-1.959599</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PTRATIO</td>
+      <td>-2.056394</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>B</td>
+      <td>0.656704</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LSTAT</td>
+      <td>-3.937025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 크기 순서로 나열</span></span><br><span class="line">coefs_new = coefs.reindex(coefs.coefficients.abs().sort_values(ascending=<span class="literal">False</span>).index)</span><br><span class="line">coefs_new</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>LSTAT</td>
+      <td>-3.937025</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>DIS</td>
+      <td>-3.231212</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>RAD</td>
+      <td>2.636627</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NOX</td>
+      <td>-2.259956</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>RM</td>
+      <td>2.158793</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CHAS</td>
+      <td>2.134697</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PTRATIO</td>
+      <td>-2.056394</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TAX</td>
+      <td>-1.959599</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZN</td>
+      <td>1.397968</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>CRIM</td>
+      <td>-0.947941</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>B</td>
+      <td>0.656704</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>INDUS</td>
+      <td>0.147870</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>AGE</td>
+      <td>0.121033</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## coefficients 시각화</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># figure size</span></span><br><span class="line">plt.figure(figsize = (<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># bar plot</span></span><br><span class="line">plt.barh(coefs_new[<span class="string">'feature'</span>], coefs_new[<span class="string">'coefficients'</span>])</span><br><span class="line">plt.title(<span class="string">'"feature - coefficient" Graph'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'coefficients'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'features'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_112_0.png" alt="png"></p>
+<br>
+<p><strong>&gt;&gt; feature 유의성 검정</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"></span><br><span class="line">X_train2 = sm.add_constant(X_train)</span><br><span class="line">model2 = sm.OLS(y_train, X_train2).fit()</span><br><span class="line">model2.summary()</span><br></pre></td></tr></tbody></table></figure>
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tbody><tr>
+  <th>Dep. Variable:</th>          <td>CMEDV</td>      <th>  R-squared:         </th> <td>   0.734</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.725</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   82.86</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 11 Aug 2020</td> <th>  Prob (F-statistic):</th> <td>1.72e-103</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>00:22:07</td>     <th>  Log-Likelihood:    </th> <td> -1191.9</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   404</td>      <th>  AIC:               </th> <td>   2412.</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   390</td>      <th>  BIC:               </th> <td>   2468.</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>    13</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</tbody></table>
+<table class="simpletable">
+<tbody><tr>
+     <td></td>        <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P&gt;|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>   <td>   22.4313</td> <td>    0.245</td> <td>   91.399</td> <td> 0.000</td> <td>   21.949</td> <td>   22.914</td>
+</tr>
+<tr>
+  <th>CRIM</th>    <td>   -0.9479</td> <td>    0.290</td> <td>   -3.263</td> <td> 0.001</td> <td>   -1.519</td> <td>   -0.377</td>
+</tr>
+<tr>
+  <th>ZN</th>      <td>    1.3980</td> <td>    0.372</td> <td>    3.758</td> <td> 0.000</td> <td>    0.667</td> <td>    2.129</td>
+</tr>
+<tr>
+  <th>INDUS</th>   <td>    0.1479</td> <td>    0.458</td> <td>    0.323</td> <td> 0.747</td> <td>   -0.753</td> <td>    1.049</td>
+</tr>
+<tr>
+  <th>CHAS</th>    <td>    2.1347</td> <td>    0.899</td> <td>    2.375</td> <td> 0.018</td> <td>    0.367</td> <td>    3.902</td>
+</tr>
+<tr>
+  <th>NOX</th>     <td>   -2.2600</td> <td>    0.490</td> <td>   -4.617</td> <td> 0.000</td> <td>   -3.222</td> <td>   -1.298</td>
+</tr>
+<tr>
+  <th>RM</th>      <td>    2.1588</td> <td>    0.332</td> <td>    6.495</td> <td> 0.000</td> <td>    1.505</td> <td>    2.812</td>
+</tr>
+<tr>
+  <th>AGE</th>     <td>    0.1210</td> <td>    0.415</td> <td>    0.292</td> <td> 0.771</td> <td>   -0.695</td> <td>    0.937</td>
+</tr>
+<tr>
+  <th>DIS</th>     <td>   -3.2312</td> <td>    0.477</td> <td>   -6.774</td> <td> 0.000</td> <td>   -4.169</td> <td>   -2.293</td>
+</tr>
+<tr>
+  <th>RAD</th>     <td>    2.6366</td> <td>    0.671</td> <td>    3.931</td> <td> 0.000</td> <td>    1.318</td> <td>    3.955</td>
+</tr>
+<tr>
+  <th>TAX</th>     <td>   -1.9596</td> <td>    0.731</td> <td>   -2.679</td> <td> 0.008</td> <td>   -3.398</td> <td>   -0.522</td>
+</tr>
+<tr>
+  <th>PTRATIO</th> <td>   -2.0564</td> <td>    0.319</td> <td>   -6.446</td> <td> 0.000</td> <td>   -2.684</td> <td>   -1.429</td>
+</tr>
+<tr>
+  <th>B</th>       <td>    0.6567</td> <td>    0.272</td> <td>    2.414</td> <td> 0.016</td> <td>    0.122</td> <td>    1.191</td>
+</tr>
+<tr>
+  <th>LSTAT</th>   <td>   -3.9370</td> <td>    0.405</td> <td>   -9.723</td> <td> 0.000</td> <td>   -4.733</td> <td>   -3.141</td>
+</tr>
+</tbody></table>
+<table class="simpletable">
+<tbody><tr>
+  <th>Omnibus:</th>       <td>169.952</td> <th>  Durbin-Watson:     </th> <td>   1.935</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td> 859.012</td> 
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 1.762</td>  <th>  Prob(JB):          </th> <td>2.94e-187</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 9.213</td>  <th>  Cond. No.          </th> <td>    10.7</td> 
+</tr>
+</tbody></table><br><br>Warnings:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+<br>
+<p><strong>&gt;&gt; 주택 가격 영향 요소</strong></p>
+<p>위 결과를 종합해 보면, 주택 가격의 영향 요소에 관하여 다음과 같은 결론들을 도출할 수 있습니다:</p>
+<ol>
+<li>
+<p><strong>"INDUS"</strong>(상업적 비즈니스에 활용되지 않는 농지 면적)과 <strong>“AGE”</strong>(1940년 이전에 건설된 비율)은 유의하지 않습니다. (p value &gt; 0.05)</p>
+</li>
+<li>
+<p><strong>"ZN"</strong>(25,000 제곱 피트(sq.ft) 이상의 주택지 비율),<br>
+<strong>"CHAS"</strong>(Charles 강과 접하고 있는지 여부),<br>
+<strong>"RM"</strong>(자택당 평균 방 갯수),<br>
+<strong>"RAD"</strong>(소속 도시가 Radial 고속도로와의 접근성 지수),<br>
+<strong>"B"</strong>(흑인 지수)는<br>
+주택 가격에 Positive한 영향을 미칩니다.<br>
+즉, 다른 변수의 값이 고정했을 때, 해당 변수의 값이 클수록 주택의 가격이 높을 것입니다.</p>
+</li>
+<li>
+<p><strong>"CRIM"</strong>(지역 범죄율),<br>
+<strong>"NOX"</strong>(산화질소 농도),<br>
+<strong>"DIS"</strong>(보스턴 고용 센터와의 거리),<br>
+<strong>"TAX"</strong>(재산세),<br>
+<strong>"PTRATIO"</strong>(학생-교사 비율),<br>
+<strong>"LSTAT"</strong>(빈곤층 비율)은<br>
+주택 가격에 Negative한 영향을 미칩니다.<br>
+즉, 다른 변수의 값이 고정했을 때, 해당 변수의 값이 작을수록 주택의 가격이 높을 것입니다.</p>
+<br>
+</li>
+</ol>
+<h3 id="3-4-모델-예측-결과-및-성능-평가"><a class="markdownIt-Anchor" href="#3-4-모델-예측-결과-및-성능-평가"></a> 3-4. 모델 예측 결과 및 성능 평가</h3>
+<p><strong>&gt;&gt; 예측 결과 시각화</strong></p>
+<p>학습한 모델을 Test set에 적용하여 y값(“CMEDV”)을 예측합니다.<br>
+예측 결과를 확인하기 위해 실제값과 예측값을 한 plot에 출력해 시각화해보겠습니다.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 예측 결과 시각화 (test set)</span></span><br><span class="line">df = pd.DataFrame({<span class="string">'actual'</span>: y_test, <span class="string">'prediction'</span>: pred_test})</span><br><span class="line">df = df.sort_values(by=<span class="string">'actual'</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>, <span class="number">9</span>))</span><br><span class="line">plt.scatter(df.index, df[<span class="string">'prediction'</span>], marker=<span class="string">'x'</span>, color=<span class="string">'r'</span>)</span><br><span class="line">plt.scatter(df.index, df[<span class="string">'actual'</span>], alpha=<span class="number">0.7</span>, marker=<span class="string">'o'</span>, color=<span class="string">'black'</span>)</span><br><span class="line">plt.title(<span class="string">"Prediction Result in Test Set"</span>, fontsize=<span class="number">20</span>)</span><br><span class="line">plt.legend([<span class="string">'prediction'</span>, <span class="string">'actual'</span>], fontsize=<span class="number">12</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-Python-LinearRegression-1/output_123_0.png" alt="png"></p>
+<br>
+<p><strong>&gt;&gt; 모델 성능 평가</strong></p>
+<p>모델의 예측 성능을 평가하기 위해 모델의 R square과 RMSE를 계산해볼게요.</p>
+<ul>
+<li>R square</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># R square</span></span><br><span class="line">print(model.score(X_train, y_train))  <span class="comment"># training set</span></span><br><span class="line">print(model.score(X_test, y_test))  <span class="comment"># test set</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0.7341832055169144
+0.7639579157366423
+</code></pre>
+<br>
+<ul>
+<li>RMSE</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RMSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line"><span class="comment"># training set</span></span><br><span class="line">pred_train = lr.predict(X_train)</span><br><span class="line">print(sqrt(mean_squared_error(y_train, pred_train)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># test set</span></span><br><span class="line">print(sqrt(mean_squared_error(y_test, pred_test)))</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>4.624051760840334
+4.829847098176557
+</code></pre>
+<p>Test set에서 해당 예측 모델의 R square가 0.76이고, RMSE가 4.83입니다.</p>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/08/11/E-Python-LinearRegression-1/">https://hyemin-kim.github.io/2020/08/11/E-Python-LinearRegression-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/sklearn/">sklearn</a><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/%ED%9A%8C%EA%B7%80/">회귀</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/08/25/dciYCV.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/13/E-Python-Classification-1/"><img class="prev-cover" src="https://s1.ax1x.com/2020/08/25/dcPqB9.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【실습】 Python &gt;&gt; Classification -- 포켓몬 분류 분석</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/06/S-Python-sklearn5/"><img class="next-cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; sklearn - (5) 비지도 학습 (Unsupervised Learning)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/07/29/S-Python-sklearn3/" title="Python >> sklearn - (3) 회귀 (Regression)"><img class="cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-29</div><div class="title">Python >> sklearn - (3) 회귀 (Regression)</div></div></a></div><div><a href="/2020/08/13/E-Python-Classification-1/" title="【실습】 Python >> Classification -- 포켓몬 분류 분석"><img class="cover" src="https://s1.ax1x.com/2020/08/25/dcPqB9.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-13</div><div class="title">【실습】 Python >> Classification -- 포켓몬 분류 분석</div></div></a></div><div><a href="/2020/07/17/S-Python-sklearn0/" title="Python >> sklearn -(0) sklearn 개요"><img class="cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-17</div><div class="title">Python >> sklearn -(0) sklearn 개요</div></div></a></div><div><a href="/2020/07/17/S-Python-sklearn1/" title="Python >> sklearn - (1) 전처리"><img class="cover" src="https://ohiing.com/wp-content/uploads/2020/02/scikit-learn-2.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-17</div><div class="title">Python >> sklearn - (1) 전처리</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/08/25/dciYCV.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'ecc737147cb42047d2555fa7c3c3f8b3',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

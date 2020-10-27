@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; 텍스트 마이닝 (Text Mining) 소개 | Hyemin Kim</title><meta name="keywords" content="Python,Text Mining"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="텍스트 마이닝의 개념 &amp; 응용분야; 텍스트 데이터의 처리 방법">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python &gt;&gt; 텍스트 마이닝 (Text Mining) 소개">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/08/19/S-Python-TextMining1/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="텍스트 마이닝의 개념 &amp; 응용분야; 텍스트 데이터의 처리 방법">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/08/19/d1JMTS.png">
+<meta property="article:published_time" content="2020-08-19T11:10:26.000Z">
+<meta property="article:modified_time" content="2020-08-20T13:13:27.283Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Text Mining">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/08/19/d1JMTS.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/08/19/S-Python-TextMining1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-08-20 22:13:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#텍스트-마이닝-text-mining-소개"><span class="toc-text"> 텍스트 마이닝 (Text Mining) 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-텍스트-마이닝의-개념"><span class="toc-text"> 1. 텍스트 마이닝의 개념</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-텍스트-마이닝-응용분야"><span class="toc-text"> 2. 텍스트 마이닝 응용분야</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-텍스트-데이터의-처리-방법"><span class="toc-text"> 3. 텍스트 데이터의 처리 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-bow-bag-of-words"><span class="toc-text"> 3-1. BoW (Bag of Words)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-문서-단어-행렬-document-term-matrix-dtm"><span class="toc-text"> 3-2. 문서 단어 행렬 (Document-Term Matrix, DTM)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-단어의-중요도를-계산하는-방법-tf-idf"><span class="toc-text"> 3-3. 단어의 중요도를 계산하는 방법 (TF-IDF)</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/08/19/d1JMTS.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; 텍스트 마이닝 (Text Mining) 소개</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-08-19T11:10:26.000Z" title="Created 2020-08-19 20:10:26">2020-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-08-20T13:13:27.283Z" title="Updated 2020-08-20 22:13:27">2020-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="텍스트-마이닝-text-mining-소개"><a class="markdownIt-Anchor" href="#텍스트-마이닝-text-mining-소개"></a> 텍스트 마이닝 (Text Mining) 소개</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%A7%88%EC%9D%B4%EB%8B%9D%EC%9D%98-%EA%B0%9C%EB%85%90"><strong>1. 텍스트 마이닝의 개념</strong></a></li>
+<li><a href="#2-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%A7%88%EC%9D%B4%EB%8B%9D-%EC%9D%91%EC%9A%A9%EB%B6%84%EC%95%BC"><strong>2. 텍스트 마이닝 응용분야</strong></a></li>
+<li><a href="#3-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95"><strong>3. 텍스트 데이터의 처리 방법</strong></a>
+<ul>
+<li><a href="#3-1-bow-bag-of-words">3-1. BoW (Bag of Words)</a></li>
+<li><a href="#3-2-%EB%AC%B8%EC%84%9C-%EB%8B%A8%EC%96%B4-%ED%96%89%EB%A0%AC-document-term-matrix-dtm">3-2. 문서 단어 행렬 (Document-Term Matrix, DTM)</a></li>
+<li><a href="#3-3-%EB%8B%A8%EC%96%B4%EC%9D%98-%EC%A4%91%EC%9A%94%EB%8F%84%EB%A5%BC-%EA%B3%84%EC%82%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-tf-idf">3-3. 단어의 중요도를 계산하는 방법 (TF-IDF)</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-텍스트-마이닝의-개념"><a class="markdownIt-Anchor" href="#1-텍스트-마이닝의-개념"></a> <strong>1. 텍스트 마이닝의 개념</strong></h2>
+<p>텍스트 마이닝은 비정형 및 반정형 텍스트 데이터에 대하여 자연어 처리(Natural Langrage Precessing) 기술과 문서 처리 기술을 적용하여 가치와 의미가 있는 정보를 찾아내는(Mining) 기술입니다.</p>
+  <br>
+<h2 id="2-텍스트-마이닝-응용분야"><a class="markdownIt-Anchor" href="#2-텍스트-마이닝-응용분야"></a> <strong>2. 텍스트 마이닝 응용분야</strong></h2>
+<p><strong>단어의 빈도수 기반</strong></p>
+<ul>
+<li>Word Cloud: 텍스트 데이터에서의 단어 등장 빈도수 시각화</li>
+<li>문서 분류: 감성 분류</li>
+<li>Topic Modeling: 텍스트 데이터를 분석하여 여러 Topic으로 Clustering 하는 직업</li>
+</ul>
+<p><strong>단어의 의미 기반</strong></p>
+<ul>
+<li>
+<p>Semantic Analysis: 사람처럼 자연어를 이해하기</p>
+<br>
+</li>
+</ul>
+<h2 id="3-텍스트-데이터의-처리-방법"><a class="markdownIt-Anchor" href="#3-텍스트-데이터의-처리-방법"></a> <strong>3. 텍스트 데이터의 처리 방법</strong></h2>
+<h3 id="3-1-bow-bag-of-words"><a class="markdownIt-Anchor" href="#3-1-bow-bag-of-words"></a> 3-1. BoW (Bag of Words)</h3>
+<p><strong>단어 가방(Bag of Words) 모델</strong>은 문장의 문법 및 단어 순서를 무시하고 텍스트 문서를 "단어"로 변환한 후 다양한 측정 값을 계산할 수 있도록 "가방"형식으로 저장해놓는 겁니다.</p>
+<p>단어 가방 모델에서 계산 된 가장 일반적인 유형의 특성 또는 기능은 <strong>용어 빈도</strong>, 즉 용어가 텍스트에 나타나는 횟수입니다.</p>
+  <br>
+<p>《기생충》중의 한 대사로 예를 들어 볼게요.</p>
+<img src="https://s1.ax1x.com/2020/08/19/dloE0P.png" width="60%," height="60%">
+<p>이 문장에서 “그”, “을”, "듯"와 같이 실질적인 의미가 없는 "불용어"를 제외하고 의미 있는 “형태소” 단어와 해당 형태소의 등장 횟수을 추출합니다.</p>
+<p>그럼 다음과 같은 표로 요약할 수 있겠습니다.</p>
+<img src="https://s1.ax1x.com/2020/08/19/dl7CqI.png" width="60%," height="60%">
+<p>이것이 바로 "Bag of Words 모델"입니다.</p>
+  <br>
+<h3 id="3-2-문서-단어-행렬-document-term-matrix-dtm"><a class="markdownIt-Anchor" href="#3-2-문서-단어-행렬-document-term-matrix-dtm"></a> 3-2. 문서 단어 행렬 (Document-Term Matrix, DTM)</h3>
+<p>위에 설명드린 Bag of Words는 한 문장에 대해 적용하는 것이고, 문장이 여러 개가 있을 때는 (DataFrame 형태) <strong>문서 단어 행렬 (Document-Term Matrix)</strong> 로 표현됩니다.</p>
+<p>똑같이 《기생충》중의 대사들로 예를 들어 볼게요.</p>
+<img src="https://s1.ax1x.com/2020/08/19/d1SKaQ.png" width="70%," height="70%">
+<img src="https://s1.ax1x.com/2020/08/19/d1pLX6.png" width="90%," height="90%">
+<p>이처럼 여러 문장의 경우에 "문서 단어 행렬"은 위와 같이 표현 됩니다.</p>
+  <br>
+<h3 id="3-3-단어의-중요도를-계산하는-방법-tf-idf"><a class="markdownIt-Anchor" href="#3-3-단어의-중요도를-계산하는-방법-tf-idf"></a> 3-3. 단어의 중요도를 계산하는 방법 (TF-IDF)</h3>
+<p>문서 단어 행렬은 그저 단어의 등장 횟수를 단순히 세는 겁니다. 각 문장에서 어떤 단어가 중요한지 알 수 없습니다.<br>
+이를 알아내기 위해 우리는 “TF-IDF (Term Frequency-Inverse Document Frequency)” 라는 지표를 사용합니다.</p>
+  <br>
+<ul>
+<li>
+<p><strong>TF (Term Frequency):</strong> 특정 문서에서 특정 단어의 등장 횟수</p>
+</li>
+<li>
+<p><strong>DF (Document Frequency):</strong> 특정 단어가 등장한 문서의 수</p>
+</li>
+<li>
+<p><strong>IDF (Inverse Document Frequency):</strong> DF와 반비례 값을 가지는 수식<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false">(</mo><mi>d</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mfrac><mi>n</mi><mrow><mn>1</mn><mo>+</mo><mi>D</mi><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">IDF(d,t) = \ln ( \frac{n}{1+DF(t)} )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.27em;vertical-align:-0.52em;"></span><span class="mop">ln</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">t</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p><strong>TF-IDF (Term Frequency-Inverse Document Frequency):</strong> TF와 IDF를 곱한 값</p>
+<br>
+</li>
+</ul>
+<p><strong>TF-IDF로 특정 문서 안의 특정 단어의 중요도를 나타나는 원리는:</strong></p>
+<p>특정 문서에서는 많이 등장했으면서 다른 문서에서 잘 등장하지 않은 단어가 결국 이 문서에서 가장 중요한 단어가 될것이다라는 가설입니다.</p>
+  <br>
+<p><strong>[예]</strong> 문서1에서 "아들"와 “계획” 이 두 단어의 TF-IDF를 한번 계산해봅시다.</p>
+<img src="https://s1.ax1x.com/2020/08/19/d1u2eH.png" width="90%," height="90%">
+<ul>
+<li><strong>Step 1. TF</strong><br>
+A: 1<br>
+B: 1</li>
+<li><strong>Step 2. DF</strong><br>
+A: 1<br>
+B: 3</li>
+<li><strong>Step 3. IDF</strong><br>
+A: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mfrac><mn>4</mn><mrow><mn>1</mn><mo>+</mo><mn>1</mn></mrow></mfrac><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo>⁡</mo><mn>2</mn><mo>≈</mo><mn>0.6931</mn></mrow><annotation encoding="application/x-tex">\ln( \frac{4}{1+1} ) = \ln 2 \approx 0.6931</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2484389999999999em;vertical-align:-0.403331em;"></span><span class="mop">ln</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mord">9</span><span class="mord">3</span><span class="mord">1</span></span></span></span><br>
+B: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mfrac><mn>4</mn><mrow><mn>1</mn><mo>+</mo><mn>3</mn></mrow></mfrac><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\ln( \frac{4}{1+3} ) = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2484389999999999em;vertical-align:-0.403331em;"></span><span class="mop">ln</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></li>
+<li><strong>Step 4. TF-IDF</strong><br>
+A: 1 * 0.6931 = 0.6931<br>
+B: 1 * 0 = 0</li>
+</ul>
+<br>  
+<p><strong>혜석:</strong></p>
+<p>"계획"이라는 단어가 《기생충》의 문장들에서 너무 많이 등장해서 문서1에서 특별히 중요한 단어라고 볼 수 없다.</p>
+<p>하지만 "아들"이라는 단어가 다른 문장에서 한번도 나타나지 않았기 때문에 문장1에서는 매우 중요하다고 볼 수 있다</p>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/08/19/S-Python-TextMining1/">https://hyemin-kim.github.io/2020/08/19/S-Python-TextMining1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Text-Mining/">Text Mining</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/08/19/d1JMTS.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/20/E-Python-TextMining-1/"><img class="prev-cover" src="https://s1.ax1x.com/2020/08/19/d1JMTS.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【실습】 Python &gt;&gt; Text Mining -- Word Cloud &amp; TF-IDF 중요도 분석 (영화 시나리오)</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/13/E-Python-Classification-1/"><img class="next-cover" src="https://s1.ax1x.com/2020/08/25/dcPqB9.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【실습】 Python &gt;&gt; Classification -- 포켓몬 분류 분석</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/08/29/E-Python-TextMining-2/" title="【실습】 Python >> Text Mining -- 감성 분류 분석 (호텔 리뷰 데이터)"><img class="cover" src="https://s1.ax1x.com/2020/08/19/d1JMTS.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-29</div><div class="title">【실습】 Python >> Text Mining -- 감성 분류 분석 (호텔 리뷰 데이터)</div></div></a></div><div><a href="/2020/08/20/E-Python-TextMining-1/" title="【실습】 Python >> Text Mining -- Word Cloud & TF-IDF 중요도 분석 (영화 시나리오)"><img class="cover" src="https://s1.ax1x.com/2020/08/19/d1JMTS.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-20</div><div class="title">【실습】 Python >> Text Mining -- Word Cloud & TF-IDF 중요도 분석 (영화 시나리오)</div></div></a></div><div><a href="/2020/08/13/E-Python-Classification-1/" title="【실습】 Python >> Classification -- 포켓몬 분류 분석"><img class="cover" src="https://s1.ax1x.com/2020/08/25/dcPqB9.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-13</div><div class="title">【실습】 Python >> Classification -- 포켓몬 분류 분석</div></div></a></div><div><a href="/2020/09/04/P-Marketing-AARRR/" title="【Marketing】 AARRR Framework 소개"><img class="cover" src="https://s1.ax1x.com/2020/09/04/wFzGff.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-04</div><div class="title">【Marketing】 AARRR Framework 소개</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/08/19/d1JMTS.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'd7b83d5549d782f8b9b14cfd392649b6',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

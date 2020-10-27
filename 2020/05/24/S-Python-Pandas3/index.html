@@ -1,0 +1,967 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python &gt;&gt; Pandas 데이터 파악 - (3) 기본정보 &amp; 통계정보 파악 | Hyemin Kim</title><meta name="keywords" content="Python,Pandas,데이터파악"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="기본 행&amp;열 정보, 통계값 알아보기">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python &gt;&gt; Pandas 데이터 파악 - (3) 기본정보 &amp; 통계정보 파악">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas3/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="기본 행&amp;열 정보, 통계값 알아보기">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png">
+<meta property="article:published_time" content="2020-05-24T08:06:08.000Z">
+<meta property="article:modified_time" content="2020-06-23T16:54:35.835Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="데이터파악">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#913d88&quot;,&quot;paginator&quot;:&quot;#963694&quot;,&quot;button_hover&quot;:&quot;#F06292&quot;,&quot;text_selection&quot;:&quot;#963694&quot;,&quot;link_color&quot;:&quot;#E91E63&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#963694&quot;,&quot;blockquote_padding_color&quot;:&quot;#913d88&quot;,&quot;blockquote_background_color&quot;:&quot;#913d88&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://analytics.google.com/analytics/web/#/p231401356/reports/defaulthome?params=_u..nav%3Ddefault');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-06-24 01:54:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#기본정보-통계정보-파악"><span class="toc-text"> 기본정보 &amp; 통계정보 파악</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-파일-읽어오기-csv"><span class="toc-text"> 1. 파일 읽어오기 (csv)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-기본-행열-정보-알아보기-column-index-info"><span class="toc-text"> 2. 기본 행&amp;열 정보 알아보기  (column, index, info)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-column-열-이름-출력하기"><span class="toc-text"> 2-1. column (열) 이름 출력하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-column-열-이름-재정의하기"><span class="toc-text"> 2-2. column (열) 이름 재정의하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-index-행-정보-출력하기"><span class="toc-text"> 2-3. index (행) 정보 출력하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-info-기본적인-column-정보와-데이터-타입"><span class="toc-text"> 2-4. info (기본적인 column 정보와 데이터 타입)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-형태-shape-알아보기"><span class="toc-text"> 3. 형태 (shape) 알아보기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-상위-5개-하위-5개의-정보만-보기"><span class="toc-text"> 4. 상위 5개, 하위 5개의 정보만 보기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-통계-정보-알아보기"><span class="toc-text"> 5. 통계 정보 알아보기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-전체-통계-정보"><span class="toc-text"> 5-1. 전체 통계 정보</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-최소값min-최대값max-중앙값median-최빈값mode"><span class="toc-text"> 5-2. 최소값(min),  최대값(max), 중앙값(median), 최빈값(mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-합계sum-평균mean-분산var-표준편차std"><span class="toc-text"> 5-3. 합계(sum), 평균(mean), 분산(var), 표준편차(std)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-갯수를-세는-count"><span class="toc-text"> 5-4. 갯수를 세는 count</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python &gt;&gt; Pandas 데이터 파악 - (3) 기본정보 &amp; 통계정보 파악</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-24T08:06:08.000Z" title="Created 2020-05-24 17:06:08">2020-05-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-23T16:54:35.835Z" title="Updated 2020-06-24 01:54:35">2020-06-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/">【Study】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90Study%E3%80%91/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="기본정보-통계정보-파악"><a class="markdownIt-Anchor" href="#기본정보-통계정보-파악"></a> 기본정보 &amp; 통계정보 파악</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%ED%8C%8C%EC%9D%BC-%EC%9D%BD%EC%96%B4%EC%98%A4%EA%B8%B0-csv"><strong>1. 파일 읽어오기 (csv)</strong></a></li>
+<li><a href="#2-%EA%B8%B0%EB%B3%B8-%ED%96%89%EC%97%B4-%EC%A0%95%EB%B3%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-column-index-info"><strong>2. 기본 행&amp;열 정보 알아보기  (column, index, info)</strong></a>
+<ul>
+<li><a href="#2-1-column-%EC%97%B4-%EC%9D%B4%EB%A6%84-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0">2-1. column (열) 이름 출력하기</a></li>
+<li><a href="#2-2-column-%EC%97%B4-%EC%9D%B4%EB%A6%84-%EC%9E%AC%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0">2-2. column (열) 이름 재정의하기</a></li>
+<li><a href="#2-3-index-%ED%96%89-%EC%A0%95%EB%B3%B4-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0">2-3. index (행) 정보 출력하기</a></li>
+<li><a href="#2-4-info-%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-column-%EC%A0%95%EB%B3%B4%EC%99%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85">2-4. info (기본적인 column 정보와 데이터 타입)</a></li>
+</ul>
+</li>
+<li><a href="#3-%ED%98%95%ED%83%9C-shape-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0"><strong>3. 형태 (shape) 알아보기</strong></a></li>
+<li><a href="#4-%EC%83%81%EC%9C%84-5%EA%B0%9C-%ED%95%98%EC%9C%84-5%EA%B0%9C%EC%9D%98-%EC%A0%95%EB%B3%B4%EB%A7%8C-%EB%B3%B4%EA%B8%B0"><strong>4. 상위 5개, 하위 5개의 정보만 보기</strong></a></li>
+<li><a href="#5-%ED%86%B5%EA%B3%84-%EC%A0%95%EB%B3%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0"><strong>5. 통계 정보 알아보기</strong></a>
+<ul>
+<li><a href="#5-1-%EC%A0%84%EC%B2%B4-%ED%86%B5%EA%B3%84-%EC%A0%95%EB%B3%B4">5-1. 전체 통계 정보</a></li>
+<li><a href="#5-2-%EC%B5%9C%EC%86%8C%EA%B0%92min-%EC%B5%9C%EB%8C%80%EA%B0%92max-%EC%A4%91%EC%95%99%EA%B0%92median-%EC%B5%9C%EB%B9%88%EA%B0%92mode">5-2. 최소값(min),  최대값(max), 중앙값(median), 최빈값(mode)</a></li>
+<li><a href="#5-3-%ED%95%A9%EA%B3%84sum-%ED%8F%89%EA%B7%A0mean-%EB%B6%84%EC%82%B0var-%ED%91%9C%EC%A4%80%ED%8E%B8%EC%B0%A8std">5-3. 합계(sum), 평균(mean), 분산(var), 표준편차(std)</a></li>
+<li><a href="#5-4-%EA%B0%AF%EC%88%98%EB%A5%BC-%EC%84%B8%EB%8A%94-count">5-4. 갯수를 세는 count</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+  <br>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="1-파일-읽어오기-csv"><a class="markdownIt-Anchor" href="#1-파일-읽어오기-csv"></a> <strong>1. 파일 읽어오기 (csv)</strong></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'korean-idol.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>이름</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>정국</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1997-09-01</td>
+      <td>178.0</td>
+      <td>A</td>
+      <td>5208335</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>민현</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-08-09</td>
+      <td>182.3</td>
+      <td>O</td>
+      <td>4989792</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>소연</td>
+      <td>아이들</td>
+      <td>큐브</td>
+      <td>여자</td>
+      <td>1998-08-26</td>
+      <td>NaN</td>
+      <td>B</td>
+      <td>4668615</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>진</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1992-12-04</td>
+      <td>179.2</td>
+      <td>O</td>
+      <td>4570308</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>하성운</td>
+      <td>핫샷</td>
+      <td>스타크루이엔티</td>
+      <td>남자</td>
+      <td>1994-03-22</td>
+      <td>167.1</td>
+      <td>A</td>
+      <td>4036489</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>차은우</td>
+      <td>아스트로</td>
+      <td>판타지오</td>
+      <td>남자</td>
+      <td>1997-03-30</td>
+      <td>183.0</td>
+      <td>B</td>
+      <td>3506027</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>백호</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-07-21</td>
+      <td>175.0</td>
+      <td>AB</td>
+      <td>3301654</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>JR</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
+      <td>O</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <br>
+  <br>
+<h2 id="2-기본-행열-정보-알아보기-column-index-info"><a class="markdownIt-Anchor" href="#2-기본-행열-정보-알아보기-column-index-info"></a> <strong>2. 기본 행&amp;열 정보 알아보기  (column, index, info)</strong></h2>
+<h3 id="2-1-column-열-이름-출력하기"><a class="markdownIt-Anchor" href="#2-1-column-열-이름-출력하기"></a> 2-1. column (열) 이름 출력하기</h3>
+<blockquote>
+<p><em>df_name</em> <strong>.columns</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['이름', '그룹', '소속사', '성별', '생년월일', '키', '혈액형', '브랜드평판지수'], dtype='object')
+</code></pre>
+<p>​    <br></p>
+<h3 id="2-2-column-열-이름-재정의하기"><a class="markdownIt-Anchor" href="#2-2-column-열-이름-재정의하기"></a> 2-2. column (열) 이름 재정의하기</h3>
+<p><strong>(1) 전체 column 이름</strong></p>
+<blockquote>
+<p><em>df_name</em> <strong>.columns</strong> = […]</p>
+</blockquote>
+<p><strong>예:</strong> “이름” --&gt; “name”:</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_col = [<span class="string">'name'</span>, <span class="string">'그룹'</span>, <span class="string">'소속사'</span>, <span class="string">'성별'</span>, <span class="string">'생년월일'</span>, <span class="string">'키'</span>, <span class="string">'혈액형'</span>, <span class="string">'브랜드평판지수'</span>]</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns = new_col</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['name', '그룹', '소속사', '성별', '생년월일', '키', '혈액형', '브랜드평판지수'], dtype='object')
+</code></pre>
+<p>​    <br></p>
+<p><strong>(2) 개별 column 이름</strong></p>
+<blockquote>
+<p><em>df_name</em> <strong>.rename</strong> ( columns = { “<em>old_name</em>” : “<em>new_name</em>” } )</p>
+</blockquote>
+<p>​    <br></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'korean-idol.csv'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['이름', '그룹', '소속사', '성별', '생년월일', '키', '혈액형', '브랜드평판지수'], dtype='object') 
+</code></pre>
+<p>​    <br></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = df.rename(columns = {<span class="string">"이름"</span> : <span class="string">"name"</span>})</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>Index(['name', '그룹', '소속사', '성별', '생년월일', '키', '혈액형', '브랜드평판지수'], dtype='object')
+</code></pre>
+<p>​    <br></p>
+<h3 id="2-3-index-행-정보-출력하기"><a class="markdownIt-Anchor" href="#2-3-index-행-정보-출력하기"></a> 2-3. index (행) 정보 출력하기</h3>
+<blockquote>
+<p><em>df_name</em> <strong>.index</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.index</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>RangeIndex(start=0, stop=15, step=1)
+</code></pre>
+   <br>
+<h3 id="2-4-info-기본적인-column-정보와-데이터-타입"><a class="markdownIt-Anchor" href="#2-4-info-기본적인-column-정보와-데이터-타입"></a> 2-4. info (기본적인 column 정보와 데이터 타입)</h3>
+<blockquote>
+<p><em>df_name</em> <strong>.info()</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Tip:</strong> info메소드는 주로 빠진 값 (null 값)과 데이터 타입을 볼 때 활용함</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 15 entries, 0 to 14
+Data columns (total 8 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   name     15 non-null     object 
+ 1   그룹       14 non-null     object 
+ 2   소속사      15 non-null     object 
+ 3   성별       15 non-null     object 
+ 4   생년월일     15 non-null     object 
+ 5   키        13 non-null     float64
+ 6   혈액형      15 non-null     object 
+ 7   브랜드평판지수  15 non-null     int64  
+dtypes: float64(1), int64(1), object(6)
+memory usage: 1.1+ KB
+</code></pre>
+<p>“object” type은 주로 문자형 데이터를 가리킴.</p>
+  <br>  
+<h2 id="3-형태-shape-알아보기"><a class="markdownIt-Anchor" href="#3-형태-shape-알아보기"></a> <strong>3. 형태 (shape) 알아보기</strong></h2>
+<blockquote>
+<p>shape는 tuple형태로 반환되며, 첫번째는 row, 두번째는 column의 숫자를 의미함.</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.shape</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>(15, 8)
+</code></pre>
+  <br>
+<h2 id="4-상위-5개-하위-5개의-정보만-보기"><a class="markdownIt-Anchor" href="#4-상위-5개-하위-5개의-정보만-보기"></a> <strong>4. 상위 5개, 하위 5개의 정보만 보기</strong></h2>
+<blockquote>
+<p>상위 5개 row:  <em>df_name</em> <strong>.head()</strong><br>
+하위 5개 row:  <em>df_name</em> <strong>.tail()</strong><br>
+상위 n개 row:  <em>df_name</em> <strong>.head(n)</strong><br>
+하위 n개 row:  <em>df_name</em> <strong>.tail(n)</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>뷔</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-12-30</td>
+      <td>178.0</td>
+      <td>AB</td>
+      <td>8073501</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>화사</td>
+      <td>마마무</td>
+      <td>RBW</td>
+      <td>여자</td>
+      <td>1995-07-23</td>
+      <td>162.1</td>
+      <td>A</td>
+      <td>7650928</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.tail()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>태연</td>
+      <td>소녀시대</td>
+      <td>SM</td>
+      <td>여자</td>
+      <td>1989-03-09</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>3918661</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>차은우</td>
+      <td>아스트로</td>
+      <td>판타지오</td>
+      <td>남자</td>
+      <td>1997-03-30</td>
+      <td>183.0</td>
+      <td>B</td>
+      <td>3506027</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>백호</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-07-21</td>
+      <td>175.0</td>
+      <td>AB</td>
+      <td>3301654</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>JR</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
+      <td>O</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>지민</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1995-10-13</td>
+      <td>173.6</td>
+      <td>A</td>
+      <td>10523260</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>지드래곤</td>
+      <td>빅뱅</td>
+      <td>YG</td>
+      <td>남자</td>
+      <td>1988-08-18</td>
+      <td>177.0</td>
+      <td>A</td>
+      <td>9916947</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>강다니엘</td>
+      <td>NaN</td>
+      <td>커넥트</td>
+      <td>남자</td>
+      <td>1996-12-10</td>
+      <td>180.0</td>
+      <td>A</td>
+      <td>8273745</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.tail(<span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>그룹</th>
+      <th>소속사</th>
+      <th>성별</th>
+      <th>생년월일</th>
+      <th>키</th>
+      <th>혈액형</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>JR</td>
+      <td>뉴이스트</td>
+      <td>플레디스</td>
+      <td>남자</td>
+      <td>1995-06-08</td>
+      <td>176.0</td>
+      <td>O</td>
+      <td>3274137</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>슈가</td>
+      <td>방탄소년단</td>
+      <td>빅히트</td>
+      <td>남자</td>
+      <td>1993-03-09</td>
+      <td>174.0</td>
+      <td>O</td>
+      <td>2925442</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>    
+<br>
+<h2 id="5-통계-정보-알아보기"><a class="markdownIt-Anchor" href="#5-통계-정보-알아보기"></a> <strong>5. 통계 정보 알아보기</strong></h2>
+<blockquote>
+<p>통계값은 산술 연산이 가능한 숫자형 (float / int) 인 column을 다룬다</p>
+</blockquote>
+<h3 id="5-1-전체-통계-정보"><a class="markdownIt-Anchor" href="#5-1-전체-통계-정보"></a> 5-1. 전체 통계 정보</h3>
+<blockquote>
+<p><em>df_name</em> <strong>.describe()</strong></p>
+</blockquote>
+<p>산술 연산이 가능한 column만 출력됨</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></tbody></table></figure>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>키</th>
+      <th>브랜드평판지수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>13.000000</td>
+      <td>1.500000e+01</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>175.792308</td>
+      <td>5.655856e+06</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>5.820576</td>
+      <td>2.539068e+06</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>162.100000</td>
+      <td>2.925442e+06</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>174.000000</td>
+      <td>3.712344e+06</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>177.000000</td>
+      <td>4.668615e+06</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>179.200000</td>
+      <td>7.862214e+06</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>183.000000</td>
+      <td>1.052326e+07</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+   <br>
+<h3 id="5-2-최소값min-최대값max-중앙값median-최빈값mode"><a class="markdownIt-Anchor" href="#5-2-최소값min-최대값max-중앙값median-최빈값mode"></a> 5-2. 최소값(min),  최대값(max), 중앙값(median), 최빈값(mode)</h3>
+<blockquote>
+<p>최소값: <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.min()</strong><br>
+최대값: <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.max()</strong><br>
+중앙값: <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.median()</strong><br>
+최빈값: <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.mode()</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].min()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>162.1
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].max()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>183.0
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].median()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>177.0
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].mode()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>0    178.0
+dtype: float64
+</code></pre>
+ <br>
+<h3 id="5-3-합계sum-평균mean-분산var-표준편차std"><a class="markdownIt-Anchor" href="#5-3-합계sum-평균mean-분산var-표준편차std"></a> 5-3. 합계(sum), 평균(mean), 분산(var), 표준편차(std)</h3>
+<blockquote>
+<p>합계(sum): <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.sum()</strong><br>
+평균(mean): <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.mean()</strong><br>
+분산(variance): <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.var()</strong><br>
+표준편차(standard deviation): <em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.std()</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].sum()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>2285.3
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].mean()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>175.7923076923077
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].var()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>33.879102564102595
+</code></pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].std()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>5.820575793175672
+</code></pre>
+<br>
+<h3 id="5-4-갯수를-세는-count"><a class="markdownIt-Anchor" href="#5-4-갯수를-세는-count"></a> 5-4. 갯수를 세는 count</h3>
+<blockquote>
+<p><em>df_name</em> [ ‘<em>col_name</em>’ ] <strong>.count</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'키'</span>].count()</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>13
+</code></pre>
+  <br>
+  <br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas3/">https://hyemin-kim.github.io/2020/05/24/S-Python-Pandas3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Pandas/">Pandas</a><a class="post-meta__tags" href="/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%8C%8C%EC%95%85/">데이터파악</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/05/22/YjVKwF.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/24/S-Python-Pandas4/"><img class="prev-cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python &gt;&gt; Pandas 데이터 파악 - (4) 정렬</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/24/S-Python-Pandas2/"><img class="next-cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python &gt;&gt; Pandas 데이터 파악 - (2) 파일 불러오기 및 복사</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/22/S-Python-Pandas1/" title="Python >> Pandas 데이터 파악 - (1) Series와 DataFrame"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-22</div><div class="title">Python >> Pandas 데이터 파악 - (1) Series와 DataFrame</div></div></a></div><div><a href="/2020/05/24/S-Python-Pandas2/" title="Python >> Pandas 데이터 파악 - (2) 파일 불러오기 및 복사"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-24</div><div class="title">Python >> Pandas 데이터 파악 - (2) 파일 불러오기 및 복사</div></div></a></div><div><a href="/2020/06/12/S-Python-Pandas6/" title="Python >> Pandas 데이터 파악 - (6) 결측값 확인 및 추출"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-12</div><div class="title">Python >> Pandas 데이터 파악 - (6) 결측값 확인 및 추출</div></div></a></div><div><a href="/2020/05/24/S-Python-Pandas4/" title="Python >> Pandas 데이터 파악 - (4) 정렬"><img class="cover" src="https://s1.ax1x.com/2020/05/22/YjVKwF.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-24</div><div class="title">Python >> Pandas 데이터 파악 - (4) 정렬</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/05/22/YjVKwF.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '88dc0bbf98ffa67f1302f5abdbc02964',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
