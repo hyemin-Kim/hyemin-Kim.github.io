@@ -3023,7 +3023,6 @@ hr:before {
 }
 table {
   display: table;
-  width: 100%;
   overflow: auto;
   margin: 0 0 1rem;
   border-spacing: 0;
@@ -3039,6 +3038,11 @@ table td {
   font-size: 0.65rem;
   padding: 0.1rem 0.5rem;
   border: 0;
+  vertical-align: middle;
+}
+table td,
+table white-space: nowrap {
+  text-align: right;
 }
 table tr:nth-child(odd) {
   background: #f3f3f3;
