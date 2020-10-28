@@ -3022,7 +3022,7 @@ hr:before {
   margin: 0 0 1rem;
 }
 table {
-  display: table;
+  display: block;
   overflow: auto;
   margin: 0 0 1rem;
   border-spacing: 0;
