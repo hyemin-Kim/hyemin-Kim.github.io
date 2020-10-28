@@ -24512,7 +24512,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python - 0Base</category>
+        <category>Python - 0_Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
