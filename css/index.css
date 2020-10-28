@@ -3028,16 +3028,16 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
   empty-cells: show;
-  border: 0;
 }
-table thead {
-  background-color: #f00;
+table thead th {
+  background-color: #fff;
   border-bottom: 1px solid #1b1b1b;
 }
 table th,
 table td {
   font-size: 0.65rem;
   padding: 0.1rem 0.5rem;
+  border: 0;
 }
 table tr:nth-child(odd) {
   background: #f3f3f3;
