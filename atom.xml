@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hyemin-kim.github.io/"/>
-  <updated>2020-10-28T06:53:48.695Z</updated>
+  <updated>2020-10-28T06:54:50.682Z</updated>
   <id>https://hyemin-kim.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://hyemin-kim.github.io/2020/09/04/P-Marketing-AARRR/"/>
     <id>https://hyemin-kim.github.io/2020/09/04/P-Marketing-AARRR/</id>
     <published>2020-09-04T06:25:57.000Z</published>
-    <updated>2020-10-28T06:53:48.695Z</updated>
+    <updated>2020-10-28T06:54:50.682Z</updated>
     
     <content type="html"><![CDATA[<h1 id="마케팅-aarrr-framework-소개"><a class="markdownIt-Anchor" href="#마케팅-aarrr-framework-소개"></a> 【마케팅】 AARRR Framework 소개</h1><br>  <h2 id="1-aarrr이란"><a class="markdownIt-Anchor" href="#1-aarrr이란"></a> 1. "AARRR"이란?</h2><p><strong>AARRR Framework</strong>는 미국 500 Startups를 이끄는 스타트업 엑셀러레이터(창업기획자) 데이브 맥클루어(Dave McClure)가 개발한 분석 프레임워크로 비즈니스의 성장과 직결되는 소비자의 행동에 맞춰 기업이 중요하게 파악하고 있어야 하는 수치들을 다음 5가지 지표로 요약했습니다: Acquisition(사용자 유입), Activation(사용자 활성화), Retention(사용자 유지), Referral(추천), Revenue(매출).</p><p>기업은 이를 기준으로 자사 서비스의 상태를 효율적으로 가늠할 수 있게 되고, 분석할 리소스(인력이나 시간)가 충분하지 않은 스타트업에게 아주 매력적인 프레임워크라고 할 수 있습니다.</p> <br> <h2 id="2-aarrr-framework의-5가지-지표"><a class="markdownIt-Anchor" href="#2-aarrr-framework의-5가지-지표"></a> 2. AARRR Framework의 5가지 지표</h2><p>AARRR의 지표를 하나씩 뜯어본다면 다음과 같습니다.</p><p><img src="/images/P-Marketing-AARRR/wS4RWF.png" alt="AARRR"></p> <br> <h3 id="acquisition-사용자-유입"><a class="markdownIt-Anchor" href="#acquisition-사용자-유입"></a> Acquisition (사용자 유입)</h3><p>우리가 목표하는 고객이 어떻게 우리 서비스를 발견하는지에 대한 지표입니다.<br>쉽게 말하자면 우리 사용자가 주로 어떤 채널을 통해 우리를 인지하고 방문하는지를 분석합니다. 적은 비용으로 많은 사용자를 유입하는 채널이 좋은 채널이라 할 수 있습니다.</p><p><strong>핵심 지표:</strong></p><ul><li><p><em><strong><font color="steelblue">DAU:</font></strong></em>  Daily Active User, 일간 개별 사용자</p></li><li><p><em><strong><font color="steelblue">MAU:</font></strong></em> Monthly Active User, 월간 개별 사용자</p></li><li><p><em><strong><font color="steelblue">New User:</font></strong></em> 신규 사용자</p><br></li></ul><h3 id="activation-사용자-활성화"><a class="markdownIt-Anchor" href="#activation-사용자-활성화"></a> Activation (사용자 활성화)</h3><p>사용자가 처음 서비스를 이용할 때 어떤 경험을 제공하는지에 대한 지표입니다.<br>사용자가 서비스를 이용하기도 전에 이탈하는 비율이 얼마나 되는지, 서비스 이용을 시작했다면 이후의 서비스 참여도(회원가입, 컨텐츠 구독 등)이 어떻게 되는지를 파악합니다.</p><p><strong>핵심 지표:</strong></p><ul><li><p><em><strong><font color="steelblue">Bounce Rate:</font></strong></em> 반송률/이탈율. 처음 방문한 사용자가 오직 하나의 페이지만 보고 바로 서비스를 종류한 비율로, 부정적 사용자 경험을 나타나는 지표임.</p></li><li><p><em><strong><font color="steelblue">Avg.PV:</font></strong></em> Average Page View. 평균 페이지 뷰</p></li><li><p><em><strong><font color="steelblue">Avg.Duration:</font></strong></em> 평균 체류 시간</p></li><li><p><em><strong><font color="steelblue">Signup:</font></strong></em> 회원가입</p><br></li></ul><h3 id="retention-사용자-유지"><a class="markdownIt-Anchor" href="#retention-사용자-유지"></a> Retention (사용자 유지)</h3><p>서비스를 한번 이용했던 사용자가 재방문하여 반복해서 컨텐츠를 소비하거나 서비스를 경험하는 것을 말합니다.<br>재방문율(Retention rate)이 높다는 것은 그만큼 서비스에 대한 만족감을 높다는 것을 의미할 수 있기 때문에 중요한 수치입니다. 재방문을 유도하기 위해 주로 이메일이나 구독, 푸쉬, 쿠폰발행, 리뉴얼 등의 방법을 사용합니다.</p><p><strong>핵심 지표:</strong></p><ul><li><p><em><strong><font color="steelblue">Retention Rate:</font></strong></em> 재방문율</p><br></li></ul><h3 id="refferal-추천"><a class="markdownIt-Anchor" href="#refferal-추천"></a> Refferal (추천)</h3><p>기존 사용자가 자발적으로 다른 사람에게 제품/서비스를 소개/추천 하는지를 의미합니다.<br>광고가 점점 더 많아지면서 광고의 영향력은 줄어들고, 블로그나 유튜브 등의 개인화된 미디어의 영향력은 점점 더 강해지고 있습니다. 우리의 서비스가 어디에 얼마나 공유되고 있으며, 그 채널로 인해 얼만큼의 사용자를 다시 확보하는지 등을 살펴봐야 합니다.</p><p><strong>핵심 지표:</strong></p><ul><li><p>자발적인 바이럴 마케팅 (공유 / 댓글 / 태그)</p></li><li><p><em><strong><font color="steelblue">NPS:</font></strong></em> Net Promoter Score. 순 추천지수</p></li><li><p><em><strong><font color="steelblue">Number of invitations send to invite friends:</font></strong></em> 초대 발송 수</p></li><li><p><em><strong><font color="steelblue">Number of app installs per invite:</font></strong></em> 초대 응답 수</p><br></li></ul><h3 id="revenue-매출"><a class="markdownIt-Anchor" href="#revenue-매출"></a> Revenue (매출)</h3><p>최종적으로 사용자가 매출을 발생시키고 있는지를 파악하는 지표입니다.<br>비즈니스의 궁극적인 목표는 수익 창출에 있습니다. 획득한 사용자를 활성화시키고 꾸준히 방문하더라도 구매가 일어나지 않는다면, 비즈니스는 성공적이라고 할 수 없습니다. 이 단계에서는 우리가 확보한 사용자들을 실제 매출까지 전환시킬 수 있는지, 매출까지 전환되는 사용자들은 어떤 행동적 특성이 있는지를 이해하는 것이 중요합니다.</p><p><strong>핵심 지표:</strong></p><ul><li><em><strong><font color="steelblue">Conversion Rate:</font></strong></em> 전환율</li><li><em><strong><font color="steelblue">CLTV:</font></strong></em> Customer LifeTime Value. 고객생애가치</li><li><em><strong><font color="steelblue">CAC:</font></strong></em> Customer Acquisition Cost. 고객획득비용</li><li><em><strong><font color="steelblue">Average order value per user:</font></strong></em> 평균 주문율</li></ul><br><br><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
@@ -401,9 +401,9 @@
     
       <category term="【STUDY】" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/"/>
     
-      <category term="Python 시각화" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-%EC%8B%9C%EA%B0%81%ED%99%94/"/>
-    
       <category term="Python 4 Seaborn" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-4-Seaborn/"/>
+    
+      <category term="Python 시각화" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-%EC%8B%9C%EA%B0%81%ED%99%94/"/>
     
     
       <category term="Python" scheme="https://hyemin-kim.github.io/tags/Python/"/>
@@ -432,9 +432,9 @@
     
       <category term="【STUDY】" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/"/>
     
-      <category term="Python 시각화" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-%EC%8B%9C%EA%B0%81%ED%99%94/"/>
-    
       <category term="Python 4 Seaborn" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-4-Seaborn/"/>
+    
+      <category term="Python 시각화" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-%EC%8B%9C%EA%B0%81%ED%99%94/"/>
     
     
       <category term="Python" scheme="https://hyemin-kim.github.io/tags/Python/"/>
@@ -565,9 +565,9 @@
     
       <category term="【STUDY】" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/"/>
     
-      <category term="Python 시각화" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-%EC%8B%9C%EA%B0%81%ED%99%94/"/>
-    
       <category term="Python 2 Pandas" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-2-Pandas/"/>
+    
+      <category term="Python 시각화" scheme="https://hyemin-kim.github.io/categories/%E3%80%90STUDY%E3%80%91/Python-%EC%8B%9C%EA%B0%81%ED%99%94/"/>
     
     
       <category term="Python" scheme="https://hyemin-kim.github.io/tags/Python/"/>
