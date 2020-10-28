@@ -3040,8 +3040,8 @@ table td {
   border: 0;
   vertical-align: middle;
 }
-table td,
-table white-space: nowrap {
+table td {
+  white-space: nowrap;
   text-align: right;
 }
 table tr:nth-child(odd) {
