@@ -4540,8 +4540,7 @@ memory usage: 67.3+ KB
           });
       </script>]]></content>
       <categories>
-        <category>【Study】</category>
-        <category>Usage</category>
+        <category>-【Usage】</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
@@ -15317,7 +15316,8 @@ Name: 분양가, dtype: float64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - Pandas</category>
+        <category>Python - 시각화</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
