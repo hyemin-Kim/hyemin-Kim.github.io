@@ -13819,7 +13819,8 @@ Name: 분양가, dtype: float64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -24046,7 +24047,8 @@ matplotlib을 활용하여 구현해야 함</p>
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 시각화</category>
+        <category>Python - 4. Seaborn</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -24640,7 +24642,7 @@ B: 1 * 0 = 0</li>
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Text Mining</category>
+        <category>Python - Text Mining</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -26904,7 +26906,8 @@ Name: x variable, Length: 100, dtype: float64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 시각화</category>
+        <category>Python - 4. Seaborn</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -27745,7 +27748,7 @@ no such option: -:
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Machine Learning</category>
+        <category>Python - Machine Learning</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -29370,7 +29373,7 @@ Name: Embarked_num, dtype: int32
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Machine Learning</category>
+        <category>Python - Machine Learning</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -30940,7 +30943,7 @@ Name: 112, dtype: float64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Machine Learning</category>
+        <category>Python - Machine Learning</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -32381,7 +32384,7 @@ Average Error: 12.06743160435072
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Machine Learning</category>
+        <category>Python - Machine Learning</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -33074,7 +33077,7 @@ Average Error: 12.06743160435072
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Machine Learning</category>
+        <category>Python - Machine Learning</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -34065,7 +34068,7 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python Machine Learning</category>
+        <category>Python - Machine Learning</category>
       </categories>
       <tags>
         <tag>Python</tag>
