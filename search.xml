@@ -5101,7 +5101,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - Matplotlib</category>
+        <category>Python - 3. Matplotlib</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -5551,7 +5552,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - Matplotlib</category>
+        <category>Python - 3. Matplotlib</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -5641,7 +5643,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - Matplotlib</category>
+        <category>Python - 3. Matplotlib</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -5889,7 +5892,7 @@ ValueError: invalid literal for int() with base 10: '5.8'
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 1.Numpy</category>
+        <category>Python - 1. Numpy</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -6152,7 +6155,7 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 1.Numpy</category>
+        <category>Python - 1. Numpy</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -6443,7 +6446,7 @@ IndexError: boolean index did not match indexed array along dimension 0; dimensi
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 1.Numpy</category>
+        <category>Python - 1. Numpy</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -6660,7 +6663,7 @@ ValueError: operands could not be broadcast together with shapes (2,3) (3,2)
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 1.Numpy</category>
+        <category>Python - 1. Numpy</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -16083,7 +16086,7 @@ dtype: float64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -17291,7 +17294,7 @@ dtype: float64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -17711,7 +17714,7 @@ Name: 매출액, dtype: int64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -19171,7 +19174,7 @@ Name: 매출액, dtype: int64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -20807,7 +20810,7 @@ Name: 소속사, dtype: bool
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -21976,7 +21979,7 @@ Name: 그룹, dtype: object
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -22896,7 +22899,8 @@ matplotlib을 활용하여 구현해야 함</p>
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - Seaborn</category>
+        <category>Python - 시각화</category>
+        <category>Python - 4. Seaborn</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -24046,7 +24050,7 @@ Name: 키, dtype: float64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 2.Pandas</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -25921,7 +25925,8 @@ Name: x variable, Length: 100, dtype: float64
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - Seaborn</category>
+        <category>Python - 시각화</category>
+        <category>Python - 4. Seaborn</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -26310,7 +26315,7 @@ TypeError: 'tuple' object does not support item assignment
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 0.Base</category>
+        <category>Python - 0. Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -26778,7 +26783,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 0.Base</category>
+        <category>Python - 0. Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -26985,7 +26990,7 @@ no such option: -:
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 0.Base</category>
+        <category>Python - 0. Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -27294,7 +27299,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 0.Base</category>
+        <category>Python - 0. Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -27574,7 +27579,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 0.Base</category>
+        <category>Python - 0. Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -27746,7 +27751,7 @@ for 지정한 변수명 in [꺼내올 집합]:<br>
       </script>]]></content>
       <categories>
         <category>【Study】</category>
-        <category>Python - 0.Base</category>
+        <category>Python - 0. Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
