@@ -24052,7 +24052,7 @@ matplotlib을 활용하여 구현해야 함</p>
       </tags>
   </entry>
   <entry>
-    <title>Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용~~</title>
+    <title>Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용</title>
     <url>/2020/05/12/S-Python-base1/</url>
     <content><![CDATA[<p>출력. 변수. 데이터 타입. 데이터의 응용. 데이터 타입의 변환.</p>
 <a id="more"></a>
@@ -24512,7 +24512,7 @@ ValueError: invalid literal for int() with base 10: '2.6'
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python - Base</category>
+        <category>Python - .Base</category>
       </categories>
       <tags>
         <tag>Python</tag>
