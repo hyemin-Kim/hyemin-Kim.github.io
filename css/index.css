@@ -3023,12 +3023,12 @@ hr:before {
 }
 table {
   display: table;
+  width: 100%;
   overflow: auto;
   margin: 0 0 1rem;
   border-spacing: 0;
   border-collapse: collapse;
   empty-cells: show;
-  td: , white-space;
 }
 table thead th {
   background-color: #fff;
@@ -3040,7 +3040,6 @@ table td {
   padding: 0.1rem 0.5rem;
   border: 0;
 }
-table :nowrap,
 table tr:nth-child(odd) {
   background: #f3f3f3;
 }
