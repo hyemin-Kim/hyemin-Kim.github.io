@@ -4884,7 +4884,8 @@ memory usage: 67.3+ KB
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 3. Matplotlib</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -5188,7 +5189,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 3. Matplotlib</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -5638,7 +5640,8 @@ Rotation 각도는 <font color="blue">역시개방향 회전각도</font>를 말
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 3. Matplotlib</category>
+        <category>Python - 시각화</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -17191,7 +17194,7 @@ Name: 매출액, dtype: int64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -17960,7 +17963,7 @@ dtype: float64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -19168,7 +19171,7 @@ dtype: float64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -20804,7 +20807,7 @@ Name: 소속사, dtype: bool
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -21954,7 +21957,7 @@ Name: 키, dtype: float64
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -23123,7 +23126,7 @@ Name: 그룹, dtype: object
       </script>]]></content>
       <categories>
         <category>【STUDY】</category>
-        <category>Python</category>
+        <category>Python - 2. Pandas</category>
       </categories>
       <tags>
         <tag>Python</tag>
