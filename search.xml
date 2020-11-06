@@ -52832,7 +52832,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> BCOLOR, </span><br><span class="line">	         FCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	BCOLOR,</span><br><span class="line">	FCOLOR</span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ul>
-<p>​                                   <img src="/images/S-SQL-Selecting/image-20201106152856408.png" alt="image-20201106152856408" style="zoom:80%;">              <img src="/images/S-SQL-Selecting/image-20201106153124224.png" alt="image-20201106153124224" style="zoom:80%;"></p>
+<p>​                              <img src="/images/S-SQL-Selecting/image-20201106152856408.png" alt="image-20201106152856408" style="zoom:80%;">           <img src="/images/S-SQL-Selecting/image-20201106153124224.png" alt="image-20201106153124224" style="zoom:80%;"></p>
 <br>
 <ul>
 <li>
@@ -52853,13 +52853,13 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 </li>
 </ol>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 미정렬 시</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (BCOLOR)</span><br><span class="line">	             BCOLOR, FCOLOR</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	T1</span><br></pre></td></tr></tbody></table></figure>
-<p>​                            <img src="/images/S-SQL-Selecting/image-20201106153247794.png" alt="image-20201106153247794" style="zoom:80%;">             <img src="/images/S-SQL-Selecting/image-20201106153440222.png" alt="image-20201106153440222" style="zoom:80%;"></p>
+<p>​                       <img src="/images/S-SQL-Selecting/image-20201106153247794.png" alt="image-20201106153247794" style="zoom:80%;">          <img src="/images/S-SQL-Selecting/image-20201106153440222.png" alt="image-20201106153440222" style="zoom:80%;"></p>
 <br>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- BCOLOR, FCOLOR 기준으로 정렬  (FCOLOR 오름차순)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (BCOLOR)</span><br><span class="line">	             BCOLOR, FCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	BCOLOR, </span><br><span class="line">	FCOLOR</span><br></pre></td></tr></tbody></table></figure>
-<p>​                            <img src="/images/S-SQL-Selecting/image-20201106153559557.png" alt="image-20201106153559557" style="zoom:80%;">              <img src="/images/S-SQL-Selecting/image-20201106153753991.png" alt="image-20201106153753991" style="zoom:80%;"></p>
+<p>​                       <img src="/images/S-SQL-Selecting/image-20201106153559557.png" alt="image-20201106153559557" style="zoom:80%;">           <img src="/images/S-SQL-Selecting/image-20201106153753991.png" alt="image-20201106153753991" style="zoom:80%;"></p>
 <br>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- BCOLOR, FCOLOR 기준으로 정렬  (FCOLOR 내림차순)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (BCOLOR)</span><br><span class="line">	             BCOLOR, FCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	BCOLOR, </span><br><span class="line">	FCOLOR <span class="keyword">DESC</span></span><br></pre></td></tr></tbody></table></figure>
-<p>​                            <img src="/images/S-SQL-Selecting/image-20201106153842772.png" alt="image-20201106153842772" style="zoom:80%;">              <img src="/images/S-SQL-Selecting/image-20201106154039553.png" alt="image-20201106154039553" style="zoom:80%;"></p>
+<p>​                       <img src="/images/S-SQL-Selecting/image-20201106153842772.png" alt="image-20201106153842772" style="zoom:80%;">           <img src="/images/S-SQL-Selecting/image-20201106154039553.png" alt="image-20201106154039553" style="zoom:80%;"></p>
 </li>
 </ul>
 <br>
