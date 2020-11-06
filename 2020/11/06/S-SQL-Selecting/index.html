@@ -1,0 +1,472 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S-SQL-Selecting | Hyemin Kim</title><meta name="keywords" content="SQL,Selecting"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="데이터 조회 -- SELECT 문, ORDER BY 문, SELECT DISTINCT 문">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S-SQL-Selecting">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/11/06/S-SQL-Selecting/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="데이터 조회 -- SELECT 문, ORDER BY 문, SELECT DISTINCT 문">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png">
+<meta property="article:published_time" content="2020-11-06T04:52:28.000Z">
+<meta property="article:modified_time" content="2020-11-06T05:11:03.740Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Selecting">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/11/06/S-SQL-Selecting/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-06 14:11:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">47</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">27</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#데이터-조회"><span class="toc-text"> 데이터 조회</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-select-문"><span class="toc-text"> 1. SELECT 문</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-용도"><span class="toc-text"> 1-1. 용도</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-select-문법"><span class="toc-text"> 1-2. SELECT 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-select-문-실습"><span class="toc-text"> 1-3. SELECT 문 실습</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-order-by-문"><span class="toc-text"> 2. ORDER BY 문</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-용도"><span class="toc-text"> 2-1. 용도</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-order-by-문법"><span class="toc-text"> 2-2. ORDER BY 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-order-by-문-실습"><span class="toc-text"> 2-3. ORDER BY 문 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-단일-기준-정렬"><span class="toc-text"> 1) 단일 기준 정렬</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-다중-기준-n차-정렬"><span class="toc-text"> 2) 다중 기준 N차 정렬</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-select-distinct-문"><span class="toc-text"> 3. SELECT DISTINCT 문</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-용도"><span class="toc-text"> 3-1. 용도</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-select-distinct-문법"><span class="toc-text"> 3-2. SELECT DISTINCT 문법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-단일-컬럼"><span class="toc-text"> 1) 단일 컬럼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-다중-컬럼"><span class="toc-text"> 2) 다중 컬럼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-select-distinct-문-실습"><span class="toc-text"> 3-3.  SELECT DISTINCT 문 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-실습-준비-데이터-생성"><span class="toc-text"> 0) 실습 준비 (데이터 생성)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-단일-컬럼-2"><span class="toc-text"> 1) 단일 컬럼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-다중-컬럼-2"><span class="toc-text"> 2) 다중 컬럼</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">S-SQL-Selecting</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-11-06T04:52:28.000Z" title="Created 2020-11-06 13:52:28">2020-11-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-11-06T05:11:03.740Z" title="Updated 2020-11-06 14:11:03">2020-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY%E3%80%91/">【STUDY】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY%E3%80%91/SQL-1-Data-Selecting/">SQL - 1. Data Selecting</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="데이터-조회"><a class="markdownIt-Anchor" href="#데이터-조회"></a> 데이터 조회</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-select-%EB%AC%B8"><strong>1. SELECT 문</strong></a>
+<ul>
+<li><a href="#1-1-%EC%9A%A9%EB%8F%84">1-1. 용도</a></li>
+<li><a href="#1-2-select-%EB%AC%B8%EB%B2%95">1-2. SELECT 문법</a></li>
+<li><a href="#1-3-select-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">1-3. SELECT 문 실습</a></li>
+</ul>
+</li>
+<li><a href="#2-order-by-%EB%AC%B8"><strong>2. ORDER BY 문</strong></a>
+<ul>
+<li><a href="#2-1-%EC%9A%A9%EB%8F%84">2-1. 용도</a></li>
+<li><a href="#2-2-order-by-%EB%AC%B8%EB%B2%95">2-2. ORDER BY 문법</a></li>
+<li><a href="#2-3-order-by-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">2-3. ORDER BY 문 실습</a>
+<ul>
+<li><a href="#1-%EB%8B%A8%EC%9D%BC-%EA%B8%B0%EC%A4%80-%EC%A0%95%EB%A0%AC">1) 단일 기준 정렬</a></li>
+<li><a href="#2-%EB%8B%A4%EC%A4%91-%EA%B8%B0%EC%A4%80-n%EC%B0%A8-%EC%A0%95%EB%A0%AC">2) 다중 기준 N차 정렬</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-select-distinct-%EB%AC%B8"><strong>3. SELECT DISTINCT 문</strong></a>
+<ul>
+<li><a href="#3-1-%EC%9A%A9%EB%8F%84">3-1. 용도</a></li>
+<li><a href="#3-2-select-distinct-%EB%AC%B8%EB%B2%95">3-2. SELECT DISTINCT 문법</a>
+<ul>
+<li><a href="#1-%EB%8B%A8%EC%9D%BC-%EC%BB%AC%EB%9F%BC">1) 단일 컬럼</a></li>
+<li><a href="#2-%EB%8B%A4%EC%A4%91-%EC%BB%AC%EB%9F%BC">2) 다중 컬럼</a></li>
+</ul>
+</li>
+<li><a href="#3-3-select-distinct-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">3-3.  SELECT DISTINCT 문 실습</a>
+<ul>
+<li><a href="#0-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%83%9D%EC%84%B1">0) 실습 준비 (데이터 생성)</a></li>
+<li><a href="#1-%EB%8B%A8%EC%9D%BC-%EC%BB%AC%EB%9F%BC-2">1) 단일 컬럼</a></li>
+<li><a href="#2-%EB%8B%A4%EC%A4%91-%EC%BB%AC%EB%9F%BC-2">2) 다중 컬럼</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-select-문"><a class="markdownIt-Anchor" href="#1-select-문"></a> <strong>1. SELECT 문</strong></h2>
+<h3 id="1-1-용도"><a class="markdownIt-Anchor" href="#1-1-용도"></a> 1-1. 용도</h3>
+<p>SELECT 문은 일반적으로 테이플에 저장된 데이터를 가져오는 데 쓰인다.</p>
+<p>SQL에서 가장 많이 쓰이는 문장이다.</p>
+<br>
+<h3 id="1-2-select-문법"><a class="markdownIt-Anchor" href="#1-2-select-문법"></a> 1-2. SELECT 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	COLUMN_1,</span><br><span class="line">	COLUMN_2,</span><br><span class="line">	중략...</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	TABLE_NAME</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="1-3-select-문-실습"><a class="markdownIt-Anchor" href="#1-3-select-문-실습"></a> 1-3. SELECT 문 실습</h3>
+<p><strong>&gt; 전체 컬럼을 조회</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	*</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Selecting/image-20201103213701623.png" alt="image-20201103213701623"></p>
+<br>
+<p><strong>&gt; 지정한 컬럼을 조회</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME,</span><br><span class="line">	EMAIL</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Selecting/image-20201103220026388.png" alt="image-20201103220026388"></p>
+<p><strong>[주의]</strong> 여러 컬럼을 조회할 때, SELECT 명령어 뒤 컬럼 이름을 입력 시:</p>
+<ul>
+<li>마지막 컬럼명을 제외한 모든 컬럼명 뒤에 따움표( , )를 붙여야 함</li>
+<li>마지막 컬럼명 뒤에는 아무것도 입력하지 않는다</li>
+</ul>
+<br>
+<p><strong>&gt; 테이블 Alias(별칭) 활용하기</strong></p>
+<p>테이블에 별칭을 지정하면 코드의 가독성이 높아진다.  특히 테이블이 많아  지면, 선택한 컬럼이 어느 테이블에서 추출한 건지를 햇갈릴 수 있다. 테이블 별칭을 활용하면 보다 쉽게 구별할 수 있다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	A.FIRST_NAME,</span><br><span class="line">	A.LAST_NAME,</span><br><span class="line">	A.EMAIL</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	CUSTOMER A <span class="comment">-- OR "CUSTOMER AS A"</span></span><br></pre></td></tr></tbody></table></figure>
+<p><strong>[주의]</strong> 테이블 Alias는 현재의 SELECT 문장에 대해서만 유효하다.</p>
+<br>
+<br>
+<h2 id="2-order-by-문"><a class="markdownIt-Anchor" href="#2-order-by-문"></a> <strong>2. ORDER BY 문</strong></h2>
+<h3 id="2-1-용도"><a class="markdownIt-Anchor" href="#2-1-용도"></a> 2-1. 용도</h3>
+<p>ORDER BY 문은 SELECT 문에서 가져온 데이터를 정렬하는 데 사용한다.</p>
+<p>업무 처리상 매우 중요한 기능이다.</p>
+<br>
+<h3 id="2-2-order-by-문법"><a class="markdownIt-Anchor" href="#2-2-order-by-문법"></a> 2-2. ORDER BY 문법</h3>
+<p>ORDER BY를 활용하면 가져온 데이터를 특정 컬럼을 기준으로 오름차순(ASC) 혹은 내림차순(DESC)으로 정렬할 수 있다.</p>
+<ul>
+<li>
+<p>컬럼명 뒤에 <code>ASC</code>를 불이면 – 오름차순으로 정렬</p>
+</li>
+<li>
+<p>컬럼명 뒤에 <code>DESC</code>를 불이면 – 내림차순으로 정렬</p>
+</li>
+<li>
+<p>컬럼명 뒤에 아무것도 안 불이면 – Default로 오름차순으로 정렬</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	COLUMN_1,</span><br><span class="line">	COLUMN_2</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	TAL_NAME</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span>   <span class="comment">-- Default: 오름차순(ASC)</span></span><br><span class="line">	COLUMN_1 <span class="keyword">ASC</span>,    <span class="comment">-- 오름차순 정렬</span></span><br><span class="line">	COLUMN_2 <span class="keyword">DESC</span>   <span class="comment">-- 내림차순 정렬</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="2-3-order-by-문-실습"><a class="markdownIt-Anchor" href="#2-3-order-by-문-실습"></a> 2-3. ORDER BY 문 실습</h3>
+<h4 id="1-단일-기준-정렬"><a class="markdownIt-Anchor" href="#1-단일-기준-정렬"></a> 1) 단일 기준 정렬</h4>
+<p>단일 컬럼을 기준으로 한 번의 정렬만 실시함.</p>
+<br>
+<p><strong>&gt; ASC(오름차순) 정렬</strong></p>
+<ul>
+<li>
+<p>ORDER BY 미사용 시 (미정렬)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201105152959612.png" alt="image-20201105152959612" style="zoom: 70%;">
+<br>
+</li>
+<li>
+<p>“FIRST_NAME” 기준으로 오름차순 정렬</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ASC 명령어 명시</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	FIRST_NAME <span class="keyword">ASC</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Default로 정렬</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	FIRST_NAME</span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201105153942391.png" alt="image-20201105153942391" style="zoom:70%;">
+</li>
+</ul>
+<br>
+<p>**&gt; DESC(내림차순) 정렬 **</p>
+<ul>
+<li>
+<p>"FIRST_NAME"기준으로 내림차순 정렬</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	FIRST_NAME <span class="keyword">DESC</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201105154720269.png" alt="image-20201105154720269" style="zoom:70%;">
+</li>
+</ul>
+<br>
+<br>
+<h4 id="2-다중-기준-n차-정렬"><a class="markdownIt-Anchor" href="#2-다중-기준-n차-정렬"></a> 2) 다중 기준 N차 정렬</h4>
+<p>여러 컬럼을 기준으로 N차 정렬을 실시함.</p>
+<ul>
+<li>
+<p>COLUMN_1 기준으로 1차 정렬한 다음,</p>
+</li>
+<li>
+<p>COLUMN_1의 값이 동일한 데이터에 대해서 COLUMN_2 기준으로 2차 정렬을 실시한다,</p>
+</li>
+<li>
+<p>(위 규칙대로 계속 실행)…</p>
+</li>
+</ul>
+<br>
+<p><strong>&gt; ASC(오름차순) + DESC(내림차순) 정렬</strong></p>
+<ul>
+<li>
+<p>먼저 FIRST_NAME 오름차순으로 정렬, FIRST_NAME이 동일한 데이터는 LAST_NAME 내림차순으로 정렬</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	FIRST_NAME <span class="keyword">DESC</span>,  <span class="comment">-- 1차 정렬 (FIRST_NAME 내림차순)</span></span><br><span class="line">	LAST_NAME <span class="keyword">ASC</span>  <span class="comment">-- 2차 정렬 (LAST_NAME 오름차순)</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201105161920138.png" alt="image-20201105161920138" style="zoom:70%;">
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>ORDER BY 기준을 정할 때, 컬럼명 내신에 SELECT 시 컬럼이 들어오는 순서로 대체해도 된다. (하지만 가독성을 위해 위 방법 더 추천)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	FIRST_NAME,</span><br><span class="line">	LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	CUSTOMER</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	<span class="number">1</span> <span class="keyword">DESC</span>,  <span class="comment">-- 1: FIRST_NAME (내림차순)</span></span><br><span class="line">	<span class="number">2</span> <span class="keyword">ASC</span>    <span class="comment">-- 2: LAST_NAME (오름차순)</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="3-select-distinct-문"><a class="markdownIt-Anchor" href="#3-select-distinct-문"></a> <strong>3. SELECT DISTINCT 문</strong></h2>
+<h3 id="3-1-용도"><a class="markdownIt-Anchor" href="#3-1-용도"></a> 3-1. 용도</h3>
+<p>SELECT 시 DISTINCT를 사용하면 중복 값을 제외한 결과값이 출력된다. 즉 같은 결과의 행이라면 중복을 제거할 수 있다.</p>
+<br>
+<h3 id="3-2-select-distinct-문법"><a class="markdownIt-Anchor" href="#3-2-select-distinct-문법"></a> 3-2. SELECT DISTINCT 문법</h3>
+<h4 id="1-단일-컬럼"><a class="markdownIt-Anchor" href="#1-단일-컬럼"></a> 1) 단일 컬럼</h4>
+<ul>
+<li>
+<p><strong>단일 컬럼</strong>을 추출할 때 <strong>해당 컬럼의 값이 중복된 행을 제거</strong>하여 추출</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- COLUMN_1의 값이 중복 값 존재 시 중복 값을 제거</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> COLUMN_1</span><br><span class="line"><span class="keyword">FROM</span> TABLE_NAME</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<br>
+<h4 id="2-다중-컬럼"><a class="markdownIt-Anchor" href="#2-다중-컬럼"></a> 2) 다중 컬럼</h4>
+<ul>
+<li>
+<p><strong>다중 컬럼</strong>을 추출할 때 <strong><font color="red">모든 컬럼의 값이 모두 중복 된 행</font>을 제거</strong>하여 추출</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- COLUMN_1 + COLUMN_2의 값이 중복 값 존재 시 중복 값을 제거 </span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> COLUMN_1, COLUMN_2</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	TABLE_NAME</span><br></pre></td></tr></tbody></table></figure>
+  <br>
+<p>&gt;&gt; 중복 값 제거 후 정렬하여 추출</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 결과를 명확하게 하기 위해 ORDER BY 절 사용</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> COLUMN_1, COLUMN_2</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	TABLE_NAME</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	COLUMN_1,   <span class="comment">-- default로 오름차순 정렬</span></span><br><span class="line">	COLUMN_2    <span class="comment">-- default로 오름차순 정렬</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>다중 컬럼</strong>을 추출할 때 <strong><font color="red">특정 컬럼의 값을 기준으로</font> 중복된 행을 제거</strong>하여 추출 (DISTINCT ON 절)</p>
+<p><strong>[제거 규칙]</strong>  기준 컬럼의 값이 동일한 행 중에서 하나의 행만 보류</p>
+<p>​                         - 기본적으로 중복된 행 중의 첫 번째를 보류</p>
+<p>​                         - ORDER BY 문을 사용할 경우 정렬 후의 첫 번째 행을 보류</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (COLUMN_1)</span><br><span class="line">	             COLUMN_1, COLUMN_2</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	TABLE_NAME</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (COLUMN_1)</span><br><span class="line">	             COLUMN_1, COLUMN_2</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	TABLE_NAME</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">	COLUMN_1 </span><br><span class="line">	COLUMN_2</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="3-3-select-distinct-문-실습"><a class="markdownIt-Anchor" href="#3-3-select-distinct-문-실습"></a> 3-3.  SELECT DISTINCT 문 실습</h3>
+<h4 id="0-실습-준비-데이터-생성"><a class="markdownIt-Anchor" href="#0-실습-준비-데이터-생성"></a> 0) 실습 준비 (데이터 생성)</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> T1 (<span class="keyword">ID</span> <span class="built_in">SERIAL</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>, BCOLOR <span class="built_in">VARCHAR</span>, FCOLOR <span class="built_in">VARCHAR</span>);</span><br><span class="line"><span class="keyword">INSERT</span></span><br><span class="line">  <span class="keyword">INTO</span> T1(BCOLOR, FCOLOR)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'red'</span>, <span class="string">'red'</span>),</span><br><span class="line">  (<span class="string">'red'</span>, <span class="string">'red'</span>),</span><br><span class="line">  (<span class="string">'red'</span>, <span class="literal">NULL</span>),</span><br><span class="line">  (<span class="literal">NULL</span>, <span class="string">'red'</span>),</span><br><span class="line">  (<span class="string">'red'</span>, <span class="string">'green'</span>),</span><br><span class="line">  (<span class="string">'red'</span>, <span class="string">'blue'</span>),</span><br><span class="line">  (<span class="string">'green'</span>, <span class="string">'red'</span>),</span><br><span class="line">  (<span class="string">'green'</span>, <span class="string">'blue'</span>),</span><br><span class="line">  (<span class="string">'green'</span>, <span class="string">'green'</span>),</span><br><span class="line">  (<span class="string">'blue'</span>, <span class="string">'red'</span>),</span><br><span class="line">  (<span class="string">'blue'</span>, <span class="string">'green'</span>),</span><br><span class="line">  (<span class="string">'blue'</span>, <span class="string">'blue'</span>)</span><br><span class="line">;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	*</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106093653283.png" alt="image-20201106093653283" style="zoom:80%;">
+<br>
+<h4 id="1-단일-컬럼-2"><a class="markdownIt-Anchor" href="#1-단일-컬럼-2"></a> 1) 단일 컬럼</h4>
+<ul>
+<li>
+<p>BCOLOR 컬럼의 값이 중복된 행을 제거 + BCOLOR 기준으로 정렬하여 추출</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> BCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">	BCOLOR</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<p>​                                                                  <img src="/images/S-SQL-Selecting/image-20201106094931456.png" alt="image-20201106094931456"></p>
+<br>
+<h4 id="2-다중-컬럼-2"><a class="markdownIt-Anchor" href="#2-다중-컬럼-2"></a> 2) 다중 컬럼</h4>
+<ul>
+<li>
+<p>BCOLOR &amp; FCOLOR 두 컬럼을 추출 시:</p>
+<ol>
+<li>
+<p><strong>두 컬럼 의 값이 <font color="red">모두 중복된 행</font>을 제거</strong></p>
+</li>
+<li>
+<p>BCOLOR &amp; FCOLOR 기준으로 <strong>정렬하여 추출</strong></p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> BCOLOR, </span><br><span class="line">	         FCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	BCOLOR,</span><br><span class="line">	FCOLOR</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<p>​                              <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106095645216.png" alt="image-20201106095645216" style="zoom: 80%;">           <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106102225630.png" alt="image-20201106102225630" style="zoom:80%;"></p>
+<br>
+<ul>
+<li>
+<p>BCOLOR &amp; FCOLOR 두 컬럼을 추출 시:</p>
+<ol>
+<li>
+<p><strong><font color="red">BCOLOR의  값</font>을 기준으로 <font color="red">중복된 행</font>을 제거</strong></p>
+</li>
+<li>
+<ul>
+<li>
+<p>미정렬 시 BCOLOR값이 동일한 행 중에 첫 번째 행만 보류</p>
+</li>
+<li>
+<p>BCOLOR, FCOLOR 기준으로 정렬 시 FCOLOR의 첫 번째 값을 가진 행만 보류</p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 미정렬 시</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (BCOLOR)</span><br><span class="line">	             BCOLOR, FCOLOR</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	T1</span><br></pre></td></tr></tbody></table></figure>
+<p>​                       <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106130039716.png" alt="image-20201106130039716" style="zoom:80%;">           <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106132245047.png" alt="image-20201106132245047" style="zoom:80%;"></p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- BCOLOR, FCOLOR 기준으로 정렬  (FCOLOR 오름차순)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (BCOLOR)</span><br><span class="line">	             BCOLOR, FCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	BCOLOR, </span><br><span class="line">	FCOLOR</span><br></pre></td></tr></tbody></table></figure>
+<p>​                        <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106133010401.png" alt="image-20201106133010401" style="zoom:80%;">          <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106133138114.png" alt="image-20201106133138114" style="zoom:80%;"></p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- BCOLOR, FCOLOR 기준으로 정렬  (FCOLOR 내림차순)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">DISTINCT</span> <span class="keyword">ON</span> (BCOLOR)</span><br><span class="line">	             BCOLOR, FCOLOR</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	T1</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	BCOLOR, </span><br><span class="line">	FCOLOR <span class="keyword">DESC</span></span><br></pre></td></tr></tbody></table></figure>
+<p>​                        <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106134033175.png" alt="image-20201106134033175" style="zoom:80%;">          <img src="/../../../0. Study Notes/source/images/[데이터 조회]/image-20201106134152628.png" alt="image-20201106134152628" style="zoom:80%;"></p>
+</li>
+</ul>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/11/06/S-SQL-Selecting/">https://hyemin-kim.github.io/2020/11/06/S-SQL-Selecting/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a><a class="post-meta__tags" href="/tags/Selecting/">Selecting</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/11/06/Bf13kR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/09/04/P-Marketing-AARRR/"><img class="next-cover" src="https://s1.ax1x.com/2020/09/04/wFzGff.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【Marketing】 AARRR Framework 소개</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '95e35e2d557442537c56b90c46c76346',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
