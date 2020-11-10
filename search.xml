@@ -190,8 +190,12 @@
 </ul>
 </blockquote>
 <br>
-<h3 id="添加表格"><a class="markdownIt-Anchor" href="#添加表格"></a> <strong>添加表格</strong></h3>
-<p>竖线作为列分界线，换行竖线中间输入短横线作为行分界线</p>
+<h3 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> <strong>表格</strong></h3>
+<ul>
+<li>
+<p>添加表格<br>
+竖线作为列分界线，换行竖线中间输入短横线作为行分界线</p>
+<img src="../images/Markdown-Syntax/image-20201110155108847.png" alt="image-20201110155108847" style="zoom:80%;">
 <table>
 <thead>
 <tr>
@@ -213,6 +217,115 @@
 </tr>
 </tbody>
 </table>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>表格内容对齐</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">左对齐</th>
+<th style="text-align:center">居中</th>
+<th style="text-align:center">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">:-----</td>
+<td style="text-align:center">:-----:</td>
+<td style="text-align:center">-----:</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>左对齐</p>
+<img src="../images/Markdown-Syntax/image-20201110155454459.png" alt="image-20201110155454459" style="zoom:80%;">
+<p>|  1  |  2  |  3  |<br>
+| :-- | :-- | :-- |<br>
+|  a  |  b  |  c  |<br>
+|  d  |  e  |  f  |</p>
+</li>
+<li>
+<p>居中</p>
+<img src="../images/Markdown-Syntax/image-20201110155540639.png" alt="image-20201110155540639" style="zoom:80%;">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:center">d</td>
+<td style="text-align:center">e</td>
+<td style="text-align:center">f</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>右对齐</p>
+<img src="../images/Markdown-Syntax/image-20201110155606006.png" alt="image-20201110155606006" style="zoom:80%;">
+<table>
+<thead>
+<tr>
+<th style="text-align:right">1</th>
+<th style="text-align:right">2</th>
+<th style="text-align:right">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">a</td>
+<td style="text-align:right">b</td>
+<td style="text-align:right">c</td>
+</tr>
+<tr>
+<td style="text-align:right">d</td>
+<td style="text-align:right">e</td>
+<td style="text-align:right">f</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>表格内容换行</p>
+<p>插入 &lt;br&gt;</p>
+<img src="../images/Markdown-Syntax/image-20201110160141094.png" alt="image-20201110160141094" style="zoom:80%;">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">123</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">abc <br> def <br> xyz</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 <br>
 <h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> <strong>代码</strong></h3>
 <p>三个 ` 号，再输入所使用的编程语言</p>
@@ -53005,48 +53118,12 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <table>
 <thead>
 <tr>
-<th>film</th>
+<th style="text-align:center">film</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>*film_id</td>
-</tr>
-<tr>
-<td>title</td>
-</tr>
-<tr>
-<td>discription</td>
-</tr>
-<tr>
-<td>release_year</td>
-</tr>
-<tr>
-<td>language_id</td>
-</tr>
-<tr>
-<td>rental_duration</td>
-</tr>
-<tr>
-<td>rental_rate</td>
-</tr>
-<tr>
-<td>length</td>
-</tr>
-<tr>
-<td>replacement_cost</td>
-</tr>
-<tr>
-<td>rating</td>
-</tr>
-<tr>
-<td>last_update</td>
-</tr>
-<tr>
-<td>special_features</td>
-</tr>
-<tr>
-<td>fulltext</td>
+<td style="text-align:center">*film_id <br>title <br>discription <br>release_year <br>language_id <br>rentall_duration <br>rental_rate <br>length <br>replacement_cost <br>rating <br>last_update <br>special_features <br>fulltext</td>
 </tr>
 </tbody>
 </table>
@@ -53189,30 +53266,12 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <table>
 <thead>
 <tr>
-<th>rental</th>
+<th style="text-align:center">rental</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>* rental_id</td>
-</tr>
-<tr>
-<td>rental_date</td>
-</tr>
-<tr>
-<td>inventory_id</td>
-</tr>
-<tr>
-<td>customer_id</td>
-</tr>
-<tr>
-<td>return_date</td>
-</tr>
-<tr>
-<td>staff_id</td>
-</tr>
-<tr>
-<td>last_update</td>
+<td style="text-align:center">* rental_id <br>rental_date <br>inventory_id <br>customer_id <br>return_date <br>staff_id <br>last_update</td>
 </tr>
 </tbody>
 </table>
@@ -53266,27 +53325,12 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <table>
 <thead>
 <tr>
-<th>payment</th>
+<th style="text-align:center">payment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>* payment_id</td>
-</tr>
-<tr>
-<td>customer_id</td>
-</tr>
-<tr>
-<td>staff_id</td>
-</tr>
-<tr>
-<td>rental_id</td>
-</tr>
-<tr>
-<td>amount</td>
-</tr>
-<tr>
-<td>payment_date</td>
+<td style="text-align:center">* payment_id <br>customer_id <br>staff_id <br>rental_id <br>amount <br>payment_date</td>
 </tr>
 </tbody>
 </table>
@@ -53333,39 +53377,12 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <table>
 <thead>
 <tr>
-<th>customer</th>
+<th style="text-align:center">customer</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>* customer_id</td>
-</tr>
-<tr>
-<td>store_id</td>
-</tr>
-<tr>
-<td>first_name</td>
-</tr>
-<tr>
-<td>last_name</td>
-</tr>
-<tr>
-<td>email</td>
-</tr>
-<tr>
-<td>address_id</td>
-</tr>
-<tr>
-<td>activebool</td>
-</tr>
-<tr>
-<td>create_date</td>
-</tr>
-<tr>
-<td>last_update</td>
-</tr>
-<tr>
-<td>active</td>
+<td style="text-align:center">* customer_id <br>store_id <br>first_name <br>email <br>address_id <br>activebool <br>create_date <br>last_update <br>active</td>
 </tr>
 </tbody>
 </table>
@@ -53377,35 +53394,35 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <thead>
 <tr>
 <th style="text-align:left">SQL</th>
-<th>결과값</th>
-<th>설명</th>
+<th style="text-align:center">결과값</th>
+<th style="text-align:left">설명</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>SELECT</code></td>
-<td></td>
-<td></td>
+<td style="text-align:left">SELECT</td>
+<td style="text-align:center"></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>'FOO' LIKE 'FOO',</code></td>
-<td>TRUE</td>
-<td>'FOO’는 'FOO’이므로 참이다</td>
+<td style="text-align:left">‘FOO’ LIKE ‘FOO’,</td>
+<td style="text-align:center">TRUE</td>
+<td style="text-align:left">'FOO’는 'FOO’이므로 참이다</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>'FOO' LIKE 'F%',</code></td>
-<td>TRUE</td>
-<td>'F%'는 'F’로 시작하면 모두 참이다</td>
+<td style="text-align:left">‘FOO’ LIKE ‘F%’,</td>
+<td style="text-align:center">TRUE</td>
+<td style="text-align:left">'F%'는 'F’로 시작하면 모두 참이다</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>'FOO' LIKE '_O_',</code></td>
-<td>TRUE</td>
-<td>'_O_'는 3자리 문자열이고 가운든 문자가 'O’라면 모두 참이다</td>
+<td style="text-align:left">‘FOO’ LIKE ‘_O_’,</td>
+<td style="text-align:center">TRUE</td>
+<td style="text-align:left">'_O_'는 3자리 문자열이고 가운든 문자가 'O’라면 모두 참이다</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>'BAR' LIKE 'B_'</code></td>
-<td>TRUE</td>
-<td>'_B_'는 B로 시작하는 2자리 문자열이면 모두 참. 하지만 'BAR’는 'B’로 시작하는 3자리 문자열이다</td>
+<td style="text-align:left">‘BAR’ LIKE ‘B_’</td>
+<td style="text-align:center">TRUE</td>
+<td style="text-align:left">'_B_'는 B로 시작하는 2자리 문자열이면 모두 참. 하지만 'BAR’는 'B’로 시작하는 3자리 문자열이다</td>
 </tr>
 </tbody>
 </table>
