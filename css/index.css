@@ -3019,7 +3019,7 @@ hr:before {
 }
 .table-wrap {
   overflow-x: scroll;
-  margin: 0 0 1rem;
+  margin: auto;
 }
 table {
   display: block;
