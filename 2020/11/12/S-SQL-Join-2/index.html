@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL &gt;&gt; 조인 (2) | Hyemin Kim</title><meta name="keywords" content="SQL,Join"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="SELF 조인, FULL OUTER 조인, CROSS 조인, NATURAL 조인">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL &gt;&gt; 조인 (2)">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/11/12/S-SQL-Join-2/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="SELF 조인, FULL OUTER 조인, CROSS 조인, NATURAL 조인">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png">
+<meta property="article:published_time" content="2020-11-12T06:21:33.000Z">
+<meta property="article:modified_time" content="2020-11-12T06:30:08.879Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Join">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/11/12/S-SQL-Join-2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-12 15:30:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">52</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">29</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">20</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#조인-2"><span class="toc-text"> 조인 (2)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-self-조인"><span class="toc-text"> 1. SELF 조인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-개념"><span class="toc-text"> 1-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-self-조인-문법"><span class="toc-text"> 1-2. SELF 조인 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-self-조인-실습"><span class="toc-text"> 1-3. SELF 조인 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-실습-준비"><span class="toc-text"> 1-3-1. 실습 준비</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-self-조인-실습"><span class="toc-text"> 1-3-2. SELF 조인 실습</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-개념"><span class="toc-text"> 2-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-full-outer-조인-문법"><span class="toc-text"> 2-2. FULL OUTER 조인 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-full-outer-조인-실습"><span class="toc-text"> 2-3. FULL OUTER 조인 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-basket-데이터를-활용한-간단한-실습"><span class="toc-text"> 2-3-1. BASKET 데이터를 활용한 간단한 실습</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-추가-실습"><span class="toc-text"> 2-3-2. 추가 실습</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-cross-조인"><span class="toc-text"> 3. CROSS 조인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-개념"><span class="toc-text"> 3-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-cross-조인-문법"><span class="toc-text"> 3-2. CROSS 조인 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-cross-조인-실습"><span class="toc-text"> 3-3. CROSS 조인 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-0-실습-준비"><span class="toc-text"> 3-3-0. 실습 준비</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-cross-조인-실습"><span class="toc-text"> 3-3-1. CROSS 조인 실습</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-natural-조인"><span class="toc-text"> 4. NATURAL 조인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-개념"><span class="toc-text"> 4-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-natural-조인-문법"><span class="toc-text"> 4-2. NATURAL 조인 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-natural-조인-실습"><span class="toc-text"> 4-3. NATURAL 조인 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-0-실습-준비"><span class="toc-text"> 4-3-0. 실습 준비</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-natural-조인-실습"><span class="toc-text"> 4-3-1. NATURAL 조인 실습</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">SQL &gt;&gt; 조인 (2)</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-11-12T06:21:33.000Z" title="Created 2020-11-12 15:21:33">2020-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-11-12T06:30:08.879Z" title="Updated 2020-11-12 15:30:08">2020-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/">【STUDY - SQL】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/SQL-3-Join/">SQL - 3. Join</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="조인-2"><a class="markdownIt-Anchor" href="#조인-2"></a> <strong>조인 (2)</strong></h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-self-%EC%A1%B0%EC%9D%B8"><strong>1. SELF 조인</strong></a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-self-%EC%A1%B0%EC%9D%B8-%EB%AC%B8%EB%B2%95">1-2. SELF 조인 문법</a></li>
+<li><a href="#1-3-self-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">1-3. SELF 조인 실습</a>
+<ul>
+<li><a href="#1-3-1-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">1-3-1. 실습 준비</a></li>
+<li><a href="#1-3-2-self-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">1-3-2. SELF 조인 실습</a></li>
+</ul>
+</li>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
+<li><a href="#2-2-full-outer-%EC%A1%B0%EC%9D%B8-%EB%AC%B8%EB%B2%95">2-2. FULL OUTER 조인 문법</a></li>
+<li><a href="#2-3-full-outer-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">2-3. FULL OUTER 조인 실습</a>
+<ul>
+<li><a href="#2-3-1-basket-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%8B%A4%EC%8A%B5">2-3-1. BASKET 데이터를 활용한 간단한 실습</a></li>
+<li><a href="#2-3-2-%EC%B6%94%EA%B0%80-%EC%8B%A4%EC%8A%B5">2-3-2. 추가 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-cross-%EC%A1%B0%EC%9D%B8"><strong>3. CROSS 조인</strong></a>
+<ul>
+<li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
+<li><a href="#3-2-cross-%EC%A1%B0%EC%9D%B8-%EB%AC%B8%EB%B2%95">3-2. CROSS 조인 문법</a></li>
+<li><a href="#3-3-cross-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">3-3. CROSS 조인 실습</a>
+<ul>
+<li><a href="#3-3-0-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">3-3-0. 실습 준비</a></li>
+<li><a href="#3-3-1-cross-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">3-3-1. CROSS 조인 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-natural-%EC%A1%B0%EC%9D%B8"><strong>4. NATURAL 조인</strong></a>
+<ul>
+<li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
+<li><a href="#4-2-natural-%EC%A1%B0%EC%9D%B8-%EB%AC%B8%EB%B2%95">4-2. NATURAL 조인 문법</a></li>
+<li><a href="#4-3-natural-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">4-3. NATURAL 조인 실습</a>
+<ul>
+<li><a href="#4-3-0-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">4-3-0. 실습 준비</a></li>
+<li><a href="#4-3-1-natural-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">4-3-1. NATURAL 조인 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-self-조인"><a class="markdownIt-Anchor" href="#1-self-조인"></a> <strong>1. SELF 조인</strong></h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>SELF 조인은 같은 테이블 끼리 특정 컬럼을 기준으로 매칭 되는 컬럼을 출력하는 조인이다.</p>
+<p>즉, 같은 테이블의 데이터를 각각의 집합으로 분류한 후  조인한다.</p>
+<br>
+<h3 id="1-2-self-조인-문법"><a class="markdownIt-Anchor" href="#1-2-self-조인-문법"></a> 1-2. SELF 조인 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.COL_1, A.COL_2, ...,</span><br><span class="line">  B.COL_1, B.COL_3, ...</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  TABLE_NAME <span class="keyword">AS</span> A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  TABLE_NAME <span class="keyword">AS</span> B    <span class="comment">-- THE SAME TABLE WITH THE FORMER</span></span><br><span class="line"><span class="keyword">ON</span> A.COL_T = B.COL_T</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="1-3-self-조인-실습"><a class="markdownIt-Anchor" href="#1-3-self-조인-실습"></a> 1-3. SELF 조인 실습</h3>
+<h4 id="1-3-1-실습-준비"><a class="markdownIt-Anchor" href="#1-3-1-실습-준비"></a> 1-3-1. 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> EMPLOYEE</span><br><span class="line">(</span><br><span class="line">    EMPLOYEE_ID <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    FIRST_NAME <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    LAST_NAME <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    MANAGER_ID <span class="built_in">INT</span>,</span><br><span class="line">    <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (MANAGER_ID)               <span class="comment">-- MANAGER_ID는 같은 테이블 (EMPLOYEE)의 EMPLOYEE_ID를 참조함</span></span><br><span class="line">    <span class="keyword">REFERENCES</span> EMPLOYEE (EMPLOYEE_ID)</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> EMPLOYEE (</span><br><span class="line">    EMPLOTEE_ID,</span><br><span class="line">    FIRST_NAME,</span><br><span class="line">    LAST_NAME,</span><br><span class="line">    MANAGER_ID</span><br><span class="line">)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">'Windy'</span>, <span class="string">'Hays'</span>, <span class="literal">NULL</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">'Ava'</span>, <span class="string">'Christensen'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">'Hassan'</span>, <span class="string">'Conner'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">4</span>, <span class="string">'Anna'</span>, <span class="string">'Reeves'</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="number">5</span>, <span class="string">'Sau'</span>, <span class="string">'Norman'</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="number">6</span>, <span class="string">'Kelsie'</span>, <span class="string">'Hays'</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="number">7</span>, <span class="string">'Tory'</span>, <span class="string">'Goff'</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="number">8</span>, <span class="string">'Salley'</span>, <span class="string">'Lester'</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMPLOYEE</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201111155046250.png" alt="image-20201111155046250"></p>
+<br>
+<p><strong>&gt;&gt; 조직도</strong></p>
+<img src="/images/S-SQL-Join-2/image-20201111155421168.png" alt="image-20201111155421168" style="zoom: 67%;">
+<br>
+<h4 id="1-3-2-self-조인-실습"><a class="markdownIt-Anchor" href="#1-3-2-self-조인-실습"></a> 1-3-2. SELF 조인 실습</h4>
+<p><strong>&gt;&gt; SELF INNER 조인 실습</strong></p>
+<p><strong>MISSION:</strong></p>
+<ul>
+<li>각 직원의 상위 관리자를 출력</li>
+<li>최고관리자인 'Windy Hays’는 결과 집합에 포함시키지 않음.</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  E.FIRST_NAME || <span class="string">' '</span> || E.LAST_NAME <span class="keyword">AS</span> EMPLOYEE,</span><br><span class="line">  M.FIRST_NAME || <span class="string">' '</span> || M.LAST_NAME <span class="keyword">AS</span> MANAGER</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  EMPLOYEE E  <span class="comment">-- EMPLOYEE 중심</span></span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  EMPLOYEE M  <span class="comment">-- MANAGER 중심</span></span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  E.MANAGER_ID = M.EMPLOYEE_ID   <span class="comment">-- 매칭 시 헷갈리지 않도록 주의</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  MANAGER</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111162640186.png" alt="image-20201111162640186" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; SELF LEFT OUTER 조인 실습</strong></p>
+<p><strong>MISSION:</strong></p>
+<ul>
+<li>각 직원의 상위 관리자를 출력하면서 모든 직원을 출력</li>
+<li>최고관리자인 'Windy Hays’가 결과 집합에 포함시킴</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  E.FIRST_NAME || <span class="string">' '</span> || E.LAST_NAME <span class="keyword">AS</span> EMPLOYEE,</span><br><span class="line">  M.FIRST_NAME || <span class="string">' '</span> || M.LAST_NAME <span class="keyword">AS</span> MANAGER</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  EMPLOYEE E</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">  EMPLOYEE M</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  E.MANAGER_ID = M.EMPLOYEE_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  MANAGER</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111163954892.png" alt="image-20201111163954892" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; 부정형 조건 실습</strong></p>
+<p><strong>MISSION:</strong> FILM 테이블에서 영화의 상영시간이 동일한 서로 다른 영화의 리스트를 출력</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">film</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">*film_id <br>title <br>discription <br>release_year <br>language_id <br>rentall_duration <br>rental_rate <br>length <br>replacement_cost <br>rating <br>last_update <br>special_features <br>fulltext</td>
+</tr>
+</tbody>
+</table>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.TITLE,</span><br><span class="line">  B.TITLE,</span><br><span class="line">  A.LENGTH</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  FILM A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  FILM B</span><br><span class="line"><span class="keyword">ON</span> A.FILM_ID != B.FILM_ID <span class="keyword">AND</span></span><br><span class="line">   A.LENGTH = B.LENGTH</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111183444264.png" alt="image-20201111183444264" style="zoom:80%;">
+<br>
+<br>
+<p>##<strong>2. FULL OUTER 조인</strong></p>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
+<p>FULL OUTER 조인은 INNER, LEFT OUTER, RIGHT OUTER 조인 집합을 모두 출력하는 조인 방식이다.</p>
+<p>즉, 두 테이블간 출력가능한 모든 데이터를 포함한 집합을 출력한다.</p>
+<img src="/images/S-SQL-Join-2/image-20201111192014271.png" alt="image-20201111192014271" style="zoom:50%;">
+<br>
+<h3 id="2-2-full-outer-조인-문법"><a class="markdownIt-Anchor" href="#2-2-full-outer-조인-문법"></a> 2-2. FULL OUTER 조인 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.COL_A1, A.COL_A2, ...,</span><br><span class="line">  B.COL_B1, B.COL_B2, ...</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  TABLE_A A</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span>  </span><br><span class="line">  TABLE_B B</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  A.COL_Z_A = B.COL_Z_B</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="2-3-full-outer-조인-실습"><a class="markdownIt-Anchor" href="#2-3-full-outer-조인-실습"></a> 2-3. FULL OUTER 조인 실습</h3>
+<h4 id="2-3-1-basket-데이터를-활용한-간단한-실습"><a class="markdownIt-Anchor" href="#2-3-1-basket-데이터를-활용한-간단한-실습"></a> 2-3-1. BASKET 데이터를 활용한 간단한 실습</h4>
+<img src="/images/S-SQL-Join-2/image-20201111141327969.png" alt="image-20201111141327969" style="zoom: 67%;">
+<br>
+<p><strong>&gt;&gt; FULL OUTER JOIN</strong></p>
+<p><strong>(1) LEFT ONLY + LEFT&amp;RIGHT + RIGHT ONLY</strong></p>
+<img src="/images/S-SQL-Join-2/image-20201111193914893.png" alt="image-20201111193914893" style="zoom:50%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  A.ID ID_A,</span><br><span class="line">  A.FRUIT FRUIT_A,</span><br><span class="line">  B.ID ID_B,</span><br><span class="line">  B.FRUIT FRUIT_B</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  BASKET_A A</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">  BASKET_B B</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  A.FRUIT = B.FRUIT</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111193119708.png" alt="image-20201111193119708" style="zoom:80%;">
+<br>
+<p><strong>(2) ONLY OUTER (LEFT ONLY + RIGHT ONLY)</strong></p>
+<img src="/images/S-SQL-Join-2/image-20201111194125768.png" alt="image-20201111194125768" style="zoom:50%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  A.ID ID_A,</span><br><span class="line">  A.FRUIT FRUIT_A,</span><br><span class="line">  B.ID ID_B,</span><br><span class="line">  B.FRUIT FRUIT_B</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  BASKET_A A</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">  BASKET_B B</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  A.FRUIT = B.FRUIT </span><br><span class="line"><span class="keyword">WHERE</span> A.ID <span class="keyword">IS</span> <span class="literal">NULL</span>    <span class="comment">-- LEFT OUTER</span></span><br><span class="line">   <span class="keyword">OR</span> B.ID <span class="keyword">IS</span> <span class="literal">NULL</span>    <span class="comment">-- RIGHT OUTER</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111194613680.png" alt="image-20201111194613680" style="zoom:80%;">
+<br>
+<h4 id="2-3-2-추가-실습"><a class="markdownIt-Anchor" href="#2-3-2-추가-실습"></a> 2-3-2. 추가 실습</h4>
+<p><strong>&gt;&gt; 실습 준비</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span></span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> DEPARTMENTS    <span class="comment">-- 종재하지 않으면 생성</span></span><br><span class="line">(</span><br><span class="line">  DEPARTMENT_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  DEPARTMENT_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span></span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> EMPLOYEES</span><br><span class="line">(</span><br><span class="line">  EMPLOYEE_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  EMPLOYEE_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>),</span><br><span class="line">  DEPARTMENT_ID <span class="built_in">INTEGER</span></span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> DEPARTMENTS(DEPARTMENT_NAME)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'Sales'</span>),</span><br><span class="line">(<span class="string">'Marketing'</span>),</span><br><span class="line">(<span class="string">'HR'</span>),</span><br><span class="line">(<span class="string">'IT'</span>),</span><br><span class="line">(<span class="string">'Production'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> EMPLOYEES(</span><br><span class="line">  EMPLOYEE_NAME,</span><br><span class="line">  DEPARTMENT_ID</span><br><span class="line">)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'Bette Nicholson'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="string">'Christian Gable'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="string">'Joe Swank'</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="string">'Fred Costner'</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="string">'Sandra Kilmer'</span>, <span class="number">4</span>),</span><br><span class="line">(<span class="string">'Julia Mcqueen'</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> DEPARTMENTS;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111200237831.png" alt="image-20201111200237831" style="zoom:80%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMPLOYEES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111200326518.png" alt="image-20201111200326518" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; FULL OUTER JOIN 실습</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  E.EMPLOYEE_NAME,</span><br><span class="line">  D.DEPARTMENT_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  EMPLOYEES E</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">  DEPARTMENTS D</span><br><span class="line"><span class="keyword">ON</span> E.DEPARTMENT_ID = D.DEPARTMENT_ID</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111201327463.png" alt="image-20201111201327463" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; RIGHT OUTER ONLY 실습</strong></p>
+<img src="/images/S-SQL-Join-2/image-20201111202627226.png" alt="image-20201111202627226" style="zoom:50%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 소속한 직원이 없는 부서만 출력</span></span><br><span class="line"><span class="comment">-- FULL OUTER + RIGHT ONLY</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  E.EMPLOYEE_NAME,</span><br><span class="line">  D.DEPARTMENT_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  EMPLOYEES E</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">  DEPARTMENTS D</span><br><span class="line"><span class="keyword">ON</span> E.DEPARTMENT_ID = D.DEPARTMENT_ID</span><br><span class="line"><span class="keyword">WHERE</span> E.EMPLOYEE_NAME <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201111202501663.png" alt="image-20201111202501663">
+<br>
+<p><strong>[P.S.]</strong> FULL OUTER JOIN+ RIGHT ONLY = RIGHT OUTER JOIN+ RIGHT ONLY</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- RIGHT OUTER + RIGHT ONLY</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  E.EMPLOYEE_NAME,</span><br><span class="line">  D.DEPARTMENT_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  EMPLOYEES E</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  DEPARTMENTS D</span><br><span class="line"><span class="keyword">ON</span> E.DEPARTMENT_ID = D.DEPARTMENT_ID</span><br><span class="line"><span class="keyword">WHERE</span> E.EMPLOYEE_NAME <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201111202503508.png" alt="image-20201111202503508"></p>
+<br>
+<p><strong>&gt;&gt; LEFT OUTER ONLY 실습</strong></p>
+<img src="/images/S-SQL-Join-2/image-20201111202802778.png" alt="image-20201111202802778" style="zoom: 50%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 소속한 부서가 없는 직원만 출력</span></span><br><span class="line"><span class="comment">-- FULL OUTER + LEFT ONLY</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  E.EMPLOYEE_NAME,</span><br><span class="line">  D.DEPARTMENT_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  EMPLOYEES E</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">  DEPARTMENTS D</span><br><span class="line"><span class="keyword">ON</span> E.DEPARTMENT_ID = D.DEPARTMENT_ID</span><br><span class="line"><span class="keyword">WHERE</span> D.DEPARTMENT_NAME <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201111203302334.png" alt="image-20201111203302334"></p>
+<br>
+<p><strong>[P.S.]</strong> FULL OUTER JOIN+ LEFT ONLY = LEFT OUTER JOIN+ LEFT ONLY</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- LEFT OUTER + LEFT ONLY</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  E.EMPLOYEE_NAME,</span><br><span class="line">  D.DEPARTMENT_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  EMPLOYEES E</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  DEPARTMENTS D</span><br><span class="line"><span class="keyword">ON</span> E.DEPARTMENT_ID = D.DEPARTMENT_ID</span><br><span class="line"><span class="keyword">WHERE</span> D.DEPARTMENT_NAME <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201111203302334.png" alt="image-20201111203302334"></p>
+<br>
+<br>
+<h2 id="3-cross-조인"><a class="markdownIt-Anchor" href="#3-cross-조인"></a> <strong>3. CROSS 조인</strong></h2>
+<h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
+<p>두 개의 테이블의 CATESIAN PRODUCT 연산의 결과를 출력한다. 데이터 복제에 많이 쓰이는 기법이다.</p>
+<ul>
+<li>
+<p>CATESIAN  PRODUCT:</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Cartesian_Product_qtl1.svg/1200px-Cartesian_Product_qtl1.svg.png" alt="CARTESIAN PRODUCT" style="zoom: 25%;">
+</li>
+</ul>
+<br>
+<h3 id="3-2-cross-조인-문법"><a class="markdownIt-Anchor" href="#3-2-cross-조인-문법"></a> 3-2. CROSS 조인 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CROSS_TABLE_1</span><br><span class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span></span><br><span class="line">  CROSS_TABLE_2</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="3-3-cross-조인-실습"><a class="markdownIt-Anchor" href="#3-3-cross-조인-실습"></a> 3-3. CROSS 조인 실습</h3>
+<h4 id="3-3-0-실습-준비"><a class="markdownIt-Anchor" href="#3-3-0-실습-준비"></a> 3-3-0. 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> CROSS_T1</span><br><span class="line">(</span><br><span class="line">  LABEL <span class="built_in">CHAR</span>(<span class="number">1</span>) PRIMARY <span class="keyword">KEY</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> CROSS_T2</span><br><span class="line">(</span><br><span class="line">  SCORE <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span></span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CROSS_T1 (LABEL)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'A'</span>),</span><br><span class="line">(<span class="string">'B'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CROSS_T2 (SCORE)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>),</span><br><span class="line">(<span class="number">2</span>),</span><br><span class="line">(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CROSS_T1</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201112090311812.png" alt="image-20201112090311812"></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CROSS_T2</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201112090405111.png" alt="image-20201112090405111"></p>
+<br>
+<h4 id="3-3-1-cross-조인-실습"><a class="markdownIt-Anchor" href="#3-3-1-cross-조인-실습"></a> 3-3-1. CROSS 조인 실습</h4>
+<img src="/images/S-SQL-Join-2/image-20201112091802546.png" alt="image-20201112091802546" style="zoom: 67%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 방법 1</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  CROSS_T1</span><br><span class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span></span><br><span class="line">  CROSS_T2</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">  LABEL</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201112091538328.png" alt="image-20201112091538328" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 방법 2</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  * </span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  CROSS_T1, CROSS_T2   <span class="comment">-- INNER JOIN을 표현하는 다른 방법 (조건 없는 INNER JOIN)</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">  LABEL</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<ul>
+<li>
+<p>위 두 개의 SQL 문 결과 집합이 동일하므로 같은 SQL문이라고 할 수 있다. SQL문의 목적은 집합을 출력하는 것이 때문이다.</p>
+<p>즉, 추출한 정보가 같다면 SQL문 자체는 다르더라도 동일한 SQL 문이다.</p>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-natural-조인"><a class="markdownIt-Anchor" href="#4-natural-조인"></a> <strong>4. NATURAL 조인</strong></h2>
+<h3 id="4-1-개념"><a class="markdownIt-Anchor" href="#4-1-개념"></a> 4-1. 개념</h3>
+<p>두개의 테이블에서 같은 이름을 가진 컬럼 간의 INNER 조인 집합 결과를 출력한다. SQL문 자체가 간소해지는 방법이다.</p>
+<br>
+<h3 id="4-2-natural-조인-문법"><a class="markdownIt-Anchor" href="#4-2-natural-조인-문법"></a> 4-2. NATURAL 조인 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TABLE_A</span><br><span class="line"><span class="keyword">NATURAL</span> <span class="keyword">JOIN</span>    <span class="comment">-- 자동으로 두 테이블이 동일하게 가지고 있는 컬럼을 기준으로 INNER 조인한다</span></span><br><span class="line">  TABLE_B</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>
+<p>NATURAL 조인은 INNER 조인의 또 다른 SQL 작성 방식이다.</p>
+<p>즉, 조인 컬럼을 명시하지 않아도 된다.</p>
+</li>
+</ul>
+<br>
+<h3 id="4-3-natural-조인-실습"><a class="markdownIt-Anchor" href="#4-3-natural-조인-실습"></a> 4-3. NATURAL 조인 실습</h3>
+<h4 id="4-3-0-실습-준비"><a class="markdownIt-Anchor" href="#4-3-0-실습-준비"></a> 4-3-0. 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> CATEGORIES</span><br><span class="line">(</span><br><span class="line">  CATEGORY_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  CATEGORY_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCTS</span><br><span class="line">(</span><br><span class="line">  PRODUCT_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  PRODUCT_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  CATEGORY_ID <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (CATEGORY_ID)</span><br><span class="line">  <span class="keyword">REFERENCES</span> CATEGORIES (CATEGORY_ID)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CATEGORIES</span><br><span class="line">(CATEGORY_NAME)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Smart Phone'</span>),</span><br><span class="line">  (<span class="string">'Laptop'</span>),</span><br><span class="line">  (<span class="string">'Tablet'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCTS</span><br><span class="line">(PRODUCT_NAME, CATEGORY_ID)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'iPhone'</span>, <span class="number">1</span>),</span><br><span class="line">  (<span class="string">'Samsung Galaxy'</span>, <span class="number">1</span>),</span><br><span class="line">  (<span class="string">'HP Elite'</span>, <span class="number">2</span>),</span><br><span class="line">  (<span class="string">'Lenovo Thinkpad'</span>, <span class="number">2</span>),</span><br><span class="line">  (<span class="string">'iPad'</span>, <span class="number">3</span>),</span><br><span class="line">  (<span class="string">'Kindle Fire'</span>, <span class="number">3</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORIES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201112113447690.png" alt="image-20201112113447690" style="zoom:80%;">
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCTS;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201112113548016.png" alt="image-20201112113548016" style="zoom:80%;">
+<br>
+<h4 id="4-3-1-natural-조인-실습"><a class="markdownIt-Anchor" href="#4-3-1-natural-조인-실습"></a> 4-3-1. NATURAL 조인 실습</h4>
+<p><strong>(1) 예제 데이터를 활용한 간단한 실습</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  * </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCTS A</span><br><span class="line"><span class="keyword">NATURAL</span> <span class="keyword">JOIN</span></span><br><span class="line">  CATEGORIES B;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201112114726576.png" alt="image-20201112114726576" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 대체 방법 1</span></span><br><span class="line"><span class="comment">-- INNER JOIN으로 실현</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  P.CATEGORY_ID,  P.PRODUCT_ID,</span><br><span class="line">  P.PRODUCT_NAME, C.CATEGORY_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCTS P</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  CATEGORIES C</span><br><span class="line"><span class="keyword">ON</span> P.CATEGORY_ID = C.CATEGORY_ID;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 대체 방법 2  (INNER JOIN 대체 명령어)</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  P.CATEGORY_ID,  P.PRODUCT_ID,</span><br><span class="line">  P.PRODUCT_NAME, C.CATEGORY_NAME</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCTS P,</span><br><span class="line">  CATEGORIES C</span><br><span class="line"><span class="keyword">WHERE</span> P.CATEGORY_ID = C.CATEGORY_ID;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<img src="/images/S-SQL-Join-2/image-20201112114726576.png" alt="image-20201112114726576" style="zoom:80%;">
+<br>
+<p><strong>(2) “dvdrental” 데이터를 활용한 실습</strong></p>
+<p><strong>&gt;&gt; 테이블 구성</strong></p>
+<img src="/images/S-SQL-Join-2/image-20201112135034156.png" alt="image-20201112135034156" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; 실습</strong></p>
+<p>두 테이블이 모두 “country_id”  컬럼이 존재한다.</p>
+<p>이 두 테이블에 대해서 NATURAL JOIN을 진행해보면:</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  CITY A</span><br><span class="line"><span class="keyword">NATURAL</span> <span class="keyword">JOIN</span></span><br><span class="line">  COUNTRY B;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Join-2/image-20201112135747118.png" alt="image-20201112135747118" style="zoom:80%;">
+<br>
+<p>기대와 다르게 출력 결과가 0건이다.</p>
+<br>
+<p>그 이유는:</p>
+<p>두 테이블 간에 동일한 이름으로 존재하는 컬럼이 COUNTRY_ID 외에 LAST_UPDATE 도 존재한다.  이런 경우 NATURAL JOIN 시에는 <strong>LAST_UPDATE 컬럼까지 INNER조인에 성공해야만</strong> 결과값이 나온다.  하지만 두 테이블의 LAST_UPDATE 값이 서로 다르므로 위 SQL문을 실행 후 조건에 만족하는 결과가 없다.</p>
+<br>
+<p>따라서 NATURAL 조인이 아닌 INNER 조인을 이용해야한다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  * </span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  CITY A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  COUNTRY B</span><br><span class="line"><span class="keyword">ON</span> A.COUNTRY_ID = B.COUNTRY_ID;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Join-2/image-20201112142508575.png" alt="image-20201112142508575"></p>
+<p>INNER 조인으로 ON절에 조인 컬럼을 명시하였고, 의도한 대로 데이터가 출력되었다.</p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- INNER JOIN 대체 명령어</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  * </span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  CITY A,</span><br><span class="line">  COUNTRY B</span><br><span class="line"><span class="keyword">WHERE</span> A.COUNTRY_ID = B.COUNTRY_ID;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<p>이러한 이유로 NATURAL 조인은 실무에 잘 사용되지 않는다.</p>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/11/12/S-SQL-Join-2/">https://hyemin-kim.github.io/2020/11/12/S-SQL-Join-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a><a class="post-meta__tags" href="/tags/Join/">Join</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/11/06/Bf13kR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/11/12/S-SQL-Join-1/"><img class="next-cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">SQL &gt;&gt; 조인 (1)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/11/12/S-SQL-Join-1/" title="SQL >> 조인 (1)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-12</div><div class="title">SQL >> 조인 (1)</div></div></a></div><div><a href="/2020/11/10/E-SQL-selecting-and-filtering/" title="【실습】 SQL >> 데이터 조회 및 필터링"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">【실습】 SQL >> 데이터 조회 및 필터링</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-2/" title="SQL >> 데이터 필터링 (2)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (2)</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-1/" title="SQL >> 데이터 필터링 (1)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (1)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '7f318357e1c8715d5120b92055a01047',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
