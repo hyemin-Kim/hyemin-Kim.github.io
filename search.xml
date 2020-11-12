@@ -53721,6 +53721,10 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <li><a href="#1-3-2-self-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">1-3-2. SELF 조인 실습</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#2-full-outer-%EC%A1%B0%EC%9D%B8"><strong>2. FULL OUTER 조인</strong></a>
+<ul>
 <li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
 <li><a href="#2-2-full-outer-%EC%A1%B0%EC%9D%B8-%EB%AC%B8%EB%B2%95">2-2. FULL OUTER 조인 문법</a></li>
 <li><a href="#2-3-full-outer-%EC%A1%B0%EC%9D%B8-%EC%8B%A4%EC%8A%B5">2-3. FULL OUTER 조인 실습</a>
@@ -53772,7 +53776,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> EMPLOYEE (</span><br><span class="line">    EMPLOTEE_ID,</span><br><span class="line">    FIRST_NAME,</span><br><span class="line">    LAST_NAME,</span><br><span class="line">    MANAGER_ID</span><br><span class="line">)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">'Windy'</span>, <span class="string">'Hays'</span>, <span class="literal">NULL</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">'Ava'</span>, <span class="string">'Christensen'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">'Hassan'</span>, <span class="string">'Conner'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">4</span>, <span class="string">'Anna'</span>, <span class="string">'Reeves'</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="number">5</span>, <span class="string">'Sau'</span>, <span class="string">'Norman'</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="number">6</span>, <span class="string">'Kelsie'</span>, <span class="string">'Hays'</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="number">7</span>, <span class="string">'Tory'</span>, <span class="string">'Goff'</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="number">8</span>, <span class="string">'Salley'</span>, <span class="string">'Lester'</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
 <br>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMPLOYEE</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/images/S-SQL-Join-2/image-20201111155046250.png" alt="image-20201111155046250"></p>
+<img src="/images/S-SQL-Join-2/image-20201111155046250.png" alt="image-20201111155046250" style="zoom:80%;">
 <br>
 <p><strong>&gt;&gt; 조직도</strong></p>
 <img src="/images/S-SQL-Join-2/image-20201111155421168.png" alt="image-20201111155421168" style="zoom: 67%;">
@@ -53817,7 +53821,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 <img src="/images/S-SQL-Join-2/image-20201111183444264.png" alt="image-20201111183444264" style="zoom:80%;">
 <br>
 <br>
-<p>##<strong>2. FULL OUTER 조인</strong></p>
+<h2 id="2-full-outer-조인"><a class="markdownIt-Anchor" href="#2-full-outer-조인"></a> <strong>2. FULL OUTER 조인</strong></h2>
 <h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
 <p>FULL OUTER 조인은 INNER, LEFT OUTER, RIGHT OUTER 조인 집합을 모두 출력하는 조인 방식이다.</p>
 <p>즉, 두 테이블간 출력가능한 모든 데이터를 포함한 집합을 출력한다.</p>
