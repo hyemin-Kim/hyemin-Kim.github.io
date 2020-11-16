@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL &gt;&gt; 집계 함수 (2) -- 고급 집계 함수 | Hyemin Kim</title><meta name="keywords" content="SQL,Aggregate"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="고급 집계 함수 -- GROUPING SET 절, ROLL UP 절, CUBE 절">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL &gt;&gt; 집계 함수 (2) -- 고급 집계 함수">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/11/17/S-SQL-Aggregate-2/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="고급 집계 함수 -- GROUPING SET 절, ROLL UP 절, CUBE 절">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png">
+<meta property="article:published_time" content="2020-11-16T23:46:08.000Z">
+<meta property="article:modified_time" content="2020-11-16T23:53:02.122Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Aggregate">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/11/17/S-SQL-Aggregate-2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-17 08:53:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">54</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">30</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">21</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#집계-함수-2-고급-집계-함수"><span class="toc-text"> 집계 함수 (2) – 고급 집계 함수</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-grouping-set-절"><span class="toc-text"> 1. GROUPING SET 절</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-0-학습-준비-데이터-생성"><span class="toc-text"> 1-0. 학습 준비 (데이터 생성)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-group-by-절-활용"><span class="toc-text"> 1-1. GROUP BY 절 활용</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2개-컬럼-group-by-절"><span class="toc-text"> (1) 2개 컬럼 GROUP BY 절</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1개-컬럼-group-by-절"><span class="toc-text"> (2) 1개 컬럼 GROUP BY 절</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-group-by-안하기"><span class="toc-text"> (3) GROUP BY 안하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-추출된-정보-합치기-union-all의-활용"><span class="toc-text"> (4) 추출된 정보 합치기 – UNION ALL의 활용</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-grouping-set-절-활용"><span class="toc-text"> 1-2. GROUPING SET 절 활용</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-용도"><span class="toc-text"> 1-2-1. 용도</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-grouping-set-절-문법"><span class="toc-text"> 1-2-2. GROUPING SET 절 문법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-grouping-set-절-실습"><span class="toc-text"> 1-2-3. GROUPING SET 절 실습</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-roll-up-절"><span class="toc-text"> 2. ROLL UP 절</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-용도"><span class="toc-text"> 2-1. 용도</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-rollup-절-문법"><span class="toc-text"> 2-2. ROLLUP 절 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-rollup-절-실습"><span class="toc-text"> 2-3. ROLLUP 절 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-group-by만-사용-roll-up-안함"><span class="toc-text"> (1) GROUP BY만 사용 (ROLL UP 안함)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-group-by-전체-roll-up"><span class="toc-text"> (2) GROUP BY + 전체 ROLL UP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-group-by-부분-roll-up"><span class="toc-text"> (3) GROUP BY + 부분 ROLL UP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-cube-절"><span class="toc-text"> 3. CUBE 절</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-용도"><span class="toc-text"> 3-1. 용도</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-cube-절-문법"><span class="toc-text"> 3-2. CUBE 절 문법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-전체-컬럼-cube-지정"><span class="toc-text"> (1) 전체 컬럼 CUBE 지정</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-부분-컬럼-cube-지정"><span class="toc-text"> (2) 부분 컬럼 CUBE 지정</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-cube-절-이해"><span class="toc-text"> (3) CUBE 절 이해</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-cube-절-실습"><span class="toc-text"> 3-3. CUBE 절 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-전체-컬럼-cube-지정-2"><span class="toc-text"> (1) 전체 컬럼 CUBE 지정</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-부분-컬럼-cube-지정-2"><span class="toc-text"> (2) 부분 컬럼 CUBE 지정</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">SQL &gt;&gt; 집계 함수 (2) -- 고급 집계 함수</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-11-16T23:46:08.000Z" title="Created 2020-11-17 08:46:08">2020-11-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-11-16T23:53:02.122Z" title="Updated 2020-11-17 08:53:02">2020-11-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/">【STUDY - SQL】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/SQL-3-Aggregate-Function/">SQL - 3. Aggregate Function</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="집계-함수-2-고급-집계-함수"><a class="markdownIt-Anchor" href="#집계-함수-2-고급-집계-함수"></a> 집계 함수 (2) – 고급 집계 함수</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-grouping-set-%EC%A0%88"><strong>1. GROUPING SET 절</strong></a>
+<ul>
+<li><a href="#1-0-%ED%95%99%EC%8A%B5-%EC%A4%80%EB%B9%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%83%9D%EC%84%B1">1-0. 학습 준비 (데이터 생성)</a></li>
+<li><a href="#1-1-group-by-%EC%A0%88-%ED%99%9C%EC%9A%A9">1-1. GROUP BY 절 활용</a>
+<ul>
+<li><a href="#1-2%EA%B0%9C-%EC%BB%AC%EB%9F%BC-group-by-%EC%A0%88">(1) 2개 컬럼 GROUP BY 절</a></li>
+<li><a href="#2-1%EA%B0%9C-%EC%BB%AC%EB%9F%BC-group-by-%EC%A0%88">(2) 1개 컬럼 GROUP BY 절</a></li>
+<li><a href="#3-group-by-%EC%95%88%ED%95%98%EA%B8%B0">(3) GROUP BY 안하기</a></li>
+<li><a href="#4-%EC%B6%94%EC%B6%9C%EB%90%9C-%EC%A0%95%EB%B3%B4-%ED%95%A9%EC%B9%98%EA%B8%B0-union-all%EC%9D%98-%ED%99%9C%EC%9A%A9">(4) 추출된 정보 합치기 – UNION ALL의 활용</a></li>
+</ul>
+</li>
+<li><a href="#1-2-grouping-set-%EC%A0%88-%ED%99%9C%EC%9A%A9">1-2. GROUPING SET 절 활용</a>
+<ul>
+<li><a href="#1-2-1-%EC%9A%A9%EB%8F%84">1-2-1. 용도</a></li>
+<li><a href="#1-2-2-grouping-set-%EC%A0%88-%EB%AC%B8%EB%B2%95">1-2-2. GROUPING SET 절 문법</a></li>
+<li><a href="#1-2-3-grouping-set-%EC%A0%88-%EC%8B%A4%EC%8A%B5">1-2-3. GROUPING SET 절 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-roll-up-%EC%A0%88"><strong>2. ROLL UP 절</strong></a>
+<ul>
+<li><a href="#2-1-%EC%9A%A9%EB%8F%84">2-1. 용도</a></li>
+<li><a href="#2-2-rollup-%EC%A0%88-%EB%AC%B8%EB%B2%95">2-2. ROLLUP 절 문법</a></li>
+<li><a href="#2-3-rollup-%EC%A0%88-%EC%8B%A4%EC%8A%B5">2-3. ROLLUP 절 실습</a>
+<ul>
+<li><a href="#1-group-by%EB%A7%8C-%EC%82%AC%EC%9A%A9-roll-up-%EC%95%88%ED%95%A8">(1) GROUP BY만 사용 (ROLL UP 안함)</a></li>
+<li><a href="#2-group-by-%EC%A0%84%EC%B2%B4-roll-up">(2) GROUP BY + 전체 ROLL UP</a></li>
+<li><a href="#3-group-by-%EB%B6%80%EB%B6%84-roll-up">(3) GROUP BY + 부분 ROLL UP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-cube-%EC%A0%88"><strong>3. CUBE 절</strong></a>
+<ul>
+<li><a href="#3-1-%EC%9A%A9%EB%8F%84">3-1. 용도</a></li>
+<li><a href="#3-2-cube-%EC%A0%88-%EB%AC%B8%EB%B2%95">3-2. CUBE 절 문법</a>
+<ul>
+<li><a href="#1-%EC%A0%84%EC%B2%B4-%EC%BB%AC%EB%9F%BC-cube-%EC%A7%80%EC%A0%95">(1) 전체 컬럼 CUBE 지정</a></li>
+<li><a href="#2-%EB%B6%80%EB%B6%84-%EC%BB%AC%EB%9F%BC-cube-%EC%A7%80%EC%A0%95">(2) 부분 컬럼 CUBE 지정</a></li>
+<li><a href="#3-cube-%EC%A0%88-%EC%9D%B4%ED%95%B4">(3) CUBE 절 이해</a></li>
+</ul>
+</li>
+<li><a href="#3-3-cube-%EC%A0%88-%EC%8B%A4%EC%8A%B5">3-3. CUBE 절 실습</a>
+<ul>
+<li><a href="#1-%EC%A0%84%EC%B2%B4-%EC%BB%AC%EB%9F%BC-cube-%EC%A7%80%EC%A0%95-2">(1) 전체 컬럼 CUBE 지정</a></li>
+<li><a href="#2-%EB%B6%80%EB%B6%84-%EC%BB%AC%EB%9F%BC-cube-%EC%A7%80%EC%A0%95-2">(2) 부분 컬럼 CUBE 지정</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-grouping-set-절"><a class="markdownIt-Anchor" href="#1-grouping-set-절"></a> <strong>1. GROUPING SET 절</strong></h2>
+<h3 id="1-0-학습-준비-데이터-생성"><a class="markdownIt-Anchor" href="#1-0-학습-준비-데이터-생성"></a> 1-0. 학습 준비 (데이터 생성)</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SALES</span><br><span class="line">(</span><br><span class="line">  BRAND <span class="built_in">VARCHAR</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">SEGMENT</span> <span class="built_in">VARCHAR</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  QUANTITY <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (BRAND, <span class="keyword">SEGMENT</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SALES (BRAND, <span class="keyword">SEGMENT</span>, QUANTITY)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'ABC'</span>, <span class="string">'Premium'</span>, <span class="number">100</span>),</span><br><span class="line">  (<span class="string">'ABC'</span>, <span class="string">'Basic'</span>, <span class="number">200</span>),</span><br><span class="line">  (<span class="string">'XYZ'</span>, <span class="string">'Premium'</span>, <span class="number">100</span>),</span><br><span class="line">  (<span class="string">'XYZ'</span>, <span class="string">'Basic'</span>, <span class="number">300</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113092929823.png" alt="image-20201113092929823" style="zoom:80%;">
+<br>
+<h3 id="1-1-group-by-절-활용"><a class="markdownIt-Anchor" href="#1-1-group-by-절-활용"></a> 1-1. GROUP BY 절 활용</h3>
+<h4 id="1-2개-컬럼-group-by-절"><a class="markdownIt-Anchor" href="#1-2개-컬럼-group-by-절"></a> (1) 2개 컬럼 GROUP BY 절</h4>
+<p><strong>[MISSION 1]</strong>  BRAND별, SEGMENT별 총 판패량 구하기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, </span><br><span class="line">  <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113093816617.png" alt="image-20201113093816617" style="zoom:80%;">
+<br>
+<h4 id="2-1개-컬럼-group-by-절"><a class="markdownIt-Anchor" href="#2-1개-컬럼-group-by-절"></a> (2) 1개 컬럼 GROUP BY 절</h4>
+<p><strong>[MISSION 2]</strong>  BRAND별 총 판매량 구하기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  BRAND;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Aggregate-2/image-20201113094753809.png" alt="image-20201113094753809"></p>
+<br>
+<p><strong>[MISSION 3]</strong>  SEGMENT별 총 판매량 구하기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Aggregate-2/image-20201113095022421.png" alt="image-20201113095022421"></p>
+<br>
+<h4 id="3-group-by-안하기"><a class="markdownIt-Anchor" href="#3-group-by-안하기"></a> (3) GROUP BY 안하기</h4>
+<p><strong>[MISSION 4]</strong>  판매량 전체 합계 구하기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Aggregate-2/image-20201113095401699.png" alt="image-20201113095401699"></p>
+<br>
+<h4 id="4-추출된-정보-합치기-union-all의-활용"><a class="markdownIt-Anchor" href="#4-추출된-정보-합치기-union-all의-활용"></a> (4) 추출된 정보 합치기 – UNION ALL의 활용</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>             <span class="comment">-- BRAND별, SEGMENT별 총 판패량</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> BRAND, <span class="keyword">SEGMENT</span></span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span>             <span class="comment">-- BRAND별 총 판패량</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> BRAND</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span>             <span class="comment">-- SEGMENT별 총 판패량</span></span><br><span class="line">  <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">SEGMENT</span></span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span>             <span class="comment">-- 전체 총 판패량</span></span><br><span class="line">  <span class="literal">NULL</span>,</span><br><span class="line">  <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES;</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>[주의]</strong>  각각의 UNION query는 같은 수의 columns를 가져야 한다. 따라서 각 부분의 SELECT 절에서 컬럼수가 부족하면 NULL로 채워야 함.</p>
+<img src="/images/S-SQL-Aggregate-2/image-20201113100352802.png" alt="image-20201113100352802" style="zoom:80%;">
+<br>
+<p><strong>이 방법의 단점:</strong></p>
+<ul>
+<li>동일한 테이블을 4번씩이나 읽고 있다. --&gt; 성능 저하 가능성이 존재</li>
+<li>SQL 문이 너무 길어진다. --&gt;  복잡하다 --&gt; 유지보수가 용이하지 않다</li>
+</ul>
+<br>
+<p><strong>&gt;&gt;</strong> 이런 불편함을 줄이기 위해서 GROUPING SET 절을 활용한다.</p>
+<br>
+<h3 id="1-2-grouping-set-절-활용"><a class="markdownIt-Anchor" href="#1-2-grouping-set-절-활용"></a> 1-2. GROUPING SET 절 활용</h3>
+<h4 id="1-2-1-용도"><a class="markdownIt-Anchor" href="#1-2-1-용도"></a> 1-2-1. 용도</h4>
+<p>GROUPING SET 절을 사용하여 여러 개의 UNION ALL을 이용한 SQL과 같은 결과를 도출할 수 있다.</p>
+<br>
+<h4 id="1-2-2-grouping-set-절-문법"><a class="markdownIt-Anchor" href="#1-2-2-grouping-set-절-문법"></a> 1-2-2. GROUPING SET 절 문법</h4>
+<p>GROUPING SET 절을 이용하면 한번에 다양한 기준의 컬럼 조합으로 집계를 구할 수 있다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  C1,</span><br><span class="line">  C2,</span><br><span class="line">  집계함수(C3)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TABLE_NAME</span><br><span class="line">GROUP_BY</span><br><span class="line"><span class="keyword">GROUPING</span> <span class="keyword">SETS</span></span><br><span class="line">(</span><br><span class="line">  (C1, C2),</span><br><span class="line">  (C1),</span><br><span class="line">  (C2),</span><br><span class="line">  ()</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="1-2-3-grouping-set-절-실습"><a class="markdownIt-Anchor" href="#1-2-3-grouping-set-절-실습"></a> 1-2-3. GROUPING SET 절 실습</h4>
+<p><strong>&gt;&gt; GROUPING SET 절의 활용</strong></p>
+<p>GROUPING SET 절을 이용하여 BRAND, SEGMENT 기준, BRAND 기준, SEGMENT 기준, 전체기준으로 QUANTITY 합계의 값을 구할 수 있다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113092929823.png" alt="image-20201113092929823" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line"><span class="keyword">GROUPING</span> <span class="keyword">SETS</span></span><br><span class="line">(</span><br><span class="line">  (BRAND, <span class="keyword">SEGMENT</span>),</span><br><span class="line">  (BRAND),</span><br><span class="line">  (<span class="keyword">SEGMENT</span>),</span><br><span class="line">  ()</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113104247913.png" alt="image-20201113104247913" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; GROUPING 함수의 활용</strong></p>
+<p>GROUPING 함수를 이용하여 해당 컬럼이 GROUPING 시 사용되었으면 0, 그렇지 않으면 1을 리턴한다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113092929823.png" alt="image-20201113092929823" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  <span class="keyword">GROUPING</span>(BRAND) <span class="keyword">AS</span> GROUPING_BRAND,</span><br><span class="line">  <span class="keyword">GROUPING</span>(<span class="keyword">SEGMENT</span>) <span class="keyword">AS</span> GROUPING_SEGMENT,</span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line"><span class="keyword">GROUPING</span> <span class="keyword">SETS</span></span><br><span class="line">(</span><br><span class="line">  (BRAND, <span class="keyword">SEGMENT</span>),</span><br><span class="line">  (BRAND),</span><br><span class="line">  (<span class="keyword">SEGMENT</span>),</span><br><span class="line">  ()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113111058889.png" alt="image-20201113111058889" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">GROUPING</span>(BRAND) = <span class="number">0</span> <span class="keyword">AND</span> <span class="keyword">GROUPING</span>(<span class="keyword">SEGMENT</span>) = <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'브랜드별 + 등급별'</span></span><br><span class="line">       <span class="keyword">WHEN</span> <span class="keyword">GROUPING</span>(BRAND) = <span class="number">0</span> <span class="keyword">AND</span> <span class="keyword">GROUPING</span>(<span class="keyword">SEGMENT</span>) = <span class="number">1</span> <span class="keyword">THEN</span> <span class="string">'브랜드별'</span></span><br><span class="line">       <span class="keyword">WHEN</span> <span class="keyword">GROUPING</span>(BRAND) = <span class="number">1</span> <span class="keyword">AND</span> <span class="keyword">GROUPING</span>(<span class="keyword">SEGMENT</span>) = <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'등급별'</span></span><br><span class="line">       <span class="keyword">WHEN</span> <span class="keyword">GROUPING</span>(BRAND) = <span class="number">1</span> <span class="keyword">AND</span> <span class="keyword">GROUPING</span>(<span class="keyword">SEGMENT</span>) = <span class="number">1</span> <span class="keyword">THEN</span> <span class="string">'전체합계'</span></span><br><span class="line">       <span class="keyword">ELSE</span> <span class="string">''</span></span><br><span class="line">       <span class="keyword">END</span> <span class="keyword">AS</span> <span class="string">"집계기준"</span>,</span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line"><span class="keyword">GROUPING</span> <span class="keyword">SETS</span></span><br><span class="line">(</span><br><span class="line">  (BRAND, <span class="keyword">SEGMENT</span>),</span><br><span class="line">  (BRAND),</span><br><span class="line">  (<span class="keyword">SEGMENT</span>),</span><br><span class="line">  ()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> BRAND, <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113112514952.png" alt="image-20201113112514952" style="zoom:80%;">
+<br>
+<br>
+<h2 id="2-roll-up-절"><a class="markdownIt-Anchor" href="#2-roll-up-절"></a> <strong>2. ROLL UP 절</strong></h2>
+<h3 id="2-1-용도"><a class="markdownIt-Anchor" href="#2-1-용도"></a> 2-1. 용도</h3>
+<p>지정된 GROUPING 컬럼의 소계를 생성하는데 사용된다. 간단한 문법으로 다양한 소계를 출력할 수 있다.</p>
+<br>
+<h3 id="2-2-rollup-절-문법"><a class="markdownIt-Anchor" href="#2-2-rollup-절-문법"></a> 2-2. ROLLUP 절 문법</h3>
+<p>ROLLUP절은 GROUP BY 절과 함계 사용된다. ROLLUP 할 컬럼은 무조건 SELECT 절에 포함되어 있어야 한다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 전체 ROLL UP</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  C1, C2, C3,</span><br><span class="line">  집계함수(C4)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TABLE_NAME</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="keyword">ROLLUP</span>(C1, C2, C3);  <span class="comment">-- 소계를 생성할 컬럼을 지정한다.</span></span><br><span class="line">                       <span class="comment">-- 컬럼 지정 순서에 따라 결과값이 달라질 수 있다. </span></span><br><span class="line">                       <span class="comment">-- (제일 앞에 놓인 것에 소계를 구함)</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 부분 ROLL UP</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  C1, C2, C3,</span><br><span class="line">  집계함수(C4)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TABLE_NAME</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> C1</span><br><span class="line">  <span class="keyword">ROLLUP</span>(C2, C3)       <span class="comment">-- 특정 컬럼을 제외한 부분적인 ROLLUP도 가능하다.</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="2-3-rollup-절-실습"><a class="markdownIt-Anchor" href="#2-3-rollup-절-실습"></a> 2-3. ROLLUP 절 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113092929823.png" alt="image-20201113092929823" style="zoom:80%;">
+<br>
+<h4 id="1-group-by만-사용-roll-up-안함"><a class="markdownIt-Anchor" href="#1-group-by만-사용-roll-up-안함"></a> (1) GROUP BY만 사용 (ROLL UP 안함)</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- BRAND, SEGMENT 컬럼 기준으로 GROUP BY 한다.</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, <span class="keyword">SEGMENT</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201116101725139.png" alt="image-20201116101725139" style="zoom:80%;">
+<br>
+<h4 id="2-group-by-전체-roll-up"><a class="markdownIt-Anchor" href="#2-group-by-전체-roll-up"></a> (2) GROUP BY + 전체 ROLL UP</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- BRAND, SEGMENT 컬럼 기준으로 ROLL UP 한다.</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="keyword">ROLLUP</span> (BRAND, <span class="keyword">SEGMENT</span>)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201116094755070.png" alt="image-20201116094755070" style="zoom:80%;">
+<br>
+<ul>
+<li>전체 ROLLUP 결과:
+<ul>
+<li>먼저 <strong>GROUP BY (BRAND, SEGMENT)의 결과를 기본적으로 출력</strong>된다 (BRAND, SEGMENT 컬럼을 기준으로 그룹핑한 후 구한 합계).</li>
+<li>추가적으로 "GROUP BY + ROLL UP 절의 <strong>첫번째 컬럼(BRAND)을 기준</strong>으로 그룹핑한 후의 <strong>합계</strong>"와</li>
+<li>"그룹핑 안했을 때의 <strong>전체 합계"도 함께 출력</strong>된다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="3-group-by-부분-roll-up"><a class="markdownIt-Anchor" href="#3-group-by-부분-roll-up"></a> (3) GROUP BY + 부분 ROLL UP</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- SEGMENT 컬럼 기준으로 GROUP BY 한다 + BRAND 컬럼 기준으로 부분 ROLL UP 한다</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">ROLLUP</span> (BRAND)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="keyword">SEGMENT</span>, BRAND</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201116105618971.png" alt="image-20201116105618971" style="zoom:80%;">
+<br>
+<ul>
+<li>
+<p>부분 ROLLUP 결과:</p>
+<ul>
+<li>먼저 <strong>GROUP BY (SEGMENT, BRAND)의 결과를 기본적으로 출력</strong>된다 (BRAND, SEGMENT 컬럼을 기준으로 그룹핑한 후 구한 합계).</li>
+<li>추가적으로 "GROUP BY + ROLL UP 절의 <strong>첫번째 컬럼(SEGMENT)을 기준</strong>으로 그룹핑한 후의 <strong>합계"도 함계 출력</strong> 된다.</li>
+<li>하지만 전체 ROLL UP 과 달리, <strong>부분 ROLL UP 은</strong> "그룹핑 안했을 때의 <strong>전체 합계"를 구하지 않는다</strong>.</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-cube-절"><a class="markdownIt-Anchor" href="#3-cube-절"></a> <strong>3. CUBE 절</strong></h2>
+<h3 id="3-1-용도"><a class="markdownIt-Anchor" href="#3-1-용도"></a> 3-1. 용도</h3>
+<p>지정된 GROUPING 컬럼의 다차원 소계를 생성하는데 사용된다. 간단한 문법으로 다차원 소계를 출력할 수 있다.</p>
+<br>
+<h3 id="3-2-cube-절-문법"><a class="markdownIt-Anchor" href="#3-2-cube-절-문법"></a> 3-2. CUBE 절 문법</h3>
+<h4 id="1-전체-컬럼-cube-지정"><a class="markdownIt-Anchor" href="#1-전체-컬럼-cube-지정"></a> (1) 전체 컬럼 CUBE 지정</h4>
+<p>지정한 그룹의 <strong>모든 경우의 수</strong> 에 대한 소계와 총계를 구한다</p>
+ <figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  C1, C2, C3,</span><br><span class="line">  집계함수(C4)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  TABLE_NAME</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="keyword">CUBE</span> (C1, C2, C3);</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="2-부분-컬럼-cube-지정"><a class="markdownIt-Anchor" href="#2-부분-컬럼-cube-지정"></a> (2) 부분 컬럼 CUBE 지정</h4>
+<p>특정 컬럼만 분리하여 CUBE 지정을 할수 있다.</p>
+<p>이런 경우에 "GROUP BY 별 합계"와 "GROUP BY + CUBE 절의 첫번째 컬럼별 합계’'만 구한다.</p>
+<p>뒤에 쓴 컬럼이랑 전체 합계는 구하지 않는다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  C1, C2, C3,</span><br><span class="line">  집계함수(C4)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TABLE_NAME</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> C1,</span><br><span class="line">  <span class="keyword">CUBE</span> (C2, C3);</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="3-cube-절-이해"><a class="markdownIt-Anchor" href="#3-cube-절-이해"></a> (3) CUBE 절 이해</h4>
+<p>CUBE 절 내 인자의 개수가 N개이면 2의 N승의 소계가 발생하게 된다.</p>
+<br>
+<p>CUBE (C1, C2, C3)를 GROUPING SETS으로 표현하면 총 9개의 소계가 발생한다.</p>
+<img src="/images/S-SQL-Aggregate-2/image-20201116140935710.png" alt="image-20201116140935710" style="zoom:50%;">
+<br>
+<h3 id="3-3-cube-절-실습"><a class="markdownIt-Anchor" href="#3-3-cube-절-실습"></a> 3-3. CUBE 절 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201113092929823.png" alt="image-20201113092929823" style="zoom:80%;">
+<br>
+<h4 id="1-전체-컬럼-cube-지정-2"><a class="markdownIt-Anchor" href="#1-전체-컬럼-cube-지정-2"></a> (1) 전체 컬럼 CUBE 지정</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- BRAND, SEGMENT 컬럼 기준으로 CUBE 한다.</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND, </span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span> SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="keyword">CUBE</span> (BRAND, <span class="keyword">SEGMENT</span>)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, <span class="keyword">SEGMENT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<img src="/images/S-SQL-Aggregate-2/image-20201116142724305.png" alt="image-20201116142724305" style="zoom:80%;">
+<br>
+<ul>
+<li>전체 컬럼 CUBE 결과:
+<ul>
+<li>GROUP BY (BRAND, SEGMENT) 절 합계</li>
+<li>BRAND 별 합계</li>
+<li>SEGMENT 별 합계</li>
+<li>전체 합계</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>&gt;&gt;</strong> 인자가 2개 이므로 총 4개의 경우의 수가 합계로 출력된다</p>
+<br>
+<h4 id="2-부분-컬럼-cube-지정-2"><a class="markdownIt-Anchor" href="#2-부분-컬럼-cube-지정-2"></a> (2) 부분 컬럼 CUBE 지정</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- BRAND 컬럼 기준으로 GROUP BY 한다 + SEGMENT 컬럼 기준으로 부분 CUBE 한다</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  BRAND,</span><br><span class="line">  <span class="keyword">SEGMENT</span>,</span><br><span class="line">  <span class="keyword">SUM</span>(QUANTITY)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> BRAND,</span><br><span class="line">  <span class="keyword">CUBE</span> (<span class="keyword">SEGMENT</span>)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  BRAND, <span class="keyword">SEGMENT</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Aggregate-2/image-20201116144806788.png" alt="image-20201116144806788" style="zoom:80%;">
+ <br>
+<ul>
+<li>부분 컬럼 CUBE 결과:
+<ul>
+<li>GROUP BY (BRAND, SEGMENT) 절 합계</li>
+<li>BRAND 별 합계  (GROUP BY + CUBE 절의 첫번째 컬럼)</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>&gt;&gt;</strong>  * SEGMENT 컬럼 기준으로 소계 하지 않는다.</p>
+<p>​          * 전체 테이블 기준으로 소계하지 않는다.</p>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/11/17/S-SQL-Aggregate-2/">https://hyemin-kim.github.io/2020/11/17/S-SQL-Aggregate-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a><a class="post-meta__tags" href="/tags/Aggregate/">Aggregate</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/11/06/Bf13kR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/11/12/S-SQL-Aggregate-1/"><img class="next-cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">SQL &gt;&gt; 집계 함수 (1) -- 기초 집계 함수</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/11/12/S-SQL-Aggregate-1/" title="SQL >> 집계 함수 (1) -- 기초 집계 함수"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-12</div><div class="title">SQL >> 집계 함수 (1) -- 기초 집계 함수</div></div></a></div><div><a href="/2020/11/10/E-SQL-selecting-and-filtering/" title="【실습】 SQL >> 데이터 조회 및 필터링"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">【실습】 SQL >> 데이터 조회 및 필터링</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-2/" title="SQL >> 데이터 필터링 (2)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (2)</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-1/" title="SQL >> 데이터 필터링 (1)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (1)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '356649175e95e9d5f098e8e3106c6d65',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
