@@ -54409,4 +54409,317 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
         <tag>Aggregate</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SQL &gt;&gt; 분석 함수 (1) -- 평균 함수, 순위 함수</title>
+    <url>/2020/11/18/S-SQL-Analytic-Function-1/</url>
+    <content><![CDATA[<h1 id="분석-함수-1-평균-함수-순위-함수"><a class="markdownIt-Anchor" href="#분석-함수-1-평균-함수-순위-함수"></a> 분석 함수 (1) – 평균 함수, 순위 함수</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#0-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98%EB%9E%80"><strong>0. 분석 함수란?</strong></a>
+<ul>
+<li><a href="#0-1-%EA%B0%9C%EB%85%90">0-1. 개념</a></li>
+<li><a href="#0-2-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">0-2. 분석 함수 실습 준비</a></li>
+<li><a href="#0-3-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98-%EB%AC%B8%EB%B2%95">0-3. 분석 함수 문법</a></li>
+<li><a href="#0-4-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98-%EA%B2%B0%EA%B3%BC-%EC%98%88%EC%8B%9C">0-4. 분석 함수 결과 예시</a></li>
+</ul>
+</li>
+<li><a href="#1-avg-%ED%95%A8%EC%88%98"><strong>1. AVG 함수</strong></a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-avg-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">1-2. AVG 함수 실습</a>
+<ul>
+<li><a href="#1-%EC%A0%84%EC%B2%B4-%ED%8F%89%EA%B7%A0-%EA%B0%80%EA%B2%A9price-%EA%B5%AC%ED%95%98%EA%B8%B0">(1) 전체  평균 가격(PRICE) 구하기</a></li>
+<li><a href="#2-%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0-%EA%B0%80%EA%B2%A9price-%EA%B5%AC%ED%95%98%EA%B8%B0">(2) 그룹별 평균 가격(PRICE) 구하기</a></li>
+<li><a href="#3-%EA%B7%B8%EB%A3%B9%EB%B3%84-%EB%88%84%EC%A0%81-%ED%8F%89%EA%B7%A0-%EA%B0%80%EA%B2%A9price-%EA%B5%AC%ED%95%98%EA%B8%B0">(3) 그룹별 누적 평균 가격(PRICE) 구하기</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-row_number-rank-dense_rank-%ED%95%A8%EC%88%98"><strong>2. ROW_NUMBER, RANK, DENSE_RANK 함수</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1.  개념</a></li>
+<li><a href="#2-2-%EC%88%9C%EC%9C%84-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2. 순위 함수 실습</a>
+<ul>
+<li><a href="#2-2-1-row_number-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2-1. ROW_NUMBER 함수 실습</a></li>
+<li><a href="#2-2-2-rank-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2-2. RANK 함수 실습</a></li>
+<li><a href="#2-2-3-dense_rank-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2-3. DENSE_RANK 함수 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="0-분석-함수란"><a class="markdownIt-Anchor" href="#0-분석-함수란"></a> <strong>0. 분석 함수란?</strong></h2>
+<h3 id="0-1-개념"><a class="markdownIt-Anchor" href="#0-1-개념"></a> 0-1. 개념</h3>
+<p>분석 함수는 특정 집합 내에서 결과 건수의 변화없이 해당 집합안에서 합계 및 카운트 등을 계산할 수 있는 함수이다.</p>
+<br>
+<h3 id="0-2-분석-함수-실습-준비"><a class="markdownIt-Anchor" href="#0-2-분석-함수-실습-준비"></a> 0-2. 분석 함수 실습 준비</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCT_GROUP (</span><br><span class="line">  <span class="keyword">GROUP_ID</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  GROUP_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCT (</span><br><span class="line">  PRODUCT_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  PRODUCT_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRICE <span class="built_in">DECIMAL</span> (<span class="number">11</span>, <span class="number">2</span>),   <span class="comment">-- DECIMAL (전체 자릿수, 소수점 자릿수)</span></span><br><span class="line">  <span class="keyword">GROUP_ID</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="keyword">GROUP_ID</span>)</span><br><span class="line">  <span class="keyword">REFERENCES</span> PRODUCT_GROUP (<span class="keyword">GROUP_ID</span>)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+ <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCT_GROUP (GROUP_NAME)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Smartphone'</span>),</span><br><span class="line">  (<span class="string">'Laptop'</span>),</span><br><span class="line">  (<span class="string">'Tablet'</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCT (PRODUCT_NAME, <span class="keyword">GROUP_ID</span>, PRICE)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Microsoft Lumia'</span>, <span class="number">1</span>, <span class="number">200</span>),</span><br><span class="line">  (<span class="string">'HTC One'</span>, <span class="number">1</span>, <span class="number">400</span>),</span><br><span class="line">  (<span class="string">'Nexus'</span>, <span class="number">1</span>, <span class="number">500</span>),</span><br><span class="line">  (<span class="string">'iPhone'</span>, <span class="number">1</span>, <span class="number">900</span>),</span><br><span class="line">  (<span class="string">'HP Elite'</span>, <span class="number">2</span>, <span class="number">1200</span>),</span><br><span class="line">  (<span class="string">'Lenovo Thinkpad'</span>, <span class="number">2</span>, <span class="number">700</span>),</span><br><span class="line">  (<span class="string">'Sony VAIO'</span>, <span class="number">2</span>, <span class="number">700</span>),</span><br><span class="line">  (<span class="string">'Dell Vostro'</span>, <span class="number">2</span>, <span class="number">800</span>),</span><br><span class="line">  (<span class="string">'iPad'</span>, <span class="number">3</span>, <span class="number">700</span>),</span><br><span class="line">  (<span class="string">'Kindle Fire'</span>, <span class="number">3</span>, <span class="number">150</span>),</span><br><span class="line">  (<span class="string">'Samsung Galaxy Tab'</span>, <span class="number">3</span>, <span class="number">200</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<h3 id="0-3-분석-함수-문법"><a class="markdownIt-Anchor" href="#0-3-분석-함수-문법"></a> 0-3. 분석 함수 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  C1,</span><br><span class="line">  분석함수(C2, C3, ...) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> C4 <span class="keyword">ORDER</span> <span class="keyword">BY</span> C5)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  TABLE_NAME;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><strong>분석함수(C2, C3,…) :</strong> 사용하고자 하는 분석함수와 적용할 대상 컬럼을 지정</li>
+<li><strong>PARTITION BY :</strong> 분석 함수를 적용 시 기준이 되는 컬럼을 지정 (즉, 그룹별로 값을 구할 때 그룹핑의 기준 컬럼)</li>
+<li><strong>ORDER BY :</strong> 정렬 컬럼을 지정</li>
+</ul>
+<br>
+<h3 id="0-4-분석-함수-결과-예시"><a class="markdownIt-Anchor" href="#0-4-분석-함수-결과-예시"></a> 0-4. 분석 함수 결과 예시</h3>
+<p>집계 함수 vs 분석 함수:</p>
+<ul>
+<li>
+<p>집계 함수는 집계의 결과만 출력한다</p>
+</li>
+<li>
+<p>분석 함수는 집계의 결과 및 테이블의 내용을 함계 출력한다.</p>
+<p>–&gt; 이게 바로 분석 함수의 역할이다.</p>
+</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 집계 함수</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Analytic-Function-1/image-20201117101439406.png" alt="image-20201117101439406"></p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 분석 함수</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">COUNT</span>(*) <span class="keyword">OVER</span>(),  <span class="comment">-- 집계 결과 </span></span><br><span class="line">  A.*               <span class="comment">-- 원래 집합</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117101622478.png" alt="image-20201117101622478" style="zoom:80%;">
+<br>
+<br>
+<h2 id="1-avg-함수"><a class="markdownIt-Anchor" href="#1-avg-함수"></a> <strong>1. AVG 함수</strong></h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>AVG 함수는 특정 집합 내에서 결과 건수의 변화 없이 해당 집합안에서 <strong>특정 컬럼의 평균을 구하는 함수</strong>이다.</p>
+<br>
+<h3 id="1-2-avg-함수-실습"><a class="markdownIt-Anchor" href="#1-2-avg-함수-실습"></a> 1-2. AVG 함수 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<h4 id="1-전체-평균-가격price-구하기"><a class="markdownIt-Anchor" href="#1-전체-평균-가격price-구하기"></a> (1) 전체  평균 가격(PRICE) 구하기</h4>
+<p><strong>&gt;&gt; 집계함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG: 집계의 결과만 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 집계 함수(AVG): 집계의 결과만 출력</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">AVG</span>(PRICE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<p><img src="/images/S-SQL-Analytic-Function-1/image-20201117130450587.png" alt="image-20201117130450587"></p>
+<br>
+<p><strong>&gt;&gt; 분석함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG ( )  OVER ( ) : 결과 집합을 그대로 출력하면서 집계 결과도 함계 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 분석 함수</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  PRODUCT_NAME,</span><br><span class="line">  PRICE,</span><br><span class="line">  <span class="keyword">AVG</span>(PRICE) <span class="keyword">OVER</span>()</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117133842813.png" alt="image-20201117133842813" style="zoom:80%;">
+<br>
+</li>
+</ul>
+<h4 id="2-그룹별-평균-가격price-구하기"><a class="markdownIt-Anchor" href="#2-그룹별-평균-가격price-구하기"></a> (2) 그룹별 평균 가격(PRICE) 구하기</h4>
+<p><strong>&gt;&gt; 집계함수 사용</strong></p>
+<ul>
+<li>
+<p>GROUP BY + AVG:  집계의 결과만 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 집계 함수: GROUP BY + AVG</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">B.GROUP_NAME,</span><br><span class="line"><span class="keyword">AVG</span>(A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span> PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> (A.GROUP_ID = B.GROUP_ID)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">B.GROUP_NAME;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117131044658.png" alt="image-20201117131044658" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; 분석함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG (C1)  OVER ( PARTITION BY C2 ) : 결과 집합을 그대로 출력하면서 집계 결과도 함계 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 분석 함수</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">A.PRODUCT_NAME,</span><br><span class="line">A.PRICE, </span><br><span class="line">B.GROUP_NAME,</span><br><span class="line"><span class="keyword">AVG</span>(A.PRICE) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117132959087.png" alt="image-20201117132959087" style="zoom:80%;">
+<br>
+<h4 id="3-그룹별-누적-평균-가격price-구하기"><a class="markdownIt-Anchor" href="#3-그룹별-누적-평균-가격price-구하기"></a> (3) 그룹별 누적 평균 가격(PRICE) 구하기</h4>
+<p><strong>&gt;&gt; 분석함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG (C1)  OVER ( PARTITION BY C2  ORDER BY C3 )</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  <span class="keyword">AVG</span>(A.PRICE) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117134939361.png" alt="image-20201117134939361" style="zoom:80%;">
+</li>
+</ul>
+<br>
+<br>
+<h2 id="2-row_number-rank-dense_rank-함수"><a class="markdownIt-Anchor" href="#2-row_number-rank-dense_rank-함수"></a> <strong>2. ROW_NUMBER, RANK, DENSE_RANK 함수</strong></h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1.  개념</h3>
+<p>ROW_NUMBER, RANK, DENSE_RANK 함수는 모두 특정 집합 내에서 결과 건수의 변화 없이 해당 집합안에서 <strong>특정 컬럼의 순위를 구하는 함수</strong>이다.</p>
+<ul>
+<li>
+<p><strong>ROW_NUMBER:</strong> 같은 순위가 있어도 무조건 순차적으로 순으로 순위를 매긴다. (1, 2, 3, 4, 5 …)</p>
+</li>
+<li>
+<p><strong>RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위를 건너뛰다. (1, 1, 3, 4, 5 …)</p>
+</li>
+<li>
+<p><strong>DENSE_RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위를 건너뛰지 않는다. (1, 1, 2, 3, 4 …)</p>
+<br>
+</li>
+</ul>
+<h3 id="2-2-순위-함수-실습"><a class="markdownIt-Anchor" href="#2-2-순위-함수-실습"></a> 2-2. 순위 함수 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<h4 id="2-2-1-row_number-함수-실습"><a class="markdownIt-Anchor" href="#2-2-1-row_number-함수-실습"></a> 2-2-1. ROW_NUMBER 함수 실습</h4>
+<p><strong>ROW_NUMBER:</strong> 같은 순위가 있어도 무조건 순차적으로 순으로 순위를 매긴다. (1, 2, 3, 4, 5…)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  ROW_NUMBER() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117142626970.png" alt="image-20201117142626970" style="zoom:80%;">
+<br>
+<ul>
+<li>Laptop 에서 가격순으로 정렬했을 때 "Sony VAIO"와 "Lenovo Thinkpad"의 가격이 동일해도 (즉, 가격 순위 같아도)  순차적으로 순번을 부여한다</li>
+</ul>
+<br>
+<h4 id="2-2-2-rank-함수-실습"><a class="markdownIt-Anchor" href="#2-2-2-rank-함수-실습"></a> 2-2-2. RANK 함수 실습</h4>
+<p><strong>RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위는 건너뛰다. (1, 1, 3, 4, 5 …)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  <span class="keyword">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117150134038.png" alt="image-20201117150134038" style="zoom:80%;">
+<br>
+<h4 id="2-2-3-dense_rank-함수-실습"><a class="markdownIt-Anchor" href="#2-2-3-dense_rank-함수-실습"></a> 2-2-3. DENSE_RANK 함수 실습</h4>
+<p><strong>DENSE_RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위를 건너뛰지 않는다. (1, 1, 2, 3, 4 …)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  PRODUCT_NAME,</span><br><span class="line">  GROUP_NAME,</span><br><span class="line">  PRICE,</span><br><span class="line">  <span class="keyword">DENSE_RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> PRICE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117151955026.png" alt="image-20201117151955026" style="zoom:80%;">
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【STUDY - SQL】</category>
+        <category>SQL - 4. Analytic Function</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>Analytic Function</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL &gt;&gt; 분석 함수 (2)</title>
+    <url>/2020/11/18/S-SQL-Analytic-Function-2/</url>
+    <content><![CDATA[<h1 id="분석-함수-2"><a class="markdownIt-Anchor" href="#분석-함수-2"></a> 분석 함수 (2)</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-first_value-last_value-%ED%95%A8%EC%88%98"><strong>1. FIRST_VALUE, LAST_VALUE 함수</strong></a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-first_name-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">1-2. FIRST_NAME 함수 실습</a></li>
+<li><a href="#1-3-last_value-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">1-3. LAST_VALUE 함수 실습</a></li>
+</ul>
+</li>
+<li><a href="#2-lag-lead-%ED%95%A8%EC%88%98"><strong>2. LAG, LEAD 함수</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
+<li><a href="#2-2-lag-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5-%EC%9D%B4%EC%A0%84-%ED%96%89%EC%9D%98-%EA%B0%92%EC%9D%84-%EC%B0%BE%EB%8A%94%EB%8B%A4">2-2. LAG 함수 실습 – 이전 행의 값을 찾는다</a></li>
+<li><a href="#2-3-lead-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5-%EB%8B%A4%EC%9D%8C-%ED%96%89%EC%9D%98-%EA%B0%92%EC%9D%84-%EC%B0%BE%EB%8A%94%EB%8B%A4">2-3. LEAD 함수 실습 – 다음 행의 값을 찾는다</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-first_value-last_value-함수"><a class="markdownIt-Anchor" href="#1-first_value-last_value-함수"></a> <strong>1. FIRST_VALUE, LAST_VALUE 함수</strong></h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>FIRST_VALUE, LAST_VALUE 함수는 특정 집합 내에서 결과 건수의 변화 없이 해당 집합안에서 <strong>특정 컬럼의 첫번째 값 혹은 마지막 값을 구하는 함수</strong>이다.</p>
+<br>
+<h3 id="1-2-first_name-함수-실습"><a class="markdownIt-Anchor" href="#1-2-first_name-함수-실습"></a> 1-2. FIRST_NAME 함수 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; MISSION:</strong> GROUP_NAME 기준 PRICE가 가장 작은 값을 출력한다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  <span class="keyword">FIRST_VALUE</span> (A.PRICE) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line">    <span class="keyword">AS</span> LOWEST_PRICE_PER_GROUP</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117160221397.png" alt="image-20201117160221397" style="zoom:80%;">
+<br>
+<h3 id="1-3-last_value-함수-실습"><a class="markdownIt-Anchor" href="#1-3-last_value-함수-실습"></a> 1-3. LAST_VALUE 함수 실습</h3>
+<p>LAST_VALUE 함수 사용 시 추가적으로 LAST_VALUE를 선택하는 범위를 지정해줘야 함.</p>
+<br>
+<p><strong>&gt;&gt; MISSION:</strong> GROUP_NAME 기준 PRICE가 가장 큰 값을 출력한다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  <span class="keyword">LAST_VALUE</span> (A.PRICE) <span class="keyword">OVER</span> </span><br><span class="line">    (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE</span><br><span class="line">     <span class="keyword">RANGE</span> <span class="keyword">BETWEEN</span> <span class="keyword">UNBOUNDED</span> <span class="keyword">PRECEDING</span>   <span class="comment">-- PARTITION의 첫번째 ROW부터</span></span><br><span class="line">     <span class="keyword">AND</span> <span class="keyword">UNBOUNDED</span> <span class="keyword">FOLLOWING</span>)            <span class="comment">-- PARTITION의 마지막 ROW까지</span></span><br><span class="line">     <span class="keyword">AS</span> HIGHEST_PRICE_PER_GROUP</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117162007699.png" alt="image-20201117162007699" style="zoom:80%;">
+<br>
+<ul>
+<li>LAST_VALUE 함수에는 "RANGE BETWEEN ENBOUNDED PRECEDING AND <strong>UNBOUNDED FOLLOWING</strong>"를 추가함</li>
+<li>DEFAULT가 "RANGE BETWEEN ENBOUNDED PRECEDING AND <strong>CURRENT ROW</strong>"이기 때문이다</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- DEFAULT 경우:</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  <span class="keyword">LAST_VALUE</span> (A.PRICE) <span class="keyword">OVER</span> </span><br><span class="line">    (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)            </span><br><span class="line">    <span class="keyword">AS</span> HIGHEST_PRICE_PER_GROUP</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117162655768.png" alt="image-20201117162655768" style="zoom:80%;">
+<br>
+<ul>
+<li>범위 지정은 DEFAULT로 <strong>CURRENT ROW</strong> 까지여서 우리가 기대하는 바와 달리 PRICE 값 그대로 출력함.</li>
+</ul>
+<br>
+<br>
+<h2 id="2-lag-lead-함수"><a class="markdownIt-Anchor" href="#2-lag-lead-함수"></a> <strong>2. LAG, LEAD 함수</strong></h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
+<p>LAG 와 LEAD 함수는 특정 집합 내에서 결과 건수의 변화 없이 해당 집합안에서 <strong>특정 컬럼의 이전 행의 값 혹은 다음 행의 값을 구하는 함수</strong>이다.</p>
+<br>
+<h3 id="2-2-lag-함수-실습-이전-행의-값을-찾는다"><a class="markdownIt-Anchor" href="#2-2-lag-함수-실습-이전-행의-값을-찾는다"></a> 2-2. LAG 함수 실습 – 이전 행의 값을 찾는다</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  LAG(A.PRICE, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE) <span class="keyword">AS</span> PREV_PRICE,</span><br><span class="line">  PRICE - LAG(A.PRICE, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE) <span class="keyword">AS</span> CUR_PREV_DIFF</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117170809941.png" alt="image-20201117170809941" style="zoom:80%;">
+<br>
+<h3 id="2-3-lead-함수-실습-다음-행의-값을-찾는다"><a class="markdownIt-Anchor" href="#2-3-lead-함수-실습-다음-행의-값을-찾는다"></a> 2-3. LEAD 함수 실습 – 다음 행의 값을 찾는다</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  <span class="keyword">LEAD</span>(A.PRICE, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE) <span class="keyword">AS</span> NEXT_PRICE,</span><br><span class="line">  A.PRICE - <span class="keyword">LEAD</span>(A.PRICE, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE) <span class="keyword">AS</span> CUR_NEXT_DIFF</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-2/image-20201117170707029.png" alt="image-20201117170707029" style="zoom:80%;">
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【STUDY - SQL】</category>
+        <category>SQL - 4. Analytic Function</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>Analytic Function</tag>
+      </tags>
+  </entry>
 </search>

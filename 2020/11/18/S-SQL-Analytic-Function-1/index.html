@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL &gt;&gt; 분석 함수 (1) -- 평균 함수, 순위 함수 | Hyemin Kim</title><meta name="keywords" content="SQL,Analytic Function"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="분석 함수 -- 평균 함수(AVG), 순위 함수 (ROW_NUMBER, RANK, DENSE_RANK)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL &gt;&gt; 분석 함수 (1) -- 평균 함수, 순위 함수">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/11/18/S-SQL-Analytic-Function-1/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="분석 함수 -- 평균 함수(AVG), 순위 함수 (ROW_NUMBER, RANK, DENSE_RANK)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png">
+<meta property="article:published_time" content="2020-11-17T23:47:11.000Z">
+<meta property="article:modified_time" content="2020-11-17T23:55:35.975Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Analytic Function">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/11/18/S-SQL-Analytic-Function-1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-18 08:55:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">56</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">31</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">22</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#분석-함수-1-평균-함수-순위-함수"><span class="toc-text"> 분석 함수 (1) – 평균 함수, 순위 함수</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-분석-함수란"><span class="toc-text"> 0. 분석 함수란?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-개념"><span class="toc-text"> 0-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-분석-함수-실습-준비"><span class="toc-text"> 0-2. 분석 함수 실습 준비</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-3-분석-함수-문법"><span class="toc-text"> 0-3. 분석 함수 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-4-분석-함수-결과-예시"><span class="toc-text"> 0-4. 분석 함수 결과 예시</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-avg-함수"><span class="toc-text"> 1. AVG 함수</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-개념"><span class="toc-text"> 1-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-avg-함수-실습"><span class="toc-text"> 1-2. AVG 함수 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-전체-평균-가격price-구하기"><span class="toc-text"> (1) 전체  평균 가격(PRICE) 구하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-그룹별-평균-가격price-구하기"><span class="toc-text"> (2) 그룹별 평균 가격(PRICE) 구하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-그룹별-누적-평균-가격price-구하기"><span class="toc-text"> (3) 그룹별 누적 평균 가격(PRICE) 구하기</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-row_number-rank-dense_rank-함수"><span class="toc-text"> 2. ROW_NUMBER, RANK, DENSE_RANK 함수</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-개념"><span class="toc-text"> 2-1.  개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-순위-함수-실습"><span class="toc-text"> 2-2. 순위 함수 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-row_number-함수-실습"><span class="toc-text"> 2-2-1. ROW_NUMBER 함수 실습</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-rank-함수-실습"><span class="toc-text"> 2-2-2. RANK 함수 실습</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-dense_rank-함수-실습"><span class="toc-text"> 2-2-3. DENSE_RANK 함수 실습</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">SQL &gt;&gt; 분석 함수 (1) -- 평균 함수, 순위 함수</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-11-17T23:47:11.000Z" title="Created 2020-11-18 08:47:11">2020-11-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-11-17T23:55:35.975Z" title="Updated 2020-11-18 08:55:35">2020-11-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/">【STUDY - SQL】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/SQL-4-Analytic-Function/">SQL - 4. Analytic Function</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="분석-함수-1-평균-함수-순위-함수"><a class="markdownIt-Anchor" href="#분석-함수-1-평균-함수-순위-함수"></a> 분석 함수 (1) – 평균 함수, 순위 함수</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#0-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98%EB%9E%80"><strong>0. 분석 함수란?</strong></a>
+<ul>
+<li><a href="#0-1-%EA%B0%9C%EB%85%90">0-1. 개념</a></li>
+<li><a href="#0-2-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">0-2. 분석 함수 실습 준비</a></li>
+<li><a href="#0-3-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98-%EB%AC%B8%EB%B2%95">0-3. 분석 함수 문법</a></li>
+<li><a href="#0-4-%EB%B6%84%EC%84%9D-%ED%95%A8%EC%88%98-%EA%B2%B0%EA%B3%BC-%EC%98%88%EC%8B%9C">0-4. 분석 함수 결과 예시</a></li>
+</ul>
+</li>
+<li><a href="#1-avg-%ED%95%A8%EC%88%98"><strong>1. AVG 함수</strong></a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-avg-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">1-2. AVG 함수 실습</a>
+<ul>
+<li><a href="#1-%EC%A0%84%EC%B2%B4-%ED%8F%89%EA%B7%A0-%EA%B0%80%EA%B2%A9price-%EA%B5%AC%ED%95%98%EA%B8%B0">(1) 전체  평균 가격(PRICE) 구하기</a></li>
+<li><a href="#2-%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0-%EA%B0%80%EA%B2%A9price-%EA%B5%AC%ED%95%98%EA%B8%B0">(2) 그룹별 평균 가격(PRICE) 구하기</a></li>
+<li><a href="#3-%EA%B7%B8%EB%A3%B9%EB%B3%84-%EB%88%84%EC%A0%81-%ED%8F%89%EA%B7%A0-%EA%B0%80%EA%B2%A9price-%EA%B5%AC%ED%95%98%EA%B8%B0">(3) 그룹별 누적 평균 가격(PRICE) 구하기</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-row_number-rank-dense_rank-%ED%95%A8%EC%88%98"><strong>2. ROW_NUMBER, RANK, DENSE_RANK 함수</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1.  개념</a></li>
+<li><a href="#2-2-%EC%88%9C%EC%9C%84-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2. 순위 함수 실습</a>
+<ul>
+<li><a href="#2-2-1-row_number-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2-1. ROW_NUMBER 함수 실습</a></li>
+<li><a href="#2-2-2-rank-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2-2. RANK 함수 실습</a></li>
+<li><a href="#2-2-3-dense_rank-%ED%95%A8%EC%88%98-%EC%8B%A4%EC%8A%B5">2-2-3. DENSE_RANK 함수 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="0-분석-함수란"><a class="markdownIt-Anchor" href="#0-분석-함수란"></a> <strong>0. 분석 함수란?</strong></h2>
+<h3 id="0-1-개념"><a class="markdownIt-Anchor" href="#0-1-개념"></a> 0-1. 개념</h3>
+<p>분석 함수는 특정 집합 내에서 결과 건수의 변화없이 해당 집합안에서 합계 및 카운트 등을 계산할 수 있는 함수이다.</p>
+<br>
+<h3 id="0-2-분석-함수-실습-준비"><a class="markdownIt-Anchor" href="#0-2-분석-함수-실습-준비"></a> 0-2. 분석 함수 실습 준비</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCT_GROUP (</span><br><span class="line">  <span class="keyword">GROUP_ID</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  GROUP_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCT (</span><br><span class="line">  PRODUCT_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  PRODUCT_NAME <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRICE <span class="built_in">DECIMAL</span> (<span class="number">11</span>, <span class="number">2</span>),   <span class="comment">-- DECIMAL (전체 자릿수, 소수점 자릿수)</span></span><br><span class="line">  <span class="keyword">GROUP_ID</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="keyword">GROUP_ID</span>)</span><br><span class="line">  <span class="keyword">REFERENCES</span> PRODUCT_GROUP (<span class="keyword">GROUP_ID</span>)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+ <figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCT_GROUP (GROUP_NAME)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Smartphone'</span>),</span><br><span class="line">  (<span class="string">'Laptop'</span>),</span><br><span class="line">  (<span class="string">'Tablet'</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCT (PRODUCT_NAME, <span class="keyword">GROUP_ID</span>, PRICE)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Microsoft Lumia'</span>, <span class="number">1</span>, <span class="number">200</span>),</span><br><span class="line">  (<span class="string">'HTC One'</span>, <span class="number">1</span>, <span class="number">400</span>),</span><br><span class="line">  (<span class="string">'Nexus'</span>, <span class="number">1</span>, <span class="number">500</span>),</span><br><span class="line">  (<span class="string">'iPhone'</span>, <span class="number">1</span>, <span class="number">900</span>),</span><br><span class="line">  (<span class="string">'HP Elite'</span>, <span class="number">2</span>, <span class="number">1200</span>),</span><br><span class="line">  (<span class="string">'Lenovo Thinkpad'</span>, <span class="number">2</span>, <span class="number">700</span>),</span><br><span class="line">  (<span class="string">'Sony VAIO'</span>, <span class="number">2</span>, <span class="number">700</span>),</span><br><span class="line">  (<span class="string">'Dell Vostro'</span>, <span class="number">2</span>, <span class="number">800</span>),</span><br><span class="line">  (<span class="string">'iPad'</span>, <span class="number">3</span>, <span class="number">700</span>),</span><br><span class="line">  (<span class="string">'Kindle Fire'</span>, <span class="number">3</span>, <span class="number">150</span>),</span><br><span class="line">  (<span class="string">'Samsung Galaxy Tab'</span>, <span class="number">3</span>, <span class="number">200</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<h3 id="0-3-분석-함수-문법"><a class="markdownIt-Anchor" href="#0-3-분석-함수-문법"></a> 0-3. 분석 함수 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  C1,</span><br><span class="line">  분석함수(C2, C3, ...) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> C4 <span class="keyword">ORDER</span> <span class="keyword">BY</span> C5)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  TABLE_NAME;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><strong>분석함수(C2, C3,…) :</strong> 사용하고자 하는 분석함수와 적용할 대상 컬럼을 지정</li>
+<li><strong>PARTITION BY :</strong> 분석 함수를 적용 시 기준이 되는 컬럼을 지정 (즉, 그룹별로 값을 구할 때 그룹핑의 기준 컬럼)</li>
+<li><strong>ORDER BY :</strong> 정렬 컬럼을 지정</li>
+</ul>
+<br>
+<h3 id="0-4-분석-함수-결과-예시"><a class="markdownIt-Anchor" href="#0-4-분석-함수-결과-예시"></a> 0-4. 분석 함수 결과 예시</h3>
+<p>집계 함수 vs 분석 함수:</p>
+<ul>
+<li>
+<p>집계 함수는 집계의 결과만 출력한다</p>
+</li>
+<li>
+<p>분석 함수는 집계의 결과 및 테이블의 내용을 함계 출력한다.</p>
+<p>–&gt; 이게 바로 분석 함수의 역할이다.</p>
+</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 집계 함수</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Analytic-Function-1/image-20201117101439406.png" alt="image-20201117101439406"></p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 분석 함수</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">COUNT</span>(*) <span class="keyword">OVER</span>(),  <span class="comment">-- 집계 결과 </span></span><br><span class="line">  A.*               <span class="comment">-- 원래 집합</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117101622478.png" alt="image-20201117101622478" style="zoom:80%;">
+<br>
+<br>
+<h2 id="1-avg-함수"><a class="markdownIt-Anchor" href="#1-avg-함수"></a> <strong>1. AVG 함수</strong></h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>AVG 함수는 특정 집합 내에서 결과 건수의 변화 없이 해당 집합안에서 <strong>특정 컬럼의 평균을 구하는 함수</strong>이다.</p>
+<br>
+<h3 id="1-2-avg-함수-실습"><a class="markdownIt-Anchor" href="#1-2-avg-함수-실습"></a> 1-2. AVG 함수 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<h4 id="1-전체-평균-가격price-구하기"><a class="markdownIt-Anchor" href="#1-전체-평균-가격price-구하기"></a> (1) 전체  평균 가격(PRICE) 구하기</h4>
+<p><strong>&gt;&gt; 집계함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG: 집계의 결과만 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 집계 함수(AVG): 집계의 결과만 출력</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">AVG</span>(PRICE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<p><img src="/images/S-SQL-Analytic-Function-1/image-20201117130450587.png" alt="image-20201117130450587"></p>
+<br>
+<p><strong>&gt;&gt; 분석함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG ( )  OVER ( ) : 결과 집합을 그대로 출력하면서 집계 결과도 함계 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 분석 함수</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  PRODUCT_NAME,</span><br><span class="line">  PRICE,</span><br><span class="line">  <span class="keyword">AVG</span>(PRICE) <span class="keyword">OVER</span>()</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117133842813.png" alt="image-20201117133842813" style="zoom:80%;">
+<br>
+</li>
+</ul>
+<h4 id="2-그룹별-평균-가격price-구하기"><a class="markdownIt-Anchor" href="#2-그룹별-평균-가격price-구하기"></a> (2) 그룹별 평균 가격(PRICE) 구하기</h4>
+<p><strong>&gt;&gt; 집계함수 사용</strong></p>
+<ul>
+<li>
+<p>GROUP BY + AVG:  집계의 결과만 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 집계 함수: GROUP BY + AVG</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">B.GROUP_NAME,</span><br><span class="line"><span class="keyword">AVG</span>(A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span> PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> (A.GROUP_ID = B.GROUP_ID)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">B.GROUP_NAME;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117131044658.png" alt="image-20201117131044658" style="zoom:80%;">
+<br>
+<p><strong>&gt;&gt; 분석함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG (C1)  OVER ( PARTITION BY C2 ) : 결과 집합을 그대로 출력하면서 집계 결과도 함계 출력</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 분석 함수</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">A.PRODUCT_NAME,</span><br><span class="line">A.PRICE, </span><br><span class="line">B.GROUP_NAME,</span><br><span class="line"><span class="keyword">AVG</span>(A.PRICE) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117132959087.png" alt="image-20201117132959087" style="zoom:80%;">
+<br>
+<h4 id="3-그룹별-누적-평균-가격price-구하기"><a class="markdownIt-Anchor" href="#3-그룹별-누적-평균-가격price-구하기"></a> (3) 그룹별 누적 평균 가격(PRICE) 구하기</h4>
+<p><strong>&gt;&gt; 분석함수 사용</strong></p>
+<ul>
+<li>
+<p>AVG (C1)  OVER ( PARTITION BY C2  ORDER BY C3 )</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  <span class="keyword">AVG</span>(A.PRICE) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117134939361.png" alt="image-20201117134939361" style="zoom:80%;">
+</li>
+</ul>
+<br>
+<br>
+<h2 id="2-row_number-rank-dense_rank-함수"><a class="markdownIt-Anchor" href="#2-row_number-rank-dense_rank-함수"></a> <strong>2. ROW_NUMBER, RANK, DENSE_RANK 함수</strong></h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1.  개념</h3>
+<p>ROW_NUMBER, RANK, DENSE_RANK 함수는 모두 특정 집합 내에서 결과 건수의 변화 없이 해당 집합안에서 <strong>특정 컬럼의 순위를 구하는 함수</strong>이다.</p>
+<ul>
+<li>
+<p><strong>ROW_NUMBER:</strong> 같은 순위가 있어도 무조건 순차적으로 순으로 순위를 매긴다. (1, 2, 3, 4, 5 …)</p>
+</li>
+<li>
+<p><strong>RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위를 건너뛰다. (1, 1, 3, 4, 5 …)</p>
+</li>
+<li>
+<p><strong>DENSE_RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위를 건너뛰지 않는다. (1, 1, 2, 3, 4 …)</p>
+<br>
+</li>
+</ul>
+<h3 id="2-2-순위-함수-실습"><a class="markdownIt-Anchor" href="#2-2-순위-함수-실습"></a> 2-2. 순위 함수 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_GROUP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095413411.png" alt="image-20201117095413411" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117095502521.png" alt="image-20201117095502521" style="zoom:80%;">
+<br>
+<h4 id="2-2-1-row_number-함수-실습"><a class="markdownIt-Anchor" href="#2-2-1-row_number-함수-실습"></a> 2-2-1. ROW_NUMBER 함수 실습</h4>
+<p><strong>ROW_NUMBER:</strong> 같은 순위가 있어도 무조건 순차적으로 순으로 순위를 매긴다. (1, 2, 3, 4, 5…)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  ROW_NUMBER() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117142626970.png" alt="image-20201117142626970" style="zoom:80%;">
+<br>
+<ul>
+<li>Laptop 에서 가격순으로 정렬했을 때 "Sony VAIO"와 "Lenovo Thinkpad"의 가격이 동일해도 (즉, 가격 순위 같아도)  순차적으로 순번을 부여한다</li>
+</ul>
+<br>
+<h4 id="2-2-2-rank-함수-실습"><a class="markdownIt-Anchor" href="#2-2-2-rank-함수-실습"></a> 2-2-2. RANK 함수 실습</h4>
+<p><strong>RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위는 건너뛰다. (1, 1, 3, 4, 5 …)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.PRODUCT_NAME,</span><br><span class="line">  B.GROUP_NAME,</span><br><span class="line">  A.PRICE,</span><br><span class="line">  <span class="keyword">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> B.GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PRICE)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117150134038.png" alt="image-20201117150134038" style="zoom:80%;">
+<br>
+<h4 id="2-2-3-dense_rank-함수-실습"><a class="markdownIt-Anchor" href="#2-2-3-dense_rank-함수-실습"></a> 2-2-3. DENSE_RANK 함수 실습</h4>
+<p><strong>DENSE_RANK:</strong> 같은 순위가 있으면 동일 순위로 매기고 그 다음 순위를 건너뛰지 않는다. (1, 1, 2, 3, 4 …)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  PRODUCT_NAME,</span><br><span class="line">  GROUP_NAME,</span><br><span class="line">  PRICE,</span><br><span class="line">  <span class="keyword">DENSE_RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> GROUP_NAME <span class="keyword">ORDER</span> <span class="keyword">BY</span> PRICE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  PRODUCT A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  PRODUCT_GROUP B</span><br><span class="line"><span class="keyword">ON</span> </span><br><span class="line">  A.GROUP_ID = B.GROUP_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Analytic-Function-1/image-20201117151955026.png" alt="image-20201117151955026" style="zoom:80%;">
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/11/18/S-SQL-Analytic-Function-1/">https://hyemin-kim.github.io/2020/11/18/S-SQL-Analytic-Function-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a><a class="post-meta__tags" href="/tags/Analytic-Function/">Analytic Function</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/11/06/Bf13kR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/18/S-SQL-Analytic-Function-2/"><img class="prev-cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">SQL &gt;&gt; 분석 함수 (2)</div></div></a></div><div class="next-post pull-right"><a href="/2020/11/17/S-SQL-Aggregate-2/"><img class="next-cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">SQL &gt;&gt; 집계 함수 (2) -- 고급 집계 함수</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/11/18/S-SQL-Analytic-Function-2/" title="SQL >> 분석 함수 (2)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-18</div><div class="title">SQL >> 분석 함수 (2)</div></div></a></div><div><a href="/2020/11/10/E-SQL-selecting-and-filtering/" title="【실습】 SQL >> 데이터 조회 및 필터링"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">【실습】 SQL >> 데이터 조회 및 필터링</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-2/" title="SQL >> 데이터 필터링 (2)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (2)</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-1/" title="SQL >> 데이터 필터링 (1)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (1)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'f2e4140e574ac5a8af5439b380d94f39',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
