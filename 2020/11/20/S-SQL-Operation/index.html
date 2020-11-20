@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL &gt;&gt; 집합 연산자 | Hyemin Kim</title><meta name="keywords" content="SQL"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="UNION 연산, UNION ALL 연산, INTERSECT 연산, EXCEPT 연산">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL &gt;&gt; 집합 연산자">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/11/20/S-SQL-Operation/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="UNION 연산, UNION ALL 연산, INTERSECT 연산, EXCEPT 연산">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png">
+<meta property="article:published_time" content="2020-11-20T05:13:20.000Z">
+<meta property="article:modified_time" content="2020-11-20T05:20:45.473Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/11/20/S-SQL-Operation/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-20 14:20:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">58</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">31</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">23</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#집합-연산자"><span class="toc-text"> 집합 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-union-연산"><span class="toc-text"> 1. UNION 연산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-개념"><span class="toc-text"> 1-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-union-연산-문법"><span class="toc-text"> 1-2. UNION 연산 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-union-연산-실습"><span class="toc-text"> 1-3. UNION 연산 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-실습-준비"><span class="toc-text"> (1) 실습 준비</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-union-연산-실습"><span class="toc-text"> (2) UNION 연산 실습</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-union-all-연산"><span class="toc-text"> 2. UNION ALL 연산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-개념"><span class="toc-text"> 2-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-union-all-문법"><span class="toc-text"> 2-2. UNION ALL 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-union-all-실습"><span class="toc-text"> 2-3. UNION ALL 실습</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-intersect-연산"><span class="toc-text"> 3. INTERSECT 연산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-개념"><span class="toc-text"> 3-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-intersect-연산-문법"><span class="toc-text"> 3-2. INTERSECT 연산 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-intersect-연산-실습"><span class="toc-text"> 3-3. INTERSECT 연산 실습</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-실습-준비-2"><span class="toc-text"> (1) 실습 준비</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-intersect-연산-실습"><span class="toc-text"> (2) INTERSECT 연산 실습</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-except-연산"><span class="toc-text"> 4. EXCEPT 연산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-개념"><span class="toc-text"> 4-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-except-연산-문법"><span class="toc-text"> 4-2. EXCEPT 연산 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-except-연산-실습"><span class="toc-text"> 4-3. EXCEPT 연산 실습</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">SQL &gt;&gt; 집합 연산자</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-11-20T05:13:20.000Z" title="Created 2020-11-20 14:13:20">2020-11-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-11-20T05:20:45.473Z" title="Updated 2020-11-20 14:20:45">2020-11-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/">【STUDY - SQL】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/4-Aggregate-Operations/">4. Aggregate Operations</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="집합-연산자"><a class="markdownIt-Anchor" href="#집합-연산자"></a> 집합 연산자</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-union-%EC%97%B0%EC%82%B0"><strong>1. UNION 연산</strong></a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-union-%EC%97%B0%EC%82%B0-%EB%AC%B8%EB%B2%95">1-2. UNION 연산 문법</a></li>
+<li><a href="#1-3-union-%EC%97%B0%EC%82%B0-%EC%8B%A4%EC%8A%B5">1-3. UNION 연산 실습</a>
+<ul>
+<li><a href="#1-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">(1) 실습 준비</a></li>
+<li><a href="#2-union-%EC%97%B0%EC%82%B0-%EC%8B%A4%EC%8A%B5">(2) UNION 연산 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-union-all-%EC%97%B0%EC%82%B0"><strong>2. UNION ALL 연산</strong></a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
+<li><a href="#2-2-union-all-%EB%AC%B8%EB%B2%95">2-2. UNION ALL 문법</a></li>
+<li><a href="#2-3-union-all-%EC%8B%A4%EC%8A%B5">2-3. UNION ALL 실습</a></li>
+</ul>
+</li>
+<li><a href="#3-intersect-%EC%97%B0%EC%82%B0"><strong>3. INTERSECT 연산</strong></a>
+<ul>
+<li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
+<li><a href="#3-2-intersect-%EC%97%B0%EC%82%B0-%EB%AC%B8%EB%B2%95">3-2. INTERSECT 연산 문법</a></li>
+<li><a href="#3-3-intersect-%EC%97%B0%EC%82%B0-%EC%8B%A4%EC%8A%B5">3-3. INTERSECT 연산 실습</a>
+<ul>
+<li><a href="#1-%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84-2">(1) 실습 준비</a></li>
+<li><a href="#2-intersect-%EC%97%B0%EC%82%B0-%EC%8B%A4%EC%8A%B5">(2) INTERSECT 연산 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-except-%EC%97%B0%EC%82%B0"><strong>4. EXCEPT 연산</strong></a>
+<ul>
+<li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
+<li><a href="#4-2-except-%EC%97%B0%EC%82%B0-%EB%AC%B8%EB%B2%95">4-2. EXCEPT 연산 문법</a></li>
+<li><a href="#4-3-except-%EC%97%B0%EC%82%B0-%EC%8B%A4%EC%8A%B5">4-3. EXCEPT 연산 실습</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-union-연산"><a class="markdownIt-Anchor" href="#1-union-연산"></a> <strong>1. UNION 연산</strong></h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>두 개 이상의 SELECT 문들의 결과 집합을 단일 결과 집합으로 결합하며 결합 시 <strong>중복된 데이터는 제거</strong> 된다.</p>
+<img src="/images/S-SQL-Operation/image-20201120094109951.png" alt="image-20201120094109951" style="zoom: 67%;">
+<br>
+<h3 id="1-2-union-연산-문법"><a class="markdownIt-Anchor" href="#1-2-union-연산-문법"></a> 1-2. UNION 연산 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COLUMN_1_1,</span><br><span class="line">    COLUMN_1_2</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    TABLE_NAME_1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COLUMN_2_1,</span><br><span class="line">    COLUMN_2_2</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    TABLE_NAME_2;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>두 개의 SELECT 문 간 컬럼의 개수는 동일해야 하고 해당 순서의 열에는 서로 호환되는 데이터 유형이어야 한다.</li>
+<li>두 개의 SELECT 문에서 중복되는 데이터 값이 있다면 중복을 제거 된다.</li>
+<li>ORDER BY 로 정렬하고자 할 경우 맨 마지막 SELECT문에 ORDER BY 절을 사용한다.</li>
+</ul>
+<br>
+<h3 id="1-3-union-연산-실습"><a class="markdownIt-Anchor" href="#1-3-union-연산-실습"></a> 1-3. UNION 연산 실습</h3>
+<h4 id="1-실습-준비"><a class="markdownIt-Anchor" href="#1-실습-준비"></a> (1) 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SALES2007_1</span><br><span class="line">(</span><br><span class="line">  <span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  AMOUNT <span class="built_in">NUMERIC</span>(<span class="number">15</span>, <span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SALES2007_1</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Mike'</span>, <span class="number">150000.25</span>),</span><br><span class="line">  (<span class="string">'Jon'</span>, <span class="number">132000.75</span>),</span><br><span class="line">  (<span class="string">'Mary'</span>, <span class="number">100000</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SALES2007_2</span><br><span class="line">(</span><br><span class="line">  <span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  AMOUNT <span class="built_in">NUMERIC</span>(<span class="number">15</span>, <span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SALES2007_2</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'Mike'</span>, <span class="number">120000.25</span>),</span><br><span class="line">  (<span class="string">'Jon'</span>, <span class="number">142000.75</span>),</span><br><span class="line">  (<span class="string">'Mary'</span>, <span class="number">100000</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES2007_1;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119164810289.png" alt="image-20201119164810289" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119164843257.png" alt="image-20201119164843257" style="zoom:80%;">
+<br>
+<br>
+<h4 id="2-union-연산-실습"><a class="markdownIt-Anchor" href="#2-union-연산-실습"></a> (2) UNION 연산 실습</h4>
+<p><strong>&gt;&gt; 일반 UNION</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 전체 UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119165223471.png" alt="image-20201119165223471" style="zoom:80%;">
+<ul>
+<li>(‘Mary’, ‘100000’) 중복 제거됨</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- NAME만 UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">NAME</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">NAME</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119165446423.png" alt="image-20201119165446423">
+<ul>
+<li>‘Mike’, ‘Jon’, ‘Mary’ 중복 제거됨</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- AMOUNT만 UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  AMOUNT</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  AMOUNT</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119165653248.png" alt="image-20201119165653248" style="zoom:80%;">
+<ul>
+<li>‘100000’ 중복 제거됨</li>
+</ul>
+<br>
+<p><strong>&gt;&gt; UNION + ORDER BY</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  SALES2007_2</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span>             <span class="comment">-- ORDER BY는 맨 마지막 SELECT 문에 기재해야 한다.</span></span><br><span class="line">  AMOUNT <span class="keyword">DESC</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119170006052.png" alt="image-20201119170006052" style="zoom:80%;">
+<br>
+<br>
+<h2 id="2-union-all-연산"><a class="markdownIt-Anchor" href="#2-union-all-연산"></a> <strong>2. UNION ALL 연산</strong></h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
+<p>두 개 이상의 SELECT 문들의 결과 집합을 단일 결과 집합으로 결합하며 결합 시 <strong>중복된 데이터도 모두 출력</strong>한다.</p>
+<img src="/images/S-SQL-Operation/image-20201120094352298.png" alt="image-20201120094352298" style="zoom:67%;">
+<br>
+<h3 id="2-2-union-all-문법"><a class="markdownIt-Anchor" href="#2-2-union-all-문법"></a> 2-2. UNION ALL 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COLUMN_1_1,</span><br><span class="line">    COLUMN_1_2</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    TABLE_NAME_1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COLUMN_2_1,</span><br><span class="line">    COLUMN_2_2</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    TABLE_NAME_2;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>두 개의 SELECT 문 간 컬럼의 개수는 동일해야 하고 해당 순서의 열에는 서로 호환되는 데이터 유형이어야 한다.</li>
+<li>두 개의 SELECT 문에서 중복되는 데이터 값이 있어도 모두 출력한다.</li>
+<li>ORDER BY 로 정렬하고자 할 경우 맨 마지막 SELECT문에 ORDER BY 절을 사용한다.</li>
+</ul>
+<br>
+<h3 id="2-3-union-all-실습"><a class="markdownIt-Anchor" href="#2-3-union-all-실습"></a> 2-3. UNION ALL 실습</h3>
+<p><strong>&gt;&gt; 일반 UNION ALL</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 전체 UNION ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119170843555.png" alt="image-20201119170843555" style="zoom:80%;">
+<ul>
+<li>(‘Mary’, ‘100000’) 중복 데이터 출력함</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- NAME만 UNION ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">NAME</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">NAME</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119170949324.png" alt="image-20201119170949324" style="zoom:80%;">
+<ul>
+<li>‘Mike’, ‘Jon’, ‘Mary’ 중복 데이터 출력함</li>
+</ul>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- AMOUNT만 UNION ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  AMOUNT</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  AMOUNT</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119171104105.png" alt="image-20201119171104105" style="zoom:80%;">
+<ul>
+<li>‘100000’ 중복 데이터 출력함</li>
+</ul>
+<br>
+<p><strong>&gt;&gt; UNION ALL + ORDER BY</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  SALES2007_2</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span>                 <span class="comment">-- ORDER BY는 맨 마지막 SELECT 문에 기재해야 한다.</span></span><br><span class="line">  AMOUNT <span class="keyword">DESC</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201119171511374.png" alt="image-20201119171511374" style="zoom:80%;">
+<br>
+<br>
+<h2 id="3-intersect-연산"><a class="markdownIt-Anchor" href="#3-intersect-연산"></a> <strong>3. INTERSECT 연산</strong></h2>
+<h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
+<p>INTERSECT 연산자는 두 개 이상의 SELECT 문들의 결과 집합의 교집합을 출력하는 연산자다.</p>
+<img src="/images/S-SQL-Operation/image-20201120095222453.png" style="zoom:67%;">
+<br>
+<h3 id="3-2-intersect-연산-문법"><a class="markdownIt-Anchor" href="#3-2-intersect-연산-문법"></a> 3-2. INTERSECT 연산 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   COLUMN_1_1,</span><br><span class="line">   COLUMN_1_2</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   TABLE_NAME_1</span><br><span class="line"><span class="keyword">INTERSECT</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   COLUMN_2_1,</span><br><span class="line">   COLUMN_2_2</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   TABLE_NAME_2;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>두 개의 SELECT 문 간 컬럼의 개수는 동일해야 하고 해당 순서의 열에는 서로 호환되는 데이터 유형이어야 한다.</li>
+<li>ORDER BY 로 정렬하고자 할 경우 맨 마지막 SELECT문에 ORDER BY 절을 사용한다.</li>
+</ul>
+<br>
+<h3 id="3-3-intersect-연산-실습"><a class="markdownIt-Anchor" href="#3-3-intersect-연산-실습"></a> 3-3. INTERSECT 연산 실습</h3>
+<h4 id="1-실습-준비-2"><a class="markdownIt-Anchor" href="#1-실습-준비-2"></a> (1) 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> EMPLOYEES1</span><br><span class="line">(</span><br><span class="line">  EMPLOYEE_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  EMPLOYEE_NAME <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">KEYS</span></span><br><span class="line">(</span><br><span class="line">  EMPLOYEE_ID <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  EFFECTIVE_DATE <span class="built_in">DATE</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (EMPLOYEE_ID)</span><br><span class="line">  <span class="keyword">REFERENCES</span> EMPLOYEES1 (EMPLOYEE_ID)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> HIPOS</span><br><span class="line">(</span><br><span class="line">  EMPLOYEE_ID <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  EFFECTIVE_DATE <span class="built_in">DATE</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (EMPLOYEE_ID)</span><br><span class="line">  <span class="keyword">REFERENCES</span> EMPLOYEES1 (EMPLOYEE_ID)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> EMPLOYEES1 (EMPLOYEE_NAME)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'Joyce Edwards'</span>),</span><br><span class="line">(<span class="string">'Diane Collins'</span>),</span><br><span class="line">(<span class="string">'Alice Stewart'</span>),</span><br><span class="line">(<span class="string">'Julie Sanchez'</span>),</span><br><span class="line">(<span class="string">'Heather Morris'</span>),</span><br><span class="line">(<span class="string">'Teresa Rogers'</span>),</span><br><span class="line">(<span class="string">'Doris Reed'</span>),</span><br><span class="line">(<span class="string">'Gloria Cook'</span>),</span><br><span class="line">(<span class="string">'Evelyn Morgan'</span>),</span><br><span class="line">(<span class="string">'Jean Bell'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">KEYS</span></span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">'2000-02-01'</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">'2001-06-01'</span>),</span><br><span class="line">(<span class="number">5</span>, <span class="string">'2002-01-01'</span>),</span><br><span class="line">(<span class="number">7</span>, <span class="string">'2005-06-01'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> HIPOS</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">9</span>, <span class="string">'2000-01-01'</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">'2002-06-01'</span>),</span><br><span class="line">(<span class="number">5</span>, <span class="string">'2006-06-01'</span>),</span><br><span class="line">(<span class="number">10</span>, <span class="string">'2005-06-01'</span>);</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMPLOYEES1;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201120111618068.png" alt="image-20201120111618068" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">KEYS</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201120111732244.png" alt="image-20201120111732244" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> HIPOS;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201120111807673.png" alt="image-20201120111807673" style="zoom:80%;">
+<br>
+<br>
+<h4 id="2-intersect-연산-실습"><a class="markdownIt-Anchor" href="#2-intersect-연산-실습"></a> (2) INTERSECT 연산 실습</h4>
+<p><strong>&gt;&gt; 일반 INTERSECT</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- "KEYS" INTERSECT "HIPOS"</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   EMPLOYEE_ID</span><br><span class="line"> <span class="keyword">FROM</span> </span><br><span class="line">   <span class="keyword">KEYS</span></span><br><span class="line"><span class="keyword">INTERSECT</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   EMPLOYEE_ID</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   HIPOS;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/12. 집합 연산자/image-20201120113731964.png" alt="image-20201120113731964">
+<br>
+<ul>
+<li>INNER 조인 연산과 결과가 동일함** (실무에서 INTERSECT 연산 보다 INNER 조인 더 많이 쓰인다)</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- INNER JOIN (1)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.EMPLOYEE_ID</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  <span class="keyword">KEYS</span> A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> </span><br><span class="line">  HIPOS B</span><br><span class="line"><span class="keyword">ON</span> A.EMPLOYEE_ID = B.EMPLOYEE_ID;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- INNER JOIN (2)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.EMPLOYEE_ID</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  <span class="keyword">KEYS</span> A, HIPOS B</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line">  A.EMPLOYEE_ID = B.EMPLOYEE_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/../../../0. Study Notes/source/images/12. 집합 연산자/image-20201120113731964.png" alt="image-20201120113731964">
+<br>
+<p><strong>&gt;&gt; INTERSECT + ORDER BY</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   EMPLOYEE_ID</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   <span class="keyword">KEYS</span></span><br><span class="line"><span class="keyword">INTERSECT</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   EMPLOYEE_ID</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   HIPOS</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> EMPLOYEE_ID <span class="keyword">DESC</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Operation/image-20201120130136496.png" alt="image-20201120130136496"></p>
+<br>
+<br>
+<h2 id="4-except-연산"><a class="markdownIt-Anchor" href="#4-except-연산"></a> <strong>4. EXCEPT 연산</strong></h2>
+<h3 id="4-1-개념"><a class="markdownIt-Anchor" href="#4-1-개념"></a> 4-1. 개념</h3>
+<p>EXCEPT 연산자는 맨위에 SELECT 문의 결과 집합에서 그 아래에 있는 SELECT 문의 결과 집합을 제외한 결과를 리턴한다. (실무에서 많이 쓰임)</p>
+<img src="/images/S-SQL-Operation/image-20201120132000229.png" alt="image-20201120132000229" style="zoom:67%;">
+<br>
+<h3 id="4-2-except-연산-문법"><a class="markdownIt-Anchor" href="#4-2-except-연산-문법"></a> 4-2. EXCEPT 연산 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   COLUMN_1_1,</span><br><span class="line">   COLUMN_1_2</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   TABLE_NAME_1</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">   COLUMN_2_1,</span><br><span class="line">   COLUMN_2_2</span><br><span class="line"> <span class="keyword">FROM</span></span><br><span class="line">   TABLE_NAME_2;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>두 개의 SELECT 문 간 컬럼의 개수는 동일해야 하고 해당 순서의 열에는 서로 호환되는 데이터 유형이어야 한다.</li>
+<li>ORDER BY 로 정렬하고자 할 경우 맨 마지막 SELECT문에 ORDER BY 절을 사용한다.</li>
+</ul>
+<br>
+<h3 id="4-3-except-연산-실습"><a class="markdownIt-Anchor" href="#4-3-except-연산-실습"></a> 4-3. EXCEPT 연산 실습</h3>
+<p><strong>&gt;&gt; 실습 데이터</strong></p>
+<p>dvdrental 데이터셋의 “film” 테이블(영화dvd 정보) 과 “inventory” 테이블(dvd 제고 정보) 을 활용한다.</p>
+<img src="/images/S-SQL-Operation/image-20201120133728012.png" alt="image-20201120133728012" style="zoom:70%;">
+<ul>
+<li>한 편의 영화가 여러 개의 제고가 있을 수 있다</li>
+</ul>
+<br>
+<p><strong>&gt;&gt; MISSION: 제고가 존재하지 않는 영화의 ID와 제목을 추출한다</strong></p>
+<p>(1) 먼저 제고가 존재하는 영화의 ID와 제목을 추출</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>            </span><br><span class="line">  A.FILM_ID,</span><br><span class="line">  B.TITLE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  INVENTORY A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  FILM B</span><br><span class="line"><span class="keyword">ON</span> A.FILM_ID = B.FILM_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> B.TITLE;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201120140138350.png" alt="image-20201120140138350" style="zoom:80%;">
+<br>
+<p>(2) 이제 전체 영화에서 제고 있는 영화를 제거하면 제거 없는 영화의 정보를 추출할 수 있다</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">EXCEPT</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>            </span><br><span class="line">  A.FILM_ID,</span><br><span class="line">  B.TITLE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  INVENTORY A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  FILM B</span><br><span class="line"><span class="keyword">ON</span> A.FILM_ID = B.FILM_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> TITLE;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Operation/image-20201120140607930.png" alt="image-20201120140607930" style="zoom:80%;">
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/11/20/S-SQL-Operation/">https://hyemin-kim.github.io/2020/11/20/S-SQL-Operation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/11/06/Bf13kR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/11/19/E-SQL-join-and-aggregate/"><img class="next-cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【실습】 SQL &gt;&gt; 조인과 집계 데이터</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/11/10/E-SQL-selecting-and-filtering/" title="【실습】 SQL >> 데이터 조회 및 필터링"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">【실습】 SQL >> 데이터 조회 및 필터링</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-2/" title="SQL >> 데이터 필터링 (2)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (2)</div></div></a></div><div><a href="/2020/11/10/S-SQL-Filtering-1/" title="SQL >> 데이터 필터링 (1)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">SQL >> 데이터 필터링 (1)</div></div></a></div><div><a href="/2020/11/12/S-SQL-Join-1/" title="SQL >> 조인 (1)"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-12</div><div class="title">SQL >> 조인 (1)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '45675083650525fd0cb37fbc857017e6',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
