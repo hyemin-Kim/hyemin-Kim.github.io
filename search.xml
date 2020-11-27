@@ -55115,6 +55115,7 @@ F1: 0.72
 <li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
 <li><a href="#1-2-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC-%EC%9D%B4%ED%95%B4">1-2. 서브쿼리 이해</a>
 <ul>
+<li><a href="#mission">[MISSION]</a></li>
 <li><a href="#method-1-%EB%A9%94%EC%9D%B8%EC%BF%BC%EB%A6%AC-2%EA%B0%9C-%EC%82%AC%EC%9A%A9">&gt;&gt; Method 1: 메인쿼리 2개 사용</a></li>
 <li><a href="#method-2-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC-%EC%82%AC%EC%9A%A9">&gt;&gt; Method 2: 서브쿼리 사용</a>
 <ul>
@@ -55155,7 +55156,7 @@ F1: 0.72
 <li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
 <li><a href="#4-2-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">4-2. EXISTS 연산자 실습</a>
 <ul>
-<li><a href="#mission">&gt;&gt; MISSION</a></li>
+<li><a href="#mission-2">&gt;&gt; MISSION</a></li>
 </ul>
 </li>
 </ul>
@@ -55165,7 +55166,7 @@ F1: 0.72
 <li><a href="#5-1-%EA%B0%9C%EB%85%90">5-1. 개념</a></li>
 <li><a href="#5-2-not-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">5-2. NOT EXISTS 연산자 실습</a>
 <ul>
-<li><a href="#mission-2">&gt;&gt; MISSION</a></li>
+<li><a href="#mission-3">&gt;&gt; MISSION</a></li>
 </ul>
 </li>
 </ul>
@@ -55179,7 +55180,8 @@ F1: 0.72
 <p>서브쿼리를 활용함으로써 다양한 결과를 도출할 수 있다.</p>
 <br>
 <h3 id="1-2-서브쿼리-이해"><a class="markdownIt-Anchor" href="#1-2-서브쿼리-이해"></a> 1-2. 서브쿼리 이해</h3>
-<p><strong>[MISSION]  FILM 테이블에서 RENTAL_RATE가 평균 보다 큰 집합 구하기</strong></p>
+<h4 id="mission"><a class="markdownIt-Anchor" href="#mission"></a> [MISSION]</h4>
+<p><strong>FILM 테이블에서 RENTAL_RATE가 평균 보다 큰 집합 구하기</strong></p>
 <img src="/images/S-SQL-SubQuery/image-20201123221816036.png" alt="image-20201123221816036" style="zoom:80%;">
 <br>
 <br>
@@ -55317,7 +55319,7 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201126110600155.png" alt="image-20201126110600155" style="zoom:67%;">
 <br>
 <br>
-<h4 id="mission"><a class="markdownIt-Anchor" href="#mission"></a> &gt;&gt; MISSION</h4>
+<h4 id="mission-2"><a class="markdownIt-Anchor" href="#mission-2"></a> &gt;&gt; MISSION</h4>
 <p><strong>지불내역(AMOUNT)이 11달러 초과한 고객의 이름을 출력하라</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FIRST_NAME,</span><br><span class="line">  LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CUSTOMER C</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">EXISTS</span>(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span>         <span class="comment">-- 반환 값이 임의로 지정해도 좋다. 존재 여부만 판단하기 떄문에 무엇을 반환하든 상관없음.</span></span><br><span class="line">    <span class="keyword">FROM</span> PAYMENT P</span><br><span class="line">   <span class="keyword">WHERE</span> P.CUSTOMER_ID = C.CUSTOMER_ID</span><br><span class="line">     <span class="keyword">AND</span> AMOUNT &gt; <span class="number">11</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  FIRST_NAME, LAST_NAME;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201126113245331.png" alt="image-20201126113245331" style="zoom:80%;">
@@ -55381,7 +55383,7 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201126110600155.png" alt="image-20201126110600155" style="zoom:67%;">
 <br>
 <br>
-<h4 id="mission-2"><a class="markdownIt-Anchor" href="#mission-2"></a> &gt;&gt; MISSION</h4>
+<h4 id="mission-3"><a class="markdownIt-Anchor" href="#mission-3"></a> &gt;&gt; MISSION</h4>
 <p><strong>지불내역(AMOUNT)이 11달러 초과한 적이 없는 고객의 이름을 출력하라</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FIRST_NAME,</span><br><span class="line">  LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CUSTOMER C</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">FROM</span> PAYMENT P</span><br><span class="line">   <span class="keyword">WHERE</span> P.CUSTOMER_ID = C.CUSTOMER_ID</span><br><span class="line">     <span class="keyword">AND</span> P.AMOUNT &gt; <span class="number">11</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  FIRST_NAME, LAST_NAME;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201127111302306.png" alt="image-20201127111302306" style="zoom:80%;">
