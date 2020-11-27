@@ -1,0 +1,473 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL &gt;&gt; 서브쿼리 (SubQuery) | Hyemin Kim</title><meta name="keywords" content="SQL"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="서브쿼리, ANY 연산다, ALL 연산자, EXISTS 연산다, NOT EXISTS 연산자">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL &gt;&gt; 서브쿼리 (SubQuery)">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/11/27/S-SQL-SubQuery/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="서브쿼리, ANY 연산다, ALL 연산자, EXISTS 연산다, NOT EXISTS 연산자">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png">
+<meta property="article:published_time" content="2020-11-27T02:16:42.000Z">
+<meta property="article:modified_time" content="2020-11-27T02:24:50.512Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/11/27/S-SQL-SubQuery/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-27 11:24:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">31</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">24</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#서브쿼리"><span class="toc-text"> 서브쿼리</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-서브쿼리란"><span class="toc-text"> 1. 서브쿼리란?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-개념"><span class="toc-text"> 1-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-서브쿼리-이해"><span class="toc-text"> 1-2. 서브쿼리 이해</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-any-연산자"><span class="toc-text"> 2. ANY 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-개념"><span class="toc-text"> 2-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-any-연산자-실습"><span class="toc-text"> 2-2. ANY 연산자 실습</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-all-연산자"><span class="toc-text"> 3. ALL 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-개념"><span class="toc-text"> 3-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-all-연산자-실습"><span class="toc-text"> 3-2. ALL 연산자 실습</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-exists-연산자"><span class="toc-text"> 4. EXISTS 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-개념"><span class="toc-text"> 4-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-exists-연산자-실습"><span class="toc-text"> 4-2. EXISTS 연산자 실습</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-not-exists-연산자"><span class="toc-text"> 5. NOT EXISTS 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-개념"><span class="toc-text"> 5-1. 개념</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-not-exists-연산자-실습"><span class="toc-text"> 5-2. NOT EXISTS 연산자 실습</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">SQL &gt;&gt; 서브쿼리 (SubQuery)</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-11-27T02:16:42.000Z" title="Created 2020-11-27 11:16:42">2020-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-11-27T02:24:50.512Z" title="Updated 2020-11-27 11:24:50">2020-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/">【STUDY - SQL】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-SQL%E3%80%91/SQL-7-SubQuery/">SQL - 7. SubQuery</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="서브쿼리"><a class="markdownIt-Anchor" href="#서브쿼리"></a> 서브쿼리</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EB%9E%80">1. 서브쿼리란?</a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC-%EC%9D%B4%ED%95%B4">1-2. 서브쿼리 이해</a></li>
+</ul>
+</li>
+<li><a href="#2-any-%EC%97%B0%EC%82%B0%EC%9E%90">2. ANY 연산자</a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
+<li><a href="#2-2-any-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">2-2. ANY 연산자 실습</a></li>
+</ul>
+</li>
+<li><a href="#3-all-%EC%97%B0%EC%82%B0%EC%9E%90">3. ALL 연산자</a>
+<ul>
+<li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
+<li><a href="#3-2-all-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">3-2. ALL 연산자 실습</a></li>
+</ul>
+</li>
+<li><a href="#4-exists-%EC%97%B0%EC%82%B0%EC%9E%90">4. EXISTS 연산자</a>
+<ul>
+<li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
+<li><a href="#4-2-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">4-2. EXISTS 연산자 실습</a></li>
+</ul>
+</li>
+<li><a href="#5-not-exists-%EC%97%B0%EC%82%B0%EC%9E%90">5. NOT EXISTS 연산자</a>
+<ul>
+<li><a href="#5-1-%EA%B0%9C%EB%85%90">5-1. 개념</a></li>
+<li><a href="#5-2-not-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">5-2. NOT EXISTS 연산자 실습</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-서브쿼리란"><a class="markdownIt-Anchor" href="#1-서브쿼리란"></a> 1. 서브쿼리란?</h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>서브쿼리는 SQL문 내에서 메인 쿼리가 아닌 하위에 존재하는 쿼리를 말한다.</p>
+<p>서브쿼리를 활용함으로써 다양한 결과를 도출할 수 있다.</p>
+<br>
+<h3 id="1-2-서브쿼리-이해"><a class="markdownIt-Anchor" href="#1-2-서브쿼리-이해"></a> 1-2. 서브쿼리 이해</h3>
+<p><strong>[MISSION]  FILM 테이블에서 RENTAL_RATE가 평균 보다 큰 집합 구하기</strong></p>
+<img src="/images/S-SQL-SubQuery/image-20201123221816036.png" alt="image-20201123221816036" style="zoom:80%;">
+<br>
+<br>
+<p><strong>&gt;&gt; Method 1: 메인쿼리 2개 사용</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">AVG</span>(RENTAL_RATE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-SubQuery/image-20201123222059927.png" alt="image-20201123222059927"></p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE,</span><br><span class="line">  RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line">  RENTAL_RATE &gt; <span class="number">2.98</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
+<br>
+<p><strong>Q:</strong>  위 2개의 SQL문을 결합하여 하나의 SQL문으로 결과를 도출할 수 없을까?</p>
+<p><strong>A:</strong>  서브쿼리를 사용하면 된다! (<strong>중첩 서브쿼리</strong>, <strong>인라인 뷰</strong>, <strong>스칼라 서브쿼리</strong>가 존재한다.)</p>
+<br>
+<p><strong>&gt;&gt; Method 2: 서브쿼리 사용</strong></p>
+<p><strong>(1) 중첩 서브쿼리의 활용</strong></p>
+<p><em><strong>중첩 서브쿼리 (Nested Subquery):</strong></em>  메인쿼리의 WHERE절에 나타나는 서브쿼리</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE,</span><br><span class="line">  RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  RENTAL_RATE &gt; </span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">AVG</span>(RENTAL_RATE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
+<br>
+<br>
+<p><strong>(2) 인라인 뷰의 활용</strong></p>
+<p><em><strong>인라인 뷰 (Inline View):</strong></em> 메인쿼리의 FROM 절에 나타나는 서브쿼리 (서브쿼리 SELECT 절의 결과를 메인쿼리의 FROM 절에서 하나의 테이블처럼 사용)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.FILM_ID,</span><br><span class="line">  A.TITLE,</span><br><span class="line">  A.RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM A,</span><br><span class="line">  (</span><br><span class="line">   <span class="keyword">SELECT</span></span><br><span class="line">      <span class="keyword">AVG</span>(RENTAL_RATE) <span class="keyword">AS</span> AVG_RENTAL_RATE</span><br><span class="line">   <span class="keyword">FROM</span></span><br><span class="line">      FILM</span><br><span class="line">  ) B</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.RENTAL_RATE &gt; B.AVG_RENTAL_RATE;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
+<br>
+<br>
+<p><strong>(3) 스칼라 서브쿼리의 활용</strong></p>
+<p><em><strong>스칼라 서브쿼리 (Scala Subquery):</strong></em>  SELECT의 리스트 안에 존재하는 서브쿼리</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.FILM_ID,</span><br><span class="line">  A.TITLE,</span><br><span class="line">  A.RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">    A.FILM_ID,</span><br><span class="line">    A.TITLE,</span><br><span class="line">    A.RENTAL_RATE,</span><br><span class="line">    (</span><br><span class="line">     <span class="keyword">SELECT</span> <span class="keyword">AVG</span>(L.RENTAL_RATE)</span><br><span class="line">       <span class="keyword">FROM</span> FILM L</span><br><span class="line">    ) <span class="keyword">AS</span> AVG_RENTAL_RATE</span><br><span class="line"> <span class="keyword">FROM</span> </span><br><span class="line">    FILM A</span><br><span class="line">) A</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.RENTAL_RATE &gt; A.AVG_RENTAL_RATE;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
+<br>
+<br>
+<h2 id="2-any-연산자"><a class="markdownIt-Anchor" href="#2-any-연산자"></a> 2. ANY 연산자</h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
+<p>ANY 연산자는 주로 메인쿼리 WHERE절의 비교 조건식에서 서브쿼리와 함께 사용된다. 서브쿼리에 의해 반환된 값 집합과 비교할 때 한번이라도 조건에 만족한다면 TURE를 반환한다. (즉, 서브쿼리 결과 집합중의 어떤 한 값 보다만 어떻다라면 TRUE를 반환)</p>
+<br>
+<h3 id="2-2-any-연산자-실습"><a class="markdownIt-Anchor" href="#2-2-any-연산자-실습"></a> 2-2. ANY 연산자 실습</h3>
+<img src="/images/S-SQL-SubQuery/image-20201124090317401.png" alt="image-20201124090317401" style="zoom: 67%;">
+<br>
+<br>
+<p><strong>&gt;&gt; 준비:  먼저 영화 분류별 상영시간이 가장 긴 영화의 카테고리 ID 및 상영시간을 출력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  B.CATEGORY_ID,</span><br><span class="line">  <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM A,</span><br><span class="line">  FILM_CATEGORY B</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.FILM_ID = B.FILM_ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201124095000723.png" alt="image-20201124095000723" style="zoom:80%;">
+<br>
+<br>
+<p><em><em>&gt;&gt; MISSION 1:  영화의 상영시간이 위 집합 중 어느 하나의</em>(ANY)</em> 값 보다만 크거나 같으면 추출 [즉, 위에서 추출된 값 들의 최소값 보다만 크거나 같으면 추출]**</p>
+<blockquote>
+<p>" &gt;= ANY " 활용</p>
+</blockquote>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  TITLE, <span class="keyword">LENGTH</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">LENGTH</span> &gt;= <span class="keyword">ANY</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)        <span class="comment">-- SELECT한 변수는 하나여야 함</span></span><br><span class="line">    <span class="keyword">FROM</span> FILM A,</span><br><span class="line">         FILM_CATEGORY B</span><br><span class="line">   <span class="keyword">WHERE</span> A.FILM_ID = B.FILM_ID</span><br><span class="line">   <span class="keyword">GROUP</span> <span class="keyword">BY</span> B.CATEGORY_ID</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 결과적으로 상영시간이 MIN(max) = 178 min 보다 긴거나 같은 영화를 모두 추출</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201124101911386.png" alt="image-20201124101911386" style="zoom:80%;">
+<br>
+<ul>
+<li>
+<p>서브쿼리가 반환되는 결과가 하나의 값이 아닌 여러 값의 집합이기 때문에 ANY 연산자를 안 쓰면 ERROR가 난다.  (명확한 기준이 없기 때문)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  TITLE, <span class="keyword">LENGTH</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">LENGTH</span> &gt;=</span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line">    <span class="keyword">FROM</span> FILM A,</span><br><span class="line">         FILM_CATEGORY B</span><br><span class="line">   <span class="keyword">WHERE</span> A.FILM_ID = B.FILM_ID</span><br><span class="line">   <span class="keyword">GROUP</span> <span class="keyword">BY</span> B.CATEGORY_ID</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201124102530072.png" alt="image-20201124102530072">
+<br>
+</li>
+</ul>
+<br>
+<p><em><em>&gt;&gt; MISSION 2: 영화의 상영시간이 위에서 추출된 값들과 동일한 영화만 추출  [즉, 위 집합 중 어느 하나의</em>(ANY)</em> 값과 같으면 추출]**</p>
+<blockquote>
+<p>" = ANY " 활용</p>
+</blockquote>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  TITLE, <span class="keyword">LENGTH</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">LENGTH</span> = <span class="keyword">ANY</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line">    <span class="keyword">FROM</span> FILM A,</span><br><span class="line">         FILM_CATEGORY B</span><br><span class="line">   <span class="keyword">WHERE</span> A.FILM_ID = B.FILM_ID</span><br><span class="line">   <span class="keyword">GROUP</span> <span class="keyword">BY</span> B.CATEGORY_ID</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201124104225665.png" alt="image-20201124104225665" style="zoom:80%;">
+<br>
+<br>
+<ul>
+<li>
+<p>"=ANY"는 "IN"과 동일</p>
+<p>의미: 추출된 결과 집합 리스트 안의 값들과 매칭되는 값들을 찾는다</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  TITLE, <span class="keyword">LENGTH</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">LENGTH</span> <span class="keyword">IN</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line">    <span class="keyword">FROM</span> FILM A,</span><br><span class="line">         FILM_CATEGORY B</span><br><span class="line">   <span class="keyword">WHERE</span> A.FILM_ID = B.FILM_ID</span><br><span class="line">   <span class="keyword">GROUP</span> <span class="keyword">BY</span> B.CATEGORY_ID</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201124104225665.png" alt="image-20201124104225665" style="zoom:80%;">
+<br>
+</li>
+</ul>
+<br>
+<h2 id="3-all-연산자"><a class="markdownIt-Anchor" href="#3-all-연산자"></a> 3. ALL 연산자</h2>
+<h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
+<p>ALL 연산자는 주로 메인쿼리 WHERE절의 비교 조건식에서 서브쿼리와 함께 사용된다. 서브쿼리에 의해 반환된 값 집합과 비교할 때 모두 조건에 만족해야만 TURE를 반환한다. (즉, 서브쿼리 결과 집합중의 모든 값 보다 어떻다해야 TRUE를 반환)</p>
+<br>
+<h3 id="3-2-all-연산자-실습"><a class="markdownIt-Anchor" href="#3-2-all-연산자-실습"></a> 3-2. ALL 연산자 실습</h3>
+<img src="/images/S-SQL-SubQuery/image-20201124090317401.png" alt="image-20201124090317401" style="zoom:67%;">
+<br>
+<br>
+<p><strong>&lt;&lt; MISSION 1 &gt;&gt;</strong></p>
+<p><strong>[준비] : 먼저 영화 분류별 상영시간이 가장 긴 영화의 카테고리 ID 및 상영시간을 출력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  B.CATEGORY_ID,</span><br><span class="line">  <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM A,</span><br><span class="line">  FILM_CATEGORY B</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.FILM_ID = B.FILM_ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201124095000723.png" alt="image-20201124095000723" style="zoom:80%;">
+<br>
+<p><em><em>[MISSION] : 영화의 상영시간이 위 집합의 모든</em>(ALL)</em> 값 보다 크거나 같아야 추출 [즉, 위에서 추출된 값 들의 최대값 보다 크거나 같아야 추출]**</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  TITLE, <span class="keyword">LENGTH</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">LENGTH</span> &gt;= <span class="keyword">ALL</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line">    <span class="keyword">FROM</span> FILM A,</span><br><span class="line">         FILM_CATEGORY B</span><br><span class="line">   <span class="keyword">WHERE</span> A.FILM_ID = B.FILM_ID</span><br><span class="line">   <span class="keyword">GROUP</span> <span class="keyword">BY</span>  B.CATEGORY_ID</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 결과적으로 상영시간이 MAX(max) = 185 min 보다 긴거나 같은 영화를 추출</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201125110610018.png" alt="image-20201125110610018" style="zoom:80%;">
+<br>
+<br>
+<p><strong>&lt;&lt; MISSION 2 &gt;&gt;</strong></p>
+<p><strong>[준비] : 먼저 평가기준(RATING)별 영화의 평균 상영시간을 출력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  RATING,</span><br><span class="line">  <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(<span class="keyword">LENGTH</span>), <span class="number">2</span>) <span class="keyword">AS</span> AVG_LENGTH  <span class="comment">-- 소수점 2자리</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  RATING</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  AVG_LENGTH;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201125115107688.png" alt="image-20201125115107688" style="zoom:80%;">
+<br>
+<p><strong>[MISSION] : 위에서 출력된 평균 상영시간보다 긴 영화의 정보를 출력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE,</span><br><span class="line">  <span class="keyword">LENGTH</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line">  <span class="keyword">LENGTH</span> &gt;= <span class="keyword">ALL</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(LENHTH), <span class="number">2</span>)    <span class="comment">-- SELECT한 변수는 하나여야 함</span></span><br><span class="line">    <span class="keyword">FROM</span> FILM</span><br><span class="line">   <span class="keyword">GROUP</span> <span class="keyword">BY</span> RATING</span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">LENGTH</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 결과적으로 상영시간이 MAX(avg_length) = 120.44 min 보다 긴거나 같은 영화를 추출</span></span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201125115313350.png" alt="image-20201125115313350" style="zoom:80%;">
+<br>
+<br>
+<h2 id="4-exists-연산자"><a class="markdownIt-Anchor" href="#4-exists-연산자"></a> 4. EXISTS 연산자</h2>
+<h3 id="4-1-개념"><a class="markdownIt-Anchor" href="#4-1-개념"></a> 4-1. 개념</h3>
+<p>EXISTS 연산자는 주로 메인쿼리 WHERE절에서 서브쿼리와 함께 사용된다.</p>
+<p>동작원리는 다음과 같습니다:</p>
+<ol>
+<li>
+<p>먼저 메인쿼리의 TABLE에 접근하여 하나의 레코드를 가져온다.</p>
+</li>
+<li>
+<p>이 레코드에 대해서 EXISTS 이하의 서브쿼리를 실행하고 서브쿼리에 의해 반환된 값 집합이 존재하는지를 판단한다.</p>
+</li>
+<li>
+<p>서브쿼리에 의해 반환된 값 집합이 <strong>존재한다면</strong> <code>TRUE</code>를 반환하고 메인쿼리의 SELECT문을 그대로 실행한다.</p>
+<p>반환된 값 집합이 <strong>존재하지 않다면</strong> <code>FALSE</code>를 반환하고 메인쿼리의 SELECT문을 실행하지 않고 바로 다음 레코드로 넘어간다.</p>
+<br> 
+</li>
+</ol>
+<p><strong>&gt;&gt; 장점:</strong> 서브쿼리에 의해 반환된 값 집합의 존재여부만을 판단하므로 연산 시 부하가 줄어든다 (성능상 유리함)</p>
+<br>
+<blockquote>
+<p>EXISTS 연산자와 IN 연산자의 차이점은 <a href="https://doorbw.tistory.com/" target="_blank" rel="noopener">Tigercow.Dor</a>님의 <a href="https://doorbw.tistory.com/222" target="_blank" rel="noopener">IN / EXISTS / NOT IN / NOT EXISTS 비교</a> 에서 자세히 설명되어 있음. 참고 바람.</p>
+</blockquote>
+<br>
+<h3 id="4-2-exists-연산자-실습"><a class="markdownIt-Anchor" href="#4-2-exists-연산자-실습"></a> 4-2. EXISTS 연산자 실습</h3>
+<img src="/images/S-SQL-SubQuery/image-20201126110600155.png" alt="image-20201126110600155" style="zoom:67%;">
+<br>
+<br>
+<p><strong>&gt;&gt; MISSION: 지불내역(AMOUNT)이 11달러 초과한 고객의 이름을 출력하라</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FIRST_NAME,</span><br><span class="line">  LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CUSTOMER C</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">EXISTS</span>(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span>         <span class="comment">-- 반환 값이 임의로 지정해도 좋다. 존재 여부만 판단하기 떄문에 무엇을 반환하든 상관없음.</span></span><br><span class="line">    <span class="keyword">FROM</span> PAYMENT P</span><br><span class="line">   <span class="keyword">WHERE</span> P.CUSTOMER_ID = C.CUSTOMER_ID</span><br><span class="line">     <span class="keyword">AND</span> AMOUNT &gt; <span class="number">11</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  FIRST_NAME, LAST_NAME;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201126113245331.png" alt="image-20201126113245331" style="zoom:80%;">
+<br>
+<ul>
+<li>
+<p>동작 순서:</p>
+<ol>
+<li>
+<p>먼저 메인쿼리의 CUSTOMER 테이블에서 N번째 레코드를 가져온다</p>
+</li>
+<li>
+<p>그 다음 EXISTS 이하의 서브쿼리를 실행:</p>
+<p>PAYMENT 테이블에서</p>
+<ul>
+<li>CUSTOMER_ID는 CUSTOMER 테이블의 CUSTOMER_ID과 동일하면서 (가져온 N번째 레코드의 CUSTOMER_ID랑만 비교)</li>
+<li>지불내역(AMOUNT)이 11달러 초과한</li>
+</ul>
+<p>값의 존재 여부를 판단(하여 TURE이면 1를 반환)</p>
+</li>
+<li>
+<p>STEP 2에서</p>
+<ul>
+<li>
+<p>TURE로 판단되면 메인쿼리의 SELECT문을 그대로 실행 (즉 N번째 고객의 이름을 추출);</p>
+</li>
+<li>
+<p>FALSE로 판단되면 메인쿼리의 SELECT 문을 실현하지 않고 그 다음 레코드 (N+1 번째 레코드)를 가져와 STEP 2 를 진행한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>위 과정을 반복하여 마지막 레코드까지 완료되면 해당 SQL문의 동작이 종료된다.</p>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="5-not-exists-연산자"><a class="markdownIt-Anchor" href="#5-not-exists-연산자"></a> 5. NOT EXISTS 연산자</h2>
+<h3 id="5-1-개념"><a class="markdownIt-Anchor" href="#5-1-개념"></a> 5-1. 개념</h3>
+<p>NOT EXISTS 연산자는 주로 메인쿼리 WHERE절에서 서브쿼리와 함께 사용된다. 위에서 EXISTS에 대해서 이해했다면 크게 어려운 점이 없다.</p>
+<p>동작원리는 다음과 같습니다:</p>
+<ol>
+<li>
+<p>먼저 메인쿼리의 TABLE에 접근하여 하나의 레코드를 가져온다.</p>
+</li>
+<li>
+<p>이 레코드에 대해서 EXISTS 이하의 서브쿼리를 실행하고 서브쿼리에 의해 반환된 값 집합이 존재하는지를 판단한다.</p>
+</li>
+<li>
+<p>STEP 3는 EXISTS 연산자와 정 반대이다:</p>
+<p>서브쿼리에 의해 반환된 값 집합이 <strong>존재하지 않다면</strong> <code>TRUE</code> 를 반환하고 메인쿼리의 SELECT문을 그대로 실행한다.</p>
+<p>반환된 값 집합이 <strong>존재한다면</strong> <code>FALSE</code>를 반환하고 메인쿼리의 SELECT문을 실행하지 않고 바로 다음 레코드로 넘어간다.</p>
+<br> 
+</li>
+</ol>
+<p><strong>&gt;&gt; 장점:</strong> 서브쿼리에 의해 반환된 값 집합의 존재여부만을 판단하므로 연산 시 부하가 줄어든다 (성능상 유리함)</p>
+<br>
+<h3 id="5-2-not-exists-연산자-실습"><a class="markdownIt-Anchor" href="#5-2-not-exists-연산자-실습"></a> 5-2. NOT EXISTS 연산자 실습</h3>
+<img src="/images/S-SQL-SubQuery/image-20201126110600155.png" alt="image-20201126110600155" style="zoom:67%;">
+<br>
+<br>
+<p><strong>&gt;&gt; MISSION: 지불내역(AMOUNT)이 11달러 초과한 적이 없는 고객의 이름을 출력하라</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FIRST_NAME,</span><br><span class="line">  LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CUSTOMER C</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">FROM</span> PAYMENT P</span><br><span class="line">   <span class="keyword">WHERE</span> P.CUSTOMER_ID = C.CUSTOMER_ID</span><br><span class="line">     <span class="keyword">AND</span> P.AMOUNT &gt; <span class="number">11</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  FIRST_NAME, LAST_NAME;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-SubQuery/image-20201127111302306.png" alt="image-20201127111302306" style="zoom:80%;">
+<br>
+<br>
+<p>​</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/11/27/S-SQL-SubQuery/">https://hyemin-kim.github.io/2020/11/27/S-SQL-SubQuery/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/11/06/Bf13kR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/11/20/S-SQL-Operation/"><img class="next-cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">SQL &gt;&gt; 집합 연산자</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/11/19/E-SQL-join-and-aggregate/" title="【실습】 SQL >> 조인과 집계 데이터"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-19</div><div class="title">【실습】 SQL >> 조인과 집계 데이터</div></div></a></div><div><a href="/2020/11/10/E-SQL-selecting-and-filtering/" title="【실습】 SQL >> 데이터 조회 및 필터링"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-10</div><div class="title">【실습】 SQL >> 데이터 조회 및 필터링</div></div></a></div><div><a href="/2020/11/12/S-SQL-Aggregate-1/" title="SQL >> 집계 함수 (1) -- 기초 집계 함수"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-12</div><div class="title">SQL >> 집계 함수 (1) -- 기초 집계 함수</div></div></a></div><div><a href="/2020/11/17/S-SQL-Aggregate-2/" title="SQL >> 집계 함수 (2) -- 고급 집계 함수"><img class="cover" src="https://s1.ax1x.com/2020/11/06/Bf13kR.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-17</div><div class="title">SQL >> 집계 함수 (2) -- 고급 집계 함수</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/06/Bf13kR.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '6b00da9709af9ba9e2ac383b8a7822f3',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

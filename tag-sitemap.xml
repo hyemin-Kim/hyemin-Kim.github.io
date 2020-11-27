@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
+        <lastmod>2020-11-27T02:24:50.512Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/tags/Jupyter-notebook/</loc>
         <lastmod>2020-11-26T04:47:59.125Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -54,13 +61,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/tags/Python/</loc>
         <lastmod>2020-11-25T12:50:36.918Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
-        <lastmod>2020-11-20T06:52:35.801Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
