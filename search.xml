@@ -55115,9 +55115,14 @@ F1: 0.72
 <li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
 <li><a href="#1-2-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC-%EC%9D%B4%ED%95%B4">1-2. 서브쿼리 이해</a>
 <ul>
-<li><a href="#1-%EC%A4%91%EC%B2%A9-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EC%9D%98-%ED%99%9C%EC%9A%A9"><strong>(1) 중첩 서브쿼리의 활용</strong></a></li>
-<li><a href="#2-%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%B7%B0%EC%9D%98-%ED%99%9C%EC%9A%A9"><strong>(2) 인라인 뷰의 활용</strong></a></li>
-<li><a href="#3-%EC%8A%A4%EC%B9%BC%EB%9D%BC-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EC%9D%98-%ED%99%9C%EC%9A%A9"><strong>(3) 스칼라 서브쿼리의 활용</strong></a></li>
+<li><a href="#method-1-%EB%A9%94%EC%9D%B8%EC%BF%BC%EB%A6%AC-2%EA%B0%9C-%EC%82%AC%EC%9A%A9">&gt;&gt; Method 1: 메인쿼리 2개 사용</a></li>
+<li><a href="#method-2-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC-%EC%82%AC%EC%9A%A9">&gt;&gt; Method 2: 서브쿼리 사용</a>
+<ul>
+<li><a href="#1-%EC%A4%91%EC%B2%A9-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EC%9D%98-%ED%99%9C%EC%9A%A9">(1) 중첩 서브쿼리의 활용</a></li>
+<li><a href="#2-%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EB%B7%B0%EC%9D%98-%ED%99%9C%EC%9A%A9">(2) 인라인 뷰의 활용</a></li>
+<li><a href="#3-%EC%8A%A4%EC%B9%BC%EB%9D%BC-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EC%9D%98-%ED%99%9C%EC%9A%A9">(3) 스칼라 서브쿼리의 활용</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -55125,7 +55130,13 @@ F1: 0.72
 <li><a href="#2-any-%EC%97%B0%EC%82%B0%EC%9E%90"><strong>2. ANY 연산자</strong></a>
 <ul>
 <li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
-<li><a href="#2-2-any-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">2-2. ANY 연산자 실습</a></li>
+<li><a href="#2-2-any-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">2-2. ANY 연산자 실습</a>
+<ul>
+<li><a href="#%EC%A4%80%EB%B9%84">&gt;&gt; 준비</a></li>
+<li><a href="#mission-1">&gt;&gt; MISSION 1</a></li>
+<li><a href="#mission-2">&gt;&gt; MISSION 2</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#3-all-%EC%97%B0%EC%82%B0%EC%9E%90"><strong>3. ALL 연산자</strong></a>
@@ -55133,8 +55144,8 @@ F1: 0.72
 <li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
 <li><a href="#3-2-all-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">3-2. ALL 연산자 실습</a>
 <ul>
-<li><a href="#mission-1">&lt;&lt; MISSION 1 &gt;&gt;</a></li>
-<li><a href="#mission-2">&lt;&lt; MISSION 2 &gt;&gt;</a></li>
+<li><a href="#mission-1-2">&gt;&gt; MISSION 1</a></li>
+<li><a href="#mission-2-2">&gt;&gt; MISSION 2</a></li>
 </ul>
 </li>
 </ul>
@@ -55142,13 +55153,21 @@ F1: 0.72
 <li><a href="#4-exists-%EC%97%B0%EC%82%B0%EC%9E%90"><strong>4. EXISTS 연산자</strong></a>
 <ul>
 <li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
-<li><a href="#4-2-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">4-2. EXISTS 연산자 실습</a></li>
+<li><a href="#4-2-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">4-2. EXISTS 연산자 실습</a>
+<ul>
+<li><a href="#mission">&gt;&gt; MISSION</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#5-not-exists-%EC%97%B0%EC%82%B0%EC%9E%90">5. NOT EXISTS 연산자</a>
 <ul>
 <li><a href="#5-1-%EA%B0%9C%EB%85%90">5-1. 개념</a></li>
-<li><a href="#5-2-not-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">5-2. NOT EXISTS 연산자 실습</a></li>
+<li><a href="#5-2-not-exists-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%8B%A4%EC%8A%B5">5-2. NOT EXISTS 연산자 실습</a>
+<ul>
+<li><a href="#mission-2">&gt;&gt; MISSION</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -55164,7 +55183,7 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201123221816036.png" alt="image-20201123221816036" style="zoom:80%;">
 <br>
 <br>
-<p><strong>&gt;&gt; Method 1: 메인쿼리 2개 사용</strong></p>
+<h4 id="method-1-메인쿼리-2개-사용"><a class="markdownIt-Anchor" href="#method-1-메인쿼리-2개-사용"></a> &gt;&gt; Method 1: 메인쿼리 2개 사용</h4>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">AVG</span>(RENTAL_RATE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM;</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="/images/S-SQL-SubQuery/image-20201123222059927.png" alt="image-20201123222059927"></p>
 <br>
@@ -55174,20 +55193,20 @@ F1: 0.72
 <p><strong>Q:</strong>  위 2개의 SQL문을 결합하여 하나의 SQL문으로 결과를 도출할 수 없을까?</p>
 <p><strong>A:</strong>  서브쿼리를 사용하면 된다! (<strong>중첩 서브쿼리</strong>, <strong>인라인 뷰</strong>, <strong>스칼라 서브쿼리</strong>가 존재한다.)</p>
 <br>
-<p><strong>&gt;&gt; Method 2: 서브쿼리 사용</strong></p>
-<h4 id="1-중첩-서브쿼리의-활용"><a class="markdownIt-Anchor" href="#1-중첩-서브쿼리의-활용"></a> <strong>(1) 중첩 서브쿼리의 활용</strong></h4>
+<h4 id="method-2-서브쿼리-사용"><a class="markdownIt-Anchor" href="#method-2-서브쿼리-사용"></a> &gt;&gt; Method 2: 서브쿼리 사용</h4>
+<h5 id="1-중첩-서브쿼리의-활용"><a class="markdownIt-Anchor" href="#1-중첩-서브쿼리의-활용"></a> (1) 중첩 서브쿼리의 활용</h5>
 <p><em><strong>중첩 서브쿼리 (Nested Subquery):</strong></em>  메인쿼리의 WHERE절에 나타나는 서브쿼리</p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE,</span><br><span class="line">  RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  RENTAL_RATE &gt; </span><br><span class="line">(</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">AVG</span>(RENTAL_RATE)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
 <br>
 <br>
-<h4 id="2-인라인-뷰의-활용"><a class="markdownIt-Anchor" href="#2-인라인-뷰의-활용"></a> <strong>(2) 인라인 뷰의 활용</strong></h4>
+<h5 id="2-인라인-뷰의-활용"><a class="markdownIt-Anchor" href="#2-인라인-뷰의-활용"></a> (2) 인라인 뷰의 활용</h5>
 <p><em><strong>인라인 뷰 (Inline View):</strong></em> 메인쿼리의 FROM 절에 나타나는 서브쿼리 (서브쿼리 SELECT 절의 결과를 메인쿼리의 FROM 절에서 하나의 테이블처럼 사용)</p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.FILM_ID,</span><br><span class="line">  A.TITLE,</span><br><span class="line">  A.RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM A,</span><br><span class="line">  (</span><br><span class="line">   <span class="keyword">SELECT</span></span><br><span class="line">      <span class="keyword">AVG</span>(RENTAL_RATE) <span class="keyword">AS</span> AVG_RENTAL_RATE</span><br><span class="line">   <span class="keyword">FROM</span></span><br><span class="line">      FILM</span><br><span class="line">  ) B</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.RENTAL_RATE &gt; B.AVG_RENTAL_RATE;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
 <br>
 <br>
-<h4 id="3-스칼라-서브쿼리의-활용"><a class="markdownIt-Anchor" href="#3-스칼라-서브쿼리의-활용"></a> <strong>(3) 스칼라 서브쿼리의 활용</strong></h4>
+<h5 id="3-스칼라-서브쿼리의-활용"><a class="markdownIt-Anchor" href="#3-스칼라-서브쿼리의-활용"></a> (3) 스칼라 서브쿼리의 활용</h5>
 <p><em><strong>스칼라 서브쿼리 (Scala Subquery):</strong></em>  SELECT의 리스트 안에 존재하는 서브쿼리</p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  A.FILM_ID,</span><br><span class="line">  A.TITLE,</span><br><span class="line">  A.RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">    A.FILM_ID,</span><br><span class="line">    A.TITLE,</span><br><span class="line">    A.RENTAL_RATE,</span><br><span class="line">    (</span><br><span class="line">     <span class="keyword">SELECT</span> <span class="keyword">AVG</span>(L.RENTAL_RATE)</span><br><span class="line">       <span class="keyword">FROM</span> FILM L</span><br><span class="line">    ) <span class="keyword">AS</span> AVG_RENTAL_RATE</span><br><span class="line"> <span class="keyword">FROM</span> </span><br><span class="line">    FILM A</span><br><span class="line">) A</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.RENTAL_RATE &gt; A.AVG_RENTAL_RATE;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201123222217182.png" alt="image-20201123222217182" style="zoom:80%;">
@@ -55201,12 +55220,14 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201124090317401.png" alt="image-20201124090317401" style="zoom: 67%;">
 <br>
 <br>
-<p><strong>&gt;&gt; 준비:  먼저 영화 분류별 상영시간이 가장 긴 영화의 카테고리 ID 및 상영시간을 출력</strong></p>
+<h4 id="준비"><a class="markdownIt-Anchor" href="#준비"></a> &gt;&gt; 준비</h4>
+<p><strong>먼저 영화 분류별 상영시간이 가장 긴 영화의 카테고리 ID 및 상영시간을 출력</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  B.CATEGORY_ID,</span><br><span class="line">  <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM A,</span><br><span class="line">  FILM_CATEGORY B</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.FILM_ID = B.FILM_ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201124095000723.png" alt="image-20201124095000723" style="zoom:80%;">
 <br>
 <br>
-<p><strong>&gt;&gt; MISSION 1:  영화의 상영시간이 위 집합 중 어느 하나의(ANY) 값 보다만 크거나 같으면 추출 [즉, 위에서 추출된 값 들의 최소값 보다만 크거나 같으면 추출]</strong></p>
+<h4 id="mission-1"><a class="markdownIt-Anchor" href="#mission-1"></a> &gt;&gt; MISSION 1</h4>
+<p><strong>영화의 상영시간이 위 집합 중 어느 하나의(ANY) 값 보다만 크거나 같으면 추출 [즉, 위에서 추출된 값 들의 최소값 보다만 크거나 같으면 추출]</strong></p>
 <blockquote>
 <p>" &gt;= ANY " 활용</p>
 </blockquote>
@@ -55222,7 +55243,8 @@ F1: 0.72
 </li>
 </ul>
 <br>
-<p><strong>&gt;&gt; MISSION 2: 영화의 상영시간이 위에서 추출된 값들과 동일한 영화만 추출  [즉, 위 집합 중 어느 하나의(ANY) 값과 같으면 추출]</strong></p>
+<h4 id="mission-2"><a class="markdownIt-Anchor" href="#mission-2"></a> &gt;&gt; MISSION 2</h4>
+<p><strong>영화의 상영시간이 위에서 추출된 값들과 동일한 영화만 추출  [즉, 위 집합 중 어느 하나의(ANY) 값과 같으면 추출]</strong></p>
 <blockquote>
 <p>" = ANY " 활용</p>
 </blockquote>
@@ -55248,7 +55270,7 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201124090317401.png" alt="image-20201124090317401" style="zoom:67%;">
 <br>
 <br>
-<h4 id="mission-1"><a class="markdownIt-Anchor" href="#mission-1"></a> &lt;&lt; MISSION 1 &gt;&gt;</h4>
+<h4 id="mission-1-2"><a class="markdownIt-Anchor" href="#mission-1-2"></a> &gt;&gt; MISSION 1</h4>
 <p><strong>[준비] : 먼저 영화 분류별 상영시간이 가장 긴 영화의 카테고리 ID 및 상영시간을 출력</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  B.CATEGORY_ID,</span><br><span class="line">  <span class="keyword">MAX</span>(<span class="keyword">LENGTH</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM A,</span><br><span class="line">  FILM_CATEGORY B</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  A.FILM_ID = B.FILM_ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">  B.CATEGORY_ID;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201124095000723.png" alt="image-20201124095000723" style="zoom:80%;">
@@ -55258,7 +55280,7 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201125110610018.png" alt="image-20201125110610018" style="zoom:80%;">
 <br>
 <br>
-<h4 id="mission-2"><a class="markdownIt-Anchor" href="#mission-2"></a> &lt;&lt; MISSION 2 &gt;&gt;</h4>
+<h4 id="mission-2-2"><a class="markdownIt-Anchor" href="#mission-2-2"></a> &gt;&gt; MISSION 2</h4>
 <p><strong>[준비] : 먼저 평가기준(RATING)별 영화의 평균 상영시간을 출력</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  RATING,</span><br><span class="line">  <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(<span class="keyword">LENGTH</span>), <span class="number">2</span>) <span class="keyword">AS</span> AVG_LENGTH  <span class="comment">-- 소수점 2자리</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  RATING</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  AVG_LENGTH;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201125115107688.png" alt="image-20201125115107688" style="zoom:80%;">
@@ -55295,7 +55317,8 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201126110600155.png" alt="image-20201126110600155" style="zoom:67%;">
 <br>
 <br>
-<p><strong>&gt;&gt; MISSION: 지불내역(AMOUNT)이 11달러 초과한 고객의 이름을 출력하라</strong></p>
+<h4 id="mission"><a class="markdownIt-Anchor" href="#mission"></a> &gt;&gt; MISSION</h4>
+<p><strong>지불내역(AMOUNT)이 11달러 초과한 고객의 이름을 출력하라</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FIRST_NAME,</span><br><span class="line">  LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CUSTOMER C</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">EXISTS</span>(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span>         <span class="comment">-- 반환 값이 임의로 지정해도 좋다. 존재 여부만 판단하기 떄문에 무엇을 반환하든 상관없음.</span></span><br><span class="line">    <span class="keyword">FROM</span> PAYMENT P</span><br><span class="line">   <span class="keyword">WHERE</span> P.CUSTOMER_ID = C.CUSTOMER_ID</span><br><span class="line">     <span class="keyword">AND</span> AMOUNT &gt; <span class="number">11</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  FIRST_NAME, LAST_NAME;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201126113245331.png" alt="image-20201126113245331" style="zoom:80%;">
 <br>
@@ -55358,7 +55381,8 @@ F1: 0.72
 <img src="/images/S-SQL-SubQuery/image-20201126110600155.png" alt="image-20201126110600155" style="zoom:67%;">
 <br>
 <br>
-<p><strong>&gt;&gt; MISSION: 지불내역(AMOUNT)이 11달러 초과한 적이 없는 고객의 이름을 출력하라</strong></p>
+<h4 id="mission-2"><a class="markdownIt-Anchor" href="#mission-2"></a> &gt;&gt; MISSION</h4>
+<p><strong>지불내역(AMOUNT)이 11달러 초과한 적이 없는 고객의 이름을 출력하라</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FIRST_NAME,</span><br><span class="line">  LAST_NAME</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  CUSTOMER C</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">FROM</span> PAYMENT P</span><br><span class="line">   <span class="keyword">WHERE</span> P.CUSTOMER_ID = C.CUSTOMER_ID</span><br><span class="line">     <span class="keyword">AND</span> P.AMOUNT &gt; <span class="number">11</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  FIRST_NAME, LAST_NAME;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-SubQuery/image-20201127111302306.png" alt="image-20201127111302306" style="zoom:80%;">
 <br>
