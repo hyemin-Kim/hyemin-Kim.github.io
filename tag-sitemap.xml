@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/tags/Seaborn/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/%EC%8B%9C%EA%B0%81%ED%99%94/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/Python/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
         <lastmod>2020-11-27T04:07:01.212Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -53,13 +74,6 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/tags/Text-Mining/</loc>
-        <lastmod>2020-11-25T12:50:36.918Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Python/</loc>
         <lastmod>2020-11-25T12:50:36.918Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -150,20 +164,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/tags/Seaborn/</loc>
-        <lastmod>2020-11-06T05:20:20.153Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/%EC%8B%9C%EA%B0%81%ED%99%94/</loc>
-        <lastmod>2020-11-06T05:20:20.153Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%8C%8C%EC%95%85/</loc>
         <lastmod>2020-11-06T05:20:05.964Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -208,13 +208,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
         <lastmod>2020-11-06T05:17:43.571Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Marketing/</loc>
-        <lastmod>2020-10-28T06:54:50.682Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

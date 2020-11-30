@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/2020/07/03/S-Python-Seaborn2/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/2020/11/27/S-SQL-SubQuery/</loc>
         <lastmod>2020-11-27T04:07:01.212Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -187,14 +195,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/2020/07/17/S-Python-sklearn0/</loc>
         <lastmod>2020-11-06T05:20:25.235Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/07/03/S-Python-Seaborn2/</loc>
-        <lastmod>2020-11-06T05:20:20.153Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -427,14 +427,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/2020/05/12/S-Python-base1/</loc>
         <lastmod>2020-11-06T05:17:43.571Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/09/04/P-Marketing-AARRR/</loc>
-        <lastmod>2020-10-28T06:54:50.682Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

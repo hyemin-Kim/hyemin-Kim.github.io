@@ -9,6 +9,27 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-%25EC%258B%259C%25EA%25B0%2581%25ED%2599%2594/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-4-Seaborn/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
+        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-7-SubQuery/</loc>
         <lastmod>2020-11-27T04:07:01.212Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,13 +52,6 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-Text-Mining/</loc>
-        <lastmod>2020-11-25T12:50:36.918Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
         <lastmod>2020-11-25T12:50:36.918Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -114,20 +128,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-%25EC%258B%259C%25EA%25B0%2581%25ED%2599%2594/</loc>
-        <lastmod>2020-11-06T05:20:20.153Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-4-Seaborn/</loc>
-        <lastmod>2020-11-06T05:20:20.153Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-2-Pandas/</loc>
         <lastmod>2020-11-06T05:20:05.964Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -158,20 +158,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
         <lastmod>2020-11-06T05:18:08.300Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590-PROJECT-%25E3%2580%2591/Marketing/</loc>
-        <lastmod>2020-10-28T06:54:50.682Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590-PROJECT-%25E3%2580%2591/</loc>
-        <lastmod>2020-10-28T06:54:50.682Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
