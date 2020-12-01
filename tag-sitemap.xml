@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/tags/SubQuery/</loc>
+        <lastmod>2020-12-01T02:40:27.923Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
+        <lastmod>2020-12-01T02:40:27.923Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/tags/Seaborn/</loc>
         <lastmod>2020-11-27T05:28:16.974Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,13 +33,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/tags/Python/</loc>
         <lastmod>2020-11-27T05:28:16.974Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
-        <lastmod>2020-11-27T04:07:01.212Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

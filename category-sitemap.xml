@@ -9,6 +9,20 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
+        <lastmod>2020-12-01T02:40:27.923Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
+        <lastmod>2020-12-01T02:40:27.923Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-%25EC%258B%259C%25EA%25B0%2581%25ED%2599%2594/</loc>
         <lastmod>2020-11-27T05:28:16.974Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,13 +79,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
-        <lastmod>2020-11-22T08:38:21.356Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-6-Aggregate-Operations/</loc>
         <lastmod>2020-11-20T06:52:35.801Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -88,13 +95,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-4-Aggregate-Function/</loc>
         <lastmod>2020-11-20T06:44:10.990Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
-        <lastmod>2020-11-19T06:54:13.873Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

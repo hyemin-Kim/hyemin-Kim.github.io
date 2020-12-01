@@ -55301,4 +55301,87 @@ F1: 0.72
         <tag>SQL</tag>
       </tags>
   </entry>
+  <entry>
+    <title>【실습】 SQL &gt;&gt; 집합 연산자와 서브쿼리</title>
+    <url>/2020/12/01/E-SQL-Aggregate-and-SubQuery/</url>
+    <content><![CDATA[<h1 id="실습-집합-연산자와-서브쿼리"><a class="markdownIt-Anchor" href="#실습-집합-연산자와-서브쿼리"></a> 【실습】 집합 연산자와 서브쿼리</h1>
+<p></p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%EC%95%84%EB%9E%98-sql%EB%AC%B8%EC%9D%80-film-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%84-2%EB%B2%88-%EC%8A%A4%EC%BA%94%ED%95%98%EA%B3%A0-rental_rate%EA%B0%80-%ED%8F%89%EA%B7%A0-%EC%9D%B4%EC%83%81%EC%9D%B8-film%EC%9D%98-id-%EC%A0%9C%EB%AA%A9%EA%B3%BC-rental_rate%EB%A5%BC-%EC%B6%9C%EB%A0%A5%ED%96%88%EB%8B%A4-film-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%84-%ED%95%9C%EB%B2%88%EB%A7%8C-scan%ED%95%98%EC%97%AC-%EB%8F%99%EC%9D%BC%ED%95%9C-%EA%B2%B0%EA%B3%BC-%EC%A7%91%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EB%8A%94-sql%EC%9D%84-%EC%9E%91%EC%84%B1%ED%95%98%EB%9D%BC"><strong>[1] 아래 SQL문은 FILM 테이블을 2번 스캔하고 RENTAL_RATE가 평균 이상인 FILM의 ID, 제목과 RENTAL_RATE를 출력했다. FILM 테이블을 한번만 SCAN하여 동일한 결과 집합을 구하는 SQL을 작성하라.</strong></a></li>
+<li><a href="#2-%EC%95%84%EB%9E%98-sql%EB%AC%B8%EC%9D%80-except-%EC%97%B0%EC%82%B0%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9E%AC%EA%B3%A0%EA%B0%80-%EC%97%86%EB%8A%94-%EC%98%81%ED%99%94%EB%A5%BC-%EA%B5%AC%ED%95%98%EA%B3%A0-%EC%9E%88%EB%8B%A4-%ED%95%B4%EB%8B%B9-sql%EB%AC%B8%EC%9D%80-except%EC%97%B0%EC%82%B0%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B3%A0-%EA%B0%99%EC%9D%80-%EA%B2%B0%EA%B3%BC%EB%A5%BC-%EB%8F%84%EC%B6%9C%ED%95%98%EB%9D%BC"><strong>[2] 아래 SQL문은 EXCEPT 연산을 사용하여 재고가 없는 영화를 구하고 있다. 해당 SQL문은 EXCEPT연산을 사용하지 말고 같은 결과를 도출하라.</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h3 id="1-아래-sql문은-film-테이블을-2번-스캔하고-rental_rate가-평균-이상인-film의-id-제목과-rental_rate를-출력했다-film-테이블을-한번만-scan하여-동일한-결과-집합을-구하는-sql을-작성하라"><a class="markdownIt-Anchor" href="#1-아래-sql문은-film-테이블을-2번-스캔하고-rental_rate가-평균-이상인-film의-id-제목과-rental_rate를-출력했다-film-테이블을-한번만-scan하여-동일한-결과-집합을-구하는-sql을-작성하라"></a> <strong>[1] 아래 SQL문은 FILM 테이블을 2번 스캔하고 RENTAL_RATE가 평균 이상인 FILM의 ID, 제목과 RENTAL_RATE를 출력했다. FILM 테이블을 한번만 SCAN하여 동일한 결과 집합을 구하는 SQL을 작성하라.</strong></h3>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201093133569.png" alt="image-20201201093133569"></p>
+<br>
+<br>
+<p><strong>&gt;&gt; 두 번 스캔</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE,</span><br><span class="line">  RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span>  </span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line">  RENTAL_RATE &gt;</span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">    <span class="keyword">AVG</span>(RENTAL_RATE)</span><br><span class="line">  <span class="keyword">FROM</span> FILM</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201095113118.png" alt="image-20201201095113118"></p>
+<br>
+<br>
+<p><strong>&gt;&gt; 한 번만 스캔</strong></p>
+<p><strong>1) 우선 분석함수 AVG를 사용해서 평균을 구한다.</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID,</span><br><span class="line">  TITLE,</span><br><span class="line">  RENTAL_RATE,</span><br><span class="line">  <span class="keyword">AVG</span>(RENTAL_RATE) <span class="keyword">OVER</span>() <span class="keyword">AS</span> AVG_RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201101435553.png" alt="image-20201201101435553"></p>
+<br>
+<br>
+<p><strong>2) 1번에서 구한 집합을 인라인뷰로 감싸서 평균보다 큰 값을 구한다.</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID, TITLE, RENTAL_RATE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">    FILM_ID,</span><br><span class="line">    TITLE,</span><br><span class="line">    RENTAL_RATE,</span><br><span class="line">    <span class="keyword">AVG</span>(RENTAL_RATE) <span class="keyword">OVER</span>() <span class="keyword">AS</span> AVG_RENTAL_RATE</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    FILM</span><br><span class="line">) A</span><br><span class="line"><span class="keyword">WHERE</span> A.RENTAL_RATE &gt; A.AVG_RENTAL_RATE;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201095113118.png" alt="image-20201201095113118"></p>
+<br>
+<ul>
+<li>똑같은 결과가 나오는 것을 확인할 수 있다</li>
+</ul>
+<br>
+<br>
+<h3 id="2-아래-sql문은-except-연산을-사용하여-재고가-없는-영화를-구하고-있다-해당-sql문은-except연산을-사용하지-말고-같은-결과를-도출하라"><a class="markdownIt-Anchor" href="#2-아래-sql문은-except-연산을-사용하여-재고가-없는-영화를-구하고-있다-해당-sql문은-except연산을-사용하지-말고-같은-결과를-도출하라"></a> <strong>[2] 아래 SQL문은 EXCEPT 연산을 사용하여 재고가 없는 영화를 구하고 있다. 해당 SQL문은 EXCEPT연산을 사용하지 말고 같은 결과를 도출하라.</strong></h3>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201103003214.png" alt="image-20201201103003214"></p>
+<br>
+<br>
+<p><strong>&gt;&gt; EXCEPT 연산 사용</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  FILM_ID, TITLE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">EXCEPT</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">  INVENTORY.FILM_ID, TITLE</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  INVENTORY</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">  FILM</span><br><span class="line"><span class="keyword">ON</span> FILM.FILM_ID = INVENTORY.FILM_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> TITLE;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201105357613.png" alt="image-20201201105357613"></p>
+<br>
+<br>
+<p><strong>&gt;&gt; NOT EXISTS 연산 사용</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  FILM_ID, </span><br><span class="line">  TITLE</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  FILM F</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line"><span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">(</span><br><span class="line">  <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> INVENTORY I</span><br><span class="line">   <span class="keyword">WHERE</span> F.FILM_ID = I.FILM_ID</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/E-SQL-Aggregate-and-SubQuery/image-20201201105357613.png" alt="image-20201201105357613"></p>
+<br>
+<ul>
+<li>똑같은 결과가 나오는 것을 확인할 수 있다</li>
+</ul>
+<br>
+<br><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【EXERCISE】</category>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>SubQuery</tag>
+      </tags>
+  </entry>
 </search>
