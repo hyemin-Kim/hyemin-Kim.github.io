@@ -55416,9 +55416,9 @@ F1: 0.72
 <li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
 <li><a href="#3-2-export-%EC%9E%91%EC%97%85-%EC%8B%A4%EC%8A%B5">3-2. EXPORT 작업 실습</a>
 <ul>
-<li><a href="#%EC%97%91%EC%85%80csv-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EC%B6%9C%EB%A0%A5">&gt;&gt; 엑셀(.CSV) 형식으로 출력</a></li>
-<li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8txt-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%EC%B6%9C%EB%A0%A5">&gt;&gt; 텍스트(.TXT) 파일로 출력</a></li>
-<li><a href="#%EC%BB%AC%EB%9F%BC%EB%AA%85-%EC%97%86%EC%9D%B4-%EC%B6%9C%EB%A0%A5">&gt;&gt; 컬럼명 없이 출력</a></li>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%97%91%EC%85%80csv-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EC%B6%9C%EB%A0%A5">&gt;&gt; 실습 – 엑셀(.CSV) 형식으로 출력</a></li>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%ED%85%8D%EC%8A%A4%ED%8A%B8txt-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%EC%B6%9C%EB%A0%A5">&gt;&gt; 실습 – 텍스트(.TXT) 파일로 출력</a></li>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%BB%AC%EB%9F%BC%EB%AA%85-%EC%97%86%EC%9D%B4-%EC%B6%9C%EB%A0%A5">&gt;&gt; 실습 – 컬럼명 없이 출력</a></li>
 </ul>
 </li>
 </ul>
@@ -55537,7 +55537,7 @@ F1: 0.72
 <li>해당 DO NOTHING 명령어 없으면 SQL ERROR 발생</li>
 </ul>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="/images/S-SQL-Manipulation-2/image-20201207095200026.png" alt="image-20201207095200026"></p>
+<img src="/images/S-SQL-Manipulation-2/image-20201207095200026.png" alt="image-20201207095200026" style="zoom: 80%;">
 <br>
 <br>
 <h4 id="upsert-문-실습-update"><a class="markdownIt-Anchor" href="#upsert-문-실습-update"></a> &gt;&gt; UPSERT 문 실습 – UPDATE</h4>
@@ -55564,7 +55564,7 @@ F1: 0.72
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> DATEGORY;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-Manipulation-2/image-20201207110518434.png" alt="image-20201207110518434" style="zoom:80%;">
 <br>
-<h4 id="엑셀csv-형식으로-출력"><a class="markdownIt-Anchor" href="#엑셀csv-형식으로-출력"></a> &gt;&gt; 엑셀(.CSV) 형식으로 출력</h4>
+<h4 id="실습-엑셀csv-형식으로-출력"><a class="markdownIt-Anchor" href="#실습-엑셀csv-형식으로-출력"></a> &gt;&gt; 실습 – 엑셀(.CSV) 형식으로 출력</h4>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY (CATEGORY_ID, NAME, LAST_UPDATE)  <span class="comment">-- 추출할 테이블과 컬럼을 지정</span></span><br><span class="line">TO 'E:\Study_SQL\DB_CATEGORY.csv'               <span class="comment">-- 추출한 데이터를 저장할 파일을 지정</span></span><br><span class="line">DELIMITER ','       <span class="comment">-- 구분자를 지정</span></span><br><span class="line">CSV HEADER;         <span class="comment">-- 파일 형식을 지정</span></span><br></pre></td></tr></tbody></table></figure>
 <ul>
 <li>저장 디랙토리(폴더)는 반드시 미리 존재해야 한다 (여기서는 ‘E:\Study_SQL’)</li>
@@ -55574,13 +55574,13 @@ F1: 0.72
 <br>
 <img src="/images/S-SQL-Manipulation-2/image-20201207111745428.png" alt="image-20201207111745428" style="zoom:50%;">
 <br>
-<h4 id="텍스트txt-파일로-출력"><a class="markdownIt-Anchor" href="#텍스트txt-파일로-출력"></a> &gt;&gt; 텍스트(.TXT) 파일로 출력</h4>
+<h4 id="실습-텍스트txt-파일로-출력"><a class="markdownIt-Anchor" href="#실습-텍스트txt-파일로-출력"></a> &gt;&gt; 실습 – 텍스트(.TXT) 파일로 출력</h4>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY(CATEGORY_ID, NAME, LAST_UPDATE)</span><br><span class="line">TO 'E:\Study_SQL\DB_CATEGORY.txt'</span><br><span class="line">DELIMITER '|'</span><br><span class="line">CSV HEADER;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-Manipulation-2/image-20201207112258741.png" alt="image-20201207112258741" style="zoom:60%;">
 <br>
 <img src="/images/S-SQL-Manipulation-2/image-20201207112337940.png" alt="image-20201207112337940" style="zoom:50%;">
 <br>
-<h4 id="컬럼명-없이-출력"><a class="markdownIt-Anchor" href="#컬럼명-없이-출력"></a> &gt;&gt; 컬럼명 없이 출력</h4>
+<h4 id="실습-컬럼명-없이-출력"><a class="markdownIt-Anchor" href="#실습-컬럼명-없이-출력"></a> &gt;&gt; 실습 – 컬럼명 없이 출력</h4>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY(CATEGORY_ID, NAME, LAST_UPDATE)</span><br><span class="line">TO 'E:\Study_SQL\DB_CATEGORY_2.csv'</span><br><span class="line">DELIMITER ','</span><br><span class="line">CSV;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-Manipulation-2/image-20201207112700637.png" alt="image-20201207112700637" style="zoom:50%;">
 <br>
