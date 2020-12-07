@@ -55380,7 +55380,7 @@ F1: 0.72
     <url>/2020/12/07/S-SQL-Manipulation-2/</url>
     <content><![CDATA[<h1 id="데이터-조작-2"><a class="markdownIt-Anchor" href="#데이터-조작-2"></a> 데이터 조작 (2)</h1>
 <p></p><ul class="markdownIt-TOC">
-<li><a href="#1-delete-%EB%AC%B8">1. DELETE 문</a>
+<li><a href="#1-delete-%EB%AC%B8"><strong>1. DELETE 문</strong></a>
 <ul>
 <li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
 <li><a href="#1-2-delete-%EB%AC%B8%EB%B2%95">1-2. DELETE 문법</a>
@@ -55398,7 +55398,7 @@ F1: 0.72
 </li>
 </ul>
 </li>
-<li><a href="#2-upsert-%EB%AC%B8">2. UPSERT 문</a>
+<li><a href="#2-upsert-%EB%AC%B8"><strong>2. UPSERT 문</strong></a>
 <ul>
 <li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
 <li><a href="#2-2-upsert-%EB%AC%B8%EB%B2%95">2-2. UPSERT 문법</a></li>
@@ -55411,7 +55411,7 @@ F1: 0.72
 </li>
 </ul>
 </li>
-<li><a href="#3-export-%EC%9E%91%EC%97%85">3. EXPORT 작업</a>
+<li><a href="#3-export-%EC%9E%91%EC%97%85"><strong>3. EXPORT 작업</strong></a>
 <ul>
 <li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
 <li><a href="#3-2-export-%EC%9E%91%EC%97%85-%EC%8B%A4%EC%8A%B5">3-2. EXPORT 작업 실습</a>
@@ -55423,7 +55423,7 @@ F1: 0.72
 </li>
 </ul>
 </li>
-<li><a href="#4-import-%EC%9E%91%EC%97%85">4. IMPORT 작업</a>
+<li><a href="#4-import-%EC%9E%91%EC%97%85"><strong>4. IMPORT 작업</strong></a>
 <ul>
 <li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
 <li><a href="#4-2-import-%EC%9E%91%EC%97%85-%EC%8B%A4%EC%8A%B5">4-2. IMPORT 작업 실습</a>
@@ -55439,7 +55439,7 @@ F1: 0.72
 </ul>
 <p></p>
 <br>
-<h2 id="1-delete-문"><a class="markdownIt-Anchor" href="#1-delete-문"></a> 1. DELETE 문</h2>
+<h2 id="1-delete-문"><a class="markdownIt-Anchor" href="#1-delete-문"></a> <strong>1. DELETE 문</strong></h2>
 <h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
 <p>DELETE문은 테이블에서 특정 데이터를 삭제하거나 테이블 내에 존재하는 모든 데이터를 삭제할 수 있다.</p>
 <br>
@@ -55499,7 +55499,7 @@ F1: 0.72
 <p><img src="/images/S-SQL-Manipulation-2/image-20201204150440196.png" alt="image-20201204150440196"></p>
 <br>
 <br>
-<h2 id="2-upsert-문"><a class="markdownIt-Anchor" href="#2-upsert-문"></a> 2. UPSERT 문</h2>
+<h2 id="2-upsert-문"><a class="markdownIt-Anchor" href="#2-upsert-문"></a> <strong>2. UPSERT 문</strong></h2>
 <h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
 <p>UPSERT문은 INSERT를 시도할 때 조건(상황)에 따라 UPDATE를 할 수 있는 구문이다. 복잡한 업무 처리에 자주 사용된다.</p>
 <br>
@@ -55530,7 +55530,7 @@ F1: 0.72
 <li>'Microsoft’라는 NAME이 이미 존재하므로 NAME의 UNIQUE 조건과 충돌</li>
 <li>이런 경우에 아무 액션도 취하지 않음 (즉, 변화 없음)</li>
 </ul>
-<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)   <span class="comment">-- 충돌 시(기존에 존재할 경우)</span></span><br><span class="line"><span class="keyword">DO</span> <span class="keyword">NOTHING</span>;          <span class="comment">-- 아무 것도 안함</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)      <span class="comment">-- 충돌 시(기존에 존재할 경우)</span></span><br><span class="line"><span class="keyword">DO</span> <span class="keyword">NOTHING</span>;             <span class="comment">-- 아무 것도 안함</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-Manipulation-2/image-20201204161107381.png" alt="image-20201204161107381" style="zoom:80%;">
 <br>
 <ul>
@@ -55552,11 +55552,11 @@ F1: 0.72
 <p>이런 경우에 데이터를 UPDATE함</p>
 </li>
 </ul>
-<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)       <span class="comment">-- 충돌 검증 컬럼</span></span><br><span class="line">  <span class="keyword">DO</span> <span class="keyword">UPDATE</span></span><br><span class="line">        <span class="keyword">SET</span> EMAIL = EXCLUDED.EMAIL || <span class="string">'; '</span> || CUSTOMERS.EMAIL;</span><br><span class="line">            <span class="comment">-- EXCLUDED.EMAIL은 위에서 INSERT 시도한 EMAIL값을 가리킴</span></span><br><span class="line">            </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)       <span class="comment">-- 충돌 검증 컬럼</span></span><br><span class="line"><span class="keyword">DO</span> <span class="keyword">UPDATE</span></span><br><span class="line">        <span class="keyword">SET</span> EMAIL = EXCLUDED.EMAIL || <span class="string">'; '</span> || CUSTOMERS.EMAIL;</span><br><span class="line">            <span class="comment">-- EXCLUDED.EMAIL은 위에서 INSERT 시도한 EMAIL값을 가리킴</span></span><br><span class="line">            </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-Manipulation-2/image-20201207102128506.png" alt="image-20201207102128506" style="zoom:80%;">
 <br>
 <br>
-<h2 id="3-export-작업"><a class="markdownIt-Anchor" href="#3-export-작업"></a> 3. EXPORT 작업</h2>
+<h2 id="3-export-작업"><a class="markdownIt-Anchor" href="#3-export-작업"></a> <strong>3. EXPORT 작업</strong></h2>
 <h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
 <p>EXPORT는 테이블의 데이터를 다른 형태의 데이터로 추출하는 작업이다. 대표적으로 CSV 형식으로 가장 많이 추출한다.</p>
 <br>
@@ -55585,7 +55585,7 @@ F1: 0.72
 <img src="/images/S-SQL-Manipulation-2/image-20201207112700637.png" alt="image-20201207112700637" style="zoom:50%;">
 <br>
 <br>
-<h2 id="4-import-작업"><a class="markdownIt-Anchor" href="#4-import-작업"></a> 4. IMPORT 작업</h2>
+<h2 id="4-import-작업"><a class="markdownIt-Anchor" href="#4-import-작업"></a> <strong>4. IMPORT 작업</strong></h2>
 <h3 id="4-1-개념"><a class="markdownIt-Anchor" href="#4-1-개념"></a> 4-1. 개념</h3>
 <p>IMPORT는 다른 형식의 데이터를 테이블에 넣는 작업을 말한다. 데이터 구축 시 자주 사용 된다.</p>
 <br>
@@ -55596,7 +55596,7 @@ F1: 0.72
 <img src="/images/S-SQL-Manipulation-2/image-20201207113847655.png" alt="image-20201207113847655">
 <br>
 <h4 id="실습-엑셀파일을-적재"><a class="markdownIt-Anchor" href="#실습-엑셀파일을-적재"></a> &gt;&gt; 실습 – 엑셀파일을 적재</h4>
-<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY_IMPORT(CATEGORY_ID, "NAME", LAST_UPDATE)  <span class="comment">-- 적재할 테이블 및 컬럼을 지정</span></span><br><span class="line">FROM 'E:\Study_SQL\DB_CATEGORY.csv'  <span class="comment">-- 적재할 파일을 지정</span></span><br><span class="line">DELIMITER ','        <span class="comment">-- 적재할 파일의 구분자를 알려준다</span></span><br><span class="line">CSV HEADER;          <span class="comment">-- 파일 형식을 지정한다</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY_IMPORT(CATEGORY_ID, "NAME", LAST_UPDATE)  <span class="comment">-- 적재할 테이블 및 컬럼을 지정</span></span><br><span class="line">FROM 'E:\Study_SQL\DB_CATEGORY.csv'                     <span class="comment">-- 적재할 파일을 지정</span></span><br><span class="line">DELIMITER ','        <span class="comment">-- 적재할 파일의 구분자를 알려준다</span></span><br><span class="line">CSV HEADER;          <span class="comment">-- 파일 형식을 지정한다</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br></pre></td></tr></tbody></table></figure>
 <img src="/images/S-SQL-Manipulation-2/image-20201207114306348.png" alt="image-20201207114306348" style="zoom:80%;">
 <br>
@@ -55657,7 +55657,7 @@ F1: 0.72
     <url>/2020/12/07/S-SQL-Manipulation-1/</url>
     <content><![CDATA[<h1 id="데이터-조작-1"><a class="markdownIt-Anchor" href="#데이터-조작-1"></a> 데이터 조작 (1)</h1>
 <p></p><ul class="markdownIt-TOC">
-<li><a href="#1-insert-%EB%AC%B8">1. INSERT 문</a>
+<li><a href="#1-insert-%EB%AC%B8"><strong>1. INSERT 문</strong></a>
 <ul>
 <li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
 <li><a href="#1-2-insert-%EB%AC%B8%EB%B2%95">1-2. INSERT 문법</a></li>
@@ -55669,7 +55669,7 @@ F1: 0.72
 </li>
 </ul>
 </li>
-<li><a href="#2-update-%EB%AC%B8">2. UPDATE 문</a>
+<li><a href="#2-update-%EB%AC%B8"><strong>2. UPDATE 문</strong></a>
 <ul>
 <li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
 <li><a href="#2-2-update-%EB%AC%B8%EB%B2%95">2-2. UPDATE 문법</a></li>
@@ -55681,7 +55681,7 @@ F1: 0.72
 </li>
 </ul>
 </li>
-<li><a href="#3-update-join-%EB%AC%B8">3. UPDATE JOIN 문</a>
+<li><a href="#3-update-join-%EB%AC%B8"><strong>3. UPDATE JOIN 문</strong></a>
 <ul>
 <li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
 <li><a href="#3-2-update-join-%EB%AC%B8%EB%B2%95">3-2. UPDATE JOIN 문법</a></li>
@@ -55696,7 +55696,7 @@ F1: 0.72
 </ul>
 <p></p>
 <br>
-<h2 id="1-insert-문"><a class="markdownIt-Anchor" href="#1-insert-문"></a> 1. INSERT 문</h2>
+<h2 id="1-insert-문"><a class="markdownIt-Anchor" href="#1-insert-문"></a> <strong>1. INSERT 문</strong></h2>
 <h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
 <p>INSERT는 테이블이 만들어지면 데이블 안에 데이터를 추가하는 명령어이다.</p>
 <br>
@@ -55734,7 +55734,7 @@ F1: 0.72
 <img src="/images/S-SQL-Manipulation-1/image-20201203135135326.png" alt="image-20201203135135326" style="zoom:80%;">
 <br>
 <br>
-<h2 id="2-update-문"><a class="markdownIt-Anchor" href="#2-update-문"></a> 2. UPDATE 문</h2>
+<h2 id="2-update-문"><a class="markdownIt-Anchor" href="#2-update-문"></a> <strong>2. UPDATE 문</strong></h2>
 <h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
 <p>UPDATE 문은 테이블에 존재하는 데이터를 수정하는 작업이다. 업무를 처리하는데 필수적인 것이며 동시성에 유의해야 한다.</p>
 <ul>
@@ -55775,7 +55775,7 @@ F1: 0.72
 <img src="/images/S-SQL-Manipulation-1/image-20201204092744650.png" alt="image-20201204092744650" style="zoom:80%;">
 <br>
 <br>
-<h2 id="3-update-join-문"><a class="markdownIt-Anchor" href="#3-update-join-문"></a> 3. UPDATE JOIN 문</h2>
+<h2 id="3-update-join-문"><a class="markdownIt-Anchor" href="#3-update-join-문"></a> <strong>3. UPDATE JOIN 문</strong></h2>
 <h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
 <p>UPDATA 시 다른 테이블의 내용을 참조하고 싶을 때 UPDATE JOIN 문을 사용한다. 복잡한 업무를 처리하는데 매우 유용한 방법이다.</p>
 <br>
