@@ -9,6 +9,20 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-8-Manipulation/</loc>
+        <lastmod>2020-12-07T05:49:46.315Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/</loc>
+        <lastmod>2020-12-07T05:49:46.315Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
         <lastmod>2020-12-01T03:48:24.007Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -45,13 +59,6 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-7-SubQuery/</loc>
-        <lastmod>2020-11-27T04:07:01.212Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/</loc>
         <lastmod>2020-11-27T04:07:01.212Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

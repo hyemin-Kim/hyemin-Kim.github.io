@@ -3,14 +3,21 @@
 
 
     <url>
-        <loc>https://hyemin-kim.github.io/tags/SubQuery/</loc>
-        <lastmod>2020-12-01T03:48:24.007Z</lastmod>
+        <loc>https://hyemin-kim.github.io/tags/Manipulation/</loc>
+        <lastmod>2020-12-07T05:49:46.315Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
+        <lastmod>2020-12-07T05:49:46.315Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/SubQuery/</loc>
         <lastmod>2020-12-01T03:48:24.007Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

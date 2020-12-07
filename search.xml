@@ -55375,4 +55375,463 @@ F1: 0.72
         <tag>SubQuery</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SQL &gt;&gt; 데이터 조작 (2)</title>
+    <url>/2020/12/07/S-SQL-Manipulation-2/</url>
+    <content><![CDATA[<h1 id="데이터-조작-2"><a class="markdownIt-Anchor" href="#데이터-조작-2"></a> 데이터 조작 (2)</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-delete-%EB%AC%B8">1. DELETE 문</a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-delete-%EB%AC%B8%EB%B2%95">1-2. DELETE 문법</a>
+<ul>
+<li><a href="#1-delete">(1) DELETE</a></li>
+<li><a href="#2-delete-join">(2) DELETE JOIN</a></li>
+</ul>
+</li>
+<li><a href="#1-3-delete-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">1-3. DELETE 문 실습</a>
+<ul>
+<li><a href="#1-%ED%8A%B9%EC%A0%95-%EC%A1%B0%EA%B1%B4%EC%9D%98-%ED%96%89%EC%9D%84-%EC%82%AD%EC%A0%9C">(1) 특정 조건의 행을 삭제</a></li>
+<li><a href="#2-delete-join%EC%9D%98-%EC%82%AC%EC%9A%A9">(2) DELETE JOIN의 사용</a></li>
+<li><a href="#3-%EC%A0%84%EC%B2%B4-%ED%96%89-%EC%82%AD%EC%A0%9C">(3) 전체 행 삭제</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-upsert-%EB%AC%B8">2. UPSERT 문</a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
+<li><a href="#2-2-upsert-%EB%AC%B8%EB%B2%95">2-2. UPSERT 문법</a></li>
+<li><a href="#2-3-upsert-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">2-3. UPSERT 문 실습</a>
+<ul>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">&gt;&gt; 실습 준비</a></li>
+<li><a href="#upsert-%EB%AC%B8-%EC%8B%A4%EC%8A%B5-do-nothing">&gt;&gt; UPSERT 문 실습 – DO NOTHING</a></li>
+<li><a href="#upsert-%EB%AC%B8-%EC%8B%A4%EC%8A%B5-update">&gt;&gt; UPSERT 문 실습 – UPDATE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-export-%EC%9E%91%EC%97%85">3. EXPORT 작업</a>
+<ul>
+<li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
+<li><a href="#3-2-export-%EC%9E%91%EC%97%85-%EC%8B%A4%EC%8A%B5">3-2. EXPORT 작업 실습</a>
+<ul>
+<li><a href="#%EC%97%91%EC%85%80csv-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EC%B6%9C%EB%A0%A5">&gt;&gt; 엑셀(.CSV) 형식으로 출력</a></li>
+<li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8txt-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%EC%B6%9C%EB%A0%A5">&gt;&gt; 텍스트(.TXT) 파일로 출력</a></li>
+<li><a href="#%EC%BB%AC%EB%9F%BC%EB%AA%85-%EC%97%86%EC%9D%B4-%EC%B6%9C%EB%A0%A5">&gt;&gt; 컬럼명 없이 출력</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-import-%EC%9E%91%EC%97%85">4. IMPORT 작업</a>
+<ul>
+<li><a href="#4-1-%EA%B0%9C%EB%85%90">4-1. 개념</a></li>
+<li><a href="#4-2-import-%EC%9E%91%EC%97%85-%EC%8B%A4%EC%8A%B5">4-2. IMPORT 작업 실습</a>
+<ul>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84-2">&gt;&gt; 실습 준비</a></li>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%97%91%EC%85%80%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%A0%81%EC%9E%AC">&gt;&gt; 실습 – 엑셀파일을 적재</a></li>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%ED%85%8D%EC%8A%A4%ED%8A%B8-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%A0%81%EC%9E%AC">&gt;&gt; 실습 – 텍스트 파일을 적재</a></li>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%BB%AC%EB%9F%BC%EB%AA%85%EC%9D%B4-%EC%97%86%EB%8A%94-%EC%97%91%EC%85%80-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9E%AC">&gt;&gt; 실습 – 컬럼명이 없는 엑셀 파일 적재</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-delete-문"><a class="markdownIt-Anchor" href="#1-delete-문"></a> 1. DELETE 문</h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>DELETE문은 테이블에서 특정 데이터를 삭제하거나 테이블 내에 존재하는 모든 데이터를 삭제할 수 있다.</p>
+<br>
+<h3 id="1-2-delete-문법"><a class="markdownIt-Anchor" href="#1-2-delete-문법"></a> 1-2. DELETE 문법</h3>
+<h4 id="1-delete"><a class="markdownIt-Anchor" href="#1-delete"></a> (1) DELETE</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line">  <span class="keyword">FROM</span> TARGET_TABLE A</span><br><span class="line"> <span class="keyword">WHERE</span> 조건식;          <span class="comment">-- 삭제할 행에 대한 조건</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="2-delete-join"><a class="markdownIt-Anchor" href="#2-delete-join"></a> (2) DELETE JOIN</h4>
+<p>DELETE 시 다른 테이블의 내용을 참조하고 싶을 때 DELETE JOIN 문을 사용한다.</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line">  <span class="keyword">FROM</span> TARGET_TABLE A</span><br><span class="line"> <span class="keyword">USING</span> REF_TABLE B     <span class="comment">-- 참조 테이블 지정 </span></span><br><span class="line"> <span class="keyword">WHERE</span> 조건식;          <span class="comment">-- JOIN &amp; DELETE 조건</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<br>
+<h3 id="1-3-delete-문-실습"><a class="markdownIt-Anchor" href="#1-3-delete-문-실습"></a> 1-3. DELETE 문 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204135107666.png" alt="image-20201204135107666" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> LINK_TMP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201203135135326.png" alt="image-20201203135135326" style="zoom:80%;">
+<br>
+<br>
+<h4 id="1-특정-조건의-행을-삭제"><a class="markdownIt-Anchor" href="#1-특정-조건의-행을-삭제"></a> (1) 특정 조건의 행을 삭제</h4>
+<p><strong>[MISSION]</strong> LINK테이블에서 ID가 5인 행을 삭제</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204135107666.png" alt="image-20201204135107666" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line">  <span class="keyword">FROM</span> <span class="keyword">LINK</span></span><br><span class="line"> <span class="keyword">WHERE</span> <span class="keyword">ID</span> = <span class="number">5</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204135350865.png" alt="image-20201204135350865" style="zoom:80%;">
+<br>
+<br>
+<h4 id="2-delete-join의-사용"><a class="markdownIt-Anchor" href="#2-delete-join의-사용"></a> (2) DELETE JOIN의 사용</h4>
+<p><strong>[MISSION]</strong>  LINK_TMP 테이블에서 ID가 LINK 테이블의 ID 와 매칭된 행을 삭제</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204135350865.png" alt="image-20201204135350865" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> LINK_TMP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201203135135326.png" alt="image-20201203135135326" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line">  <span class="keyword">FROM</span> LINK_TMP A</span><br><span class="line"> <span class="keyword">USING</span> <span class="keyword">LINK</span> B</span><br><span class="line"> <span class="keyword">WHERE</span> A.ID = B.ID;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> LINK_TMP;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Manipulation-2/image-20201204144847961.png" alt="image-20201204144847961"></p>
+<br>
+<br>
+<h4 id="3-전체-행-삭제"><a class="markdownIt-Anchor" href="#3-전체-행-삭제"></a> (3) 전체 행 삭제</h4>
+<p><strong>&gt;&gt; LINK 테이블</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204135350865.png" alt="image-20201204135350865" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204150231132.png" alt="image-20201204150231132" style="zoom:80%;">
+<br>
+<br>
+<p><strong>&gt;&gt; LINK_TMP 테이블</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> LINK_TMP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204144847961.png" alt="image-20201204144847961" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> LINK_TMP;</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> LINK_TMP;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Manipulation-2/image-20201204150440196.png" alt="image-20201204150440196"></p>
+<br>
+<br>
+<h2 id="2-upsert-문"><a class="markdownIt-Anchor" href="#2-upsert-문"></a> 2. UPSERT 문</h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
+<p>UPSERT문은 INSERT를 시도할 때 조건(상황)에 따라 UPDATE를 할 수 있는 구문이다. 복잡한 업무 처리에 자주 사용된다.</p>
+<br>
+<h3 id="2-2-upsert-문법"><a class="markdownIt-Anchor" href="#2-2-upsert-문법"></a> 2-2. UPSERT 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TABLE_NAME (COLUMN_1) </span><br><span class="line">     <span class="keyword">VALUES</span> (VALUE_1)                 <span class="comment">-- INSERT 시도</span></span><br><span class="line"><span class="keyword">ON</span> CONFLICT TARGET <span class="keyword">ACTION</span>;            <span class="comment">-- 충돌 시 다른 액션</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="2-3-upsert-문-실습"><a class="markdownIt-Anchor" href="#2-3-upsert-문-실습"></a> 2-3. UPSERT 문 실습</h3>
+<h4 id="실습-준비"><a class="markdownIt-Anchor" href="#실습-준비"></a> &gt;&gt; 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> CUSTOMERS</span><br><span class="line">(</span><br><span class="line">  CUSTOMER_ID <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  <span class="keyword">NAME</span> <span class="built_in">VARCHAR</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">  EMAIL <span class="built_in">VARCHAR</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  ACTIVE <span class="built_in">BOOL</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">TRUE</span></span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>
+<p>NAME 컬럼이 UNIQUE 제약 조건 컬럼임을 주의 한다.</p>
+</li>
+<li>
+<p>즉 NAME 컬럼은 중복된 값이 존재할 수 없다</p>
+<br>
+</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'IBM'</span>, <span class="string">'contact@ibm.com'</span>),</span><br><span class="line">  (<span class="string">'Microsoft'</span>, <span class="string">'contact@microsoft.com'</span>),</span><br><span class="line">  (<span class="string">'Intel'</span>, <span class="string">'contact@intel.com'</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CUSTOMERS;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204161107381.png" alt="image-20201204161107381" style="zoom:80%;">
+<br>
+<h4 id="upsert-문-실습-do-nothing"><a class="markdownIt-Anchor" href="#upsert-문-실습-do-nothing"></a> &gt;&gt; UPSERT 문 실습 – DO NOTHING</h4>
+<p><strong>DO NOTHING:</strong>  INSERT 액션이 충돌 시 (기존에 존재할 경우) 아무것도 안함</p>
+<br>
+<p><strong>[MISSION]</strong>  Microsoft(기존에 존재하는 NAME)에 EMAIL 주소 추가</p>
+<ul>
+<li>'Microsoft’라는 NAME이 이미 존재하므로 NAME의 UNIQUE 조건과 충돌</li>
+<li>이런 경우에 아무 액션도 취하지 않음 (즉, 변화 없음)</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)   <span class="comment">-- 충돌 시(기존에 존재할 경우)</span></span><br><span class="line"><span class="keyword">DO</span> <span class="keyword">NOTHING</span>;          <span class="comment">-- 아무 것도 안함</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201204161107381.png" alt="image-20201204161107381" style="zoom:80%;">
+<br>
+<ul>
+<li>해당 DO NOTHING 명령어 없으면 SQL ERROR 발생</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Manipulation-2/image-20201207095200026.png" alt="image-20201207095200026"></p>
+<br>
+<br>
+<h4 id="upsert-문-실습-update"><a class="markdownIt-Anchor" href="#upsert-문-실습-update"></a> &gt;&gt; UPSERT 문 실습 – UPDATE</h4>
+<p><strong>UPDATE:</strong>  INSERT 액션이 충돌 시 (기존에 존재할 경우) UPDATE 함</p>
+<br>
+<p><strong>[MISSION]</strong>  Microsoft(기존에 존재하는 NAME)에 EMAIL 주소 추가</p>
+<ul>
+<li>
+<p>'Microsoft’라는 NAME이 이미 존재하므로 NAME의 UNIQUE 조건과 충돌</p>
+</li>
+<li>
+<p>이런 경우에 데이터를 UPDATE함</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CUSTOMERS (<span class="keyword">NAME</span>, EMAIL)</span><br><span class="line">     <span class="keyword">VALUES</span> (<span class="string">'Microsoft'</span>,</span><br><span class="line">             <span class="string">'hotline@microsoft.com'</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (<span class="keyword">NAME</span>)       <span class="comment">-- 충돌 검증 컬럼</span></span><br><span class="line">  <span class="keyword">DO</span> <span class="keyword">UPDATE</span></span><br><span class="line">        <span class="keyword">SET</span> EMAIL = EXCLUDED.EMAIL || <span class="string">'; '</span> || CUSTOMERS.EMAIL;</span><br><span class="line">            <span class="comment">-- EXCLUDED.EMAIL은 위에서 INSERT 시도한 EMAIL값을 가리킴</span></span><br><span class="line">            </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207102128506.png" alt="image-20201207102128506" style="zoom:80%;">
+<br>
+<br>
+<h2 id="3-export-작업"><a class="markdownIt-Anchor" href="#3-export-작업"></a> 3. EXPORT 작업</h2>
+<h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
+<p>EXPORT는 테이블의 데이터를 다른 형태의 데이터로 추출하는 작업이다. 대표적으로 CSV 형식으로 가장 많이 추출한다.</p>
+<br>
+<h3 id="3-2-export-작업-실습"><a class="markdownIt-Anchor" href="#3-2-export-작업-실습"></a> 3-2. EXPORT 작업 실습</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> DATEGORY;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207110518434.png" alt="image-20201207110518434" style="zoom:80%;">
+<br>
+<h4 id="엑셀csv-형식으로-출력"><a class="markdownIt-Anchor" href="#엑셀csv-형식으로-출력"></a> &gt;&gt; 엑셀(.CSV) 형식으로 출력</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY (CATEGORY_ID, NAME, LAST_UPDATE)  <span class="comment">-- 추출할 테이블과 컬럼을 지정</span></span><br><span class="line">TO 'E:\Study_SQL\DB_CATEGORY.csv'               <span class="comment">-- 추출한 데이터를 저장할 파일을 지정</span></span><br><span class="line">DELIMITER ','       <span class="comment">-- 구분자를 지정</span></span><br><span class="line">CSV HEADER;         <span class="comment">-- 파일 형식을 지정</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>저장 디랙토리(폴더)는 반드시 미리 존재해야 한다 (여기서는 ‘E:\Study_SQL’)</li>
+</ul>
+<br>
+<img src="/images/S-SQL-Manipulation-2/image-20201207111613206.png" alt="image-20201207111613206" style="zoom: 60%;">
+<br>
+<img src="/images/S-SQL-Manipulation-2/image-20201207111745428.png" alt="image-20201207111745428" style="zoom:50%;">
+<br>
+<h4 id="텍스트txt-파일로-출력"><a class="markdownIt-Anchor" href="#텍스트txt-파일로-출력"></a> &gt;&gt; 텍스트(.TXT) 파일로 출력</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY(CATEGORY_ID, NAME, LAST_UPDATE)</span><br><span class="line">TO 'E:\Study_SQL\DB_CATEGORY.txt'</span><br><span class="line">DELIMITER '|'</span><br><span class="line">CSV HEADER;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207112258741.png" alt="image-20201207112258741" style="zoom:60%;">
+<br>
+<img src="/images/S-SQL-Manipulation-2/image-20201207112337940.png" alt="image-20201207112337940" style="zoom:50%;">
+<br>
+<h4 id="컬럼명-없이-출력"><a class="markdownIt-Anchor" href="#컬럼명-없이-출력"></a> &gt;&gt; 컬럼명 없이 출력</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY(CATEGORY_ID, NAME, LAST_UPDATE)</span><br><span class="line">TO 'E:\Study_SQL\DB_CATEGORY_2.csv'</span><br><span class="line">DELIMITER ','</span><br><span class="line">CSV;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207112700637.png" alt="image-20201207112700637" style="zoom:50%;">
+<br>
+<br>
+<h2 id="4-import-작업"><a class="markdownIt-Anchor" href="#4-import-작업"></a> 4. IMPORT 작업</h2>
+<h3 id="4-1-개념"><a class="markdownIt-Anchor" href="#4-1-개념"></a> 4-1. 개념</h3>
+<p>IMPORT는 다른 형식의 데이터를 테이블에 넣는 작업을 말한다. 데이터 구축 시 자주 사용 된다.</p>
+<br>
+<h3 id="4-2-import-작업-실습"><a class="markdownIt-Anchor" href="#4-2-import-작업-실습"></a> 4-2. IMPORT 작업 실습</h3>
+<h4 id="실습-준비-2"><a class="markdownIt-Anchor" href="#실습-준비-2"></a> &gt;&gt; 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> CATEGORY_IMPORT</span><br><span class="line">(</span><br><span class="line">  CATEGORY_ID <span class="built_in">SERIAL</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">"NAME"</span> <span class="built_in">VARCHAR</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  LAST_UPDATE <span class="built_in">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NOW</span>(),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> CATEGORY_IMPORT_PKEY PRIMARY <span class="keyword">KEY</span> (CATEGORY_ID)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207113847655.png" alt="image-20201207113847655">
+<br>
+<h4 id="실습-엑셀파일을-적재"><a class="markdownIt-Anchor" href="#실습-엑셀파일을-적재"></a> &gt;&gt; 실습 – 엑셀파일을 적재</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY_IMPORT(CATEGORY_ID, "NAME", LAST_UPDATE)  <span class="comment">-- 적재할 테이블 및 컬럼을 지정</span></span><br><span class="line">FROM 'E:\Study_SQL\DB_CATEGORY.csv'  <span class="comment">-- 적재할 파일을 지정</span></span><br><span class="line">DELIMITER ','        <span class="comment">-- 적재할 파일의 구분자를 알려준다</span></span><br><span class="line">CSV HEADER;          <span class="comment">-- 파일 형식을 지정한다</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207114306348.png" alt="image-20201207114306348" style="zoom:80%;">
+<br>
+<h4 id="실습-텍스트-파일을-적재"><a class="markdownIt-Anchor" href="#실습-텍스트-파일을-적재"></a> &gt;&gt; 실습 – 텍스트 파일을 적재</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 실습 전 먼저 데이터를 삭제해야 함</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY_IMPORT(CATEGORY_ID, "NAME", LAST_UPDATE)</span><br><span class="line">FROM 'E:\Study_SQL\DB_CATEGORY.txt'</span><br><span class="line">DELIMITER '|'</span><br><span class="line">CSV HEADER;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207130748150.png" alt="image-20201207130748150" style="zoom:80%;">
+<br>
+<h4 id="실습-컬럼명이-없는-엑셀-파일-적재"><a class="markdownIt-Anchor" href="#실습-컬럼명이-없는-엑셀-파일-적재"></a> &gt;&gt; 실습 – 컬럼명이 없는 엑셀 파일 적재</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 실습 전 먼저 데이터를 삭제해야 함</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY_IMPORT(CATEGORY_ID, "NAME", LAST_UPDATE)</span><br><span class="line">FROM 'E:\Study_SQL\DB_CATEGORY_2.csv'</span><br><span class="line">DELIMITER ','</span><br><span class="line">CSV;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207131800879.png" alt="image-20201207131800879" style="zoom:80%;">
+<br>
+<ul>
+<li>
+<p>DB_CATEGOROY_2.csv 파일은 컬럼명(header) 이 존재하지 않으므로 반드시 HEADER를 제거해야한다.</p>
+</li>
+<li>
+<p>HEADER를 제거하지 않을 경우 가장 첫번째 데이터를 헤더로 인식하여 한건이 누락된다</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line">COPY CATEGORY_IMPORT(CATEGORY_ID, "NAME", LAST_UPDATE)</span><br><span class="line">FROM 'E:\Study_SQL\DB_CATEGORY_2.csv'</span><br><span class="line">DELIMITER ','</span><br><span class="line">CSV HEADER;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> CATEGORY_IMPORT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-2/image-20201207132305818.png" alt="image-20201207132305818" style="zoom:80%;">
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【STUDY - SQL】</category>
+        <category>SQL - 8. Manipulation</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>Manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL &gt;&gt; 데이터 조작 (1)</title>
+    <url>/2020/12/07/S-SQL-Manipulation-1/</url>
+    <content><![CDATA[<h1 id="데이터-조작-1"><a class="markdownIt-Anchor" href="#데이터-조작-1"></a> 데이터 조작 (1)</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-insert-%EB%AC%B8">1. INSERT 문</a>
+<ul>
+<li><a href="#1-1-%EA%B0%9C%EB%85%90">1-1. 개념</a></li>
+<li><a href="#1-2-insert-%EB%AC%B8%EB%B2%95">1-2. INSERT 문법</a></li>
+<li><a href="#1-3-insert-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">1-3. INSERT 문 실습</a>
+<ul>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84">&gt;&gt; 실습 준비</a></li>
+<li><a href="#insert-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">&gt;&gt; INSERT 문 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-update-%EB%AC%B8">2. UPDATE 문</a>
+<ul>
+<li><a href="#2-1-%EA%B0%9C%EB%85%90">2-1. 개념</a></li>
+<li><a href="#2-2-update-%EB%AC%B8%EB%B2%95">2-2. UPDATE 문법</a></li>
+<li><a href="#2-3-update-%EC%8B%A4%EC%8A%B5">2-3. UPDATE 실습</a>
+<ul>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84-2">&gt;&gt; 실습 준비</a></li>
+<li><a href="#update-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">&gt;&gt; UPDATE 문 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-update-join-%EB%AC%B8">3. UPDATE JOIN 문</a>
+<ul>
+<li><a href="#3-1-%EA%B0%9C%EB%85%90">3-1. 개념</a></li>
+<li><a href="#3-2-update-join-%EB%AC%B8%EB%B2%95">3-2. UPDATE JOIN 문법</a></li>
+<li><a href="#3-3-update-join-%EC%8B%A4%EC%8A%B5">3-3. UPDATE JOIN 실습</a>
+<ul>
+<li><a href="#%EC%8B%A4%EC%8A%B5-%EC%A4%80%EB%B9%84-3">&gt;&gt; 실습 준비</a></li>
+<li><a href="#update-join-%EB%AC%B8-%EC%8B%A4%EC%8A%B5">&gt;&gt; UPDATE JOIN 문 실습</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-insert-문"><a class="markdownIt-Anchor" href="#1-insert-문"></a> 1. INSERT 문</h2>
+<h3 id="1-1-개념"><a class="markdownIt-Anchor" href="#1-1-개념"></a> 1-1. 개념</h3>
+<p>INSERT는 테이블이 만들어지면 데이블 안에 데이터를 추가하는 명령어이다.</p>
+<br>
+<h3 id="1-2-insert-문법"><a class="markdownIt-Anchor" href="#1-2-insert-문법"></a> 1-2. INSERT 문법</h3>
+<p><strong>&gt;&gt; 1) 테이블의 컬럼 순서대로 입력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> </span><br><span class="line">  TABLE_NAME      <span class="comment">-- INSERT할 테이블 지정</span></span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(</span><br><span class="line">  VALUE1,         <span class="comment">-- 각 컬럼 값을 입력한다</span></span><br><span class="line">  VALUE2,</span><br><span class="line">  VALUE3,</span><br><span class="line">  ...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<p><strong>&gt;&gt; 2) 테이블 컬럼 지정</strong>  (더 많이 쓰임. 컬럼 명을 명시해주기 때문에 유지보수에 용이함)</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span></span><br><span class="line">   TABLE_NAME</span><br><span class="line">   (</span><br><span class="line">    COLUMN_1,</span><br><span class="line">    COLUMN_2</span><br><span class="line">   )</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(</span><br><span class="line">  VALUE1,</span><br><span class="line">  VALUE2</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="1-3-insert-문-실습"><a class="markdownIt-Anchor" href="#1-3-insert-문-실습"></a> 1-3. INSERT 문 실습</h3>
+<h4 id="실습-준비"><a class="markdownIt-Anchor" href="#실습-준비"></a> &gt;&gt; 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- LINK라는 테이블을 생성함</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">LINK</span> (</span><br><span class="line">  <span class="keyword">ID</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  <span class="keyword">URL</span> <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">NAME</span> <span class="built_in">VARCHAR</span> (<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  DESCRIPTION <span class="built_in">VARCHAR</span> (<span class="number">255</span>),</span><br><span class="line">  REL <span class="built_in">VARCHAR</span> (<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h4 id="insert-문-실습"><a class="markdownIt-Anchor" href="#insert-문-실습"></a> &gt;&gt; INSERT 문 실습</h4>
+<p><strong>(1) 1개 ROW 입력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> </span><br><span class="line">   <span class="keyword">LINK</span> (<span class="keyword">URL</span>, <span class="keyword">NAME</span>)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'http://naver.com'</span>, <span class="string">'Naver'</span>);</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201203111802507.png" alt="image-20201203111802507">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">-- 내용 안에 작은 따움표를 추가하고 싶으면 작은 따움표 두개(''##'')를 더 추가해주면 됨. </span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> </span><br><span class="line">   <span class="keyword">LINK</span> (<span class="keyword">URL</span>, <span class="keyword">NAME</span>)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="string">'''http://naver.com'''</span>, <span class="string">'Naver'</span>);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> FILM;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Manipulation-1/image-20201203113353940.png" alt="image-20201203113353940"></p>
+<br>
+<br>
+<p><strong>(2) 동시에 N개 ROW 입력</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> </span><br><span class="line">   <span class="keyword">LINK</span> (<span class="keyword">URL</span>, <span class="keyword">NAME</span>)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line"> (<span class="string">'http://www.google.com'</span>, <span class="string">'Google'</span>),</span><br><span class="line"> (<span class="string">'http://www.bing.com'</span>, <span class="string">'Bing'</span>),</span><br><span class="line"> (<span class="string">'http://www.baidu.com'</span>, <span class="string">'BaiDu'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201203135135326.png" alt="image-20201203135135326" style="zoom:80%;">
+<br>
+<br>
+<p><strong>(3) 테이블 프레임에 테이블을 입력</strong></p>
+<p>&gt;  LINK 테이블의 스키마(껍데기)만 가져와서 LINK_TMP 테이블을 생성한다</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> LINK_TMP <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="number">0</span> = <span class="number">1</span>;      <span class="comment">-- LINK_TMP 테이블의 구조는 LINK와 같고 데이터는 0건이 된다.</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> </span><br><span class="line">       LINK_TMP</span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line">  <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> LINK_TMP;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201203135135326.png" alt="image-20201203135135326" style="zoom:80%;">
+<br>
+<br>
+<h2 id="2-update-문"><a class="markdownIt-Anchor" href="#2-update-문"></a> 2. UPDATE 문</h2>
+<h3 id="2-1-개념"><a class="markdownIt-Anchor" href="#2-1-개념"></a> 2-1. 개념</h3>
+<p>UPDATE 문은 테이블에 존재하는 데이터를 수정하는 작업이다. 업무를 처리하는데 필수적인 것이며 동시성에 유의해야 한다.</p>
+<ul>
+<li>UPDATE는 대상 행에 대해서 락(LOCK)을 잡는다.</li>
+<li>락(LOCK)이란 다른 사용자는 해당 행에 대해서 작업을 하지 못한다는 것이다. (대기하게 됨)</li>
+<li>즉 UPDATE를 한 후 재빨리 COMMIT을 하지 않는다면 RDBMS의 동시성이 낮아진다.</li>
+</ul>
+<br>
+<h3 id="2-2-update-문법"><a class="markdownIt-Anchor" href="#2-2-update-문법"></a> 2-2. UPDATE 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span></span><br><span class="line">  TABLE_NAME           <span class="comment">-- UPDATE할 테이블 지정</span></span><br><span class="line"><span class="keyword">SET</span></span><br><span class="line">  COLUMN_1 = VALUE1,   <span class="comment">-- 수정할 컬럼 및 값 입력</span></span><br><span class="line">  COLUMN_2 = VALUE2</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  조건;                 <span class="comment">-- 대상 조건</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="2-3-update-실습"><a class="markdownIt-Anchor" href="#2-3-update-실습"></a> 2-3. UPDATE 실습</h3>
+<h4 id="실습-준비-2"><a class="markdownIt-Anchor" href="#실습-준비-2"></a> &gt;&gt; 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">LINK</span> <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> LAST_UPDATE <span class="built_in">DATE</span>;    <span class="comment">-- LINK테이블에 LAST_UPDATE컬럼을 추가</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">LINK</span> <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> LAST_UPDATE <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_DATE</span>;  <span class="comment">-- LAST_UPDATE 컬럼의 기본값을 현재시간으로 함</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201203160947571.png" alt="image-20201203160947571" style="zoom:80%;">
+<br>
+<br>
+<h4 id="update-문-실습"><a class="markdownIt-Anchor" href="#update-문-실습"></a> &gt;&gt; UPDATE 문 실습</h4>
+<p><strong>(1) 지정 범위 수정</strong> (WHERE절)</p>
+<p><strong>[MISSION]</strong>  LAST_UPDATE 컬럼의 값을 지정한 DEFAULT값으로 UPDATE하기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">LINK</span></span><br><span class="line">   <span class="keyword">SET</span> LAST_UPDATE = <span class="keyword">DEFAULT</span></span><br><span class="line"> <span class="keyword">WHERE</span> LAST_UPDATE <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">LINK</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201203171411659.png" alt="image-20201203171411659" style="zoom:80%;">
+<br>
+<br>
+<p><strong>(2) 전체 테이블 수정</strong></p>
+<p><strong>[MISSION]</strong>  REL컬럼의 값을 'NO DATA’로 수정하기</p>
+<ul>
+<li>이 기능은 조심해서 사용 필요.</li>
+</ul>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">LINK</span></span><br><span class="line">   <span class="keyword">SET</span> REL = <span class="string">'NO DATA'</span>;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201203172450557.png" alt="image-20201203172450557" style="zoom:80%;">
+<br>
+<br>
+<p><strong>(3) 전체 테이블 수정 – 특정 컬럼을 이용</strong></p>
+<p><strong>[MISSION]</strong>  DESCRIPTION 컬럼을 NAME 컬럼의 값으로 채우기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">LINK</span></span><br><span class="line">   <span class="keyword">SET</span> DESCRIPTION = <span class="keyword">NAME</span>;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201204092744650.png" alt="image-20201204092744650" style="zoom:80%;">
+<br>
+<br>
+<h2 id="3-update-join-문"><a class="markdownIt-Anchor" href="#3-update-join-문"></a> 3. UPDATE JOIN 문</h2>
+<h3 id="3-1-개념"><a class="markdownIt-Anchor" href="#3-1-개념"></a> 3-1. 개념</h3>
+<p>UPDATA 시 다른 테이블의 내용을 참조하고 싶을 때 UPDATE JOIN 문을 사용한다. 복잡한 업무를 처리하는데 매우 유용한 방법이다.</p>
+<br>
+<h3 id="3-2-update-join-문법"><a class="markdownIt-Anchor" href="#3-2-update-join-문법"></a> 3-2. UPDATE JOIN 문법</h3>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span></span><br><span class="line">       TARGET_TABLE A              <span class="comment">-- UPDATE할 테이블 지정</span></span><br><span class="line">   <span class="keyword">SET</span> A.COLUMN_1 = 표현식          <span class="comment">-- 특정 컬럼 UPDATE</span></span><br><span class="line">  <span class="keyword">FROM</span> REF_TABLE B                 <span class="comment">-- 참조 테이블 지정</span></span><br><span class="line"> <span class="keyword">WHERE</span> A.COLUMN_1 = B.COLUMN_1;    <span class="comment">-- 조인 조건</span></span><br></pre></td></tr></tbody></table></figure>
+<br>
+<h3 id="3-3-update-join-실습"><a class="markdownIt-Anchor" href="#3-3-update-join-실습"></a> 3-3. UPDATE JOIN 실습</h3>
+<h4 id="실습-준비-3"><a class="markdownIt-Anchor" href="#실습-준비-3"></a> &gt;&gt; 실습 준비</h4>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCT_SEGMENT</span><br><span class="line">(</span><br><span class="line"> <span class="keyword">ID</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line"> <span class="keyword">SEGMENT</span> <span class="built_in">VARCHAR</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"> DISCOUNT <span class="built_in">NUMERIC</span> (<span class="number">4</span>, <span class="number">2</span>)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCT_SEGMENT</span><br><span class="line">(<span class="keyword">SEGMENT</span>, DISCOUNT)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">   (<span class="string">'Grand Luxury'</span>, <span class="number">0.05</span>),</span><br><span class="line">   (<span class="string">'Luxury'</span>, <span class="number">0.06</span>),</span><br><span class="line">   (<span class="string">'Mass'</span>, <span class="number">0.1</span>);</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRODUCT</span><br><span class="line">(</span><br><span class="line"> <span class="keyword">ID</span> <span class="built_in">SERIAL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line"> <span class="keyword">NAME</span> <span class="built_in">VARCHAR</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"> PRICE <span class="built_in">NUMERIC</span>(<span class="number">10</span>, <span class="number">2</span>),          <span class="comment">-- 정가</span></span><br><span class="line"> NET_PRICE <span class="built_in">NUMERIC</span>(<span class="number">10</span>, <span class="number">2</span>),      <span class="comment">-- 할인가 (실 판매가)</span></span><br><span class="line"> SEGMENT_ID <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(SEGMENT_ID)</span><br><span class="line"> <span class="keyword">REFERENCES</span> PRODUCT_SEGMENT(<span class="keyword">ID</span>)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRODUCT (<span class="keyword">NAME</span>, PRICE, SEGMENT_ID)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">	(<span class="string">'K5'</span>, <span class="number">804.89</span>, <span class="number">1</span>),</span><br><span class="line">  	(<span class="string">'K7'</span>, <span class="number">228.55</span>, <span class="number">3</span>),</span><br><span class="line">  	(<span class="string">'K9'</span>, <span class="number">366.45</span>, <span class="number">2</span>),</span><br><span class="line"> 	(<span class="string">'SONATA'</span>, <span class="number">145.33</span>, <span class="number">3</span>),</span><br><span class="line"> 	(<span class="string">'SPARK'</span>, <span class="number">551.77</span>, <span class="number">2</span>),</span><br><span class="line"> 	(<span class="string">'AVANTE'</span>, <span class="number">261.58</span>, <span class="number">3</span>),</span><br><span class="line"> 	(<span class="string">'LOZTE'</span>, <span class="number">519.62</span>, <span class="number">2</span>),</span><br><span class="line"> 	(<span class="string">'SANTAFE'</span>, <span class="number">843.31</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'TUSON'</span>, <span class="number">254.18</span>, <span class="number">3</span>),</span><br><span class="line"> 	(<span class="string">'TRAX'</span>, <span class="number">427.78</span>, <span class="number">2</span>),</span><br><span class="line"> 	(<span class="string">'ORANDO'</span>, <span class="number">936.29</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'RAY'</span>, <span class="number">910.34</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'MORNING'</span>, <span class="number">208.33</span>, <span class="number">3</span>),</span><br><span class="line"> 	(<span class="string">'VERNA'</span>, <span class="number">985.45</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'K8'</span>, <span class="number">841.26</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'TICO'</span>, <span class="number">896.38</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'MATIZ'</span>, <span class="number">575.74</span>, <span class="number">2</span>),</span><br><span class="line"> 	(<span class="string">'SPORTAGE'</span>, <span class="number">530.64</span>, <span class="number">2</span>),</span><br><span class="line"> 	(<span class="string">'ACCENT'</span>, <span class="number">892.43</span>, <span class="number">1</span>),</span><br><span class="line"> 	(<span class="string">'TOSCA'</span>, <span class="number">161.71</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/S-SQL-Manipulation-1/image-20201204103115223.png" alt="image-20201204103115223"></p>
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT_SEGMENT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201204103657029.png" alt="image-20201204103657029" style="zoom:80%;">
+<br>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201204103747274.png" alt="image-20201204103747274" style="zoom:80%;">
+<br>
+<br>
+<h4 id="update-join-문-실습"><a class="markdownIt-Anchor" href="#update-join-문-실습"></a> &gt;&gt; UPDATE JOIN 문 실습</h4>
+<p><strong>[MISSION]</strong>  PRODUCT_SEGMENT 테이블에 있는 할인율(DISCOUNT) 정보를 이용해서 PRODUCT</p>
+<p>테이블의 NET_PRICE (할인가 / 실 판매가)를 계산하여 채우기</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> PRODUCT A</span><br><span class="line">   <span class="keyword">SET</span> NET_PRICE = A.PRICE * (<span class="number">1</span> - B.DISCOUNT)</span><br><span class="line">  <span class="keyword">FROM</span> PRODUCT_SEGMENT B</span><br><span class="line"> <span class="keyword">WHERE</span> A.SEGMENT_ID = B.ID;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRODUCT;</span><br></pre></td></tr></tbody></table></figure>
+<img src="/images/S-SQL-Manipulation-1/image-20201204112104933.png" alt="image-20201204112104933" style="zoom:80%;">
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>【STUDY - SQL】</category>
+        <category>SQL - 8. Manipulation</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>Manipulation</tag>
+      </tags>
+  </entry>
 </search>

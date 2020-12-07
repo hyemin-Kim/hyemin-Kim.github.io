@@ -9,6 +9,22 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/2020/12/07/S-SQL-Manipulation-2/</loc>
+        <lastmod>2020-12-07T05:49:46.315Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2020/12/07/S-SQL-Manipulation-1/</loc>
+        <lastmod>2020-12-07T05:21:59.051Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/2020/12/01/E-SQL-Aggregate-and-SubQuery/</loc>
         <lastmod>2020-12-01T03:48:24.007Z</lastmod>
         <changefreq>weekly</changefreq>
