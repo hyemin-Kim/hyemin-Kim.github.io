@@ -9,6 +9,22 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/2020/12/21/S-SQL-Table-3/</loc>
+        <lastmod>2020-12-21T10:10:45.605Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2020/12/21/S-SQL-Table-2/</loc>
+        <lastmod>2020-12-21T10:09:39.134Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/2020/12/21/S-SQL-Table-1/</loc>
         <lastmod>2020-12-21T10:08:29.934Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,22 +35,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/2020/05/08/Reference/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/12/21/S-SQL-Table-3/</loc>
-        <lastmod>2020-12-21T09:56:52.571Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/12/21/S-SQL-Table-2/</loc>
-        <lastmod>2020-12-21T09:19:56.056Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
