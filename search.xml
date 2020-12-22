@@ -1914,8 +1914,6 @@
             
             <tag> Hexo </tag>
             
-            <tag> Typora </tag>
-            
             <tag> Markdown </tag>
             
             <tag> Git </tag>
@@ -1923,6 +1921,8 @@
             <tag> Github </tag>
             
             <tag> Jupyter notebook </tag>
+            
+            <tag> Typora </tag>
             
         </tags>
       
@@ -1949,9 +1949,9 @@
             
             <tag> Hexo </tag>
             
-            <tag> Typora </tag>
-            
             <tag> Markdown </tag>
+            
+            <tag> Typora </tag>
             
         </tags>
       
