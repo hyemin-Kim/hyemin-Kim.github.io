@@ -38,13 +38,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/tags/Typora/</loc>
-        <lastmod>2020-12-21T10:03:37.146Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/tags/Jupyter-notebook/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -67,6 +60,13 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/tags/Markdown/</loc>
+        <lastmod>2020-12-21T10:03:37.146Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/Typora/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
