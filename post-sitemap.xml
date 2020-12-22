@@ -57,6 +57,14 @@
     </url>
 
     <url>
+        <loc>https://hyemin-kim.github.io/2020/05/12/S-Python-base1/</loc>
+        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/2020/05/08/Reference/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -475,14 +483,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/2020/05/13/S-Python-base2/</loc>
         <lastmod>2020-11-06T05:17:49.545Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/05/12/S-Python-base1/</loc>
-        <lastmod>2020-11-06T05:17:43.571Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

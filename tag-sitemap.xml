@@ -24,6 +24,20 @@
     </url>
 
     <url>
+        <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
+        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/Python/</loc>
+        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/tags/Jupyter-notebook/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -81,13 +95,6 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/tags/%EC%8B%9C%EA%B0%81%ED%99%94/</loc>
-        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Python/</loc>
         <lastmod>2020-11-27T05:28:16.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -222,13 +229,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
         <lastmod>2020-11-06T05:18:08.300Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
-        <lastmod>2020-11-06T05:17:43.571Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

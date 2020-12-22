@@ -44,6 +44,20 @@
     </url>
 
     <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
+        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
+        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590USAGE%25E3%2580%2591/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,13 +73,6 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-4-Seaborn/</loc>
-        <lastmod>2020-11-27T05:28:16.974Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
         <lastmod>2020-11-27T05:28:16.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -165,13 +172,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-3-Matplotlib/</loc>
         <lastmod>2020-11-06T05:18:29.244Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
-        <lastmod>2020-11-06T05:18:08.300Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
