@@ -9,14 +9,35 @@
 
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-9-Table/</loc>
-        <lastmod>2020-12-21T10:10:45.605Z</lastmod>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
+        <lastmod>2020-12-22T09:54:52.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
+        <lastmod>2020-12-22T09:54:52.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-8-Manipulation/</loc>
+        <lastmod>2020-12-22T05:45:46.100Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/</loc>
+        <lastmod>2020-12-22T05:45:46.100Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-9-Table/</loc>
         <lastmod>2020-12-21T10:10:45.605Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -25,27 +46,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590USAGE%25E3%2580%2591/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-8-Manipulation/</loc>
-        <lastmod>2020-12-07T06:43:36.517Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
-        <lastmod>2020-12-01T03:48:24.007Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
-        <lastmod>2020-12-01T03:48:24.007Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

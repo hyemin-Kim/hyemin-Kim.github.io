@@ -9,6 +9,30 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/2020/12/22/E-SQL-Manipulation-and-Table/</loc>
+        <lastmod>2020-12-22T09:54:52.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2020/12/07/S-SQL-Manipulation-2/</loc>
+        <lastmod>2020-12-22T05:45:46.100Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2020/12/07/S-SQL-Manipulation-1/</loc>
+        <lastmod>2020-12-22T05:41:02.603Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/2020/12/21/S-SQL-Table-3/</loc>
         <lastmod>2020-12-21T10:10:45.605Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -35,22 +59,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/2020/05/08/Reference/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/12/07/S-SQL-Manipulation-2/</loc>
-        <lastmod>2020-12-07T06:43:36.517Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/2020/12/07/S-SQL-Manipulation-1/</loc>
-        <lastmod>2020-12-07T06:12:13.285Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

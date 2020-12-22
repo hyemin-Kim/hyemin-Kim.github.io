@@ -3,8 +3,22 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/tags/Table/</loc>
+        <lastmod>2020-12-22T09:54:52.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/Manipulation/</loc>
+        <lastmod>2020-12-22T09:54:52.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/tags/SQL/</loc>
-        <lastmod>2020-12-21T10:10:45.605Z</lastmod>
+        <lastmod>2020-12-22T09:54:52.712Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -47,13 +61,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/tags/Hexo/</loc>
         <lastmod>2020-12-21T10:03:37.146Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Manipulation/</loc>
-        <lastmod>2020-12-07T06:43:36.517Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
