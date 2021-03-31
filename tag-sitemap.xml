@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
+        <lastmod>2021-03-31T10:05:57.774Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/tags/Python/</loc>
+        <lastmod>2021-03-31T10:05:57.774Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/tags/Table/</loc>
         <lastmod>2020-12-22T10:00:50.296Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,13 +39,6 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
-        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Python/</loc>
         <lastmod>2020-12-21T10:03:56.873Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -222,13 +229,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/tags/%EC%82%AC%EA%B0%81%ED%99%94/</loc>
         <lastmod>2020-11-06T05:18:15.675Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/tags/Python-Base/</loc>
-        <lastmod>2020-11-06T05:18:08.300Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

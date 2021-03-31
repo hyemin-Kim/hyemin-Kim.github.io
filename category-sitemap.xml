@@ -9,6 +9,20 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
+        <lastmod>2021-03-31T10:05:57.774Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
+        <lastmod>2021-03-31T10:05:57.774Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
         <lastmod>2020-12-22T10:00:50.296Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -39,20 +53,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-9-Table/</loc>
         <lastmod>2020-12-21T10:10:45.605Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
-        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
-        <lastmod>2020-12-21T10:03:56.873Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
