@@ -10,6 +10,7 @@ cover: 'https://s1.ax1x.com/2020/08/19/d1JMTS.png'
 description: 1. 단어별 빈도 분석 -- Word Cloud 산출; 2. 장면별 중요 단어 시각화 -- TF-IDF 중요도 분석
 typora-root-url: ..
 abbrlink: 61860
+date: 2020-08-23 23:01:54
 ---
 
 # 【Text Mining 실습】-- 영화 시나리오: Word Cloud & 단어 중요도(TF-IDF) 분석
