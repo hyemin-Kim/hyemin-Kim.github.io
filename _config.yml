@@ -58,7 +58,7 @@ ignore: null
 theme: Butterfly
 deploy:
   type: git
-  repo: 'https://github.com/hyemin-Kim/hyemin-Kim.github.io.git'
+  repo: 'git@github.com:hyemin-Kim/hyemin-Kim.github.io.git'
   brunch: master
   repository: 'git@github.com:hyemin-Kim/hyemin-Kim.github.io.git'
 markdown_it_plus:
