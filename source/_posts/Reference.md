@@ -26,6 +26,8 @@ date: 2020-05-08 02:16:53
 - [bilibili — github+hexo搭建个人博客](https://www.bilibili.com/video/BV1Ep411R7cJ)
 - [bilibili — github博客搭建（二）：Markdown语法及hexo主题修改](https://www.bilibili.com/video/BV1zp411R7gz)
 - [Git Pages + Jekyll/Hexo搭建自己的博客(最全总结你想知道的都在这里了)](https://blog.csdn.net/muzilanlan/article/details/81542917)
+- [利用Hexo在多台电脑上提交和更新github pages博客](https://www.jianshu.com/p/0b1fccce74e0?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)
+- [在两台电脑上更新维护Github Pages + Hexo博客](https://www.dazhuanlan.com/2019/09/25/5d8adf4204ed4/)
 
 <br />
 
