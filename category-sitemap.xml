@@ -10,7 +10,21 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590USAGE%25E3%2580%2591/</loc>
-        <lastmod>2021-05-30T08:47:42.352Z</lastmod>
+        <lastmod>2021-05-30T11:57:46.621Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/Python/</loc>
+        <lastmod>2021-05-30T11:56:04.575Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
+        <lastmod>2021-05-30T11:56:04.575Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -100,13 +114,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-Text-Mining/</loc>
-        <lastmod>2021-05-30T08:25:29.877Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
         <lastmod>2021-05-30T08:25:29.877Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -114,7 +121,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-2-Pandas/</loc>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-Text-Mining/</loc>
         <lastmod>2021-05-30T08:25:29.877Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -122,6 +129,13 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-4-Seaborn/</loc>
+        <lastmod>2021-05-30T08:25:29.877Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-2-Pandas/</loc>
         <lastmod>2021-05-30T08:25:29.877Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -156,21 +170,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/Python/</loc>
-        <lastmod>2021-05-30T08:25:29.860Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
-        <lastmod>2021-05-30T08:25:29.860Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
         <lastmod>2021-05-30T08:25:29.860Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
