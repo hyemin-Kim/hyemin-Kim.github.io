@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (1) Connecting to Data
-date: 2021-06-28 09:47:20
 tags:
   - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 2. Fundamentals
-cover: https://z3.ax1x.com/2021/08/18/fo8Hat.png
+cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 50366
+date: 2021-06-28 09:47:20
 ---
 
 # Connecting to Data

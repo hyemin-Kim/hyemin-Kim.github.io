@@ -1,14 +1,15 @@
 ---
 title: Tableau >> Start - (1) Basics of Reading Data
-date: 2021-06-28 09:00:03
 tags:
   - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 1. Start
-Description: Basic data concept, Data structure, Common chart types 
-cover: https://z3.ax1x.com/2021/08/18/fo8Hat.png
+Description: 'Basic data concept, Data structure, Common chart types'
+cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 28713
+date: 2021-06-28 09:00:03
 ---
 
 # Basics of Reading Data

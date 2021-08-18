@@ -1,13 +1,14 @@
 ---
 title: Tableau >> Fundamentals (4) Build Common Views
-date: 2021-06-28 10:58:53
 tags:
   - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 2. Fundamentals
-cover: https://z3.ax1x.com/2021/08/18/fo8Hat.png
+cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 17023
+date: 2021-06-28 10:58:53
 ---
 
 # Build Common Views

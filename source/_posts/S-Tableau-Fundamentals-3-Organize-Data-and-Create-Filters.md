@@ -1,14 +1,15 @@
 ---
 title: Tableau >> Fundamentals (3) Organize Data and Create Filters
-date: 2021-06-28 10:16:18
 tags:
   - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 2. Fundamentals
-Description: Creating groups, Creating hierarchies, Filteirng, Sorting
-cover: https://z3.ax1x.com/2021/08/18/fo8Hat.png
+Description: 'Creating groups, Creating hierarchies, Filteirng, Sorting'
+cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 14020
+date: 2021-06-28 10:16:18
 ---
 
 # Organize Data and Create Filters

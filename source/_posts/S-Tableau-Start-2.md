@@ -1,14 +1,15 @@
 ---
 title: Tableau >> Start - (2) Introduction to Tableau Desktop
-date: 2021-06-28 09:14:35
 tags:
   - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 1. Start
 Description: Ways to build visualizations and dashboards
-cover: https://z3.ax1x.com/2021/08/18/fo8Hat.png
+cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 63227
+date: 2021-06-28 09:14:35
 ---
 
 # Introduction to Tableau Desktop

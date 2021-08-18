@@ -1,13 +1,14 @@
 ---
 title: Tableau >> Fundamentals (2) Customizing a Data Source
-date: 2021-06-28 09:57:53
 tags:
   - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 2. Fundamentals
-cover: https://z3.ax1x.com/2021/08/18/fo8Hat.png
+cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 44275
+date: 2021-06-28 09:57:53
 ---
 
 # Customizing a Data Source
