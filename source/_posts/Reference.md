@@ -10,7 +10,7 @@ tags:
   - Typora
 categories: 【USAGE】
 description: 这大概是小白们在我博客中最想看的一篇文章了吧
-cover: https://s3.ax1x.com/2020/12/21/r0rK91.png
+cover: https://z3.ax1x.com/2020/12/21/r0rK91.png
 comments: true
 abbrlink: 62897
 date: 2020-05-08 02:16:53
@@ -34,7 +34,7 @@ date: 2020-05-08 02:16:53
 
 - [在两台电脑上更新维护Github Pages + Hexo博客](https://www.dazhuanlan.com/2019/09/25/5d8adf4204ed4/)
 
-- [hexo d 报错：fatal: unable to auto-detect email address](https://blog.csdn.net/IThelei/article/details/104179452)
+- [[hexo d 报错] fatal: unable to auto-detect email address](https://blog.csdn.net/IThelei/article/details/104179452)
 
   
 
