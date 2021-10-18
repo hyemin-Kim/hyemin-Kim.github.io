@@ -43,7 +43,7 @@ Image('http://pythonstudy.xyz/images/basics/python-package.png')
 
 <br />
 
-![png](http://pythonstudy.xyz/images/basics/python-package.png)
+![png](https://z3.ax1x.com/2021/08/25/hVR129.png)
 
 <br /><br />
 

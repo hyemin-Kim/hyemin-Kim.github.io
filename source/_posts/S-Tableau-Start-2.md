@@ -7,9 +7,9 @@ categories:
   - Tableau - 1. Start
 Description: Ways to build visualizations and dashboards
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
-typora-root-url: ..
 abbrlink: 63227
 date: 2021-06-28 09:14:35
+typora-root-url: ..
 ---
 
 # Introduction to Tableau Desktop
@@ -57,7 +57,7 @@ Connecting To Your Data   -->   Analyzing Your Data   -->   Sharing Your Analysi
 
    * Add a dashboard title and instructions
 
-     ​         <img src="/images/S-Tableau-Start-2/image-20210518141956876.png" alt="image-20210518141956876" style="zoom: 50%;" />  -- Double Click the Title-- <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\1. Getting Started with Tableau Desktop\1-2. Introduction to Tableau Desktop.assets\image-20210518142018617.png" alt="image-20210518142018617" style="zoom: 50%;" />
+     ​         <img src="/images/S-Tableau-Start-2/image-20210518141956876.png" alt="image-20210518141956876" style="zoom: 50%;" />  -- Double Click the Title-- <img src="/images/S-Tableau-Start-2/image-20210518142018617-16298781617561.png" alt="image-20210518142018617" style="zoom:60%;" />
 
      <br />
 

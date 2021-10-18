@@ -24,16 +24,16 @@ date: 2021-06-28 09:00:03
 
 **\>> Common types of data sets**
 
-* Spreadsheets:
+* **Spreadsheets:**
   * e.g.: Excel, Google Sheets
   * the records are stored as single rows of data
-* Relational Databases
+* **Relational Databases:**
   * store data in multiple tables
   * "relational": logical connection between tables
   * users pull data from different tables using SQL
-* Cloud Data
+* **Cloud Data:**
   * e.g.: AWS, Microsoft Azure, Salesforce
-* Other Types
+* **Other Types:**
   * .kml, .shp, created in R
 
 <br />
@@ -42,12 +42,12 @@ date: 2021-06-28 09:00:03
 
 \>> A field = A column
 
-**\>> Data Field automatically assigned a *Role* and a  *Type***
+\>> Data Field automatically assigned a ***Role*** and a  ***Type***
 
-* **Role**: *Dimension* or *Measure*
+* **Role**: "*Dimension*" or "*Measure*"
   * <font color = 'blue'>*Dimension*</font>: qualitative fields / (categorical data)   * blue in tableau
   * <font color = 'green'>*Measure*</font>: quantitative fields / (numerical data)      * green in tableau
-* **Type**: data type -- string, integer, date...
+* **Type**: String, Integer, Date, Date&Time, Boolean, Geographic, Mixed or cluster
 
 <br />
 
@@ -65,8 +65,8 @@ date: 2021-06-28 09:00:03
 
 **\>> move dimensions & measures in /out of a view --> level of details changes**
 
-* Measures: aggregated as SUM (default), or average, median...
-* Dimensions: break down aggregated total by category
+* **Dimensions:** break down aggregated total by category
+* **Measures:** aggregated as SUM (default), or average, median...
 
 <br />
 
@@ -105,7 +105,7 @@ date: 2021-06-28 09:00:03
 |         **Color**         |               <font color = 'blue'>Blue</font>               |            <font color = 'viridans'>Green</font>             |
 | **Label <br>vs<br> Axis** | Label<br><br><img src="/images/S-Tableau-Start-1/image-20210517161223334.png" alt="image-20210517161223334" style="zoom:50%;" /><br><br>*<font color = 'gray'>Market(discrete)</font>* | Axis<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517160710233.png" alt="image-20210517160710233" style="zoom:50%;" /><br> <br>*<font color = 'gray'>profit (continuous)</font>* |
 |         **Color**         | Color Palette<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517161958731.png" alt="image-20210517161958731" style="zoom:25%;" /><br/><br/>*<font color = 'gray'>SUM(Sales - discrete)</font>* | Color Gradient<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517162028994.png" alt="image-20210517162028994" style="zoom:25%;" /><br/> <br/>*<font color = 'gray'>SUM(Sales - continuous)</font>* |
-| **Color <br>& <br>Maps**  | A **Dimension** on color -- **"Symbol Map"**<br><br><img src="/images/S-Tableau-Start-1/image-20210517162753289.png" alt="image-20210517162753289" style="zoom:67%;" /><br>A **Measure** on color -- **"Filled Map"**<br><br><img src="C:\Users\IM4\AppData\Roaming\Typora\typora-user-images\image-20210517162915695.png" alt="image-20210517162915695" style="zoom:67%;" /><br> | A **Dimension** on color -- **"Symbol Map"**<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517163002064.png" alt="image-20210517163002064" style="zoom:67%;" /><br/>A **Measure** on color -- **"Filled Map"**<br/><br/><img src="C:\Users\IM4\AppData\Roaming\Typora\typora-user-images\image-20210517163033554.png" alt="image-20210517163033554" style="zoom:67%;" /><br> |
+| **Color <br>& <br>Maps**  | A **Dimension** on color -- **"Symbol Map"**<br><br><img src="/images/S-Tableau-Start-1/image-20210517162753289.png" alt="image-20210517162753289" style="zoom:67%;" /><br>A **Measure** on color -- **"Filled Map"**<br><br><img src="/images/S-Tableau-Start-1/image-20210517162915695.png" alt="image-20210517162915695" style="zoom: 67%;" /><br> | A **Dimension** on color -- **"Symbol Map"**<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517163002064.png" alt="image-20210517163002064" style="zoom:67%;" /><br/>A **Measure** on color -- **"Filled Map"**<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517163033554.png" alt="image-20210517163033554" style="zoom:67%;" /><br> |
 |         **Dates**         | <img src="/images/S-Tableau-Start-1/image-20210517163347483.png" alt="image-20210517163347483" style="zoom: 50%;" /> | <img src="/images/S-Tableau-Start-1/image-20210517163408062.png" alt="image-20210517163408062" style="zoom:50%;" /> |
 |       **Filtering**       | List<br><br><img src="/images/S-Tableau-Start-1/image-20210517163617518.png" alt="image-20210517163617518" style="zoom: 67%;" /> | Range<br/><br/><img src="/images/S-Tableau-Start-1/image-20210517163720510.png" alt="image-20210517163720510" style="zoom:67%;" /> |
 

@@ -23,7 +23,7 @@ date: 2021-06-28 10:58:53
 
 * [Data] --> Data Source Name --> [Date Properties]
 
-  ​			<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-4. Build Common Views.assets\image-20210521145523588.png" alt="image-20210521145523588" style="zoom:50%;" />					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521145648241.png" alt="image-20210521145648241" style="zoom:80%;" />
+  ​			<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521145523588-16298809215928.png" alt="image-20210521145523588" style="zoom:50%;" />					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521145648241.png" alt="image-20210521145648241" style="zoom:80%;" />
 
 <br />
 
@@ -31,7 +31,7 @@ date: 2021-06-28 10:58:53
 
 ## **2. Create Custom Date Fields and Hierarchies**
 
-#### \>> Create a custom continuous date value
+### \>> Create a custom continuous date value
 
 1. [Data] Pane --> [Order Date] --> click the down-arrow
 
@@ -45,11 +45,11 @@ date: 2021-06-28 10:58:53
 
 4. Click [OK]
 
-   ​				<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-4. Build Common Views.assets\image-20210521161538861.png" alt="image-20210521161538861" style="zoom:50%;" />						<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161650010.png" alt="image-20210521161650010" style="zoom: 80%;" />
+   ​					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161538861-16298808457426.png" alt="image-20210521161538861" style="zoom:50%;" />					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161650010.png" alt="image-20210521161650010" style="zoom: 80%;" />
 
 <br />
 
-#### \>> Create a custom discrete date part
+### \>> Create a custom discrete date part
 
 1. [Data] Pane --> [Order Date] --> click the down-arrow
 
@@ -63,11 +63,11 @@ date: 2021-06-28 10:58:53
 
 4. Click [OK]
 
-   ​				<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-4. Build Common Views.assets\image-20210521161538861.png" alt="image-20210521161538861" style="zoom:50%;" />						<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521162304726.png" alt="image-20210521162304726" style="zoom:80%;" />
+   ​				<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161538861-16298808772617.png" alt="image-20210521161538861" style="zoom:50%;" />						<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521162304726.png" alt="image-20210521162304726" style="zoom:80%;" />
 
 <br />
 
-#### \>> Create a custom date hierarchy
+### \>> Create a custom date hierarchy
 
 1. Create a custom discrete date part field, "Discrete Date (Years)"
 2. Create another custom discrete date part field, "Discrete Date (Months)"
@@ -95,7 +95,7 @@ With  **Measure Values** and **Measure Names** fields, you can build certain typ
 
 <br />
 
-#### \>> Create text tables with multiple measures
+### \>> Create text tables with multiple measures
 
 **[개요]**
 
@@ -110,7 +110,7 @@ With  **Measure Values** and **Measure Names** fields, you can build certain typ
 
 <br />
 
-#### \>> Make views with multiple measures on the same axis
+### \>> Make views with multiple measures on the same axis
 
 **[개요]**
 
@@ -134,7 +134,7 @@ With  **Measure Values** and **Measure Names** fields, you can build certain typ
 
 <br />
 
-#### \>> Build dual and combined axis charts
+### \>> Build dual and combined axis charts
 
 **[개요]**
 
@@ -196,7 +196,7 @@ With  **Measure Values** and **Measure Names** fields, you can build certain typ
 
 <br />
 
-#### \>> Using Scatter Plots To Show Relationships Between Measures
+### \>> Using Scatter Plots To Show Relationships Between Measures
 
 > [E-Learning Link](https://elearning.tableau.com/tableau-fundamentals/786137/scorm/3htuzbdo9a99x)
 

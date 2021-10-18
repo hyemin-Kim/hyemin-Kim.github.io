@@ -20,16 +20,16 @@ date: 2021-06-28 10:16:18
 
 ## **1. Creating Groups in Your Data**
 
-#### \>> Groups in Tableau
+### \>> Groups in Tableau
 
-Groups in Tableau are represented by a <font color = 'blue'>paper clip</font>: <img src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520102251965.png" alt="image-20210520102251965" style="zoom:10%;" />
+Groups in Tableau are represented by a <font color = 'blue'>paper clip</font>: <img  style="display: inline; zoom: 10%;" src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520102251965.png" alt="image-20210520102251965"/>
 
 * In the [Data] Pane: displayed to the left of the field 
 * In the [tooltip]: represents the *Group Members* button that is used to create a group.
 
 <br />
 
-#### \>> Methods to create groups
+### \>> Methods to create groups
 
 * Create a group based on a field in the Data pane.
 * Create a group based on labels in the view.
@@ -37,7 +37,7 @@ Groups in Tableau are represented by a <font color = 'blue'>paper clip</font>: <
 
 <br />
 
-#### \>> Details for each method
+### \>> Details for each method
 
 ##### *Method 1.* Creating a group from the Data pane
 
@@ -85,7 +85,7 @@ You will create a group named Oceania for the  three countries, **Australia**, *
    * Ctrl + select [Australia], [New Zealand], and [Papua New Guinea] and click [Group]
    * Rename the alias [Oceania]
 
-   ​					<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-3. Organize Data and Create Filters.assets\image-20210520130248760.png" alt="image-20210520130248760" style="zoom: 50%;" />					<img src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520130831794.png" alt="image-20210520130831794" style="zoom: 67%;" />
+   ​							<img src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520130248760-16298788936074.png" alt="image-20210520130248760" style="zoom:50%;" />			<img src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520130831794.png" alt="image-20210520130831794" style="zoom: 67%;" />
 
    <br />
 
@@ -178,16 +178,16 @@ You will create a group from **Spain**, **France**, and **Germany** to compare t
 
 ## **2. Creating Hierarchies (계층) in Your Data**
 
-#### \>>  Hierarchies in Tableau
+### \>>  Hierarchies in Tableau
 
 * In Tableau, a hierarchy is an arrangement of data fields in a hierarchical format with an 'above' and 'below' structure.
-* Hierarchies are represented by a hierarchy icon: <img src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520142502277.png" alt="image-20210520142502277" style="zoom:5%;" />
+* Hierarchies are represented by a hierarchy icon: <img style="display: inline; zoom:5%;" src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520142502277.png" alt="image-20210520142502277" />
 
 <br />
 
-#### \>> Date hierarchies
+### \>> Date hierarchies
 
-*  dates and times are automatically placed in the dimensions area of the [Data] pane and are identified by the date <img src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520142835197.png" alt="image-20210520142835197" style="zoom:10%;" /> or date-time <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-3. Organize Data and Create Filters.assets\image-20210520142901428.png" alt="image-20210520142901428" style="zoom:10%;" /> icon, and can be drilled up and down as a hierarchy.
+*  dates and times are automatically placed in the dimensions area of the [Data] pane and are identified by the date <img style="display: inline; zoom:10%;" src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520142835197.png" alt="image-20210520142835197"/> or date-time <img style="display: inline; zoom:10%;" src="/images/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/image-20210520142901428-16298791452895.png" alt="image-20210520142901428" /> icon, and can be drilled up and down as a hierarchy.
 *  Date fields can consist of the following:
    - Year
    - Quarter
@@ -197,7 +197,7 @@ You will create a group from **Spain**, **France**, and **Germany** to compare t
 
 <br />
 
-#### \>> Methods to create hierarchies
+### \>> Methods to create hierarchies
 
 **3 Steps:** 
 
@@ -215,7 +215,7 @@ You will create a group from **Spain**, **France**, and **Germany** to compare t
 
 ## **3. Understanding Filtering in Tableau**
 
-#### \>> Filter types in Tableau
+### \>> Filter types in Tableau
 
 * **Extract Filters**
 
@@ -288,7 +288,7 @@ You will create a group from **Spain**, **France**, and **Germany** to compare t
 
 <br />
 
-#### \>> Filtering order of operations
+### \>> Filtering order of operations
 
 When you use multiple filters on your data, the filters get applied in a very specific order, called the order of operations.
 
@@ -302,7 +302,7 @@ Tableau executes filters in the following order:
 
 ## **4. Filtering Your Data**
 
-#### \>> Filtering on Dimensions
+### \>> Filtering on Dimensions
 
 **Methods to create a dimension filter**
 
@@ -324,7 +324,7 @@ Tableau executes filters in the following order:
 
 <br />
 
-#### \>> Filtering on Measures
+### \>> Filtering on Measures
 
 **Method to create a measure filter**
 
@@ -338,7 +338,7 @@ Tableau executes filters in the following order:
 
 <br />
 
-#### \>> Filtering on Dates
+### \>> Filtering on Dates
 
 **Method to create a date filter**
 
@@ -358,7 +358,7 @@ Tableau executes filters in the following order:
 
 ## **5. Sorting Your Data**
 
-#### \>> Two sorting methods:
+### \>> Two sorting methods:
 
 * Computed sorts
   * organize the data by applying rules
@@ -369,7 +369,7 @@ Tableau executes filters in the following order:
 
 <br />
 
-#### \>> Customizing the sort using the Sort menu
+### \>> Customizing the sort using the Sort menu
 
 * **정렬 기준 (Sort By):** 
 

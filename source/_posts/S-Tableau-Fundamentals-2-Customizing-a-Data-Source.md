@@ -27,7 +27,7 @@ date: 2021-06-28 09:57:53
 
 **Step 2. Right-click the blank area --> select [Create Folder] (폴더 만들기)  --> Name the folder**
 
-​				<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-2. Editing and Saving a Data Source.assets\image-20210520085347461.png" alt="image-20210520085347461" style="zoom:50%;" />					<img src="/images/S-Tableau-Fundamentals-2-Customizing-a-Data-Source/image-20210520085548660.png" alt="image-20210520085548660" style="zoom:80%;" />
+​				<img src="/images/S-Tableau-Fundamentals-2-Customizing-a-Data-Source/image-20210520085347461-16298783319542.png" alt="image-20210520085347461" style="zoom:50%;" />					<img src="/images/S-Tableau-Fundamentals-2-Customizing-a-Data-Source/image-20210520085548660.png" alt="image-20210520085548660" style="zoom:80%;" />
 
 <br />
 
@@ -69,7 +69,7 @@ Menu bar --> [Data]  --> click the Data source we want to save --> [Add to Saved
 
   It will be available on the *data connection*  page under [Saved Data Source]
 
-  <img src="/images/S-Tableau-Fundamentals-2-Customizing-a-Data-Source/image-20210520094122673.png" alt="image-20210520094122673" style="zoom:50%;" />		<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-2. Customizing a Data Source.assets\image-20210520094525623.png" alt="image-20210520094525623" style="zoom:50%;" />
+  <img src="/images/S-Tableau-Fundamentals-2-Customizing-a-Data-Source/image-20210520094122673.png" alt="image-20210520094122673" style="zoom:50%;" />		<img src="/images/S-Tableau-Fundamentals-2-Customizing-a-Data-Source/image-20210520094525623-16298783692603.png" alt="image-20210520094525623" style="zoom: 50%;" />
 
 <br />
 
