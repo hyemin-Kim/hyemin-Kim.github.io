@@ -1,21 +1,20 @@
 ---
 title: Tableau >> Fundamentals (5) Mapping Data Geographically
-date: 2022-06-16 13:37:51
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 62120
+date: 2022-06-16 13:37:51
 ---
 
 
 
 # Mapping Data Geographically
 
-@[toc]
-
-
+<br />
 
 ## 1. Concept: Mapping Your Data
 

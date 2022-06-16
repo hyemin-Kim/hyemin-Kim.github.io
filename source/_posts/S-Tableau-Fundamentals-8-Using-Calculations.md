@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (8) Using Calculations
-date: 2022-06-16 14:32:04
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 59187
+date: 2022-06-16 14:32:04
 ---
 
 # Using Calculations

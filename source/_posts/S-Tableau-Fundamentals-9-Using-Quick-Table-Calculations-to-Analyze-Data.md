@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (9) Using Quick Table Calculations to Analyze Data
-date: 2022-06-16 14:33:57
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 54679
+date: 2022-06-16 14:33:57
 ---
 
 # Using Quick Table Calculations to Analyze Data

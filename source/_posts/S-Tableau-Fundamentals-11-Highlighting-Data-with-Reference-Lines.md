@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (11) Highlighting Data with Reference Lines
-date: 2022-06-16 15:14:26
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 16142
+date: 2022-06-16 15:14:26
 ---
 
 # Highlighting Data with Reference Lines

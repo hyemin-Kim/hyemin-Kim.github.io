@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (12) Create Dashboards and Stories
-date: 2022-06-16 15:17:35
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 24150
+date: 2022-06-16 15:17:35
 ---
 
 # Create Dashboards and Stories

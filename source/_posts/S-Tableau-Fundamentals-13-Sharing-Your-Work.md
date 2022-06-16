@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (13) Sharing Your Work
-date: 2022-06-16 15:47:46
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 7904
+date: 2022-06-16 15:47:46
 ---
 
 # Sharing Your Work

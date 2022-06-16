@@ -1,12 +1,13 @@
 ---
 title: Tableau >> Fundamentals (10) Showing Breakdowns of the Whole
-date: 2022-06-16 14:35:43
 tags:
- - Tableau
+  - Tableau
 categories:
- - 【STUDY - Tableau】
- - Tableau - 2. Fundamentals
+  - 【STUDY - Tableau】
+  - Tableau - 2. Fundamentals
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
+abbrlink: 36035
+date: 2022-06-16 14:35:43
 ---
 
 # Showing the Breakdowns of the Whole (Pie Chart & Tree Map)
