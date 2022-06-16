@@ -8,17 +8,18 @@ categories:
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 abbrlink: 24150
 date: 2022-06-16 15:17:35
+typora-root-url: ..
 ---
 
 # Create Dashboards and Stories
 
 @[toc]
 
-
+<br />
 
 ## **1. Plan for a Successful Dashboard**
 
-#### \>> Considerations for planning a dashboard
+### \>> Considerations for planning a dashboard
 
 * **Who is your audience?**
 
@@ -46,9 +47,9 @@ date: 2022-06-16 15:17:35
   * print the dashboard?
   * look at offline?
 
+<br />
 
-
-#### \>> Steps for planning a dashboard
+### \>> Steps for planning a dashboard
 
 **Four General Steps**
 
@@ -57,17 +58,17 @@ date: 2022-06-16 15:17:35
 3. Build using design best practices
 4. Test it for usability and performance
 
+<br />
 
-
-
+<br />
 
 ## **2. Creating a Dashboard**
 
-#### \>> Add views to a dashboard
+### \>> Add views to a dashboard
 
 1. Create a new dashboard
 
-   * click the [New Dashboard] icon <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531142831913.png" alt="image-20210531142831913" style="zoom: 67%;" />
+   * click the [New Dashboard] icon <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531142831913-16553671932551.png" alt="image-20210531142831913" style="zoom: 67%;" />
 
 2. Add views to a dashboard
 
@@ -79,17 +80,17 @@ date: 2022-06-16 15:17:35
 
    * in the [Sheets] list, hover over the title of the worksheet you would like to use and click the [Swap Sheets] icon
 
-   <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531143614360.png" alt="image-20210531143614360" style="zoom: 67%;" />
+   <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531143614360-16553671932562.png" alt="image-20210531143614360" style="zoom: 67%;" />
 
 4. Return to worksheet in three ways
 
-   <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531143729562.png" alt="image-20210531143729562" style="zoom: 67%;" />
+   <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531143729562-16553671932563.png" alt="image-20210531143729562" style="zoom: 67%;" />
 
+<br />
 
+<br />
 
-
-
-#### \>> Dashboard Settings
+### \>> Dashboard Settings
 
 * **Dashboard Panel**
 
@@ -121,9 +122,9 @@ date: 2022-06-16 15:17:35
 
     \- tiled objects are fixed (can't change the position or size)
 
+<br />
 
-
-#### \>> Highlight and filter data in dashboards
+### \>> Highlight and filter data in dashboards
 
 * **Legend Highlights**
 
@@ -138,13 +139,13 @@ date: 2022-06-16 15:17:35
 
   * filter card --> [Apply to Worksheets] --> [All using This Data Source]
 
-    
+    <br />
 
-
+<br />
 
 ## **3. Creating Interactive Dashboards Using Actions**
 
-#### \>> Actions in Tableau
+### \>> Actions in Tableau
 
 * **<font color = 'darkblue'>Filter Action</font>**
   * Using the data from one view to filter data in another
@@ -164,9 +165,9 @@ date: 2022-06-16 15:17:35
   * Parameter actions: Let your audience change a parameter value through direct interaction with a viz
   * Set actions: Let users change the values in a set by directly interacting with marks on a viz
 
+<br />
 
-
-#### \>> Methods for running an action
+### \>> Methods for running an action
 
 * **<font color = 'darkblue'>Hover</font>**
   * Rest the mouse pointer over a mark to run the action
@@ -178,9 +179,9 @@ date: 2022-06-16 15:17:35
   * Click a selected mark --> select an option on the tooltip
   * Works well for URL actions
 
+<br />
 
-
-#### \>> Add actions to a dashboard
+### \>> Add actions to a dashboard
 
 ##### 1. Filter Action
 
@@ -196,17 +197,17 @@ date: 2022-06-16 15:17:35
 
   * [Dashboard] --> [Actions]
 
-    <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601101609404.png" alt="image-20210601101609404" style="zoom:50%;" /> 
+    <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601101609404-16553671932564.png" alt="image-20210601101609404" style="zoom:50%;" /> 
 
   * [Add Action] --> [Filter]
 
-    <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601102157673.png" alt="image-20210601102157673" style="zoom:67%;" />  
+    <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601102157673-16553671932565.png" alt="image-20210601102157673" style="zoom:67%;" />  
 
-    
+    <br />
 
 * **<font color = 'darkblue'>Edit a filter action:</font>**
 
-  <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111831004.png" alt="image-20210601111831004" style="zoom:67%;" />  
+  <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111831004-16553671932566.png" alt="image-20210601111831004" style="zoom:67%;" />  
 
   * Filter Action Name
 
@@ -221,7 +222,7 @@ date: 2022-06-16 15:17:35
     1. select specific fields to respond to this filter action
     2. let all fields respond to this filter action
 
-  
+  <br />
 
 ##### 2. Highlight Action
 
@@ -231,17 +232,17 @@ date: 2022-06-16 15:17:35
 
   * [Dashboard] --> [Actions]
 
-    <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601101609404.png" alt="image-20210601101609404" style="zoom:50%;" /> 
+    <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601101609404-16553671932564.png" alt="image-20210601101609404" style="zoom:50%;" /> 
 
   * [Add Action] --> [Highlight]
 
-    <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111124788.png" alt="image-20210601111124788" style="zoom:67%;" /> 
+    <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111124788-16553671932567.png" alt="image-20210601111124788" style="zoom:67%;" /> 
 
-    
+    <br />
 
 * **<font color = 'darkblue'>Edit a highlight action:</font>**
 
-  <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111754485.png" alt="image-20210601111754485" style="zoom:67%;" />  
+  <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111754485-16553671932569.png" alt="image-20210601111754485" style="zoom:67%;" />  
 
   * Highlight Action name
   * Source Sheets
@@ -252,7 +253,7 @@ date: 2022-06-16 15:17:35
     2. Dates and Times
     3. All fields
 
-
+<br />
 
 ##### 3. Go to Sheet Action
 
@@ -265,14 +266,14 @@ date: 2022-06-16 15:17:35
 
 * **<font color = 'darkblue'>Edit a Go to Sheet action</font>**
 
-  <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601124642824.png" alt="image-20210601124642824" style="zoom:67%;" /> 
+  <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601124642824-16553671932568.png" alt="image-20210601124642824" style="zoom:67%;" /> 
 
   * Go to Sheet action name
   * Source Sheets
   * Run action on: Hover / Select / Menu
   * Target Sheets
 
-
+<br />
 
 ##### 4. Go to URL Action
 
@@ -285,7 +286,7 @@ date: 2022-06-16 15:17:35
 
 * **<font color = 'darkblue'>Edit a Go to URL action: </font>**
 
-  <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601125527606.png" alt="image-20210601125527606" style="zoom:67%;" />  
+  <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601125527606-165536719325610.png" alt="image-20210601125527606" style="zoom:67%;" />  
 
   * Go to URL Action name
   * Source Sheets
@@ -293,13 +294,13 @@ date: 2022-06-16 15:17:35
   * URL: with an ftp, http, or https prefix
   * Arrow button at the right of the URL box: enter field and filter values as parameters in the URL
 
+<br />
 
-
-
+<br />
 
 ## **4. Refining a dashboard**
 
-#### \>> Start with the layout
+### \>> Start with the layout
 
 * **Select worksheets to include**
 
@@ -308,7 +309,7 @@ date: 2022-06-16 15:17:35
   * Horizontal layout container
   * Vertical layout container
 
-   <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601155525747.png" alt="image-20210601155525747" style="zoom: 67%;" />   (More Info. : [Size and Lay Out Your Dashboard](https://tabsoft.co/dashboardlayout))
+   <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601155525747-165536719325613.png" alt="image-20210601155525747" style="zoom: 67%;" />   (More Info. : [Size and Lay Out Your Dashboard](https://tabsoft.co/dashboardlayout))
 
 * **Use non-worksheet objects**
 
@@ -335,13 +336,13 @@ date: 2022-06-16 15:17:35
     1. [Inner Padding] : sets the spacing between item contents and the perimeter of the border and background color
     2. [Outer Padding] : provides additional spacing beyond the border and background color
 
-    <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601161555654.png" alt="image-20210601161555654" style="zoom:80%;" />
+    <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601161555654-165536719325611.png" alt="image-20210601161555654" style="zoom:80%;" />
 
 * **Use borders and background colors sparingly**
 
+<br />
 
-
-#### \>> Determine the device layout (Tableau Desktop Only)
+### \>> Determine the device layout (Tableau Desktop Only)
 
 **Step 1. Make a dashboard by using the default**
 
@@ -352,11 +353,11 @@ date: 2022-06-16 15:17:35
 
 * [Dashboard] Pane --> click [Device Preview]
 
-  <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601172026867.png" alt="image-20210601172026867" style="zoom:67%;" />
+  <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601172026867-165536719325612.png" alt="image-20210601172026867" style="zoom:67%;" />
 
 * Choose a layout in [Device Preview Bar]:
 
-  <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601171953192.png" alt="image-20210601171953192" style="zoom:67%;" /> 
+  <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601171953192-165536719325614.png" alt="image-20210601171953192" style="zoom:67%;" /> 
 
   * Device Type: Default / Desktop / Tablet / Phone
   * Screen Orientation: Landscape (가로) / Portrait (세로)
@@ -380,9 +381,9 @@ date: 2022-06-16 15:17:35
   * Default
   * Custom : Available to edit
 
+<br />
 
-
-#### \>> Color, sizing and fonts
+### \>> Color, sizing and fonts
 
 * **Color**
 
@@ -401,11 +402,11 @@ date: 2022-06-16 15:17:35
 
     2. Edit in [Format Workbook] Pane --> [Fonts]
 
-       <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602090303105.png" alt="image-20210602090303105" style="zoom:50%;" />		 <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-12. Create Dashboards and Stories.assets\image-20210602090411235.png" alt="image-20210602090411235" style="zoom:50%;" /> 
+       <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-12. Create Dashboards and Stories.assets\image-20210602090303105.png" alt="image-20210602090303105" style="zoom:50%;" />		 <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602090411235-165536719325716.png" alt="image-20210602090411235" style="zoom:50%;" /> 
 
+<br />
 
-
-#### \>> Tooltips
+### \>> Tooltips
 
 * **Customize tooltips:** 
 
@@ -415,7 +416,7 @@ date: 2022-06-16 15:17:35
 
   * **<font color = 'darkblue'>Viz in tooltips:</font>**
 
-    <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602091801243.png" alt="image-20210602091801243" style="zoom:67%;" />
+    <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602091801243-165536719325717.png" alt="image-20210602091801243" style="zoom:67%;" />
 
   * **<font color = 'darkblue'>Add a viz in tooltip</font>**
 
@@ -423,7 +424,7 @@ date: 2022-06-16 15:17:35
 
     2. Click [Insert]  --> [Sheets]
 
-       <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602092038063.png" alt="image-20210602092038063" style="zoom:67%;" />
+       <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602092038063-165536719325720.png" alt="image-20210602092038063" style="zoom:67%;" />
 
     3. Select the target sheet that should appear in the tooltip --> click [OK]
 
@@ -431,7 +432,7 @@ date: 2022-06-16 15:17:35
 
     1. You can set the size of a view in a tooltip
 
-       <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602102704800.png" alt="image-20210602102704800" style="zoom:67%;" />
+       <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602102704800-165536719325718.png" alt="image-20210602102704800" style="zoom:67%;" />
 
     2. The view in the tooltip is always static
 
@@ -441,7 +442,7 @@ date: 2022-06-16 15:17:35
 
     3. It's possible to format tooltip text
 
-       <img src="../images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602103038725.png" alt="image-20210602103038725" style="zoom:67%;" />
+       <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602103038725-165536719325719.png" alt="image-20210602103038725" style="zoom:67%;" />
 
     4. Hovering on a mark filters the target viz
 
@@ -453,3 +454,6 @@ date: 2022-06-16 15:17:35
 
        \- If you use [Show Me] in the source sheet to change the view structure, you will reset all tooltip edits, including Viz in Tooltip references.
 
+<br />
+
+<br />

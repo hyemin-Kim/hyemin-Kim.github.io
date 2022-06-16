@@ -8,13 +8,14 @@ categories:
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 abbrlink: 7904
 date: 2022-06-16 15:47:46
+typora-root-url: ..
 ---
 
 # Sharing Your Work
 
 @[toc]
 
-
+<br />
 
 ## **1. The Tableau File Types**
 
@@ -36,9 +37,9 @@ date: 2022-06-16 15:47:46
   * a snapshot of your data that Tableau saves locally. 
   * helpful when you're connecting to extremely large data sets, of which you only need some fields.
 
+<br />
 
-
-
+<br />
 
 ## **2. Sharing Your Work with Others**
 
@@ -53,3 +54,7 @@ date: 2022-06-16 15:47:46
   * others can work with it in Tableau Desktop or Tableau Reader
 * Share only an image of a view or the data
   * [Worksheet] Menu --> [Export] --> Image / Data / Crosstab to Excel
+
+<br />
+
+<br />

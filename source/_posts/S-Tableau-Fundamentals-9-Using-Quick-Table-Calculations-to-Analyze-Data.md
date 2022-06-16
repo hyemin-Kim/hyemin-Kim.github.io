@@ -8,13 +8,12 @@ categories:
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 abbrlink: 54679
 date: 2022-06-16 14:33:57
+typora-root-url: ..
 ---
 
 # Using Quick Table Calculations to Analyze Data
 
-@[toc]
-
-
+<br />
 
 #### \>> Concept: Table calculations
 
@@ -23,7 +22,7 @@ Table calculations are
 * computations that are applied to the values in the data table for the view 
 * and calculations available often dependent on the table structure itself
 
-
+<br />
 
 #### \>> Quick Table Calculations
 
@@ -45,14 +44,18 @@ Quick Table Calculations:
 >
 > <font color='red'>YTD (Year to Date): The period from the beginning of a fiscal year to the end of a reporting period. (올해 초부터 현재까지)</font>
 
-
+<br />
 
 #### \>> Calculation Scope and Direction
 
 **Scope**: Table / Pane / Cell    (*Scope: the segment of the table that the calculation is applied to*)
 
-​			<img src="../images/S-Tableau-Fundamentals-9-Using-Quick-Table-Calculations-to-Analyze-Data/image-20210531090118121.png" alt="image-20210531090118121" style="zoom:50%;" /> 
+​			<img src="/images/S-Tableau-Fundamentals-9-Using-Quick-Table-Calculations-to-Analyze-Data/image-20210531090118121-16553668327231.png" alt="image-20210531090118121" style="zoom:50%;" /> 
 
-
+<br />
 
 **Direction:** across / down / across then down / down then across
+
+<br />
+
+<br />
