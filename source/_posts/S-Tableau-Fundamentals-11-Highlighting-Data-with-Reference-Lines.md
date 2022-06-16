@@ -23,6 +23,8 @@ typora-root-url: ..
 
 <br />
 
+<br />
+
 **2 ways to add reference line**
 
 1. From the view: 
@@ -42,6 +44,8 @@ typora-root-url: ..
      <img src="/images/S-Tableau-Fundamentals-11-Highlighting-Data-with-Reference-Lines/image-20210531125012133-16553670552953.png" alt="image-20210531125012133" style="zoom:67%;" /> 
 
      <br />
+     
+     <br />
 
 ## \>> Reference Band
 
@@ -54,6 +58,8 @@ Reference Bands
 
 <br />
 
+<br />
+
 ## \>> Reference Distribution
 
 Reference Distributions 
@@ -62,6 +68,8 @@ Reference Distributions
 * It adds a gradient of shading to indicate the distribution of values along the axis
 
 <img src="/images/S-Tableau-Fundamentals-11-Highlighting-Data-with-Reference-Lines/image-20210531130225430-16553670552955.png" alt="image-20210531130225430" style="zoom: 67%;" />
+
+<br />
 
 <br />
 

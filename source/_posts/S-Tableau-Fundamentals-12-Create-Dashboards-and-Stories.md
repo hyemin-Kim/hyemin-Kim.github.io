@@ -183,7 +183,7 @@ typora-root-url: ..
 
 ### \>> Add actions to a dashboard
 
-##### 1. Filter Action
+#### 1. Filter Action
 
 * **<font color = 'darkblue'>Concept:</font>** 
 
@@ -224,7 +224,7 @@ typora-root-url: ..
 
   <br />
 
-##### 2. Highlight Action
+#### 2. Highlight Action
 
 * **<font color = 'darkblue'>Concept:</font>** Highlight actions are used to call attention relevant data by retaining color for some marks while dimming all the others
 
@@ -255,7 +255,7 @@ typora-root-url: ..
 
 <br />
 
-##### 3. Go to Sheet Action
+#### 3. Go to Sheet Action
 
 * **<font color = 'darkblue'>Concept:</font>** The Go to Sheet action allows users to go from one dashboard to another sheet or dashboard.
 
@@ -275,7 +275,7 @@ typora-root-url: ..
 
 <br />
 
-##### 4. Go to URL Action
+#### 4. Go to URL Action
 
 * **<font color = 'darkblue'>Concept:</font>** URL actions allow end users to connect to web-based resources, and these can by dynamically programmed to update based on the user's selection.
 
