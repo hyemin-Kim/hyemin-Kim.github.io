@@ -25,13 +25,13 @@ date: 2022-06-27 14:58:30
 
 * Select [Measure] field  --> click [Show Me]  --> click the histogram thumbnail
 
-​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090214293.png" alt="image-20210614090214293" style="zoom: 67%;" />			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090252568-16563138518251.png" alt="image-20210614090252568" style="zoom:67%;" />
+​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090214293.png" alt="image-20210614090214293" style="zoom: 67%;" />	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090252568-16563138518251.png" alt="image-20210614090252568" style="zoom:67%;" />
 
 <br />
 
 * Edit bins : Right-click [Age (bin)] --> [Edit]
 
-  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094434541.png" alt="image-20210614094434541" style="zoom:67%;" />	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094518358-16563138585103.png" alt="image-20210614094518358" style="zoom:67%;" />
+  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094434541.png" alt="image-20210614094434541" style="zoom:67%;" /><img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094518358-16563138585103.png" alt="image-20210614094518358" style="zoom:67%;" />  
 
 <br />
 
@@ -39,7 +39,7 @@ date: 2022-06-27 14:58:30
 
 * Right-click [Measure] field  --> select [Create]  --> select [Bins]  --> edit bins --> click [OK]
 
-  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090452204-16563138656405.png" alt="image-20210614090452204" style="zoom:80%;" />		<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614091832293.png" alt="image-20210614091832293" style="zoom:67%;" />
+  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090452204-16563138656405.png" alt="image-20210614090452204" style="zoom:80%;" />	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614091832293.png" alt="image-20210614091832293" style="zoom:67%;" />
 
   * **<font color = 'darkblue'>Size of bins</font>**: Default value  -- Tableau suggested size
 
@@ -117,13 +117,13 @@ date: 2022-06-27 14:58:30
 
 * [Analytics] Pane  --> Drag [Box Plot] to the view  --> [Cell]
 
-  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102707088.png" alt="image-20210614102707088" style="zoom:80%;" />			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102805162-16563138976839.png" alt="image-20210614102805162" style="zoom:67%;" />
+  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102707088.png" alt="image-20210614102707088" style="zoom:80%;" />	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102805162-16563138976839.png" alt="image-20210614102805162" style="zoom:67%;" />
 
   <br />
 
 * Edit the box plot
 
-  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102853313.png" alt="image-20210614102853313" style="zoom:67%;" />			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102924358-165631390273611.png" alt="image-20210614102924358"  />
+  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102853313.png" alt="image-20210614102853313" style="zoom:67%;" />	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102924358-165631390273611.png" alt="image-20210614102924358"  />
 
 <br />
 

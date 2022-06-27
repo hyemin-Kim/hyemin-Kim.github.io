@@ -31,13 +31,13 @@ date: 2022-06-27 14:53:35
 
 <br />
 
-**[Fix the problems] **
+**[Fix the problems]**
 
 * **Fix the ambiguous errors**
 
   * [Map] menu --> [Edit Locations]
 
-  ​				![image-20210611133106539](/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133106539.png) 			<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133132793-16563139674001.png" alt="image-20210611133132793" style="zoom:67%;" />
+  ​				![image-20210611133106539](/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133106539.png) 	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133132793-16563139674001.png" alt="image-20210611133132793" style="zoom:67%;" />
 
   <br />
 
@@ -107,7 +107,7 @@ When there are geographic fields that Tableau doesn't recognize, you can assign 
 
 **[Problem] Tableau cannot recognize *Street Address* as geographic data** 
 
-​																<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142902652.png" alt="image-20210611142902652" style="zoom:80%;" />				<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142927831-16563139932607.png" alt="image-20210611142927831" style="zoom:80%;" />
+​																<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142902652.png" alt="image-20210611142902652" style="zoom:80%;" />		<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142927831-16563139932607.png" alt="image-20210611142927831" style="zoom:80%;" />
 
 <br />
 
@@ -203,7 +203,7 @@ We can use an background image and X/Y coordinates to show locations  on a map
 
     \- Y Field:  Right -- 0, Left -- 673 (pixels value)
 
-     <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155349612-16563141127019.png" alt="image-20210611155349612" style="zoom:40%;" />	 <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155531723.png" alt="image-20210611155531723" style="zoom:40%;" />
+     <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155349612-16563141127019.png" alt="image-20210611155349612" style="zoom:40%;" />	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155531723.png" alt="image-20210611155531723" style="zoom:40%;" />
 
   <br />
 
@@ -219,7 +219,7 @@ We can use an background image and X/Y coordinates to show locations  on a map
 
   * Right-click anywhere on the view --> [Annotate] --> [Point]
 
-    ​	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160129997.png" alt="image-20210611160129997" style="zoom: 50%;" /> 	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160210010-165631413185611.png" alt="image-20210611160210010" style="zoom:40%;" />
+    ​	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160129997.png" alt="image-20210611160129997" style="zoom: 50%;" />	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160210010-165631413185611.png" alt="image-20210611160210010" style="zoom:40%;" />
 
   * Drag the annotation to the location of Room Woodland
 

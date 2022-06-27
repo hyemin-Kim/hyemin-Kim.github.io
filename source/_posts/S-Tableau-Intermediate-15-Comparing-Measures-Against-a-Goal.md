@@ -162,7 +162,7 @@ Bullet graphs can be useful when you want to see how far a measure has progresse
 
     \- *current enrollment* for the reference lines and distribution
 
-  <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132009819.png" alt="image-20210614132009819" style="zoom:85%;" /> 	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132031246-165631376553311.png" alt="image-20210614132031246" style="zoom:80%;" />    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132150639-165631379546813.png" alt="image-20210614132150639" style="zoom:60%;" />
+  <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132009819.png" alt="image-20210614132009819" style="zoom:85%;" /> <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132031246-165631376553311.png" alt="image-20210614132031246" style="zoom:80%;" /> <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132150639-165631379546813.png" alt="image-20210614132150639" style="zoom:60%;" />
 
   <br />
 
@@ -170,7 +170,7 @@ Bullet graphs can be useful when you want to see how far a measure has progresse
 
   * Right-click the x-axis (Maximum Enrollment axis)  --> [Swap Reference Line Fields]
 
-    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132818737.png" alt="image-20210614132818737" style="zoom:80%;" />    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132853178-165631381365915.png" alt="image-20210614132853178" style="zoom:60%;" />
+    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132818737.png" alt="image-20210614132818737" style="zoom:80%;" /><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132853178-165631381365915.png" alt="image-20210614132853178" style="zoom:60%;" />
 
 <br />
 
