@@ -1,13 +1,13 @@
 ---
 title: Tableau >> Intermediate (4) Using Unions to Combine Data
-date: 2022-06-27 13:42:11
-tags:
-  -Tableau
+tags: '-Tableau'
 categories:
   - 【STUDY - Tableau】
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 59472
+date: 2022-06-27 13:42:11
 ---
 
 # Using Unions to Combine Data 
@@ -56,7 +56,7 @@ Two ways to create a union:
 
    * double-click the New Union option 
 
-     <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-4. Using Unions to Combine Data.assets\image-20210604155857525.png" alt="image-20210604155857525" style="zoom: 80%;" />        <img src="/images/S-Tableau-Intermediate-4-Using-Unions-to-Combine-Data/image-20210604155935753.png" alt="image-20210604155935753" style="zoom:77%;" />
+     <img src="/images/S-Tableau-Intermediate-4-Using-Unions-to-Combine-Data/image-20210604155857525-16563146432711.png" alt="image-20210604155857525" style="zoom:80%;" />        <img src="/images/S-Tableau-Intermediate-4-Using-Unions-to-Combine-Data/image-20210604155935753.png" alt="image-20210604155935753" style="zoom:77%;" />
 
 
    1. Specific (manual):

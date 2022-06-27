@@ -1,13 +1,14 @@
 ---
 title: Tableau >> Intermediate (12) Using Parameters to Control Data in the View
-date: 2022-06-27 14:35:57
 tags:
- - Tableau
+  - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 30412
+date: 2022-06-27 14:35:57
 ---
 
 # Using Parameters to Control Data in the View
@@ -32,7 +33,7 @@ The parameters are global. This means that the value of the parameter is applied
 
 * [Data] pane --> [Create Parameter] --> [Create parameter] dialog box
 
-​	   <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611085437341.png" alt="image-20210611085437341" style="zoom:67%;" /> 			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091113430.png" alt="image-20210611091113430" style="zoom:67%;" />
+​	   <img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611085437341-16563141659221.png" alt="image-20210611085437341" style="zoom:67%;" /> 			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091113430.png" alt="image-20210611091113430" style="zoom:67%;" />
 
 <br />
 
@@ -54,7 +55,7 @@ The parameters are global. This means that the value of the parameter is applied
 
 * Create a calculated field
 
-  <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611090401553.png" alt="image-20210611090401553" style="zoom:67%;" />			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091146937.png" alt="image-20210611091146937" style="zoom:67%;" />	
+  <img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611090401553-16563142111963.png" alt="image-20210611090401553" style="zoom:67%;" />			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091146937.png" alt="image-20210611091146937" style="zoom:67%;" />	
 
   <br />
 
@@ -62,7 +63,7 @@ The parameters are global. This means that the value of the parameter is applied
 
 * Right-click the parameter, and select [Show Parameter Control]
 
-  <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611090801657.png" alt="image-20210611090801657" style="zoom: 67%;" />			![image-20210611090916567](/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611090916567.png)
+  <img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611090801657-16563142464645.png" alt="image-20210611090801657" style="zoom:67%;" />			![image-20210611090916567](/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611090916567.png)
 
 <br />
 
@@ -78,7 +79,7 @@ The parameters are global. This means that the value of the parameter is applied
 
   b) Drag the dimension field to [Filter] --> open the Filter dialog box
 
-  ​				<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611091755122.png" alt="image-20210611091755122" style="zoom:67%;" />			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091620060.png" alt="image-20210611091620060" style="zoom:67%;" />
+  ​				<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091755122-16563142644887.png" alt="image-20210611091755122" style="zoom:67%;" />			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611091620060.png" alt="image-20210611091620060" style="zoom:67%;" />
 
 <br />
 
@@ -86,7 +87,7 @@ The parameters are global. This means that the value of the parameter is applied
 
 * [Top]  --> [By field]  --> [Create a new parameter]  --> Settings -->  [OK]
 
-  <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611092143936.png" alt="image-20210611092143936" style="zoom: 50%;" />		<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611092346025.png" alt="image-20210611092346025" style="zoom: 50%;" />		<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611092524428.png" alt="image-20210611092524428" style="zoom:67%;" />
+  <img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611092143936-16563142848899.png" alt="image-20210611092143936" style="zoom:50%;" />		<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611092346025-165631429595711.png" alt="image-20210611092346025" style="zoom: 50%;" />		<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611092524428.png" alt="image-20210611092524428" style="zoom:67%;" />
 
   <br />
 
@@ -100,7 +101,7 @@ The parameters are global. This means that the value of the parameter is applied
 
 * Right-click the parameter, and select [Show Parameter Control]
 
-  <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611093058789.png" alt="image-20210611093058789"  />			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611093137142.png" alt="image-20210611093137142" style="zoom:120%;" />
+  ![image-20210611093058789](/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611093058789-165631432561313.png)			<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611093137142.png" alt="image-20210611093137142" style="zoom:120%;" />
 
 <br />
 
@@ -140,7 +141,7 @@ Using a parameter, you can create one view and give users the ability to choose 
 
 ### Step 4. Apply a dynamic title with the parameter
 
-<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-12. Using Parameters to Control Data in the View.assets\image-20210611110246784.png" alt="image-20210611110246784" style="zoom:67%;" />		<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611110317775.png" alt="image-20210611110317775" style="zoom: 80%;" />
+<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611110246784-165631438763515.png" alt="image-20210611110246784" style="zoom:67%;" /> 		<img src="/images/S-Tableau-Intermediate-12-Using-Parameters-to-Control-Data-in-the-View/image-20210611110317775.png" alt="image-20210611110317775" style="zoom: 80%;" />
 
 <br />
 

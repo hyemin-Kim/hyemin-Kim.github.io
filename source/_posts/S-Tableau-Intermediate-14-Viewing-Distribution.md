@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (14) Viewing Distribution
-date: 2022-06-27 14:58:30
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 26142
+date: 2022-06-27 14:58:30
 ---
 
 # Viewing Distribution
@@ -24,13 +25,13 @@ typora-root-url: ..
 
 * Select [Measure] field  --> click [Show Me]  --> click the histogram thumbnail
 
-​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090214293.png" alt="image-20210614090214293" style="zoom: 67%;" />			<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-14. Viewing Distribution.assets\image-20210614090252568.png" alt="image-20210614090252568" style="zoom:67%;" />
+​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090214293.png" alt="image-20210614090214293" style="zoom: 67%;" />			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090252568-16563138518251.png" alt="image-20210614090252568" style="zoom:67%;" />
 
 <br />
 
 * Edit bins : Right-click [Age (bin)] --> [Edit]
 
-  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094434541.png" alt="image-20210614094434541" style="zoom:67%;" />	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-14. Viewing Distribution.assets\image-20210614094518358.png" alt="image-20210614094518358" style="zoom:67%;" />
+  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094434541.png" alt="image-20210614094434541" style="zoom:67%;" />	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614094518358-16563138585103.png" alt="image-20210614094518358" style="zoom:67%;" />
 
 <br />
 
@@ -38,7 +39,7 @@ typora-root-url: ..
 
 * Right-click [Measure] field  --> select [Create]  --> select [Bins]  --> edit bins --> click [OK]
 
-  ​	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-14. Viewing Distribution.assets\image-20210614090452204.png" alt="image-20210614090452204" style="zoom:80%;" />		<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614091832293.png" alt="image-20210614091832293" style="zoom:67%;" />
+  ​	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614090452204-16563138656405.png" alt="image-20210614090452204" style="zoom:80%;" />		<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614091832293.png" alt="image-20210614091832293" style="zoom:67%;" />
 
   * **<font color = 'darkblue'>Size of bins</font>**: Default value  -- Tableau suggested size
 
@@ -76,7 +77,7 @@ typora-root-url: ..
 
   * [Tick Marks] Tab  --> [Major tick marks]  --> [Fixed]  --> [Every] : (*size of bins*) 
 
-    ![image-20210614095218159](/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614095218159.png)	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-14. Viewing Distribution.assets\image-20210614095105087.png" alt="image-20210614095105087" style="zoom:80%;" />
+    ![image-20210614095218159](/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614095218159.png)	<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614095105087-16563138867437.png" alt="image-20210614095105087" style="zoom:80%;" />
 
 <br />
 
@@ -116,13 +117,13 @@ typora-root-url: ..
 
 * [Analytics] Pane  --> Drag [Box Plot] to the view  --> [Cell]
 
-  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102707088.png" alt="image-20210614102707088" style="zoom:80%;" />			<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-14. Viewing Distribution.assets\image-20210614102805162.png" alt="image-20210614102805162" style="zoom:67%;" />
+  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102707088.png" alt="image-20210614102707088" style="zoom:80%;" />			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102805162-16563138976839.png" alt="image-20210614102805162" style="zoom:67%;" />
 
   <br />
 
 * Edit the box plot
 
-  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102853313.png" alt="image-20210614102853313" style="zoom:67%;" />			<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-14. Viewing Distribution.assets\image-20210614102924358.png" alt="image-20210614102924358"  />
+  ​			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102853313.png" alt="image-20210614102853313" style="zoom:67%;" />			<img src="/images/S-Tableau-Intermediate-14-Viewing-Distribution/image-20210614102924358-165631390273611.png" alt="image-20210614102924358"  />
 
 <br />
 

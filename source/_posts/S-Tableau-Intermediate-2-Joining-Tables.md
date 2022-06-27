@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (2) Joining Tables
-date: 2022-06-27 13:32:43
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 60079
+date: 2022-06-27 13:32:43
 ---
 
 # Joining Tables

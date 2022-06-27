@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (1) Working with a Data Extract
-date: 2022-06-27 13:23:13
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 9545
+date: 2022-06-27 13:23:13
 ---
 
 # Working with a Data Extract
@@ -110,7 +111,7 @@ An extract is a copy of the data that brought into the Tableau data engine.
 
   * [Data] Pane --> right-click --> [Show Hidden Fields]
 
-    <img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210602164326135.png" alt="image-20210602164326135" style="zoom:67%;" /> 		<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-1. Working with a Data Extract.assets\image-20210602164355176.png" alt="image-20210602164355176" style="zoom:67%;" />
+    <img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210602164326135.png" alt="image-20210602164326135" style="zoom:67%;" /> 		<img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210602164355176-16563148778111.png" alt="image-20210602164355176" style="zoom:67%;" />
 
   * Field to show --> right-click --> check [Unhide]
 
@@ -155,7 +156,7 @@ Overwrite the existing extract by creating a new extract after the data extract 
 
 * Click [Extract]
 
-  <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-1. Working with a Data Extract.assets\image-20210602165123365.png" alt="image-20210602165123365" style="zoom: 60%;" />		<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-1. Working with a Data Extract.assets\image-20210602165055997.png" alt="image-20210602165055997" style="zoom: 60%;" /> <img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210603164635661.png" alt="image-20210603164635661" style="zoom: 67%;" />
+  <img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210602165123365-16563149058183.png" alt="image-20210602165123365" style="zoom:60%;" />		<img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210602165055997-16563149236555.png" alt="image-20210602165055997" style="zoom:60%;" /> <img src="/images/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/image-20210603164635661.png" alt="image-20210603164635661" style="zoom: 67%;" />
 
 <br />
 

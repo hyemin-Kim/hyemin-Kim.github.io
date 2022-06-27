@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Advanced (1) Customizing Table Calculations
-date: 2022-06-27 15:15:41
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 4. Advanced
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 14180
+date: 2022-06-27 15:15:41
 ---
 
 # Table Calculations

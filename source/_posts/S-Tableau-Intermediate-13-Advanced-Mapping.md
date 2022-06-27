@@ -1,13 +1,14 @@
 ---
 title: Tableau >> Intermediate (13) Advanced Mapping
-date: 2022-06-27 14:53:35
 tags:
- - Tableau
+  - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 25623
+date: 2022-06-27 14:53:35
 ---
 
 # Advanced Mapping
@@ -36,7 +37,7 @@ typora-root-url: ..
 
   * [Map] menu --> [Edit Locations]
 
-  ​				![image-20210611133106539](/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133106539.png) 			<img src="C:\Users\IM4\AppData\Roaming\Typora\typora-user-images\image-20210611133132793.png" alt="image-20210611133132793" style="zoom:67%;" />
+  ​				![image-20210611133106539](/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133106539.png) 			<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133132793-16563139674001.png" alt="image-20210611133132793" style="zoom:67%;" />
 
   <br />
 
@@ -76,13 +77,13 @@ typora-root-url: ..
 
 * Select the warning box --> Select [Edit Locations]
 
-  <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140725873.png" alt="image-20210611140725873" style="zoom:150%;" />	 <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-13. Advanced Mapping.assets\image-20210611140820483.png" alt="image-20210611140820483" style="zoom:80%;" />
+  <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140725873.png" alt="image-20210611140725873" style="zoom:150%;" />	 <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140820483-16563139806243.png" alt="image-20210611140820483" style="zoom:80%;" />
 
   <br />
 
 * match the data to specific values (match our regions to specific cities)
 
-  <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140903967.png" alt="image-20210611140903967" style="zoom: 67%;" />	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-13. Advanced Mapping.assets\image-20210611141123526.png" alt="image-20210611141123526" style="zoom: 67%;" />
+  <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140903967.png" alt="image-20210611140903967" style="zoom: 67%;" />	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611141123526-16563139852945.png" alt="image-20210611141123526" style="zoom: 67%;" />
 
   <br />
 
@@ -106,7 +107,7 @@ When there are geographic fields that Tableau doesn't recognize, you can assign 
 
 **[Problem] Tableau cannot recognize *Street Address* as geographic data** 
 
-​																<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142902652.png" alt="image-20210611142902652" style="zoom:80%;" />				<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-13. Advanced Mapping.assets\image-20210611142927831.png" alt="image-20210611142927831" style="zoom:80%;" />
+​																<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142902652.png" alt="image-20210611142902652" style="zoom:80%;" />				<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611142927831-16563139932607.png" alt="image-20210611142927831" style="zoom:80%;" />
 
 <br />
 
@@ -202,7 +203,7 @@ We can use an background image and X/Y coordinates to show locations  on a map
 
     \- Y Field:  Right -- 0, Left -- 673 (pixels value)
 
-    <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-13. Advanced Mapping.assets\image-20210611155349612.png" alt="image-20210611155349612" style="zoom:40%;" />	 <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155531723.png" alt="image-20210611155531723" style="zoom:40%;" />
+     <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155349612-16563141127019.png" alt="image-20210611155349612" style="zoom:40%;" />	 <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611155531723.png" alt="image-20210611155531723" style="zoom:40%;" />
 
   <br />
 
@@ -218,7 +219,7 @@ We can use an background image and X/Y coordinates to show locations  on a map
 
   * Right-click anywhere on the view --> [Annotate] --> [Point]
 
-    ​	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160129997.png" alt="image-20210611160129997" style="zoom: 50%;" /> 	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-13. Advanced Mapping.assets\image-20210611160210010.png" alt="image-20210611160210010" style="zoom:40%;" />
+    ​	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160129997.png" alt="image-20210611160129997" style="zoom: 50%;" /> 	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611160210010-165631413185611.png" alt="image-20210611160210010" style="zoom:40%;" />
 
   * Drag the annotation to the location of Room Woodland
 

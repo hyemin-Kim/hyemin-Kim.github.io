@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (9) Advanced Calculations Aggregating Dimensions
-date: 2022-06-27 14:13:32
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 456
+date: 2022-06-27 14:13:32
 ---
 
 # Advanced Calculations: Aggregating Dimensions

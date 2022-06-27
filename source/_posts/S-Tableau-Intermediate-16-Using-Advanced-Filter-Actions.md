@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (16) Using Advanced Filter Actions
-date: 2022-06-27 15:10:39
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 34674
+date: 2022-06-27 15:10:39
 ---
 
 # Using Advanced Filter Actions

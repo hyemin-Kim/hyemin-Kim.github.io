@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (3) Blending Multiple Data Sources
-date: 2022-06-27 13:36:35
 tags:
   - Talbeau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 47607
+date: 2022-06-27 13:36:35
 ---
 
 # Blending Multiple Data Sources
@@ -180,7 +181,7 @@ However, if they do have the common member but with different names, we can manu
 
   * Add mapping fields
 
-    <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-3. Blending Multiple Data Sources.assets\image-20210604133553537.png" alt="image-20210604133553537" style="zoom: 67%;" />  <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604133703236.png" alt="image-20210604133703236" style="zoom:67%;" />
+    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604133553537-16563147514931.png" alt="image-20210604133553537" style="zoom:67%;" />  <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604133703236.png" alt="image-20210604133703236" style="zoom:67%;" />
 
     <br />
 
@@ -196,7 +197,7 @@ However, if they do have the common member but with different names, we can manu
 
 * [Data] Pane --> common member field --> right-click --> [Rename]
 
-  <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-3. Blending Multiple Data Sources.assets\image-20210604134356472.png" alt="image-20210604134356472" style="zoom:80%;" />    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604134428319.png" alt="image-20210604134428319" style="zoom:80%;" />
+  <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604134356472-16563147740013.png" alt="image-20210604134356472" style="zoom:80%;" />    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604134428319.png" alt="image-20210604134428319" style="zoom:80%;" />
 
   <br />
 
@@ -210,7 +211,7 @@ However, if they do have the common member but with different names, we can manu
 
 * [Data] Menu --> select data source --> [Edit Aliases] --> choose the common member field
 
-​		<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-3. Blending Multiple Data Sources.assets\image-20210604135203007.png" alt="image-20210604135203007" style="zoom: 67%;" />    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604140017281.png" alt="image-20210604140017281" style="zoom: 80%;" />
+​		<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604135203007-16563147922405.png" alt="image-20210604135203007" style="zoom:67%;" />    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604140017281.png" alt="image-20210604140017281" style="zoom: 80%;" />
 
 <br />
 

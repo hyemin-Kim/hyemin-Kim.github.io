@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (5) Filtering Across Data Sources
-date: 2022-06-27 13:48:55
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 50732
+date: 2022-06-27 13:48:55
 ---
 
 # Filtering Across Data Sources

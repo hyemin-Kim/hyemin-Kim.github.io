@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (7) Using Context Filters to Limit Scope
-date: 2022-06-27 14:02:19
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 40643
+date: 2022-06-27 14:02:19
 ---
 
 # Using Context Filters to Limit Scope
@@ -30,7 +31,7 @@ Use [Add To Context] function:
 
 * field --> drop-down arrow --> [Add to Context]
 
-  <img src="/images/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/image-20210607172541543.png" alt="image-20210607172541543" style="zoom:80%;" /> 	 <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-7. Using Context Filters to Limit Scope.assets\image-20210607172600720.png" alt="image-20210607172600720" style="zoom:80%;" />
+  <img src="/images/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/image-20210607172541543.png" alt="image-20210607172541543" style="zoom:80%;" /> 	 <img src="/images/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/image-20210607172600720-16563145453401.png" alt="image-20210607172600720" style="zoom:80%;" />
 
 <br />
 

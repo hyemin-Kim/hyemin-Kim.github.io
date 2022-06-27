@@ -1,13 +1,14 @@
 ---
 title: Tableau >> Intermediate (10) Controlling Table Calculations
-date: 2022-06-27 14:17:18
 tags:
- - Tableau
+  - Tableau
 categories:
   - 【STUDY - Tableau】
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 32234
+date: 2022-06-27 14:17:18
 ---
 
 # Controlling Table Calculations
@@ -43,7 +44,7 @@ Table calculations are performed with a scope and direction. The scope and direc
 
 ​                            **across then down**                                                                                **down then across**
 
-​	<img src="/images/S-Tableau-Intermediate-10-Controlling-Table-Calculations/image-20210609162057744.png" alt="image-20210609162057744" style="zoom: 60%;" />				<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-10. Controlling Table Calculations.assets\image-20210609162020611.png" alt="image-20210609162020611" style="zoom: 60%;" />
+​	<img src="/images/S-Tableau-Intermediate-10-Controlling-Table-Calculations/image-20210609162057744.png" alt="image-20210609162057744" style="zoom: 60%;" />				<img src="/images/S-Tableau-Intermediate-10-Controlling-Table-Calculations/image-20210609162020611-16563144312531.png" alt="image-20210609162020611" style="zoom: 60%;" />
 
 <br />
 

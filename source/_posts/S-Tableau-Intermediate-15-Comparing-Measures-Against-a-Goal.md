@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (15) Comparing Measures Against a Goal
-date: 2022-06-27 15:07:46
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 48610
+date: 2022-06-27 15:07:46
 ---
 
 # Comparing Measures Against a Goal
@@ -56,7 +57,7 @@ Making the bars different sizes can avoid that the bars bidden underneath the ot
 
   [Analysis] menu --> [Stack Marks] --> [Off]
 
-  <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111240025.png" alt="image-20210614111240025" style="zoom:80%;" />	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614111307271.png" alt="image-20210614111307271" style="zoom:60%;" />
+  <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111240025.png" alt="image-20210614111240025" style="zoom:80%;" />	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111307271-16563136198991.png" alt="image-20210614111307271" style="zoom:60%;" />
 
 <br />
 
@@ -69,7 +70,7 @@ Making the bars different sizes can avoid that the bars bidden underneath the ot
     * Smallest : controls the size for the thinner bars
     * Largest :   controls the size for the thicker bars
 
-    ![image-20210614111715412](/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111715412.png)	![image-20210614111734298](/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111734298.png)	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614111758855.png" alt="image-20210614111758855" style="zoom: 67%;" />
+    ![image-20210614111715412](/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111715412.png)	![image-20210614111734298](/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111734298.png)	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111758855-16563136537213.png" alt="image-20210614111758855" style="zoom: 67%;" />
 
     <br />
 
@@ -105,7 +106,7 @@ Bullet graphs can be useful when you want to see how far a measure has progresse
 
   * Edit the reference line with [Scope], [Line] and [Formatting]
 
-    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125641240.png" alt="image-20210614125641240" style="zoom: 50%;" />         <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614125736991.png" alt="image-20210614125736991" style="zoom:67%;" />
+    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125641240.png" alt="image-20210614125641240" style="zoom: 50%;" />         <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125736991-16563136858875.png" alt="image-20210614125736991" style="zoom:67%;" />
 
     <br />
 
@@ -129,7 +130,7 @@ Bullet graphs can be useful when you want to see how far a measure has progresse
 
     \- Formatting : check [Fill Below]
 
-    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130533550.png" alt="image-20210614130533550" style="zoom: 67%;" />					<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614130351229.png" alt="image-20210614130351229" style="zoom: 67%;" />
+    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130533550.png" alt="image-20210614130533550" style="zoom: 67%;" />					<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130351229-16563137195357.png" alt="image-20210614130351229" style="zoom: 67%;" />
 
     <br />
 
@@ -161,7 +162,7 @@ Bullet graphs can be useful when you want to see how far a measure has progresse
 
     \- *current enrollment* for the reference lines and distribution
 
-  <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132009819.png" alt="image-20210614132009819" style="zoom:85%;" /> 	<img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614132031246.png" alt="image-20210614132031246" style="zoom:80%;" />    <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614132150639.png" alt="image-20210614132150639" style="zoom:60%;" />
+  <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132009819.png" alt="image-20210614132009819" style="zoom:85%;" /> 	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132031246-165631376553311.png" alt="image-20210614132031246" style="zoom:80%;" />    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132150639-165631379546813.png" alt="image-20210614132150639" style="zoom:60%;" />
 
   <br />
 
@@ -169,7 +170,7 @@ Bullet graphs can be useful when you want to see how far a measure has progresse
 
   * Right-click the x-axis (Maximum Enrollment axis)  --> [Swap Reference Line Fields]
 
-    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132818737.png" alt="image-20210614132818737" style="zoom:80%;" />    <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-15. Comparing Measures Against a Goal.assets\image-20210614132853178.png" alt="image-20210614132853178" style="zoom:60%;" />
+    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132818737.png" alt="image-20210614132818737" style="zoom:80%;" />    <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132853178-165631381365915.png" alt="image-20210614132853178" style="zoom:60%;" />
 
 <br />
 

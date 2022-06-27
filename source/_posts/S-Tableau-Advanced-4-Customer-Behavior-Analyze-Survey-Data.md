@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Advanced (4) Customer Behavior Analyze Survey Data
-date: 2022-06-27 15:39:13
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 4. Advanced
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 8340
+date: 2022-06-27 15:39:13
 ---
 
 # Customer Behavior: Analyze Survey Data

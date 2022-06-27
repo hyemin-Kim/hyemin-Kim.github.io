@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Intermediate (6) Using Sets to Highlight Data
-date: 2022-06-27 13:52:19
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 3. Intermediate
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 17048
+date: 2022-06-27 13:52:19
 ---
 
 #  Using Sets to Highlight Data
@@ -62,7 +63,7 @@ typora-root-url: ..
 
 * Click the sets icon that looks like two conjoined circles  --> Click [Create Set]
 
-  <img src="/images/S-Tableau-Intermediate-6-Using-Sets-to-Highlight-Data/image-20210607161742384.png" alt="image-20210607161742384" style="zoom: 50%;" /> <img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\3. Intermediate\3-6. Using Sets to Highlight Data.assets\image-20210607162033804.png" alt="image-20210607162033804" style="zoom: 50%;" />
+  <img src="/images/S-Tableau-Intermediate-6-Using-Sets-to-Highlight-Data/image-20210607161742384.png" alt="image-20210607161742384" style="zoom: 50%;" /> <img src="/images/S-Tableau-Intermediate-6-Using-Sets-to-Highlight-Data/image-20210607162033804-16563145766931.png" alt="image-20210607162033804" style="zoom: 50%;" />
 
 * [Create Set] dialog box
 

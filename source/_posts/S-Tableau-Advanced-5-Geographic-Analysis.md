@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Advanced (5) Geographic Analysis
-date: 2022-06-27 15:41:21
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 4. Advanced
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 5896
+date: 2022-06-27 15:41:21
 ---
 
 # Geographic Analysis
@@ -267,6 +268,8 @@ For a study on railway usage in areas of the United Kingdom, we would like to us
 * Increase the mark size, decrease the mark-color opacity, and give marks a gray border.
 
 <img src="/images/S-Tableau-Advanced-5-Geographic-Analysis/image-20210707132756910.png" alt="image-20210707132756910" style="zoom:50%;" />
+
+<br />
 
 <br />
 

@@ -1,6 +1,5 @@
 ---
 title: Tableau >> Advanced (3) Seasonality Show Trends with Cycle Plots
-date: 2022-06-27 15:35:45
 tags:
   - Tableau
 categories:
@@ -8,6 +7,8 @@ categories:
   - Tableau - 4. Advanced
 cover: 'https://z3.ax1x.com/2021/08/18/fo8Hat.png'
 typora-root-url: ..
+abbrlink: 48540
+date: 2022-06-27 15:35:45
 ---
 
 # Seasonality: Show Trends with Cycle Plots
@@ -83,6 +84,8 @@ We have four years of sales data and have noticed peak sales during some months 
 **[STEP 3] Change the marks to a light blue area**
 
 <img src="/images/S-Tableau-Advanced-3-Seasonality-Show-Trends-with-Cycle-Plots/image-20210706102121146.png" alt="image-20210706102121146" style="zoom:50%;" />
+
+<br />
 
 <br />
 
