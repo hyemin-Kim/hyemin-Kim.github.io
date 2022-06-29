@@ -33,7 +33,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-8-Using-Split-and-Custom-Split/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/</loc>
         <lastmod>2022-06-29T06:19:22.809Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -41,7 +41,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-8-Using-Split-and-Custom-Split/</loc>
         <lastmod>2022-06-29T06:19:22.809Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -89,7 +89,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-16-Using-Advanced-Filter-Actions/</loc>
         <lastmod>2022-06-29T06:19:22.805Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -97,7 +97,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-16-Using-Advanced-Filter-Actions/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/</loc>
         <lastmod>2022-06-29T06:19:22.805Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -129,7 +129,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-10-Controlling-Table-Calculations/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-11-Filtering-and-LOD-Expression/</loc>
         <lastmod>2022-06-29T06:19:22.801Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -137,7 +137,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-11-Filtering-and-LOD-Expression/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-10-Controlling-Table-Calculations/</loc>
         <lastmod>2022-06-29T06:19:22.801Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -161,7 +161,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-8-Using-Calculations/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-7-Create-Calculated-Fields/</loc>
         <lastmod>2022-06-29T06:19:22.799Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -169,7 +169,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-7-Create-Calculated-Fields/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-8-Using-Calculations/</loc>
         <lastmod>2022-06-29T06:19:22.799Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -217,7 +217,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-13-Sharing-Your-Work/</loc>
         <lastmod>2022-06-29T06:19:22.795Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -225,7 +225,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-13-Sharing-Your-Work/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/</loc>
         <lastmod>2022-06-29T06:19:22.795Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -241,7 +241,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-10-Showing-Breakdowns-of-the-Whole/</loc>
+        <loc>https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-1-Connect-to-and-Customize-Data/</loc>
         <lastmod>2022-06-29T06:19:22.793Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -249,7 +249,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-1-Connect-to-and-Customize-Data/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-10-Showing-Breakdowns-of-the-Whole/</loc>
         <lastmod>2022-06-29T06:19:22.793Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -273,7 +273,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-3-Seasonality-Show-Trends-with-Cycle-Plots/</loc>
         <lastmod>2022-06-29T06:19:22.791Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -281,7 +281,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-3-Seasonality-Show-Trends-with-Cycle-Plots/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/</loc>
         <lastmod>2022-06-29T06:19:22.791Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
