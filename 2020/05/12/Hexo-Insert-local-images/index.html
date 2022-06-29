@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>在Hexo博文中添加本地图片的方法（基于Typora编辑器） | Hyemin Kim</title><meta name="keywords" content="Hexo,Typora,Markdown"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="当我们想在markdown文档中添加网络图片时，可以使用命令&#96;&#96;&#96;![&#39;图片名称&#39;](图片网络地址)&#96;&#96;&#96;进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，向markdown文档中添加本地图片的方法。快来看看吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Hexo博文中添加本地图片的方法（基于Typora编辑器）">
+<meta property="og:url" content="https://hyemin-kim.github.io/2020/05/12/Hexo-Insert-local-images/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="当我们想在markdown文档中添加网络图片时，可以使用命令&#96;&#96;&#96;![&#39;图片名称&#39;](图片网络地址)&#96;&#96;&#96;进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，向markdown文档中添加本地图片的方法。快来看看吧">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lh4.googleusercontent.com/proxy/9EC0bxXmSPU8lCpM59sJo-H8ohlFDIDMpsemcAPPNNhak2m4jFKOG_tKCk8e1NemgjaICnYX5lgyE7SHOD6T11AuYTN6nWsJzESiibeKdHCiY7TA5A">
+<meta property="article:published_time" content="2020-05-12T12:20:48.000Z">
+<meta property="article:modified_time" content="2021-05-30T12:23:52.706Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Typora">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh4.googleusercontent.com/proxy/9EC0bxXmSPU8lCpM59sJo-H8ohlFDIDMpsemcAPPNNhak2m4jFKOG_tKCk8e1NemgjaICnYX5lgyE7SHOD6T11AuYTN6nWsJzESiibeKdHCiY7TA5A"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2020/05/12/Hexo-Insert-local-images/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-05-30 21:23:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#编写博客前-进行配置"><span class="toc-text"> 【编写博客前】— 进行配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写博客时-图片导入方法"><span class="toc-text"> 【编写博客时】— 图片导入方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写博客后-图片存档结果"><span class="toc-text"> 【编写博客后】— 图片存档结果</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://lh4.googleusercontent.com/proxy/9EC0bxXmSPU8lCpM59sJo-H8ohlFDIDMpsemcAPPNNhak2m4jFKOG_tKCk8e1NemgjaICnYX5lgyE7SHOD6T11AuYTN6nWsJzESiibeKdHCiY7TA5A)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">在Hexo博文中添加本地图片的方法（基于Typora编辑器）</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-12T12:20:48.000Z" title="Created 2020-05-12 21:20:48">2020-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-05-30T12:23:52.706Z" title="Updated 2021-05-30 21:23:52">2021-05-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90USAGE%E3%80%91/">【USAGE】</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><font face="Microsoft YaHei">
+<p>当我们想在markdown文档中添加网络图片时，可以使用命令<code>!['图片名称'](图片网络地址)</code>进行实现，然而这条命令却不适用于添加本地图片。本文将介绍在使用Typora编辑器编辑Hexo博文时，向markdown文档中添加本地图片的方法。快来看看吧</p>
+<a id="more"></a>
+<br>
+<p></p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D-%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE"><strong>【编写博客前】— 进行配置</strong></a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6-%E5%9B%BE%E7%89%87%E5%AF%BC%E5%85%A5%E6%96%B9%E6%B3%95"><strong>【编写博客时】— 图片导入方法</strong></a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E5%90%8E-%E5%9B%BE%E7%89%87%E5%AD%98%E6%A1%A3%E7%BB%93%E6%9E%9C"><strong>【编写博客后】— 图片存档结果</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h3 id="编写博客前-进行配置"><a class="markdownIt-Anchor" href="#编写博客前-进行配置"></a> <strong>【编写博客前】— 进行配置</strong></h3>
+<br>
+<ol>
+<li>
+<p><strong>建立 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹(Asset Floder)</a>，用来保存添加到博文中的本地图片</strong></p>
+<ul>
+<li>在本地Hexo根目录下的<code>source</code>文件夹中创建一个名为 <code>images</code> 的文件夹</li>
+</ul>
+</li>
+<li>
+<p><strong>在Typora中设置图片的相对路径</strong></p>
+<ul>
+<li>打开Typora的<code>文件 &gt; 偏好设置 &gt; 图像</code>，进行如下设置：</li>
+</ul>
+<center><img src="/images/Hexo-Local-Pictures/image-20200506223313787.png" alt="image-20200506223313787" style="zoom:50%;"></center>
+<ul>
+<li>此设置会使<code>source/images</code>文件夹下新增一个与所编辑的markdown文档同名的文件夹，文档中所添加的 <em>本地图片</em> 都将存档于此（即拥有了如下路径：<code>'hexo根目录'/source/images/'md文档名'/'图片名称'）</code>)。<br>
+<br></li>
+</ul>
+</li>
+<li>
+<p><strong>撰写markdown文档时配置 <em>图片根目录</em> ，使其能够同步到hexo博客中去</strong></p>
+<ul>
+<li>撰写博文时，先点击Typora菜单栏中的<code>格式 &gt; 图像 &gt; 设置图片根目录</code> , 将根目录配置为<code>'hexo根目录'/source</code>。然后再撰写博文。【注：每篇需要添加本地图片的博文都要先进行此步骤】</li>
+</ul>
+<center><img src="/images/Hexo-Local-Pictures/1.png" alt="1" style="zoom:50%;"></center>
+</li>
+</ol>
+<br>
+<h3 id="编写博客时-图片导入方法"><a class="markdownIt-Anchor" href="#编写博客时-图片导入方法"></a> <strong>【编写博客时】— 图片导入方法</strong></h3>
+ <br>
+<ol>
+<li><strong>直接拖拽</strong>
+<ul>
+<li>将原本存放于其他本地文件夹中的图片直接拖拽到文档中的相应位置中去</li>
+<li>此时图片会被自动存档至生成的同名文件夹<code>'hexo根目录'/source/images/'md文档名'</code>中</li>
+<li>文档中图片地址的代码会显示成 <em>自动生成的相对路径</em>，即<code>/images/'md文档名'/'图片名称'</code><br>
+<br></li>
+</ul>
+</li>
+<li><strong>利用相对路径调取</strong>
+<ul>
+<li>当利用 <em>方法1</em> 插入了至少一张图片时（即已生成同名文件夹时），便可以把接下来要插入的图片复制到此同名文件夹中，在文档中<em>利用相对路径</em> 调取图片：</li>
+<li>所使用的命令是：<code>![图片显示名称](/images/'md文档名'/'图片名称')</code></li>
+<li>这里的<code>图片显示名称</code>不必与文件夹中保存的<code>图片名称</code>保持一致，<code>'图片名称'</code>中要记得包含图片格式（例如：tupian.jpg 或 picture.png 等）<br>
+<br></li>
+</ul>
+</li>
+</ol>
+<p>【注意】当还没有利用 <em>方法1</em> 插入过图片时（即同名文件夹尚未生成时），<strong>不可以自己创建同名文件夹</strong>保存图片。亲测不好使！！（.md文档中可以显示，但是hexo博文中无法显示）</p>
+<br>
+<h3 id="编写博客后-图片存档结果"><a class="markdownIt-Anchor" href="#编写博客后-图片存档结果"></a> <strong>【编写博客后】— 图片存档结果</strong></h3>
+<p>在利用上述方法完成了含有本地图片的markdown博文后，我们的资源文件夹<code>'hexo根目录'/source/images/</code>内最终会显示成什么样子呢？</p>
+<ul>
+<li>
+<p>每一篇配置了图片根目录的博文（即【编写博客前】的第3步），都会在<code>'hexo根目录'/source/images/</code>文件夹中有一个与文档名称同名的文件夹<code>'hexo根目录'/source/images/'md文档名'</code></p>
+</li>
+<li>
+<p>该文件夹中会保存博文编写中曾经添加的<strong>所有本地图片</strong></p>
+<ul>
+<li><strong>所有</strong>的含义是：即使编辑过程中某些本地图片在添加后又被删除了，它们也仍然会保留在文件夹中，即该文件夹会备份你在博文中添加的 <em>所有本地图片历史</em></li>
+<li><strong>本地图片</strong>的含义是：这里只会保存插入的本地图片，而不会保存插入的网络图片。尽管在【编写博客前】的第2步配置中，我们也同样勾选了<code>对网络位置的图片应用上述规则</code>。（请原谅我并不知道其中的缘由。。）</li>
+</ul>
+</li>
+</ul>
+<p>就此，在Typora编辑器中编写Hexo博文时，向markdown文档中添加本地图片的方法就介绍完毕啦！快去应用到你的博文中去吧~</p>
+ <br>  
+ <br>  
+ <br> 
+ <hr>
+<p>本文参考了<a href="https://yinyoupoet.github.io/" target="_blank" rel="noopener">yinyoupoet</a>的<a href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">typora + hexo博客中插入图片</a><br>
+更多关于Typora中插入图片的内容可以参考<a href="https://support.typora.io/Images/#when-insert-images" target="_blank" rel="noopener">Typora的官方说明</a></p>
+ <hr>  
+ <br>  
+ <br>  
+</font><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2020/05/12/Hexo-Insert-local-images/">https://hyemin-kim.github.io/2020/05/12/Hexo-Insert-local-images/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/Typora/">Typora</a><a class="post-meta__tags" href="/tags/Markdown/">Markdown</a></div><div class="post_share"><div class="social-share" data-image="https://lh4.googleusercontent.com/proxy/9EC0bxXmSPU8lCpM59sJo-H8ohlFDIDMpsemcAPPNNhak2m4jFKOG_tKCk8e1NemgjaICnYX5lgyE7SHOD6T11AuYTN6nWsJzESiibeKdHCiY7TA5A" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/13/S-Python-base2/"><img class="prev-cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Python 기초문법 - (2) 집합 형태의 데이터 타입</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/12/S-Python-base1/"><img class="next-cover" src="https://ih1.redbubble.net/image.452049706.1381/flat,750x,075,f-pad,750x1000,f8f8f8.u5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Python 기초문법 - (1) 출력. 데이터 타입. 데이터의 응용</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/08/Reference/" title="利用Git Pages+Hexo搭建博客过程中的参考资料"><img class="cover" src="https://z3.ax1x.com/2020/12/21/r0rK91.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-08</div><div class="title">利用Git Pages+Hexo搭建博客过程中的参考资料</div></div></a></div><div><a href="/2020/05/10/Markdown-Syntax/" title="Markdown 常用语法（持续更新）"><img class="cover" src="https://s1.ax1x.com/2020/05/23/YjmlFg.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-10</div><div class="title">Markdown 常用语法（持续更新）</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://lh4.googleusercontent.com/proxy/9EC0bxXmSPU8lCpM59sJo-H8ohlFDIDMpsemcAPPNNhak2m4jFKOG_tKCk8e1NemgjaICnYX5lgyE7SHOD6T11AuYTN6nWsJzESiibeKdHCiY7TA5A)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'f13b72489db0cb297bf128f74ba608b0',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

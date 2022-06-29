@@ -1,0 +1,497 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Fundamentals (4) Build Common Views | Hyemin Kim</title><meta name="keywords" content="Tableau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Build Common Views  1. Working with Dates to Visualize Time-Based Data 2. Create Custom Date Fields and Hierarchies  &gt;&gt; Create a custom continuous date value &gt;&gt; Create a custom discrete d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Fundamentals (4) Build Common Views">
+<meta property="og:url" content="https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-4-Build-Common-Views/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Build Common Views  1. Working with Dates to Visualize Time-Based Data 2. Create Custom Date Fields and Hierarchies  &gt;&gt; Create a custom continuous date value &gt;&gt; Create a custom discrete d">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2021-06-28T01:58:53.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.797Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Tableau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-4-Build-Common-Views/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#build-common-views"><span class="toc-text"> Build Common Views</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-working-with-dates-to-visualize-time-based-data"><span class="toc-text"> 1. Working with Dates to Visualize Time-Based Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-create-custom-date-fields-and-hierarchies"><span class="toc-text"> 2. Create Custom Date Fields and Hierarchies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-custom-continuous-date-value"><span class="toc-text"> &gt;&gt; Create a custom continuous date value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-custom-discrete-date-part"><span class="toc-text"> &gt;&gt; Create a custom discrete date part</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-custom-date-hierarchy"><span class="toc-text"> &gt;&gt; Create a custom date hierarchy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-comparing-multiple-measures-in-views"><span class="toc-text"> 3. Comparing Multiple Measures in Views</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-text-tables-with-multiple-measures"><span class="toc-text"> &gt;&gt; Create text tables with multiple measures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make-views-with-multiple-measures-on-the-same-axis"><span class="toc-text"> &gt;&gt; Make views with multiple measures on the same axis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#build-dual-and-combined-axis-charts"><span class="toc-text"> &gt;&gt; Build dual and combined axis charts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#using-scatter-plots-to-show-relationships-between-measures"><span class="toc-text"> &gt;&gt; Using Scatter Plots To Show Relationships Between Measures</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Fundamentals (4) Build Common Views</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-06-28T01:58:53.000Z" title="Created 2021-06-28 10:58:53">2021-06-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.797Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-2-Fundamentals/">Tableau - 2. Fundamentals</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="build-common-views"><a class="markdownIt-Anchor" href="#build-common-views"></a> Build Common Views</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-working-with-dates-to-visualize-time-based-data"><strong>1. Working with Dates to Visualize Time-Based Data</strong></a></li>
+<li><a href="#2-create-custom-date-fields-and-hierarchies"><strong>2. Create Custom Date Fields and Hierarchies</strong></a>
+<ul>
+<li><a href="#create-a-custom-continuous-date-value">&gt;&gt; Create a custom continuous date value</a></li>
+<li><a href="#create-a-custom-discrete-date-part">&gt;&gt; Create a custom discrete date part</a></li>
+<li><a href="#create-a-custom-date-hierarchy">&gt;&gt; Create a custom date hierarchy</a></li>
+</ul>
+</li>
+<li><a href="#3-comparing-multiple-measures-in-views"><strong>3. Comparing Multiple Measures in Views</strong></a>
+<ul>
+<li><a href="#create-text-tables-with-multiple-measures">&gt;&gt; Create text tables with multiple measures</a></li>
+<li><a href="#make-views-with-multiple-measures-on-the-same-axis">&gt;&gt; Make views with multiple measures on the same axis</a></li>
+<li><a href="#build-dual-and-combined-axis-charts">&gt;&gt; Build dual and combined axis charts</a></li>
+<li><a href="#using-scatter-plots-to-show-relationships-between-measures">&gt;&gt; Using Scatter Plots To Show Relationships Between Measures</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-working-with-dates-to-visualize-time-based-data"><a class="markdownIt-Anchor" href="#1-working-with-dates-to-visualize-time-based-data"></a> <strong>1. Working with Dates to Visualize Time-Based Data</strong></h2>
+<p>&gt;&gt; Change date field and calender defaults</p>
+<ul>
+<li>
+<p>[Data] --&gt; Data Source Name --&gt; [Date Properties]</p>
+<p>​			<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521145523588-16298809215928.png" alt="image-20210521145523588" style="zoom:50%;">					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521145648241.png" alt="image-20210521145648241" style="zoom:80%;"></p>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="2-create-custom-date-fields-and-hierarchies"><a class="markdownIt-Anchor" href="#2-create-custom-date-fields-and-hierarchies"></a> <strong>2. Create Custom Date Fields and Hierarchies</strong></h2>
+<h3 id="create-a-custom-continuous-date-value"><a class="markdownIt-Anchor" href="#create-a-custom-continuous-date-value"></a> &gt;&gt; Create a custom continuous date value</h3>
+<ol>
+<li>
+<p>[Data] Pane --&gt; [Order Date] --&gt; click the down-arrow</p>
+</li>
+<li>
+<p>[Create] --&gt; [Custom date]</p>
+</li>
+<li>
+<p>[Name] :  “Continuous Date (Months)”</p>
+<p>[Detail] : “Months”</p>
+<p>[Date Value]</p>
+</li>
+<li>
+<p>Click [OK]</p>
+<p>​					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161538861-16298808457426.png" alt="image-20210521161538861" style="zoom:50%;">					<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161650010.png" alt="image-20210521161650010" style="zoom: 80%;"></p>
+</li>
+</ol>
+<br>
+<h3 id="create-a-custom-discrete-date-part"><a class="markdownIt-Anchor" href="#create-a-custom-discrete-date-part"></a> &gt;&gt; Create a custom discrete date part</h3>
+<ol>
+<li>
+<p>[Data] Pane --&gt; [Order Date] --&gt; click the down-arrow</p>
+</li>
+<li>
+<p>[Create] --&gt; [Custom date]</p>
+</li>
+<li>
+<p>[Name] :  “Discrete Date (Months)”</p>
+<p>[Detail] : “Months”</p>
+<p>[Date Part]</p>
+</li>
+<li>
+<p>Click [OK]</p>
+<p>​				<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521161538861-16298808772617.png" alt="image-20210521161538861" style="zoom:50%;">						<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521162304726.png" alt="image-20210521162304726" style="zoom:80%;"></p>
+</li>
+</ol>
+<br>
+<h3 id="create-a-custom-date-hierarchy"><a class="markdownIt-Anchor" href="#create-a-custom-date-hierarchy"></a> &gt;&gt; Create a custom date hierarchy</h3>
+<ol>
+<li>Create a custom discrete date part field, “Discrete Date (Years)”</li>
+<li>Create another custom discrete date part field, “Discrete Date (Months)”</li>
+<li>In the [Data] pane, drag [Discrete Date (Months)] on top of [Discrete Date (Years)]</li>
+<li>In the dialog box, change the name of the hierarchy to “Custom Dates”</li>
+<li>Click [OK]</li>
+</ol>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521163445426.png" alt="image-20210521163445426" style="zoom:80%;">
+<br>
+<br>
+<h2 id="3-comparing-multiple-measures-in-views"><a class="markdownIt-Anchor" href="#3-comparing-multiple-measures-in-views"></a> <strong>3. Comparing Multiple Measures in Views</strong></h2>
+<p><strong>[Measure Values]</strong> (<font color="viridis">측정값</font>) and <strong>[Measure Names]</strong> (<font color="blue">측정값 이름</font>) fields are automatically created by Tableau.</p>
+<p>They serve as containers for the measures in the [Data] Pane:</p>
+<ul>
+<li><font color="viridis">[Measure Values]</font> field:  a measure that contains the values of the measures</li>
+<li><font color="blue">[Measure Names]</font> field: a dimension that contains the names of the measures
+<ul>
+<li>Note: it does not include measures, such as [Latitude], that do not aggregate the same way as other measures</li>
+</ul>
+</li>
+</ul>
+<p>With  <strong>Measure Values</strong> and <strong>Measure Names</strong> fields, you can build certain types of views that involve multiple measures, enabling you to compare them.</p>
+<br>
+<h3 id="create-text-tables-with-multiple-measures"><a class="markdownIt-Anchor" href="#create-text-tables-with-multiple-measures"></a> &gt;&gt; Create text tables with multiple measures</h3>
+<p><strong>[개요]</strong></p>
+<ul>
+<li>Text tables can contain up to <strong>fifty measures on Rows</strong> and <strong>sixteen on Columns</strong></li>
+<li>Measures in text tables <strong>can have different units</strong></li>
+</ul>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210521170225404.png" alt="image-20210521170225404" style="zoom:67%;">
+<br>
+<br>
+<h3 id="make-views-with-multiple-measures-on-the-same-axis"><a class="markdownIt-Anchor" href="#make-views-with-multiple-measures-on-the-same-axis"></a> &gt;&gt; Make views with multiple measures on the same axis</h3>
+<p><strong>[개요]</strong></p>
+<ul>
+<li>You can add <strong>fifty measures</strong> to the same axis</li>
+<li>Measures that share an axis should have the <strong>same unit of measurement</strong></li>
+<li>Measures that share the same axis use the <strong>same type of mark</strong>, such as bar</li>
+</ul>
+<br>
+<p><strong>[실습]</strong></p>
+<ol>
+<li>Add [Category] to [Columns]</li>
+<li>Add [Sales] to [Rows]</li>
+<li>Drag [Profit] from the [Data] pane to the [Sales] axis
+<ul>
+<li>[Measure Values] and [Measure Names] will be added to the view automatically</li>
+</ul>
+</li>
+<li>Drag [Measure Name] from the [Data] pane, to color on the [Marks] card.</li>
+</ol>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526084305992.png" alt="image-20210526084305992" style="zoom:60%;">
+<br>
+<br>
+<h3 id="build-dual-and-combined-axis-charts"><a class="markdownIt-Anchor" href="#build-dual-and-combined-axis-charts"></a> &gt;&gt; Build dual and combined axis charts</h3>
+<p><strong>[개요]</strong></p>
+<ul>
+<li>
+<p><strong>Dual axis charts</strong> have <font color="viridis">two axes for the measures</font> and <font color="blue">one for the dimensions</font></p>
+</li>
+<li>
+<p><strong>Dual axis charts</strong> use <font color="viridis">two measures</font> and <font color="blue">one or more dimensions</font></p>
+</li>
+<li>
+<p>Measures can have <strong>different units</strong></p>
+</li>
+<li>
+<p>Measures can use the <strong>same or different mark types</strong></p>
+</li>
+</ul>
+<br>
+<p><strong>[실습]</strong></p>
+<ul>
+<li>
+<p><strong>Measures with same number format</strong>  [Sales &amp; Profit]</p>
+<ol>
+<li>
+<p><strong><font color="darkblue">Set the dimension and the first measure in the view</font></strong></p>
+<p>[Columns] : <font color="viridis">Month(Order Date)</font>  (<em>dimension</em>)</p>
+<p>[Rows] : <font color="viridis">SUM(Sales)</font>  (<em>first measure</em>)</p>
+<br>
+</li>
+<li>
+<p><strong><font color="darkblue">Make a dual axis chart:</font></strong></p>
+<p>Drag <font color="viridis">[Profit]</font> (<em>second measure</em>) from Data pane to the right edge of the view</p>
+<p>until you see <em>&lt; a light green ruler icon &gt;</em> and <em>&lt; a black dotted line &gt;</em></p>
+<p>and drop the measure.</p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526095349671.png" alt="image-20210526095349671" style="zoom: 50%;">
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526100126518.png" alt="image-20210526100126518" style="zoom:50%;">
+<br>
+</li>
+<li>
+<p><strong><font color="darkblue">Change the mark type for each measure</font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526094017490.png" alt="image-20210526094017490" style="zoom:50%;">
+<br>
+</li>
+<li>
+<p><strong><font color="darkblue">Set the scales same</font></strong></p>
+<p>Right-click the axis want to change --&gt; Synchronize Axis</p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526101345020.png" alt="image-20210526101345020" style="zoom:50%;">
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>Measures with different number formats</strong>  [Sales &amp; Discount]</p>
+<p>&gt; Without [Synchronize Axis] (축 동기화)</p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526102648297.png" alt="image-20210526102648297" style="zoom:50%;">
+</li>
+</ul>
+<br>
+<br>
+<h3 id="using-scatter-plots-to-show-relationships-between-measures"><a class="markdownIt-Anchor" href="#using-scatter-plots-to-show-relationships-between-measures"></a> &gt;&gt; Using Scatter Plots To Show Relationships Between Measures</h3>
+<blockquote>
+<p><a href="https://elearning.tableau.com/tableau-fundamentals/786137/scorm/3htuzbdo9a99x" target="_blank" rel="noopener">E-Learning Link</a></p>
+</blockquote>
+<p><strong>[What can we do with scatter plots?]</strong></p>
+<ul>
+<li>
+<p>Evaluate data clusters</p>
+</li>
+<li>
+<p>Identify correlations and trends</p>
+<p>- Use correlations and trends to analyze data</p>
+</li>
+<li>
+<p>Identify outliers</p>
+<p>- Manage outliers</p>
+<p>- Exclude an outlier from a view</p>
+<p>- Add an annotation to an outlier</p>
+</li>
+</ul>
+<br>
+<p><strong>[Details]</strong></p>
+<ul>
+<li><strong>Build a scatter plot</strong></li>
+</ul>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526110123760.png" alt="image-20210526110123760" style="zoom: 67%;">
+<br>
+<ul>
+<li>
+<p><strong>Evaluate data clusters</strong></p>
+<p>- Two clusters divided by the eruption duration classes, [long] and [short]</p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526110409805.png" alt="image-20210526110409805" style="zoom: 67%;">
+<br>
+</li>
+<li>
+<p><strong>Identify correlations and trends</strong></p>
+<p>- Positive Correlation</p>
+<p>- Negative Correlation</p>
+<p>- No Correlation</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>Use correlations and trends to analyze data</strong></p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526111021545.png" alt="image-20210526111021545" style="zoom: 67%;">
+<p>- Positive relationship between [wait time between eruptions] and [eruption duration]</p>
+<p>- the longer the wait time between eruptions, the longer the eruption duration</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>Identify outliers</strong></p>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526111537532.png" alt="image-20210526111537532" style="zoom:67%;">
+<ul>
+<li>
+<p>Exclude an outlier</p>
+<ol>
+<li>
+<p>Press [Ctrl] and select the outlier</p>
+</li>
+<li>
+<p>On the tooltip that appers, click [Exclude]</p>
+<br>
+</li>
+</ol>
+</li>
+<li>
+<p>Add an annotation to an outlier</p>
+<ol>
+<li>Right-click the outlier</li>
+<li>Point to [Annotate] (주석 추가)</li>
+<li>Click [Mark]</li>
+<li>Use the [Edit Annotation] dialog box to create annotation</li>
+<li>click [OK]</li>
+</ol>
+<img src="/images/S-Tableau-Fundamentals-4-Build-Common-Views/image-20210526123454393.png" alt="image-20210526123454393" style="zoom: 67%;">
+<br>
+</li>
+</ul>
+<br>
+</li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-4-Build-Common-Views/">https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-4-Build-Common-Views/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tableau/">Tableau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/16/S-Tableau-Fundamentals-5-Mapping-Data-Geographically/"><img class="prev-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Tableau &gt;&gt; Fundamentals (5) Mapping Data Geographically</div></div></a></div><div class="next-post pull-right"><a href="/2021/06/28/S-Tableau-Fundamentals-3-Organize-Data-and-Create-Filters/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Fundamentals (3) Organize Data and Create Filters</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/" title="Tableau >> Advanced (2) Time-Based Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (2) Time-Based Data</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/" title="Tableau >> Advanced (1) Customizing Table Calculations"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (1) Customizing Table Calculations</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/" title="Tableau >> Advanced (5) Geographic Analysis"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (5) Geographic Analysis</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/" title="Tableau >> Advanced (4) Customer Behavior Analyze Survey Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (4) Customer Behavior Analyze Survey Data</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '17d53769993dff73e341836e3403fa1c',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

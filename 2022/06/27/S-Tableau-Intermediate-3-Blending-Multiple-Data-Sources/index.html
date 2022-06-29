@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Intermediate (3) Blending Multiple Data Sources | Hyemin Kim</title><meta name="keywords" content="Talbeau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Blending Multiple Data Sources  1. Data Blending  &gt;&gt; Concept  &gt;&gt; Advantages     2. Blending Your Data *  &gt;&gt; Features &gt;&gt; Steps for blending data   3. Left Join VS Blending  &amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Intermediate (3) Blending Multiple Data Sources">
+<meta property="og:url" content="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Blending Multiple Data Sources  1. Data Blending  &gt;&gt; Concept  &gt;&gt; Advantages     2. Blending Your Data *  &gt;&gt; Features &gt;&gt; Steps for blending data   3. Left Join VS Blending  &amp;gt">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2022-06-27T04:36:35.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.806Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Talbeau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#blending-multiple-data-sources"><span class="toc-text"> Blending Multiple Data Sources</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-data-blending"><span class="toc-text"> 1. Data Blending</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#concept"><span class="toc-text"> &gt;&gt; Concept</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#advantages"><span class="toc-text"> &gt;&gt; Advantages</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-blending-your-data"><span class="toc-text"> 2. Blending Your Data</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#features"><span class="toc-text"> &gt;&gt; Features</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#steps-for-blending-data"><span class="toc-text"> &gt;&gt; Steps for blending data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-left-join-vs-blending"><span class="toc-text"> 3. Left Join VS Blending</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#difference-between-joins-and-data-blending"><span class="toc-text"> &gt;&gt; Difference between joins and data blending</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#left-join"><span class="toc-text"> &gt;&gt; Left join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-blending"><span class="toc-text"> &gt;&gt; Data blending</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-blending-data-without-a-common-field"><span class="toc-text"> 4. Blending Data without a Common Field</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Intermediate (3) Blending Multiple Data Sources</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-27T04:36:35.000Z" title="Created 2022-06-27 13:36:35">2022-06-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.806Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-3-Intermediate/">Tableau - 3. Intermediate</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="blending-multiple-data-sources"><a class="markdownIt-Anchor" href="#blending-multiple-data-sources"></a> Blending Multiple Data Sources</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-data-blending"><strong>1. Data Blending</strong></a>
+<ul>
+<li><a href="#concept">&gt;&gt; Concept</a>
+<ul>
+<li><a href="#advantages">&gt;&gt; Advantages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-blending-your-data"><strong>2. Blending Your Data</strong></a><br>
+*
+<ul>
+<li><a href="#features">&gt;&gt; Features</a></li>
+<li><a href="#steps-for-blending-data">&gt;&gt; Steps for blending data</a></li>
+</ul>
+</li>
+<li><a href="#3-left-join-vs-blending"><strong>3. Left Join VS Blending</strong></a>
+<ul>
+<li><a href="#difference-between-joins-and-data-blending">&gt;&gt; Difference between joins and data blending</a></li>
+<li><a href="#left-join">&gt;&gt; Left join</a></li>
+<li><a href="#data-blending">&gt;&gt; Data blending</a></li>
+</ul>
+</li>
+<li><a href="#4-blending-data-without-a-common-field"><strong>4. Blending Data without a Common Field</strong></a></li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-data-blending"><a class="markdownIt-Anchor" href="#1-data-blending"></a> <strong>1. Data Blending</strong></h2>
+<blockquote>
+<p><a href="https://help.tableau.com/current/pro/desktop/en-gb/multiple_connections.htm" target="_blank" rel="noopener">[Tableau Help] – Blend Your Data</a> (<a href="https://help.tableau.com/current/pro/desktop/zh-cn/multiple_connections.htm" target="_blank" rel="noopener">中: 混合您的数据</a> / <a href="https://help.tableau.com/current/pro/desktop/ko-kr/multiple_connections.htm" target="_blank" rel="noopener">한: 데이터 혼합</a>)</p>
+</blockquote>
+<br>
+<h3 id="concept"><a class="markdownIt-Anchor" href="#concept"></a> &gt;&gt; Concept</h3>
+<p>Data blending is a method for combining data from multiple sources. Unlike relationships and joins, blends <em>never truly combine the data</em>, they query each data source independentyly and just simply <em>blend the results</em> from multiple data sources <em>in a visulisation</em>.</p>
+<p>In a data blend, one data source is <font color="blue">primary</font> and the other is <font color="orange">secondary</font>. The primary data source is determined by the field you first <em>add to a view.</em> Data blending brings in additional information from the secondary data source and displays it with data from the primary data source <em>directly in the view.</em></p>
+<br>
+<h4 id="advantages"><a class="markdownIt-Anchor" href="#advantages"></a> &gt;&gt; Advantages</h4>
+<ul>
+<li>can handle different levels of detail</li>
+<li>able to work with published data sources</li>
+<li>can be established individually on every sheet</li>
+</ul>
+<br>
+<br>
+<h2 id="2-blending-your-data"><a class="markdownIt-Anchor" href="#2-blending-your-data"></a> <strong>2. Blending Your Data</strong></h2>
+<h4 id="features"><a class="markdownIt-Anchor" href="#features"></a> &gt;&gt; Features</h4>
+<ul>
+<li>Data blending requires that the data sources <strong><font color="darkblue">share a common dimension</font></strong>.</li>
+<li>Data blending <strong><font color="darkblue">works like a left join</font></strong>. It returns all results from the primary data source, and returns only the matching results from the secondary data source.</li>
+<li>Data blending is <strong><font color="darkblue">Tableau worksheet specific</font></strong>, which means that you can change which data source is primary and which is secondary on different worksheets in the same workbook.</li>
+</ul>
+<br>
+<h3 id="steps-for-blending-data"><a class="markdownIt-Anchor" href="#steps-for-blending-data"></a> &gt;&gt; Steps for blending data</h3>
+<ol>
+<li>Ensure that the workbook has multiple data source</li>
+<li>Drag a field to the view. (The data source this first field comes from will become the primary data source)</li>
+<li>Switch to another data source and make sure there is a blend relationship to the primary data source
+<ul>
+<li>If there is an orange linking field icon (<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604101207322.png" alt="image-20210604101207322">), the data sources are automatically linked.</li>
+<li>If there are grey, broken link icons (<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604101254705.png" alt="image-20210604101254705">), click the icon next to the field that should link the two data sources.</li>
+<li>If a link icon does not appear next to the desired field, you need to define blend relationships for blending.</li>
+</ul>
+</li>
+<li>Drag a field into the view from the secondary data source</li>
+</ol>
+<br>
+<br>
+<h2 id="3-left-join-vs-blending"><a class="markdownIt-Anchor" href="#3-left-join-vs-blending"></a> <strong>3. Left Join VS Blending</strong></h2>
+<h3 id="difference-between-joins-and-data-blending"><a class="markdownIt-Anchor" href="#difference-between-joins-and-data-blending"></a> &gt;&gt; Difference between joins and data blending</h3>
+<p>The main difference between left join and blending is when the aggregation is performed</p>
+<ul>
+<li>
+<p>A join combines the data and then aggregates.</p>
+</li>
+<li>
+<p>A blend aggregates and then combines the data</p>
+</li>
+</ul>
+<br>
+<h3 id="left-join"><a class="markdownIt-Anchor" href="#left-join"></a> &gt;&gt; Left join</h3>
+<p>When using left join to combine data, a query is sent to the database where the join is performed.</p>
+<p>Order:</p>
+<ol>
+<li>
+<p>A left join returns all rows from the left table and any corresponding rows from the right table</p>
+</li>
+<li>
+<p>then the results of the join are sent back to Tableau and aggregated for display in the visulisation</p>
+</li>
+</ol>
+<blockquote>
+<p>[Left join] For each row of the left table, check the right table’s rows one by one that whether corresponding information exsists:</p>
+<ul>
+<li>If YES: that data is returned and <em>combined to the left table</em></li>
+<li>If NO: returns a null</li>
+</ul>
+</blockquote>
+<br>
+<p><strong><font color="darkblue">[Example] : common colomns --&gt; User ID &amp; Patron ID</font></strong></p>
+<p>A  --left join-- B:</p>
+<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604111544374.png" alt="image-20210604111544374" style="zoom:80%;"> 
+<br>
+<p>B --left join-- A:</p>
+<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604111637226.png" alt="image-20210604111637226" style="zoom:80%;"> 
+<br>
+<h3 id="data-blending"><a class="markdownIt-Anchor" href="#data-blending"></a> &gt;&gt; Data blending</h3>
+<p>When using data blending to combine data, a query is sent to the database for each data source that is used on the sheet.</p>
+<p>Order:</p>
+<ol>
+<li>The results of the queries are sent back to Tableau as aggregated data</li>
+<li>and then presented together in the visualisation</li>
+</ol>
+<blockquote>
+<p>[Data blending] For each row of the left table, check the right table’s rows one by one that whether corresponding information exsists:</p>
+<ul>
+<li>
+<p>If YES: that data is returned. However, different from the left join,</p>
+<ul>
+<li>
+<p>if there is only one row match the left table row in the right, it returns that value</p>
+</li>
+<li>
+<p>if there are several rows match the same left table row in the right, it returns an aggregate value</p>
+<p>- for dimensions:  returns an asterisk(*) that indicates multiple values</p>
+<p>- for measures:     return the aggregation (default: sum)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>If NO: returns a null</p>
+</li>
+</ul>
+</blockquote>
+<br>
+<p><strong><font color="darkblue">[Example] : common colomns --&gt; User ID &amp; Patron ID</font></strong></p>
+<p>dimensions aggregation:</p>
+<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604130926578.png" alt="image-20210604130926578" style="zoom:80%;"> 
+<br>
+<p>measures aggregation:</p>
+<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604131010154.png" alt="image-20210604131010154" style="zoom:80%;"> 
+<br>
+<br>
+<h2 id="4-blending-data-without-a-common-field"><a class="markdownIt-Anchor" href="#4-blending-data-without-a-common-field"></a> <strong>4. Blending Data without a Common Field</strong></h2>
+<p>If the data sources have a shared dimension with the same name, Tableau can automatically link them.</p>
+<p>However, if they do have the common member but with different names, we can manually link them in three ways:</p>
+<ol>
+<li>
+<p>Create a <font color="green">custom relationship</font></p>
+</li>
+<li>
+<p><font color="green">Rename</font> one of them to match the other</p>
+</li>
+<li>
+<p>[If the values are different too (e.g. use full names in one and abbreviations in another)]:</p>
+<p><font color="green">Edit aliases</font> of the values in a data source to make them match the other data source</p>
+</li>
+</ol>
+<br>
+<p><strong><font color="darkblue">1. Create a custom relationship:</font></strong></p>
+<ul>
+<li>
+<p>[Data] menu --&gt; [Edit Blend Relationship]</p>
+<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210607093907267.png" alt="image-20210607093907267" style="zoom:67%;"> 
+<br>
+</li>
+<li>
+<p>In the [Relationship] dialog box:</p>
+<ul>
+<li>
+<p>select the primary and secondary data source</p>
+</li>
+<li>
+<p>choose [Custom]</p>
+</li>
+<li>
+<p>Add mapping fields</p>
+<p><img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604133553537-16563147514931.png" alt="image-20210604133553537" style="zoom:67%;">  <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604133703236.png" alt="image-20210604133703236" style="zoom:67%;"></p>
+<br>
+</li>
+</ul>
+</li>
+<li>
+<p>The relationship appears, along with the automatic relationship Tableau found on State</p>
+<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604134148022.png" alt="image-20210604134148022" style="zoom:80%;"> 
+</li>
+</ul>
+<br>
+<br>
+<p><strong><font color="darkblue">2. Rename the common member:</font></strong></p>
+<ul>
+<li>
+<p>[Data] Pane --&gt; common member field --&gt; right-click --&gt; [Rename]</p>
+<p><img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604134356472-16563147740013.png" alt="image-20210604134356472" style="zoom:80%;">    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604134428319.png" alt="image-20210604134428319" style="zoom:80%;"></p>
+<br>
+</li>
+<li>
+<p>Tableau will now recognize the link between them</p>
+</li>
+</ul>
+<br>
+<br>
+<p><strong><font color="darkblue">3. Edit aliases:</font></strong></p>
+<ul>
+<li>[Data] Menu --&gt; select data source --&gt; [Edit Aliases] --&gt; choose the common member field</li>
+</ul>
+<p>​		<img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604135203007-16563147922405.png" alt="image-20210604135203007" style="zoom:67%;">    <img src="/images/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/image-20210604140017281.png" alt="image-20210604140017281" style="zoom: 80%;"></p>
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/">https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Talbeau/">Talbeau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/27/S-Tableau-Intermediate-4-Using-Unions-to-Combine-Data/"><img class="prev-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Tableau &gt;&gt; Intermediate (4) Using Unions to Combine Data</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/27/S-Tableau-Intermediate-2-Joining-Tables/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Intermediate (2) Joining Tables</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '75026edaf8001c054b57554f16ccfe2b',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

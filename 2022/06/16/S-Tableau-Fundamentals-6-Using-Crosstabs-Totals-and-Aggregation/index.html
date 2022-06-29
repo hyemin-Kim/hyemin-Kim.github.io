@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Fundamentals (6) Using Crosstabs Totals and Aggregation | Hyemin Kim</title><meta name="keywords" content="Tableau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Using Crosstabs  1. Creating and Editing Crosstabs  &gt;&gt; Create a Crosstab (Data table) &gt;&gt; Edit the gridline   2. Working with Totals and Aggregation  &gt;&gt; Add totals and subtotals &gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Fundamentals (6) Using Crosstabs Totals and Aggregation">
+<meta property="og:url" content="https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Using Crosstabs  1. Creating and Editing Crosstabs  &gt;&gt; Create a Crosstab (Data table) &gt;&gt; Edit the gridline   2. Working with Totals and Aggregation  &gt;&gt; Add totals and subtotals &gt;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2022-06-16T05:18:29.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.798Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Tableau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#using-crosstabs"><span class="toc-text"> Using Crosstabs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-creating-and-editing-crosstabs"><span class="toc-text"> 1. Creating and Editing Crosstabs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-crosstab-data-table"><span class="toc-text"> &gt;&gt; Create a Crosstab (Data table)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#edit-the-gridline"><span class="toc-text"> &gt;&gt; Edit the gridline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-working-with-totals-and-aggregation"><span class="toc-text"> 2. Working with Totals and Aggregation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#add-totals-and-subtotals"><span class="toc-text"> &gt;&gt; Add totals and subtotals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#change-the-aggregation-type-of-the-view"><span class="toc-text"> &gt;&gt; Change the aggregation type of the view</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-creating-highlight-tables"><span class="toc-text"> 3. Creating Highlight Tables</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#why-building-highlight-tables"><span class="toc-text"> &gt;&gt; Why building highlight tables?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#how-to-build-a-highlight-table"><span class="toc-text"> &gt;&gt; How to build a highlight table?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-creating-heat-maps"><span class="toc-text"> 4. Creating Heat Maps</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Fundamentals (6) Using Crosstabs Totals and Aggregation</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-16T05:18:29.000Z" title="Created 2022-06-16 14:18:29">2022-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.798Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-2-Fundamentals/">Tableau - 2. Fundamentals</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="using-crosstabs"><a class="markdownIt-Anchor" href="#using-crosstabs"></a> Using Crosstabs</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-creating-and-editing-crosstabs"><strong>1. Creating and Editing Crosstabs</strong></a>
+<ul>
+<li><a href="#create-a-crosstab-data-table">&gt;&gt; Create a Crosstab (Data table)</a></li>
+<li><a href="#edit-the-gridline">&gt;&gt; Edit the gridline</a></li>
+</ul>
+</li>
+<li><a href="#2-working-with-totals-and-aggregation"><strong>2. Working with Totals and Aggregation</strong></a>
+<ul>
+<li><a href="#add-totals-and-subtotals">&gt;&gt; Add totals and subtotals</a></li>
+<li><a href="#change-the-aggregation-type-of-the-view">&gt;&gt; Change the aggregation type of the view</a></li>
+</ul>
+</li>
+<li><a href="#3-creating-highlight-tables"><strong>3. Creating Highlight Tables</strong></a>
+<ul>
+<li><a href="#why-building-highlight-tables">&gt;&gt; Why building highlight tables?</a></li>
+<li><a href="#how-to-build-a-highlight-table">&gt;&gt; How to build a highlight table?</a></li>
+</ul>
+</li>
+<li><a href="#4-creating-heat-maps"><strong>4. Creating Heat Maps</strong></a></li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-creating-and-editing-crosstabs"><a class="markdownIt-Anchor" href="#1-creating-and-editing-crosstabs"></a> <strong>1. Creating and Editing Crosstabs</strong></h2>
+<h3 id="create-a-crosstab-data-table"><a class="markdownIt-Anchor" href="#create-a-crosstab-data-table"></a> &gt;&gt; Create a Crosstab (Data table)</h3>
+<ol>
+<li>
+<p>Drag [dimension] to [Columns] / [Rows]</p>
+</li>
+<li>
+<p>Drag [measures] to the [View]</p>
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526140941075-16553658383002.png" alt="image-20210526140941075" style="zoom:50%;">
+<p>- Automatically brings in [Measure Names], [Measure Values] and [Measure values shelf ]</p>
+<br>
+</li>
+</ol>
+<h3 id="edit-the-gridline"><a class="markdownIt-Anchor" href="#edit-the-gridline"></a> &gt;&gt; Edit the gridline</h3>
+<ol>
+<li>
+<p>right-click on a value in the crosstab</p>
+</li>
+<li>
+<p>select [Format]</p>
+<p>​		<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526141958945-16553658383003.png" alt="image-20210526141958945" style="zoom:50%;"></p>
+</li>
+</ol>
+<br>
+<br>
+<h2 id="2-working-with-totals-and-aggregation"><a class="markdownIt-Anchor" href="#2-working-with-totals-and-aggregation"></a> <strong>2. Working with Totals and Aggregation</strong></h2>
+<h3 id="add-totals-and-subtotals"><a class="markdownIt-Anchor" href="#add-totals-and-subtotals"></a> &gt;&gt; Add totals and subtotals</h3>
+<ol>
+<li>
+<p><strong><font color="darkblue">Form the Analysis Menu:</font></strong></p>
+<p>[Menu] - [Analysis] --&gt;</p>
+<p>[Totals] --&gt;</p>
+<p>[Show Row Grand Totals] / [Show Column Grand Totals] / [Add All Subtotals]</p>
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526143521096-16553658383004.png" alt="image-20210526143521096" style="zoom: 67%;">
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526143456694-16553658383005.png" alt="image-20210526143456694" style="zoom: 80%;">
+<br>
+</li>
+<li>
+<p><strong><font color="darkblue">From the Analytics Pane</font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526143709607-16553658383006.png" alt="image-20210526143709607" style="zoom:67%;">
+</li>
+</ol>
+<br>
+<br>
+<h3 id="change-the-aggregation-type-of-the-view"><a class="markdownIt-Anchor" href="#change-the-aggregation-type-of-the-view"></a> &gt;&gt; Change the aggregation type of the view</h3>
+<p>When calculating [Average] for total, be careful with the difference between [weighted average] and [average]</p>
+<br>
+<ul>
+<li>
+<p>For <strong><font color="green">weighted average</font></strong>, change the aggregation on the <strong><font color="green">measure field</font></strong></p>
+<p>​		<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526143836193-16553658383007.png" alt="image-20210526143836193" style="zoom:67%;"></p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>For <strong><font color="blue">average</font></strong> of the values showed <strong><font color="blue">in the view</font></strong>, change the aggregation from the <strong><font color="blue">Analysis Menu</font></strong>.</p>
+<p>​		<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526145935997-16553658383008.png" alt="image-20210526145935997" style="zoom:80%;"></p>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-creating-highlight-tables"><a class="markdownIt-Anchor" href="#3-creating-highlight-tables"></a> <strong>3. Creating Highlight Tables</strong></h2>
+<h3 id="why-building-highlight-tables"><a class="markdownIt-Anchor" href="#why-building-highlight-tables"></a> &gt;&gt; Why building highlight tables?</h3>
+<p>Crosstabs is difficult to find outliers or make comparisons across categories.</p>
+<p>However, with highlight we can easily emphasize outliers and trends.</p>
+<br>
+<h3 id="how-to-build-a-highlight-table"><a class="markdownIt-Anchor" href="#how-to-build-a-highlight-table"></a> &gt;&gt; How to build a highlight table?</h3>
+<ul>
+<li>
+<p><strong>Method 1: Normal Way (use Marks)</strong></p>
+<ol>
+<li>
+<p>A highlight table encodes the measure on Text and Color</p>
+<ul>
+<li>Drag the [measure] field to [Text] Mark</li>
+<li>Hold [Ctrl] and drag the [measure] [Text] Mark to the [Color] Mark</li>
+</ul>
+</li>
+<li>
+<p>Set the mark type to [Square]</p>
+</li>
+<li>
+<p>Set the [Columns] dimension and [Rows] dimension</p>
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526170544332-16553658383009.png" alt="image-20210526170544332" style="zoom:67%;">
+</li>
+<li>
+<p>Edit colors to highlight outliers</p>
+<ul>
+<li>
+<p>If you want to distinguish data that below or above a particular value by color:</p>
+<p>choose a color palette with white in the center first</p>
+<p>then set the particular value as the midpoint ( [Center] ) of the color gradient</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526170411482-165536583830110.png" alt="image-20210526170411482" style="zoom: 67%;">
+<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210527092546019-165536583830111.png" alt="image-20210527092546019" style="zoom: 80%;">
+<br>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Method 2: use [Show Me]</strong></p>
+<ol>
+<li>
+<p>select the measures and dimensions you’re interested in</p>
+</li>
+<li>
+<p>click the [highlight table] icon in the [Show Me] menu</p>
+<p>​		<img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210526170921504-165536583830112.png" alt="image-20210526170921504" style="zoom: 67%;"></p>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-creating-heat-maps"><a class="markdownIt-Anchor" href="#4-creating-heat-maps"></a> <strong>4. Creating Heat Maps</strong></h2>
+<ul>
+<li>
+<p>Create a heat map:</p>
+<ul>
+<li>Need 1 or more [dimensions], and 1 or 2 [measures]</li>
+<li>can create by using [Color] and [Size] marks or use the [Show me]</li>
+</ul>
+</li>
+<li>
+<p>Adjust the view:</p>
+<ul>
+<li>
+<p>Edit Color:</p>
+<p>- For color-blindness, [Orange - (White) - Blue] palette is a good choice</p>
+</li>
+<li>
+<p>Adjust Size:</p>
+<p>- Two small tick marks on the slider indicate the best range for the mark size</p>
+<p><img src="/images/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/image-20210528085803966-165536583830113.png" alt="image-20210528085803966"></p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/">https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tableau/">Tableau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/16/S-Tableau-Fundamentals-7-Create-Calculated-Fields/"><img class="prev-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Tableau &gt;&gt; Fundamentals (7) Create Calculated Fields</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/16/S-Tableau-Fundamentals-5-Mapping-Data-Geographically/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Fundamentals (5) Mapping Data Geographically</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/" title="Tableau >> Advanced (2) Time-Based Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (2) Time-Based Data</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/" title="Tableau >> Advanced (1) Customizing Table Calculations"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (1) Customizing Table Calculations</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/" title="Tableau >> Advanced (5) Geographic Analysis"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (5) Geographic Analysis</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/" title="Tableau >> Advanced (4) Customer Behavior Analyze Survey Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (4) Customer Behavior Analyze Survey Data</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'ff4cfa8ccc032e5fe6d35350ec6b0da7',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

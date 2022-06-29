@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Advanced (2) Time-Based Data | Hyemin Kim</title><meta name="keywords" content="Tableau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Time-Based Data  1. Using Sparklines to Show Trends Over Time  &gt;&gt; Create a sparklines chart   2. Using a Slope Chart to Tell a Before and After Story  &gt;&gt; Create a slope chart   3. Monitor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Advanced (2) Time-Based Data">
+<meta property="og:url" content="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Time-Based Data  1. Using Sparklines to Show Trends Over Time  &gt;&gt; Create a sparklines chart   2. Using a Slope Chart to Tell a Before and After Story  &gt;&gt; Create a slope chart   3. Monitor">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2022-06-27T06:26:47.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.790Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Tableau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#time-based-data"><span class="toc-text"> Time-Based Data</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-using-sparklines-to-show-trends-over-time"><span class="toc-text"> 1. Using Sparklines to Show Trends Over Time</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-sparklines-chart"><span class="toc-text"> &gt;&gt; Create a sparklines chart</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-using-a-slope-chart-to-tell-a-before-and-after-story"><span class="toc-text"> 2. Using a Slope Chart to Tell a Before and After Story</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-slope-chart"><span class="toc-text"> &gt;&gt; Create a slope chart</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-monitoring-quality-control-with-a-control-chart"><span class="toc-text"> 3. Monitoring Quality Control with a Control Chart</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-control-chart"><span class="toc-text"> &gt;&gt; Create a control chart</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Advanced (2) Time-Based Data</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-27T06:26:47.000Z" title="Created 2022-06-27 15:26:47">2022-06-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.790Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-4-Advanced/">Tableau - 4. Advanced</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="time-based-data"><a class="markdownIt-Anchor" href="#time-based-data"></a> Time-Based Data</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-using-sparklines-to-show-trends-over-time"><strong>1. Using Sparklines to Show Trends Over Time</strong></a>
+<ul>
+<li><a href="#create-a-sparklines-chart">&gt;&gt; Create a sparklines chart</a></li>
+</ul>
+</li>
+<li><a href="#2-using-a-slope-chart-to-tell-a-before-and-after-story"><strong>2. Using a Slope Chart to Tell a Before and After Story</strong></a>
+<ul>
+<li><a href="#create-a-slope-chart">&gt;&gt; Create a slope chart</a></li>
+</ul>
+</li>
+<li><a href="#3-monitoring-quality-control-with-a-control-chart"><strong>3. Monitoring Quality Control with a Control Chart</strong></a>
+<ul>
+<li><a href="#create-a-control-chart">&gt;&gt; Create a control chart</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-using-sparklines-to-show-trends-over-time"><a class="markdownIt-Anchor" href="#1-using-sparklines-to-show-trends-over-time"></a> <strong>1. Using Sparklines to Show Trends Over Time</strong></h2>
+<p>Sparkline charts are small line charts that displayed without axes and headers.</p>
+<p>Sparkline charts present high level comparisons of data over a period of time. Also, they fit in a small area and are mostly used to show trends in a simple, condensed way.</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705085649245.png" alt="image-20210705085649245" style="zoom: 67%;">
+<br>
+<br>
+<h3 id="create-a-sparklines-chart"><a class="markdownIt-Anchor" href="#create-a-sparklines-chart"></a> &gt;&gt; Create a sparklines chart</h3>
+<p><strong><font color="navy">&lt;&lt; Goal &gt;&gt;</font></strong></p>
+<p>We want to analyze sales by country over time. We’ll create a chart with sparklines to view the general trend for each country at a glance.</p>
+<br>
+<p><strong><font color="navy">&lt;&lt; Process &gt;&gt;</font></strong></p>
+<p><strong>[STEP 1] Create a line chart</strong></p>
+<p>Build a view that displays Sales by Country against discrete month of Order Date and let the chart fit height.</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705091450773.png" alt="image-20210705091450773" style="zoom:45%;">
+<br>
+<p><strong>[STEP 2] Use an independent axis range for sales</strong></p>
+<p>By default, the rows display the same range. To make the individual lines more distinct, we can set the Sales axis to display as independent ranges per row.</p>
+<ul>
+<li>Right-click the Sales axis --&gt; [Edit Axis]</li>
+<li>[Range] --&gt; select [Independent axis ranges for each row or column]</li>
+</ul>
+<p><img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705092253903-165631147574938.png" alt="image-20210705092253903" style="zoom:40%;"><img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705092450515.png" alt="image-20210705092450515" style="zoom:45%;"></p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705092722627.png" alt="image-20210705092722627" style="zoom:50%;">
+<br>
+<p><strong>[STEP 3] Highlight the last data point for each country</strong></p>
+<ul>
+<li>
+<p>Create a calculated field that calculates the last sales mark of 2016</p>
+<ul>
+<li>
+<p>This calculation finds the last row in each pane,</p>
+<p>- If the value is not null, then returns SUM(Sales)</p>
+<p>- If the value is null, then returns 0</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705093756770.png" alt="image-20210705093756770" style="zoom:50%;">
+</li>
+<li>
+<p>Create a synchronized dual axis chart with “Last Sales” and “SUM(Sales)”</p>
+</li>
+<li>
+<p>Hide the nulls from the view and change the circle marks color</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705101158559.png" alt="image-20210705101158559" style="zoom:45%;">
+</li>
+</ul>
+<br>
+<p><strong>[STEP 4] Hide the axes and set default number to standard currency</strong></p>
+<ul>
+<li>Hide the date and sales headers</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705101440095.png" alt="image-20210705101440095" style="zoom:50%;">
+<br>
+<ul>
+<li>Set default number to standard currency</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705102202194.png" alt="image-20210705102202194" style="zoom:45%;">
+<br>
+<p><strong>[STEP 5] Add the sparklines sheet to the dashboard</strong></p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705102751579.png" alt="image-20210705102751579" style="zoom:50%;">
+<br>
+<br>
+<h2 id="2-using-a-slope-chart-to-tell-a-before-and-after-story"><a class="markdownIt-Anchor" href="#2-using-a-slope-chart-to-tell-a-before-and-after-story"></a> <strong>2. Using a Slope Chart to Tell a Before and After Story</strong></h2>
+<p>When you have time-based data that is shown by rank, an interesting way to summarize change over time is by using a slope chart.</p>
+<p>Slope charts show changes in rank or position for a dimension using a start point and an end point. You can use a slope chart when you want to show whether a particular dimension has increased or decreased between two points in time.</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705112102150.png" alt="image-20210705112102150" style="zoom:50%;">
+<br>
+<h3 id="create-a-slope-chart"><a class="markdownIt-Anchor" href="#create-a-slope-chart"></a> &gt;&gt; Create a slope chart</h3>
+<p><strong><font color="navy">&lt;&lt; Goal &gt;&gt;</font></strong></p>
+<p>We want to know the rank of the top 10 names and see if these names have decreased or increased in popularity.</p>
+<br>
+<p><strong><font color="navy">&lt;&lt; Process &gt;&gt;</font></strong></p>
+<p><strong>[STEP 1] Remain data of the two time points to compare</strong></p>
+<ul>
+<li><strong>Columns:</strong> Discrete [Birth Year]  	<strong>Rows:</strong>        SUM(Count)</li>
+<li>Filter the Birth Year to 2011 and 2013, and widen rows in the view (Ctrl + ‘-&gt;’ arrow)</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705135923667.png" alt="image-20210705135923667" style="zoom:50%;">
+<br>
+<p><strong>[STEP 2] Rank the names of two years by count</strong></p>
+<ul>
+<li>Label the marks with Name</li>
+<li>Add a Rank quick table calculation, and compute using Name</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705140429955.png" alt="image-20210705140429955" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705140509304.png" alt="image-20210705140509304" style="zoom:50%;">
+<br>
+<p><strong>[STEP 3] Show only the top 10 names</strong></p>
+<ul>
+<li>Ctrl + drag [SUM(Count)] rank calculation in Rows to Filters pane</li>
+<li>set the range from 1 to 10</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705141345386.png" alt="image-20210705141345386" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705141404426.png" alt="image-20210705141404426" style="zoom:50%;">
+<br>
+<ul>
+<li>
+<p>Reverse the rank of Count axis, and show line ends</p>
+<ul>
+<li>
+<p>Right-click the Count axis --&gt; Edit Axis --&gt; Scale: [Reversed]</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705141803003.png" alt="image-20210705141803003" style="zoom:50%;"> 
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>On Marks card, click [Label] --&gt; Marks to Label: Line Ends</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705141936224.png" alt="image-20210705141936224" style="zoom:50%;"> 
+<br>
+</li>
+<li>
+<p>Edit the labels to display rank before name, and align the view to top left</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705144048930.png" alt="image-20210705144048930" style="zoom:50%;"> 
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705144154646.png" alt="image-20210705144154646" style="zoom:50%;"> 
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>[STEP 4] Hide the Rank of Count axis and the row grid lines in the view</strong></p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705144418294.png" alt="image-20210705144418294" style="zoom:50%;">
+<br>
+<br>
+<h2 id="3-monitoring-quality-control-with-a-control-chart"><a class="markdownIt-Anchor" href="#3-monitoring-quality-control-with-a-control-chart"></a> <strong>3. Monitoring Quality Control with a Control Chart</strong></h2>
+<p>Control charts are used to study how a process changes over time. It is a statistical process control tool to determine if a manufacturing or business process is either inside or outside a predefined boundary.</p>
+<p>Control charts are based on the line charts. By adding a mean line and an upper and lower control limits, which are typically based on the standard deviation, the simple line chart is transformed into a control chart. The control limits allow you to easily identify when the process is in or out of control.</p>
+<br>
+<h3 id="create-a-control-chart"><a class="markdownIt-Anchor" href="#create-a-control-chart"></a> &gt;&gt; Create a control chart</h3>
+<p><strong><font color="navy">&lt;&lt; Goal &gt;&gt;</font></strong></p>
+<p>When analyzing company’s sales over the past few years, we want to know whether there are seasonal effects on sales: Are sales lower or higher than a predicted range during certain months?</p>
+<br>
+<p><strong><font color="navy">&lt;&lt; Process &gt;&gt;</font></strong></p>
+<p><strong>[STEP 1] Create the base line chart that showing sales over the order date</strong></p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705163543273.png" alt="image-20210705163543273" style="zoom:50%;">
+<br>
+<p><strong>[STEP 2] Add a reference line for average sales by pane</strong></p>
+<ul>
+<li>
+<p>[Analytics] Pane --&gt; Drag [Reference Line] to the view --&gt; Drop it on [Pane]</p>
+</li>
+<li>
+<p>Set the mean reference line:</p>
+<ul>
+<li>Value: SUM(Sales) set to Average</li>
+<li>Label: None</li>
+<li>Line: Gray dashed line</li>
+</ul>
+<p><img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705164442375-165631151607540.png" alt="image-20210705164442375" style="zoom:40%;"><img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705163910350.png" alt="image-20210705163910350" style="zoom:50%;"></p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705170924058.png" alt="image-20210705170924058" style="zoom:50%;"> 
+</li>
+</ul>
+<br>
+<p><strong>[STEP 3] Add the upper and lower control limits line by pane</strong></p>
+<ul>
+<li>
+<p>Calculate the upper and lower control limits using a window standard deviation:</p>
+<p>​	Upper control limit: <code>WINDOW_AVG(SUM([Sales])) + WINDOW_STDEV(SUM([Sales]))</code></p>
+<p>​	Lower control limit: <code>WINDOW_AVG(SUM([Sales])) - WINDOW_STDEV(SUM([Sales]))</code></p>
+<br>
+</li>
+<li>
+<p>Add the control limits band to the view</p>
+<ul>
+<li>
+<p>Add the Upper and Lower Control Limit fields to Detail</p>
+</li>
+<li>
+<p>Add a reference band using the control limits as boundaries</p>
+<p>- [Analytics] Pane --&gt; Drag [Reference Line] to the view --&gt; Drop it on [Pane]</p>
+<p>- Set the reference band:</p>
+<pre><code>* Band From Value: Lower Control Limit set to Minimum
+* Band To Value: Upper Control Limit set to Maximum
+* Label: None on both
+* Line: Red dashed line
+* Fill: Light gray
+</code></pre>
+</li>
+</ul>
+<p><img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705170616393-165631155928542.png" alt="image-20210705170616393" style="zoom:40%;"><img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705165723714.png" alt="image-20210705165723714" style="zoom:55%;"></p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705171326710.png" alt="image-20210705171326710" style="zoom:50%;">
+<br>
+<ul>
+<li>
+<p>Set the Upper and Lower Control Limit fields to Compute Using: Pane (across)</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705171458678.png" alt="image-20210705171458678" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705171546539.png" alt="image-20210705171546539" style="zoom:50%;">
+</li>
+</ul>
+<br>
+<p><strong>[STEP 4] Highlight the points out of the control boundaries</strong></p>
+<ul>
+<li>
+<p>Create a synchronized dual axis using another instance of Sales on Rows, and hide the right axis</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705171914939.png" alt="image-20210705171914939" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705172002211.png" alt="image-20210705172002211" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705172030100.png" alt="image-20210705172030100" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705172152903.png" alt="image-20210705172152903" style="zoom:50%;">
+<br>
+</li>
+<li>
+<p>Remove the [Lower Control Limit] and [Upper Control Limit] fields under the [SUM(Sales) (2)] Marks card, and change the mark type to Circle</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705172515621.png" alt="image-20210705172515621" style="zoom:50%;">
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Create a calculated field named “KPI” to highlight marks outside of the control boundaries, and rename the color legend to “KPI”</p>
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705172832868.png" alt="image-20210705172832868" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-2-Time-Based-Data/image-20210705172914273.png" alt="image-20210705172914273" style="zoom:50%;">
+</li>
+</ul>
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/">https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tableau/">Tableau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/27/S-Tableau-Advanced-3-Seasonality-Show-Trends-with-Cycle-Plots/"><img class="prev-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Tableau &gt;&gt; Advanced (3) Seasonality Show Trends with Cycle Plots</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Advanced (1) Customizing Table Calculations</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/" title="Tableau >> Advanced (1) Customizing Table Calculations"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (1) Customizing Table Calculations</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/" title="Tableau >> Advanced (5) Geographic Analysis"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (5) Geographic Analysis</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/" title="Tableau >> Advanced (4) Customer Behavior Analyze Survey Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (4) Customer Behavior Analyze Survey Data</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-3-Seasonality-Show-Trends-with-Cycle-Plots/" title="Tableau >> Advanced (3) Seasonality Show Trends with Cycle Plots"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (3) Seasonality Show Trends with Cycle Plots</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '293f4a468d39f7aaae38e468e9394b7b',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

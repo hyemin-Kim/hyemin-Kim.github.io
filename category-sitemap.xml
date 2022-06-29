@@ -9,28 +9,77 @@
 
 
     <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Tableau%25E3%2580%2591/Tableau-1-Start/</loc>
+        <lastmod>2022-06-29T06:19:22.811Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Tableau%25E3%2580%2591/</loc>
+        <lastmod>2022-06-29T06:19:22.811Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Tableau%25E3%2580%2591/Tableau-3-Intermediate/</loc>
+        <lastmod>2022-06-29T06:19:22.810Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Tableau%25E3%2580%2591/Tableau-2-Fundamentals/</loc>
+        <lastmod>2022-06-29T06:19:22.800Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Tableau%25E3%2580%2591/Tableau-4-Advanced/</loc>
+        <lastmod>2022-06-29T06:19:22.792Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-0-Base/</loc>
-        <lastmod>2021-03-31T10:05:57.774Z</lastmod>
+        <lastmod>2022-06-29T06:19:22.789Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/</loc>
-        <lastmod>2021-03-31T10:05:57.774Z</lastmod>
+        <lastmod>2022-06-29T06:19:22.789Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
-        <lastmod>2020-12-22T10:00:50.296Z</lastmod>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590USAGE%25E3%2580%2591/</loc>
+        <lastmod>2022-06-29T06:19:22.787Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/Python/</loc>
+        <lastmod>2021-05-30T12:23:52.705Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/</loc>
+        <lastmod>2021-05-30T12:23:52.705Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/SQL/</loc>
         <lastmod>2020-12-22T10:00:50.296Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -53,13 +102,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-SQL%25E3%2580%2591/SQL-9-Table/</loc>
         <lastmod>2020-12-21T10:10:45.605Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590USAGE%25E3%2580%2591/</loc>
-        <lastmod>2020-12-21T10:03:37.146Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -88,13 +130,6 @@
     <url>
         <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590STUDY-Python%25E3%2580%2591/Python-Text-Mining/</loc>
         <lastmod>2020-11-25T12:50:36.918Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://hyemin-kim.github.io/categories/%25E3%2580%2590EXERCISE%25E3%2580%2591/Python/</loc>
-        <lastmod>2020-11-22T08:38:21.356Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

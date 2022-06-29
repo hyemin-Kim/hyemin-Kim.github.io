@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Advanced (6) Dashboarding | Hyemin Kim</title><meta name="keywords" content="Tableau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Dashboarding  1. Swapping Sheets and Refining the Layout  &gt;&gt; Sheet Swapping   2. Adding Context to Dashboard Filter Actions  &gt;&gt; Context Filter &gt;&gt; Use Context Filters to Control Filt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Advanced (6) Dashboarding">
+<meta property="og:url" content="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-6-Dashboarding/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Dashboarding  1. Swapping Sheets and Refining the Layout  &gt;&gt; Sheet Swapping   2. Adding Context to Dashboard Filter Actions  &gt;&gt; Context Filter &gt;&gt; Use Context Filters to Control Filt">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2022-06-27T06:46:47.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.792Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Tableau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-6-Dashboarding/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#dashboarding"><span class="toc-text"> Dashboarding</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-swapping-sheets-and-refining-the-layout"><span class="toc-text"> 1. Swapping Sheets and Refining the Layout</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sheet-swapping"><span class="toc-text"> &gt;&gt; Sheet Swapping</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-adding-context-to-dashboard-filter-actions"><span class="toc-text"> 2. Adding Context to Dashboard Filter Actions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#context-filter"><span class="toc-text"> &gt;&gt; Context Filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#use-context-filters-to-control-filter-actions"><span class="toc-text"> &gt;&gt; Use Context Filters to Control Filter Actions</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Advanced (6) Dashboarding</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-27T06:46:47.000Z" title="Created 2022-06-27 15:46:47">2022-06-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.792Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-4-Advanced/">Tableau - 4. Advanced</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="dashboarding"><a class="markdownIt-Anchor" href="#dashboarding"></a> Dashboarding</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-swapping-sheets-and-refining-the-layout"><strong>1. Swapping Sheets and Refining the Layout</strong></a>
+<ul>
+<li><a href="#sheet-swapping">&gt;&gt; Sheet Swapping</a></li>
+</ul>
+</li>
+<li><a href="#2-adding-context-to-dashboard-filter-actions"><strong>2. Adding Context to Dashboard Filter Actions</strong></a>
+<ul>
+<li><a href="#context-filter">&gt;&gt; Context Filter</a></li>
+<li><a href="#use-context-filters-to-control-filter-actions">&gt;&gt; Use Context Filters to Control Filter Actions</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-swapping-sheets-and-refining-the-layout"><a class="markdownIt-Anchor" href="#1-swapping-sheets-and-refining-the-layout"></a> <strong>1. Swapping Sheets and Refining the Layout</strong></h2>
+<h3 id="sheet-swapping"><a class="markdownIt-Anchor" href="#sheet-swapping"></a> &gt;&gt; Sheet Swapping</h3>
+<p>Sheet swapping is where sheets are hidden/displayed (i.e. swapped) depending on user dashboard selections.</p>
+<p>This is a very helpful and efficient way for us to share numerous views in a single dashboard, which can avoid squeezing in too much information or linking to several dashboards.</p>
+<br>
+<p>To swap sheets, we need <strong>a parameter</strong> used for selecting a view and <strong>collapsing containers</strong> to show the corresponding view.</p>
+<p>Let’s look at how this works through the following example:</p>
+<br>
+<p><strong><font color="navy">&lt;&lt; Goal &gt;&gt;</font></strong></p>
+<p>For a study about environment noise in Brooklyn, we want to include rotating views that show noise rankings (Slope Chart &amp; Bump Chart) and control-chart data in the dashboard. Let’s use a parameter to swap these views and employ layout and titling options.</p>
+<br>
+<p><strong><font color="navy">&lt;&lt; Process &gt;&gt;</font></strong></p>
+<p><strong>[STEP 1] Create a parameter for swapping the slope, bump, and control charts in the dashboard</strong></p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210708111333540.png" alt="image-20210708111333540" style="zoom:67%;">
+<br>
+<p><strong>[STEP 2] Create a Select Sheet filter calculation to apply a filter to each view, which will enable the correct view to show, and hide the other views</strong></p>
+<ul>
+<li>Create the filter calculated field based on the parameter</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210708111502614.png" alt="image-20210708111502614" style="zoom:67%;">
+<br>
+<ul>
+<li>
+<p>Use the calculated field as a filter for each swapped view, show the parameter control and test the parameter</p>
+<ul>
+<li>
+<p>Display the [Slope Chart] sheet, drag the [Select a Chart Filter] field to [Filters], dropping it below [YEAR(Created Date)]</p>
+</li>
+<li>
+<p>In the dialog box opened,</p>
+<p>- select [Custom value list],</p>
+<p>- type [Slope Chart] in the text field,</p>
+<p>- click “+”</p>
+<p>- and then click [OK]</p>
+</li>
+<li>
+<p>Do the same work with [Bump Chart] and [Control Chart] . (P.S. The view will disappear at the end of this step)</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712105839024.png" alt="image-20210712105839024" style="zoom:40%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712105151323.png" alt="image-20210712105151323" style="zoom:40%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712105335881.png" alt="image-20210712105335881" style="zoom:40%;">
+<br>
+<ul>
+<li>Return to [Slope Chart] sheet, show the parameter control and test the parameter. End with the Slope Chart selected and displayed</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712105733489.png" alt="image-20210712105733489" style="zoom:45%;">
+</li>
+</ul>
+<br>
+<p><strong>[STEP 3] Drag the swapped views into the dashboard, and hide their titles</strong></p>
+<ul>
+<li>
+<p>Use a container to contain the views to swap. This will allow the views to share the same space, rather than be tiled separately.</p>
+<p>- Drag a Vertical container into the view and drop it below the existed views when the horizontal gray band is shown</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712124751089.png" alt="image-20210712124751089" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712125248022.png" alt="image-20210712125248022" style="zoom:45%;">
+<br>
+</li>
+<li>
+<p>Drag the three charts into the container</p>
+<p>- First drag in the slope chart, the view that is currently displayed in the parameter control</p>
+<p>- Drop it when the container border appeared and highlighted in dark blue</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712125903509.png" alt="image-20210712125903509" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712125940385.png" alt="image-20210712125940385" style="zoom:45%;">
+<br>
+<p>- Next, drag in the Bump Chart, being careful to drop it only when we see the horizontal gray band and the blue container border.</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712130244408.png" alt="image-20210712130244408" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712130325401.png" alt="image-20210712130325401" style="zoom:45%;">
+<br>
+<p>- Finally, do the same thing for the Control Chart</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712130521443.png" alt="image-20210712130521443" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712130556710.png" alt="image-20210712130556710" style="zoom:45%;">
+<br>
+<p>This view brings in the parameter control, because the Slope Chart is the worksheet that we showed the control on.</p>
+<p>And, note that only the Scatter Plot view displayed in the dashboard, based on its selection in the control.</p>
+<br>
+</li>
+<li>
+<p>Hide the view titles for each of the swapped views</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712131453952.png" alt="image-20210712131453952" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712131422755.png" alt="image-20210712131422755" style="zoom:45%;">
+</li>
+</ul>
+<br>
+<p><strong>[STEP 4] Remove all controls except the parameter control, move the dashboard title, and make the title dynamic</strong></p>
+<ul>
+<li>
+<p>Close all controls and legends except for the parameter control</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712132159831.png" alt="image-20210712132159831" style="zoom:50%;">
+<br> 
+</li>
+<li>
+<p>Enlarge the container with the swapped views:</p>
+<p>- click it</p>
+<p>- display its menu</p>
+<p>- click [Select Container: Vertical]</p>
+<p>- on the container’s top border, drag the sizing handle upward to enlarge it</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712132530983.png" alt="image-20210712132530983" style="zoom:50%;"> 
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712132918748.png" alt="image-20210712132918748" style="zoom:50%;">   
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Reset the location and size of the title container</p>
+<p>- click the title container to select it</p>
+<p>- drag its handle to place the container between the top two views and the swapped-views container</p>
+<p>- on the title container’s bottom border, drag the sizing handle upward to make the container smaller</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712133715718.png" alt="image-20210712133715718" style="zoom:50%;"> 
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Move the parameter control:</p>
+<p>- click the parameter control to select it. display its menu, and click [Floating]</p>
+<p>- position the control at the left end within the title container</p>
+<p>- drag up its container border to fit within the title container</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712134655113.png" alt="image-20210712134655113" style="zoom:50%;"> 
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712134626891.png" alt="image-20210712134626891" style="zoom:50%;"> 
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Edit the dashboard title</p>
+<p>- open the [Edit Title] dialog box</p>
+<p>- remove the existed title</p>
+<p>- on the [Insert] menu, select [Parameters.Select a Chart]</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712134943322.png" alt="image-20210712134943322" style="zoom:50%;"> 
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712135032391.png" alt="image-20210712135032391" style="zoom:50%;"> 
+<br>
+<p>- The title now updates with each view</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712135106398.png" alt="image-20210712135106398" style="zoom:50%;"> 
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712135243343.png" alt="image-20210712135243343" style="zoom:50%;">  
+<br> 
+</li>
+</ul>
+<p><strong>[STEP 5] Add container borders, padding, and a text container for an overall title, then make sizing adjustments</strong></p>
+<ul>
+<li>
+<p>Add a border to the title container</p>
+<p>- click the title container to select it</p>
+<p>- click the [Layout] tab --&gt; [Border] --&gt; select a solid black line at a minimal thickness</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712135844389.png" alt="image-20210712135844389" style="zoom:50%;"> 
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Add a similar border to the swapped-views container</p>
+<p>- click it</p>
+<p>- display its menu</p>
+<p>- click [Select Container: Vertical]</p>
+<p>- add the border</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712142157180.png" alt="image-20210712142157180" style="zoom:50%;">  
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Add padding</p>
+<p>- For example: select the sparklines view and add four points of Inner Padding</p>
+<p>- do the same with the highlight table</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712140436538.png" alt="image-20210712140436538" style="zoom:50%;">  
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Add an overall dashboard title</p>
+<p>- from the [Dashboard] tab, drag a [Text] container onto the dashboard</p>
+<p>- drop it at the top when the horizontal gray band above the two top views appears</p>
+<p>- type the title and edit it</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712141223319.png" alt="image-20210712141223319" style="zoom:50%;"> 
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712140734133.png" alt="image-20210712140734133" style="zoom:50%;"> 
+<br>
+<p>- drag up the text container border for the ideal height</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712141635381.png" alt="image-20210712141635381" style="zoom:50%;"> 
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="2-adding-context-to-dashboard-filter-actions"><a class="markdownIt-Anchor" href="#2-adding-context-to-dashboard-filter-actions"></a> <strong>2. Adding Context to Dashboard Filter Actions</strong></h2>
+<h3 id="context-filter"><a class="markdownIt-Anchor" href="#context-filter"></a> &gt;&gt; Context Filter</h3>
+<p>By default, all filters set in Tableau are computed independently, which means that each filter accesses all rows in the data source without regard to other filters. However, by setting one or more categorical filters as context filters, we can make other filters as dependent ones that process only the data that passes through the context filter.</p>
+<br>
+<p>We can create a context filter to:</p>
+<ul>
+<li>
+<p>Improve performance –</p>
+<p>If we set a lot of filters or have a large data source, the queries can be slow. We can set one or more context filters to improve performance.</p>
+</li>
+<li>
+<p>Create a dependent numerical or top N filter –</p>
+<p>We can set a context filter to include only the data of interest, and then set a numerical or a top N filter.</p>
+</li>
+</ul>
+<br>
+<h3 id="use-context-filters-to-control-filter-actions"><a class="markdownIt-Anchor" href="#use-context-filters-to-control-filter-actions"></a> &gt;&gt; Use Context Filters to Control Filter Actions</h3>
+<p><strong><font color="navy">&lt;&lt; Goal &gt;&gt;</font></strong></p>
+<p>For the main markets that use Superstore, we want to help users see only the top 25 cities for sales by Market and the top 10 products for sales by Market - City.</p>
+<br>
+<p><strong><font color="navy">&lt;&lt; Process &gt;&gt;</font></strong></p>
+<p><strong>[STEP 1] On the Top 10 Product Sales worksheet, add a filter for the top 10 Product Names by Sales</strong></p>
+<ul>
+<li>
+<p>Drag [Product Name] from Dimensions to the [Filters] card</p>
+</li>
+<li>
+<p>In the dialog box opened:</p>
+<p>- click [Top] --&gt; [By field] : [Top] [10] by [Sales] [Sum]</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712155732099.png" alt="image-20210712155732099" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712160023934.png" alt="image-20210712160023934" style="zoom:45%;">
+<br>
+<p><strong>[STEP 2] On the Top 25 Cities for Sales worksheet, add a filter for the [City and State] field for the top 25 by Sales</strong></p>
+<ul>
+<li>
+<p>Drag the [City and State] field to [Filters] card</p>
+</li>
+<li>
+<p>In the dialog box opened:</p>
+<p>- click [Top] --&gt; [By field] : [Top] [25] by [Sales] [Sum]</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712160721965.png" alt="image-20210712160721965" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712160803907.png" alt="image-20210712160803907" style="zoom:45%;">
+<br>
+<p><strong>[STEP 3] On the Worldwide Sales dashboard, use the Market sheet as a filter, then test it to observe the results</strong></p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712161027261.png" alt="image-20210712161027261" style="zoom:45%;">
+<br>
+<ul>
+<li>
+<p>When we click a market to filter to its top 25 cities and top 10 products, the results are not what we are expected.</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712161301799.png" alt="image-20210712161301799" style="zoom:45%;">
+<br>
+<ul>
+<li>
+<p>USCA market shows only 7 cities and 3 products</p>
+</li>
+<li>
+<p>The reason is that without using market as a context filter, the Top 25 Cities filter and Top 10 Products filter access all rows in the data:</p>
+<p>When we see 7 cities from the USCA market, that means seven of the top cities overall happen to be in the USCA market</p>
+</li>
+<li>
+<p>To get each market to show its top cities and top products for sales,  we need to add context to the filter action</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>[STEP 4] On the product and cities worksheets, add the Action (Market) filter to context</strong></p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712162750768.png" alt="image-20210712162750768" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712162824982.png" alt="image-20210712162824982" style="zoom:45%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712162905014.png" alt="image-20210712162905014" style="zoom:45%;">
+<br>
+<p><strong>[STEP 5] Create a dashboard filter that shows the top 10 product sales for the selected city on the map</strong></p>
+<ul>
+<li>
+<p>In the dashboard, make sure no markets are selected</p>
+</li>
+<li>
+<p>Create a filter action: [Dashboard] menu  --&gt; [Actions]  --&gt; [Add actions] : Filter</p>
+<p>​	<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712164305607.png" alt="image-20210712164305607" style="zoom:50%;">   	 <img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712164433421-165631271936250.png" alt="image-20210712164433421" style="zoom:50%;"></p>
+</li>
+<li>
+<p>Edit the filter action like follows and click [OK] --&gt; [OK]</p>
+<p>​	<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712164611493.png" alt="image-20210712164611493" style="zoom:50%;"> 		<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712164901826-165631273369852.png" alt="image-20210712164901826" style="zoom:67%;"></p>
+<br>
+</li>
+<li>
+<p>Test the filter on the map view, we find that the list of product names never has 10 entries.</p>
+<p>We want the filter action we just cerated to apply in the context of the city</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712165144515.png" alt="image-20210712165144515" style="zoom:50%;">
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>In the Top 10 Product Sales sheet, add the action filter to context</p>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712165939041.png" alt="image-20210712165939041" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712170141434.png" alt="image-20210712170141434" style="zoom:50%;">
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712170051474.png" alt="image-20210712170051474" style="zoom:50%;">
+</li>
+</ul>
+<p>​		Now, the result is what we want.</p>
+<br>
+<p><strong>[STEP 6] Add the dashboard title</strong></p>
+<ul>
+<li>Click [Show dashboard title] to display the title, Worldwide Sales</li>
+</ul>
+<img src="/images/S-Tableau-Advanced-6-Dashboarding/image-20210712170317291-165631274862354.png" alt="image-20210712170317291" style="zoom:50%;">
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-6-Dashboarding/">https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-6-Dashboarding/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tableau/">Tableau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Advanced (5) Geographic Analysis</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/" title="Tableau >> Advanced (2) Time-Based Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (2) Time-Based Data</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/" title="Tableau >> Advanced (1) Customizing Table Calculations"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (1) Customizing Table Calculations</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/" title="Tableau >> Advanced (5) Geographic Analysis"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (5) Geographic Analysis</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/" title="Tableau >> Advanced (4) Customer Behavior Analyze Survey Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (4) Customer Behavior Analyze Survey Data</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '0bac2570f664ecb5cc72f235c4ea87ef',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

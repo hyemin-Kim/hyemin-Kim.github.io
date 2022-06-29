@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Intermediate (15) Comparing Measures Against a Goal | Hyemin Kim</title><meta name="keywords" content="Tableau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Comparing Measures Against a Goal  1. Building Bar-in-Bar Charts  Process to build a bar-in-bar chart   2. Building Bullet Graphs  &gt;&gt; Methods to create a bullet graph  [Method 1] In the Data Pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Intermediate (15) Comparing Measures Against a Goal">
+<meta property="og:url" content="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Comparing Measures Against a Goal  1. Building Bar-in-Bar Charts  Process to build a bar-in-bar chart   2. Building Bullet Graphs  &gt;&gt; Methods to create a bullet graph  [Method 1] In the Data Pa">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2022-06-27T06:07:46.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.805Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Tableau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#comparing-measures-against-a-goal"><span class="toc-text"> Comparing Measures Against a Goal</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-building-bar-in-bar-charts"><span class="toc-text"> 1. Building Bar-in-Bar Charts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#process-to-build-a-bar-in-bar-chart"><span class="toc-text"> Process to build a bar-in-bar chart</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-building-bullet-graphs"><span class="toc-text"> 2. Building Bullet Graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#methods-to-create-a-bullet-graph"><span class="toc-text"> &gt;&gt; Methods to create a bullet graph</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#method-1-in-the-data-pane"><span class="toc-text"> [Method 1] In the Data Pane</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#method-2-use-the-show-me"><span class="toc-text"> [Method 2] Use the Show Me</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Intermediate (15) Comparing Measures Against a Goal</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-27T06:07:46.000Z" title="Created 2022-06-27 15:07:46">2022-06-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.805Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-3-Intermediate/">Tableau - 3. Intermediate</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="comparing-measures-against-a-goal"><a class="markdownIt-Anchor" href="#comparing-measures-against-a-goal"></a> Comparing Measures Against a Goal</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-building-bar-in-bar-charts"><strong>1. Building Bar-in-Bar Charts</strong></a>
+<ul>
+<li><a href="#process-to-build-a-bar-in-bar-chart">Process to build a bar-in-bar chart</a></li>
+</ul>
+</li>
+<li><a href="#2-building-bullet-graphs"><strong>2. Building Bullet Graphs</strong></a>
+<ul>
+<li><a href="#methods-to-create-a-bullet-graph">&gt;&gt; Methods to create a bullet graph</a>
+<ul>
+<li><a href="#method-1-in-the-data-pane">[Method 1] In the Data Pane</a></li>
+<li><a href="#method-2-use-the-show-me">[Method 2] Use the <em>Show Me</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-building-bar-in-bar-charts"><a class="markdownIt-Anchor" href="#1-building-bar-in-bar-charts"></a> <strong>1. Building Bar-in-Bar Charts</strong></h2>
+<p>Bar-in-bar charts are useful for comparing two measures as overlapping bars in the same space.</p>
+<p>Making the bars different sizes can avoid that the bars bidden underneath the others</p>
+<br>
+<h3 id="process-to-build-a-bar-in-bar-chart"><a class="markdownIt-Anchor" href="#process-to-build-a-bar-in-bar-chart"></a> Process to build a bar-in-bar chart</h3>
+<ul>
+<li>
+<p>Add <font color="blue">[dimension]</font> to [Rows]</p>
+<p>Add the <font color="viridans">1st [Measure]</font> to [Columns]</p>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614110224399.png" alt="image-20210614110224399" style="zoom:67%;">
+<br>
+</li>
+<li>
+<p>Drag the <font color="viridans">2nd [Measure]</font> to the view, dropping it on the x-axis when two green bars appear.</p>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614110405228.png" alt="image-20210614110405228" style="zoom:67%;">
+<br>
+</li>
+<li>
+<p>Side-by-side bars for two [Measures]</p>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614110512156.png" alt="image-20210614110512156" style="zoom:67%;">
+<br>
+</li>
+<li>
+<p>Move the [Measure Names] from [Rows] to [Color] mark</p>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614110845733.png" alt="image-20210614110845733" style="zoom:67%;">
+<br>
+</li>
+<li>
+<p>Unstack bars</p>
+<p>[Analysis] menu --&gt; [Stack Marks] --&gt; [Off]</p>
+<p><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111240025.png" alt="image-20210614111240025" style="zoom:80%;">	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111307271-16563136198991.png" alt="image-20210614111307271" style="zoom:60%;"></p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>Make the bars different size</p>
+<ul>
+<li>
+<p>Hold [Ctrl] and drag [Measure Name] to [Size]</p>
+</li>
+<li>
+<p>Edit size:</p>
+<ul>
+<li>Smallest : controls the size for the thinner bars</li>
+<li>Largest :   controls the size for the thicker bars</li>
+</ul>
+<p><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111715412.png" alt="image-20210614111715412">	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111734298.png" alt="image-20210614111734298">	<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111758855-16563136537213.png" alt="image-20210614111758855" style="zoom: 67%;"></p>
+<br>
+</li>
+</ul>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614111931130.png" alt="image-20210614111931130" style="zoom: 67%;">
+</li>
+</ul>
+<br>
+<br>
+<h2 id="2-building-bullet-graphs"><a class="markdownIt-Anchor" href="#2-building-bullet-graphs"></a> <strong>2. Building Bullet Graphs</strong></h2>
+<p>Bullet graphs can be useful when you want to see how far a measure has progressed toward a goal. (i.e. comparing a measure against another measure)</p>
+<br>
+<h3 id="methods-to-create-a-bullet-graph"><a class="markdownIt-Anchor" href="#methods-to-create-a-bullet-graph"></a> &gt;&gt; Methods to create a bullet graph</h3>
+<h4 id="method-1-in-the-data-pane"><a class="markdownIt-Anchor" href="#method-1-in-the-data-pane"></a> [Method 1] In the Data Pane</h4>
+<p>[Question] How far enrollment has progressed towards the maximum enrollment that would be allowed</p>
+<ul>
+<li>
+<p>Build a view that shows current enrollment by department</p>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125445025.png" alt="image-20210614125445025" style="zoom:80%;">
+<br>
+</li>
+<li>
+<p>Use Maximum Enrollment as a reference line</p>
+<ul>
+<li>
+<p>Add [Maximum Enrollment] to [Detail]</p>
+</li>
+<li>
+<p>Right-click the x-axis (Students Enrolled axis), and choose [Add Reference Line]</p>
+</li>
+<li>
+<p>Edit the reference line with [Scope], [Line] and [Formatting]</p>
+<p><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125641240.png" alt="image-20210614125641240" style="zoom: 50%;">         <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125736991-16563136858875.png" alt="image-20210614125736991" style="zoom:67%;"></p>
+<br>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614125952753.png" alt="image-20210614125952753" style="zoom:80%;"> 
+</li>
+</ul>
+<br>
+</li>
+<li>
+<p>Add distribution areas to show stages of process</p>
+<ul>
+<li>
+<p>Right-click the x-axis (Student Enrolled axis), and choose [Add Reference Line]</p>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130221752.png" alt="image-20210614130221752" style="zoom:80%;">
+</li>
+<li>
+<p>Edit the distribution</p>
+<p>- Scope: [Per Cell]</p>
+<p>- Computation: [Percentages] 25, 50, 75  —  [Percent of]  Sum(Maximum Enrolled) / Sum</p>
+<p>- Label : [None]</p>
+<p>- Formatting : check [Fill Below]</p>
+<p><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130533550.png" alt="image-20210614130533550" style="zoom: 67%;">					<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130351229-16563137195357.png" alt="image-20210614130351229" style="zoom: 67%;"></p>
+<br>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614130758991.png" alt="image-20210614130758991" style="zoom:80%;"> 
+</li>
+</ul>
+<br>
+</li>
+<li>
+<p>Use color to distinguish whether a department has reached its maximum enrollment</p>
+<ul>
+<li>
+<p>Create a calculated field “Max Enrolled?”</p>
+<p><code>SUM([Students Enrolled]) &gt;= SUM([Maximum Enrollment])</code></p>
+</li>
+<li>
+<p>Drag [Max Enrolled?] to [Color]</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614131317367.png" alt="image-20210614131317367" style="zoom:80%;">
+</li>
+</ul>
+<br>
+<h4 id="method-2-use-the-show-me"><a class="markdownIt-Anchor" href="#method-2-use-the-show-me"></a> [Method 2] Use the <em>Show Me</em></h4>
+<ul>
+<li>
+<p>Select two measures we want to compare, and any dimensions we want to include</p>
+</li>
+<li>
+<p>Click [Show Me] and select the bullet graph icon</p>
+<ul>
+<li>
+<p>Here, Tableau uses</p>
+<p>- the <em>Maximum Enrollment</em> for the bars and</p>
+<p>- <em>current enrollment</em> for the reference lines and distribution</p>
+</li>
+</ul>
+<p><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132009819.png" alt="image-20210614132009819" style="zoom:85%;"> <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132031246-165631376553311.png" alt="image-20210614132031246" style="zoom:80%;"> <img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132150639-165631379546813.png" alt="image-20210614132150639" style="zoom:60%;"></p>
+<br>
+</li>
+<li>
+<p>Swap how the two measures are used</p>
+<ul>
+<li>
+<p>Right-click the x-axis (Maximum Enrollment axis)  --&gt; [Swap Reference Line Fields]</p>
+<p><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132818737.png" alt="image-20210614132818737" style="zoom:80%;"><img src="/images/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/image-20210614132853178-165631381365915.png" alt="image-20210614132853178" style="zoom:60%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/">https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tableau/">Tableau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/27/S-Tableau-Intermediate-16-Using-Advanced-Filter-Actions/"><img class="prev-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Tableau &gt;&gt; Intermediate (16) Using Advanced Filter Actions</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/27/S-Tableau-Intermediate-14-Viewing-Distribution/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Intermediate (14) Viewing Distribution</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/" title="Tableau >> Advanced (2) Time-Based Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (2) Time-Based Data</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/" title="Tableau >> Advanced (1) Customizing Table Calculations"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (1) Customizing Table Calculations</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/" title="Tableau >> Advanced (5) Geographic Analysis"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (5) Geographic Analysis</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/" title="Tableau >> Advanced (4) Customer Behavior Analyze Survey Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (4) Customer Behavior Analyze Survey Data</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: '15d7feaf36d1b0d7815563ddff2b3e21',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

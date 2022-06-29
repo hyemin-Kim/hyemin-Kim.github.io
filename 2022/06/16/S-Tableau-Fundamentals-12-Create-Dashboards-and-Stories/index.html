@@ -1,0 +1,840 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau &gt;&gt; Fundamentals (12) Create Dashboards and Stories | Hyemin Kim</title><meta name="keywords" content="Tableau"><meta name="author" content="Hyemin Kim"><meta name="copyright" content="Hyemin Kim"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Create Dashboards and Stories  1. Plan for a Successful Dashboard  &gt;&gt; Considerations for planning a dashboard &gt;&gt; Steps for planning a dashboard   2. Creating a Dashboard  &gt;&gt; Add vie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tableau &gt;&gt; Fundamentals (12) Create Dashboards and Stories">
+<meta property="og:url" content="https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/index.html">
+<meta property="og:site_name" content="Hyemin Kim">
+<meta property="og:description" content="Create Dashboards and Stories  1. Plan for a Successful Dashboard  &gt;&gt; Considerations for planning a dashboard &gt;&gt; Steps for planning a dashboard   2. Creating a Dashboard  &gt;&gt; Add vie">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png">
+<meta property="article:published_time" content="2022-06-16T06:17:35.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:19:22.795Z">
+<meta property="article:author" content="Hyemin Kim">
+<meta property="article:tag" content="Tableau">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><link rel="shortcut icon" href="/img/favicon_m.png"><link rel="canonical" href="https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-XKJP2G3X9E"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XKJP2G3X9E');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Hyemin Kim","link":"Link: ","source":"Source: Hyemin Kim","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-06-29 15:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hyemin Kim" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">102</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#create-dashboards-and-stories"><span class="toc-text"> Create Dashboards and Stories</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-plan-for-a-successful-dashboard"><span class="toc-text"> 1. Plan for a Successful Dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#considerations-for-planning-a-dashboard"><span class="toc-text"> &gt;&gt; Considerations for planning a dashboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#steps-for-planning-a-dashboard"><span class="toc-text"> &gt;&gt; Steps for planning a dashboard</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-creating-a-dashboard"><span class="toc-text"> 2. Creating a Dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#add-views-to-a-dashboard"><span class="toc-text"> &gt;&gt; Add views to a dashboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dashboard-settings"><span class="toc-text"> &gt;&gt; Dashboard Settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#highlight-and-filter-data-in-dashboards"><span class="toc-text"> &gt;&gt; Highlight and filter data in dashboards</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-creating-interactive-dashboards-using-actions"><span class="toc-text"> 3. Creating Interactive Dashboards Using Actions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#actions-in-tableau"><span class="toc-text"> &gt;&gt; Actions in Tableau</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#methods-for-running-an-action"><span class="toc-text"> &gt;&gt; Methods for running an action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add-actions-to-a-dashboard"><span class="toc-text"> &gt;&gt; Add actions to a dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-filter-action"><span class="toc-text"> 1. Filter Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-highlight-action"><span class="toc-text"> 2. Highlight Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-go-to-sheet-action"><span class="toc-text"> 3. Go to Sheet Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-go-to-url-action"><span class="toc-text"> 4. Go to URL Action</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-refining-a-dashboard"><span class="toc-text"> 4. Refining a dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#start-with-the-layout"><span class="toc-text"> &gt;&gt; Start with the layout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#determine-the-device-layout-tableau-desktop-only"><span class="toc-text"> &gt;&gt; Determine the device layout (Tableau Desktop Only)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#color-sizing-and-fonts"><span class="toc-text"> &gt;&gt; Color, sizing and fonts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tooltips"><span class="toc-text"> &gt;&gt; Tooltips</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hyemin Kim</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Tableau &gt;&gt; Fundamentals (12) Create Dashboards and Stories</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-16T06:17:35.000Z" title="Created 2022-06-16 15:17:35">2022-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-29T06:19:22.795Z" title="Updated 2022-06-29 15:19:22">2022-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/">【STUDY - Tableau】</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90STUDY-Tableau%E3%80%91/Tableau-2-Fundamentals/">Tableau - 2. Fundamentals</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="create-dashboards-and-stories"><a class="markdownIt-Anchor" href="#create-dashboards-and-stories"></a> Create Dashboards and Stories</h1>
+<p></p><ul class="markdownIt-TOC">
+<li><a href="#1-plan-for-a-successful-dashboard"><strong>1. Plan for a Successful Dashboard</strong></a>
+<ul>
+<li><a href="#considerations-for-planning-a-dashboard">&gt;&gt; Considerations for planning a dashboard</a></li>
+<li><a href="#steps-for-planning-a-dashboard">&gt;&gt; Steps for planning a dashboard</a></li>
+</ul>
+</li>
+<li><a href="#2-creating-a-dashboard"><strong>2. Creating a Dashboard</strong></a>
+<ul>
+<li><a href="#add-views-to-a-dashboard">&gt;&gt; Add views to a dashboard</a></li>
+<li><a href="#dashboard-settings">&gt;&gt; Dashboard Settings</a></li>
+<li><a href="#highlight-and-filter-data-in-dashboards">&gt;&gt; Highlight and filter data in dashboards</a></li>
+</ul>
+</li>
+<li><a href="#3-creating-interactive-dashboards-using-actions"><strong>3. Creating Interactive Dashboards Using Actions</strong></a>
+<ul>
+<li><a href="#actions-in-tableau">&gt;&gt; Actions in Tableau</a></li>
+<li><a href="#methods-for-running-an-action">&gt;&gt; Methods for running an action</a></li>
+<li><a href="#add-actions-to-a-dashboard">&gt;&gt; Add actions to a dashboard</a>
+<ul>
+<li><a href="#1-filter-action">1. Filter Action</a></li>
+<li><a href="#2-highlight-action">2. Highlight Action</a></li>
+<li><a href="#3-go-to-sheet-action">3. Go to Sheet Action</a></li>
+<li><a href="#4-go-to-url-action">4. Go to URL Action</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-refining-a-dashboard"><strong>4. Refining a dashboard</strong></a>
+<ul>
+<li><a href="#start-with-the-layout">&gt;&gt; Start with the layout</a></li>
+<li><a href="#determine-the-device-layout-tableau-desktop-only">&gt;&gt; Determine the device layout (Tableau Desktop Only)</a></li>
+<li><a href="#color-sizing-and-fonts">&gt;&gt; Color, sizing and fonts</a></li>
+<li><a href="#tooltips">&gt;&gt; Tooltips</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<br>
+<h2 id="1-plan-for-a-successful-dashboard"><a class="markdownIt-Anchor" href="#1-plan-for-a-successful-dashboard"></a> <strong>1. Plan for a Successful Dashboard</strong></h2>
+<h3 id="considerations-for-planning-a-dashboard"><a class="markdownIt-Anchor" href="#considerations-for-planning-a-dashboard"></a> &gt;&gt; Considerations for planning a dashboard</h3>
+<ul>
+<li>
+<p><strong>Who is your audience?</strong></p>
+<ul>
+<li>determine which chart to use</li>
+<li>how you arrange the charts on the dashboard</li>
+<li>the level of detail</li>
+<li>the level of interaction</li>
+</ul>
+</li>
+<li>
+<p><strong>What information is important to your audience?</strong></p>
+<ul>
+<li>
+<p>consider what the key takeaways are for your audience</p>
+</li>
+<li>
+<p>simple and only includes relevant information</p>
+</li>
+<li>
+<p>consistent design, language and color scheme</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Why are you creating a dashboard?</strong></p>
+<ul>
+<li>a conclusion or a key question?</li>
+<li>to inform your users?</li>
+<li>to explore the data?</li>
+</ul>
+</li>
+<li>
+<p><strong>Where is the dashboard going to be viewed?</strong></p>
+<ul>
+<li>viewing on different size devices? (desktop, laptop, tablet, phone?)</li>
+<li>print the dashboard?</li>
+<li>look at offline?</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="steps-for-planning-a-dashboard"><a class="markdownIt-Anchor" href="#steps-for-planning-a-dashboard"></a> &gt;&gt; Steps for planning a dashboard</h3>
+<p><strong>Four General Steps</strong></p>
+<ol>
+<li>Determine purpose + audience</li>
+<li>Plan the dashboard</li>
+<li>Build using design best practices</li>
+<li>Test it for usability and performance</li>
+</ol>
+<br>
+<br>
+<h2 id="2-creating-a-dashboard"><a class="markdownIt-Anchor" href="#2-creating-a-dashboard"></a> <strong>2. Creating a Dashboard</strong></h2>
+<h3 id="add-views-to-a-dashboard"><a class="markdownIt-Anchor" href="#add-views-to-a-dashboard"></a> &gt;&gt; Add views to a dashboard</h3>
+<ol>
+<li>
+<p>Create a new dashboard</p>
+<ul>
+<li>click the [New Dashboard] icon <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531142831913-16553671932551.png" alt="image-20210531142831913" style="zoom: 67%;"></li>
+</ul>
+</li>
+<li>
+<p>Add views to a dashboard</p>
+<ul>
+<li>drag the worksheet in the [Sheets] list to the canvas</li>
+</ul>
+</li>
+<li>
+<p>Replace one worksheet with another</p>
+<ul>
+<li>
+<p>select the worksheet in the dashboard view</p>
+</li>
+<li>
+<p>in the [Sheets] list, hover over the title of the worksheet you would like to use and click the [Swap Sheets] icon</p>
+</li>
+</ul>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531143614360-16553671932562.png" alt="image-20210531143614360" style="zoom: 67%;">
+</li>
+<li>
+<p>Return to worksheet in three ways</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210531143729562-16553671932563.png" alt="image-20210531143729562" style="zoom: 67%;">
+</li>
+</ol>
+<br>
+<br>
+<h3 id="dashboard-settings"><a class="markdownIt-Anchor" href="#dashboard-settings"></a> &gt;&gt; Dashboard Settings</h3>
+<ul>
+<li>
+<p><strong>Dashboard Panel</strong></p>
+<ul>
+<li>
+<p>[Device Preview] : to see what your dashboard would look like on certain devices</p>
+</li>
+<li>
+<p>[Size] : Fixed Size / Automatic / Range</p>
+</li>
+<li>
+<p>[Sheets] : Sheet names of the views in this workbook that  can be used to build your dashboard</p>
+</li>
+<li>
+<p>[Objects] : containers, images, text or web pages that can be added to a dashboard</p>
+<p>- Object layout: Tiled (arrange in a single layer grid) / Floating (freely moved on the dashboard)</p>
+</li>
+<li>
+<p>[Show dashboard title]</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Layout Panel</strong></p>
+<ul>
+<li>
+<p>[Item hierarchy]</p>
+<p>- contains all the floating objects and any tiled objects listed in a hierarchy</p>
+<p>- selecting any object on the list will highlight it in the view</p>
+<p>​	* containers framed in blue</p>
+<p>​	* sheets framed in gray</p>
+</li>
+<li>
+<p>[Settings] : adjust objects’ position and size</p>
+<p>- tiled objects are fixed (can’t change the position or size)</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="highlight-and-filter-data-in-dashboards"><a class="markdownIt-Anchor" href="#highlight-and-filter-data-in-dashboards"></a> &gt;&gt; Highlight and filter data in dashboards</h3>
+<ul>
+<li>
+<p><strong>Legend Highlights</strong></p>
+<ul>
+<li>Legend highlights help the data to stand out from other marks</li>
+<li>activate: [Legend] Card --&gt; select Highlight Selected Items</li>
+</ul>
+</li>
+<li>
+<p><strong>Use a view as a filter</strong></p>
+<ul>
+<li>means the marks you select in one view will filter the results of the other views in your dashboard</li>
+</ul>
+</li>
+<li>
+<p><strong>Apply the filter to all sheets</strong></p>
+<ul>
+<li>
+<p>filter card --&gt; [Apply to Worksheets] --&gt; [All using This Data Source]</p>
+<br>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h2 id="3-creating-interactive-dashboards-using-actions"><a class="markdownIt-Anchor" href="#3-creating-interactive-dashboards-using-actions"></a> <strong>3. Creating Interactive Dashboards Using Actions</strong></h2>
+<h3 id="actions-in-tableau"><a class="markdownIt-Anchor" href="#actions-in-tableau"></a> &gt;&gt; Actions in Tableau</h3>
+<ul>
+<li><strong><font color="darkblue">Filter Action</font></strong>
+<ul>
+<li>Using the data from one view to filter data in another</li>
+<li>Typically, a filter action sends information from a selected mark to another sheet showing related information</li>
+</ul>
+</li>
+<li><strong><font color="darkblue">Highlight Action</font></strong>
+<ul>
+<li>Allow you to call attention to marks of interest by retaining color for specific marks and dimming all others</li>
+<li>Several methods to highlight marks
+<ol>
+<li>Manually select the marks you want to highlight</li>
+<li>use the legend to select related marks</li>
+<li>use the highlighter to search for marks in context</li>
+<li>create an advanced highlight action</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong><font color="darkblue">Go to Sheet Action</font></strong>
+<ul>
+<li>Navigation to other worksheets, dashboards, or stories</li>
+</ul>
+</li>
+<li><strong><font color="darkblue">Go to URL Action (Tableau Desktop Only)</font></strong>
+<ul>
+<li>Create hyperlinks to external resources, such as a web page, email link, or a file</li>
+</ul>
+</li>
+<li><strong><font color="darkblue">Parameter and set actions (Tableau Desktop Only)</font></strong>
+<ul>
+<li>Parameter actions: Let your audience change a parameter value through direct interaction with a viz</li>
+<li>Set actions: Let users change the values in a set by directly interacting with marks on a viz</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="methods-for-running-an-action"><a class="markdownIt-Anchor" href="#methods-for-running-an-action"></a> &gt;&gt; Methods for running an action</h3>
+<ul>
+<li><strong><font color="darkblue">Hover</font></strong>
+<ul>
+<li>Rest the mouse pointer over a mark to run the action</li>
+<li>Works well for highlight actions</li>
+</ul>
+</li>
+<li><strong><font color="darkblue">Select</font></strong>
+<ul>
+<li>Click a mark to run the action</li>
+<li>Works well for most types of actions except URL actions</li>
+</ul>
+</li>
+<li><strong><font color="darkblue">Menu</font></strong>
+<ul>
+<li>Click a selected mark --&gt; select an option on the tooltip</li>
+<li>Works well for URL actions</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="add-actions-to-a-dashboard"><a class="markdownIt-Anchor" href="#add-actions-to-a-dashboard"></a> &gt;&gt; Add actions to a dashboard</h3>
+<h4 id="1-filter-action"><a class="markdownIt-Anchor" href="#1-filter-action"></a> 1. Filter Action</h4>
+<ul>
+<li>
+<p><strong><font color="darkblue">Concept:</font></strong></p>
+<ul>
+<li>
+<p>Filter actions create a filter on a target sheet based on a selection at the source sheet</p>
+</li>
+<li>
+<p>With filter action, you can use the data from one view to filter data in another</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><font color="darkblue">Caution:</font></strong> The filter chosen must in both the source and target sheets</p>
+</li>
+<li>
+<p><strong><font color="darkblue">Create a filter action</font></strong>:</p>
+<ul>
+<li>
+<p>[Dashboard] --&gt; [Actions]</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601101609404-16553671932564.png" alt="image-20210601101609404" style="zoom:50%;"> 
+</li>
+<li>
+<p>[Add Action] --&gt; [Filter]</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601102157673-16553671932565.png" alt="image-20210601102157673" style="zoom:67%;">  
+<br>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><font color="darkblue">Edit a filter action:</font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111831004-16553671932566.png" alt="image-20210601111831004" style="zoom:67%;">  
+<ul>
+<li>
+<p>Filter Action Name</p>
+</li>
+<li>
+<p>Source Sheets</p>
+</li>
+<li>
+<p>Run action on: Hover / <em>Select</em> / Menu</p>
+</li>
+<li>
+<p>Target Sheets</p>
+</li>
+<li>
+<p>Clearing the selection will:</p>
+<ol>
+<li>Leave the filter:       the filter stay in place until the next selection</li>
+<li>Show all values:      returns the view to an unfiltered state</li>
+<li>Exclude all values:  remove the marks and axes of target sheets from the view</li>
+</ol>
+</li>
+<li>
+<p>Target Filters:</p>
+<ol>
+<li>select specific fields to respond to this filter action</li>
+<li>let all fields respond to this filter action</li>
+</ol>
+</li>
+</ul>
+<br>
+</li>
+</ul>
+<h4 id="2-highlight-action"><a class="markdownIt-Anchor" href="#2-highlight-action"></a> 2. Highlight Action</h4>
+<ul>
+<li>
+<p><strong><font color="darkblue">Concept:</font></strong> Highlight actions are used to call attention relevant data by retaining color for some marks while dimming all the others</p>
+</li>
+<li>
+<p><strong><font color="darkblue">Create a highlight action:</font></strong></p>
+<ul>
+<li>
+<p>[Dashboard] --&gt; [Actions]</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601101609404-16553671932564.png" alt="image-20210601101609404" style="zoom:50%;"> 
+</li>
+<li>
+<p>[Add Action] --&gt; [Highlight]</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111124788-16553671932567.png" alt="image-20210601111124788" style="zoom:67%;"> 
+<br>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><font color="darkblue">Edit a highlight action:</font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601111754485-16553671932569.png" alt="image-20210601111754485" style="zoom:67%;">  
+<ul>
+<li>Highlight Action name</li>
+<li>Source Sheets</li>
+<li>Run action on: <em>Hover</em> / Select / Menu</li>
+<li>Target Sheets</li>
+<li>Target Highlighting: the types of fields that will be highlighted
+<ol>
+<li>Selected Fields</li>
+<li>Dates and Times</li>
+<li>All fields</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="3-go-to-sheet-action"><a class="markdownIt-Anchor" href="#3-go-to-sheet-action"></a> 3. Go to Sheet Action</h4>
+<ul>
+<li>
+<p><strong><font color="darkblue">Concept:</font></strong> The Go to Sheet action allows users to go from one dashboard to another sheet or dashboard.</p>
+</li>
+<li>
+<p><strong><font color="darkblue">Create a Go to Sheet action</font></strong>:</p>
+<ul>
+<li>[Dashboard] – &gt; [Actions]</li>
+<li>In the [Actions] dialog box, [Add Action] --&gt; [Go to Sheet]</li>
+</ul>
+</li>
+<li>
+<p><strong><font color="darkblue">Edit a Go to Sheet action</font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601124642824-16553671932568.png" alt="image-20210601124642824" style="zoom:67%;"> 
+<ul>
+<li>Go to Sheet action name</li>
+<li>Source Sheets</li>
+<li>Run action on: Hover / Select / Menu</li>
+<li>Target Sheets</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="4-go-to-url-action"><a class="markdownIt-Anchor" href="#4-go-to-url-action"></a> 4. Go to URL Action</h4>
+<ul>
+<li>
+<p><strong><font color="darkblue">Concept:</font></strong> URL actions allow end users to connect to web-based resources, and these can by dynamically programmed to update based on the user’s selection.</p>
+</li>
+<li>
+<p><strong><font color="darkblue">Create a Go to URL action:</font></strong></p>
+<ul>
+<li>[Dashboard] --&gt; [Actions]</li>
+<li>In the [Actions] dialog box, [Add Action] --&gt; [Go to URL]</li>
+</ul>
+</li>
+<li>
+<p><strong><font color="darkblue">Edit a Go to URL action: </font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601125527606-165536719325610.png" alt="image-20210601125527606" style="zoom:67%;">  
+<ul>
+<li>Go to URL Action name</li>
+<li>Source Sheets</li>
+<li>Run action on: Hover / Select / <em>Menu</em></li>
+<li>URL: with an ftp, http, or https prefix</li>
+<li>Arrow button at the right of the URL box: enter field and filter values as parameters in the URL</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-refining-a-dashboard"><a class="markdownIt-Anchor" href="#4-refining-a-dashboard"></a> <strong>4. Refining a dashboard</strong></h2>
+<h3 id="start-with-the-layout"><a class="markdownIt-Anchor" href="#start-with-the-layout"></a> &gt;&gt; Start with the layout</h3>
+<ul>
+<li>
+<p><strong>Select worksheets to include</strong></p>
+</li>
+<li>
+<p><strong>Set the layout orientation with containers</strong></p>
+<ul>
+<li>Horizontal layout container</li>
+<li>Vertical layout container</li>
+</ul>
+<p><img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601155525747-165536719325613.png" alt="image-20210601155525747" style="zoom: 67%;">   (More Info. : <a href="https://tabsoft.co/dashboardlayout" target="_blank" rel="noopener">Size and Lay Out Your Dashboard</a>)</p>
+</li>
+<li>
+<p><strong>Use non-worksheet objects</strong></p>
+<ul>
+<li>Text</li>
+<li>Image</li>
+<li>Web Page</li>
+<li>Navigation : Add a button that navigates to another dashboard or sheet</li>
+<li>Extension : Insert a dashboard extension</li>
+<li>Export : Add a button to allow dashboard consumers to export the dashboard according to the export type you determine (PDF, PowerPoint, or Image)</li>
+</ul>
+</li>
+<li>
+<p><strong>Consider Floating a view</strong></p>
+<ul>
+<li>To save space or improve its proximity to another item, you can float a view, filter, legend, text, image, web page, or even a layout container</li>
+</ul>
+</li>
+<li>
+<p><strong>Add white space</strong></p>
+<ul>
+<li>
+<p><strong><font color="darkblue">Two methods:</font></strong></p>
+<ol>
+<li>Insert and resize a blank container</li>
+<li>Adjust either the outer or inner padding of a view, container, or object</li>
+</ol>
+</li>
+<li>
+<p><strong><font color="darkblue">Padding:</font></strong></p>
+<ol>
+<li>[Inner Padding] : sets the spacing between item contents and the perimeter of the border and background color</li>
+<li>[Outer Padding] : provides additional spacing beyond the border and background color</li>
+</ol>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601161555654-165536719325611.png" alt="image-20210601161555654" style="zoom:80%;">
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Use borders and background colors sparingly</strong></p>
+</li>
+</ul>
+<br>
+<h3 id="determine-the-device-layout-tableau-desktop-only"><a class="markdownIt-Anchor" href="#determine-the-device-layout-tableau-desktop-only"></a> &gt;&gt; Determine the device layout (Tableau Desktop Only)</h3>
+<p><strong>Step 1. Make a dashboard by using the default</strong></p>
+<ul>
+<li>The default dashboard acts as a template for other device layouts</li>
+<li>Only sheets that are put onto the default dashboard will be available for the device specific layouts</li>
+</ul>
+<p><strong>Step 2. Add a device layout</strong></p>
+<ul>
+<li>
+<p>[Dashboard] Pane --&gt; click [Device Preview]</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601172026867-165536719325612.png" alt="image-20210601172026867" style="zoom:67%;">
+</li>
+<li>
+<p>Choose a layout in [Device Preview Bar]:</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210601171953192-165536719325614.png" alt="image-20210601171953192" style="zoom:67%;"> 
+<ul>
+<li>Device Type: Default / Desktop / Tablet / Phone</li>
+<li>Screen Orientation: Landscape (가로) / Portrait (세로)</li>
+</ul>
+</li>
+<li>
+<p>click [Add ** Layout]</p>
+</li>
+</ul>
+<p><strong>Step 3. Edit the layout added</strong></p>
+<ul>
+<li>
+<p><strong><font color="darkblue">Size</font></strong></p>
+<ul>
+<li>
+<p>Default:   keeps the size from the default dashboard</p>
+</li>
+<li>
+<p>Fit all:       fits all the dimensions like automatic sizing on the default</p>
+</li>
+<li>
+<p>Fit width: fits the dashboard horizontally but allows a hard-coded height</p>
+<p>​				  (It means the user would scroll vertically to consume the entire dashboard)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><font color="darkblue">Layout</font></strong></p>
+<ul>
+<li>Default</li>
+<li>Custom : Available to edit</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="color-sizing-and-fonts"><a class="markdownIt-Anchor" href="#color-sizing-and-fonts"></a> &gt;&gt; Color, sizing and fonts</h3>
+<ul>
+<li>
+<p><strong>Color</strong></p>
+</li>
+<li>
+<p><strong>Sizing</strong></p>
+<ul>
+<li>Keep users’ screen size in mind</li>
+<li>When using <strong><font color="green">crosstabs</font></strong>, don’t use Fit Entire View; use a combination of a scroll bar and either <strong><font color="green">Fit Width or Fit Height</font></strong></li>
+<li>To resize <strong><font color="green">elements</font></strong>, try <strong><font color="green">Shift+drag</font></strong></li>
+<li>To resize <strong><font color="green">individual worksheets</font></strong>, use <strong><font color="green">CTRL</font></strong> and the arrow keys to resize rather than manually dragging</li>
+</ul>
+</li>
+<li>
+<p><strong>Font</strong></p>
+<ul>
+<li>
+<p>The quickest way to make a fast, large-scale change to all the titles in your dashboard is to change them at the workbook level (A workbook is the largest possible container for formatting settings) :</p>
+<ol>
+<li>
+<p>Click [Format] --&gt; Select [Workbook]</p>
+</li>
+<li>
+<p>Edit in [Format Workbook] Pane --&gt; [Fonts]</p>
+<p><img src="D:\1. 아이투맥스\3. Tableau 학습\Typora Note\E_Analyst\2. Tableau Fundamentals\2-12. Create Dashboards and Stories.assets\image-20210602090303105.png" alt="image-20210602090303105" style="zoom:50%;">		 <img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602090411235-165536719325716.png" alt="image-20210602090411235" style="zoom:50%;"></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="tooltips"><a class="markdownIt-Anchor" href="#tooltips"></a> &gt;&gt; Tooltips</h3>
+<ul>
+<li>
+<p><strong>Customize tooltips:</strong></p>
+<ul>
+<li>[Worksheet] --&gt; [Tooltip]</li>
+</ul>
+</li>
+<li>
+<p><strong>Add visualizations in tooltips</strong></p>
+<ul>
+<li>
+<p><strong><font color="darkblue">Viz in tooltips:</font></strong></p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602091801243-165536719325717.png" alt="image-20210602091801243" style="zoom:67%;">
+</li>
+<li>
+<p><strong><font color="darkblue">Add a viz in tooltip</font></strong></p>
+<ol>
+<li>
+<p>From the main (source) viz, click [Tooltip] on the [Marks] card.</p>
+</li>
+<li>
+<p>Click [Insert]  --&gt; [Sheets]</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602092038063-165536719325720.png" alt="image-20210602092038063" style="zoom:67%;">
+</li>
+<li>
+<p>Select the target sheet that should appear in the tooltip --&gt; click [OK]</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong><font color="darkblue">Learn more</font></strong></p>
+<ol>
+<li>
+<p>You can set the size of a view in a tooltip</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602102704800-165536719325718.png" alt="image-20210602102704800" style="zoom:67%;">
+</li>
+<li>
+<p>The view in the tooltip is always static</p>
+<p>- The viz in the tooltip is a static image, not an interactive viz.</p>
+<p>- Multiple target sheets can appear in the same tooltip</p>
+</li>
+<li>
+<p>It’s possible to format tooltip text</p>
+<img src="/images/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/image-20210602103038725-165536719325719.png" alt="image-20210602103038725" style="zoom:67%;">
+</li>
+<li>
+<p>Hovering on a mark filters the target viz</p>
+<p>- On the sheet for the target viz, there is a “tooltip” filter on the [Filters] shelf</p>
+<p>- When a tooltip containing a viz is displayed, the target viz is filtered based on the mark you’re hovering over</p>
+</li>
+<li>
+<p>Show Me resets the tooltip</p>
+<p>- If you use [Show Me] in the source sheet to change the view structure, you will reset all tooltip edits, including Viz in Tooltip references.</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Hyemin Kim</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/">https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-12-Create-Dashboards-and-Stories/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tableau/">Tableau</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/08/18/fo8Hat.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/16/S-Tableau-Fundamentals-13-Sharing-Your-Work/"><img class="prev-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Tableau &gt;&gt; Fundamentals (13) Sharing Your Work</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/16/S-Tableau-Fundamentals-11-Highlighting-Data-with-Reference-Lines/"><img class="next-cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Tableau &gt;&gt; Fundamentals (11) Highlighting Data with Reference Lines</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/S-Tableau-Advanced-2-Time-Based-Data/" title="Tableau >> Advanced (2) Time-Based Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (2) Time-Based Data</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-1-Customizing-Table-Calculations/" title="Tableau >> Advanced (1) Customizing Table Calculations"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (1) Customizing Table Calculations</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/" title="Tableau >> Advanced (5) Geographic Analysis"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (5) Geographic Analysis</div></div></a></div><div><a href="/2022/06/27/S-Tableau-Advanced-4-Customer-Behavior-Analyze-Survey-Data/" title="Tableau >> Advanced (4) Customer Behavior Analyze Survey Data"><img class="cover" src="https://z3.ax1x.com/2021/08/18/fo8Hat.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">Tableau >> Advanced (4) Customer Behavior Analyze Survey Data</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://z3.ax1x.com/2021/08/18/fo8Hat.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hyemin Kim</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'ed00dae828f43e807ca1',
+      clientSecret: '6127c1ef27fe0e15655c18f5ce3817472c83d2cd',
+      repo: 'hyemin-Kim.github.io',
+      owner: 'hyemin-Kim',
+      admin: [''],
+      id: 'bb6e0e854d161b27f6b7948e7df04153',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
