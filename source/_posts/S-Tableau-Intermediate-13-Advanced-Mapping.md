@@ -37,7 +37,7 @@ date: 2022-06-27 14:53:35
 
   * [Map] menu --> [Edit Locations]
 
-  ​				![image-20210611133106539](/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133106539.png) 	<img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133132793-16563139674001.png" alt="image-20210611133132793" style="zoom:67%;" />
+  ​				![image-20210611133106539](/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133106539.png) 	<img class = "inline-img"  src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611133132793-16563139674001.png" alt="image-20210611133132793" style="zoom:67%;" />
 
   <br />
 
