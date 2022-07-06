@@ -77,7 +77,7 @@ date: 2022-06-27 14:53:35
 
 * Select the warning box --> Select [Edit Locations] (t4) 
 
-  <img style="display: inline;" src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140725873.png" alt="image-20210611140725873" style="zoom:150%;" /> <img style="display: inline;" src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140820483-16563139806243.png" alt="image-20210611140820483" style="zoom:80%;" />
+  <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140725873.png" alt="image-20210611140725873" style="zoom:150%;" /> <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140820483-16563139806243.png" alt="image-20210611140820483" style="zoom:80%;" />
 
   <br />
 
