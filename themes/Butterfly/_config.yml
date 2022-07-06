@@ -227,7 +227,7 @@ auto_excerpt:
   length: 150
 
 # figcaption (圖片描述文字)
-photofigcaption: false
+photofigcaption: true
 
 # anchor
 # when you scroll in post, the URL will update according to header id.
