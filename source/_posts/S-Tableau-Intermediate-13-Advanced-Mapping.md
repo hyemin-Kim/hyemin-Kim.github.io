@@ -75,9 +75,9 @@ date: 2022-06-27 14:53:35
 
 **[Fix the problem]** -- Add specific locations
 
-* Select the warning box --> Select [Edit Locations] (t2) ![inlineimg](https://media-exp1.licdn.com/dms/image/C510BAQFbCrkwEIWy0A/company-logo_200_200/0/1550557047643?e=2147483647&v=beta&t=cYVo8-n7OQFad8yvnBRkJEOUmAHEPcatwZDULza1Zjs)
+* Select the warning box --> Select [Edit Locations] (t3) 
 
-  <img src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140725873.png" alt="image-20210611140725873" style="zoom:150%;" /> <img class = "inline-img" src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140820483-16563139806243.png" alt="image-20210611140820483" style="zoom:80%;" />
+  <img display = "inline" src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140725873.png" alt="image-20210611140725873" style="zoom:150%;" /> <img display = "inline" src="/images/S-Tableau-Intermediate-13-Advanced-Mapping/image-20210611140820483-16563139806243.png" alt="image-20210611140820483" style="zoom:80%;" />
 
   <br />
 
