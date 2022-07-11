@@ -41,7 +41,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-8-Using-Split-and-Custom-Split/</loc>
         <lastmod>2022-06-29T06:19:22.809Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -49,7 +49,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-8-Using-Split-and-Custom-Split/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-7-Using-Context-Filters-to-Limit-Scope/</loc>
         <lastmod>2022-06-29T06:19:22.809Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -81,14 +81,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/</loc>
-        <lastmod>2022-06-29T06:19:22.806Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-2-Joining-Tables/</loc>
         <lastmod>2022-06-29T06:19:22.806Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -97,8 +89,8 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/</loc>
-        <lastmod>2022-06-29T06:19:22.805Z</lastmod>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-3-Blending-Multiple-Data-Sources/</loc>
+        <lastmod>2022-06-29T06:19:22.806Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -106,6 +98,14 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-16-Using-Advanced-Filter-Actions/</loc>
+        <lastmod>2022-06-29T06:19:22.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-15-Comparing-Measures-Against-a-Goal/</loc>
         <lastmod>2022-06-29T06:19:22.805Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -129,14 +129,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-10-Controlling-Table-Calculations/</loc>
-        <lastmod>2022-06-29T06:19:22.801Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-11-Filtering-and-LOD-Expression/</loc>
         <lastmod>2022-06-29T06:19:22.801Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -145,8 +137,8 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/</loc>
-        <lastmod>2022-06-29T06:19:22.800Z</lastmod>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-10-Controlling-Table-Calculations/</loc>
+        <lastmod>2022-06-29T06:19:22.801Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -154,6 +146,14 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-9-Using-Quick-Table-Calculations-to-Analyze-Data/</loc>
+        <lastmod>2022-06-29T06:19:22.800Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Intermediate-1-Working-with-a-Data-Extract/</loc>
         <lastmod>2022-06-29T06:19:22.800Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -177,7 +177,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-5-Mapping-Data-Geographically/</loc>
         <lastmod>2022-06-29T06:19:22.798Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -185,7 +185,7 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-5-Mapping-Data-Geographically/</loc>
+        <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-6-Using-Crosstabs-Totals-and-Aggregation/</loc>
         <lastmod>2022-06-29T06:19:22.798Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -241,14 +241,6 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-1-Connect-to-and-Customize-Data/</loc>
-        <lastmod>2022-06-29T06:19:22.793Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://hyemin-kim.github.io/2022/06/16/S-Tableau-Fundamentals-10-Showing-Breakdowns-of-the-Whole/</loc>
         <lastmod>2022-06-29T06:19:22.793Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -257,8 +249,8 @@
     </url>
 
     <url>
-        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-6-Dashboarding/</loc>
-        <lastmod>2022-06-29T06:19:22.792Z</lastmod>
+        <loc>https://hyemin-kim.github.io/2021/06/28/S-Tableau-Fundamentals-1-Connect-to-and-Customize-Data/</loc>
+        <lastmod>2022-06-29T06:19:22.793Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -266,6 +258,14 @@
 
     <url>
         <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-5-Geographic-Analysis/</loc>
+        <lastmod>2022-06-29T06:19:22.792Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hyemin-kim.github.io/2022/06/27/S-Tableau-Advanced-6-Dashboarding/</loc>
         <lastmod>2022-06-29T06:19:22.792Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
